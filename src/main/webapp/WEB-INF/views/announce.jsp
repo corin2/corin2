@@ -61,7 +61,7 @@
 		      </tr>
 		    </tbody>
 		  </table>
-		  <form action="write.htm">
+		  <form action="write">
 		 
 		  	<input type="submit" value="글쓰기">
 		  </form>
