@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.DAO.KanbanDAO">
+		<!-- 카드추가 -->
+		<insert id="cardInsert">
+			insert into 
+			card(projectnum,userid,listnum,cardname,cardcontent,isdeleted) 
+			values(#{projectNum},#{userId},#{listNum},#{cardName},null,1)
+		</insert>
+		<!-- 카드수정 -->
+		<update id="cardUpdate">
+			update card set
+			card cardname = #{cardName}, cardcontent=#{cardContent}
+			where userid = #{userId}
+		</update>
+		<!-- 카드삭제 -->
+		<update id="cardDelete">
+			update card set
+			isdeleted = 0
+			where cardnum = #{cardNum}
+		</update>
+		<!-- 카드전체조회 -->
+		<select id="cardAllSelect">
+			select * from card
+			where projectnum = #{projectNum}
+		</select>
+		<!-- 카드조회 -->
+		<select id="cardSelect">
+			select * from card
+			where cardnum = #{cardNum}
+		</select>
+		
+
+	</mapper>
