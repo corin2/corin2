@@ -36,4 +36,16 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "announce.htm", method = RequestMethod.GET)
+	public String index( Model model) {
+		
+	
+		return "announce";
+	}
+	
+	@RequestMapping(value="write.htm")
+	public String write() {
+		
+		return "write";
+	}
 }
