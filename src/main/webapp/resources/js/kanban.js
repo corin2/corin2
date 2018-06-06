@@ -3,33 +3,32 @@ $(function(){
 	showKanban();
 	
 	$('#content-md').draggable(
-	          {
-	             axis: "x"
-	        },{
-	            stop: function() {
-	                
-	                var left = $('#content-md')[0].offsetLeft
-	                var maxwidth = $(window).width() - $('#content-md').width()
-	                
-	                if(left > 0){
-	                    $('#content-md').css('left','0px')
-	                }else if($(window).width() > $('#content-md').width()){
-	                    if(left < 0){ //화면크기가 div길이보다 크고 left가 0보다 작으면!!
-	                        $('#content-md').css('left','0px')
-	                    }
-	                }else if($(window).width() < $('#content-md').width()){
-	                    if(left < maxwidth){ //화면크기가 div길이보다 작고 left가 maxwidth보다 작으면!!
-	                        $('#content-md').css('left',maxwidth-80)
-	                    }
-	                }
-	                $('#content-md').off('mousemove')
-	            }
-	        }
-	    )
-		$('body').attr({
-			oncontextmenu:"return false",
-		 	onselectstart:"return false",
-		}) 
+		{axis: "x"},
+		{
+            stop: function() {
+                
+                var left = $('#content-md')[0].offsetLeft
+                var maxwidth = $(window).width() - $('#content-md').width()
+                
+                if(left > 0){
+                    $('#content-md').css('left','0px')
+                }else if($(window).width() > $('#content-md').width()){
+                    if(left < 0){ //화면크기가 div길이보다 크고 left가 0보다 작으면!!
+                        $('#content-md').css('left','0px')
+                    }
+                }else if($(window).width() < $('#content-md').width()){
+                    if(left < maxwidth){ //화면크기가 div길이보다 작고 left가 maxwidth보다 작으면!!
+                        $('#content-md').css('left',maxwidth-80)
+                    }
+                }
+                $('#content-md').off('mousemove')
+            }
+        }
+    )
+	$('body').attr({
+		oncontextmenu:"return false",
+	 	onselectstart:"return false",
+	}) 
 		
 });
 
@@ -43,7 +42,7 @@ function autoWidth(){
 //드래그&드랍
 function sortable(){
 	$('div[class=listbox], div[class=listingbox], div[class=donebox]').sortable({
-		items:'div:not(.listtitle)',
+		items:'div:not(#addcard)',
 		placeholder: "ui-state-highlight",
 		connectWith: '.listbox, .listingbox, .donebox',
 		/*
@@ -160,13 +159,14 @@ function showCard(){
 			var htmlText;
 			
 			$.each(data.data, function(index, elt) {
-				console.log(elt);
 				htmlText = '<div id="cardNum'+elt.cardNum+'">'
-						 + '<div class="card ui-sortable-handle" data-toggle="modal" data-target="#myModal">'+elt.cardName
+						 + '<div class="card ui-sortable-handle" onclick="selectCard('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
 						 + '<button type="button" class="close">&times;</button></div></div>';
 				if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 				else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 			});
+			
+			$('#listnum1').append('<div id="addcard"><a class="cardcreate" onclick="addCardView('+$('#hiddenProjectNum').val()+')">Add a card...</a></div>');
 			
 			autoWidth();
 			sortable();
@@ -175,26 +175,22 @@ function showCard(){
 }
 
 //카드를 추가하는 텍스트박스를 생성한다
-function addCardView(org,listNum, projectNum) {
-	$(org).parent().find("#addcard").remove();
-	var div = "<div class='card' id='addcard'>" +
-			"<input class='inputtext' type='text' placeholder='card title' name='title' " +
-			"'{addCard($(this).parent().children(\"a\"), "+ listNum +","+projectNum+");}' " +
-			">" +
-			"<a onclick='addCard(this, "+ listNum +", "+ projectNum +")'>완료</a></div>";
-	$(org).before(div);
+function addCardView(projectNum) {
+	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' >"
+			+ "<a onclick='addCard(this, "+ projectNum +")'>완료</a>";
+	$('#addcard').html(div);
+	$('#addcard').attr('class', 'card');
 }
 
 //카드 등록 성공
-function addCard(obj, listNum, projectNum){
+function addCard(obj, projectNum){
 	var parent = $(obj).closest('div')
-	console.log("프로젝트 넘버 " + projectNum);
 	var value = parent[0].firstChild.value //cardname
 	if(value.trim() != ""){
 		$.ajax({
 			url:"cardInsert",
 			datatype:"JSON",
-			data:{listNum:listNum, cardName:value, projectNum:projectNum},
+			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
 				$(parent).remove();
 				$('#contentDetail').empty();
@@ -205,12 +201,12 @@ function addCard(obj, listNum, projectNum){
 
 //카드 디테일에 내용 뿌려주기
 function selectCard(cardNum){
-	console.log(cardNum);
 	$.ajax({
 		url:"cardSelect",
 		datatype:"JSON",
 		data:{cardNum:cardNum},
 		success:function(data){
+			$('#hiddenCardNum').attr('value', cardNum);
 			$("#modalHeader").html(data.dto.cardName);
 			$("#contentDetail").val(data.dto.cardContent);
 		}
@@ -218,14 +214,11 @@ function selectCard(cardNum){
 }
 
 //카드 디테일 내용 수정
-function updateCardDetail(userId){
-	console.log(userId);
-	console.log($("#contentDetail").val())
-	console.log($("#modalHeader").html())
+function updateCardDetail(){
 	$.ajax({
 		url:"cardUpdate",
 		datatype:"JSON",
-		data:{userId:userId, cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
-		success:function(data){	}
+		data:{cardNum:$('#hiddenCardNum').val(), cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
+		success:function(data){}
 	});
 }

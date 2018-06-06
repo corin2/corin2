@@ -9,17 +9,17 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 				<h4 id="modalHeader" class="modal-title"></h4>
 			</div>
+			<input type="hidden" id="hiddenCardNum">
 			<div class="modal-body container">
 				<div class="flex2">
 					<form action="#" method="post">
-						
 						<div class="form-group">
 							<label for="content">상세 내용</label>
 						</div>
-						<textarea id="contentDetail" style="width: 868px; height: 400px;" onkeyup="fnChkByte(this, 1000)"></textarea>
+						<textarea id="contentDetail" style="width: 868px; height: 400px;"></textarea>
 						<p>
 							<div class="form-group">
-								<button id="detaiAddbtn" class="btn btn-success" onclick="updateCardDetail('jin@naver.com')">작성</button>
+								<button id="detailAddbtn" class="btn btn-success" onclick="updateCardDetail()">작성</button>
 								
 								<input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCheckListForm()">
 							</div>
