@@ -23,6 +23,8 @@
 	<div class="content-wrapper">
 		<div id="mainScreen" class="container-fluid" scrollTop="5px">
 			<h2 id='boardTitle'>칸반보드</h2>
+			<input type="hidden" id="hiddenUserId" value="jin@naver.com" > <!-- value값 바꿀 것! -->
+			<input type="hidden" id="hiddenProjectNum" value="1" > <!-- value값 바꿀 것! -->
 			<hr>
 			<div id="content-md">
 			
@@ -50,7 +52,8 @@
 				
 				<div>
 					<div class="userbox">
-						<div class="listtitle" style="float: left;"><label>구분</label></div>
+						<div class="listtitle" style="float: left;"><label>USER</label></div>
+						<img src="resources/profile/nogon.JPG" class="img-circle person" width="30" height="30">
 						<div class="userprofilebox">지너니</div>
 						<div class="userprofilebox">재욱짱</div>
 						<div class="userprofilebox">지너니</div>

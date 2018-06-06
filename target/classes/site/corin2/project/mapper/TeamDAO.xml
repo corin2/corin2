@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.project.dao.TeamDAO">
+	
+	<!-- 프로젝트에 속한 모든 팀 멤버 조회 -->
+	<select id="allTeamMemberSelect" resultType="site.corin2.project.dto.TeamDTO">
+		select * from team where projectnum = #{projectNum}
+	</select>
+	
+	</mapper>

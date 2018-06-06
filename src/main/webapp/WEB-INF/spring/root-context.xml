@@ -28,4 +28,7 @@
 	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 		<!-- <constructor-arg name="strength" value="20"></constructor-arg> -->
 	</bean>
+	
+	<!-- jsonview 설정 -->
+	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 </beans>

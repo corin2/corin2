@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<mapper namespace="site.corin2.DAO.KanbanDAO">
+	<mapper namespace="site.corin2.kanban.dao.KanbanDAO">
 		<!-- 카드추가 -->
 		<insert id="cardInsert">
 			insert into 
@@ -23,15 +23,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where cardnum = #{cardNum}
 		</update>
 		<!-- 카드전체조회 -->
-		<select id="cardAllSelect">
+		<select id="cardAllSelect" resultType="site.corin2.kanban.dto.CardDTO">
 			select * from card
-			where projectnum = #{projectNum}
+			where projectnum = #{projectNum} order by cardtaxis
 		</select>
 		<!-- 카드조회 -->
 		<select id="cardSelect">
 			select * from card
 			where cardnum = #{cardNum}
 		</select>
-		
-
+		<!-- 모든리스트조회 -->
+		<select id="listAllSelect" resultType="site.corin2.kanban.dto.ListDTO">
+			select * from list order by listnum ASC
+		</select>
 	</mapper>
