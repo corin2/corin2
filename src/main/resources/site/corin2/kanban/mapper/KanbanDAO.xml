@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 카드수정 -->
 		<update id="cardUpdate">
 			update card set
-			card cardname = #{cardName}, cardcontent=#{cardContent}
+			cardname = #{cardName}, cardcontent=#{cardContent}
 			where userid = #{userId}
 		</update>
 		<!-- 카드삭제 -->
@@ -28,7 +28,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where projectnum = #{projectNum} order by cardtaxis
 		</select>
 		<!-- 카드조회 -->
-		<select id="cardSelect">
+		<select id="cardSelect"  resultType="site.corin2.kanban.dto.CardDTO">
 			select * from card
 			where cardnum = #{cardNum}
 		</select>

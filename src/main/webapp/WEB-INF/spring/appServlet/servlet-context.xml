@@ -12,7 +12,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/websocket
        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
-	
+
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<context:component-scan base-package="site.corin2.*.controller" />

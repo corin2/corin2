@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="resources/css/kanban.css">
 <link rel="stylesheet" href="resources/css/jquery.mCustomScrollbar.css">
 <script src="resources/js/kanban.js"></script>
+<script src="resources/js/kanban2.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
 
@@ -33,7 +34,7 @@
 					
 					<div class="listbox">
 						<div>
-							<div class="card ui-sortable-handle" data-toggle="modal" data-target="#myModal">
+							<div class="card ui-sortable-handle" onclick="selectCard(1)" data-toggle="modal" data-target="#myModal">
 								카드
 								<button type="button" class="close">&times;</button>
 							</div>
@@ -46,7 +47,7 @@
 							</div>
 						</div>
 						
-						<a class="cardcreate" onclick="addCardView(this)">Add a card...</a>
+						<a class="cardcreate" onclick="addCardView(this,1,1)">Add a card...</a>
 					</div>
 				</div>
 				

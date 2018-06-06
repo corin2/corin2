@@ -82,8 +82,6 @@ function sortable(){
 function showKanban(){
 	var userhtml1, userhtml2, userhtml3;
 	showUserField();
-	//showList();
-	//showCard();
 }
 
 //멤버 영역 뿌리기
@@ -161,7 +159,6 @@ function showCard(){
 		success : function(data){
 			var htmlText;
 			
-			
 			$.each(data.data, function(index, elt) {
 				console.log(elt);
 				htmlText = '<div id="cardNum'+elt.cardNum+'">'
@@ -169,11 +166,66 @@ function showCard(){
 						 + '<button type="button" class="close">&times;</button></div></div>';
 				if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 				else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
-				//'div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']'
 			});
 			
 			autoWidth();
 			sortable();
 		}
+	});
+}
+
+//카드를 추가하는 텍스트박스를 생성한다
+function addCardView(org,listNum, projectNum) {
+	$(org).parent().find("#addcard").remove();
+	var div = "<div class='card' id='addcard'>" +
+			"<input class='inputtext' type='text' placeholder='card title' name='title' " +
+			"'{addCard($(this).parent().children(\"a\"), "+ listNum +","+projectNum+");}' " +
+			">" +
+			"<a onclick='addCard(this, "+ listNum +", "+ projectNum +")'>완료</a></div>";
+	$(org).before(div);
+}
+
+//카드 등록 성공
+function addCard(obj, listNum, projectNum){
+	var parent = $(obj).closest('div')
+	console.log("프로젝트 넘버 " + projectNum);
+	var value = parent[0].firstChild.value //cardname
+	if(value.trim() != ""){
+		$.ajax({
+			url:"cardInsert",
+			datatype:"JSON",
+			data:{listNum:listNum, cardName:value, projectNum:projectNum},
+			success:function(data){
+				$(parent).remove();
+				$('#contentDetail').empty();
+			}
+		});
+	}
+}
+
+//카드 디테일에 내용 뿌려주기
+function selectCard(cardNum){
+	console.log(cardNum);
+	$.ajax({
+		url:"cardSelect",
+		datatype:"JSON",
+		data:{cardNum:cardNum},
+		success:function(data){
+			$("#modalHeader").html(data.dto.cardName);
+			$("#contentDetail").val(data.dto.cardContent);
+		}
+	});
+}
+
+//카드 디테일 내용 수정
+function updateCardDetail(userId){
+	console.log(userId);
+	console.log($("#contentDetail").val())
+	console.log($("#modalHeader").html())
+	$.ajax({
+		url:"cardUpdate",
+		datatype:"JSON",
+		data:{userId:userId, cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
+		success:function(data){	}
 	});
 }

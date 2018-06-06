@@ -1,10 +1,9 @@
 /**
     파일명: KanbanService.java
-    설   명: 
+    설   명: 칸반보드 관련 서비스
     작성일: 2018. 6. 5.
-    작성자: 김 진 원
+    작성자: 최 재 욱
 */
-
 package site.corin2.kanban.service;
 
 import java.util.ArrayList;
@@ -19,13 +18,37 @@ import site.corin2.kanban.dto.CardDTO;
 import site.corin2.kanban.dto.ListDTO;
 
 @Service
-public class KanbanService2 {
+public class KanbanService {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private SqlSession sqlSession;
+
+	public int cardInsert(CardDTO card) {
+		int result =0;
+		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
+		result = dao.cardInsert(card);
+		
+		return result;
+	}
+	
+	public CardDTO cardSelect(int cardNum) {
+		CardDTO dto = null;
+		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
+		dto = dao.cardSelect(cardNum);
+		
+		return dto;
+	}
+	
+	public int cardUpdate(CardDTO card) {
+		int result = 0;
+		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
+		result = dao.cardUpdate(card);
+		
+		return result;
+	}
 	
 	public List<ListDTO> listAllSelect(){
-		KanbanDAO kanbanDAO = sqlsession.getMapper(KanbanDAO.class);
+		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		List<ListDTO> lists = null;
 		try {
 			lists = (ArrayList<ListDTO>)kanbanDAO.listAllSelect();
@@ -37,7 +60,7 @@ public class KanbanService2 {
 	}
 	
 	public List<CardDTO> cardAllSelect(int projectNum){
-		KanbanDAO kanbanDAO = sqlsession.getMapper(KanbanDAO.class);
+		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		List<CardDTO> cards = null;
 		try {
 			cards = (ArrayList<CardDTO>)kanbanDAO.cardAllSelect(projectNum);

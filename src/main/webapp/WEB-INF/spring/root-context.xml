@@ -31,4 +31,5 @@
 	
 	<!-- jsonview 설정 -->
 	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+
 </beans>
