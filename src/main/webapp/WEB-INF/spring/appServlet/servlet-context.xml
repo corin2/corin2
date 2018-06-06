@@ -13,15 +13,11 @@
        http://www.springframework.org/schema/websocket
        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
-	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<context:component-scan base-package="site.corin2.kanban.controller" />
+	<context:component-scan base-package="site.corin2.*.controller" />
+	<context:component-scan base-package="site.corin2.*.service" />
 	
 	<!-- 비동기 필요 -->
 	<mvc:annotation-driven />

@@ -70,4 +70,6 @@ public interface KanbanDAO {
 	 작성자명 : 김 진 원
 	*/
 	public List<ListDTO> listAllSelect();
+
+
 }
