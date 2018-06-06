@@ -193,7 +193,7 @@ function addCard(obj, projectNum){
 			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
 				$(parent).remove();
-				$('#contentDetail').empty();
+				showKanban();
 			}
 		});
 	}
