@@ -190,6 +190,7 @@
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		
 	</dependencies>
 	<!-- end - Maven dependencies -->
     <build>

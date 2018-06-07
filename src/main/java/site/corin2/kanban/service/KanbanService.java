@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import site.corin2.kanban.dao.KanbanDAO;
 import site.corin2.kanban.dto.CardDTO;
@@ -71,13 +73,14 @@ public class KanbanService {
 		return cards;
 	}
 	
-	public int cardDelete (int cardNum) {
-		System.out.println("cardNum");
+	@Transactional(rollbackFor={Exception.class})
+	public int cardDelete(int cardNum) {
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
 		int result = 0;
-		result = dao.cardDelete(cardNum);
-		
-		
+		CardDTO card = dao.cardSelect(cardNum);
+		dao.cardDeleteTaxis(card);
+		dao.cardDelete(cardNum);
 		return result;
 	}
+	
 }

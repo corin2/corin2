@@ -74,8 +74,7 @@ public class KanbanController {
 	}
 	
 	@RequestMapping("/cardDelete")
-	public View deleteCard(String cardNum,Model model) {
-		System.out.println("들어왔니?123" + cardNum);
+	public View deleteCard(String cardNum, Model model) {
 		int card = Integer.parseInt(cardNum);
 		int result = 0;
 		result = service.cardDelete(card);

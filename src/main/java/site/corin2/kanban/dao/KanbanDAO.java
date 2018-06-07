@@ -37,6 +37,13 @@ public interface KanbanDAO {
 	public int cardDelete(int cardNum);
 	
 	/**
+	 날      짜 : 2018. 6. 7.
+	 기      능 : 카드삭제시 해당 카드의 순번보다 높은 순번 -1 씩 해준후 카드삭제
+	 작성자명 : 김 진 원
+	*/
+	public int cardDeleteTaxis(CardDTO card);
+	
+	/**
 	 날      짜 : 2018. 6. 5.
 	 기      능 : 모든 카드 불러오기 (프로젝트 넘버로)
 	 작성자명 : 김 진 원
