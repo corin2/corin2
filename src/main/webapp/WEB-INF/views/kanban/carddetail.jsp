@@ -5,9 +5,10 @@
 	<div class="modal-dialog modal-lg">
 		<!-- Modal content-->
 		<div class="modal-content">
+		
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 id="modalHeader" class="modal-title"></h4>
+				<h4 id="modalHeader" onclick="cardNameMod()" class="modal-title"></h4>
 			</div>
 			<input type="hidden" id="hiddenCardNum">
 			<div class="modal-body container">
@@ -16,11 +17,11 @@
 						<div class="form-group">
 							<label for="content">상세 내용</label>
 						</div>
-						<textarea id="contentDetail" style="width: 868px; height: 400px;"></textarea>
+						<textarea id="contentDetail" style="width: 76%; height: 400px;"></textarea>
 						<p>
 							<div class="form-group">
-								<button id="detailAddbtn" class="btn"  data-backdrop="static"  onclick="updateCardDetail(event)">작성</button>
 								
+								<input id="detailAddbtn" class="btn btn-success" type="button" onclick="updateCardDetail()" value="작성">
 								<input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCheckListForm()">
 							</div>
 						</p>
@@ -30,8 +31,8 @@
 							<div id="checkListForm">
 								<p><input type="checkbox" id="checkbox1">
 									<label for="checkbox1">체크리스트</label>
-									<button type="button" class="close">&times;</button>
-									<button type="button" class="glyphicon close">&#xe065;</button>
+									<!-- <button type="button" class="close">&times;</button>
+									<button type="button" class="glyphicon close">&#xe065;</button> -->
 								</p>
 							</div>
 						</div>

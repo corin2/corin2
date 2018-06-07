@@ -81,5 +81,13 @@ public class KanbanController {
 		model.addAttribute("result",result);
 		return jsonview;
 	}
+	
+	@RequestMapping("/cardTitleUpdate")
+	public View updateCardTitle(CardDTO card, Model model) {
+		int result = 0;
+		result = service.cardUpdate(card);
+		model.addAttribute("result",result);
+		return jsonview;
+	}
 }
 

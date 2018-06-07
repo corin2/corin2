@@ -186,7 +186,8 @@ function showCard(){
 				if(elt.isDeleted == '1') {
 					htmlText = '<div id="cardNum'+elt.cardNum+'">'
 							 + '<div class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
-							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button></div></div>';
+							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
+							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event,'+elt.cardName+','+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 				}
@@ -260,6 +261,7 @@ function updateCardDetail(e){
 //카드 삭제
 function deleteCard(e,cardNum){
 	e.stopPropagation();
+	
 	$.ajax({
 		url:"cardDelete",
 		datatype:"JSON",
@@ -268,4 +270,67 @@ function deleteCard(e,cardNum){
 			showKanban();
 		}
 	});
+}
+
+//카드를 추가하는 텍스트박스를 생성한다
+function updateCardTitle(e,cardName,cardNum) {
+	var card = cardNum;
+	console.log("123");
+	e.stopPropagation();
+	$('#cardNum' + cardNum).empty();
+	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
+			+ "<a onclick='updateCard(this, "+ cardNum +")'>완료</a>";
+	$('#cardNum' + card).html(div);
+	$('#cardNum' + card).attr('class', 'card');
+}
+
+//카드 제목 수정 확인
+function updateCard(obj, cardNum){
+	var parent = $(obj).closest('div')
+	var value = parent[0].firstChild.value //cardname
+	if(value.trim() != ""){
+		$.ajax({
+			url:"cardTitleUpdate",
+			datatype:"JSON",
+			data:{cardName:value, cardNum:cardNum},
+			success:function(data){
+				$(parent).remove();
+				showKanban();
+			}
+		});
+	}
+}
+
+//카드 디테일 제목 수정
+function cardNameMod(){
+	var cardNum = $('#hiddenCardNum').val();
+	console.log(cardNum)
+	var htmlObj = $('#modalHeader').html();
+	
+	var div = '<div onfocusout="selectCard('+ cardNum +')">'
+		+ '<input type="text" class="form-control inputtextbox" placeholder="' + htmlObj + '" onkeyup="fnChkByte(this, 26)"'
+		+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
+
+	$('#modalHeader').html(div);
+	$('#modalHeader').children('div').children('input').focus();
+}
+
+//상세페이지 카드명 수정 완료
+function cardNameModOk(){
+	var cardNum = $('#hiddenCardNum').val();
+	var value = $('#modalHeader').children('div').children('input').val();
+	if(value.trim() != ""){
+		$.ajax({
+			url:"cardTitleUpdate",
+			datatype:"text",
+			data:{cardNum:cardNum, cardName:value.trim()},
+			success:function(data){
+				var boardNum = $('#hiddenBoardnum').val();
+				selectCard(cardNum);
+				showKanban();
+			}
+		});
+	}else{
+		selectCard(cardNum);
+	}
 }

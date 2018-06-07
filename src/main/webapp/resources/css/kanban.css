@@ -6,7 +6,7 @@
 		    margin-right : 5%;
 		 /*    background-coor: white; */
 	}
-	body{
+	body {
 	    font-family: "Lato", sans-serif;
 		position: absolute;
 		height: 100%;
@@ -104,7 +104,7 @@
 	    max-height: 600px;
 	}
 	
-	.listtitle{
+	.listtitle {
 		text-align:left;
 	    font-weight:bold;
 	    overflow: auto;
@@ -112,7 +112,7 @@
 	    z-index: 2;
 	}
 	
-	.card{
+	.card {
 		margin-top:15px;
 		border : 1px solid white;
 	    border-radius: 8px;
@@ -122,10 +122,20 @@
 	hr {
 		clear: both;
 	}
-	.inputtext{
+	.inputtext {
 		background-color : transparent; 
 		border:none; 
 		outline:none;
 		margin-left: 10px;
 	}
 	
+	.close {
+    float: right;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .4;
+    }

@@ -13,15 +13,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			card(projectnum, userid, listnum, cardname, cardcontent, cardtaxis, isdeleted) 
 			values(#{projectNum}, #{userId}, 1, #{cardName}, null, #{cardTaxis}, 1)
 		</insert>
+		
 		<!-- 카드수정 -->
 		<update id="cardUpdate">
 			update card set	cardname = #{cardName}, cardcontent = #{cardContent} where cardnum = #{cardNum}
 		</update>
+		
 		<!-- 카드삭제 -->
 		<update id="cardDelete">
 			update card set	cardtaxis = 0, isdeleted = 0
 			where cardnum = #{cardNum}
 		</update>
+		
 		<!-- 카드삭제시 순번 변경 -->
 		<update id="cardDeleteTaxis">
 			update card set cardtaxis = cardtaxis - 1
@@ -37,16 +40,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</otherwise>
 			</choose>
 		</update>
+		
 		<!-- 카드전체조회 -->
 		<select id="cardAllSelect" resultType="site.corin2.kanban.dto.CardDTO">
 			select * from card
-			where projectnum = #{projectNum} order by listnum, cardtaxis, userid
+			where projectnum = #{projectNum} and isdeleted = 1 order by listnum, cardtaxis, userid
 		</select>
+		
 		<!-- 카드조회 -->
 		<select id="cardSelect"  resultType="site.corin2.kanban.dto.CardDTO">
 			select * from card
 			where cardnum = #{cardNum}
 		</select>
+		
 		<!-- 모든리스트조회 -->
 		<select id="listAllSelect" resultType="site.corin2.kanban.dto.ListDTO">
 			select * from list order by listnum ASC
