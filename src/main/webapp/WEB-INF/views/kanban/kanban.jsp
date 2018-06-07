@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="resources/css/kanban.css">
 <link rel="stylesheet" href="resources/css/jquery.mCustomScrollbar.css">
 <script src="resources/js/kanban.js"></script>
+<script src="resources/js/kanban2.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
 

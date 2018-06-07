@@ -161,7 +161,7 @@ function showCard(){
 			$.each(data.data, function(index, elt) {
 				htmlText = '<div id="cardNum'+elt.cardNum+'">'
 						 + '<div class="card ui-sortable-handle" onclick="selectCard('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
-						 + '<button type="button" class="close">&times;</button></div></div>';
+						 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')">&times;</button></div></div>';
 				if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 				else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 			});
@@ -214,11 +214,14 @@ function selectCard(cardNum){
 }
 
 //카드 디테일 내용 수정
-function updateCardDetail(){
+function updateCardDetail(e){
+	
 	$.ajax({
 		url:"cardUpdate",
 		datatype:"JSON",
 		data:{cardNum:$('#hiddenCardNum').val(), cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
-		success:function(data){}
+		success:function(data){
+			e.stopPropagation();
+		}
 	});
 }

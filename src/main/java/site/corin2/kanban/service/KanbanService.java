@@ -70,4 +70,14 @@ public class KanbanService {
 		
 		return cards;
 	}
+	
+	public int cardDelete (int cardNum) {
+		System.out.println("cardNum");
+		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
+		int result = 0;
+		result = dao.cardDelete(cardNum);
+		
+		
+		return result;
+	}
 }

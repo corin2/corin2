@@ -73,5 +73,15 @@ public class KanbanController {
 		model.addAttribute("data", cards);
 		return jsonview;
 	}
+	
+	@RequestMapping("/cardDelete")
+	public View deleteCard(String cardNum,Model model) {
+		System.out.println("들어왔니?123" + cardNum);
+		int card = Integer.parseInt(cardNum);
+		int result = 0;
+		result = service.cardDelete(card);
+		model.addAttribute("result",result);
+		return jsonview;
+	}
 }
 

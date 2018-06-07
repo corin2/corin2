@@ -19,7 +19,7 @@
 						<textarea id="contentDetail" style="width: 868px; height: 400px;"></textarea>
 						<p>
 							<div class="form-group">
-								<button id="detailAddbtn" class="btn btn-success" onclick="updateCardDetail()">작성</button>
+								<button id="detailAddbtn" class="btn"  data-backdrop="static"  onclick="updateCardDetail(event)">작성</button>
 								
 								<input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCheckListForm()">
 							</div>
