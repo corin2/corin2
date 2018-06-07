@@ -46,7 +46,6 @@ public class KanbanService {
 		
 		return result;
 	}
-	
 	public List<ListDTO> listAllSelect(){
 		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		List<ListDTO> lists = null;

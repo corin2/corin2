@@ -129,3 +129,13 @@
 		margin-left: 10px;
 	}
 	
+		.close{
+	    float: right;
+	    font-size: 20px;
+	    font-weight: 700;
+	    line-height: 1;
+	    color: #000;
+	    text-shadow: 0 1px 0 #fff;
+	    filter: alpha(opacity=20);
+	    opacity: .4;
+    }

@@ -186,7 +186,8 @@ function showCard(){
 				if(elt.isDeleted == '1') {
 					htmlText = '<div id="cardNum'+elt.cardNum+'">'
 							 + '<div class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
-							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button></div></div>';
+							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
+							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event,'+elt.cardName+','+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 				}
@@ -268,7 +269,10 @@ function deleteCard(e,cardNum){
 			success:function(data){
 				if(data.result==1){
 					$("#cardNum"+cardNum).remove();
+					showkanban();
 				}
 			}
 		});
 }
+
+

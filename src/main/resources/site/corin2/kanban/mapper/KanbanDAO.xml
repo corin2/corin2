@@ -19,7 +19,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</update>
 		<!-- 카드삭제 -->
 		<update id="cardDelete">
-			update card set	cardtaxis = 0 and isdeleted = 0	where cardnum = #{cardNum}
+			update card set	cardtaxis = 0, isdeleted = 0
+			where cardnum = #{cardNum}
 		</update>
 		<!-- 카드전체조회 -->
 		<select id="cardAllSelect" resultType="site.corin2.kanban.dto.CardDTO">
