@@ -1,5 +1,4 @@
 $(function(){
-	
 	showKanban();
 	
 	$('#content-md').draggable(
@@ -79,12 +78,31 @@ function sortable(){
 
 //멤버와 카드 뿌려주기
 function showKanban(){
-	var userhtml1, userhtml2, userhtml3;
-	showUserField();
+	/*var userhtml1, userhtml2, userhtml3;*/
+	showUserFrofiles();
+}
+
+//멤버 사진과 닉네임 뿌리기
+function showUserFrofiles(){
+	var userProfiles = [];
+	
+	$.ajax({
+		type : "post",
+		url  : "showUserProfile",
+		datatype:"JSON",
+		data : {projectNum : $('#hiddenProjectNum').val()},
+		success : function(data){
+			$.each(data.data, function(index, elt) {
+				userProfiles.push(elt);
+			});
+			
+			showUserField(userProfiles)
+		}
+	});
 }
 
 //멤버 영역 뿌리기
-function showUserField(){
+function showUserField(userProfiles){
 	$.ajax({
 		type : "post",
 		url  : "showUserField",
@@ -94,9 +112,15 @@ function showUserField(){
 			var firsttext1 = ''; var firsttext2 = ''; var firsttext3 = '';
 			var nexttext1 = ''; var nexttext2 = ''; var nexttext3 = '';
 			$.each(data.data, function(index, elt) {
-				var text1 = '<div class="userprofilebox">'
-					  	 /* + '<img src="resources/profile/'+elt.userProfile+'" class="img-circle person" width="30" height="30">'*/
-					  	  + elt.userId +'</div>';
+				var text1 = '';
+				$.each(userProfiles, function(i, elt2) {
+					if(elt.userId == elt2.userId) {
+						text1 += '<div class="userprofilebox">'
+							+ '<img src="resources/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
+							+ elt2.userName +'</div>';
+					}
+				});
+				
 				var text2 = '<div class="'+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+'"><div class="listingbox"></div></div>';
 				var text3 = '<div class="'+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+'"><div class="donebox"></div></div>';
 				if($('#hiddenUserId').val() == elt.userId){
@@ -159,11 +183,13 @@ function showCard(){
 			var htmlText;
 			
 			$.each(data.data, function(index, elt) {
-				htmlText = '<div id="cardNum'+elt.cardNum+'">'
-						 + '<div class="card ui-sortable-handle" onclick="selectCard('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
-						 + '<button type="button" class="close">&times;</button></div></div>';
-				if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
-				else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
+				if(elt.isDeleted == '1') {
+					htmlText = '<div id="cardNum'+elt.cardNum+'">'
+							 + '<div class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
+							 + '<button type="button" class="close">&times;</button></div></div>';
+					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
+					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
+				}
 			});
 			
 			$('#listnum1').append('<div id="addcard"><a class="cardcreate" onclick="addCardView('+$('#hiddenProjectNum').val()+')">Add a card...</a></div>');
@@ -199,6 +225,11 @@ function addCard(obj, projectNum){
 	}
 }
 
+//카드 디텔일 총합 뿌려주기
+function cardDetail(cardNum){
+	selectCard(cardNum);
+}
+
 //카드 디테일에 내용 뿌려주기
 function selectCard(cardNum){
 	$.ajax({
@@ -219,6 +250,8 @@ function updateCardDetail(){
 		url:"cardUpdate",
 		datatype:"JSON",
 		data:{cardNum:$('#hiddenCardNum').val(), cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
-		success:function(data){}
+		success:function(data){
+			cardDetail($('#hiddenCardNum').val());
+		}
 	});
 }

@@ -5,9 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<mapper namespace="site.corin2.project.dao.TeamDAO">
 	
-	<!-- 프로젝트에 속한 모든 팀 멤버 조회 -->
+	<!-- 프로젝트에 속한 모든 팀 멤버 TeamDTO 조회 -->
 	<select id="allTeamMemberSelect" resultType="site.corin2.project.dto.TeamDTO">
 		select * from team where projectnum = #{projectNum}
+	</select>
+	
+	<!-- 프로젝트에 속한 모든 팀 멤버 UserDTO 조회 -->
+	<select id="allTeamMemberProfileSelect" resultType="site.corin2.user.dto.UserDTO">
+		select *
+		from user
+		where userid in (select t.USERID from team t inner join user u on t.USERID = u.USERID where t.PROJECTNUM = #{projectNum});
 	</select>
 	
 	</mapper>

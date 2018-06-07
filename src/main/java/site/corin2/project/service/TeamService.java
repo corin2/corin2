@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import site.corin2.project.dao.TeamDAO;
 import site.corin2.project.dto.TeamDTO;
+import site.corin2.user.dto.UserDTO;
 
 @Service
 public class TeamService {
@@ -33,5 +34,17 @@ public class TeamService {
 		}
 		
 		return teamMembers;
+	}
+	
+	public List<UserDTO> allTeamMemberProfileSelect(int projectNum){
+		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		List<UserDTO> teamMemberProfiles = null;
+		try {
+			teamMemberProfiles = (ArrayList<UserDTO>)teamDAO.allTeamMemberProfileSelect(projectNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return teamMemberProfiles;
 	}
 }
