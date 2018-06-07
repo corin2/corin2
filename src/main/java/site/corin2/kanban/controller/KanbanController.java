@@ -52,7 +52,6 @@ public class KanbanController {
 	
 	@RequestMapping("/cardUpdate")
 	public View cardUpdateView(CardDTO card, Model model) {
-		System.out.println("들어왔니?");
 		int result = 0;
 		result = service.cardUpdate(card);
 		model.addAttribute("result",result);
