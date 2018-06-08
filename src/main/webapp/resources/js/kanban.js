@@ -275,7 +275,8 @@ function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
-			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")'>완료</a>";
+			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' " 
+			+ " onkeypress='if(event.keyCode==13 {updateCard(this, "+ cardNum +";}')>완료</a>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 }
@@ -303,9 +304,8 @@ function cardNameMod(){
 	console.log(cardNum)
 	var htmlObj = $('#modalHeader').html();
 	
-	var div = '<div>'
-		+ '<input type="text" class="form-control" placeholder="' + htmlObj + '" onkeyup="fnChkByte(this, 26)"'
-		+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
+	var div = '<div><input type="text" class="form-control" placeholder="' + htmlObj + '"'
+			+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
 
 	$('#modalHeader').html(div);
 	$('#modalHeader').children('div').children('input').focus();

@@ -49,12 +49,50 @@ function showCardCheckList(){
 					else if(elt.isChecked == '1') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' checked>";
 					
 					htmlText += "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
-							 + "<button type='button' class='close'>&times;</button>"
+							 + "<button type='button' class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
 							 + "<button type='button' class='glyphicon close'>&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}
 			});
+		}
+	});
+}
+
+//체크리스트 삭제
+function deleteCardCheckList(checkNum){
+	
+	$.ajax({
+		url:"checkListDelete",
+		datatype:"JSON",
+		data:{checkNum:checkNum},
+		success:function(data){
+			showCardCheckList();
+		}
+	});
+}
+
+//체크를 클릭했을 때 바로 업데이트 하기
+function checkClick(obj, checkNum){
+	var checked = 0;
+	var content = $(obj).parent().children('label').text();
+	
+	$(obj).change(function(){
+        if($(obj).is(":checked")) checked = 1;
+        else checked = 0;
+        
+        checkUpdate(checked, content, checkNum);
+    });
+}
+
+//체크박스 업데이트
+function checkUpdate(checked, content, checkNum){
+	$.ajax({
+		url:"checkedUpdate",
+		datatype:"text",
+		data:{isChecked:checked, checkContent:content, checkNum:checkNum},
+		success:function(data){
+			showCardCheckList();
 		}
 	});
 }

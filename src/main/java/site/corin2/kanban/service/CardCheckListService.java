@@ -40,5 +40,12 @@ public class CardCheckListService {
 		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
 		dao.checkListUpdate(checkList);
 	}
-
+	
+	public int cardCheckListDelete(CardCheckListDTO checkList) {
+		int result = 0;
+		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		result = dao.checkListDelete(checkList);
+		
+		return result;
+	}
 }

@@ -47,4 +47,10 @@ public class CardCheckListController {
 		service.checkListUpdate(checkList);
 		return jsonview;
 	}
+	
+	@RequestMapping("/checkListDelete")
+	public View cardCheckListDeleteView(CardCheckListDTO checkList, Model model) {
+		int result = service.cardCheckListDelete(checkList);
+		return jsonview;
+	}
 }
