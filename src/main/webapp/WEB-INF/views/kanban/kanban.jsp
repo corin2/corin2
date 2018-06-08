@@ -17,7 +17,6 @@
 <script src="resources/js/kanban.js"></script>
 <script src="resources/js/keyUp.js"></script>
 <script src="resources/js/cardCheckList.js"></script>
-<script src="resources/js/cardCheckList2.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
 

@@ -20,7 +20,7 @@
 		position: absolute;
 		margin-top:-30px;
 		margin-left:70px;
-		height: 90%;
+		height: 100%;
 		overflow-x: hidden;
 		overflow-y: auto;
 		background-color: inherit;
@@ -35,13 +35,13 @@
 	    border:10px solid #D7EEF2;
 	    border-radius: 12px;
 	    background-color: #D7EEF2;
-	    margin:10px;
-	    width:300px;
+	    margin: 10px;
+	    width: 300px;
 	    float:left;
 	    overflow-x: auto;
 	    overflow-y: unset;
 	    position:relative;
-	    max-height: 600px;
+	    max-height: 765px;
 	}
 	
 	.listingbox {
