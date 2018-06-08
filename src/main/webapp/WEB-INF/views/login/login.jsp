@@ -124,6 +124,13 @@
 	 width:40px;
 	}
     </style>
+    <script type="text/javascript">
+	$(function(){
+		$('#repassword').click(function(){
+			//dialog 띄워서 아이디 받고 그 아이디로 메일 랜덤값 보내면서 update해주기
+		});
+	});
+</script>
 </head>
 <body>
     <form method="post" action="./login">
@@ -176,11 +183,14 @@
         <input class="text" type="password" id="password" name="password" placeholder="Password" required="required">
         
         <div class="col-sm-12">
-	        <div class="col-md-6">
+	        <div class="col-md-4">
 	        	<button class="btn btn-default" type="submit" id="btnLogin" value="Login">Login</button>
 	        </div>
-	        <div class="col-md-6">
+	        <div class="col-md-4">
 	        	<a type="button" href="signup" class="btn btn-default">Sign Up</a>
+	        </div>
+	        <div class="col-md-4">
+	        	<button id="repassword" type="button" class="btn btn-default">비밀번호변경하기</button>
 	        </div>
         </div>
         <div class="text-center social-btn" style="margin-top: 3px;">
