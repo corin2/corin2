@@ -9,7 +9,7 @@ import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.UserDTO;
 
 @Service
-public class MemberService {
+public class UserService {
 
 	@Autowired
 	private SqlSession sqlsession;

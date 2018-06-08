@@ -1,33 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="site.corin2.DAO.UserDAO">
-	<insert id="userInsert" parameterType="site.corin2.user.dto">
+<mapper namespace="site.corin2.user.dao.UserDAO">
+	<insert id="userInsert" parameterType="site.corin2.user.dto.UserDTO">
 		insert into user(userid,username,password,enabled,userprofile,joindate,gradenum,isdeleted)
-		values(#{userid},#{username},#{password},1,'pi.png',sysdate,G200,0)
+		values(#{userId},#{userName},#{password},'1','pi.png',NOW(),'G200','0')
 	</insert>
 	
-	<select id="userSelect">
-		select * from member where userid=#{userid}
+	<select id="userSelect" resultType="site.corin2.user.dto.UserDTO">
+		select * from user where userid=#{userId}
 	</select>
 	
-	<update id="userUpdate" parameterType="site.corin2.user.dto">
-		update member
-		set username=#{username},password = #{password}, userprofile=#{userprofile}, gradenum=#{gradenum}
-		where userid = #{userid}
+	<update id="userUpdate">
+		update user
+		set username=#{userName},password = #{password}, userprofile=#{userProfile}
+		where userid = #{userId}
 	</update>
 	
 	<update id="userDelete">
-		update member
-		set isdeleted = #{isdeleted}
-		where userid = #{userid}
+		update user
+		set 
+		enabled = '0',
+		isdeleted = '1'
+		where userid = #{userId}
 	</update>
 	
 	<select id="idCheck" resultType="int">
-		select count(*) from member where userid = #{userid}
+		select count(*) from user where userid = #{userId}
 	</select>
-	
-	<select id="loginCheck" resultType="int">
-		select count(*) from member where userid = #{param1} and password = #{param2}
-	</select>   
-	
 </mapper>

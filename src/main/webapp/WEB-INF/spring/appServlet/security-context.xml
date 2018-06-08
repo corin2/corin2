@@ -1,52 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:context="http://www.springframework.org/schema/context"
- xmlns:tx="http://www.springframework.org/schema/tx"
- xmlns:mvc="http://www.springframework.org/schema/mvc"
  xmlns:security="http://www.springframework.org/schema/security"
  xsi:schemaLocation="http://www.springframework.org/schema/beans 
                      http://www.springframework.org/schema/beans/spring-beans.xsd
-                     http://www.springframework.org/schema/context
-					http://www.springframework.org/schema/context/spring-context.xsd
-					http://www.springframework.org/schema/mvc
-					http://www.springframework.org/schema/mvc/spring-mvc.xsd
-  					 http://www.springframework.org/schema/security 
-  					 http://www.springframework.org/schema/security/spring-security.xsd
-  					  http://www.springframework.org/schema/tx 
-  					 http://www.springframework.org/schema/tx/spring-tx.xsd
-  					 ">
+                     http://www.springframework.org/schema/security 
+                     http://www.springframework.org/schema/security/spring-security.xsd">
 
-<mvc:annotation-driven/>
-<security:http>
-	<security:csrf disabled="true"/>
-	<security:form-login login-page="/join/login.htm"
-						authentication-failure-url="/join/login.htm?error" 
-						authentication-success-handler-ref="" />
-	<security:logout logout-success-url="/index.htm"/>
+	 <security:http auto-config="true">
+	 <security:intercept-url pattern="/**" access="permitAll"/> 
+	  <security:csrf disabled="true"/>
+	  <security:form-login login-page="/"
+	  					   login-processing-url="/login"
+	  					   username-parameter="userId"
+	  					   password-parameter="password"
+	  					   default-target-url="/content"
+	  					   authentication-failure-url="/index.htm?error"
+	  					   always-use-default-target="true"
+	  					   />
+	  <security:logout logout-success-url="/index.htm" />
+	  <security:intercept-url pattern="/memberupdate.htm" access="ROLE_USER"/>
+	  <security:intercept-url pattern="/admin.htm" access="ROLE_ADMIN"/>
+	  
+	</security:http>
 	
-	<!-- <security:intercept-url pattern="/notice/noticeDetail.htm" access="hasRole('ROLE_USER')"/> -->
-	<!-- <security:intercept-url pattern="/notice/noticeReg.htm" access="hasRole('ROLE_ADMIN')"/> -->
-</security:http>
-
-
-<!--  /login 컨트롤러 구현하지 않았다.
-select userid, pwd as password, 1 enabled from member where userid= kglim 
-결과를 가지고 했었는데
-이제는 <security:authentication-provider> 얘가 자동으로 해준다.
--->
-<security:authentication-manager>
-	<security:authentication-provider>
-		<security:jdbc-user-service data-source-ref="driverManagerDataSource"
-			users-by-username-query="select userid, pwd as password, 1 enabled from member where userid=?"
-			authorities-by-username-query="select m.userid, r.ROLE_NAME 
-											from member m join roll r
-											on m.userid = r.userid
-											where m.userid=?"
-		/>
-		<security:password-encoder ref="bCryptPasswordEncoder"/>
-	</security:authentication-provider>
-</security:authentication-manager>
-
-
+	<security:authentication-manager>
+		<security:authentication-provider> <!-- DB연결 하는 곳이므로 bean객체 id넣는다. -->
+		<!-- 	<security:password-encoder ref="bCryptPasswordEncoder"/> -->
+			<security:jdbc-user-service 
+				data-source-ref="driverManagerDataSource"
+				users-by-username-query="SELECT userid AS username, password, enabled as enabled FROM user WHERE userId= ?"
+				authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user u JOIN usergrade g on u.gradenum = g.gradenum where u.userId=?"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
 </beans>

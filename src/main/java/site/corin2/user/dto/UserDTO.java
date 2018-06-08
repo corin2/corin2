@@ -12,7 +12,7 @@ public class UserDTO {
 	private String userName;
 	private String password;
 	private int enabled;
-	private String userprofile;
+	private String userProfile;
 	private String joinDate;
 	private String gradeNum;
 	private int isDeleted;
@@ -75,13 +75,13 @@ public class UserDTO {
 		this.isDeleted = isDeleted;
 	}
 
-	public String getUserprofile() {
-		return userprofile;
+	public String getUserProfile() {
+		return userProfile;
 	}
 
-	public void setUserprofile(String userprofile) {
-		this.userprofile = userprofile;
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
 	}
-	
+
 	
 }
