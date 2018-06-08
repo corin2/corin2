@@ -33,7 +33,7 @@ public interface CheckListDAO {
 	 기      능 : 체크리스트 수정 
 	 작성자명 : 김 진 원
 	*/
-	public int checkListUpdate(CardCheckListDTO checkList);
+	public void checkListUpdate(CardCheckListDTO checkList);
 	
 	/**
 	 날      짜 : 2018. 6. 5.

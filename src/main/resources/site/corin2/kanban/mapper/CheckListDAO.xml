@@ -12,10 +12,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values('S400', #{cardNum}, #{checkContent}, 0, 0)
 		</insert>
 		
-		<!-- 카드전체조회 -->
+		<!-- 체크리스트 전체조회 -->
 		<select id="checkListSelect" resultType="site.corin2.kanban.dto.CardCheckListDTO">
 			select * from cardchecklist
 			where cardnum = #{cardNum} and isdeleted = 0 order by checknum
+		</select>
+		
+		<!-- 체크리스트 수정 -->
+		<select id="checkListUpdate">
+			update cardchecklist set ischecked=#{isChecked}, checkcontent=#{checkContent}
+			where checknum=#{checkNum}
 		</select>
 	</mapper>
 		

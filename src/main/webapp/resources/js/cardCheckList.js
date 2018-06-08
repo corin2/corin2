@@ -41,12 +41,17 @@ function showCardCheckList(){
 			var htmlText;
 			
 			$.each(data.list, function(index, elt) {
+				console.log(elt)
 				if(elt.isDeleted == '0') {
-					htmlText = "<p><input type='checkbox' id='checkbox"+elt.checkNum+"'>"
-							 + "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
+					htmlText = "<p>";
+					
+					if(elt.isChecked == '0') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' >";
+					else if(elt.isChecked == '1') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' checked>";
+					
+					htmlText += "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
 							 + "<button type='button' class='close'>&times;</button>"
-							 + "<button type='button' class='glyphicon close'>&#xe065;</button></p>"
-							 
+							 + "<button type='button' class='glyphicon close'>&#xe065;</button></p>";
+					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}
 			});

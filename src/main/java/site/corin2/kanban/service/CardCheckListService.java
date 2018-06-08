@@ -6,7 +6,6 @@
 */
 package site.corin2.kanban.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.corin2.kanban.dao.CheckListDAO;
-import site.corin2.kanban.dao.KanbanDAO;
 import site.corin2.kanban.dto.CardCheckListDTO;
 
 @Service
@@ -38,6 +36,9 @@ public class CardCheckListService {
 		return lists;
 	}
 	
-	
+	public void checkListUpdate(CardCheckListDTO checkList){
+		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		dao.checkListUpdate(checkList);
+	}
 
 }

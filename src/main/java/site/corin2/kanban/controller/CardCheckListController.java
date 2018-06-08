@@ -41,4 +41,10 @@ public class CardCheckListController {
 		model.addAttribute("list",list);
 		return jsonview;
 	}
+	
+	@RequestMapping("/checkedUpdate")
+	public View checkedUpdate(CardCheckListDTO checkList, Model model) {
+		service.checkListUpdate(checkList);
+		return jsonview;
+	}
 }
