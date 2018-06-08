@@ -69,20 +69,11 @@ public class FirebaseDBAdvanced {
             System.out.println("third pass.");
             
             // As an admin, the app has access to read and write all data, regardless of Security Rules
-            ref = FirebaseDatabase.getInstance()
-            		.getReference("restricted_access/secret_document");
+            /*ref = FirebaseDatabase.getInstance()
+            		.getReference();
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
 				@Override
 				public void onDataChange(DataSnapshot dataSnapshot) {
-					/*DatabaseReference usersRef = ref.child("Users");
-
-					Map<String, User> users = new HashMap<>();
-					//new User(email, profileImg, userName);
-					users.put("testid", new User("test@gg.com", null, "test"));
-
-					usersRef.setValueAsync(users);
-					System.out.println("Done!");*/
-					
 					Object document = dataSnapshot.getValue();
 					System.out.println("받는 문서: " + document);
 				}
@@ -90,7 +81,7 @@ public class FirebaseDBAdvanced {
 				@Override
 				public void onCancelled(DatabaseError error) {
 				}
-            });
+            });*/
             
             // [END initialize]
         } catch (IOException e) {
@@ -101,11 +92,19 @@ public class FirebaseDBAdvanced {
         }
 
         // Shared Database reference
-        //database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
         
         // DatabaseReference Setting
-        //DatabaseReference ref = database.getReference();
-        //DatabaseReference usersRef = ref.child("users");
+        DatabaseReference ref = database.getReference();
+        DatabaseReference usersRef = ref.child("Messages");
+        
+		//Map<String, User> users = new HashMap<>();
+		//new User(email, profileImg, userName);
+        ref.child("Messages").push().setValueAsync("hi");
+		//users.put("testid", new User("test@gg.com", null, "test"));
+
+		//usersRef.setValueAsync(users);
+		System.out.println("Done!");
         
         /*DatabaseReference usersRef = ref.child("Users");
         

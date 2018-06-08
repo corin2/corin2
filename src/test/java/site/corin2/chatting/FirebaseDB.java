@@ -113,7 +113,7 @@ public class FirebaseDB {
 			stmt = conn.createStatement();
 			
 			//4.1 실행할 자원 (Query 문장)
-			String email = "'test@naver.com'";
+			String email = "'lean@naver.com'";
 			String sql = "select userid, username, password from user where userid=" + email;
 			
 			//5. 명령 실행
