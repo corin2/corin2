@@ -1,3 +1,10 @@
+/**
+    파일명: MariaDBTest.java
+    설   명: MariaDB JDBC 연동 테스트
+    작성일: 2018. 6. 5.
+    작성자: 강 성 훈
+*/
+
 package site.corin2.dbtest;
 
 import java.sql.Connection;
