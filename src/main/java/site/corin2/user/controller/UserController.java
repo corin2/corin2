@@ -5,6 +5,8 @@ import java.sql.SQLException;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +31,9 @@ public class UserController {
 	private UserService service;
 	
 	@Autowired
+	private MailSender mailSender;
+	
+	@Autowired
 	private SqlSession sqlsession;
 	
 	@Autowired
@@ -48,6 +53,13 @@ public class UserController {
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 			//userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
 			userdto.setPassword(userdto.getPassword());
+			SimpleMailMessage message = new SimpleMailMessage();
+			message.setSubject("corin2입니다.");
+			message.setFrom("corin2site@gmail.com");
+			message.setText("corin2입니다. 회원가입해주셔서 감사합니다.");
+			message.setTo(userdto.getUserId());
+			mailSender.send(message);
+			
 			result = userdao.userInsert(userdto);
 			if (result > 0) {
 				System.out.println("삽입 성공");

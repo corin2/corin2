@@ -22,4 +22,6 @@ public interface UserDAO {
 	//아이디 중복체크
 	public int idCheck(String userid) throws ClassNotFoundException, SQLException;
 	
+	//이메일 인증 후
+	public int userAuth(UserDTO userDTO) throws ClassNotFoundException, SQLException;
 }

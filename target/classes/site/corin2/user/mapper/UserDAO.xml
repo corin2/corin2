@@ -3,12 +3,18 @@
 <mapper namespace="site.corin2.user.dao.UserDAO">
 	<insert id="userInsert" parameterType="site.corin2.user.dto.UserDTO">
 		insert into user(userid,username,password,enabled,userprofile,joindate,gradenum,isdeleted)
-		values(#{userId},#{userName},#{password},'1','pi.png',NOW(),'G200','0')
+		values(#{userId},#{userName},#{password},'0','pi.png',NOW(),'G200','0')
 	</insert>
 	
 	<select id="userSelect" resultType="site.corin2.user.dto.UserDTO">
 		select * from user where userid=#{userId}
 	</select>
+	
+	<update id="userAuth">
+		update user
+		set enabled = '1'
+		where userid = #{userId}
+	</update>
 	
 	<update id="userUpdate">
 		update user
@@ -27,4 +33,5 @@
 	<select id="idCheck" resultType="int">
 		select count(*) from user where userid = #{userId}
 	</select>
+	
 </mapper>
