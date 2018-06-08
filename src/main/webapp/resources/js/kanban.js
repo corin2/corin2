@@ -182,9 +182,10 @@ function showCard(){
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = '<div id="div'+elt.cardNum+'">'
-							 + '<div id="cardNum'+elt.cardNum+'" class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
+							 + '<div id="cardNum'+elt.cardNum+'" class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'
+							 + '<label>'+elt.cardName+'</label>'
 							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
-							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event, '+elt.cardName+', '+elt.cardNum+')">&#xe065;</button></div></div>';
+							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event, '+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 				}
@@ -272,14 +273,17 @@ function deleteCard(e,cardNum){
 }
 
 //카드를 추가하는 텍스트박스를 생성한다
-function updateCardTitle(e,cardName,cardNum) {
+function updateCardTitle(e, cardNum) {
 	console.log('11111111111111111');
-	console.log(cardName);
+	var cardName = $('#cardNum'+cardNum).children('label').text();
+	console.log(cardName)
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
 			+ "<a onclick='updateCard(this, "+ cardNum +")'>완료</a>";
-	$('#div' + card).html(div);
-	$('#div' + card).attr('class', 'card');
+	console.log("2222222222222")
+	$('#div' + cardNum).html(div);
+	console.log("33333333333")
+	$('#div' + cardNum).attr('class', 'card');
 }
 
 //카드 제목 수정 확인
