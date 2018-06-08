@@ -48,7 +48,6 @@ function sortable(){
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
 			var productOrder = $(this).sortable('toArray').toString();
-			console.log("1111111111111111"+productOrder)
 			var children = $(this)[0].children
 			var listNum;
 			if(children[0].className == 'null'){
@@ -202,7 +201,7 @@ function showCard(){
 //카드를 추가하는 텍스트박스를 생성한다
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' >"
-			+ "<a onclick='addCard(this, "+ projectNum +")'>완료</a>";
+			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")'>완료</a>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 }
@@ -274,15 +273,11 @@ function deleteCard(e,cardNum){
 
 //카드를 추가하는 텍스트박스를 생성한다
 function updateCardTitle(e, cardNum) {
-	console.log('11111111111111111');
 	var cardName = $('#cardNum'+cardNum).children('label').text();
-	console.log(cardName)
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
-			+ "<a onclick='updateCard(this, "+ cardNum +")'>완료</a>";
-	console.log("2222222222222")
+			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")'>완료</a>";
 	$('#div' + cardNum).html(div);
-	console.log("33333333333")
 	$('#div' + cardNum).attr('class', 'card');
 }
 
@@ -310,7 +305,7 @@ function cardNameMod(){
 	var htmlObj = $('#modalHeader').html();
 	
 	var div = '<div>'
-		+ '<input type="text" class="form-control inputtextbox" placeholder="' + htmlObj + '" onkeyup="fnChkByte(this, 26)"'
+		+ '<input type="text" class="form-control" placeholder="' + htmlObj + '" onkeyup="fnChkByte(this, 26)"'
 		+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
 
 	$('#modalHeader').html(div);
