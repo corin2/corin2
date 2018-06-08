@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<mapper namespace="site.corin2.board.dao.BoardDAO">
 		<!-- 모든리스트조회 -->
-		<select id="selectList" resultType="site.corin2.board.dto.BoardDTO">
-				select b.BOARDNUM , b.USERID , b.BOARDDATE , a.ANNOUNCETITLE from board b join announce a on a.boardnum = b.boardnum
+		<select id="boardAllSelect" resultType="site.corin2.board.dto.BoardDTO">
+				select * from board b join announce a on a.boardnum = b.boardnum
 				where b.SKILLNUM ='s100' and b.isdeleted = 0  
 		</select>
 		
@@ -24,4 +24,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values(#{boardNum},'S100',#{announceTitle},#{announceContent})
 			
 		</insert>
+		
+		<select id="boardSelect" resultType="site.corin2.board.dto.BoardDTO">
+			select * from board b join announce a on a.boardnum = b.boardnum
+			where b.boardnum = #{boardNum}
+		
+		</select>
 	</mapper>

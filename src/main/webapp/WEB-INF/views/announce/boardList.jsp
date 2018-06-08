@@ -45,7 +45,7 @@
 		    <c:forEach items="${list}" var="list">
 		      <tr>
 		        <td>${list.boardNum}</td>
-		        <td>${list.announceTitle}</td>
+		        <td><a href="boardDedatil?boardnum=${list.boardNum}">${list.announceTitle}</a></td>
 		        <td>${list.userId}</td>
 		        <td>${list.boardDate}</td>
 		      </tr>
@@ -54,7 +54,7 @@
 		  </table>
 
 	
-		 	<form action="insert" method="get">
+		 	<form action="boardInsert" method="get">
 		  		<input type="submit" value="글쓰기">
 			</form>
 		</div>

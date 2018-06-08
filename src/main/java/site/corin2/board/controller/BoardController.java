@@ -9,6 +9,7 @@ package site.corin2.board.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,26 +33,34 @@ public class BoardController {
 	@Autowired
 	private View jsonview;
 	
-	@RequestMapping(value="announceList" ,method = RequestMethod.GET)
-	public String announceList(Model model) { //리스트화면에서
-		 List<BoardDTO> list = service.selectList();
+	@RequestMapping(value="boardList" ,method = RequestMethod.GET)
+	public String boardList(Model model) { //리스트화면에서
+		 List<BoardDTO> list = service.boardAllSelect();
 		 model.addAttribute("list", list);		 
-		return "announceList";  //리스트화면으로 이동
+		return "boardList";  //리스트화면으로 이동
 	}
 	
 
 	
-	@RequestMapping(value="insert" ,method = RequestMethod.GET)
-	public String announceInsert() {//글쓰기화면에서
-		return "announceInsert";//리스트화면으로 이동
+	@RequestMapping(value="boardInsert" ,method = RequestMethod.GET)
+	public String boardInsert() {//글쓰기화면에서
+		return "boardInsert";//리스트화면으로 이동
 	}
 
 	
-	@RequestMapping(value= "insert" ,method = RequestMethod.POST)
-	public String announceInsertOK(BoardDTO boardDTO,AnnounceDTO announceDTO) {//글쓰기 처리	
-		service.boardInsert(boardDTO);
-		service.announceInsert(announceDTO);
-		return "redirect:announceList";//리스트화면으로 이동
+	@RequestMapping(value= "boardInsert" ,method = RequestMethod.POST)
+	public String boardanInsertOK(BoardDTO boardDTO,AnnounceDTO announceDTO) {//글쓰기 처리	
+		service.boardInsert(boardDTO); //board insert
+		service.announceInsert(announceDTO); //announce insert
+		return "redirect:boardList";
 	}
 	
+	@RequestMapping(value="boardDedatil")
+	public String boardDetail(int boardnum , Model model) {
+		
+		BoardDTO boardDTO= service.boardSelect(boardnum);
+		model.addAttribute("detail",boardDTO);
+		return "boardDetail";
+		
+	}
 }

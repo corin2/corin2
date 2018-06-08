@@ -16,9 +16,11 @@ import site.corin2.board.dto.BoardDTO;
 
 public interface BoardDAO {
 	
-	public List<BoardDTO> selectList();
+	public List<BoardDTO> boardAllSelect();
 	
 	public void boardInsert(BoardDTO boardDTO);
 
 	public void announceInsert(AnnounceDTO announceDTO);
+
+	public BoardDTO boardSelect(int boardnum);
 }

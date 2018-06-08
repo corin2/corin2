@@ -25,10 +25,10 @@ public class BoardService {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<BoardDTO> selectList() {
+	public List<BoardDTO> boardAllSelect() {
 	
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		List<BoardDTO> list = dao.selectList();
+		List<BoardDTO> list = dao.boardAllSelect();
 			
 		return list;	
 	}
@@ -39,6 +39,11 @@ public class BoardService {
 	public void announceInsert(AnnounceDTO announceDTO) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.announceInsert(announceDTO);	
+	}
+	public BoardDTO boardSelect(int boardnum) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		 BoardDTO boardDTO = dao.boardSelect(boardnum);
+		return boardDTO;
 	}
 	
 }

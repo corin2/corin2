@@ -16,7 +16,7 @@
 <body>
 
 	<div class="container" style="margin-top: 60px;">
-		<form action="insert"  method="post" >
+		<form action="boardInsert"  method="post" >
 			<table  class="table table-bordered">
 				<tr>
 			 		<td>제목</td>
@@ -25,16 +25,16 @@
 			 	<tr>
 			 		<td>내용</td>
 			 		<td>
-				 		<textarea name="editor1" class="ckeditor" name ="announceContent"></textarea>
+				 		<textarea class="ckeditor" name ="announceContent"></textarea>
 				 			<script type="text/javascript">			    
-								CKEDITOR.replace( 'editor1',{
+								CKEDITOR.replace( 'announceContent',{
 								    	width:'100%',
 							            height:'400px'
 								});
 							       CKEDITOR.on('dialogDefinition', function( ev ){
 							            var dialogName = ev.data.name;
 							            var dialogDefinition = ev.data.definition;
-							          
+						
 							            switch (dialogName) {
 							                case 'image': 
 							                    dialogDefinition.removeContents('Link');

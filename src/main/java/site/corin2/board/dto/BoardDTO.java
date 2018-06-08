@@ -17,7 +17,7 @@ public class BoardDTO {
 	private String boardDate;
 	private int isDeleted;
 	private String announceTitle;
-	
+	private String announceContent;
 	
 	public BoardDTO() {}
 
@@ -64,6 +64,17 @@ public class BoardDTO {
 	public void setAnnounceTitle(String announceTitle) {
 		this.announceTitle = announceTitle;
 	}
+
+
+	public String getAnnounceContent() {
+		return announceContent;
+	}
+
+
+	public void setAnnounceContent(String announceContent) {
+		this.announceContent = announceContent;
+	}
+	
 	
 	
 }
