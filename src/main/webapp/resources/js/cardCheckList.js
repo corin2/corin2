@@ -1,8 +1,8 @@
 //체크리스트를 추가하는 텍스트박스를 생성한다
 function addCardCheckListView() {
 	$('#addCheckListdiv').remove();
-	var div = "<div id='addCheckListdiv' style='width:75%'><input type='checkbox' id='cardCheckBox'>"
-			+ "<input id='cardCheckBoxInput' type='text' class='form-control' style='width:70%, float:left;'><a onclick='addCardCheckLIst(this)' style='float:right;'>완료</a>"
+	var div = "<div id='addCheckListdiv'><input type='checkbox' id='cardCheckBox'>"
+			+ "<input id='cardCheckBoxInput' type='text' class='inputtext' style='float:left;'><a onclick='addCardCheckLIst(this)' style='float:right;'>완료</a>"
 			+ "</div>"
 			
 	$('#checkListForm').append(div);
@@ -50,7 +50,7 @@ function showCardCheckList(){
 					
 					htmlText += "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
 							 + "<button type='button' class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
-							 + "<button type='button' class='glyphicon close'>&#xe065;</button></p>";
+							 + "<button type='button' class='glyphicon close' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}
@@ -95,4 +95,24 @@ function checkUpdate(checked, content, checkNum){
 			showCardCheckList();
 		}
 	});
+}
+
+//체크박스를 텍스트를 생성하다
+function checkBoxMod(obj, checkNum){
+	var p = $(obj).closest('p');
+	var text = p.children('label').html();
+	
+	var div = '<div>'
+		+ '<input type="text" class="inputtext">'
+		+ '<button type="button" class="close glyphicon" onclick="checkBoxModOk(this, '+checkNum+')">&#xe013;</button></div>';
+	p.empty();
+	p.html(div);
+	p.children('div').children('input').focus();
+}
+
+//체크박스 내용 수정
+function checkBoxModOk(obj, checkNum){
+	var content = $(obj).parent().children('input').val();
+	if(content != "") checkUpdate(0, content, checkNum);
+	else showCardCheckList();
 }
