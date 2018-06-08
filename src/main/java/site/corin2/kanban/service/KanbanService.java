@@ -28,6 +28,8 @@ public class KanbanService {
 	public int cardInsert(CardDTO card) {
 		int result =0;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
+		System.out.println(card.getProjectNum());
+		System.out.println(card.getCardName());
 		result = dao.cardInsert(card);
 		
 		return result;
@@ -84,35 +86,18 @@ public class KanbanService {
 	public int cardTaxisUpdate(String listNum, String userId, String cardTaxis) {
 		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		int result = 0;
-		System.out.println("qqqqqqqqqqqqqqqqqq");
-		if(userId.equals("null")) {
-			System.out.println("wwwwwwwwwwwwwwww");
-			userId = null;
-			System.out.println(userId);
-		}
+		if(userId.equals("null")) userId = null;
+		
 		String[] taxis = null;
-		if(cardTaxis.indexOf(",") > -1) {
-			System.out.println("배열");
-			taxis = cardTaxis.split(",");
-		}else {
-			System.out.println("한개");
+		if(cardTaxis.indexOf(",") > -1) taxis = cardTaxis.split(",");
+		else {
 			taxis = new String[1];
 			taxis[0] = cardTaxis;
 		}
 		
-		System.out.println("111111");
 		int y = 1;
 		for(int i = 0; i < taxis.length; i++) {
-			System.out.println(taxis[i]);
-			System.out.println("22222");
-			System.out.println(taxis[i].substring(0, 1));
-			System.out.println("if안탐 " + y);
 			if(taxis[i].substring(0, 1).equals("c")) {
-				System.out.println("탐"+taxis[i].split("cardNum")[1]);
-				System.out.println(taxis[i].split("cardNum")[1]);
-				System.out.println("333333");
-				System.out.println("444444444444444qqq"+Integer.parseInt(listNum));
-				System.out.println(y);
 				CardDTO card = new CardDTO();
 				card.setListNum(Integer.parseInt(listNum));
 				card.setCardNum(Integer.parseInt(taxis[i].split("cardNum")[1]));

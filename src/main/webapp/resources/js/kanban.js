@@ -44,15 +44,7 @@ function sortable(){
 		items:'div:not(#addcard)',
 		placeholder: "ui-state-highlight",
 		connectWith: '.listbox, .listingbox, .donebox',
-		/*
-		start : function(event, ui){
-				$('#movingBox').css({
-					left: event.pageX - ui.item[0].offsetLeft - (ui.item[0].clientWidth/2),
-					top : event.pageY - ui.item[0].offsetTop - (ui.item[0].clientHeight/2)
-				})
-				$('#movingBox').append(ui.item) 
-		},
-		*/
+		
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
 			var productOrder = $(this).sortable('toArray').toString();
@@ -64,16 +56,6 @@ function sortable(){
 			}else{
 				listNum = $(this).parent().parent().attr('id')
 			}
-			console.log(listNum)
-			console.log(children[0].className)
-			/*if (children[1].className == 'cardcreate'){
-				console.log("zzzz");
-				var children0 = children[0], 
-					children1 = children[1], 
-					children2 = children[2]
-				$(this).empty()
-				$(this).append(children0, children2, children1)
-			}*/
 			
 			$.ajax({
 				url : 'cardTaxisUpdate',
@@ -94,7 +76,6 @@ function sortable(){
 
 //멤버와 카드 뿌려주기
 function showKanban(){
-	/*var userhtml1, userhtml2, userhtml3;*/
 	showUserFrofiles();
 }
 
@@ -199,11 +180,11 @@ function showCard(){
 			var htmlText;
 			$('.ui-sortable').children('div').empty();
 			$.each(data.data, function(index, elt) {
-				if(elt.isDeleted == '1') {
+				if(elt.isDeleted == '0') {
 					htmlText = '<div id="div'+elt.cardNum+'">'
 							 + '<div id="cardNum'+elt.cardNum+'" class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
 							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
-							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event,'+elt.cardName+','+elt.cardNum+')">&#xe065;</button></div></div>';
+							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event, '+elt.cardName+', '+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 				}
@@ -245,6 +226,7 @@ function addCard(obj, projectNum){
 //카드 디텔일 총합 뿌려주기
 function cardDetail(cardNum){
 	selectCard(cardNum);
+	
 }
 
 //카드 디테일에 내용 뿌려주기
@@ -257,6 +239,7 @@ function selectCard(cardNum){
 			$('#hiddenCardNum').attr('value', cardNum);
 			$("#modalHeader").html(data.dto.cardName);
 			$("#contentDetail").val(data.dto.cardContent);
+			showCardCheckList();
 		}
 	});
 }
@@ -290,9 +273,9 @@ function deleteCard(e,cardNum){
 
 //카드를 추가하는 텍스트박스를 생성한다
 function updateCardTitle(e,cardName,cardNum) {
-	var card = cardNum;
+	console.log('11111111111111111');
+	console.log(cardName);
 	e.stopPropagation();
-	var parentDiv = $('#cardNum' + cardNum).closest('div');
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
 			+ "<a onclick='updateCard(this, "+ cardNum +")'>완료</a>";
 	$('#div' + card).html(div);
@@ -322,7 +305,7 @@ function cardNameMod(){
 	console.log(cardNum)
 	var htmlObj = $('#modalHeader').html();
 	
-	var div = '<div onfocusout="selectCard('+ cardNum +')">'
+	var div = '<div>'
 		+ '<input type="text" class="form-control inputtextbox" placeholder="' + htmlObj + '" onkeyup="fnChkByte(this, 26)"'
 		+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
 
