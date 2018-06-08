@@ -184,8 +184,8 @@ function showCard(){
 			
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '1') {
-					htmlText = '<div id="cardNum'+elt.cardNum+'">'
-							 + '<div class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
+					htmlText = '<div id="cardNum'+elt.cardNum+'" onclick="cardDetail('+elt.cardNum+')">'
+							 + '<div class="card ui-sortable-handle" data-toggle="modal" data-target="#myModal">'+elt.cardName
 							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
 							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event,'+elt.cardName+','+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
@@ -229,10 +229,12 @@ function addCard(obj, projectNum){
 //카드 디텔일 총합 뿌려주기
 function cardDetail(cardNum){
 	selectCard(cardNum);
+	
 }
 
 //카드 디테일에 내용 뿌려주기
 function selectCard(cardNum){
+	console.log("333222111")
 	$.ajax({
 		url:"cardSelect",
 		datatype:"JSON",
@@ -241,6 +243,7 @@ function selectCard(cardNum){
 			$('#hiddenCardNum').attr('value', cardNum);
 			$("#modalHeader").html(data.dto.cardName);
 			$("#contentDetail").val(data.dto.cardContent);
+			showCardCheckList();
 		}
 	});
 }
@@ -307,7 +310,7 @@ function cardNameMod(){
 	console.log(cardNum)
 	var htmlObj = $('#modalHeader').html();
 	
-	var div = '<div onfocusout="selectCard('+ cardNum +')">'
+	var div = '<div>'
 		+ '<input type="text" class="form-control inputtextbox" placeholder="' + htmlObj + '" onkeyup="fnChkByte(this, 26)"'
 		+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
 

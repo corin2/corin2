@@ -22,7 +22,7 @@
 							<div class="form-group">
 								
 								<input id="detailAddbtn" class="btn btn-success" type="button" onclick="updateCardDetail()" value="작성">
-								<input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCheckListForm()">
+								<input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCardCheckListView()">
 							</div>
 						</p>
 						<div class="form-group" id="fileUploadForm"></div>

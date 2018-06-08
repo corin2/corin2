@@ -17,6 +17,7 @@
 <script src="resources/js/kanban.js"></script>
 <script src="resources/js/kanban2.js"></script>
 <script src="resources/js/keyUp.js"></script>
+<script src="resources/js/cardCheckList.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
 
@@ -30,62 +31,6 @@
 			<hr>
 			<div id="content-md">
 			
-				<div class="kanbanbox">
-					<div class="listtitle"><label>BACKLOG</label></div>
-					
-					<div class="listbox">
-						<div>
-							<div class="card ui-sortable-handle" onclick="selectCard(1)" data-toggle="modal" data-target="#myModal">
-								카드
-								<button type="button" class="close">&times;</button>
-							</div>
-						</div>
-						
-						<div>
-							<div class="card ui-sortable-handle" data-toggle="modal" data-target="#myModal">
-								카드2
-								<button type="button" class="close">&times;</button>
-							</div>
-						</div>
-						
-						<a class="cardcreate" onclick="addCardView(this,1,1)">Add a card...</a>
-					</div>
-				</div>
-				
-				<div>
-					<div class="userbox">
-						<div class="listtitle" style="float: left;"><label>USER</label></div>
-						<img src="resources/profile/nogon.JPG" class="img-circle person" width="30" height="30">
-						<div class="userprofilebox">지너니</div>
-						<div class="userprofilebox">재욱짱</div>
-						<div class="userprofilebox">지너니</div>
-						<div class="userprofilebox">재욱짱</div>
-					</div>
-						
-					<div class="kanbanbox">
-						<div class="listtitle" style="float: left;"><label>TODO</label></div>
-						<div class="listingbox"></div>
-						<div class="listingbox"></div>
-						<div class="listingbox"></div>
-						<div class="listingbox"></div>
-					</div>
-					
-					<div class="kanbanbox">
-						<div class="listtitle" style="float: left;"><label>INPROGRESS</label></div>
-						<div class="listingbox"></div>
-						<div class="listingbox"></div>
-						<div class="listingbox"></div>
-						<div class="listingbox"></div>
-					</div>
-					
-					<div class="kanbanbox">
-						<div class="listtitle" style="float: left;"><label>DONE</label></div>
-						<div class="donebox"></div>
-						<div class="donebox"></div>
-						<div class="donebox"></div>
-						<div class="donebox"></div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
