@@ -44,12 +44,25 @@ function showCardCheckList(){
 				if(elt.isDeleted == '0') {
 					htmlText = "<p><input type='checkbox' id='checkbox"+elt.checkNum+"'>"
 							 + "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
-							 + "<button type='button' class='close'>&times;</button>"
+							 + "<button type='button' class='close' onclick='deleteCardCheckList("+elt.checkNum+")'>&times;</button>"
 							 + "<button type='button' class='glyphicon close'>&#xe065;</button></p>"
 							 
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}
 			});
+		}
+	});
+}
+
+//체크리스트 삭제
+function deleteCardCheckList(checkNum){
+	
+	$.ajax({
+		url:"checkListDelete",
+		datatype:"JSON",
+		data:{checkNum:checkNum},
+		success:function(data){
+			showCardCheckList();
 		}
 	});
 }

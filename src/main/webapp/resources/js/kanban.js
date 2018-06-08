@@ -275,7 +275,9 @@ function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
-			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")'>완료</a>";
+			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' " 
+			+ "onkeyup='fnChkByte(this, 26)'"
+			+ " onkeypress='if(event.keyCode==13 {updateCard(this, "+ cardNum +";}')>완료</a>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 }
