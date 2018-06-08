@@ -3,10 +3,15 @@ package site.corin2.user.controller;
 import java.security.Principal;
 import java.sql.SQLException;
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,7 +36,7 @@ public class UserController {
 	private UserService service;
 	
 	@Autowired
-	private MailSender mailSender;
+	private JavaMailSender javamailsender;
 	
 	@Autowired
 	private SqlSession sqlsession;
@@ -53,12 +58,12 @@ public class UserController {
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 			//userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
 			userdto.setPassword(userdto.getPassword());
-			SimpleMailMessage message = new SimpleMailMessage();
+			MimeMessage message = javamailsender.createMimeMessage();
 			message.setSubject("corin2입니다.");
-			message.setFrom("corin2site@gmail.com");
-			message.setText("corin2입니다. 회원가입해주셔서 감사합니다.");
-			message.setTo(userdto.getUserId());
-			mailSender.send(message);
+			message.setFrom(new InternetAddress("corin2site@gmail.com"));
+			message.setText("<a href='http://localhost:8090/controller/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
+			message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
+			javamailsender.send(message);
 			
 			result = userdao.userInsert(userdto);
 			if (result > 0) {
@@ -73,6 +78,21 @@ public class UserController {
 			e.printStackTrace();
 		}
 		return viewpage;
+	}
+	//email confirm
+	@RequestMapping(value = "emailConfirm", method = RequestMethod.GET)
+	public String emailConfirm(UserDTO userdto, String userid) throws Exception { // 이메일인증
+		
+		System.out.println("mailconfirm 탔당");
+		System.out.println(userid);
+		System.out.println(userdto);
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		UserDTO authuser;
+		authuser = userdao.userSelect(userid);
+		authuser.setEnabled(authuser.getEnabled());
+		userdao.userAuth(authuser);
+
+		return "login";
 	}
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
