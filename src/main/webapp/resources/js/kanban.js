@@ -53,27 +53,43 @@ function sortable(){
 				$('#movingBox').append(ui.item) 
 		},
 		*/
-		/*
+		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
 			var productOrder = $(this).sortable('toArray').toString();
+			console.log("1111111111111111"+productOrder)
 			var children = $(this)[0].children
-			if (children[1].className === 'cardcreate'){
+			var listNum;
+			if(children[0].className == 'null'){
+				listNum = $(this).attr('id')
+			}else{
+				listNum = $(this).parent().parent().attr('id')
+			}
+			console.log(listNum)
+			console.log(children[0].className)
+			/*if (children[1].className == 'cardcreate'){
+				console.log("zzzz");
 				var children0 = children[0], 
 					children1 = children[1], 
 					children2 = children[2]
 				$(this).empty()
 				$(this).append(children0, children2, children1)
-			}
+			}*/
+			
 			$.ajax({
-				url : 'CardSequenceUpdate.card',
+				url : 'cardTaxisUpdate',
 				data : { 
-							listNum : children[0].id,
-							sequential : productOrder
-						}
+							listNum : listNum,
+							userId : children[0].className,
+							cardTaxis : productOrder
+						},
+				success : function(data){
+					showKanban();
+				}
 			})
+			
 		}
-		*/
-	}).disableSelection(); 
+	}).disableSelection();
+	
 }
 
 //멤버와 카드 뿌려주기
@@ -121,8 +137,8 @@ function showUserField(userProfiles){
 					}
 				});
 				
-				var text2 = '<div class="'+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+'"><div class="listingbox"></div></div>';
-				var text3 = '<div class="'+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+'"><div class="donebox"></div></div>';
+				var text2 = '<div class="'+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+'"><div class="listingbox"><input type="hidden" class="'+elt.userId+'"></div></div>';
+				var text3 = '<div class="'+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+'"><div class="donebox"><input type="hidden" class="'+elt.userId+'"></div></div>';
 				if($('#hiddenUserId').val() == elt.userId){
 					firsttext1 += text1; firsttext2 += text2; firsttext3 += text3;
 				} else {
@@ -153,7 +169,7 @@ function showList(){
 				if(elt.listNum == "1"){
 					htmltext += '<div class="kanbanbox">'
 							 + '<div class="listtitle"><label>'+ elt.listName +'</label></div>'
-							 + '<div id="listnum' + elt.listNum + '" class="listbox"></div></div>';
+							 + '<div id="listnum' + elt.listNum + '" class="listbox"><input type="hidden" class="null"></div></div>';
 				}else if(elt.listNum =="2"){
 					htmltext += '<div><div id="listnum' + elt.listNum + '" class="userbox">'
 							 + '<div class="listtitle" style="float: left;"><label>'+ elt.listName +'</label></div>'+userhtml1+'</div>';	
@@ -181,11 +197,11 @@ function showCard(){
 		data : {projectNum : $('#hiddenProjectNum').val()},
 		success : function(data){
 			var htmlText;
-			
+			$('.ui-sortable').children('div').empty();
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '1') {
-					htmlText = '<div id="cardNum'+elt.cardNum+'">'
-							 + '<div class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
+					htmlText = '<div id="div'+elt.cardNum+'">'
+							 + '<div id="cardNum'+elt.cardNum+'" class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName
 							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
 							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event,'+elt.cardName+','+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
@@ -275,13 +291,12 @@ function deleteCard(e,cardNum){
 //카드를 추가하는 텍스트박스를 생성한다
 function updateCardTitle(e,cardName,cardNum) {
 	var card = cardNum;
-	console.log("123");
 	e.stopPropagation();
-	$('#cardNum' + cardNum).empty();
+	var parentDiv = $('#cardNum' + cardNum).closest('div');
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
 			+ "<a onclick='updateCard(this, "+ cardNum +")'>완료</a>";
-	$('#cardNum' + card).html(div);
-	$('#cardNum' + card).attr('class', 'card');
+	$('#div' + card).html(div);
+	$('#div' + card).attr('class', 'card');
 }
 
 //카드 제목 수정 확인

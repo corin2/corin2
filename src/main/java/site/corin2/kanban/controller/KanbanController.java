@@ -89,5 +89,17 @@ public class KanbanController {
 		model.addAttribute("result",result);
 		return jsonview;
 	}
+	
+	@RequestMapping("/cardTaxisUpdate")
+	public View cardTaxisUpdate(String listNum, String userId, String cardTaxis) {
+		int i = 1;
+		System.out.println((i++)+"zzz"+listNum.split("listnum")[1]);
+		System.out.println(userId);
+		System.out.println(cardTaxis);
+		System.out.println("777777777");
+		service.cardTaxisUpdate(listNum.split("listnum")[1], userId, cardTaxis);
+		System.out.println("88888888");
+		return jsonview;
+	}
 }
 

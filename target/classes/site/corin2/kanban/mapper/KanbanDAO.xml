@@ -57,4 +57,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="listAllSelect" resultType="site.corin2.kanban.dto.ListDTO">
 			select * from list order by listnum ASC
 		</select>
+		
+		<!-- 카드 순서 변경 -->
+		<update id="cardTaxisUpdate">
+			update card
+			set listnum = #{listNum}, cardtaxis = #{cardTaxis}
+			<choose>
+				<when test="userId == null">
+					, userid = null
+				</when>
+				<otherwise>
+					, userid = #{userId}
+				</otherwise>
+			</choose>
+			where cardnum = #{cardNum}
+		</update>
 	</mapper>

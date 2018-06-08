@@ -51,6 +51,13 @@ public interface KanbanDAO {
 	public List<CardDTO> cardAllSelect(int projectNum);
 	
 	/**
+	 날      짜 : 2018. 6. 8.
+	 기      능 : 카드의 순서를 변경한다. 
+	 작성자명 : 김 진 원
+	*/
+	public int cardTaxisUpdate(CardDTO card);
+	
+	/**
 	 날      짜 : 2018. 6. 5.
 	 기      능 : 하나의 카드를 검색한다. 
 	 작성자명 : 김 진 원
