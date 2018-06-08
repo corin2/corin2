@@ -226,7 +226,6 @@ function addCard(obj, projectNum){
 //카드 디텔일 총합 뿌려주기
 function cardDetail(cardNum){
 	selectCard(cardNum);
-	
 }
 
 //카드 디테일에 내용 뿌려주기

@@ -28,7 +28,7 @@
 						<div class="form-group" id="fileUploadForm"></div>
 						<div class="form-group">
 							<label for="checklist">Check List</label>
-							<div id="checkListForm">
+							<div id="checkListForm" style="width: 73%">
 								<p><input type="checkbox" id="checkbox1">
 									<label for="checkbox1">체크리스트</label>
 									<!-- <button type="button" class="close">&times;</button>

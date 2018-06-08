@@ -43,13 +43,11 @@ function showCardCheckList(){
 			$.each(data.list, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = "<p><input type='checkbox' id='checkbox"+elt.checkNum+"'>"
-							 + "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label></p>"
+							 + "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
+							 + "<button type='button' class='close'>&times;</button>"
+							 + "<button type='button' class='glyphicon close'>&#xe065;</button></p>"
+							 
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
-					/*<p><input type="checkbox" id="checkbox1">
-					<label for="checkbox1">체크리스트</label>
-					<!-- <button type="button" class="close">&times;</button>
-					<button type="button" class="glyphicon close">&#xe065;</button> -->
-				</p>*/
 				}
 			});
 		}
