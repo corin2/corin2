@@ -15,6 +15,7 @@ import com.google.firebase.auth.UserRecord;
 import com.google.firebase.auth.UserRecord.CreateRequest;
 import com.google.firebase.database.*;
 
+import site.corin2.model.Post;
 import site.corin2.model.User;
 
 import java.io.IOException;
@@ -24,6 +25,9 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+
+import org.springframework.security.config.authentication.UserServiceBeanDefinitionParser;
 
 import java.io.FileInputStream;
 
@@ -31,14 +35,12 @@ import java.io.FileInputStream;
  * Firebase Database quickstart sample for the Java Admin SDK.
  * See: https://firebase.google.com/docs/admin/setup#add_firebase_to_your_app
  */
-public class FirebaseDB {
+public class FirebaseDBAdvanced {
 	// MariaDB JDBC 설정
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
     private static final String URL = "jdbc:mariadb://192.168.0.43:3306/corin2";
     private static final String USER = "corin2";
     private static final String PASSWORD = "1004";
-    
-    // Users 설정
     public static String userid;
     public static String username;
     public static String password;
@@ -71,7 +73,16 @@ public class FirebaseDB {
             		.getReference("restricted_access/secret_document");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
 				@Override
-				public void onDataChange(DataSnapshot dataSnapshot) {			
+				public void onDataChange(DataSnapshot dataSnapshot) {
+					/*DatabaseReference usersRef = ref.child("Users");
+
+					Map<String, User> users = new HashMap<>();
+					//new User(email, profileImg, userName);
+					users.put("testid", new User("test@gg.com", null, "test"));
+
+					usersRef.setValueAsync(users);
+					System.out.println("Done!");*/
+					
 					Object document = dataSnapshot.getValue();
 					System.out.println("받는 문서: " + document);
 				}
@@ -90,12 +101,47 @@ public class FirebaseDB {
         }
 
         // Shared Database reference
-        database = FirebaseDatabase.getInstance();
+        //database = FirebaseDatabase.getInstance();
         
         // DatabaseReference Setting
-        DatabaseReference ref = database.getReference();
+        //DatabaseReference ref = database.getReference();
+        //DatabaseReference usersRef = ref.child("users");
+        
+        /*DatabaseReference usersRef = ref.child("Users");
+        
+        System.out.println(usersRef.getDatabase());
+        System.out.println(usersRef.getPath());
+        System.out.println(usersRef.getDatabase().getApp());
+        System.out.println(usersRef);
+        
+        System.out.println("진입");
+		// Attach a listener to read the data at our posts reference
+		ref.addValueEventListener(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {
+				User user = dataSnapshot.getValue(User.class);
+				System.out.println(user);
+			}
+			
+			@Override
+			public void onCancelled(DatabaseError databaseError) {
+				System.out.println("The read failed: " + databaseError.getCode());
+			}
+		});
+		System.out.println("완료");*/
+        
+        /*
+		public String email;
+		public String profileImg;
+		public String userName;
+         */
+        
+        // Insert User
+        /*Map<String, User> users = new HashMap<>();
+        users.put(key, value)*/
         
         //사용자 등록
+        /*
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -113,6 +159,7 @@ public class FirebaseDB {
 			stmt = conn.createStatement();
 			
 			//4.1 실행할 자원 (Query 문장)
+			//select empno, ename, job from emp where job = 'CLERK'
 			String email = "'test@naver.com'";
 			String sql = "select userid, username, password from user where userid=" + email;
 			
@@ -120,6 +167,8 @@ public class FirebaseDB {
 			rs = stmt.executeQuery(sql);
 			
 			//6. 명령 처리
+			//위 두 개 장점 (공식같은 로직)
+			//1. 결과 집합이 없는 경우 처리, 2. Single row, 3. Multi row 가능
 			if(rs.next()) {
 				do {
 					userid = rs.getString("userid");
@@ -163,10 +212,19 @@ public class FirebaseDB {
 
 			usersRef.setValueAsync(users);
 			System.out.println("Done!");
+			
+			// Data Push
+			/*
+			DatabaseReference postsRef = ref.child("Users");
+			System.out.println("시작");
+			DatabaseReference newPostRef = postsRef.push();
+			newPostRef.setValueAsync(new User(userRecord.getEmail(), userRecord.getPhotoUrl(), userRecord.getDisplayName()));
+			System.out.println("완료");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
     }
 }
 
