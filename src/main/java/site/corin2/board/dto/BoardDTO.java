@@ -6,6 +6,9 @@
 */
 package site.corin2.board.dto;
 
+import java.util.List;
+import java.util.Map;
+
 public class BoardDTO {
 
 	private int boardNum;
@@ -13,8 +16,11 @@ public class BoardDTO {
 	private String userId;
 	private String boardDate;
 	private int isDeleted;
+	private String announceTitle;
+	
 	
 	public BoardDTO() {}
+
 	
 	public int getBoardNum() {
 		return boardNum;
@@ -48,4 +54,16 @@ public class BoardDTO {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
+
+	public String getAnnounceTitle() {
+		return announceTitle;
+	}
+
+
+	public void setAnnounceTitle(String announceTitle) {
+		this.announceTitle = announceTitle;
+	}
+	
+	
 }

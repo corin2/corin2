@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.board.dao.BoardDAO">
+		<!-- 모든리스트조회 -->
+		<select id="selectList" resultType="site.corin2.board.dto.BoardDTO">
+				select b.BOARDNUM , b.USERID , b.BOARDDATE , a.ANNOUNCETITLE from board b join announce a on a.boardnum = b.boardnum
+				where b.SKILLNUM ='s100' and b.isdeleted = 0  
+		</select>
+		
+		<insert id="boardInsert" parameterType="site.corin2.board.dto.BoardDTO">
+			insert into board(skillnum , userid, boarddate,isdeleted) 
+			values('S100','admin',now(),0)
+			
+		</insert>
+		
+		<insert id="announceInsert" parameterType="site.corin2.board.dto.AnnounceDTO">
+			<selectKey order="BEFORE" keyProperty="boardNum" resultType="int">
+				select max(boardnum) from board where skillnum ='s100'
+			</selectKey>
+			insert into announce(boardnum , skillnum , announcetitle , announcecontent) 
+			values(#{boardNum},'S100',#{announceTitle},#{announceContent})
+			
+		</insert>
+	</mapper>

@@ -12,11 +12,11 @@ public class UserDTO {
 	private String userName;
 	private String password;
 	private int enabled;
-	private String userprofile;
+	private String userProfile;
 	private String joinDate;
 	private String gradeNum;
 	private int isDeleted;
-
+	
 	public UserDTO() {}
 
 	public String getUserId() {
@@ -43,6 +43,22 @@ public class UserDTO {
 		this.password = password;
 	}
 
+	public int getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
+	}
+
+	public String getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
+	}
+
 	public String getJoinDate() {
 		return joinDate;
 	}
@@ -59,14 +75,6 @@ public class UserDTO {
 		this.gradeNum = gradeNum;
 	}
 
-	public int getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-
 	public int getIsDeleted() {
 		return isDeleted;
 	}
@@ -75,13 +83,4 @@ public class UserDTO {
 		this.isDeleted = isDeleted;
 	}
 
-	public String getUserprofile() {
-		return userprofile;
-	}
-
-	public void setUserprofile(String userprofile) {
-		this.userprofile = userprofile;
-	}
-	
-	
 }

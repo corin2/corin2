@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.kanban.dao.KanbanDAO">
+		<!-- 카드추가 -->
+		<insert id="cardInsert" parameterType="site.corin2.kanban.dto.CardDTO">
+			<selectKey order="BEFORE" keyProperty="cardTaxis" resultType="String">
+		  		select IFNULL(MAX(cardtaxis), 0)+1 from card where projectnum=#{projectNum} and listnum=1
+		  	</selectKey>
+			insert into 
+			card(projectnum, userid, listnum, cardname, cardcontent, cardtaxis, isdeleted) 
+			values(#{projectNum}, #{userId}, 1, #{cardName}, null, #{cardTaxis}, 1)
+		</insert>
+		<!-- 카드수정 -->
+		<update id="cardUpdate">
+			update card set	cardname = #{cardName}, cardcontent = #{cardContent} where cardnum = #{cardNum}
+		</update>
+		<!-- 카드삭제 -->
+		<update id="cardDelete">
+			update card set	cardtaxis = 0 and isdeleted = 0	where cardnum = #{cardNum}
+		</update>
+		<!-- 카드전체조회 -->
+		<select id="cardAllSelect" resultType="site.corin2.kanban.dto.CardDTO">
+			select * from card
+			where projectnum = #{projectNum} order by cardtaxis
+		</select>
+		<!-- 카드조회 -->
+		<select id="cardSelect"  resultType="site.corin2.kanban.dto.CardDTO">
+			select * from card
+			where cardnum = #{cardNum}
+		</select>
+		<!-- 모든리스트조회 -->
+		<select id="listAllSelect" resultType="site.corin2.kanban.dto.ListDTO">
+			select * from list order by listnum ASC
+		</select>
+	</mapper>
