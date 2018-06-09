@@ -38,6 +38,9 @@ function autoWidth(){
 	$('#mainScreen').css("width", width)
 }
 
+//todo와 inprogress에 카드를 3개씩 만 가지게 할 수 있는 변수
+var sortablecnt = 0; var sortablecnt2 = 0; var sortablecnt3 = 0;
+
 //드래그&드랍
 function sortable(){
 	$('div[class=listbox], div[class=listingbox], div[class=donebox]').sortable({
@@ -56,17 +59,33 @@ function sortable(){
 				listNum = $(this).parent().parent().attr('id')
 			}
 			
-			$.ajax({
-				url : 'cardTaxisUpdate',
-				data : { 
-							listNum : listNum,
-							userId : children[0].className,
-							cardTaxis : productOrder
-						},
-				success : function(data){
-					showKanban();
+			if(listNum == 'listnum3' || listNum == 'listnum4'){
+				for(var i = 0; i < productOrder.split(',').length; i++){
+					if(productOrder.split(',')[i].substr(0, 1) == 'c'){
+						if(sortablecnt == 0) sortablecnt2++;
+						else sortablecnt3++;
+					}
 				}
-			})
+			}
+			sortablecnt = 1;
+			
+			if(sortablecnt2 > 3 || sortablecnt3 > 3){
+				alert('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
+				showKanban();
+			}else{
+				$.ajax({
+					url : 'cardTaxisUpdate',
+					data : { 
+						listNum : listNum,
+						userId : children[0].className,
+						cardTaxis : productOrder
+					},
+					success : function(data){
+						sortablecnt = 0; sortablecnt2 = 0; sortablecnt3 = 0;
+						showKanban();
+					}
+				})
+			}
 			
 		}
 	}).disableSelection();
