@@ -28,5 +28,7 @@ public interface BoardDAO {
 
 	public void announceUpdate(AnnounceDTO announceDTO);
 
+	public void boardDelete(int boardnum);
+
 	
 }

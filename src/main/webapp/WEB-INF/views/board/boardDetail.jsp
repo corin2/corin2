@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,9 +45,12 @@
 					<td></td>
 					<td>
 
-							<input type="button" value="목록가기" onclick="location.href='boardList'">
+						<input type="button" value="목록가기" onclick="location.href='boardList'">
+							
+					<%-- 	<se:authorize access= hasRole('ROLE_ADMIN')"> --%>
 							<input type="button" value="수정" onclick="location.href='boardUpdate?boardnum=${detail.boardNum}'">
-							<input type="button" value="삭제">
+							<input type="button" value="삭제" onclick="location.href='boardDelete?boardnum=${detail.boardNum}'">
+					<%-- 	</se:authorize>  --%>
 							
 					</td>
 				</tr>		

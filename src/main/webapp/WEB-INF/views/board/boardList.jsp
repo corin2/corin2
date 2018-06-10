@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
 <html>
 <head>
@@ -55,10 +56,30 @@
 
 	
 		 	<form action="boardInsert" method="get">
-		  		<input type="submit" value="글쓰기">
+		 <%-- 	<se:authorize access= hasRole('ROLE_ADMIN')"> --%>
+				<input type="submit" value="글쓰기">
+		<%-- 	</se:authorize>  --%>
+		  		
 			</form>
 		</div>
-    
+    	<p id="cur-page" class="margin-small"></p>
+	<div id="pager-wrapper" class="margin-small">
+		<div class="pager clear">
+			<p id="btnPrev">
+				<a class="button btn-prev" href="notice.jsp">이전</a>
+			</p>
+			<ul>
+				<li><a class="strong" href="">1</a></li>
+				<li><a href="">2</a></li>
+				<li><a href="">3</a></li>
+				<li><a href="">4</a></li>
+				<li><a href="">5</a></li>
+			</ul>
+			<p id="btnNext">
+				<span class="button btn-next">다음</span>
+			</p>
+		</div>
+	</div>
     </body>
         <script type="text/javascript">
 	    (function(){

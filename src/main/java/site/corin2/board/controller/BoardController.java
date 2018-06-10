@@ -13,6 +13,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,35 +61,29 @@ public class BoardController {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
 		model.addAttribute("detail",boardDTO);
 		return "boardDetail";
-		
 	}
 	
 	@RequestMapping(value="boardUpdate",method=RequestMethod.GET)
 	public String boardUpdate(int boardnum,Model model) {
-		System.out.println("d1");
-		System.out.println(boardnum);
 		BoardDTO boardDTO= service.boardSelect(boardnum);
-		System.out.println("d2");
-		System.out.println(boardnum);
 		model.addAttribute("detail",boardDTO);
-		System.out.println("d3");
-		System.out.println(boardDTO.getBoardNum());
 		return "boardUpdate";
 	}
 	
 	@RequestMapping(value="boardUpdate",method=RequestMethod.POST)
 	public String boardUpdate(BoardDTO boardDTO,AnnounceDTO announceDTO ) {
 		//제목 , 작성일 ,내용
-		System.out.println("d4");
-		System.out.println(boardDTO.getBoardNum());
 		service.boardUpdate(boardDTO);
-		System.out.println("d5");
-		System.out.println(boardDTO.getBoardNum());
 		service.announceUpdate(announceDTO);
-		System.out.println("d6");
-		System.out.println(boardDTO.getBoardNum());
-	
-		
 		return "redirect:boardDetail?boardnum="+boardDTO.getBoardNum();
 	}
+	
+	@RequestMapping("boardDelete")
+	public String boardDelete(int boardnum) {
+		
+		service.boardDelete(boardnum);
+		
+		return "redirect:boardList";
+	}
+	
 }

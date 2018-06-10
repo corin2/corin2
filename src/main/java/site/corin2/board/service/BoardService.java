@@ -54,5 +54,9 @@ public class BoardService {
 		dao.announceUpdate(announceDTO);
 		
 	}
+	public void boardDelete(int boardnum) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		dao.boardDelete(boardnum);
+	}
 	
 }
