@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class MariaDBTest {
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
-    private static final String URL = "jdbc:mariadb://192.168.0.43:3306/corin2";
+    private static final String URL = "jdbc:mariadb://127.0.0.1:3306/corin2";
     private static final String USER = "corin2";
     private static final String PASSWORD = "1004";
     

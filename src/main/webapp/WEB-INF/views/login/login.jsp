@@ -17,7 +17,7 @@
     background: #566270;
 	}
 	
-	form {
+	#form {
 	    width: 320px;
 	    padding: 60px 25px 80px;
 	    margin: 50px auto;
@@ -124,16 +124,9 @@
 	 width:40px;
 	}
     </style>
-    <script type="text/javascript">
-	$(function(){
-		$('#repassword').click(function(){
-			//dialog 띄워서 아이디 받고 그 아이디로 메일 랜덤값 보내면서 update해주기
-		});
-	});
-</script>
 </head>
 <body>
-    <form method="post" action="./login">
+    <form id="form"method="post" action="./login">
         <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,150 C0,65 120,65 120,150" fill="#E0E3DA" stroke="#000" stroke-width="2.5" />
              <circle cx="60" cy="132" r="30" fill="#ffffff" />           
@@ -190,7 +183,7 @@
 	        	<a type="button" href="signup" class="btn btn-default">Sign Up</a>
 	        </div>
 	        <div class="col-md-4">
-	        	<button id="repassword" type="button" class="btn btn-default">비밀번호변경하기</button>
+	        	<button id="repassword" type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default">비밀번호재설정하기</button>
 	        </div>
         </div>
         <div class="text-center social-btn" style="margin-top: 3px;">
@@ -309,5 +302,55 @@
 		
 		})();
     </script>  
+    <!-- 비밀번호 찾기 -->
+     <div class="modal fade" id="remodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+	        <form action="" id="submits" method="post">
+	          <div class="modal-header">
+	            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	              <span aria-hidden="true">×</span>
+	            </button>
+	            <h5 class="modal-title" id="exampleModalLabel">비밀번호 재설정하기</h5>
+	          </div>
+	          <div class="modal-body">
+	          	<input type="text" id="reuserid">
+	          </div>
+	          <div class="modal-footer">
+	            <a class="btn btn-default" type="button" id=""href="login.html">mail send</a>
+	            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+	          </div>
+	        </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+ 	 //dialog 띄워서 아이디 받고 그 아이디로 메일 랜덤값 보내면서 update해주기
+    $(function(){
+    	$("#submit").click(function(){
+    		$.ajax({
+     			type: "post",
+     			url:  "idcheck.htm",
+     			data: $('#reuserid').val(),
+     			contentType: "application/json; charset=utf-8",
+     		    success:function(data){ 
+     		    	console.log(data);
+     		    	if(data.trim()=="true"){
+     		    		alert("아이디가 중복됩니다.")
+     		    		console.log(data.trim());
+     		    		$('#reuserid').val("");
+     		    	}else{
+     		    		console.log(data.trim());
+     		    		$('#submit').attr("type","submit");
+     		    	}
+     		     },
+     			error: function(){						
+     				alert('이메일을 입력해주세요');
+     				console.log(data.trim());
+     			}
+     		});
+    	});
+    });
+    </script>
 </body>
 </html>
