@@ -66,7 +66,7 @@
 				<tr>
 					<td></td>
 					<td>
-					
+							
 							<input type="submit" value="수정">
 							<input type="button" value="취소" OnClick="history.back()">
 					</td>

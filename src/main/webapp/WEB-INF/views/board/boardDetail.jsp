@@ -16,7 +16,7 @@
 
 	
 	<div class="container" style="margin-top: 60px;">
-		<form action="boardUpdate?boardNum=${detail.boardNum}" method="get" >
+		<form action="" method="get" >
 			<table class="table table-bordered">
 			<tr>
 			 	<td>글번호</td>
@@ -43,10 +43,11 @@
 				<tr>
 					<td></td>
 					<td>
-					
-							<input type="submit" value="수정">
+
+							<input type="button" value="목록가기" onclick="location.href='boardList'">
+							<input type="button" value="수정" onclick="location.href='boardUpdate?boardnum=${detail.boardNum}'">
 							<input type="button" value="삭제">
-							<input type="button" value="취소" OnClick="history.back()">
+							
 					</td>
 				</tr>		
 			</table>

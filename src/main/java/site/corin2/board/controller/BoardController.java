@@ -64,12 +64,12 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="boardUpdate",method=RequestMethod.GET)
-	public String boardUpdate(BoardDTO boardDTO,Model model) {
+	public String boardUpdate(int boardnum,Model model) {
 		System.out.println("d1");
-		System.out.println(boardDTO.getBoardNum());
-		boardDTO= service.boardSelect(boardDTO.getBoardNum());
+		System.out.println(boardnum);
+		BoardDTO boardDTO= service.boardSelect(boardnum);
 		System.out.println("d2");
-		System.out.println(boardDTO.getBoardNum());
+		System.out.println(boardnum);
 		model.addAttribute("detail",boardDTO);
 		System.out.println("d3");
 		System.out.println(boardDTO.getBoardNum());
