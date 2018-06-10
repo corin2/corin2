@@ -16,55 +16,36 @@
 
 	
 	<div class="container" style="margin-top: 60px;">
-		<form action="boardUpdate"  method="post" >
+		<form action="boardUpdate?boardnum= ${detail.boardNum}"  method="get" >
 			<table  class="table table-bordered">
 			<tr>
 			 	<td>글번호</td>
-			 		<td><input type="text" name ="boardNum" value="${detail.boardNum}" readonly="readonly"></td>
+			 		<td>${detail.boardNum}</td>
 			 	<tr>
 				<tr>
 			 		<td>제목</td>
-			 		<td><input type="text" name ="announceTitle" value="${detail.announceTitle}" readonly="readonly"></td>
+			 		<td>${detail.announceTitle}</td>
 			 	<tr>	
 			 	<tr>
 			 		<td>작성자</td>
-			 		<td><input type="text"  value="${detail.userId}" readonly="readonly"></td>
+			 		<td>${detail.userId} </td>
 			 		
 			 	
 			 	</tr>
 			 	<tr>
 			 		<td>작성일</td>
-			 		<td>
-			 			<input type= "text" name ="announceTitle" value="${detail.boardDate}" readonly="readonly">
-			 		</td>
+			 		<td>${detail.boardDate}</td>
 			 	</tr>
 			 	<tr>
 			 		<td>내용</td>
-			 		<td>
-				 		<textarea class="ckeditor" name ="announceContent" >${detail.announceContent}</textarea>
-				 			<script type="text/javascript">			    
-								CKEDITOR.replace( 'announceContent',{
-								    	width:'100%',
-							            height:'400px'
-								});
-							       CKEDITOR.on('dialogDefinition', function( ev ){
-							            var dialogName = ev.data.name;
-							            var dialogDefinition = ev.data.definition;
-						
-							            switch (dialogName) {
-							                case 'image': 
-							                    dialogDefinition.removeContents('Link');
-							                    break;
-							            }
-							        });
-							</script>
-				 	</td> 			 	
+			 		<td>${detail.announceContent}</td> 			 	
 			 	</tr>		
 				<tr>
 					<td></td>
 					<td>
 					
 							<input type="submit" value="수정">
+							<input type="button" value="삭제">
 							<input type="button" value="취소" OnClick="history.back()">
 					</td>
 				</tr>		

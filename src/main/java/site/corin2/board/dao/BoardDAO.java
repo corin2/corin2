@@ -23,4 +23,10 @@ public interface BoardDAO {
 	public void announceInsert(AnnounceDTO announceDTO);
 
 	public BoardDTO boardSelect(int boardnum);
+
+	public void boardUpdate(BoardDTO boardDTO);
+
+	public void announceUpdate(AnnounceDTO announceDTO);
+
+	
 }

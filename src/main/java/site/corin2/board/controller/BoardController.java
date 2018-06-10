@@ -43,24 +43,53 @@ public class BoardController {
 
 	
 	@RequestMapping(value="boardInsert" ,method = RequestMethod.GET)
-	public String boardInsert() {//글쓰기화면에서
-		return "boardInsert";//리스트화면으로 이동
+	public String boardInsert() {
+		return "boardInsert";
 	}
 
 	
 	@RequestMapping(value= "boardInsert" ,method = RequestMethod.POST)
-	public String boardanInsertOK(BoardDTO boardDTO,AnnounceDTO announceDTO) {//글쓰기 처리	
+	public String boardanInsert(BoardDTO boardDTO,AnnounceDTO announceDTO) {//글쓰기 처리	
 		service.boardInsert(boardDTO); //board insert
 		service.announceInsert(announceDTO); //announce insert
 		return "redirect:boardList";
 	}
-	
-	@RequestMapping(value="boardDedatil")
+
+	@RequestMapping(value="boardDetail")
 	public String boardDetail(int boardnum , Model model) {
-		
 		BoardDTO boardDTO= service.boardSelect(boardnum);
 		model.addAttribute("detail",boardDTO);
 		return "boardDetail";
 		
+	}
+	
+	@RequestMapping(value="boardUpdate", method = RequestMethod.GET)
+	public String boardUpdate(String boardnum,  Model model) {
+		System.out.println("d1");
+		System.out.println(boardnum);
+		
+		BoardDTO boardDTO= service.boardSelect(Integer.parseInt(boardnum));
+		System.out.println("d2");
+		System.out.println(boardnum);
+		model.addAttribute("detail",boardDTO);
+		System.out.println("d3");
+		System.out.println(boardnum);
+		return "boardUpdate";
+	}
+	
+	@RequestMapping(value="boardUpdate", method = RequestMethod.POST)
+	public String boardUpdate(BoardDTO boardDTO ,AnnounceDTO announceDTO ) {
+		//제목 , 작성일 ,내용
+		System.out.println("d4");
+		System.out.println(boardDTO.getBoardNum());
+		service.boardUpdate(boardDTO);
+		System.out.println("d5");
+		System.out.println(boardDTO.getBoardNum());
+		service.announceUpdate(announceDTO);
+		System.out.println("d6");
+		System.out.println(boardDTO.getBoardNum());
+	
+		
+		return "redirect:boardDetail?boardnum="+boardDTO.getBoardNum();
 	}
 }

@@ -5,5 +5,5 @@
  <tiles-definitions>
  
 	<definition name="*" template="/WEB-INF/views/kanban/{1}.jsp" /> 
-	<definition name="*" template="/WEB-INF/views/announce/{1}.jsp" /> 
+	<definition name="*" template="/WEB-INF/views/board/{1}.jsp" /> 
  </tiles-definitions>    

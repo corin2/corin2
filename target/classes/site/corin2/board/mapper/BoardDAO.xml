@@ -9,6 +9,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select * from board b join announce a on a.boardnum = b.boardnum
 				where b.SKILLNUM ='s100' and b.isdeleted = 0  
 		</select>
+			
+		<select id="boardSelect" resultType="site.corin2.board.dto.BoardDTO">
+			select * from board b join announce a on a.boardnum = b.boardnum
+			where b.boardnum = #{boardNum}
+		
+		</select>
 		
 		<insert id="boardInsert" parameterType="site.corin2.board.dto.BoardDTO">
 			insert into board(skillnum , userid, boarddate,isdeleted) 
@@ -24,10 +30,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values(#{boardNum},'S100',#{announceTitle},#{announceContent})
 			
 		</insert>
+	
 		
-		<select id="boardSelect" resultType="site.corin2.board.dto.BoardDTO">
-			select * from board b join announce a on a.boardnum = b.boardnum
-			where b.boardnum = #{boardNum}
-		
-		</select>
+		<update id="boardUpdate" >
+			
+				UPDATE board SET boarddate = now() where skillnum ='s100' and boardnum = #{boardNum}
+		</update>
+		<update id="announceUpdate">
+				UPDATE announce SET announcetitle = #{announceTitle} , announcecontent = #{announceContent} where skillnum ='s100' and boardnum = #{boardNum}
+		</update>
 	</mapper>

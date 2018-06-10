@@ -45,5 +45,14 @@ public class BoardService {
 		 BoardDTO boardDTO = dao.boardSelect(boardnum);
 		return boardDTO;
 	}
+	public void boardUpdate(BoardDTO boardDTO) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		dao.boardUpdate(boardDTO);
+	}
+	public void announceUpdate(AnnounceDTO announceDTO) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		dao.announceUpdate(announceDTO);
+		
+	}
 	
 }
