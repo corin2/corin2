@@ -63,22 +63,21 @@ public class BoardController {
 		
 	}
 	
-	@RequestMapping(value="boardUpdate", method = RequestMethod.GET)
-	public String boardUpdate(String boardnum,  Model model) {
+	@RequestMapping(value="boardUpdate",method=RequestMethod.GET)
+	public String boardUpdate(BoardDTO boardDTO,Model model) {
 		System.out.println("d1");
-		System.out.println(boardnum);
-		
-		BoardDTO boardDTO= service.boardSelect(Integer.parseInt(boardnum));
+		System.out.println(boardDTO.getBoardNum());
+		boardDTO= service.boardSelect(boardDTO.getBoardNum());
 		System.out.println("d2");
-		System.out.println(boardnum);
+		System.out.println(boardDTO.getBoardNum());
 		model.addAttribute("detail",boardDTO);
 		System.out.println("d3");
-		System.out.println(boardnum);
+		System.out.println(boardDTO.getBoardNum());
 		return "boardUpdate";
 	}
 	
-	@RequestMapping(value="boardUpdate", method = RequestMethod.POST)
-	public String boardUpdate(BoardDTO boardDTO ,AnnounceDTO announceDTO ) {
+	@RequestMapping(value="boardUpdate",method=RequestMethod.POST)
+	public String boardUpdate(BoardDTO boardDTO,AnnounceDTO announceDTO ) {
 		//제목 , 작성일 ,내용
 		System.out.println("d4");
 		System.out.println(boardDTO.getBoardNum());

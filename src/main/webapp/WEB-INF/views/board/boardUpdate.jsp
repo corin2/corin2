@@ -22,7 +22,7 @@
 			<table  class="table table-bordered">
 			<tr>
 			 	<td>글번호</td>
-			 		<td><input type="text" name="boardNum" readonly="readonly">${detail.boardNum}</td>
+			 		<td><input type="text" name="boardNum" readonly="readonly" value="${detail.boardNum}"></td>
 			 	<tr>
 				<tr>
 			 		<td>제목</td>
@@ -30,7 +30,7 @@
 			 	<tr>	
 			 	<tr>
 			 		<td>작성자</td>
-			 		<td><input type="text" name="userId" readonly="readonly">${detail.userId}</td>
+			 		<td><input type="text" name="userId" readonly="readonly" value="${detail.userId}"></td>
 			 		
 			 	
 			 	</tr>

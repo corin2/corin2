@@ -16,8 +16,8 @@
 
 	
 	<div class="container" style="margin-top: 60px;">
-		<form action="boardUpdate?boardnum= ${detail.boardNum}"  method="get" >
-			<table  class="table table-bordered">
+		<form action="boardUpdate?boardNum=${detail.boardNum}" method="get" >
+			<table class="table table-bordered">
 			<tr>
 			 	<td>글번호</td>
 			 		<td>${detail.boardNum}</td>
