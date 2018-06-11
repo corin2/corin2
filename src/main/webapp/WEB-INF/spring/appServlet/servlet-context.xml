@@ -18,13 +18,24 @@
 	<context:component-scan base-package="site.corin2.*.controller" />
 	<context:component-scan base-package="site.corin2.*.service" />
 	
+	<!-- 소켓 시작~~ -->
+	<websocket:handlers>
+		<websocket:mapping handler="kanbanHandler" path="/kanbanWebSocket" />
+		<websocket:handshake-interceptors>
+			<bean class="site.corin2.ws.KanbanHandInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
+
+	<bean id="kanbanHandler" class="site.corin2.ws.KanbanHandler" />
+	
+	<mvc:default-servlet-handler />
+	
 	<!-- 비동기 필요 -->
 	<mvc:annotation-driven />
 	<bean name="jsonview" 
 		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
 
 	<context:annotation-config />
-	<!-- 예시 : <context:component-scan base-package="bit.or.kr.controller" /> -->
 	
 	<!--Tiles 설정 (Bean 객체 생성 주입) -->
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">

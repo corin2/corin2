@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="kanban">칸반들어가기</a>
+	<a href="kanban?projectNum=1">칸반들어가기</a>
+	<a href="kanban?projectNum=2">칸반들어가기</a>
 </body>
 </html>

@@ -71,7 +71,7 @@ function sortable(){
 			
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
 				alert('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
-				showKanban();
+				send(1);
 			}else{
 				$.ajax({
 					url : 'cardTaxisUpdate',
@@ -82,7 +82,7 @@ function sortable(){
 					},
 					success : function(data){
 						sortablecnt = 0; sortablecnt2 = 0; sortablecnt3 = 0;
-						showKanban();
+						send(1);
 					}
 				})
 			}
@@ -221,7 +221,7 @@ function showCard(){
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"a\"), "+ projectNum +");}' "
-			+ "onfocusout='showKanban()' onkeyup='fnChkByte(this, 27)' >"
+			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
 			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</a>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
@@ -238,7 +238,7 @@ function addCard(obj, projectNum){
 			datatype:"JSON",
 			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
-				showKanban();
+				send(1);
 			}
 		});
 	}
@@ -286,7 +286,7 @@ function deleteCard(e,cardNum){
 		datatype:"JSON",
 		data:{cardNum:cardNum},
 		success:function(data){
-			showKanban();
+			send(1);
 		}
 	});
 }
@@ -297,7 +297,7 @@ function updateCardTitle(e, cardNum) {
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"a\"), "+ cardNum +");}' "
-			+ "onfocusout='showKanban()' onkeyup='fnChkByte(this, 27)' >"
+			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
 			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</a>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
@@ -314,7 +314,7 @@ function updateCard(obj, cardNum){
 			datatype:"JSON",
 			data:{cardName:value, cardNum:cardNum},
 			success:function(data){
-				showKanban();
+				send(1);
 			}
 		});
 	}
@@ -344,7 +344,8 @@ function cardNameModOk(e){
 			success:function(data){
 				e.stopPropagation();
 				selectCard(cardNum);
-				showKanban();
+				send(1);
+				//showKanban();
 			}
 		});
 	}else{
@@ -359,6 +360,6 @@ function  focusOutDisgard(obj) {
 	$(obj).hover(function() {
 		$(obj).closest('div').children('input').removeAttr('onfocusout');
 	}, function(){
-		$(obj).closest('div').children('input').attr('onfocusout', 'showKanban()');
+		$(obj).closest('div').children('input').attr('onfocusout', 'send(1)');
 	});
 }

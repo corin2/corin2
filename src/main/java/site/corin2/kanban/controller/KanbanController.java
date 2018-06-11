@@ -29,7 +29,8 @@ public class KanbanController {
 	private KanbanService service;
 
 	@RequestMapping("/kanban")
-	public String newFile() {
+	public String newFile(@RequestParam("projectNum") String projectNum, Model model) {
+		model.addAttribute("projectNum", projectNum);
 		return "kanban";
 	}
 	

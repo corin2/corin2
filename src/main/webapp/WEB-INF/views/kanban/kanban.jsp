@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,6 +18,7 @@
 <script src="resources/js/kanban.js"></script>
 <script src="resources/js/keyUp.js"></script>
 <script src="resources/js/cardCheckList.js"></script>
+<script src="resources/js/kanbanSocket.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
 
@@ -26,7 +28,7 @@
 		<div id="mainScreen" class="container-fluid" scrollTop="5px">
 			<h2 id='boardTitle'>칸반보드</h2>
 			<input type="hidden" id="hiddenUserId" value="jin@naver.com" > <!-- value값 바꿀 것! -->
-			<input type="hidden" id="hiddenProjectNum" value="1" > <!-- value값 바꿀 것! -->
+			<input type="hidden" id="hiddenProjectNum" value="${projectNum}" > <!-- value값 바꿀 것! -->
 			<hr>
 			<div id="content-md">
 			
