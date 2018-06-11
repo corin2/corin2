@@ -132,9 +132,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "passwordcheck", method = RequestMethod.POST)
-	public @ResponseBody String passwordCheck(@RequestBody String userid) {
+	public @ResponseBody String passwordCheck(@RequestBody String password) {
 		String regex = "^[a-zA-Z0-9]{3,10}$";
-		String [] useridsplit = userid.split("=");
+		String [] useridsplit = password.split("=");
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(useridsplit[0]);
 		boolean err = m.matches();
@@ -150,9 +150,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "nickcheck", method = RequestMethod.POST)
-	public @ResponseBody String nickCheck(@RequestBody String userid) {
+	public @ResponseBody String nickCheck(@RequestBody String nickname) {
 		String regex = "^[a-zA-Z0-9]{3,10}$";
-		String [] useridsplit = userid.split("=");
+		String [] useridsplit = nickname.split("=");
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(useridsplit[0]);
 		boolean err = m.matches();
