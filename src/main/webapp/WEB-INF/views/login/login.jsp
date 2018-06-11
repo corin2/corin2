@@ -183,7 +183,7 @@
 	        	<a type="button" href="signup" class="btn btn-default">Sign Up</a>
 	        </div>
 	        <div class="col-md-4">
-	        	<button id="repassword" type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default">비밀번호재설정하기</button>
+	        	<button type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default">비밀번호재설정하기</button>
 	        </div>
         </div>
         <div class="text-center social-btn" style="margin-top: 3px;">
@@ -317,7 +317,7 @@
 	          	<input type="text" id="reuserid">
 	          </div>
 	          <div class="modal-footer">
-	            <a class="btn btn-default" type="button" id=""href="login.html">mail send</a>
+	            <a class="btn btn-default" id="repassword" type="button" href="login.html">mail send</a>
 	            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
 	          </div>
 	        </form>
@@ -327,7 +327,7 @@
     <script type="text/javascript">
  	 //dialog 띄워서 아이디 받고 그 아이디로 메일 랜덤값 보내면서 update해주기
     $(function(){
-    	$("#submit").click(function(){
+    	$("#repassword").click(function(){
     		$.ajax({
      			type: "post",
      			url:  "idcheck.htm",
@@ -336,12 +336,12 @@
      		    success:function(data){ 
      		    	console.log(data);
      		    	if(data.trim()=="true"){
-     		    		alert("아이디가 중복됩니다.")
+     		    		console.log(data.trim());
+     		    		$('#repassword').attr("type","submit");
+     		    	}else{
+     		    		alert("아이디가  존재하지 않습니다..")
      		    		console.log(data.trim());
      		    		$('#reuserid').val("");
-     		    	}else{
-     		    		console.log(data.trim());
-     		    		$('#submit').attr("type","submit");
      		    	}
      		     },
      			error: function(){						

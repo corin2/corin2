@@ -2,6 +2,8 @@ package site.corin2.user.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -97,11 +99,19 @@ public class UserController {
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	public @ResponseBody String idCheck(@RequestBody String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		
+		
+		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
+		
 		String [] useridsplit = userid.split("=");
 		System.out.println(useridsplit[0]);
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(useridsplit[0]);
+		boolean err = m.matches();
 		int result = 0;
 		try {
 			result = userdao.idCheck(useridsplit[0]);
+			
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -109,11 +119,49 @@ public class UserController {
 		}
 		String check;
 		System.out.println(result);
-		if (result > 0) {
+		if (result > 0 || err == false ) {
 			System.out.println("아이디 중복");
 			check = "true";
 		} else {
 			System.out.println("노 중복");
+			check = "false";
+		}
+		
+		
+		return check;
+	}
+	
+	@RequestMapping(value = "passwordcheck", method = RequestMethod.POST)
+	public @ResponseBody String passwordCheck(@RequestBody String userid) {
+		String regex = "^[a-zA-Z0-9]{3,10}$";
+		String [] useridsplit = userid.split("=");
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(useridsplit[0]);
+		boolean err = m.matches();
+		String check;
+		if (err == false ) {
+			System.out.println("비밀번호 글자 수");
+			check = "true";
+		} else {
+			System.out.println("비밀번호 ok");
+			check = "false";
+		}
+		return check;
+	}
+	
+	@RequestMapping(value = "nickcheck", method = RequestMethod.POST)
+	public @ResponseBody String nickCheck(@RequestBody String userid) {
+		String regex = "^[a-zA-Z0-9]{3,10}$";
+		String [] useridsplit = userid.split("=");
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(useridsplit[0]);
+		boolean err = m.matches();
+		String check;
+		if (err == false ) {
+			System.out.println("닉네임 글자 수");
+			check = "true";
+		} else {
+			System.out.println("닉네임 ok");
 			check = "false";
 		}
 		return check;
