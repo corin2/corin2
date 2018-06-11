@@ -9,6 +9,7 @@ package site.corin2.board.service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,12 +26,12 @@ public class BoardService {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public List<BoardDTO> boardAllSelect() {
+
 	
+	public List<BoardDTO> boardAllSelect() {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		List<BoardDTO> list = dao.boardAllSelect();
-			
-		return list;	
+		return list;
 	}
 	public void boardInsert(BoardDTO boardDTO) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
@@ -59,4 +60,7 @@ public class BoardService {
 		dao.boardDelete(boardnum);
 	}
 	
+
+
+
 }

@@ -13,15 +13,14 @@
        http://www.springframework.org/schema/websocket
        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
+	<context:component-scan base-package="site.corin2.controller" />
 	<context:component-scan base-package="site.corin2.*.controller" />
 	<context:component-scan base-package="site.corin2.*.service" />
 	
-
-
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
-
 	<!-- 비동기 필요 -->
 	<mvc:annotation-driven />
 	<bean name="jsonview" 
@@ -38,7 +37,6 @@
 			  </list>
 		 </property>
 	</bean>
-
 	
 	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
  		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
