@@ -22,7 +22,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import java.io.FileInputStream;
@@ -67,7 +69,7 @@ public class FirebaseDB {
             System.out.println("third pass.");
             
             // As an admin, the app has access to read and write all data, regardless of Security Rules
-            
+            /*
             ref = FirebaseDatabase.getInstance()
             		.getReference("restricted_access/secret_document");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -81,7 +83,7 @@ public class FirebaseDB {
 				public void onCancelled(DatabaseError error) {
 				}
             });
-            
+            */
             // [END initialize]
         } catch (IOException e) {
             System.out.println("ERROR: invalid service account credentials. See README.");
@@ -97,6 +99,7 @@ public class FirebaseDB {
         //DatabaseReference ref = database.getReference();
         
         //사용자 등록
+        /*
 		Connection conn = null;
 		Statement stmt = null;
 		ResultSet rs = null;
@@ -149,12 +152,20 @@ public class FirebaseDB {
 			if(stmt != null) try { stmt.close(); }catch (Exception e2) {}
 			if(conn != null) try { conn.close(); }catch (Exception e2) {}
 		}		
-
+		*/
+        
+        CreateRequest request = new CreateRequest()
+        	    .setEmail("232@naver.com")
+        	    .setEmailVerified(false)
+        	    .setPassword("123456")
+        	    .setDisplayName("232")
+        	    .setDisabled(false);
+        
     	UserRecord userRecord;
 		try {
 			userRecord = FirebaseAuth.getInstance().createUserAsync(request).get();
 			System.out.println("Successfully created new user: " + userRecord.getUid());
-			
+			/*
 			// Data 추가
 			DatabaseReference usersRef = ref.child("Users");
 
@@ -166,6 +177,7 @@ public class FirebaseDB {
 			//usersRef.child(userRecord.getUid()).setValue(users);
 
 			usersRef.setValueAsync(users);
+			*/
 			System.out.println("Done!");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
