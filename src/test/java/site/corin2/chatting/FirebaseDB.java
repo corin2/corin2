@@ -67,6 +67,7 @@ public class FirebaseDB {
             System.out.println("third pass.");
             
             // As an admin, the app has access to read and write all data, regardless of Security Rules
+            
             ref = FirebaseDatabase.getInstance()
             		.getReference("restricted_access/secret_document");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -90,10 +91,10 @@ public class FirebaseDB {
         }
 
         // Shared Database reference
-        database = FirebaseDatabase.getInstance();
+        //database = FirebaseDatabase.getInstance();
         
         // DatabaseReference Setting
-        DatabaseReference ref = database.getReference();
+        //DatabaseReference ref = database.getReference();
         
         //사용자 등록
 		Connection conn = null;
@@ -158,8 +159,11 @@ public class FirebaseDB {
 			DatabaseReference usersRef = ref.child("Users");
 
 			Map<String, User> users = new HashMap<>();
+			//User users = new User(userRecord.getEmail(), userRecord.getPhotoUrl(), userRecord.getDisplayName());
 			//new User(email, profileImg, userName);
 			users.put(userRecord.getUid(), new User(userRecord.getEmail(), userRecord.getPhotoUrl(), userRecord.getDisplayName()));
+			System.out.println(users.get(userRecord.getUid()).email);
+			//usersRef.child(userRecord.getUid()).setValue(users);
 
 			usersRef.setValueAsync(users);
 			System.out.println("Done!");
@@ -167,6 +171,7 @@ public class FirebaseDB {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
     }
 }
 
