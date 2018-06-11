@@ -7,7 +7,7 @@ $(function(){
 	$("#submit").click(function(){
 		$.ajax({
  			type: "post",
- 			url:  "idcheck.htm",
+ 			url:  "idcheck",
  			data: $('#userId').val(),
  			contentType: "application/json; charset=utf-8",
  		    success:function(data){ 
@@ -19,11 +19,13 @@ $(function(){
  		    	}else{
  		    		console.log(data.trim());
  		    		$('#submit').attr("type","submit");
+ 		    		$('#validation').submit();
  		    	}
  		     },
  			error: function(){						
  				alert('이메일을 입력해주세요');
  				console.log(data.trim());
+ 				
  			}
  		});
 	});
@@ -35,7 +37,7 @@ $(function(){
 				}
 		);
 
-		$('#submits')
+		$('#validation')
 		.validate(
 				{
 					rules : {
@@ -90,7 +92,7 @@ $(function(){
 });
 </script>
 <div id="content">
-	<form action="" id="submits" method="post">
+	<form id="validation" method="post" action="signup">
 		<h2>회원가입</h2>
 		<h3 class="hidden">회원가입 폼</h3>
 		<div id="join-form" class="join-form margin-large">
@@ -120,7 +122,7 @@ $(function(){
 			</dl>
 		</div>
 		<div id="buttonLine">
-			<input class=" btn btn-default" id="submit" type="button" value="가입" />
+			<input class="btn btn-default" id="submit" type="button" value="sign up"/>
 		</div>
 	</form>
 </div>

@@ -58,20 +58,19 @@ public class UserController {
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 			//userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
 			userdto.setPassword(userdto.getPassword());
-			MimeMessage message = javamailsender.createMimeMessage();
-			message.setSubject("corin2입니다.");
-			message.setFrom(new InternetAddress("corin2site@gmail.com"));
-			message.setText("<a href='http://localhost:8090/controller/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
-			message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
-			javamailsender.send(message);
-			
 			result = userdao.userInsert(userdto);
 			if (result > 0) {
 				System.out.println("삽입 성공");
+				MimeMessage message = javamailsender.createMimeMessage();
+				message.setSubject("corin2입니다.");
+				message.setFrom(new InternetAddress("corin2site@gmail.com"));
+				message.setText("<a href='http://localhost:8090/controller/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
+				message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
+				javamailsender.send(message);
 				viewpage = "redirect:index.htm";
 			} else {
 				System.out.println("삽입 실패");
-				viewpage = "signup.htm";
+				viewpage = "signup";
 			}
 		} catch (Exception e) {
 			
