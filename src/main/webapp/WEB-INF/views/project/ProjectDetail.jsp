@@ -29,7 +29,7 @@
 					<input type="radio" name="language" value="L009">PHP<br>
 					<input type="radio" name="language" value="L010">JavaScript<br>
 					</div>
-					<input id="addProject" class="btn btn-success" type="button" onclick="addProject()" value="생성">
+					<input id="addProject" class="btn btn-success" type="button" onclick="addProject()" data-dismiss="modal" value="생성">
 					<input id="cancleProject" class="btn btn-danger" data-dismiss="modal" type="button" value="취소">		
 
 				</div>
