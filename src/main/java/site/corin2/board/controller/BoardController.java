@@ -38,14 +38,14 @@ public class BoardController {
 	public String boardList(Model model) { //리스트화면에서
 		 List<BoardDTO> list = service.boardAllSelect();
 		 model.addAttribute("list", list);		 
-		return "boardList";  //리스트화면으로 이동
+		return "board.boardList";  //리스트화면으로 이동
 	}
 	
 
 	
 	@RequestMapping(value="boardInsert" ,method = RequestMethod.GET)
 	public String boardInsert() {
-		return "boardInsert";
+		return "board.boardInsert";
 	}
 
 	
@@ -60,14 +60,14 @@ public class BoardController {
 	public String boardDetail(int boardnum , Model model) {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
 		model.addAttribute("detail",boardDTO);
-		return "boardDetail";
+		return "board.boardDetail";
 	}
 	
 	@RequestMapping(value="boardUpdate",method=RequestMethod.GET)
 	public String boardUpdate(int boardnum,Model model) {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
 		model.addAttribute("detail",boardDTO);
-		return "boardUpdate";
+		return "board.boardUpdate";
 	}
 	
 	@RequestMapping(value="boardUpdate",method=RequestMethod.POST)
@@ -85,5 +85,7 @@ public class BoardController {
 		
 		return "redirect:boardList";
 	}
+	
+	
 	
 }

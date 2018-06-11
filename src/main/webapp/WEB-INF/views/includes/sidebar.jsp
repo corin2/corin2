@@ -60,7 +60,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="boardList">
             <i class="glyphicon glyphicon-bullhorn"></i>
             Notices
         </a>

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <!doctype html>
@@ -9,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-   
+     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sidebar/sidebar.css">
 
     <title></title>
     
@@ -62,58 +61,12 @@
 		  		
 			</form>
 		</div>
-    	<p id="cur-page" class="margin-small"></p>
-	<div id="pager-wrapper" class="margin-small">
-		<div class="pager clear">
-			<p id="btnPrev">
-				<a class="button btn-prev" href="notice.jsp">이전</a>
-			</p>
-			<ul>
-				<li><a class="strong" href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li><a href="">3</a></li>
-				<li><a href="">4</a></li>
-				<li><a href="">5</a></li>
-			</ul>
-			<p id="btnNext">
-				<span class="button btn-next">다음</span>
-			</p>
-		</div>
-	</div>
-    </body>
-        <script type="text/javascript">
-	    (function(){
+
 	
-	    	  var requestPermissionButton = $("#requestPermissionButton");
-	    	    var notificationButton = $("#notificationButton");
-	    	    var notificationMessage = $("#notificationMessage");
-	
-				 var iconDataURI ="resources/images/user.png"
-	    	    //데스크탑 알림 버튼을 누르면,
-	    	    notificationButton.on("click", function () {
-	    	        var message = notificationMessage.val();
-	    	        
-	    	        //메시지를 입력한 경우에만,
-	    	        if (message !== null && message.length > 0) {
-	    	            
-	    	            var options = {
-	    	                body: message,
-	    	                icon: iconDataURI
-	    	            }
-	    	           
-	    	            //데스크탑 알림 요청
-	    	            var notification = new Notification("ddddd", options);
-	    	            
-	    	            
-	    	            //알림 후 5초 뒤,
-	    	            setTimeout(function () {
-	    	                //얼람 메시지 닫기
-	    	                notification.close();
-	    	            }, 5000);
-	    	        }
-	    	    });	   	
-	    	})();
-  
-    </script>
+
+		
+</body>
+
+
     
 </html>
