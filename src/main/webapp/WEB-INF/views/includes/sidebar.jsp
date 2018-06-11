@@ -18,13 +18,13 @@
         </ul>
     </li>
     <li>
-        <a href="#">
+        <a href="test">
             <i class="glyphicon glyphicon-envelope"></i>
             Alarm
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="/controller/">
             <i class="glyphicon glyphicon-calendar"></i>
             Calendar
         </a>
