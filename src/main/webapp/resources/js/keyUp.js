@@ -29,3 +29,23 @@ function fnChkByte(obj, maxByte){
 	    fnChkByte(obj, maxByte);
 	}
 }
+
+//byte 계산
+function byteInt(str){
+	var str_len = str.length;
+	
+	var rbyte = 0;
+	var one_char = "";
+	
+	for(var i=0; i<str_len; i++){
+		one_char = str.charAt(i);
+		
+		if(escape(one_char).length > 4){
+		    rbyte += 2;                                         // 한글2Byte
+		}else{
+		    rbyte++;                                            // 영문 등 나머지 1Byte
+		}
+	}
+	
+	return rbyte;
+}

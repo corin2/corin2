@@ -13,7 +13,7 @@
   <!-- Bootstrap CSS 링크 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- CSS 세부설정 변경을 위한 external CSS 링크 -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sidebar/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css">
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

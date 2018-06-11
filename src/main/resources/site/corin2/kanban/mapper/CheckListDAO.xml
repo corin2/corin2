@@ -19,10 +19,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</select>
 		
 		<!-- 체크리스트 수정 -->
-		<select id="checkListUpdate">
+		<update id="checkListUpdate">
 			update cardchecklist set ischecked=#{isChecked}, checkcontent=#{checkContent}
 			where checknum=#{checkNum}
-		</select>
+		</update>
 		
 		<!-- 체크리스트삭제 -->
 		<update id="checkListDelete">

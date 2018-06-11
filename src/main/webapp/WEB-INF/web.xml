@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<welcome-file-list>
-		<welcome-file>NewFile.jsp</welcome-file>
+		<welcome-file>/NewFile.html</welcome-file>
 	</welcome-file-list>
 	
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->

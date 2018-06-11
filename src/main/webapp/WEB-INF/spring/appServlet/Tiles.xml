@@ -3,18 +3,19 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-<tiles-definitions>
+<tiles-definitions>     
      <definition name="home.*" template="/WEB-INF/views/includes/layout.jsp"> 
          <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
          <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
          <put-attribute name="content" value="/WEB-INF/views/{1}.jsp" /> 
      </definition>
      
-     <definition name="*" template="/WEB-INF/views/includes/layout.jsp" > 
-     	<put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+     <definition name="kanban.*" template="/WEB-INF/views/includes/layout.jsp" > 
+     	 <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
          <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
          <put-attribute name="content" value="/WEB-INF/views/kanban/{1}.jsp" /> 
      </definition>
+     
      <!--
      <definition name="board.*" template="/WEB-INF/views/inc/layout.jsp"> 
          <put-attribute name="title"  value="welcome 3Team" /> 

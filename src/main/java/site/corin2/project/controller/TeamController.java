@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import site.corin2.project.dto.ProjectDTO;
 import site.corin2.project.dto.TeamDTO;
 import site.corin2.project.service.TeamService;
 import site.corin2.user.dto.UserDTO;
@@ -41,6 +42,13 @@ public class TeamController {
 	public View showUserProfile(@RequestParam("projectNum") String projectNum, Model model) {
 		List<UserDTO> teamMembers = service.allTeamMemberProfileSelect(Integer.parseInt(projectNum));
 		model.addAttribute("data", teamMembers);
+		return jsonview;
+	}
+	
+	@RequestMapping("/showMsg")
+	public View showMsg(@RequestParam("receptionId") String receptionId, Model model) {
+		List<ProjectDTO> inviteMsgs = service.allInviteMsgSelect(receptionId);
+		model.addAttribute("data", inviteMsgs);
 		return jsonview;
 	}
 }
