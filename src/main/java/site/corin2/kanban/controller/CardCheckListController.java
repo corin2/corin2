@@ -28,7 +28,6 @@ public class CardCheckListController {
 	
 	@RequestMapping("/cardCheckListInsert")
 	public View CheckListInsertView(CardCheckListDTO checkList, Model model) {
-		System.out.println("들어왔니??");
 		int result = service.cardCheckListInsert(checkList);
 		
 		return jsonview;

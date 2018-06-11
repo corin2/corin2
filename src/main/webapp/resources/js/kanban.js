@@ -219,10 +219,13 @@ function showCard(){
 
 //카드를 추가하는 텍스트박스를 생성한다
 function addCardView(projectNum) {
-	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' >"
-			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")'>완료</a>";
+	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
+			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"a\"), "+ projectNum +");}' "
+			+ "onfocusout='showKanban()' onkeyup='fnChkByte(this, 27)' >"
+			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</a>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
+	$('#addcard').children('input').focus();
 }
 
 //카드 등록 성공
@@ -235,7 +238,6 @@ function addCard(obj, projectNum){
 			datatype:"JSON",
 			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
-				$(parent).remove();
 				showKanban();
 			}
 		});
@@ -244,7 +246,9 @@ function addCard(obj, projectNum){
 
 //카드 디텔일 총합 뿌려주기
 function cardDetail(cardNum){
+	$('#hiddenCardNum').attr('value', cardNum);
 	selectCard(cardNum);
+	showCardCheckList();
 }
 
 //카드 디테일에 내용 뿌려주기
@@ -254,23 +258,21 @@ function selectCard(cardNum){
 		datatype:"JSON",
 		data:{cardNum:cardNum},
 		success:function(data){
-			$('#hiddenCardNum').attr('value', cardNum);
+			$('#modalHeader').attr('onclick', 'cardNameMod()');
 			$("#modalHeader").html(data.dto.cardName);
 			$("#contentDetail").val(data.dto.cardContent);
-			showCardCheckList();
 		}
 	});
 }
 
 //카드 디테일 내용 수정
 function updateCardDetail(e){
-	
 	$.ajax({
 		url:"cardUpdate",
 		datatype:"JSON",
 		data:{cardNum:$('#hiddenCardNum').val(), cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
 		success:function(data){
-			cardDetail($('#hiddenCardNum').val());
+			selectCard($('#hiddenCardNum').val());
 		}
 	});
 }
@@ -289,15 +291,17 @@ function deleteCard(e,cardNum){
 	});
 }
 
-//카드를 추가하는 텍스트박스를 생성한다
+//카드를 수정하는 텍스트박스를 생성한다
 function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
-	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' >"
-			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' " 
-			+ " onkeypress='if(event.keyCode==13 {updateCard(this, "+ cardNum +";}')>완료</a>";
+	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
+			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"a\"), "+ cardNum +");}' "
+			+ "onfocusout='showKanban()' onkeyup='fnChkByte(this, 27)' >"
+			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</a>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
+	$('#div' + cardNum).children('input').focus();
 }
 
 //카드 제목 수정 확인
@@ -310,7 +314,6 @@ function updateCard(obj, cardNum){
 			datatype:"JSON",
 			data:{cardName:value, cardNum:cardNum},
 			success:function(data){
-				$(parent).remove();
 				showKanban();
 			}
 		});
@@ -320,18 +323,17 @@ function updateCard(obj, cardNum){
 //카드 디테일 제목 수정
 function cardNameMod(){
 	var cardNum = $('#hiddenCardNum').val();
-	console.log(cardNum)
 	var htmlObj = $('#modalHeader').html();
-	
 	var div = '<div><input type="text" class="form-control" placeholder="' + htmlObj + '"'
-			+ 'onkeypress="if(event.keyCode==13) {cardNameModOk();}" >';
+			+ 'onkeypress="if(event.keyCode==13) {cardNameModOk(event);}" onfocusout="selectCard('+cardNum+')">';
 
 	$('#modalHeader').html(div);
+	$('#modalHeader').removeAttr('onclick');
 	$('#modalHeader').children('div').children('input').focus();
 }
 
 //상세페이지 카드명 수정 완료
-function cardNameModOk(){
+function cardNameModOk(e){
 	var cardNum = $('#hiddenCardNum').val();
 	var value = $('#modalHeader').children('div').children('input').val();
 	if(value.trim() != ""){
@@ -340,7 +342,7 @@ function cardNameModOk(){
 			datatype:"text",
 			data:{cardNum:cardNum, cardName:value.trim()},
 			success:function(data){
-				var boardNum = $('#hiddenBoardnum').val();
+				e.stopPropagation();
 				selectCard(cardNum);
 				showKanban();
 			}
@@ -348,4 +350,15 @@ function cardNameModOk(){
 	}else{
 		selectCard(cardNum);
 	}
+	
+	$('#modalHeader').attr('onclick', 'cardNameMod()');
+}
+
+//확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
+function  focusOutDisgard(obj) {
+	$(obj).hover(function() {
+		$(obj).closest('div').children('input').removeAttr('onfocusout');
+	}, function(){
+		$(obj).closest('div').children('input').attr('onfocusout', 'showKanban()');
+	});
 }

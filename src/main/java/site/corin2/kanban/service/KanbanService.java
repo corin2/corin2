@@ -28,8 +28,6 @@ public class KanbanService {
 	public int cardInsert(CardDTO card) {
 		int result =0;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
-		System.out.println(card.getProjectNum());
-		System.out.println(card.getCardName());
 		result = dao.cardInsert(card);
 		
 		return result;

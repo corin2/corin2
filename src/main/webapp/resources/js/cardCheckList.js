@@ -1,28 +1,27 @@
 //체크리스트를 추가하는 텍스트박스를 생성한다
 function addCardCheckListView() {
 	$('#addCheckListdiv').remove();
-	var div = "<div id='addCheckListdiv'><input type='checkbox' id='cardCheckBox'>"
-			+ "<input id='cardCheckBoxInput' type='text' class='inputtext' style='float:left;'><a onclick='addCardCheckLIst(this)' style='float:right;'>완료</a>"
-			+ "</div>"
-			
-	$('#checkListForm').append(div);
 	
+	var div = "<div id='addCheckListdiv'>"
+			+ "<input id='cardCheckBoxInput' type='text' class='inputtext' style='float:left;' "
+			+ "onkeypress='if(event.keyCode==13) {addCardCheckList();}' "
+			+ "onfocusout='showCardCheckList()' onkeyup='fnChkByte(this, 80)' >"			+ "<button class='close glyphicon' onclick='addCardCheckList()' onmouseover='focusOutCheckListDisgard(this)'>&#xe013;</button>"
+			+ "</div>";
+	
+	$('#checkListForm').append(div)
+	$('#cardCheckBoxInput').focus();;
 }
 
 //체크리스트 등록 성공
-function addCardCheckLIst(obj){
+function addCardCheckList() {
 	var cardNum = $('#hiddenCardNum').val();
-	console.log(cardNum)
 	var value = $('#cardCheckBoxInput').val();
-	console.log(value)
 	if(value.trim() != ""){
 		$.ajax({
 			url:"cardCheckListInsert",
 			datatype:"JSON",
 			data:{checkContent:value, cardNum:cardNum},
 			success:function(data){
-				$("#addCheckListdiv").remove();
-				$('#checkListForm').empty();
 				showCardCheckList();
 			}
 		});
@@ -31,7 +30,6 @@ function addCardCheckLIst(obj){
 
 //체크리스트 뿌리기
 function showCardCheckList(){
-	$('#checkListForm').empty()
 	$.ajax({
 		type : "post",
 		url  : "cardCheckListSelect",
@@ -39,9 +37,9 @@ function showCardCheckList(){
 		data : {cardNum : $('#hiddenCardNum').val()},
 		success : function(data){
 			var htmlText;
+			$('#checkListForm').empty();
 			
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				if(elt.isDeleted == '0') {
 					htmlText = "<p>";
 					
@@ -102,9 +100,10 @@ function checkBoxMod(obj, checkNum){
 	var p = $(obj).closest('p');
 	var text = p.children('label').html();
 	
-	var div = '<div>'
-		+ '<input type="text" class="inputtext">'
-		+ '<button type="button" class="close glyphicon" onclick="checkBoxModOk(this, '+checkNum+')">&#xe013;</button></div>';
+	var div = '<div><input type="text" class="inputtext" '
+		+ 'onkeypress="if(event.keyCode==13) {checkBoxModOk($(this).parent().children(\'button\'), '+ checkNum +');}" '
+		+ 'onfocusout="showCardCheckList()" onkeyup="fnChkByte(this, 80)" >'
+		+ '<button class="close glyphicon" onclick="checkBoxModOk(this, '+checkNum+')" onmouseover="focusOutCheckListDisgard(this)">&#xe013;</button></div>';
 	p.empty();
 	p.html(div);
 	p.children('div').children('input').focus();
@@ -115,4 +114,13 @@ function checkBoxModOk(obj, checkNum){
 	var content = $(obj).parent().children('input').val();
 	if(content != "") checkUpdate(0, content, checkNum);
 	else showCardCheckList();
+}
+
+//확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
+function  focusOutCheckListDisgard(obj) {
+	$(obj).hover(function() {
+		$(obj).closest('div').children('input[type=text]').removeAttr('onfocusout');
+	}, function(){
+		$(obj).closest('div').children('input[type=text]').attr('onfocusout', 'showCardCheckList()');
+	});
 }

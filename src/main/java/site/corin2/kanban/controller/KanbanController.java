@@ -35,7 +35,6 @@ public class KanbanController {
 	
 	@RequestMapping("/cardInsert")
 	public View cardInsertView(CardDTO card, Model model) {
-		System.out.println(card.getCardName());
 		int result = service.cardInsert(card);
 		
 		return jsonview;
