@@ -31,7 +31,7 @@ public class KanbanController {
 	@RequestMapping("/kanban")
 	public String newFile(@RequestParam("projectNum") String projectNum, Model model) {
 		model.addAttribute("projectNum", projectNum);
-		return "kanban";
+		return "kanban.kanban";
 	}
 	
 	@RequestMapping("/cardInsert")

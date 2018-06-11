@@ -9,5 +9,6 @@
 <body>
 	<a href="kanban?projectNum=1">칸반들어가기</a>
 	<a href="kanban?projectNum=2">칸반들어가기</a>
+	<a href="project">프로젝트들어가기</a>
 </body>
 </html>
