@@ -1,9 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
- <tiles-definitions>
- 
-	<definition name="*" template="/WEB-INF/views/kanban/{1}.jsp" /> 
-	
- </tiles-definitions>    
+<tiles-definitions>
+     <definition name="home.*" template="/WEB-INF/views/includes/layout.jsp"> 
+         <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+         <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
+         <put-attribute name="content" value="/WEB-INF/views/{1}.jsp" /> 
+     </definition>
+     
+     <definition name="*" template="/WEB-INF/views/includes/layout.jsp" > 
+     	<put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+         <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
+         <put-attribute name="content" value="/WEB-INF/views/kanban/{1}.jsp" /> 
+     </definition>
+     <!--
+     <definition name="board.*" template="/WEB-INF/views/inc/layout.jsp"> 
+         <put-attribute name="title"  value="welcome 3Team" /> 
+         <put-attribute name="css" value="/styles/main.css" />
+         <put-attribute name="header"  value="/WEB-INF/views/inc/header.jsp" /> 
+         <put-attribute name="footer"  value="/WEB-INF/views/inc/footer.jsp" />
+         <put-attribute name="content" value="/WEB-INF/views/board/{1}.html" />
+     </definition> 
+     <definition name="*.*" template="/WEB-INF/views/inc/layout.jsp"> 
+         <put-attribute name="title"  value="welcome 3Team" /> 
+         <put-attribute name="header"  value="/WEB-INF/views/inc/header.jsp" /> 
+         <put-attribute name="footer"  value="/WEB-INF/views/inc/footer.jsp" />
+         <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+     </definition>
+     -->
+</tiles-definitions>          

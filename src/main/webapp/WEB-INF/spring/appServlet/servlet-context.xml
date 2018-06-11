@@ -15,6 +15,7 @@
 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
+	<context:component-scan base-package="site.corin2.controller" />
 	<context:component-scan base-package="site.corin2.*.controller" />
 	<context:component-scan base-package="site.corin2.*.service" />
 	
