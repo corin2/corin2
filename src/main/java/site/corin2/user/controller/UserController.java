@@ -65,7 +65,6 @@ public class UserController {
 	@RequestMapping(value = "repasswordidcheck", method = RequestMethod.POST)
 	public @ResponseBody String repasswordidCheck(@RequestBody String userid) {
 		String check = service.idCheck(userid);
-		return check;
 	}
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
