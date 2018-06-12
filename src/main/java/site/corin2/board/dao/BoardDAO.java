@@ -14,6 +14,7 @@ import java.util.Map;
 import site.corin2.board.dto.AnnounceDTO;
 import site.corin2.board.dto.BoardDTO;
 
+
 public interface BoardDAO {
 	
 	public List<BoardDTO> boardAllSelect();
@@ -29,6 +30,8 @@ public interface BoardDAO {
 	public void announceUpdate(AnnounceDTO announceDTO);
 
 	public void boardDelete(int boardnum);
+
+
 
 	
 }

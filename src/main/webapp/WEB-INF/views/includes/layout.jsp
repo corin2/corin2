@@ -13,7 +13,7 @@
   <!-- Bootstrap CSS 링크 -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- CSS 세부설정 변경을 위한 external CSS 링크 -->
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/sidebar/sidebar.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css"> 
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,6 +21,14 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- External JavaScript 파일: index.js -->
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
+  <!-- ckedior -->
+  <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+  <script src="resources/js/board/vendor/jquery.ui.widget.js"></script>
+  <script src="resources/js/board/jquery.iframe-transport.js"></script>
+  <script src="resources/js/board/jquery.fileupload.js"></script>
+  <script src="resources/js/board/myuploadfunction.js"></script>  
+  <link href="resources/css/board/dropzone.css" type="text/css" rel="stylesheet" />
+  
 </head>
 <body>
 	<div class="wrapper">

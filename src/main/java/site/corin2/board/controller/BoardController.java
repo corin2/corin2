@@ -33,7 +33,8 @@ public class BoardController {
 	
 	@Autowired
 	private View jsonview;
-	
+
+	//모든 게시물 조회
 	@RequestMapping(value="boardList" ,method = RequestMethod.GET)
 	public String boardList(Model model) { //리스트화면에서
 		 List<BoardDTO> list = service.boardAllSelect();
@@ -42,20 +43,21 @@ public class BoardController {
 	}
 	
 
-	
+	//글쓰기 get
 	@RequestMapping(value="boardInsert" ,method = RequestMethod.GET)
 	public String boardInsert() {
 		return "board.boardInsert";
 	}
 
-	
+	//글쓰기 post
 	@RequestMapping(value= "boardInsert" ,method = RequestMethod.POST)
 	public String boardanInsert(BoardDTO boardDTO,AnnounceDTO announceDTO) {//글쓰기 처리	
 		service.boardInsert(boardDTO); //board insert
 		service.announceInsert(announceDTO); //announce insert
 		return "redirect:boardList";
 	}
-
+	
+	//상세보기
 	@RequestMapping(value="boardDetail")
 	public String boardDetail(int boardnum , Model model) {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
@@ -63,6 +65,7 @@ public class BoardController {
 		return "board.boardDetail";
 	}
 	
+	//수정 get
 	@RequestMapping(value="boardUpdate",method=RequestMethod.GET)
 	public String boardUpdate(int boardnum,Model model) {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
@@ -70,14 +73,16 @@ public class BoardController {
 		return "board.boardUpdate";
 	}
 	
+	//수정 post
 	@RequestMapping(value="boardUpdate",method=RequestMethod.POST)
 	public String boardUpdate(BoardDTO boardDTO,AnnounceDTO announceDTO ) {
-		//제목 , 작성일 ,내용
+
 		service.boardUpdate(boardDTO);
 		service.announceUpdate(announceDTO);
 		return "redirect:boardDetail?boardnum="+boardDTO.getBoardNum();
 	}
 	
+	//보드 삭제
 	@RequestMapping("boardDelete")
 	public String boardDelete(int boardnum) {
 		
@@ -86,6 +91,6 @@ public class BoardController {
 		return "redirect:boardList";
 	}
 	
-	
+
 	
 }

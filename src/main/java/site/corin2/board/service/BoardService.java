@@ -20,46 +20,54 @@ import site.corin2.board.dto.BoardDTO;
 
 
 
+
 @Service
 public class BoardService {
 	
 	@Autowired
 	private SqlSession sqlSession;
-
-
 	
+	//모든 게시물 조회
 	public List<BoardDTO> boardAllSelect() {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		List<BoardDTO> list = dao.boardAllSelect();
 		return list;
 	}
-	public void boardInsert(BoardDTO boardDTO) {
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		  dao.boardInsert(boardDTO);	
-	}
-	public void announceInsert(AnnounceDTO announceDTO) {
-		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
-		dao.announceInsert(announceDTO);	
-	}
+	//board 조회
 	public BoardDTO boardSelect(int boardnum) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		 BoardDTO boardDTO = dao.boardSelect(boardnum);
 		return boardDTO;
 	}
+	
+	//boardInsert
+	public void boardInsert(BoardDTO boardDTO) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		  dao.boardInsert(boardDTO);	
+	}
+	
+	//announceInsert
+	public void announceInsert(AnnounceDTO announceDTO) {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		dao.announceInsert(announceDTO);	
+	}
+	
+	//boardUpdate
 	public void boardUpdate(BoardDTO boardDTO) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.boardUpdate(boardDTO);
 	}
+	//announceUpdate
 	public void announceUpdate(AnnounceDTO announceDTO) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.announceUpdate(announceDTO);
 		
 	}
+	//boardDelete 보드 삭제
 	public void boardDelete(int boardnum) {
 		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
 		dao.boardDelete(boardnum);
 	}
-	
 
 
 

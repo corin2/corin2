@@ -42,7 +42,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="fileUpload">
             <i class="glyphicon glyphicon-file"></i>
             Files
         </a>
