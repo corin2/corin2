@@ -61,11 +61,7 @@ public class UserController {
 		service.emailConfirm(userdto, userid);
 		return "user.emailconfirm";
 	}
-	//비밀번호 재설정
-	@RequestMapping(value = "repasswordidcheck", method = RequestMethod.POST)
-	public @ResponseBody String repasswordidCheck(@RequestBody String userid) {
-		String check = service.idCheck(userid);
-	}
+	
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	public @ResponseBody String idCheck(@RequestBody String userid) {
