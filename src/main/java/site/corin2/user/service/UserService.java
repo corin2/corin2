@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.mail.MessagingException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
@@ -208,5 +209,30 @@ public class UserService {
 			e.printStackTrace();
 		}
 		
+	}
+	//비밀번호 재설정하기
+	public void repassword(String userId) {
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		UserDTO userdto;
+		String repass = ""+((int)(Math.random()*1000000)+1);
+		try {
+			userdto = userdao.userSelect(userId);
+			//userdto.setPassword(this.bCryptPasswordEncoder.encode(repass);
+			userdto.setPassword(repass);
+			MimeMessage message = javamailsender.createMimeMessage();
+			try {
+				message.setSubject("corin2입니다.");
+				message.setFrom(new InternetAddress("corin2site@gmail.com"));
+				message.setText("재설정된 비밀번호는  "+repass+" 입니다.","utf-8", "html");
+				message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
+				javamailsender.send(message);
+			} catch (MessagingException e) {
+				e.printStackTrace();
+			}
+		}catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -30,6 +30,12 @@
 		where userid = #{userId}
 	</update>
 	
+	<update id="repassword">
+		update user
+		set
+		password = #{password}
+		where userid = #{userId}
+	</update>
 	<select id="idCheck" resultType="int">
 		select count(*) from user where userid = #{userId}
 	</select>
