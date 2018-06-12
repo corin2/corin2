@@ -22,7 +22,7 @@
 	  <security:logout logout-success-url="/index.htm" />
 	  <security:intercept-url pattern="/memberupdate.htm" access="ROLE_USER"/>
 	  <security:intercept-url pattern="/admin.htm" access="ROLE_ADMIN"/>
-	  
+	  <security:access-denied-handler ref="permissionEvaluator" />
 	</security:http>
 	
 	<security:authentication-manager>
@@ -34,4 +34,7 @@
 				authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user u JOIN usergrade g on u.gradenum = g.gradenum where u.userId=?"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
+	
+    <bean id="loginFailureHandler" class="site.corin2.user.service.LoginFailureHandler"></bean>
+    <bean id="permissionEvaluator" class="site.corin2.user.service.LoginDeniedHandler"></bean>
 </beans>

@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-   
+    
     <meta charset="utf-8">
     
     <title>corin2 Login</title>
@@ -193,11 +193,6 @@
 			<a href="#" id="naver" class="btn btn-success btn-block"><img class="sns-icon" src="resources/images/naver.svg">Sign in with <b>Naver</b></a>
         </div>
     </form>  
-    <c:if test="${param.error != null}">
-		<c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-			<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
-		</c:if>
-	</c:if>
     <script type="text/javascript">
     (function(){
 
@@ -324,6 +319,7 @@
     <script type="text/javascript">
  	 //dialog 띄워서 아이디 받고 그 아이디로 메일 랜덤값 보내면서 update해주기
     $(function(){
+    	error();
     	$("#repassword").click(function(){
     		$.ajax({
      			type: "post",
@@ -389,6 +385,7 @@
         </div>
       </div>
     </div>
+
     <script type="text/javascript">
 			var idCheck = 0;
 			var nickCheck = 0;
@@ -586,8 +583,42 @@
 		
 					}
 				});
-		
+				
 			});
+			//get method를 javascript에서 사용하기 위해 만들기
+			function Request(){
+					 var requestParam ="";
+					 
+					 //getParameter 펑션
+					  this.getParameter = function(param){
+					  //현재 주소를 decoding
+					  var url = unescape(location.href); 
+					  //파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다. 
+					   var paramArr = (url.substring(url.indexOf("?")+1,url.length)).split("&"); 
+					 
+					   for(var i = 0 ; i < paramArr.length ; i++){
+					     var temp = paramArr[i].split("="); //파라미터 변수명을 담음
+					 
+					     if(temp[0].toUpperCase() == param.toUpperCase()){
+					       // 변수명과 일치할 경우 데이터 삽입
+					       requestParam = paramArr[i].split("=")[1]; 
+					       break;
+					     }
+					   }
+					   return requestParam;
+					 }
+			}
+			//로그인 실패시 alert 띄우기
+		    function error(){
+		    	var request = new Request();
+				var error = request.getParameter("error");
+				if(error == '103'){
+					alert("이메일 인증을 해주세요")
+				}else if(error == '108'){
+					alert("아이디와 비밀번호를 확인해주세요")
+				}
+		 
+		    }
 		</script>
 </body>
 </html>

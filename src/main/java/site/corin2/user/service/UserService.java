@@ -21,6 +21,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import site.corin2.user.dao.UserDAO;
@@ -90,6 +92,38 @@ public class UserService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	//비밀번호 재설정
+	@RequestMapping(value = "repasswordidcheck", method = RequestMethod.POST)
+	public @ResponseBody String repasswordidCheck(@RequestBody String userid) {
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
+		
+		String [] useridsplit = userid.split("=");
+		System.out.println(useridsplit[0]);
+		Pattern p = Pattern.compile(regex);
+		Matcher m = p.matcher(useridsplit[0]);
+		boolean err = m.matches();
+		int result = 0;
+		try {
+			result = userdao.idCheck(useridsplit[0]);
+			
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		String check;
+		System.out.println(result);
+		if (result > 0 || err == false ) {
+			System.out.println("아이디 중복");
+			check = "true";
+		} else {
+			System.out.println("노 중복");
+			check = "false";
+		}
+		
+		return check;
 	}
 	//아이디 중복확인
 	public String idCheck(String userid) {
