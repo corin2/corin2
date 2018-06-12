@@ -93,17 +93,11 @@ public class UserService {
 		}
 		return null;
 	}
-	//비밀번호 재설정
-	@RequestMapping(value = "repasswordidcheck", method = RequestMethod.POST)
-	public @ResponseBody String repasswordidCheck(@RequestBody String userid) {
+	//비밀번호 재설정 id확인
+	public String repass(String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
-		
 		String [] useridsplit = userid.split("=");
 		System.out.println(useridsplit[0]);
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(useridsplit[0]);
-		boolean err = m.matches();
 		int result = 0;
 		try {
 			result = userdao.idCheck(useridsplit[0]);
@@ -115,7 +109,7 @@ public class UserService {
 		}
 		String check;
 		System.out.println(result);
-		if (result > 0 || err == false ) {
+		if (result > 0) {
 			System.out.println("아이디 중복");
 			check = "true";
 		} else {
@@ -124,6 +118,25 @@ public class UserService {
 		}
 		
 		return check;
+	}
+	//비밀번호 재설정 기능 실행
+	public void repassword(UserDTO userdto) {
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		UserDTO repassuser;
+		try {
+			repassuser = userdao.userSelect(userdto.getUserId());
+			//updateuser.setPassword(bCryptPasswordEncoder.encode(userdto.getPassword()));
+			repassuser.setPassword(userdto.getPassword());
+			userdao.repassword(repassuser);
+			MimeMessage message = javamailsender.createMimeMessage();
+			message.setSubject("corin2입니다.");
+			message.setFrom(new InternetAddress("corin2site@gmail.com"));
+			message.setText("","utf-8", "html");
+			message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
+			javamailsender.send(message);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}	
 	}
 	//아이디 중복확인
 	public String idCheck(String userid) {

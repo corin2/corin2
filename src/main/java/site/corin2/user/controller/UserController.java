@@ -62,6 +62,18 @@ public class UserController {
 		return "user.emailconfirm";
 	}
 	
+	//비밀번호 재설정 id확인
+	@RequestMapping(value = "repass", method = RequestMethod.POST)
+	public @ResponseBody String repass(@RequestBody String userid) {
+		String check = service.repass(userid);
+		return check;
+	}	
+	//비밀번호 재설정 기능 실행
+	@RequestMapping(value = "repassword", method = RequestMethod.POST)
+	public @ResponseBody String repassword(UserDTO userdto) {
+		service.repassword(userdto);
+		return "redirect:/login.html";
+	}	
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	public @ResponseBody String idCheck(@RequestBody String userid) {
@@ -82,6 +94,7 @@ public class UserController {
 		String check = service.nickCheck(nickname);
 		return check;
 	}
+	
 	//사용자 수정하기 페이지 이동
 	@RequestMapping(value="userupdate" , method=RequestMethod.GET)
 	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
@@ -92,7 +105,7 @@ public class UserController {
 	
 	//사용자 수정하기 기능 실행
 	@RequestMapping(value="userupdate", method=RequestMethod.POST)
-	public String userUpdate(UserDTO userdto , Model model) {
+	public String userUpdate(UserDTO userdto) {
 		System.out.println("update controller POST");
 		service.userUpdate(userdto);
 		return "redirect:/login.html";

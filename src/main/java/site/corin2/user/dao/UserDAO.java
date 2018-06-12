@@ -24,4 +24,6 @@ public interface UserDAO {
 	
 	//이메일 인증 후
 	public int userAuth(UserDTO userDTO) throws ClassNotFoundException, SQLException;
+
+	public void repassword(UserDTO userDTO) throws ClassNotFoundException, SQLException;
 }
