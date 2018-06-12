@@ -17,4 +17,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid in (select t.USERID from team t inner join user u on t.USERID = u.USERID where t.PROJECTNUM = #{projectNum});
 	</select>
 	
+	<!-- 프로젝트 생성시 팀생성 -->
+	<insert id="insertTeamProject">
+		insert into team
+		(projectnum, userid, gradenum, bookmark, isdeleted)
+		values(#{projectNum}, #{userId},'G300',null,0)
+	</insert>
+	
 	</mapper>

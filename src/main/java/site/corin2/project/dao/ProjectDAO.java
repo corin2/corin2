@@ -9,6 +9,7 @@ package site.corin2.project.dao;
 import java.util.List;
 
 import site.corin2.project.dto.ProjectDTO;
+import site.corin2.user.dto.UserDTO;
 
 public interface ProjectDAO {
 	
@@ -18,4 +19,13 @@ public interface ProjectDAO {
 	  작성자명 : 최 재 욱
 	 */
 	public int projectInsert(ProjectDTO project);
+	
+	/**
+	  날      짜 : 2018. 6. 12.
+	  기      능 : 프로젝트 전체 리스트 보기 
+	  작성자명 : 최 재 욱
+	 */
+	public List<ProjectDTO> projectAllList(UserDTO user);
+	
+	public List<ProjectDTO> selectProject(ProjectDTO project);
 }

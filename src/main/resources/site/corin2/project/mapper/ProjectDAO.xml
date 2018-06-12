@@ -9,4 +9,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			project(projectname, languagenum, projectdate, isdeleted) 
 			values(#{projectName}, #{languageNum}, now(), 0)
 		</insert>
+		
+		<select id="selectProject" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project 
+			where projectname =#{projectName}
+		</select>
+
+		
+		<select id="projectAllList" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project p
+			join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0
+			order by p.projectnum
+		</select>
+
+		
 	</mapper>

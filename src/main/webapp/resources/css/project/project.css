@@ -3,3 +3,31 @@
    	    border-color: coral;
 		width: 86%;
 	}
+	
+	.projectbox {
+	    border:10px solid #D7EEF2;
+	    border-radius: 12px;
+	    background-color: #D7EEF2;
+	    margin: 10px;
+	    width: 300px;
+	    float:left;
+	    overflow-x: auto;
+	    overflow-y: unset;
+	    position:relative;
+	    max-height: 765px;
+	}
+	.button {
+    	background-color: #4CAF50;
+    	border: none;
+    	color: white;
+    	padding: 15px 32px;
+    	text-align: center;
+    	text-decoration: none;
+    	display: inline-block;
+    	font-size: 16px;
+    	margin:5px;
+    	cursor: pointer;
+    	float: left;
+    	width: 160px;
+    	height: 73px;
+}

@@ -17,7 +17,7 @@
 </nav>
 <nav class="navbar navbar-default">
 		<div id="bookmark">
-		<h1>즐겨찾기즐겨찾기즐겨찾기즐겨찾기즐겨찾기즐겨찾기</h1>
+		<h1>즐겨찾기</h1>
 		<hr>
 		</div>
 </nav>
@@ -25,8 +25,9 @@
 <nav class="navbar navbar-default">
 	<input type="hidden" id="HiddenUserId" value="jin@naver.com" > <!-- value값 바꿀 것! -->
 	<div id="project">
-		<h1>프로젝트프로젝트프로젝트프로젝트프로젝트프로젝트</h1>
+		<h1>프로젝트<img src="https://png.icons8.com/ios/50/000000/plus.png" style="float:right;" data-toggle="modal" data-target="#myModal2"></h1>
 		<hr>
-		<img src="https://png.icons8.com/ios/50/000000/plus.png"  data-toggle="modal" data-target="#myModal2">
+		<div id="projectbox">
+		</div>
 	</div>
 </nav>

@@ -43,4 +43,10 @@ public class TeamController {
 		model.addAttribute("data", teamMembers);
 		return jsonview;
 	}
+	@RequestMapping("/projectTeamInsert")
+	public View projectTeamInsert(TeamDTO team, Model model) {
+		int result = 0;
+		result = service.insertTeamProject(team);
+		return jsonview;
+	}
 }

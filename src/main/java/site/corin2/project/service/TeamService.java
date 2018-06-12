@@ -22,10 +22,10 @@ import site.corin2.user.dto.UserDTO;
 public class TeamService {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private SqlSession sqlSession;
 	
 	public List<TeamDTO> allTeamMemberSelect(int projectNum){
-		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		TeamDAO teamDAO = sqlSession.getMapper(TeamDAO.class);
 		List<TeamDTO> teamMembers = null;
 		try {
 			teamMembers = (ArrayList<TeamDTO>)teamDAO.allTeamMemberSelect(projectNum);
@@ -37,7 +37,7 @@ public class TeamService {
 	}
 	
 	public List<UserDTO> allTeamMemberProfileSelect(int projectNum){
-		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		TeamDAO teamDAO = sqlSession.getMapper(TeamDAO.class);
 		List<UserDTO> teamMemberProfiles = null;
 		try {
 			teamMemberProfiles = (ArrayList<UserDTO>)teamDAO.allTeamMemberProfileSelect(projectNum);
@@ -46,5 +46,12 @@ public class TeamService {
 		}
 		
 		return teamMemberProfiles;
+	}
+	
+	public int insertTeamProject(TeamDTO team) {
+		int result = 0;
+		TeamDAO dao = sqlSession.getMapper(TeamDAO.class);
+		result = dao.insertTeamProject(team);
+		return result;
 	}
 }
