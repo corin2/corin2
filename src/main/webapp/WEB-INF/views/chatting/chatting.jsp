@@ -4,9 +4,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Home</title>
+	<title>Chatting</title>
 </head>
 <body>
-	<a href="chatting">채팅가기</a>
+	<h1>Chatting</h1>
+	<iframe src="https://testcorin2.firebaseapp.com" width="500px" height="500px"></iframe>
 </body>
 </html>
