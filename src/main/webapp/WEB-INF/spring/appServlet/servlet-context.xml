@@ -26,8 +26,14 @@
 			<bean class="site.corin2.ws.KanbanHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
-
+	<websocket:handlers>
+		<websocket:mapping handler="msgHandler" path="/msgWebSocket" />
+		<websocket:handshake-interceptors>
+			<bean class="site.corin2.ws.MsgHandInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 	<bean id="kanbanHandler" class="site.corin2.ws.KanbanHandler" />
+	<bean id="msgHandler" class="site.corin2.ws.MsgHandler" />
 	
 	<mvc:default-servlet-handler />
 	

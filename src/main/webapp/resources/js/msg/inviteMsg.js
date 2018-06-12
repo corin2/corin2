@@ -1,6 +1,13 @@
 $(function(){
-	
+	showMsg();
 });
+
+function existMsg(){
+	if($('#inviteMsg').children('li').length > 0) {
+		var content = '<span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span>';
+		$('#inviteMsg').closest('li').children('a').append(content);
+	}
+}
 
 function showMsg(){
 	$.ajax({
@@ -10,6 +17,10 @@ function showMsg(){
 		data : {receptionId : $('#hiddenUserId').val()},
 		success : function(data){
 			$('#inviteMsg').empty();
+			
+			if($('#inviteMsg').closest('li').children('a').children().is('span')) {
+				$('#inviteMsg').closest('li').children('a').children('span').remove();
+			}
 			
 			var htmltext = '';
 			$.each(data.data, function(index, elt) {
@@ -22,6 +33,7 @@ function showMsg(){
 			});
 			
 			$('#inviteMsg').html(htmltext);
+			existMsg();
 		}
 	});
 }

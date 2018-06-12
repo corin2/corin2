@@ -17,14 +17,14 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
-public class KanbanHandInterceptor extends HttpSessionHandshakeInterceptor{
+public class MsgHandInterceptor extends HttpSessionHandshakeInterceptor{
 
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
 			Map<String, Object> attributes) throws Exception {
 		ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
 		HttpServletRequest req = ssreq.getServletRequest();
-		attributes.put("projectNum", req.getParameter("projectNum")); // 프로젝트넘버 전송 (칸반에서 사용)
+		attributes.put("userId", req.getParameter("userId")); // 아이디 전송 (사이드바에서 사용)
 		return super.beforeHandshake(request, response, wsHandler, attributes);
 	}
 	

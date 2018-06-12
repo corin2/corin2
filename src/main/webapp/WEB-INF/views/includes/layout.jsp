@@ -23,6 +23,7 @@
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
 </head>
 <body>
+	<input type="hidden" id="hiddenUserId" value="jin@naver.com" > <!-- value값 바꿀 것! -->
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
 		<nav id="sidebar">

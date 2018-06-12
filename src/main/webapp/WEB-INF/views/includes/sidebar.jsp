@@ -25,20 +25,6 @@
             Alarm
         </a>
         <ul class="collapse list-unstyled" id="inviteMsg">
-            <li><a>
-            	<label>RRRRRRRRRRRRRRRRRw</label>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li>
-            <li><a>
-            	<label>18바이트만이하임</label>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li><li><a>
-            	<label>18바이트만이상입니다</label><br>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li>
         </ul>
     </li>
     <li>
