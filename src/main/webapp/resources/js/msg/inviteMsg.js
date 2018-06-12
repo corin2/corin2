@@ -63,3 +63,18 @@ function msgreject(projectNum){
           }
 	})
 }
+
+//오토컴플릿
+function autoComplete() {
+	 $.ajax({
+ 		url : "autoComplete",
+ 		datatype : "JSON",
+ 		success : function (data) {
+			$('#emailSearch').autocomplete({
+				 source: data.data,
+				 appendTo: "#friend",
+				 minLength: 2
+			});
+		}
+	})
+}
