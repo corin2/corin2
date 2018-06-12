@@ -54,7 +54,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="trouble">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
             Trouble Shooting
         </a>
