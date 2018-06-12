@@ -39,7 +39,7 @@ public class FirebaseDB {
         MariaUser mariauser = mariadbJDBC.getUser(id);
         
         if (mariauser.getProfileImg() == null) {
-			mariauser.setProfileImg("null");
+			mariauser.setProfileImg("");
 		}
         
         System.out.println(mariauser.toString());
@@ -70,7 +70,7 @@ public class FirebaseDB {
 	
 	// Firebase DB에 데이터 추가
 	public static void addUser(String id) {
-		DatabaseReference ref = database.child("test");
+		DatabaseReference ref = database.child("Users");
 		MariaUser mariauser = getUserFromMaria(id);
 		String uid = addAuth(mariauser);
 		

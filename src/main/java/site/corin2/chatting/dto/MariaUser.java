@@ -57,7 +57,7 @@ public class MariaUser {
 
 	@Override
 	public String toString() {
-		return "FirebaseUser [email=" + email + ", profileImg=" + profileImg + ", userName=" + userName + ", password="
+		return "MariaUser [email=" + email + ", profileImg=" + profileImg + ", userName=" + userName + ", password="
 				+ password + "]";
 	}
 }
