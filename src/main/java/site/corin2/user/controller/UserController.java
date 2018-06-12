@@ -1,3 +1,9 @@
+/**
+    파일명: UserController.java
+    설   명: user에 대한 controller
+    작성일: 2018. 6. 8.
+    작성자: 강 진 광
+*/
 package site.corin2.user.controller;
 
 import java.security.Principal;
@@ -37,209 +43,84 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	@Autowired
-	private JavaMailSender javamailsender;
-	
-	@Autowired
-	private SqlSession sqlsession;
-	
-	@Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+	//회원가입 페이지이동
 	@RequestMapping(value="signup",method=RequestMethod.GET)
 	public String userInsert() {
-		return "signup";
+		return "user.signup";
 	}
+	//회원가입 기능 실행
 	@RequestMapping(value="signup",method=RequestMethod.POST)
 	public String userInsert(UserDTO userdto) {
 		//회원가입 처리 ... NewMemberDao
-		int result = 0;
-		String viewpage = "";
-		System.out.println(userdto.toString());
-		try {
-			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-			//userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
-			userdto.setPassword(userdto.getPassword());
-			System.out.println("1111");
-			result = userdao.userInsert(userdto);
-			System.out.println("2222");
-			if (result > 0) {
-				System.out.println("삽입 성공");
-				MimeMessage message = javamailsender.createMimeMessage();
-				message.setSubject("corin2입니다.");
-				message.setFrom(new InternetAddress("corin2site@gmail.com"));
-				message.setText("<a href='http://localhost:8090/controller/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
-				message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
-				javamailsender.send(message);
-				viewpage = "redirect:index.htm";
-			} else {
-				System.out.println("삽입 실패");
-				viewpage = "signup";
-			}
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
+		String viewpage = service.userInsert(userdto);
 		return viewpage;
 	}
-	//email confirm
+	//email 인증 페이지
 	@RequestMapping(value = "emailConfirm", method = RequestMethod.GET)
-	public String emailConfirm(UserDTO userdto, String userid) throws Exception { // 이메일인증
-		
-		System.out.println("mailconfirm 탔당");
-		System.out.println(userid);
-		System.out.println(userdto);
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		UserDTO authuser;
-		authuser = userdao.userSelect(userid);
-		authuser.setEnabled(authuser.getEnabled());
-		userdao.userAuth(authuser);
-
-		return "login";
+	public String emailConfirm(UserDTO userdto, String userid){ // 이메일인증
+		service.emailConfirm(userdto, userid);
+		return "user.emailconfirm";
 	}
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	public @ResponseBody String idCheck(@RequestBody String userid) {
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		
-		
-		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
-		
-		String [] useridsplit = userid.split("=");
-		System.out.println(useridsplit[0]);
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(useridsplit[0]);
-		boolean err = m.matches();
-		int result = 0;
-		try {
-			result = userdao.idCheck(useridsplit[0]);
-			
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		String check;
-		System.out.println(result);
-		if (result > 0 || err == false ) {
-			System.out.println("아이디 중복");
-			check = "true";
-		} else {
-			System.out.println("노 중복");
-			check = "false";
-		}
-		
-		
+		String check = service.idCheck(userid);
 		return check;
 	}
 	
+	//비밀번호 비동기 유효성 확인
 	@RequestMapping(value = "passwordcheck", method = RequestMethod.POST)
 	public @ResponseBody String passwordCheck(@RequestBody String password) {
-		String regex = "^[a-zA-Z0-9]{3,10}$";
-		String [] useridsplit = password.split("=");
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(useridsplit[0]);
-		boolean err = m.matches();
-		String check;
-		if (err == false ) {
-			System.out.println("비밀번호 글자 수");
-			check = "true";
-		} else {
-			System.out.println("비밀번호 ok");
-			check = "false";
-		}
+		String check = service.passwordCheck(password);
 		return check;
 	}
 	
+	//닉네임 비동기 유효성 확인
 	@RequestMapping(value = "nickcheck", method = RequestMethod.POST)
 	public @ResponseBody String nickCheck(@RequestBody String nickname) {
-		String regex = "^[a-zA-Z0-9]{3,10}$";
-		String [] useridsplit = nickname.split("=");
-		Pattern p = Pattern.compile(regex);
-		Matcher m = p.matcher(useridsplit[0]);
-		boolean err = m.matches();
-		String check;
-		if (err == false ) {
-			System.out.println("닉네임 글자 수");
-			check = "true";
-		} else {
-			System.out.println("닉네임 ok");
-			check = "false";
-		}
+		String check = service.nickCheck(nickname);
 		return check;
 	}
-	
-	//로그인 페이지
-	@RequestMapping(value="login",method=RequestMethod.GET)
-	public String login() {
-		System.out.println("login");
-		//return "login.jsp";
-		return "login";//폴더명.파일명
-	}
-	
+	//사용자 수정하기 페이지 이동
 	@RequestMapping(value="userupdate" , method=RequestMethod.GET)
 	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		UserDTO userdto = userdao.userSelect(principal.getName());
-		System.out.println("update controller GET");
+		UserDTO userdto = service.userUpdate(principal.getName());
 		model.addAttribute("userdto", userdto);
-		return "update";
-	}
-	@RequestMapping(value="userupdate", method=RequestMethod.POST)
-	public String userUpdate(UserDTO userdto , Model model , Principal principal) {
-		System.out.println("update controller POST");
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		//System.out.println("1");
-		UserDTO updateuser;
-		try {
-			updateuser = userdao.userSelect(principal.getName());
-		//System.out.println("2");
-			updateuser.setUserName(userdto.getUserName());
-		//System.out.println("3");
-			//updateuser.setPassword(bCryptPasswordEncoder.encode(userdto.getPassword()));
-			updateuser.setPassword(userdto.getPassword());
-		//System.out.println("4");
-			updateuser.setUserProfile(userdto.getUserProfile());
-		//System.out.println("5");
-			updateuser.setGradeNum(userdto.getGradeNum());
-		//System.out.println("6");
-			userdao.userUpdate(updateuser);
-		//System.out.println("7");
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		return "redirect:/index.htm";
+		return "user.update";
 	}
 	
+	//사용자 수정하기 기능 실행
+	@RequestMapping(value="userupdate", method=RequestMethod.POST)
+	public String userUpdate(UserDTO userdto , Model model) {
+		System.out.println("update controller POST");
+		service.userUpdate(userdto);
+		return "redirect:/login.html";
+	}
+	
+	//회원 삭제하기
 	@RequestMapping(value="userdelete" , method=RequestMethod.POST)
 	public String userDelete(UserDTO userdto ,Principal principal) throws ClassNotFoundException, SQLException {
 		System.out.println("delete controller POST");
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		UserDTO deleteuser;
-		deleteuser = userdao.userSelect(principal.getName());
-		deleteuser.setIsDeleted(userdto.getIsDeleted());
-		deleteuser.setEnabled(userdto.getEnabled());
-		
-		userdao.userDelete(deleteuser);
-		
-		return "login";
+		service.userDelete(principal.getName());
+		return "login.html";
 	}
 	
+	//ex페이지
 	@RequestMapping(value="content",method=RequestMethod.GET)
 	public String content() {
-		return "content";
+		return "user.content";
 	}
 	@RequestMapping(value="content",method=RequestMethod.POST)
 	public String content2() {
-		return "content";
+		return "user.content";
 	}
 	@RequestMapping(value="admin",method=RequestMethod.GET)
 	public String admin() {
-		return "admin";
+		return "user.admin";
 	}
 	@RequestMapping(value="admin",method=RequestMethod.POST)
 	public String admin2() {
-		return "admin";
+		return "user.admin";
 	}
 	
 }
