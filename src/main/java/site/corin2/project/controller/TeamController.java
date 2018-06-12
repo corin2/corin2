@@ -31,15 +31,15 @@ public class TeamController {
 	@Autowired
 	private View jsonview;
 	
-	@RequestMapping("/showUserField")
-	public View showUserField(@RequestParam("projectNum") String projectNum, Model model) {
+	@RequestMapping("/showMember")
+	public View showMember(@RequestParam("projectNum") String projectNum, Model model) {
 		List<TeamDTO> teamMembers = service.allTeamMemberSelect(Integer.parseInt(projectNum));
 		model.addAttribute("data", teamMembers);
 		return jsonview;
 	}
 	
-	@RequestMapping("/showUserProfile")
-	public View showUserProfile(@RequestParam("projectNum") String projectNum, Model model) {
+	@RequestMapping("/showMemberUserProfile")
+	public View showMemberUserProfile(@RequestParam("projectNum") String projectNum, Model model) {
 		List<UserDTO> teamMembers = service.allTeamMemberProfileSelect(Integer.parseInt(projectNum));
 		model.addAttribute("data", teamMembers);
 		return jsonview;

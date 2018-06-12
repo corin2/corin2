@@ -52,7 +52,7 @@
         </a>
     </li>
     <li>
-        <a href="kanban?projectNum=1">
+        <a href="kanban">
             <i class="glyphicon glyphicon-tasks"></i>
             Kanban
         </a>

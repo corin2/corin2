@@ -34,4 +34,5 @@ public interface TeamDAO {
 	 작성자명 : 김 진 원
 	*/
 	public void addTeamMemberInsert(TeamDTO team);
+	
 }

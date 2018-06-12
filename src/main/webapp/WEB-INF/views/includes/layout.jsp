@@ -33,6 +33,9 @@
 		
 		<!-- Page Content Holder -->
 		<div id="content">
+			<!-- Header 영역 -->
+			<tiles:insertAttribute name="header" />
+			
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>
