@@ -32,8 +32,9 @@ function projectMemberShow(userProfiles){
 		success : function(data){
 			$('#headerProjectMemberProfile').empty();
 			var htmltext = '';
-			
+			var projectName = '';
 			$.each(data.data, function(index, elt) {
+				projectName = elt.projectName;
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId){
 						htmltext += '<div class="dropdown" style="float:left;">'
@@ -54,8 +55,22 @@ function projectMemberShow(userProfiles){
 					}
 				});
 			});
-			
 			$('#headerProjectMemberProfile').html(htmltext);
+			projectNameView();
+		}
+	});
+}
+
+function projectNameView(){
+	$.ajax({
+		type : "post",
+		url  : "showProject",
+		datatype:"JSON",
+		data : {projectNum : $('#hiddenProjectNum').val()},
+		success : function(data){
+			$('#headerProjectName').empty();
+			
+			$('#headerProjectName').html(data.data.projectName);
 		}
 	});
 }

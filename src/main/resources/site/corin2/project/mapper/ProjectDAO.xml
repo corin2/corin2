@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.project.dao.ProjectDAO">
+	
+	<!-- 프로젝트 하나 검색 -->
+	<select id="projectSelect" resultType="site.corin2.project.dto.ProjectDTO">
+		select * from project where projectnum = #{projectNum}
+	</select>
+	
+	</mapper>
