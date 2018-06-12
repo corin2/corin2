@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>corin2-chatting</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+    <style>
+        #memberList {
+            height: 600px;
+        }
+        #mainDialogs {
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4" id="memberList" style="background-color:lavender;">
+                <h1>Member</h1>
+            </div>
+            <div class="col-sm-8" id="mainDialogs" style="background-color:lavenderblush;">
+                <h1>대화창</h1>
+            </div>
+            <div class="message">
+                <input type="text" id="messageText">
+                <input type="button" id="sendMessage" value="Send">
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="chatting.js"></script>
+</body>
+</html>
