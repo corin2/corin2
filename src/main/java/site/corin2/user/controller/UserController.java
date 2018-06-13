@@ -14,6 +14,9 @@ import java.util.regex.Pattern;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +35,10 @@ import org.springframework.web.servlet.View;
 
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.UserDTO;
+import site.corin2.user.service.KakaoLogin;
 import site.corin2.user.service.UserService;
 
+import com.fasterxml.jackson.databind.JsonNode;
 
 @Controller
 public class UserController {
@@ -115,6 +120,24 @@ public class UserController {
 		System.out.println("delete controller POST");
 		service.userDelete(principal.getName());
 		return "login.html";
+	}
+	
+	//kakao Oauth
+	@RequestMapping(value = "/kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
+	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+
+	  JsonNode token = KakaoLogin.getAccessToken(code);
+
+	  JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
+	  System.out.println(profile);
+	  UserDTO userdto = KakaoLogin.changeData(profile);
+
+	  System.out.println(session);
+	  session.setAttribute("login", userdto);
+	  System.out.println(userdto.toString());
+
+	  userdto = service.KakaoLogin(userdto);  
+	  return "login/kakaoLogin";
 	}
 	
 	//ex페이지

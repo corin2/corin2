@@ -260,6 +260,7 @@ public class UserService {
 	
 	//회원 삭제하기
 	public void userDelete(String userId) {
+
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO deleteuser;
 		try {
@@ -273,5 +274,12 @@ public class UserService {
 			e.printStackTrace();
 		}
 		
+	}
+
+	
+	//kakao login
+	public UserDTO KakaoLogin(UserDTO userdto) {
+		
+		return null;
 	}
 }
