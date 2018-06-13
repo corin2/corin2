@@ -298,7 +298,7 @@
      <div class="modal fade" id="remodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-	        <form action="repassword" id="submits" method="post">
+	        <form action="repassword" method="post">
 	          <div class="modal-header">
 	            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
 	              <span aria-hidden="true">×</span>
@@ -311,8 +311,8 @@
 		          </div>
 	          </div>
 	          <div class="modal-footer">
-	           <input type="submit" class="form-control btn btn-primary repassbtn"
-						id="repassword" disabled="disabled" value="mail send"/>
+	           <button type="submit" class="form-control btn btn-primary repassbtn"
+						id="repassword" disabled="disabled" value="mail send">mail send</button>
 	            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
 	          </div>
 	        </form>
@@ -332,20 +332,20 @@
 	 		    success:function(data){ 
 		        	console.log(data);
 		            if(repassid==""){
-		                $("#repassword").prop("disabled", false);
-		                $("#repassword").css("background-color", "#4CAF50");
+		                $("#repassword").prop("disabled", true);
+		                $("#repassword").css("background-color", "#aaaaaa");
 		                $("#reuserid").css("background-color", "#FFCECE");
 		                repass = 0;
 		            } else if (data == 'true') {
 		                $("#reuserid").css("background-color", "#B0F6AC");
 		                repass = 1;
-		                if(idCheck==1) {
-		                    $("#repassword").prop("disabled", true);
-		                    $("#repassword").css("background-color", "#aaaaaa");
+		                if(repass==1) {
+		                    $("#repassword").prop("disabled", false);
+		                    $("#repassword").css("background-color", "#4CAF50");
 		                } 
 		            } else if (data == 'false') {
-		                $("#repassword").prop("disabled", false);
-		                $("#repassword").css("background-color", "#4CAF50");
+		                $("#repassword").prop("disabled", true);
+		                $("#repassword").css("background-color", "#aaaaaa");
 		                $("#reuserid").css("background-color", "#FFCECE");
 		                repass = 0;
 		            } 
@@ -457,7 +457,7 @@
 								$(".signupbtn").prop("disabled", false);
 								$(".signupbtn").css("background-color", "#4CAF50");
 							}
-						} else if (inputed != reinputed && data=='true') {
+						} else if (inputed != reinputed || data=='true') {
 							pwdCheck = 0;
 							$(".signupbtn").prop("disabled", true);
 							$(".signupbtn").css("background-color", "#aaaaaa");
@@ -477,7 +477,7 @@
 							$(".signupbtn").prop("disabled", true);
 							$(".signupbtn").css("background-color", "#aaaaaa");
 							$("#modalpass").css("background-color", "#FFCECE");
-							
+							$("#modalpass2").css("background-color", "#FFCECE");
 						} else if (inputed == reinputed && data=='false') {
 							$("#modalpass").css("background-color", "#B0F6AC");
 							$("#modalpass2").css("background-color", "#B0F6AC");
@@ -486,7 +486,7 @@
 								$(".signupbtn").prop("disabled", false);
 								$(".signupbtn").css("background-color", "#4CAF50");
 							}
-						} else if (inputed != reinputed && data=='true') {
+						} else if (inputed != reinputed || data=='true') {
 							pwdCheck = 0;
 							$(".signupbtn").prop("disabled", true);
 							$(".signupbtn").css("background-color", "#aaaaaa");

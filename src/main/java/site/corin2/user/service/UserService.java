@@ -93,6 +93,7 @@ public class UserService {
 		}
 		return null;
 	}
+
 	//비밀번호 재설정 id확인
 	public String repass(String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -119,25 +120,37 @@ public class UserService {
 		
 		return check;
 	}
+
 	//비밀번호 재설정 기능 실행
-	public void repassword(UserDTO userdto) {
+	public String repassword(UserDTO userdto) {
+		System.out.println("repassword service 기능 실행");
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO repassuser;
+		String viewpage= null;
 		try {
+			String repassword = ""+(int)((Math.random()*100000)+1);
 			repassuser = userdao.userSelect(userdto.getUserId());
+			System.out.println(userdto.getUserId());
 			//updateuser.setPassword(bCryptPasswordEncoder.encode(userdto.getPassword()));
-			repassuser.setPassword(userdto.getPassword());
+			repassuser.setPassword(repassword);
+			System.out.println("2");
 			userdao.repassword(repassuser);
+			System.out.println("3");
 			MimeMessage message = javamailsender.createMimeMessage();
+			System.out.println("4");
 			message.setSubject("corin2입니다.");
+			System.out.println("5");
 			message.setFrom(new InternetAddress("corin2site@gmail.com"));
-			message.setText("","utf-8", "html");
+			message.setText("새로운 비밀번호는 "+repassword+" 입니다.","utf-8", "html");
 			message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
 			javamailsender.send(message);
+			viewpage = "redirect:login.html";
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}	
+		return viewpage;
 	}
+
 	//아이디 중복확인
 	public String idCheck(String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -170,6 +183,7 @@ public class UserService {
 		
 		return check;
 	}
+	
 	//비밀번호 비동기 유효성 확인
 	public String passwordCheck(String password) {
 		String regex = "^[a-zA-Z0-9]{3,10}$";
@@ -187,6 +201,7 @@ public class UserService {
 		}
 		return check;
 	}
+	
 	//닉네임 비동기 유효성 확인
 	public String nickCheck(String nickname) {
 		String regex = "^[a-zA-Z0-9]{3,10}$";
@@ -204,6 +219,7 @@ public class UserService {
 		}
 		return check;
 	}
+	
 	//사용자 수정하기 페이지 이동
 	public UserDTO userUpdate(String userId) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -218,6 +234,7 @@ public class UserService {
 		System.out.println("update controller GET");
 		return userdto;
 	}
+	
 	//사용자 수정하기 기능 실행
 	public void userUpdate(UserDTO userdto) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -240,6 +257,7 @@ public class UserService {
 			System.out.println(e.getMessage());
 		}
 	}
+	
 	//회원 삭제하기
 	public void userDelete(String userId) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);

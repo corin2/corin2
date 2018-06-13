@@ -42,12 +42,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
-	
-	//회원가입 페이지이동
-	@RequestMapping(value="signup",method=RequestMethod.GET)
-	public String userInsert() {
-		return "user.signup";
-	}
+
 	//회원가입 기능 실행
 	@RequestMapping(value="signup",method=RequestMethod.POST)
 	public String userInsert(UserDTO userdto) {
@@ -55,6 +50,7 @@ public class UserController {
 		String viewpage = service.userInsert(userdto);
 		return viewpage;
 	}
+	
 	//email 인증 페이지
 	@RequestMapping(value = "emailConfirm", method = RequestMethod.GET)
 	public String emailConfirm(UserDTO userdto, String userid){ // 이메일인증
@@ -68,11 +64,13 @@ public class UserController {
 		String check = service.repass(userid);
 		return check;
 	}	
+	
 	//비밀번호 재설정 기능 실행
 	@RequestMapping(value = "repassword", method = RequestMethod.POST)
-	public @ResponseBody String repassword(UserDTO userdto) {
-		service.repassword(userdto);
-		return "redirect:/login.html";
+	public String repassword(UserDTO userdto) {
+		System.out.println("repassword controller 기능 실행");
+		String viewpage = service.repassword(userdto);
+		return viewpage;
 	}	
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
@@ -108,7 +106,7 @@ public class UserController {
 	public String userUpdate(UserDTO userdto) {
 		System.out.println("update controller POST");
 		service.userUpdate(userdto);
-		return "redirect:/login.html";
+		return "login.html";
 	}
 	
 	//회원 삭제하기
@@ -124,14 +122,17 @@ public class UserController {
 	public String content() {
 		return "user.content";
 	}
+	
 	@RequestMapping(value="content",method=RequestMethod.POST)
 	public String content2() {
 		return "user.content";
 	}
+	
 	@RequestMapping(value="admin",method=RequestMethod.GET)
 	public String admin() {
 		return "user.admin";
 	}
+	
 	@RequestMapping(value="admin",method=RequestMethod.POST)
 	public String admin2() {
 		return "user.admin";
