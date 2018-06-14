@@ -44,8 +44,8 @@ public class FileUploadController {
 		return "board.fileUpload";
 	}
 	
-	
-	@RequestMapping(value="/upload", method = RequestMethod.POST)
+
+	@RequestMapping(value="upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
 		System.out.println("파일 업로드 커늩롤러");
 		//1. build an iterator
@@ -90,6 +90,7 @@ public class FileUploadController {
 		return files;
  
 	}
+
 
 	@RequestMapping(value = "get/{value}", method = RequestMethod.GET)
 	 public void get(HttpServletResponse response,@PathVariable String value){

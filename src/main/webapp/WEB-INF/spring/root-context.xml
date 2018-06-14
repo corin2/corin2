@@ -12,7 +12,7 @@
 	<!-- DB연결 설정 -->
 	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
  		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
- 		<property name="url" value="jdbc:mariadb://192.168.0.43:3306/corin2" />
+ 		<property name="url" value="jdbc:mariadb://192.168.0.28:3306/corin2" />
  		<property name="username" value="corin2" />
  		<property name="password" value="1004" />
  	</bean>

@@ -8,12 +8,17 @@
 	<div id="dropzone" class="fade well" style="width: 300px;height: 300px">Drop files here</div>
 
 	
-	<table id="uploaded-files" class="table">
+	
+	<div id="dropzonediv"></div>
+	
+<!--  	<table id="uploaded-files" class="table">
 		<tr>
 			<th>File Name</th>
 			<th>File Size</th>
 			<th>File Type</th>
 			<th>Download</th>
 		</tr>
-	</table>
+	</table>  -->
+	
+	
 </div>
