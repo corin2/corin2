@@ -9,9 +9,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <style>
-        #memberList {
-            height: 600px;
-        }
         #mainDialogs {
             height: 600px;
         }
@@ -19,16 +16,27 @@
 </head>
 <body>
     <div class="container-fluid">
+        <div>
+            projectNum<input type="text" id="projectNum"><br>
+            projectName<input type="text" id="projectName"><br>
+            <input type="button" id="createProjectBtn" value="프로젝트생성"><br>
+            userid<input type="text" id="userid"><br>
+            username<input type="text" id="username">
+            <input type="button" id="login" value="Login">
+        </div>
         <div class="row">
-            <div class="col-sm-4" id="memberList" style="background-color:lavender;">
-                <h1>Member</h1>
+            <div class="col-sm-4" id="projectList" style="background-color:ivory;">
+                <h1>Projects</h1>
             </div>
-            <div class="col-sm-8" id="mainDialogs" style="background-color:lavenderblush;">
+            <div class="col-sm-4" id="userList" style="background-color:lavender;">
+                <h1>Users</h1>
+            </div>
+            <div class="col-sm-4" id="mainDialogs" style="background-color:lavenderblush;">
                 <h1>대화창</h1>
             </div>
             <div class="message">
                 <input type="text" id="messageText">
-                <input type="button" id="sendMessage" value="Send">
+                <input type="button" id="sendMessageBtn" value="Send">
                 <input type="button" id="input" value="Input">
             </div>
         </div>
