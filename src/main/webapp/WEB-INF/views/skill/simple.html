@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.0/lodash.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="gridstack.min.css"/>
+    <script src="gridstack.min.js"></script>
+    <script src="gridstack.jQueryUI.min.js"></script> 
+    <link href='fullcalendar.min.css' rel='stylesheet' />
+	<link href='fullcalendar.print.min.css' rel='stylesheet' media='print' />
+	<script src='moment.min.js'></script>
+	<script src='fullcalendar.min.js'></script>
+	<script type="text/javascript">
+
+	  $(document).ready(function() {
+		$('#cal').click(function(){
+		 $('#calendar').fullCalendar({
+	      header: {
+	        left: 'prev,next today',
+	        center: 'title',
+	        right: 'month,agendaWeek,agendaDay,listMonth'
+	      },
+	      
+	      defaultDate: '2018-03-12',
+	      navLinks: true, // can click day/week names to navigate views
+	      businessHours: true, // display business hours
+	      editable: true,
+	      contentHeight: 'auto',
+		    height: 'auto',
+	      events: [
+	        {
+	          title: 'Business Lunch',
+	          start: '2018-03-03T13:00:00',
+	          constraint: 'businessHours'
+	        },
+	        {
+	          title: 'Meeting',
+	          start: '2018-03-13T11:00:00',
+	          constraint: 'availableForMeeting', // defined below
+	          color: '#257e4a'
+	        },
+	        {
+	          title: 'Conference',
+	          start: '2018-03-18',
+	          end: '2018-03-20'
+	        },
+	        {
+	          title: 'Party',
+	          start: '2018-03-29T20:00:00'
+	        },
+	
+	        // areas where "Meeting" must be dropped
+	        {
+	          id: 'availableForMeeting',
+	          start: '2018-03-11T10:00:00',
+	          end: '2018-03-11T16:00:00',
+	          rendering: 'background'
+	        },
+	        {
+	          id: 'availableForMeeting',
+	          start: '2018-03-13T10:00:00',
+	          end: '2018-03-13T16:00:00',
+	          rendering: 'background'
+	        },
+	
+	        // red areas where no events can be dropped
+	        {
+	          start: '2018-03-24',
+	          end: '2018-03-28',
+	          overlap: false,
+	          rendering: 'background',
+	          color: '#ff9f89'
+	        },
+	        {
+	          start: '2018-03-06',
+	          end: '2018-03-08',
+	          overlap: false,
+	          rendering: 'background',
+	          color: '#ff9f89'
+	        }
+	      ]
+	    });
+		});
+	  });
+	</script>
+	
+	<style type="text/css">
+    
+		  body {
+		    margin: 40px 10px;
+		    padding: 0;
+		    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		    font-size: 14px;
+		  }
+		
+		  #calendar {
+		    
+		    width:auto%;
+		    margin: 0 auto;
+		  }
+		
+		
+	        .grid-stack {
+	            background: #566270;
+	        }
+	
+	        .grid-stack-item-content {
+	            color: #2c3e50;
+	            text-align: center;
+	            background-color: #e0e3da;
+	            -ms-overflow-style: none;
+	            
+	        }
+	        ::-webkit-scrollbar {
+			display:none;
+			
+			}
+	        
+    </style>
+</head>
+<body>
+	<div>
+        	<a class="btn btn-default" id="add-new-widget" href="#">Add Widget</a>
+            <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
+            <a class="btn btn-default" id="load-grid" href="#">Load Grid</a>
+            <a class="btn btn-default" id="clear-grid" href="#">Clear Grid</a>
+            <a class="btn btn-default" id="cal" href="#">addcal</a>
+            <a class="btn btn-default" id="fix" href="#">allfix</a>
+            <a class="btn btn-default" id="unfix" href="#">allunfix</a>
+            <a class="btn btn-default" id="resize" href="#">resize</a>
+    </div>
+
+<div class="grid-stack">
+   
+    <div class="grid-stack-item" id="c"
+        data-gs-x="0" data-gs-y="0" 
+        data-gs-width="4" data-gs-height="2" id="first">
+            <div class="grid-stack-item-content">
+            <i class="fa fa-close"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-bell"></i>
+            <i class="fa fa-heart"></i>
+              <div id='calendar'></div>
+              </div>
+    </div>
+    
+    <div class="grid-stack-item" 
+        data-gs-x="4" data-gs-y="0" 
+        data-gs-width="4" data-gs-height="4" id="second">
+            <div class="grid-stack-item-content">
+             <i class="fa fa-close"></i>
+             <i class="fa fa-star"></i>
+             <i class="fa fa-bell"></i>
+             <i class="fa fa-heart"></i>
+             </div>
+    </div>
+    
+</div>
+
+<script>
+$(function () {
+    var options = {
+        cellHeight: 80,
+        verticalMargin: 10,
+        animate: true
+        
+    };
+    $('.grid-stack').gridstack(options);
+    
+    <!--remove-->
+    $('body').on('click', '.fa-close', function (e) {
+        e.preventDefault();
+        var grid = $('.grid-stack').data('gridstack'),
+            el = $(this).closest('.grid-stack-item')
+
+        grid.removeWidget(el);
+    });
+    new function () { 
+    	var grid = $(".grid-stack").data("gridstack");
+    	<!--add-->
+   	
+	    this.addNewWidget = function () {
+	    	grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div id="calendar"></div></div></div>'), 0, 0, 4, 5, true)
+	    }.bind(this);
+    	
+    	$('#add-new-widget').click(this.addNewWidget);
+    	 
+	    <!--removeall-->
+	    this.clearGrid = function () {
+	        grid.removeAll();
+	        return false;
+	    }.bind(this);
+   
+    	$('#clear-grid').click(this.clearGrid);
+    
+	    <!--고정-->
+	    $('body').on('click', '.fa-star', function (e) {
+	        e.preventDefault();
+	            el = $(this).closest('.grid-stack-item')
+	            grid.movable(el, false);
+	   	 		grid.resizable(el, false);
+	   	 	    grid.disableResize(true);
+	    });
+	   
+	    	 
+	    <!--고정풀기-->
+	    $('body').on('click', '.fa-bell', function (e) {
+	        e.preventDefault();
+	            el = $(this).closest('.grid-stack-item')
+	            grid.movable(el, true);
+	      	 	grid.resizable(el, true);
+	    });	
+	    <!--전체고정-->
+	    $('body').on('click', '#fix', function (e) {
+	        e.preventDefault();
+	            el = $('.grid-stack-item')
+	            grid.movable(el, false);
+	   	 		grid.resizable(el, false);
+	    });
+	    <!--전체고정풀기-->
+	    $('body').on('click', '#unfix', function (e) {
+	        e.preventDefault();
+	            el = $('.grid-stack-item')
+	            grid.movable(el, true);
+	      	 	grid.resizable(el, true);
+	    });	
+   
+	   	<!--save-->
+	    this.saveGrid = function () {
+	       this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+	           el = $(el);
+	           var node = el.data('_gridstack_node');
+	           return {
+	               x: node.x,
+	               y: node.y,
+	               width: node.width,
+	               height: node.height,
+	               content: $('.grid-stack-item-content', el).parent().html()
+	           };
+	       }, this);
+	
+	       $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
+	
+	       var items = GridStackUI.Utils.sort(this.serializedData);
+	       localStorage.setItem("items", JSON.stringify(items));
+	
+	       console.log('grid is saved');
+	       return false;
+	   }.bind(this);
+	   $('#save-grid').click(this.saveGrid);
+	   
+	   <!--Load-->
+	   loadGrid = function () {
+	       grid.removeAll();
+	       console.log("gg");   
+	       var jsonData = JSON.parse(localStorage.getItem("items"));
+	       var items = GridStackUI.Utils.sort(jsonData);
+	       console.log(items);
+	       _.each(items, function (node) {
+	    	   console.log(node.content.trim());
+	           grid.addWidget($('<div><div class="grid-stack-item-content">'+node.content.trim()+'</div></div>'),
+	           node.x, node.y, node.width, node.height);
+	       }.bind(this));
+	       return false;
+	   }.bind(this);
+	   $('#load-grid').click(loadGrid); 
+	 
+	   <!--resize-->
+	   $('body').on('click', '.fa-heart', function (e) {
+		 
+			   console.log("1");
+			    var grid = $('.grid-stack').data('gridstack');
+			    grid.batch_update();
+			    el = $(this).closest('.grid-stack-item');
+	
+			    grid.move(el, 0, 0)
+			    grid.resize(el, 12, 12);
+			    
+			    el2 = $('.grid-stack-item').not(el);
+			    grid.removeWidget(el2);
+			    	
+			    grid.commit();
+		   
+	   });
+	   
+    };
+       
+ });
+</script>
+</body>
+</html>

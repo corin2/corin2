@@ -16,6 +16,12 @@
          <put-attribute name="content" value="/WEB-INF/views/kanban/{1}.jsp" /> 
      </definition>
      
+     <definition name="skill.*" template="/WEB-INF/views/includes/layout.jsp" > 
+     	 <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+         <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
+         <put-attribute name="content" value="/WEB-INF/views/skill/{1}.jsp" /> 
+     </definition>
+     
      <definition name="login.*" template="login.html" />
      <definition name="user.*" template="/WEB-INF/views/login/{1}.jsp" />
 </tiles-definitions>          
