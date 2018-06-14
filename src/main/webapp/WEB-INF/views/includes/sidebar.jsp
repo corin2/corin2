@@ -43,37 +43,37 @@
     </li>
     <li>
         <a href="#">
-            <i class="glyphicon glyphicon-calendar"></i>
+            <i class="glyphicon glyphicon-calendar" id="calendaricon"></i>
             Calendar
         </a>
     </li>
     <li>
 		<a href="#">
-		    <i class="glyphicon glyphicon-th-list"></i>
+		    <i class="glyphicon glyphicon-th-list" id="checklisticon"></i>
 		    Checklist
 		</a>
     </li>
     <li>
         <a href="#">
-            <i class="glyphicon glyphicon-stats"></i>
+            <i class="glyphicon glyphicon-stats" id="charticon"></i>
             Chart
         </a>
     </li>
     <li>
         <a href="#">
-            <i class="glyphicon glyphicon-file"></i>
+            <i class="glyphicon glyphicon-file" id="filesicon"></i>
             Files
         </a>
     </li>
     <li>
         <a href="kanban?projectNum=1">
-            <i class="glyphicon glyphicon-tasks"></i>
+            <i class="glyphicon glyphicon-tasks" id="kanbanicon"></i>
             Kanban
         </a>
     </li>
     <li>
         <a href="#">
-            <i class="glyphicon glyphicon-exclamation-sign"></i>
+            <i class="glyphicon glyphicon-exclamation-sign" id="troubleshootingicon"></i>
             Trouble Shooting
         </a>
     </li>

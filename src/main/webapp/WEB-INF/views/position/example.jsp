@@ -157,7 +157,59 @@
 			   });
 			   
 		    };
-		       
+		     
+		    //drag drop
+		    $(".glyphicon").draggable({
+		    	 start : function(event) {
+		    	  img_choice = $(this).attr("src");
+		    	  img_choice_id = $(this).attr("id");
+		    	 },
+		    	 stop : function() {
+		    	  
+		    	 },
+		    	 revert : true
+		    	});
+
+	    	$(".grid-stack").droppable({
+	    	 drop : function(event, ui) {
+		    	  if ($(this).attr("id") == "calendaricon") {
+		    		  this.addNewWidget = function () {
+		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i> <div id="calendar"></div></div></div>'), 0, 0, 4, 5, true);
+					  }.bind(this);
+		    	  }else if($(this).attr("id")=="checklisticon"){
+		    		  this.addNewWidget = function () {
+		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
+					  }.bind(this);
+		    		  
+		    	  }else if($(this).attr("id")=="charticon"){
+		    		  this.addNewWidget = function () {
+		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
+					  }.bind(this);
+		    	  }else if($(this).attr("id")=="filesicon"){
+		    		  this.addNewWidget = function () {
+		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
+					  }.bind(this);
+		    	  }else if($(this).attr("id")=="kanbanicon"){
+		    		  this.addNewWidget = function () {
+		    			  grid.addWidget($('<div class="grid-stack-item" id="c"
+		    				        data-gs-x="0" data-gs-y="0" 
+		    					        data-gs-width="4" data-gs-height="2" id="first">
+		    					            <div class="grid-stack-item-content">
+		    					            <i class="fa fa-close"></i>
+		    					            <i class="fa fa-star"></i>
+		    					            <i class="fa fa-bell"></i>
+		    					            <i class="fa fa-heart"></i>
+		    					              	<jsp:include page="/WEB-INF/views/kanban/kanban.jsp"></jsp:include>
+		    					              </div>
+		    					    </div>'), 0, 0, 4, 5, true);
+					  }.bind(this);
+		    	  }else{
+		    		  this.addNewWidget = function () {
+		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
+					  }.bind(this);
+		    	  }
+		   		}
+	    	});      
 		 });
 		</script>
 	<style type="text/css">
@@ -177,7 +229,7 @@
 		
 		.grid-stack {
 			background: #FFF;
-			width: 90%;
+			width: 86%;
 			height: 100%;
 			position: absolute; 
 		
@@ -207,6 +259,7 @@
 	    </div>
 	
 		<div class="grid-stack">
+			
 		    <div class="grid-stack-item" id="c"
 		        data-gs-x="0" data-gs-y="0" 
 		        data-gs-width="4" data-gs-height="2" id="first">
@@ -215,7 +268,7 @@
 		            <i class="fa fa-star"></i>
 		            <i class="fa fa-bell"></i>
 		            <i class="fa fa-heart"></i>
-		              <div id='calendar'></div>
+		              	<jsp:include page="/WEB-INF/views/kanban/kanban.jsp"></jsp:include>
 		              </div>
 		    </div>
 		</div>

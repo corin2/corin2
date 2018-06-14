@@ -20,11 +20,11 @@ public class PositionController {
 		return "skill.example";
 	}
 	
-	//
+	/*
 	@RequestMapping(value="signup",method=RequestMethod.POST)
 	public String userInsert(UserDTO userdto) {
 		//회원가입 처리 ... NewMemberDao
 		String viewpage = service.userInsert(userdto);
 		return viewpage;
-	}
+	}*/
 }
