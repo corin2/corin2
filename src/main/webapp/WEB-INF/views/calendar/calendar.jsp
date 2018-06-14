@@ -1,4 +1,6 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+	
 <link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/resources/js/calendar/moment.min.js'></script>
@@ -101,7 +103,7 @@
 
 </style>
 
-
+<h2 id='boardTitle'>일정관리</h2>
   <div id='calendar'></div>
 
 
