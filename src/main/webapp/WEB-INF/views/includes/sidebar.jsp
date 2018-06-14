@@ -10,6 +10,12 @@
 </div>
 
 <ul class="list-unstyled components">
+	<li>
+        <a href="project">
+            <i class="glyphicon glyphicon-th-large"></i>
+            Projects
+        </a>
+    </li>
     <li class="active">
         <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
             <i class="glyphicon glyphicon-user"></i>
