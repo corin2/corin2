@@ -61,6 +61,9 @@ $(function() {
 									'timestamp': Date.now()
 							};
 							db.child('userRooms/' + '-LEvfIYw9ZVRaiXNUDRB/' + teamUser.key).update(userRoomsUpdates);
+							alert(teamUser.username + "님과 대화를 시작합니다.");
+							$('#mainDialogs').empty();
+							messages.on('child_added', showMessage);
 							//currentUser = teamUser.username;
 							//$('#selectedUser').html(currentUser);
 						});
@@ -153,7 +156,7 @@ $(function() {
 	// 메시지 뿌리기
 	function showMessage(snapshot) {
 		var message = snapshot.val();
-		$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + message.timestamp +")" + "</p>");
+		$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
 	}
 
 	// 메시지 출력 (안쓰고있음)
@@ -170,5 +173,34 @@ $(function() {
 		addData();
 		alert("데이터 들어감");
 	});
+	
+	
+    // timestamp를 날짜 시간 으로 변환
+    function convertTime(timestamp) {
+        var date = new Date(timestamp),
+            year = date.getFullYear(),
+            month = date.getMonth()+1,
+            day = date.getDate(),
+            hour = date.getHours(),
+            minute = date.getMinutes(),
+            week = new Array('일', '월', '화', '수', '목', '금', '토');
+
+        var convertDate = year + "년 "+month+"월 "+ day +"일 ("+ week[date.getDay()] +") ";
+        var convertHour="";
+        if(hour < 12){
+            convertHour = "오전 " + pad(hour) +":" + pad(minute);
+        }else if(hour === 12){
+            convertHour = "오후 " + pad(hour) +":" + pad(minute);
+        }else{
+            convertHour = "오후 " + pad(hour - 12) +":" + pad(minute);
+        }
+
+        return convertDate + convertHour;
+    }
+    
+    // 10미만 숫자 앞에 0 붙이기
+    function pad(n) {
+        return n > 9 ? "" + n: "0" + n;
+    }
 
 }); // end - jQuery
