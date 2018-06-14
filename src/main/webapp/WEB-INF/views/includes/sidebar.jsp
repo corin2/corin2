@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="resources/js/msg/inviteMsg.js"></script>
+<script src="resources/js/keyUp.js"></script>
 
+<input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
     <strong>C2</strong>
@@ -14,7 +16,7 @@
             User
         </a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li><a href="#">User Info</a></li>
+            <li><a href="content">User Info</a></li>
             <li><a href="#">Profile Modification</a></li>
             <li><a href="#">Delete</a></li>
         </ul>
@@ -25,25 +27,11 @@
             Alarm
         </a>
         <ul class="collapse list-unstyled" id="inviteMsg">
-            <li><a>
-            	<label>RRRRRRRRRRRRRRRRRw</label>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li>
-            <li><a>
-            	<label>18바이트만이하임</label>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li><li><a>
-            	<label>18바이트만이상입니다</label><br>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li>
         </ul>
     </li>
     <li>
-        <a href="#">
-            <i class="glyphicon glyphicon-calendar" id="calendaricon"></i>
+        <a href="calendar">
+             <i class="glyphicon glyphicon-calendar" id="calendaricon"></i>
             Calendar
         </a>
     </li>
@@ -60,25 +48,25 @@
         </a>
     </li>
     <li>
-        <a href="#">
-            <i class="glyphicon glyphicon-file" id="filesicon"></i>
+        <a href="fileUpload">
+          <i class="glyphicon glyphicon-file" id="filesicon"></i>
             Files
         </a>
     </li>
     <li>
-        <a href="kanban?projectNum=1">
-            <i class="glyphicon glyphicon-tasks" id="kanbanicon"></i>
+        <a href="kanban">
+             <i class="glyphicon glyphicon-tasks" id="kanbanicon"></i>
             Kanban
         </a>
     </li>
     <li>
-        <a href="#">
-            <i class="glyphicon glyphicon-exclamation-sign" id="troubleshootingicon"></i>
+        <a href="trouble">
+			<i class="glyphicon glyphicon-exclamation-sign" id="troubleshootingicon"></i>
             Trouble Shooting
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="boardList">
             <i class="glyphicon glyphicon-bullhorn"></i>
             Notices
         </a>

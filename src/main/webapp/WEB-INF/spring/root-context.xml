@@ -24,7 +24,7 @@
     	<property name="mapperLocations" value="classpath*:site/corin2/*/mapper/*xml" />
     	<property name="transactionFactory">
 			<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
-		</property> 
+		</property>
 	</bean> 
 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
@@ -63,5 +63,4 @@
 		   </props>
 		</property>
 	</bean>
-    
 </beans>

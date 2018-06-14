@@ -21,6 +21,7 @@ public class CardCheckListService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//카드체크리스트를 생성한다
 	public int cardCheckListInsert(CardCheckListDTO checkList) {
 		int result = 0;
 		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
@@ -29,6 +30,7 @@ public class CardCheckListService {
 		return result;
 	}
 	
+	//카드체크리스트를 조회한다
 	public List<CardCheckListDTO> checkListAllSelect(CardCheckListDTO checkList){
 		List<CardCheckListDTO> lists = null;
 		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
@@ -36,11 +38,13 @@ public class CardCheckListService {
 		return lists;
 	}
 	
+	//카드체크리스트의 체크여부를 변경한다.
 	public void checkListUpdate(CardCheckListDTO checkList){
 		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
 		dao.checkListUpdate(checkList);
 	}
 	
+	//카드체크리스트를 삭제한다.
 	public int cardCheckListDelete(CardCheckListDTO checkList) {
 		int result = 0;
 		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);

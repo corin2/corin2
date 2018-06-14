@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.project.dao.ProjectDAO">
+	
+		<insert id="projectInsert">
+			insert into 
+			project(projectname, languagenum, projectdate, isdeleted) 
+			values(#{projectName}, #{languageNum}, now(), 0)
+		</insert>
+		
+		<select id="selectProject" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project 
+			where projectname =#{projectName}
+		</select>
+
+		<!-- site.corin2.project.dto.ProjectDTO -->
+		<select id="projectAllList" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project p
+			join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0 or t.bookmark = 0 and t.bookmark=null
+			order by p.projectnum
+		</select>
+		
+		<!-- site.corin2.project.dto.ProjectDTO -->
+		<select id="projectBookList" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project p	join team t
+			on p.projectnum = t.projectnum
+			where userid=#{userId} and p.isdeleted = 0 and t.bookmark = 1
+			order by p.projectnum
+		</select>
+		
+		<update id="languageUpdate">
+			update project set languagenum=#{languageNum}, projectname=#{projectName}
+			where projectnum=#{projectNum}
+		</update>
+		
+		<update id="projectDelete">
+			update project set isdeleted=1
+			where projectnum=#{projectNum}
+		</update>
+		
+		<update id="projectBookmarkUpdate">
+			update team set bookmark=1
+			where projectnum=#{projectNum}
+		</update>
+		
+		<update id="projectNoneBookmarkUpdate">
+			update team set bookmark=0
+			where projectnum=#{projectNum}
+		</update>
+		
+		<!-- 프로젝트 하나 검색 -->
+		<select id="projectSelect" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project where projectnum = #{projectNum}
+		</select>
+		
+	</mapper>

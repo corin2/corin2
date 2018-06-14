@@ -1,6 +1,6 @@
 /**
     파일명: CardCheckListController.java
-    설   명: 
+    설   명: 카드체크리스트에 대한 컨트롤러
     작성일: 2018. 6. 7.
     작성자: 최 재 욱
 */
@@ -26,6 +26,7 @@ public class CardCheckListController {
 	@Autowired
 	private CardCheckListService service;
 	
+	//카드체크리스트를 생성한다
 	@RequestMapping("/cardCheckListInsert")
 	public View CheckListInsertView(CardCheckListDTO checkList, Model model) {
 		int result = service.cardCheckListInsert(checkList);
@@ -33,6 +34,7 @@ public class CardCheckListController {
 		return jsonview;
 	}
 	
+	//카드체크리스트를 조회한다
 	@RequestMapping("/cardCheckListSelect")
 	public View cardCheckListSelectView(CardCheckListDTO checkList, Model model) {
 		List<CardCheckListDTO> list = null;
@@ -41,15 +43,17 @@ public class CardCheckListController {
 		return jsonview;
 	}
 	
+	//카드체크리스트의 체크여부를 변경한다.
 	@RequestMapping("/checkedUpdate")
 	public View checkedUpdate(CardCheckListDTO checkList, Model model) {
 		service.checkListUpdate(checkList);
 		return jsonview;
 	}
 	
+	//카드체크리스트를 삭제한다.
 	@RequestMapping("/checkListDelete")
 	public View cardCheckListDeleteView(CardCheckListDTO checkList, Model model) {
-		int result = service.cardCheckListDelete(checkList);
+		service.cardCheckListDelete(checkList);
 		return jsonview;
 	}
 }

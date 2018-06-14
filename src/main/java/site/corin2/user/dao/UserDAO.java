@@ -1,6 +1,7 @@
 package site.corin2.user.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import site.corin2.user.dto.UserDTO;
 
@@ -31,4 +32,6 @@ public interface UserDAO {
 	//비밀번호 재설정 하기
 	public void repassword(UserDTO userDTO) throws ClassNotFoundException, SQLException;
 
+	//모든 유저 조회
+	public List<UserDTO> allUserSelect();
 }

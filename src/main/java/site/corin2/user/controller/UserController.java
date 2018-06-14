@@ -8,6 +8,7 @@ package site.corin2.user.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,6 +48,12 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
+	
+	//회원가입 페이지이동
+	@RequestMapping(value="signup",method=RequestMethod.GET)
+	public String userInsert() {
+		return "user.signup";
+	}
 	
 	//회원가입 기능 실행
 	@RequestMapping(value="signup",method=RequestMethod.POST)
@@ -141,6 +148,14 @@ public class UserController {
 	  System.out.println(userdto.getUserId());
 	  System.out.println(userdto.getUserName());
 	  return "user.content";
+	}
+	
+	//모든 유저 정보
+	@RequestMapping(value="allUser" , method=RequestMethod.GET)
+	public View allUser(Model model) {
+		List<UserDTO> users = service.allUserSelect();
+		model.addAttribute("data", users);
+		return jsonview;
 	}
 	
 	//ex페이지

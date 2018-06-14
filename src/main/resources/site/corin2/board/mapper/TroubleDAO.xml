@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.board.dao.TroubleDAO">
+		
+		<!-- 트러블슈팅 전체조회 -->
+		<select id="troubleSelect" resultType="site.corin2.board.dto.TroubleShootingDTO">
+			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and a.projectnum=1 and b.isdeleted=0 order by boardnum desc  
+		</select>
+		
+		<!-- 공통 게시판 테이블에 먼저 Insert -->
+		<insert id="troubleInsert" parameterType="site.corin2.board.dto.TroubleShootingDTO">
+			insert into 
+			board (skillnum,userid,boarddate,isdeleted)
+			values('S500','jin@naver.com',now(),0)
+		</insert>
+		
+		<!-- 생성된 boardNum 으로 트러블슈팅 테이블에 Insert -->
+		<insert id="troubleInsertDetail" parameterType="site.corin2.board.dto.TroubleShootingDTO">
+			<selectKey order="BEFORE" keyProperty="boardNum" resultType="int">
+		  		select IFNULL(MAX(boardNum), 0) boardNum from board where skillnum='S500'
+		  	</selectKey>
+			insert into 
+			troubleshooting (boardNum,skillNum,projectNum,problem,solution)
+			values(#{boardNum},'S500',1,#{problem},#{solution})
+		</insert>
+		
+		<!-- 트러블슈팅수정 -->
+		<update id="troubleUpdate">
+			update troubleshooting set	problem = #{problem}, solution = #{solution} where boardNum = #{boardNum}
+		</update>
+		
+		<!-- 트러블슈팅삭제 (삭제여부를 1로 업데이트)-->
+		<update id="troubleDelete">
+			update board set isDeleted = 1 where boardNum = #{boardNum}
+		</update>
+	</mapper>

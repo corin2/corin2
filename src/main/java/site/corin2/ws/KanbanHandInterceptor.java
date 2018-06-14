@@ -24,8 +24,7 @@ public class KanbanHandInterceptor extends HttpSessionHandshakeInterceptor{
 			Map<String, Object> attributes) throws Exception {
 		ServletServerHttpRequest ssreq = (ServletServerHttpRequest) request;
 		HttpServletRequest req = ssreq.getServletRequest();
-		
-		attributes.put("projectNum", req.getParameter("projectNum")); // 프로젝트넘버 전송
+		attributes.put("projectNum", req.getParameter("projectNum")); // 프로젝트넘버 전송 (칸반에서 사용)
 		return super.beforeHandshake(request, response, wsHandler, attributes);
 	}
 	

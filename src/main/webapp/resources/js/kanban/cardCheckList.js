@@ -47,8 +47,8 @@ function showCardCheckList(){
 					else if(elt.isChecked == '1') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' checked>";
 					
 					htmlText += "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
-							 + "<button type='button' class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
-							 + "<button type='button' class='glyphicon close' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
+							 + "<button class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
+							 + "<button class='glyphicon close' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}

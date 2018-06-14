@@ -31,24 +31,34 @@ public class TeamController {
 	@Autowired
 	private View jsonview;
 	
-	@RequestMapping("/showUserField")
-	public View showUserField(@RequestParam("projectNum") String projectNum, Model model) {
+	//해당 프로젝트에 모든 멤버 조회
+	@RequestMapping("/showMember")
+	public View showMember(@RequestParam("projectNum") String projectNum, Model model) {
 		List<TeamDTO> teamMembers = service.allTeamMemberSelect(Integer.parseInt(projectNum));
 		model.addAttribute("data", teamMembers);
 		return jsonview;
 	}
 	
-	@RequestMapping("/showUserProfile")
-	public View showUserProfile(@RequestParam("projectNum") String projectNum, Model model) {
+	//해당 프로젝트의 모든 멤버의 유저DTO 조회
+	@RequestMapping("/showMemberUserProfile")
+	public View showMemberUserProfile(@RequestParam("projectNum") String projectNum, Model model) {
 		List<UserDTO> teamMembers = service.allTeamMemberProfileSelect(Integer.parseInt(projectNum));
 		model.addAttribute("data", teamMembers);
 		return jsonview;
 	}
 	
+	//송신아이디가 받은 모든 초대 메시지의 projectDTO를 조회한다.
 	@RequestMapping("/showMsg")
 	public View showMsg(@RequestParam("receptionId") String receptionId, Model model) {
 		List<ProjectDTO> inviteMsgs = service.allInviteMsgSelect(receptionId);
 		model.addAttribute("data", inviteMsgs);
+		return jsonview;
+	}
+
+	@RequestMapping("/projectTeamInsert")
+	public View projectTeamInsert(TeamDTO team, Model model) {
+		int result = 0;
+		result = service.insertTeamProject(team);
 		return jsonview;
 	}
 }

@@ -21,6 +21,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- External JavaScript 파일: index.js -->
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
+  
 </head>
 <body>
 	<div class="wrapper">
@@ -32,6 +33,9 @@
 		
 		<!-- Page Content Holder -->
 		<div id="content">
+			<!-- Header 영역 -->
+			<tiles:insertAttribute name="header" />
+			
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>

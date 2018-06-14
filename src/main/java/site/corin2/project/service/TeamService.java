@@ -24,10 +24,11 @@ import site.corin2.user.dto.UserDTO;
 public class TeamService {
 	
 	@Autowired
-	private SqlSession sqlsession;
+	private SqlSession sqlSession;
 	
+	//해당 프로젝트에 모든 멤버 조회
 	public List<TeamDTO> allTeamMemberSelect(int projectNum){
-		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		TeamDAO teamDAO = sqlSession.getMapper(TeamDAO.class);
 		List<TeamDTO> teamMembers = null;
 		try {
 			teamMembers = (ArrayList<TeamDTO>)teamDAO.allTeamMemberSelect(projectNum);
@@ -38,8 +39,9 @@ public class TeamService {
 		return teamMembers;
 	}
 	
+	//해당 프로젝트의 모든 멤버의 유저DTO 조회
 	public List<UserDTO> allTeamMemberProfileSelect(int projectNum){
-		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		TeamDAO teamDAO = sqlSession.getMapper(TeamDAO.class);
 		List<UserDTO> teamMemberProfiles = null;
 		try {
 			teamMemberProfiles = (ArrayList<UserDTO>)teamDAO.allTeamMemberProfileSelect(projectNum);
@@ -50,8 +52,9 @@ public class TeamService {
 		return teamMemberProfiles;
 	}
 	
+	//송신아이디가 받은 모든 초대 메시지의 projectDTO를 조회한다.
 	public List<ProjectDTO> allInviteMsgSelect(String receptionId){
-		MsgDAO msgDAO = sqlsession.getMapper(MsgDAO.class);
+		MsgDAO msgDAO = sqlSession.getMapper(MsgDAO.class);
 		List<ProjectDTO> inviteMsgs = null;
 		try {
 			inviteMsgs = (ArrayList<ProjectDTO>)msgDAO.allInviteMsgSelect(receptionId);
@@ -60,5 +63,12 @@ public class TeamService {
 		}
 		
 		return inviteMsgs;
+	}
+
+	public int insertTeamProject(TeamDTO team) {
+		int result = 0;
+		TeamDAO dao = sqlSession.getMapper(TeamDAO.class);
+		result = dao.insertTeamProject(team);
+		return result;
 	}
 }
