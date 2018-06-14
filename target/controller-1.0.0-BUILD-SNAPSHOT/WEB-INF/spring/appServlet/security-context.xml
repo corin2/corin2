@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:security="http://www.springframework.org/schema/security"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                     http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.springframework.org/schema/security 
+                     http://www.springframework.org/schema/security/spring-security.xsd">
+
+	 <security:http auto-config="true">
+	 <security:intercept-url pattern="/**" access="permitAll"/> 
+	  <security:csrf disabled="true"/>
+	  <security:form-login login-page="/"
+	  					   login-processing-url="/login"
+	  					   username-parameter="userId"
+	  					   password-parameter="password"
+	  					   default-target-url="/content"
+	  					   authentication-failure-url="/login.html?error"
+	  					   always-use-default-target="true"
+	  					   authentication-failure-handler-ref="loginFailureHandler"
+	  					   />
+	  <security:logout logout-success-url="/index.htm" />
+	  <security:intercept-url pattern="/memberupdate.htm" access="ROLE_USER"/>
+	  <security:intercept-url pattern="/admin.htm" access="ROLE_ADMIN"/>
+	  <security:access-denied-handler ref="permissionEvaluator" />
+	</security:http>
+	
+	<security:authentication-manager>
+		<security:authentication-provider> <!-- DB연결 하는 곳이므로 bean객체 id넣는다. -->
+		<!-- 	<security:password-encoder ref="bCryptPasswordEncoder"/> -->
+			<security:jdbc-user-service 
+				data-source-ref="driverManagerDataSource"
+				users-by-username-query="SELECT userid AS username, password, enabled as enabled FROM user WHERE userId= ?"
+				authorities-by-username-query="select userid, g.GRADENAME as ROLE_NAME from user u JOIN usergrade g on u.gradenum = g.gradenum where u.userId=?"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
+	
+    <bean id="loginFailureHandler" class="site.corin2.user.service.LoginFailureHandler"></bean>
+    <bean id="permissionEvaluator" class="site.corin2.user.service.LoginDeniedHandler"></bean>
+</beans>
