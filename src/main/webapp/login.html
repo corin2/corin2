@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+	<script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    
+    <meta charset="utf-8">
+    
+    <title>corin2 Login</title>
+    <style>
+    body {
+    background: #566270;
+	}
+	
+	#form {
+	    width: 320px;
+	    padding: 60px 25px 80px;
+	    margin: 50px auto;
+	    background: #566270;
+	    display: flex;
+	    flex-direction: column;
+	}
+	
+	svg {
+	    width: 70%;
+	    border-radius: 50%;
+	    background: #fff;
+	    margin-bottom: 40px;
+	    align-self: center;
+	    transform-style: preserve-3d;
+	}
+	
+	input {
+	    font-size: 16px;
+	    border: 0;
+	    border-radius: 5px;
+	    outline: 0;
+	    padding: 10px 15px;
+	    margin-top: 15px;
+	}
+	
+	@keyframes lookaway-up {
+	    from {
+	        transform: rotate3d(.2, 0, -.01, 20deg);
+	    }
+	
+	    to {
+	        transform: rotate3d(.2, -.05, -.01, 20deg);
+	    }
+	}
+	
+	@keyframes lookaway-down {
+	    0% {
+	        transform: rotate3d(-.2, 0, -.01, 20deg);
+	    }
+	
+	    100% {
+	        transform: rotate3d(-.2, -.05, .01, 20deg);
+	    }
+	}
+	
+	.ears {
+	    transform-origin: 50% 50% 5px;
+	}
+	
+	.eyes {
+	    transform-origin: 50% 50% -40px;
+	}
+	
+	.muzzle {
+	    transform-origin: 50% 50% -44px;
+	}
+	
+	.ears, .eyes, .muzzle {
+	    transition: transform .5s;
+	}
+	
+	.focused {
+	    transition: transform .1s;
+	}
+	
+	.look-away .ears,
+	.look-away .eyes,
+	.look-away .muzzle {
+	    transition-duration: .3s;
+	    animation: 3s infinite alternate;
+	}
+	
+	.look-away.up .ears,
+	.look-away.up .eyes,
+	.look-away.up .muzzle {
+	    transform: rotate3d(.2, 0, 0, 20deg) !important;
+	}
+	
+	.look-away.down .ears,
+	.look-away.down .eyes,
+	.look-away.down .muzzle {
+	    transform: rotate3d(-.2, 0, 0, 20deg) !important;    
+	}
+	
+	.look-away.playing.up .ears,
+	.look-away.playing.up .eyes,
+	.look-away.playing.up .muzzle {
+	    animation-name: lookaway-up;
+	}
+	
+	.look-away.playing.down .ears,
+	.look-away.playing.down .eyes,
+	.look-away.playing.down .muzzle {
+	    animation-name: lookaway-down;
+	}
+	<!-- sns -->
+	.btn-primary {
+	    color: #fff;
+	    background-color: #337ab7;
+	    border-color: #2e6da4;
+	}
+	.sns-icon{
+	 width:40px;
+	}
+    </style>
+</head>
+<body>
+    <form id="form"method="post" action="./login">
+        <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,150 C0,65 120,65 120,150" fill="#E0E3DA" stroke="#000" stroke-width="2.5" />
+             <circle cx="60" cy="132" r="30" fill="#ffffff" />           
+            <g class="ears">
+                <!--귀-->
+                <path d="M60,40 30,10 20,40" fill="#E0E3DA" stroke="#000" stroke-width="2.5" stroke-linecap="round" transform="rotate(-10,38,24)" />
+                <path d="M30,40 30,10 20,40" fill="#ffffff" stroke="#000" stroke-width="2.5" stroke-linecap="round" transform="rotate(-10,38,24)" />
+                <path d="M60,40 90,10 100,40" fill="#E0E3DA" stroke="#000" stroke-width="2.5" stroke-linecap="round" transform="rotate(10,82,24)" />
+                <path d="M90,40 90,10 100,40" fill="#ffffff" stroke="#000" stroke-width="2.5" stroke-linecap="round" transform="rotate(10,82,24)" />
+              
+            </g>
+            <circle cx="60" cy="60" r="40" fill="#E0E3DA" stroke="#000" stroke-width="2.5" />
+            
+            <g class="eyes">
+                <!-- left eye and eyebrow-->
+                 
+                <circle cx="44" cy="55" r="3" fill="#000" />
+                <!-- right eye and eyebrow -->
+                
+                <circle cx="76" cy="55" r="3" fill="#000" />
+            </g>
+            <g class="muzzle">
+              <polygon points="59,66.5,60,66.4,61,66.5,60,68" fill="#000"  stroke="#000" stroke-width="5" stroke-linejoin="round" />
+              <!--머리카락-->
+                
+                <line x1="46" x2="49" y1="46" y2="35" stroke="#000" stroke-width="2" stroke-linecap="round" />
+                <line x1="46" x2="56" y1="46" y2="38" stroke="#000" stroke-width="2" stroke-linecap="round" />
+                <line x1="59" x2="56" y1="46" y2="38" stroke="#000" stroke-width="2" stroke-linecap="round" />
+                <line x1="59" x2="64" y1="46" y2="37" stroke="#000" stroke-width="2" stroke-linecap="round" />
+                <line x1="69" x2="64" y1="44" y2="37" stroke="#000" stroke-width="2" stroke-linecap="round" />
+                <line x1="69" x2="72" y1="44" y2="35" stroke="#000" stroke-width="2" stroke-linecap="round" />
+               
+                
+              <!--왼쪽 수염-->
+              <line x1="30" x2="51" y1="61" y2="65" stroke="#000" stroke-width="1" stroke-linecap="round" />
+              <line x1="30" x2="51" y1="68" y2="68" stroke="#000" stroke-width="1" stroke-linecap="round" />
+              <line x1="30" x2="51" y1="75" y2="71" stroke="#000" stroke-width="1" stroke-linecap="round" />
+              <!--오른쪽 수염-->
+              <line x1="70" x2="91" y1="65" y2="61" stroke="#000" stroke-width="1" stroke-linecap="round" />
+              <line x1="70" x2="91" y1="68" y2="68" stroke="#000" stroke-width="1" stroke-linecap="round" />
+              <line x1="70" x2="91" y1="71" y2="75" stroke="#000" stroke-width="1" stroke-linecap="round" />
+              <!--입-->
+              <polygon points="58,81,64,81,56,81,60,81" fill="#000" stroke="#000" stroke-width="3" stroke-linejoin="round" />
+            </g>
+        </svg>
+        <input class="text" type="text" id="userId" name="userId" placeholder="email@domain.com" required="required">
+        <input class="text" type="password" id="password" name="password" placeholder="Password" required="required">
+        
+        <div class="col-sm-12">
+	        <div class="col-md-6">
+	        	<button class="btn btn-default" type="submit" id="btnLogin" value="Login">Login</button>
+	        </div>
+	        <div class="col-md-6">
+	        	<button type="button" data-toggle="modal" data-target="#signupmodal" class="btn btn-default">Sign Up</button>
+	        </div>
+        </div>
+        <div class="col-sm-12">
+	        <div class="col-md-12">
+	        	<button type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default">비밀번호재설정하기</button>
+	        </div>
+	    </div>
+        <div class="text-center social-btn" style="margin-top: 3px;">
+    		<a href="#" id="google" class="btn btn-danger btn-block"><img class="sns-icon" src="resources/images/google.svg">Sign in with <b>Google</b></a>
+            <a href="#" id="facebook" class="btn btn-primary btn-block"><img class="sns-icon" src="resources/images/facebo.svg">Sign in with <b>Facebook</b></a>
+            <a href="https://kauth.kakao.com/oauth/authorize?client_id=fbe288f80d621d2eb6d941ab8e9617fd&redirect_uri=http://localhost:8090/controller/kakaologin" id="kakao" class="btn btn-warning btn-block"><img class="sns-icon" src="resources/images/kakao.svg">Sign in with <b>Kakao</b></a>
+			<a href="#" id="naver" class="btn btn-success btn-block"><img class="sns-icon" src="resources/images/naver.svg">Sign in with <b>Naver</b></a>
+        </div>
+    </form>  
+    <script type="text/javascript">
+    (function(){
+
+		const ryan = document.querySelector('#ryan');
+		const face = document.querySelectorAll('.ears, .eyes, .muzzle');
+		const email = document.querySelector('input[type="text"]');
+		const password = document.querySelector('input[type="password"]');
+		const fauxInput = document.createElement('div');
+		const span = document.createElement('span');
+		let timer = null;
+		
+		function rotate3d(x, y, z, rad) {
+		    const value = `rotate3d(${x}, ${y}, ${z}, ${rad}rad)`;
+		    for (let i=0; i < face.length; i++) {
+		        face[i].style.transform = value;
+		    }
+		}
+		
+		function focus(event) {
+		    event.target.classList.add('focused');
+		    copyStyles(event.target);
+		    event.target.type === 'password' ? lookAway(event) : look(event);
+		}
+		
+		function reset(event) {
+		    event.target.classList.remove('focused');
+		    ryan.classList.remove('playing');
+		
+		    clearTimeout(timer);
+		    timer = setTimeout(function(){
+		        ryan.classList.remove('look-away', 'down', 'up');
+		        rotate3d(0,0,0,0);
+		    }, 1 );
+		}
+		
+		function copyStyles(el) {
+		    const props = window.getComputedStyle(el, null);
+		
+		    if ( fauxInput.parentNode === document.body ) {
+		        document.body.removeChild(fauxInput);
+		    }
+		
+		    fauxInput.style.visibility = 'hidden';
+		    fauxInput.style.position = 'absolute';
+		    fauxInput.style.top = Math.min(el.offsetHeight * -2, -999) + 'px';
+		
+		    for(let i=0; i < props.length; i++) {
+		        if (['visibility','display','opacity','position','top','left','right','bottom'].indexOf(props[i]) !== -1) {
+		            continue;
+		        }
+		        fauxInput.style[props[i]] = props.getPropertyValue(props[i]);
+		    }
+		
+		    document.body.appendChild(fauxInput);
+		}
+		
+		function look(event) {
+		    const el = event.target;
+		    const text = el.value.substr(0, el.selectionStart);
+		
+		    span.innerText = text || '.';
+		
+		    const ryanRect = ryan.getBoundingClientRect();
+		    const inputRect = el.getBoundingClientRect();
+		    const caretRect = span.getBoundingClientRect();
+		    const caretPos = caretRect.left + Math.min(caretRect.width, inputRect.width) * !!text;
+		    const distCaret = ryanRect.left + ryanRect.width/2 - inputRect.left - caretPos;
+		    const distInput = ryanRect.top + ryanRect.height/2 - inputRect.top;
+		    const y = Math.atan2(-distCaret, Math.abs(distInput)*3);
+		    const x =  Math.atan2(distInput, Math.abs(distInput)*3 / Math.cos(y));
+		    const angle = Math.max(Math.abs(x), Math.abs(y));
+		
+		    rotate3d(x/angle, y/angle, y/angle/2, angle);
+		}
+		
+		function lookAway(event) {
+		    const el = event.target;
+		    const ryanRect = ryan.getBoundingClientRect();
+		    const inputRect = el.getBoundingClientRect();
+		    const distInput = ryanRect.top + ryanRect.height/2 - inputRect.top;
+		
+		    ryan.classList.add( 'look-away', distInput < 0 ? 'up' : 'down' );
+		
+		    clearTimeout(timer);
+		    timer = setTimeout(function(){
+		        ryan.classList.add( 'playing' );
+		    }, 300);
+		}
+		
+		fauxInput.appendChild(span);
+		
+		email.addEventListener( 'focus', focus, false );
+		email.addEventListener( 'keyup', look, false );
+		email.addEventListener( 'click', look, false );
+		email.addEventListener( 'blur', reset, false );
+		
+		password.addEventListener( 'focus', lookAway, false );
+		password.addEventListener( 'blur', reset, false );
+		
+		})();
+    </script>  
+    <!-- 비밀번호 찾기 -->
+     <div class="modal fade" id="remodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+	        <form action="repassword" method="post">
+	          <div class="modal-header">
+	            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	              <span aria-hidden="true">×</span>
+	            </button>
+	            <h5 class="modal-title" id="exampleModalLabel">비밀번호 재설정하기</h5>
+	          </div>
+	          <div class="modal-body">
+	          	<div>
+		         	 <input type="email" class="form-control repassid" name="userId" placeholder="Email" oninput="repasswordcheckid()" id="reuserid" autofocus>
+		          </div>
+	          </div>
+	          <div class="modal-footer">
+	           <button type="submit" class="form-control btn btn-primary repassbtn"
+						id="repassword" disabled="disabled" value="mail send">mail send</button>
+	            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+	          </div>
+	        </form>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+	    var repass = 0;
+		function repasswordcheckid() {
+		    var repassid = $('#reuserid').val();
+		    console.log(repassid);
+		    $.ajax({
+		    	type: "post",
+	 			url:  "repass",
+	 			data: $('#reuserid').val().trim(),
+	 			contentType: "application/json; charset=utf-8",
+	 		    success:function(data){ 
+		        	console.log(data);
+		            if(repassid==""){
+		                $("#repassword").prop("disabled", true);
+		                $("#repassword").css("background-color", "#aaaaaa");
+		                $("#reuserid").css("background-color", "#FFCECE");
+		                repass = 0;
+		            } else if (data == 'true') {
+		                $("#reuserid").css("background-color", "#B0F6AC");
+		                repass = 1;
+		                if(repass==1) {
+		                    $("#repassword").prop("disabled", false);
+		                    $("#repassword").css("background-color", "#4CAF50");
+		                } 
+		            } else if (data == 'false') {
+		                $("#repassword").prop("disabled", true);
+		                $("#repassword").css("background-color", "#aaaaaa");
+		                $("#reuserid").css("background-color", "#FFCECE");
+		                repass = 0;
+		            } 
+		        }
+		    });
+		};
+    </script>
+     <!-- sign up -->
+     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+	        <form action="signup" id="validation" method="post">
+	          <div class="modal-header">
+	            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+	              <span aria-hidden="true">×</span>
+	            </button>
+	            <h5 class="modal-title" id="exampleModalLabel">sign up</h5>
+	          </div>
+	          <div class="modal-body">
+	          	<div>
+					<input type="email" class="form-control id" name="userId"
+						placeholder="Email" oninput="checkId()" id="modalid" autofocus>
+				</div>
+				<div>
+					<input type="password" class="form-control pass" name="password" id="modalpass"
+						placeholder="Password" oninput="checkPwd()">
+				</div>
+				<div>
+					<input type="password" class="form-control pass" name="password2"
+						placeholder="Confirm Password" id="modalpass2" oninput="checkPwd()">
+				</div>
+				<div>
+					<input type="text" class="form-control nickname" name="userName"
+						id="modalnick" placeholder="Your Nickname" oninput="checkNick()"
+						autofocus>
+				</div>
+	          </div>
+	          <div class="modal-footer">
+	            <input type="submit" class="form-control btn btn-primary signupbtn"
+						disabled="disabled" value="sign up"/>
+	            <button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
+	          </div>
+	        </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+			var idCheck = 0;
+			var nickCheck = 0;
+			var pwdCheck = 0;
+			//아이디 체크하여 가입버튼 비활성화, 중복확인.
+			//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
+			function checkId() {
+			    var inputed = $('#modalid').val();
+			    console.log(inputed);
+			    $.ajax({
+			    	type: "post",
+		 			url:  "idcheck",
+		 			data: $('#modalid').val().trim(),
+		 			contentType: "application/json; charset=utf-8",
+		 		    success:function(data){ 
+			        	console.log(data);
+			            if(inputed=="" && data=='true'){
+			                $(".signupbtn").prop("disabled", true);
+			                $(".signupbtn").css("background-color", "#aaaaaa");
+			                $("#modalid").css("background-color", "#FFCECE");
+			                idCheck = 0;
+			            } else if (data == 'false') {
+			                $("#modalid").css("background-color", "#B0F6AC");
+			                idCheck = 1;
+			                if(idCheck==1 && pwdCheck == 1 && nickCheck == 1) {
+			                    $(".signupbtn").prop("disabled", false);
+			                    $(".signupbtn").css("background-color", "#4CAF50");
+			                } 
+			            } else if (data == 'true') {
+			                $(".signupbtn").prop("disabled", true);
+			                $(".signupbtn").css("background-color", "#aaaaaa");
+			                $("#modalid").css("background-color", "#FFCECE");
+			                idCheck = 0;
+			            } 
+			        }
+			    });
+			};
+			//재입력 비밀번호 체크하여 가입버튼 비활성화 또는 맞지않음을 알림.
+		
+			function checkPwd() {
+				var inputed = $('#modalpass').val();
+				var reinputed = $('#modalpass2').val();
+				console.log(inputed);
+				console.log(reinputed);
+				$.ajax({
+					type : "post",
+					url : "passwordcheck",
+					data : $('#modalpass').val().trim(),
+					contentType : "application/json; charset=utf-8",
+					success : function(data) {
+						if (inputed == "" 
+								&& (inputed != reinputed || inputed == reinputed) && data=='true') {
+							$(".signupbtn").prop("disabled", true);
+							$(".signupbtn").css("background-color", "#aaaaaa");
+							$("#modalpass").css("background-color", "#FFCECE");
+							
+						} else if (inputed == reinputed && data=='false') {
+							$("#modalpass").css("background-color", "#B0F6AC");
+							$("#modalpass2").css("background-color", "#B0F6AC");
+							pwdCheck = 1;
+							if (idCheck == 1 && pwdCheck == 1 && nickCheck == 1) {
+								$(".signupbtn").prop("disabled", false);
+								$(".signupbtn").css("background-color", "#4CAF50");
+							}
+						} else if (inputed != reinputed || data=='true') {
+							pwdCheck = 0;
+							$(".signupbtn").prop("disabled", true);
+							$(".signupbtn").css("background-color", "#aaaaaa");
+							$("#modalpass").css("background-color", "#FFCECE");
+							$("#modalpass2").css("background-color", "#FFCECE");
+						}
+					}
+				});
+				$.ajax({
+					type : "post",
+					url : "passwordcheck",
+					data : $('#modalpass2').val().trim(),
+					contentType : "application/json; charset=utf-8",
+					success : function(data) {
+						if (inputed == "" 
+								&& (inputed != reinputed || inputed == reinputed) && data=='true') {
+							$(".signupbtn").prop("disabled", true);
+							$(".signupbtn").css("background-color", "#aaaaaa");
+							$("#modalpass").css("background-color", "#FFCECE");
+							$("#modalpass2").css("background-color", "#FFCECE");
+						} else if (inputed == reinputed && data=='false') {
+							$("#modalpass").css("background-color", "#B0F6AC");
+							$("#modalpass2").css("background-color", "#B0F6AC");
+							pwdCheck = 1;
+							if (idCheck == 1 && pwdCheck == 1 && nickCheck == 1) {
+								$(".signupbtn").prop("disabled", false);
+								$(".signupbtn").css("background-color", "#4CAF50");
+							}
+						} else if (inputed != reinputed || data=='true') {
+							pwdCheck = 0;
+							$(".signupbtn").prop("disabled", true);
+							$(".signupbtn").css("background-color", "#aaaaaa");
+							$("#modalpass").css("background-color", "#FFCECE");
+							$("#modalpass2").css("background-color", "#FFCECE");
+						}
+					}
+				});
+			};
+			//닉네임 입력하지 않았을 경우 가입버튼 비활성화
+		
+			function checkNick() {
+				var nickname = $("#modalnick").val();
+				console.log(nickname);
+				$.ajax({
+					type : "post",
+					url : "nickcheck",
+					data : $('#modalnick').val().trim(),
+					contentType : "application/json; charset=utf-8",
+					success : function(data) {
+		                if(nickname=="" && data=='true') {
+		                    $(".signupbtn").prop("disabled", true);
+		                    $(".signupbtn").css("background-color", "#aaaaaa");
+		                    $("#modalnick").css("background-color", "#FFCECE");
+		                    nickCheck = 0;
+		                } else if (data == 'false') {
+		                    $("#modalnick").css("background-color", "#B0F6AC");
+		                    nickCheck = 1;
+		                    if(nickCheck ==1 && pwdCheck == 1) {
+		                        $(".signupbtn").prop("disabled", false);
+		                        $(".signupbtn").css("background-color", "#4CAF50");
+		                    } 
+		                } else if (data == 'true') {
+		                    $(".signupbtn").prop("disabled", true);
+		                    $(".signupbtn").css("background-color", "#aaaaaa");
+		                    $("#modalnick").css("background-color", "#FFCECE");
+		                    nickCheck = 0;
+		                } 
+		            }
+		        });
+		
+			};
+			/*캔슬버튼 눌렀을 눌렀을시 인풋박스 클리어
+			$(".cancelbtn").click(function(){
+			        $(".id").val(null);
+			        $(".pass").val('');
+			        $(".signupbtn").prop("disabled", true);
+			        $(".signupbtn").css("background-color", "#aaaaaa");
+			});*/
+		
+			$(function() {
+				error(); //error 설정한 것 실행
+				// validation
+				$.validator.addMethod("regx", function(value, element, regexpr) {
+					return regexpr.test(value);
+				});
+		
+				$('#validation').validate({
+					rules : {
+						userId : {
+							required : true,
+							email : true,
+						},
+						userName : {
+							required : true,
+							rangelength : [ 3, 10 ],
+							regx : /^[a-z|0-9|A-Z|ㄱ-ㅎ|가-힣]+$/
+						},
+						password : {
+							required : true,
+							rangelength : [ 3, 10 ],
+							regx : /^[a-z|0-9]+$/
+						},
+						password2 : {
+							required : true,
+							rangelength : [ 3, 10 ],
+							equalTo : '#modalpass'
+						},
+		
+					},
+					messages : {
+						userId : {
+							required : "아이디를 입력해주세요.",
+							email : "아이디는 이메일 형식입니다."
+						},
+						userName : {
+							required : "닉네임을 입력해주세요.",
+							rangelength : $.validator.format("닉네임 글자수는 3~10자까지 입니다."),
+							regx : "특수문자는 사용할 수 없습니다."
+						},
+						password : {
+							required : "비밀번호를 입력해주세요.",
+							rangelength : $.validator.format("암호의 글자수는 3~20자까지 입니다."),
+							regx : "암호는 영문자와 숫자만 가능합니다.!!!"
+						},
+						password2 : {
+							required : "비밀번호 확인을 해주세요.",
+							rangelength : $.validator.format("암호의 글자수는 3~20자까지 입니다."),
+							equalTo : "비밀번호가 일치하지않습니다."
+						}
+		
+					}
+				});
+				
+			});
+			//get method를 javascript에서 사용하기 위해 만들기
+			function Request(){
+					 var requestParam ="";
+					 
+					 //getParameter 펑션
+					  this.getParameter = function(param){
+					  //현재 주소를 decoding
+					  var url = unescape(location.href); 
+					  //파라미터만 자르고, 다시 &그분자를 잘라서 배열에 넣는다. 
+					   var paramArr = (url.substring(url.indexOf("?")+1,url.length)).split("&"); 
+					 
+					   for(var i = 0 ; i < paramArr.length ; i++){
+					     var temp = paramArr[i].split("="); //파라미터 변수명을 담음
+					 
+					     if(temp[0].toUpperCase() == param.toUpperCase()){
+					       // 변수명과 일치할 경우 데이터 삽입
+					       requestParam = paramArr[i].split("=")[1]; 
+					       break;
+					     }
+					   }
+					   return requestParam;
+					 }
+			};
+			//로그인 실패시 alert 띄우기
+		    function error(){
+		    	var request = new Request();
+				var error = request.getParameter("error");
+				if(error == '103'){
+					alert("이메일 인증을 해주세요")
+				}else if(error == '108'){
+					alert("아이디와 비밀번호를 확인해주세요")
+				}
+		 
+		    };
+		</script>
+</body>
+</html>

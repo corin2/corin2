@@ -14,6 +14,7 @@ public class CardDTO {
 	private int listNum;
 	private String cardName;
 	private String cardContent;
+	private int cardTaxis;
 	private int isDeleted;
 	
 	public CardDTO() {}
@@ -66,6 +67,14 @@ public class CardDTO {
 		this.cardContent = cardContent;
 	}
 
+	public int getCardTaxis() {
+		return cardTaxis;
+	}
+
+	public void setCardTaxis(int cardTaxis) {
+		this.cardTaxis = cardTaxis;
+	}
+
 	public int getIsDeleted() {
 		return isDeleted;
 	}
@@ -73,6 +82,5 @@ public class CardDTO {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	
-	
+
 }

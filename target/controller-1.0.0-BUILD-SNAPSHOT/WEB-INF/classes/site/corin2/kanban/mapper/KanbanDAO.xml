@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.kanban.dao.KanbanDAO">
+		<!-- 카드추가 -->
+		<insert id="cardInsert" parameterType="site.corin2.kanban.dto.CardDTO">
+			<selectKey order="BEFORE" keyProperty="cardTaxis" resultType="int">
+		  		select IFNULL(MAX(cardtaxis), 0)+1 from card where projectnum=#{projectNum} and listnum=1
+		  	</selectKey>
+			insert into 
+			card(projectnum, userid, listnum, cardname, cardcontent, cardtaxis, isdeleted) 
+			values(#{projectNum}, null, 1, #{cardName}, null, #{cardTaxis}, 0)
+		</insert>
+		
+		<!-- 카드수정 -->
+		<update id="cardUpdate">
+			update card set	cardname = #{cardName}, cardcontent = #{cardContent} where cardnum = #{cardNum}
+		</update>
+		
+		<!-- 카드삭제 -->
+		<update id="cardDelete">
+			update card set	cardtaxis = 0, isdeleted = 1
+			where cardnum = #{cardNum}
+		</update>
+		
+		<!-- 카드삭제시 순번 변경 -->
+		<update id="cardDeleteTaxis">
+			update card set cardtaxis = cardtaxis - 1
+			where projectnum = (select * from (select projectnum from card where cardnum = #{cardNum}) dummyname)
+			and listnum = (select * from (select listnum from card where cardnum = #{cardNum}) dummyname)
+			and cardtaxis > (select * from (select cardtaxis from card where cardnum = #{cardNum}) dummyname)
+			<choose>
+				<when test="userId == null">
+					and userid is null
+				</when>
+				<otherwise>
+					and userid = #{userId}
+				</otherwise>
+			</choose>
+		</update>
+		
+		<!-- 카드전체조회 -->
+		<select id="cardAllSelect" resultType="site.corin2.kanban.dto.CardDTO">
+			select * from card
+			where projectnum = #{projectNum} and isdeleted = 0 order by listnum, cardtaxis, userid
+		</select>
+		
+		<!-- 카드조회 -->
+		<select id="cardSelect"  resultType="site.corin2.kanban.dto.CardDTO">
+			select * from card
+			where cardnum = #{cardNum}
+		</select>
+		
+		<!-- 모든리스트조회 -->
+		<select id="listAllSelect" resultType="site.corin2.kanban.dto.ListDTO">
+			select * from list order by listnum ASC
+		</select>
+		
+		<!-- 카드 순서 변경 -->
+		<update id="cardTaxisUpdate">
+			update card
+			set listnum = #{listNum}, cardtaxis = #{cardTaxis}
+			<choose>
+				<when test="userId == null">
+					, userid = null
+				</when>
+				<otherwise>
+					, userid = #{userId}
+				</otherwise>
+			</choose>
+			where cardnum = #{cardNum}
+		</update>
+	</mapper>

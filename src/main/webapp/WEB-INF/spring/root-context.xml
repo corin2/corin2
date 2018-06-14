@@ -1,8 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- DB연결 설정 -->
+	<bean id="driverManagerDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+ 		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+ 		<property name="url" value="jdbc:mariadb://192.168.0.28:3306/corin2" />
+ 		<property name="username" value="corin2" />
+ 		<property name="password" value="1004" />
+ 	</bean>
+ 	
+ 	<!-- SqlSession 설정 -->
+	<!-- Mybatis 설정  -->
+ 	<bean id="sqlSessionFactoryBean"  class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<property name="dataSource" ref="driverManagerDataSource"></property>
+    	<property name="mapperLocations" value="classpath*:site/corin2/*/mapper/*xml" />
+    	<property name="transactionFactory">
+			<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
+		</property>
+	</bean> 
+
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+  		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
+	</bean>
+	
+	<!-- 비밀번호 비문 -->
+	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<!-- <constructor-arg name="strength" value="20"></constructor-arg> -->
+	</bean>
+    
+	<!-- jsonview 설정 -->
+	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+	
+	<!-- transation start -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="driverManagerDataSource" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+	<!-- transaction end -->
+	
+	<!-- 메일보내기 -->
+   <bean id="mailSender" class = "org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="corin2site@gmail.com" />
+		<property name="password" value="corin2.site" />
 		
+		<property name="javaMailProperties">
+		   <props>
+		         <prop key="mail.transport.protocol">smtp</prop>
+		         <prop key="mail.smtp.auth">true</prop>
+		         <prop key="mail.smtp.starttls.enable">true</prop>
+		         <prop key="mail.debug">true</prop>
+		   </props>
+		</property>
+	</bean>
 </beans>

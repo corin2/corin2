@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.kanban.dao.CheckListDAO">
+		
+		<!-- 체크리스트추가 -->
+		<insert id="checkListInsert">
+			insert into cardchecklist
+			(skillnum, cardnum, checkcontent, ischecked, isdeleted)
+			values('S400', #{cardNum}, #{checkContent}, 0, 0)
+		</insert>
+		
+		<!-- 체크리스트전체조회 -->
+		<select id="checkListSelect" resultType="site.corin2.kanban.dto.CardCheckListDTO">
+			select * from cardchecklist
+			where cardnum = #{cardNum} and isdeleted = 0 order by checknum
+		</select>
+		
+		<!-- 체크리스트 수정 -->
+		<update id="checkListUpdate">
+			update cardchecklist set ischecked=#{isChecked}, checkcontent=#{checkContent}
+			where checknum=#{checkNum}
+		</update>
+		
+		<!-- 체크리스트삭제 -->
+		<update id="checkListDelete">
+			update cardchecklist set isdeleted=1
+			where checknum=#{checkNum}
+		</update>
+	</mapper>
+		
