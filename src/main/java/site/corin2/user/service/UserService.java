@@ -60,10 +60,10 @@ public class UserService {
 				message.setText("<a href='http://localhost:8090/controller/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
 				message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
 				javamailsender.send(message);
-				viewpage = "redirect:login.html";
+				viewpage = "user.insertsuccess";
 			} else {
 				System.out.println("삽입 실패");
-				viewpage = "signup";
+				viewpage = "user.insertfail";
 			}
 		} catch (Exception e) {
 			
@@ -180,7 +180,6 @@ public class UserService {
 			System.out.println("노 중복");
 			check = "false";
 		}
-		
 		return check;
 	}
 	
@@ -276,10 +275,28 @@ public class UserService {
 		
 	}
 
-	
 	//kakao login
 	public UserDTO KakaoLogin(UserDTO userdto) {
-		
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		int result = 0;
+		String viewpage = "";
+		try {
+			userdto.setPassword("kakaologin");
+			userdto.setUserProfile(userdto.getUserProfile());
+			userdto.setEnabled(1);
+			result = userdao.oauthinsert(userdto);
+			if (result > 0) {
+				System.out.println("삽입 성공");
+				viewpage = "user.content";
+			} else {
+				System.out.println("삽입 실패");
+				viewpage = "login.html";
+			}
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 }

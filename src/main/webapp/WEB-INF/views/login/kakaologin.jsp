@@ -7,9 +7,8 @@
 </head>
 <body>
  ${refresh}
-
 	 <script>
-		self.location = '/';
+		self.location = 'user.content';
 	</script>
 </body>
 

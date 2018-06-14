@@ -23,7 +23,7 @@
 	<div class="container">
 		<h1>Welcome! ${pageContext.request.userPrincipal.name}! This is
 			Login Success Page :)</h1>
-		<a href="./login" style="color: red">
+		<a href="login" style="color: red">
 			${pageContext.request.userPrincipal.name} ·Î±×¾Æ¿ô</a>
 	</div>
 </body>

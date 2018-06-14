@@ -47,7 +47,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
-
+	
 	//회원가입 기능 실행
 	@RequestMapping(value="signup",method=RequestMethod.POST)
 	public String userInsert(UserDTO userdto) {
@@ -77,6 +77,7 @@ public class UserController {
 		String viewpage = service.repassword(userdto);
 		return viewpage;
 	}	
+	
 	//아이디 중복확인
 	@RequestMapping(value = "idcheck", method = RequestMethod.POST)
 	public @ResponseBody String idCheck(@RequestBody String userid) {
@@ -102,6 +103,7 @@ public class UserController {
 	@RequestMapping(value="userupdate" , method=RequestMethod.GET)
 	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
 		UserDTO userdto = service.userUpdate(principal.getName());
+		System.out.println(principal.getName());
 		model.addAttribute("userdto", userdto);
 		return "user.update";
 	}
@@ -123,21 +125,22 @@ public class UserController {
 	}
 	
 	//kakao Oauth
-	@RequestMapping(value = "/kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
-
+	  System.out.println("kakao login 들어오니");
 	  JsonNode token = KakaoLogin.getAccessToken(code);
 
 	  JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
 	  System.out.println(profile);
 	  UserDTO userdto = KakaoLogin.changeData(profile);
-
-	  System.out.println(session);
-	  session.setAttribute("login", userdto);
-	  System.out.println(userdto.toString());
-
-	  userdto = service.KakaoLogin(userdto);  
-	  return "login/kakaoLogin";
+	  String check = service.idCheck(userdto.getUserId());
+	  System.out.println(check);
+	  if(check=="false") {
+		  service.KakaoLogin(userdto);
+	  }
+	  System.out.println(userdto.getUserId());
+	  System.out.println(userdto.getUserName());
+	  return "user.content";
 	}
 	
 	//ex페이지

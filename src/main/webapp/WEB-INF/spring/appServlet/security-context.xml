@@ -19,9 +19,9 @@
 	  					   always-use-default-target="true"
 	  					   authentication-failure-handler-ref="loginFailureHandler"
 	  					   />
-	  <security:logout logout-success-url="/index.htm" />
-	  <security:intercept-url pattern="/memberupdate.htm" access="ROLE_USER"/>
-	  <security:intercept-url pattern="/admin.htm" access="ROLE_ADMIN"/>
+	  <security:logout logout-success-url="/index" />
+	  <security:intercept-url pattern="/memberupdate" access="ROLE_USER"/>
+	  <security:intercept-url pattern="/admin" access="ROLE_ADMIN"/>
 	  <security:access-denied-handler ref="permissionEvaluator" />
 	</security:http>
 	
