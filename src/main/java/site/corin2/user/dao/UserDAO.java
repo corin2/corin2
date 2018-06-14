@@ -1,6 +1,7 @@
 package site.corin2.user.dao;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import site.corin2.user.dto.UserDTO;
 
@@ -24,4 +25,7 @@ public interface UserDAO {
 	
 	//이메일 인증 후
 	public int userAuth(UserDTO userDTO) throws ClassNotFoundException, SQLException;
+	
+	//모든 유저 조회
+	public List<UserDTO> allUserSelect();
 }

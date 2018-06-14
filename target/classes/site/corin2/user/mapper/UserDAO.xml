@@ -34,4 +34,8 @@
 		select count(*) from user where userid = #{userId}
 	</select>
 	
+	<select id="allUserSelect" resultType="site.corin2.user.dto.UserDTO">
+		select * from user
+	</select>
+	
 </mapper>

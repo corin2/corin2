@@ -31,6 +31,7 @@ public class TeamController {
 	@Autowired
 	private View jsonview;
 	
+	//해당 프로젝트에 모든 멤버 조회
 	@RequestMapping("/showMember")
 	public View showMember(@RequestParam("projectNum") String projectNum, Model model) {
 		List<TeamDTO> teamMembers = service.allTeamMemberSelect(Integer.parseInt(projectNum));
@@ -38,6 +39,7 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	//해당 프로젝트의 모든 멤버의 유저DTO 조회
 	@RequestMapping("/showMemberUserProfile")
 	public View showMemberUserProfile(@RequestParam("projectNum") String projectNum, Model model) {
 		List<UserDTO> teamMembers = service.allTeamMemberProfileSelect(Integer.parseInt(projectNum));
@@ -45,6 +47,7 @@ public class TeamController {
 		return jsonview;
 	}
 	
+	//송신아이디가 받은 모든 초대 메시지의 projectDTO를 조회한다.
 	@RequestMapping("/showMsg")
 	public View showMsg(@RequestParam("receptionId") String receptionId, Model model) {
 		List<ProjectDTO> inviteMsgs = service.allInviteMsgSelect(receptionId);

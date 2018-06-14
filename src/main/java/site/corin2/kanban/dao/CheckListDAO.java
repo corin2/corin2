@@ -14,32 +14,17 @@ import site.corin2.kanban.dto.CardCheckListDTO;
 
 
 public interface CheckListDAO {
-	/**
-	 날      짜 : 2018. 6. 5.
-	 기      능 : 카드체크리스트 추가 
-	 작성자명 : 김 진 원
-	*/
+	
+	//카드체크리스트 추가 
 	public int checkListInsert(CardCheckListDTO checkList);
 	
-	/**
-	 날      짜 : 2018. 6. 5.
-	 기      능 : 체크리스트 조건검색 (체크넘버와 기능넘버로 체크리스트를 찾는다)
-	 작성자명 : 김 진 원
-	*/
+	//체크리스트 조건검색 (체크넘버와 기능넘버로 체크리스트를 찾는다)
 	public List<CardCheckListDTO> checkListSelect(CardCheckListDTO checkList);
 	
-	/**
-	 날      짜 : 2018. 6. 5.
-	 기      능 : 체크리스트 수정 
-	 작성자명 : 김 진 원
-	*/
+	//체크리스트 수정 
 	public void checkListUpdate(CardCheckListDTO checkList);
 	
-	/**
-	 날      짜 : 2018. 6. 5.
-	 기      능 : 체크리스트 조건검색 (체크넘버와 기능넘버로 체크리스트를 찾아서 삭제여부를 0으로 Update 한다.)
-	 작성자명 : 김 진 원
-	*/
+	//체크리스트 조건검색 (체크넘버와 기능넘버로 체크리스트를 찾아서 삭제여부를 0으로 Update 한다.)
 	public int checkListDelete(CardCheckListDTO checkList);
 	
 	

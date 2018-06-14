@@ -1,6 +1,6 @@
 /**
     파일명: KanbanController.java
-    설   명: 
+    설   명: 칸반에 사용하는 컨트롤러
     작성일: 2018. 6. 5.
     작성자: 최 재 욱
 */
@@ -28,12 +28,14 @@ public class KanbanController {
 	@Autowired
 	private KanbanService service;
 
+	//칸반으로 보내준다.
 	@RequestMapping("/kanban")
 	public String newFile(@RequestParam("projectNum") String projectNum, Model model) {
 		model.addAttribute("projectNum", projectNum);
 		return "kanban.kanban";
 	}
 	
+	//카드를 생성한다.
 	@RequestMapping("/cardInsert")
 	public View cardInsertView(CardDTO card, Model model) {
 		int result = service.cardInsert(card);
@@ -41,6 +43,7 @@ public class KanbanController {
 		return jsonview;
 	}
 
+	//카드를 조회한다.
 	@RequestMapping("/cardSelect")
 	public View cardSelectView(CardDTO card, Model model) {
 		CardDTO dto=null;
@@ -51,6 +54,7 @@ public class KanbanController {
 		return jsonview;
 	}
 	
+	//카드를 수정한다.
 	@RequestMapping("/cardUpdate")
 	public View cardUpdateView(CardDTO card, Model model) {
 		int result = 0;
@@ -60,6 +64,7 @@ public class KanbanController {
 		return jsonview;
 	}
 	
+	//모든 리스트를 조회한다.
 	@RequestMapping("/showList")
 	public View showList(Model model) {
 		List<ListDTO> lists = service.listAllSelect();
@@ -67,6 +72,7 @@ public class KanbanController {
 		return jsonview;
 	}
 	
+	//모든 카드를 조회한다.
 	@RequestMapping("/showCard")
 	public View showCard(@RequestParam("projectNum") String projectNum, Model model) {
 		List<CardDTO> cards = service.cardAllSelect(Integer.parseInt(projectNum));
@@ -74,6 +80,7 @@ public class KanbanController {
 		return jsonview;
 	}
 	
+	//카드를 삭제한다.
 	@RequestMapping("/cardDelete")
 	public View deleteCard(String cardNum, Model model) {
 		int card = Integer.parseInt(cardNum);
@@ -83,6 +90,7 @@ public class KanbanController {
 		return jsonview;
 	}
 	
+	//카드 제목을 변경한다.
 	@RequestMapping("/cardTitleUpdate")
 	public View updateCardTitle(CardDTO card, Model model) {
 		int result = 0;
@@ -91,6 +99,7 @@ public class KanbanController {
 		return jsonview;
 	}
 	
+	//카드의 순서를 변경한다.
 	@RequestMapping("/cardTaxisUpdate")
 	public View cardTaxisUpdate(String listNum, String userId, String cardTaxis) {
 		service.cardTaxisUpdate(listNum.split("listnum")[1], userId, cardTaxis);

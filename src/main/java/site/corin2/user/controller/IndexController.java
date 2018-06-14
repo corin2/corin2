@@ -8,6 +8,6 @@ public class IndexController {
 	@RequestMapping("/index.htm")
 	public String index() {
 		//return "index.jsp"; 기존 방법(resolver없이)
-		return "login";
+		return "login.html";
 	}
 }

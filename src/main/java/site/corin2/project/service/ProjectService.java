@@ -20,6 +20,7 @@ public class ProjectService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//해당 프로젝트의 대한 DTO 조회
 	public ProjectDTO projectSelect(int projectNum){
 		ProjectDAO projectDAO = sqlSession.getMapper(ProjectDAO.class);
 		ProjectDTO project = null;

@@ -2,6 +2,7 @@ $(function(){
 	showMsg();
 });
 
+//메시지가 존재하는지 알람~
 function existMsg(){
 	if($('#inviteMsg').children('li').length > 0) {
 		var content = '<span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span>';
@@ -9,6 +10,7 @@ function existMsg(){
 	}
 }
 
+//모든 메시지를 보여준다
 function showMsg(){
 	$.ajax({
 		type : "post",
@@ -67,14 +69,67 @@ function msgreject(projectNum){
 //오토컴플릿
 function autoComplete() {
 	 $.ajax({
- 		url : "autoComplete",
+ 		url : "allUser",
  		datatype : "JSON",
  		success : function (data) {
+ 			var id = [];
+ 			$.each(data.data, function(i, elt) {
+ 				id.push(elt.userId)
+ 			});
 			$('#emailSearch').autocomplete({
-				 source: data.data,
+				 source: id,
 				 appendTo: "#friend",
 				 minLength: 2
 			});
 		}
 	})
+}
+
+//초대아이디 체크하기
+function memberinvite() {
+	$.ajax({
+		url : "idcheck",
+		type: "post",
+		data : $("#emailSearch").val().trim(),
+		contentType: "application/json; charset=utf-8",
+		success : function (data) {
+			console.log(data)
+			if(data.trim() === 'true') isInviteMsg();
+			else alert('없는 회원입니다');
+		}
+	})
+}
+
+//팀에 속해있는지&메세지가 있는지 체크
+function isInviteMsg(){
+	$.ajax({
+		url :"isTeamAndisMsg",
+		data : {
+				projectNum : $('#hiddenProjectNum').val(),
+				receptionId : $("#emailSearch").val().trim()
+			   },
+		success : function(data) {
+			if(data.data == '0') inviteMsg();
+			else alert('이미 프로젝트에 참여하고 있거나 \n해당프로젝트의 메시지가 이미 회원에게 있습니다.');
+		}
+	});
+}
+
+//초대메세지 보내기
+function inviteMsg(){
+	$.ajax({
+		url :"inviteMsg",
+		data : {
+				projectNum : $('#hiddenProjectNum').val(),
+				receptionId : $("#emailSearch").val().trim(),
+				sendId : $('#hiddenUserId').val()
+			   },
+		success : function(datas) {
+			alert('초대메시지 발송이 완료되었습니다');
+		}
+	});
+}
+
+function notHideAuto(e) {
+	e.stopPropagation()
 }

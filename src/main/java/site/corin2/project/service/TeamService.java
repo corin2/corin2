@@ -26,6 +26,7 @@ public class TeamService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//해당 프로젝트에 모든 멤버 조회
 	public List<TeamDTO> allTeamMemberSelect(int projectNum){
 		TeamDAO teamDAO = sqlSession.getMapper(TeamDAO.class);
 		List<TeamDTO> teamMembers = null;
@@ -38,6 +39,7 @@ public class TeamService {
 		return teamMembers;
 	}
 	
+	//해당 프로젝트의 모든 멤버의 유저DTO 조회
 	public List<UserDTO> allTeamMemberProfileSelect(int projectNum){
 		TeamDAO teamDAO = sqlSession.getMapper(TeamDAO.class);
 		List<UserDTO> teamMemberProfiles = null;
@@ -50,6 +52,7 @@ public class TeamService {
 		return teamMemberProfiles;
 	}
 	
+	//송신아이디가 받은 모든 초대 메시지의 projectDTO를 조회한다.
 	public List<ProjectDTO> allInviteMsgSelect(String receptionId){
 		MsgDAO msgDAO = sqlSession.getMapper(MsgDAO.class);
 		List<ProjectDTO> inviteMsgs = null;

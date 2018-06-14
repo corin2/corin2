@@ -11,11 +11,7 @@ import site.corin2.project.dto.ProjectDTO;
 
 public interface ProjectDAO {
 	
-	/**
-	 날      짜 : 2018. 6. 6.
-	 기      능 : 프로젝트 하나 검색
-	 작성자명 : 김 진 원
-	*/
+	//프로젝트 하나 검색
 	public ProjectDTO projectSelect(int projectNum);
 	
 }
