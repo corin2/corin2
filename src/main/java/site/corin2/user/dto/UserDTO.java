@@ -16,7 +16,7 @@ public class UserDTO {
 	private String joinDate;
 	private String gradeNum;
 	private int isDeleted;
-
+	
 	public UserDTO() {}
 
 	public String getUserId() {

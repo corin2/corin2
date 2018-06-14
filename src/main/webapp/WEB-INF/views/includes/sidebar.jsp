@@ -48,7 +48,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="fileUpload">
             <i class="glyphicon glyphicon-file"></i>
             Files
         </a>
@@ -66,7 +66,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="boardList">
             <i class="glyphicon glyphicon-bullhorn"></i>
             Notices
         </a>

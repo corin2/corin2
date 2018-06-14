@@ -13,6 +13,8 @@
        http://www.springframework.org/schema/websocket
        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
 	<context:component-scan base-package="site.corin2.controller" />
