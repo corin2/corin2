@@ -25,6 +25,7 @@ function addProject() {
 		alert("주언어를 체크해주세요")
 	}
 }
+//프로젝트넘필요
 function projectProjectNum(projectName) {
 	$.ajax({
 		url:"selectProjectNum",
@@ -36,7 +37,7 @@ function projectProjectNum(projectName) {
 		}
 	})
 }
-
+//팀 생성함수
 function insertTeamProject(projectNum) {
 	$.ajax({
 		url:"projectTeamInsert",
@@ -68,7 +69,7 @@ function projectView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
 							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty'></span><br>"
+							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -87,6 +88,45 @@ function projectView(projectArray) {
 			});
 			projectcnt=0;
 			$("#projectbox").html(html);
+		}
+	})
+}
+
+//프로젝트 북마크 뿌려주기
+function projectBookView(projectArray) {
+	$.ajax({
+		url:"projectBookList",
+		datatype : "JSON",
+		data:{userId:$("#HiddenUserId").val()},
+		success:function(data){
+			var html ="";
+			$("#bookmarkbox").empty();
+			console.log("44")
+			$.each(data.list, function (index, elt) {
+				$.each(projectArray[0], function(i, elt2) {
+					console.log(elt.gradeNum);
+					if(elt.languageNum == elt2.languageNum){
+						html +=	"<div style='float:left;'>"
+							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
+							if(elt.gradeNum=='G300'){
+							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
+							}
+						html+= "<input id='hiddenLanguageNum"+elt.projectNum+"' type='hidden' value='"+elt.languageNum+"'>"
+							+ "<input id='hiddenProjectName"+elt.projectNum+"' type='hidden' value='"+elt.projectName+"'>"
+							+ "</p>"
+							+ "</div>";
+						return false;
+					}
+				});
+				projectcnt++;
+				if(projectcnt == 6){
+					html += '<br>';
+					projectcnt = 0;
+				}
+			});
+			projectcnt=0;
+			$("#bookmarkbox").html(html);
 		}
 	})
 }
@@ -116,6 +156,7 @@ function languageColorView() {
 		success:function(data){
 			projectArray.push(data.list);
 			projectView(projectArray);
+			projectBookView(projectArray);
 		}
 	})
 }
@@ -195,6 +236,34 @@ function deleteProject(projectNum) {
 			languageColorView();
 		}
 		
+	})
+}
+
+//프로젝트 즐겨찾기 등록
+function updateProjectBookmark(projectNum) {
+	console.log("들어왔니????")
+	$.ajax({
+		url:"projectBookmarkUpdate",
+		datatype: "JSON",
+		data:{projectNum:projectNum},
+		success:function(data){
+			console.log("즐겨찾기추가")
+			languageColorView();
+		}
+	})
+}
+
+//프로젝트 즐겨찾기 해제
+function updateProjectNoneBookmark(projectNum) {
+	console.log("들어왔니????")
+	$.ajax({
+		url:"projectNoneBookmarkUpdate",
+		datatype: "JSON",
+		data:{projectNum:projectNum},
+		success:function(data){
+			console.log("즐겨찾기추가")
+			languageColorView();
+		}
 	})
 }
 

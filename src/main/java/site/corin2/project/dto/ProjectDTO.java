@@ -14,7 +14,16 @@ public class ProjectDTO {
 	private String projectDate;
 	private int isDeleted;
 	private String gradeNum;
+	private String bookMark;
 	
+	public String getBookMark() {
+		return bookMark;
+	}
+
+	public void setBookMark(String bookMark) {
+		this.bookMark = bookMark;
+	}
+
 	public String getGradeNum() {
 		return gradeNum;
 	}

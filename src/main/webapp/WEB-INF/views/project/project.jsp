@@ -19,6 +19,9 @@
 		<div id="bookmark">
 		<h1>즐겨찾기</h1>
 		<hr>
+		<div id="bookmarkbox">
+		</div>
+		<hr>
 		</div>
 </nav>
 

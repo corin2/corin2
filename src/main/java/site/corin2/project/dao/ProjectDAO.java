@@ -14,23 +14,27 @@ import site.corin2.user.dto.UserDTO;
 
 public interface ProjectDAO {
 	
-	/**
-	  날      짜 : 2018. 6. 11.
-	  기      능 : 프로젝트 추가
-	  작성자명 : 최 재 욱
-	 */
+	//프로젝트 추가
 	public int projectInsert(ProjectDTO project);
 	
-	/**
-	  날      짜 : 2018. 6. 12.
-	  기      능 : 프로젝트 전체 리스트 보기 
-	  작성자명 : 최 재 욱
-	 */
+	//프로젝트 리스트보기
 	public List<ProjectDTO> projectAllList(UserDTO user);
 	
+	//프로젝트 선택보기
 	public List<ProjectDTO> selectProject(ProjectDTO project);
 	
+	//프로젝트 수정
 	public int languageUpdate(ProjectDTO project);
 	
+	//프로젝트 삭제
 	public int projectDelete(ProjectDTO project);
+	
+	//즐겨찾기에 등록된 프로젝트보기
+	public List<ProjectDTO> projectBookList(UserDTO user);
+	
+	//프로젝트 즐겨찾기 등록
+	public int projectBookmarkUpdate(ProjectDTO project);
+	
+	//프로젝트 즐겨찾기 해제
+	public int projectNoneBookmarkUpdate(ProjectDTO project);
 }

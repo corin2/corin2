@@ -24,6 +24,7 @@ public class ProjectService {
 	@Autowired
 	private SqlSession sqlSession;
 	
+	//프로젝트 생성
 	public int projectInsert(ProjectDTO project) {
 		int result =0;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
@@ -32,6 +33,7 @@ public class ProjectService {
 		return result;
 	}
 	
+	//프로젝트 전체 리스트보기
 	public List<ProjectDTO> projectAllList(UserDTO user){
 		List<ProjectDTO> list = null;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
@@ -39,6 +41,15 @@ public class ProjectService {
 		return list;
 	}
 	
+	//프로젝트 즐겨찾기 리스트보기
+	public List<ProjectDTO> projectBookList(UserDTO user){
+		List<ProjectDTO> list = null;
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		list = dao.projectBookList(user);
+		return list;
+	}
+	
+	//프로젝트 주언어 색 확인하는 리스트보기
 	public List<LanguageDTO> languageColorAllList(){
 		List<LanguageDTO> list = null;
 		LanguageDAO dao = sqlSession.getMapper(LanguageDAO.class);
@@ -46,6 +57,7 @@ public class ProjectService {
 		return list;
 	}
 	
+	//프로젝트 선택시 프로젝트 보기
 	public List<ProjectDTO> selectProject(ProjectDTO project) {
 		List<ProjectDTO> list = null;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
@@ -53,6 +65,7 @@ public class ProjectService {
 		return list;
 	}
 	
+	//주언어 수정
 	public int updateLanguage(ProjectDTO project) {
 		int result = 0;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
@@ -60,10 +73,27 @@ public class ProjectService {
 		return result;
 	}
 	
+	//프로젝트 삭제
 	public int deleteProject(ProjectDTO project) {
 		int result = 0;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
 		result = dao.projectDelete(project);
+		return result;
+	}
+	
+	//프로젝트 즐겨찾기 추가
+	public int projectBookmarkUpdate(ProjectDTO project) {
+		int result = 0;
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		result = dao.projectBookmarkUpdate(project);
+		return result;
+	}
+	
+	//프로젝트 즐겨찾기 삭제
+	public int projectNoneBookmarkUpdate(ProjectDTO project) {
+		int result = 0;
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		result = dao.projectNoneBookmarkUpdate(project);
 		return result;
 	}
 }

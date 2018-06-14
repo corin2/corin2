@@ -35,6 +35,7 @@ public class ProjectController {
 		return "project.project";
 	}
 	
+	//프로젝트 생성
 	@RequestMapping("/projectInsert")
 	public View projectInsertView(ProjectDTO project, Model model) {
 		int result = service.projectInsert(project);
@@ -42,6 +43,7 @@ public class ProjectController {
 		
 	}
 	
+	//프로젝트 전체 리스트보기
 	@RequestMapping("/projectAllList")
 	public View projectAllSelectView(UserDTO user, Model model) {
 		List<ProjectDTO> list = null;
@@ -50,6 +52,16 @@ public class ProjectController {
 		return jsonview;
 	}
 	
+	//즐겨찾기 리스트 보기
+	@RequestMapping("/projectBookList")
+	public View projectBookSelectView(UserDTO user, Model model) {
+		List<ProjectDTO> list = null;
+		list = service.projectBookList(user);
+		model.addAttribute("list",list);
+		return jsonview;
+	}
+	
+	//프로젝트 언어 색상 보기
 	@RequestMapping("/languageColorAllList")
 	public View languageColorAllListView(Model model) {
 		List<LanguageDTO> list = null;
@@ -58,6 +70,7 @@ public class ProjectController {
 		return jsonview;
 	}
 	
+	//프로젝트 넘버 확인
 	@RequestMapping("/selectProjectNum")
 	public View selectProjectNumView(ProjectDTO project, Model model) {
 		System.out.println("들어왔니::" + project.getProjectName());
@@ -70,6 +83,7 @@ public class ProjectController {
 		return jsonview;
 	}
 	
+	//프로젝트 언어 수정
 	@RequestMapping("/languageUpdate")
 	public View languageUpdateView(ProjectDTO project, Model model) {
 		int result = 0;
@@ -77,10 +91,27 @@ public class ProjectController {
 		return jsonview;
 	}
 	
+	//프로젝트 삭제
 	@RequestMapping("/projectDelete")
 	public View deleteProjectView(ProjectDTO project, Model model) {
 		int result = 0;
 		result = service.deleteProject(project);
+		return jsonview;
+	}
+	
+	//프로젝트 즐겨찾기 추가
+	@RequestMapping("/projectBookmarkUpdate")
+	public View updateBookmarkProjectView(ProjectDTO project, Model model) {
+		int result = 0;
+		result = service.projectBookmarkUpdate(project);
+		return jsonview;
+	}
+	
+	//프로젝트 즐겨찾기 해제
+	@RequestMapping("/projectNoneBookmarkUpdate")
+	public View projectNoneBookmarkUpdateView(ProjectDTO project, Model model) {
+		int result = 0;
+		result = service.projectNoneBookmarkUpdate(project);
 		return jsonview;
 	}
 }
