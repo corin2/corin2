@@ -51,15 +51,25 @@ $(function() {
 					teamUser.key = snapshot.key;
 					if(prop == teamUser.key) {
 						$('#userList').append("<div id=" + teamUser.key + ">" + "<h3>" + teamUser.username + "</h3>" + "</div>");
+						
+						// 사용자 클릭 시
 						$('#' + teamUser.key).click(function() {
-							currentUser = teamUser.username;
-							$('#selectedUser').html(currentUser);
+							// 1:1 대화방 개설
+							messages = db.child('messages/' + '-LEvfIYw9ZVRaiXNUDRB');
+							var userRoomsUpdates = {
+									'tergetUser': teamUser.key,
+									'timestamp': Date.now()
+							};
+							db.child('userRooms/' + '-LEvfIYw9ZVRaiXNUDRB/' + teamUser.key).update(userRoomsUpdates);
+							//currentUser = teamUser.username;
+							//$('#selectedUser').html(currentUser);
 						});
 					}
 				})
 			}
 		}
-
+		
+		// 프로젝트 클릭 시
 		$('#' + project.key).click(function() {
 			console.log("프로젝트 키: " + project.key)
 			console.log("프로젝트 제목: " + project.projectName)
@@ -67,6 +77,7 @@ $(function() {
 			$('#userList').html("<h1>Users</h1>");
 			showTeam();
 			selectProject();
+			$('#currentUser').append("뚱이");
 		});
 
 		// 프로젝트 선택했을 때
