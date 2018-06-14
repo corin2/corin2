@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
-
-	<div id="notificationBlock" class="form-group">
-	    <label class="control-label">알림 메시지</label>
-	    <div class="input-group">
-	        <span class="input-group-addon">메시지</span>
-	   			<input id="notificationMessage" type="text" class="form-control" />
-	        <span class="input-group-btn">
-	            <button id="notificationButton" class="btn btn-info" type="button" >알림</button>
-	        </span>
-	    </div>
-	</div>
-	
 	
 	<div class="container">	
 		
