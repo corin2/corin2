@@ -48,10 +48,11 @@
 					    <li><a href="#">5</a></li>
 					</ul>
 				  </div>
-		    	<form action="boardInsert" method="get">
-				 <%-- 	<se:authorize access= hasRole('ROLE_ADMIN')"> --%>
+				  
+				  <se:authorize access= "hasRole('ROLE_ADMIN')">  
+		    	  <form action="boardInsert" method="get">
 						<input type="submit" value="글쓰기"  class="btn btn-default">
-				<%-- 	</se:authorize>  --%>
-				  		
-				</form>
+				  </form>
+				
+				  </se:authorize>  
 		    </div>
