@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="resources/js/msg/inviteMsg.js"></script>
-
+<input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
     <strong>C2</strong>
@@ -14,7 +14,7 @@
             User
         </a>
         <ul class="collapse list-unstyled" id="homeSubmenu">
-            <li><a href="#">User Info</a></li>
+            <li><a href="content">User Info</a></li>
             <li><a href="#">Profile Modification</a></li>
             <li><a href="#">Delete</a></li>
         </ul>

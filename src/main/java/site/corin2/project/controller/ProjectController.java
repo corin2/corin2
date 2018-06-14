@@ -73,7 +73,6 @@ public class ProjectController {
 	//프로젝트 넘버 확인
 	@RequestMapping("/selectProjectNum")
 	public View selectProjectNumView(ProjectDTO project, Model model) {
-		System.out.println("들어왔니::" + project.getProjectName());
 		List<ProjectDTO> list = null;
 		list = service.selectProject(project);
 		for(ProjectDTO a : list) {

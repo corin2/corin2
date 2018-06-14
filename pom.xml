@@ -131,7 +131,7 @@
 			<artifactId>jackson-core-asl</artifactId>
 			<version>1.9.13</version>
 		</dependency>
-			<dependency>
+		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.7.3</version>
@@ -214,13 +214,6 @@
 		</dependency>
 		
 		<!-- kakao -->
-		<!-- jackson-databind -->
-		<dependency>
-		  <groupId>com.fasterxml.jackson.core</groupId>
-		  <artifactId>jackson-databind</artifactId>
-		  <version>2.8.4</version>
-		</dependency>
-		
 		<!-- httpcore(카카오) -->
 		<dependency>
 		  <groupId>org.apache.httpcomponents</groupId>

@@ -5,7 +5,6 @@ var projectcnt = 0;
 //프로젝트 생성 함수
 function addProject() {
 	if($('input[name="language"]').is(':checked')){
-	console.log($("#ProjectName").val());
 	var radioVal = $('input[name="language"]:checked').val();
 	var projectName = $("#ProjectName").val();
 	$.ajax({
@@ -32,7 +31,6 @@ function projectProjectNum(projectName) {
 		datatype:"JSON",
 		data:{projectName:projectName},
 		success:function(data){
-			console.log("프넘이다." + data.projectNum);
 			insertTeamProject(data.projectNum);
 		}
 	})
@@ -42,9 +40,8 @@ function insertTeamProject(projectNum) {
 	$.ajax({
 		url:"projectTeamInsert",
 		datatype:"JSON",
-		data:{userId:$("#HiddenUserId").val(), projectNum:projectNum},
+		data:{userId:$("#hiddenUserId").val(), projectNum:projectNum},
 		success:function(data){
-			console.log("팀삽입성공")
 			$('#ProjectName').val('');
 			languageColorView();
 			$("#myModal2").modal("hide");
@@ -58,18 +55,17 @@ function projectView(projectArray) {
 	$.ajax({
 		url:"projectAllList",
 		datatype : "JSON",
-		data:{userId:$("#HiddenUserId").val()},
+		data:{userId:$("#hiddenUserId").val()},
 		success:function(data){
 			var html ="";
 			$("#projectbox").empty();
-			console.log("44")
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
-					console.log(elt.gradeNum);
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
-							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
+							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>";
+							if(elt.bookMark == "1") html += "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>";
+							else html += "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>";
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -97,14 +93,12 @@ function projectBookView(projectArray) {
 	$.ajax({
 		url:"projectBookList",
 		datatype : "JSON",
-		data:{userId:$("#HiddenUserId").val()},
+		data:{userId:$("#hiddenUserId").val()},
 		success:function(data){
 			var html ="";
 			$("#bookmarkbox").empty();
-			console.log("44")
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
-					console.log(elt.gradeNum);
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
 							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
@@ -166,11 +160,8 @@ function printProjectDetailLanguage() {
 		url:"languageColorAllList",
 		datatype:"JSON",
 		success:function(data){
-			console.log(data);
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				console.log(elt.languageMain)
-				console.log(elt.languageNum)
 				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<br>"
 			})
 			$("#projectDetail").append(html)
@@ -184,11 +175,8 @@ function printProjectDetailLanguageChecked(projectNum) {
 		url:"languageColorAllList",
 		datatype:"JSON",
 		success:function(data){
-			console.log(data);
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				console.log(elt.languageMain)
-				console.log(elt.languageNum)
 				html += "<input type='radio' name='language' value='"+elt.languageNum+"'";
 				if($('#hiddenLanguageNum'+projectNum).val() == elt.languageNum)	html += " checked ";
 				html += ">"+elt.languageMain+"<br>";
@@ -204,7 +192,6 @@ function updateLanguage(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum, languageNum:$('input[name="language"]:checked').val(), projectName:$("#ProjectName").val()},
 		success:function(data){
-			console.log("졸리다");
 			languageColorView();
 		}
 	})
@@ -232,7 +219,6 @@ function deleteProject(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum},
 		success:function(data){
-			console.log("삭제성공")
 			languageColorView();
 		}
 		
@@ -241,13 +227,11 @@ function deleteProject(projectNum) {
 
 //프로젝트 즐겨찾기 등록
 function updateProjectBookmark(projectNum) {
-	console.log("들어왔니????")
 	$.ajax({
 		url:"projectBookmarkUpdate",
 		datatype: "JSON",
 		data:{projectNum:projectNum},
 		success:function(data){
-			console.log("즐겨찾기추가")
 			languageColorView();
 		}
 	})
@@ -255,17 +239,12 @@ function updateProjectBookmark(projectNum) {
 
 //프로젝트 즐겨찾기 해제
 function updateProjectNoneBookmark(projectNum) {
-	console.log("들어왔니????")
 	$.ajax({
 		url:"projectNoneBookmarkUpdate",
 		datatype: "JSON",
 		data:{projectNum:projectNum},
 		success:function(data){
-			console.log("즐겨찾기추가")
 			languageColorView();
 		}
 	})
 }
-
-
-	
