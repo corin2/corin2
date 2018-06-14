@@ -14,7 +14,6 @@ $(function() {
 	firebase.initializeApp(config);
 
 	var db = firebase.database().ref();
-	console.log("디비: " + db);
 	// [초기화 끝]
 
 	//var users;
@@ -39,29 +38,22 @@ $(function() {
 
 		// Firebase DB의 data key
 		project.key = snapshot.key;
-		console.log("프로젝트 데이터 키: " + project.key);
 
 		$('#projectList').append("<div id=" + project.key + ">" + "<h3>" + project.projectName + "</h3>" + "</div>");
 
 		// 팀원 보기
 		function showTeam() {
 			for(var prop in project.team) {
-				console.log("브이: " + prop);
 
 				// 팀원 추가
 				db.child('users').on('child_added', function(snapshot) {
 					var teamUser = snapshot.val();
 					teamUser.key = snapshot.key;
-					console.log("유저 키: " + teamUser.key);
-					console.log("팀유저: " + teamUser.username);
 					if(prop == teamUser.key) {
-						//$('#userList').append("<div id=" + teamUser.key + ">");
 						$('#userList').append("<div id=" + teamUser.key + ">" + "<h3>" + teamUser.username + "</h3>" + "</div>");
-						//$('#userList').append("</div");
-						//var selectedUser = "#" + teamUser.key;
 						$('#' + teamUser.key).click(function() {
 							currentUser = teamUser.username;
-							console.log("선택된 사용자: " + currentUser);
+							$('#selectedUser').html(currentUser);
 						});
 					}
 				})
@@ -69,9 +61,12 @@ $(function() {
 		}
 
 		$('#' + project.key).click(function() {
+			console.log("프로젝트 키: " + project.key)
+			console.log("프로젝트 제목: " + project.projectName)
+			$('#userList').empty();
+			$('#userList').html("<h1>Users</h1>");
 			showTeam();
 			selectProject();
-			$('#userList').empty();
 		});
 
 		// 프로젝트 선택했을 때
@@ -84,16 +79,13 @@ $(function() {
 
 		// 사용자가 추가 될 때 프로젝트에 입력
 		db.child('users').on('child_added', function(snapshot) {
-			console.log("현재 프로젝트 데이터 키: " + project.key);
 			var user = snapshot.val();
 			user.key = snapshot.key;
-			console.log("현재 유저 키: " + user.key);
 
 			var userUpdates = {};
 			userUpdates[user.key] = true;
-			console.log("유저업데이트: " + userUpdates);
 
-			//db.child('projects/' + project.key + "/team").update(userUpdates);
+			// db.child('projects/' + project.key + "/team").update(userUpdates);
 		});
 	});
 
@@ -150,7 +142,6 @@ $(function() {
 	// 메시지 뿌리기
 	function showMessage(snapshot) {
 		var message = snapshot.val();
-		console.log("메시지: " + message.text);
 		$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + message.timestamp +")" + "</p>");
 	}
 
