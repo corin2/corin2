@@ -14,6 +14,12 @@ public class TroubleShootingDTO {
 	private String problem;
 	private String solution;
 	
+	//DTO 추가 배현준 6.8
+	private String userName;
+	private String userProfile;
+	private String boardDate;
+	private int isDeleted;
+	
 	public TroubleShootingDTO() {}
 
 	public int getBoardNum() {
@@ -54,6 +60,39 @@ public class TroubleShootingDTO {
 
 	public void setSolution(String solution) {
 		this.solution = solution;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
+	
+	public String getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	public String getBoardDate() {
+		return boardDate;
+	}
+
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
+	}
+
+	public int getIsDeleted() {
+		return isDeleted;
+	}
+
+	public void setIsDeleted(int isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	

@@ -24,5 +24,16 @@
          <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
          <put-attribute name="content" value="/WEB-INF/views/project/{1}.jsp" /> 
      </definition>
-
-</tiles-definitions>          
+     
+     <definition name="board.*" template="/WEB-INF/views/includes/layout.jsp" > 
+     	 <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+         <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
+         <put-attribute name="content" value="/WEB-INF/views/board/{1}.jsp" /> 
+      </definition>
+      
+      <definition name="calendar.*" template="/WEB-INF/views/includes/layout.jsp" > 
+     	 <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+         <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
+         <put-attribute name="content" value="/WEB-INF/views/calendar/{1}.jsp" /> 
+      </definition>
+</tiles-definitions>

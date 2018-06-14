@@ -30,7 +30,7 @@
         </ul>
     </li>
     <li>
-        <a href="#">
+        <a href="calendar">
             <i class="glyphicon glyphicon-calendar"></i>
             Calendar
         </a>
@@ -60,7 +60,7 @@
         </a>
     </li>
     <li>
-        <a href="#">
+        <a href="trouble">
             <i class="glyphicon glyphicon-exclamation-sign"></i>
             Trouble Shooting
         </a>
