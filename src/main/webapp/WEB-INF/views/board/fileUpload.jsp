@@ -11,7 +11,7 @@
 
 	<input id="fileupload" type="file" name="files[]" data-url="upload"  multiple>
 
-	<div id="dropzone" class="fade well" style="width: 300px;height: 300px">Drop files here</div>
+	<div id="dropzone" class="fade well" style="width: 200px;height: 200px">Drop files here</div>
 
 	
 	

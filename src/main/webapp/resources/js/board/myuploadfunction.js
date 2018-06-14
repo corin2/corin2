@@ -15,8 +15,7 @@ $(function () {
                	)
            }); 
         },
-       
-  	
+    
 		dropZone: 
 			$('#dropzone')
     });
