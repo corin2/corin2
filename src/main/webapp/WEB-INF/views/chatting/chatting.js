@@ -41,7 +41,7 @@ $(function() {
 		project.key = snapshot.key;
 		console.log("프로젝트 데이터 키: " + project.key);
 
-		var projectName = $('#projectList').append("<h3>" + project.projectName + "</h3>");
+		$('#projectList').append("<div id=" + project.key + ">" + "<h3>" + project.projectName + "</h3>" + "</div>");
 
 		// 팀원 보기
 		function showTeam() {
@@ -55,8 +55,11 @@ $(function() {
 					console.log("유저 키: " + teamUser.key);
 					console.log("팀유저: " + teamUser.username);
 					if(prop == teamUser.key) {
-						var addUser = $('#userList').append("<h3>" + teamUser.username + "</h3>");
-						addUser.click(function() {
+						//$('#userList').append("<div id=" + teamUser.key + ">");
+						$('#userList').append("<div id=" + teamUser.key + ">" + "<h3>" + teamUser.username + "</h3>" + "</div>");
+						//$('#userList').append("</div");
+						//var selectedUser = "#" + teamUser.key;
+						$('#' + teamUser.key).click(function() {
 							currentUser = teamUser.username;
 							console.log("선택된 사용자: " + currentUser);
 						});
@@ -65,9 +68,10 @@ $(function() {
 			}
 		}
 
-		projectName.click(function() {
+		$('#' + project.key).click(function() {
 			showTeam();
 			selectProject();
+			$('#userList').empty();
 		});
 
 		// 프로젝트 선택했을 때
