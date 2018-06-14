@@ -52,4 +52,18 @@ public class ProjectService {
 		list = dao.selectProject(project);
 		return list;
 	}
+	
+	public int updateLanguage(ProjectDTO project) {
+		int result = 0;
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		result = dao.languageUpdate(project);
+		return result;
+	}
+	
+	public int deleteProject(ProjectDTO project) {
+		int result = 0;
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		result = dao.projectDelete(project);
+		return result;
+	}
 }

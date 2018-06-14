@@ -69,4 +69,18 @@ public class ProjectController {
 		
 		return jsonview;
 	}
+	
+	@RequestMapping("/languageUpdate")
+	public View languageUpdateView(ProjectDTO project, Model model) {
+		int result = 0;
+		result = service.updateLanguage(project);
+		return jsonview;
+	}
+	
+	@RequestMapping("/projectDelete")
+	public View deleteProjectView(ProjectDTO project, Model model) {
+		int result = 0;
+		result = service.deleteProject(project);
+		return jsonview;
+	}
 }

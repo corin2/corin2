@@ -7,6 +7,7 @@
 package site.corin2.project.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import site.corin2.project.dto.ProjectDTO;
 import site.corin2.user.dto.UserDTO;
@@ -28,4 +29,8 @@ public interface ProjectDAO {
 	public List<ProjectDTO> projectAllList(UserDTO user);
 	
 	public List<ProjectDTO> selectProject(ProjectDTO project);
+	
+	public int languageUpdate(ProjectDTO project);
+	
+	public int projectDelete(ProjectDTO project);
 }

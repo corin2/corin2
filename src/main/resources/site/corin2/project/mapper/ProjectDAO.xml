@@ -15,12 +15,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where projectname =#{projectName}
 		</select>
 
-		
+		<!-- site.corin2.project.dto.ProjectDTO -->
 		<select id="projectAllList" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project p
 			join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0
 			order by p.projectnum
 		</select>
+		
+		<update id="languageUpdate">
+			update project set languagenum=#{languageNum}, projectname=#{projectName}
+			where projectnum=#{projectNum}
+		</update>
+		
+		<update id="projectDelete">
+			update project set isdeleted=1
+			where projectnum=#{projectNum}
+		</update>
+	
 
 		
 	</mapper>

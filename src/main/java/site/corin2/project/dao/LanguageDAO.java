@@ -14,4 +14,5 @@ import site.corin2.project.dto.ProjectDTO;
 public interface LanguageDAO {
 	
 	public List<LanguageDTO> languageColorAllList();
+	
 }

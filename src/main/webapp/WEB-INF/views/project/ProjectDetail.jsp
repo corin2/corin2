@@ -13,25 +13,11 @@
 			<input type="hidden" id="hiddenCardNum">
 			
 			<div class="modal-body container">
-				<div class="flex2">
-					<div class="form-group">
+				<div id="detailButton" class="flex2">
+					<div id="projectDetail" class="form-group">
 					<h3>프로젝트제목입력:</h3>
 					<input id ="ProjectName" type="text">
-					<br>
-					<input type="radio" name="language" value="L001">JAVA<br>
-					<input type="radio" name="language" value="L002">C#<br>
-					<input type="radio" name="language" value="L003">C<br>
-					<input type="radio" name="language" value="L004">Ruby<br>
-					<input type="radio" name="language" value="L005">Python<br>
-					<input type="radio" name="language" value="L006">GO<br>
-					<input type="radio" name="language" value="L007">ASP<br>
-					<input type="radio" name="language" value="L008">Visual+Basic<br>
-					<input type="radio" name="language" value="L009">PHP<br>
-					<input type="radio" name="language" value="L010">JavaScript<br>
 					</div>
-					<input id="addProject" class="btn btn-success" type="button" onclick="addProject()" data-dismiss="modal" value="생성">
-					<input id="cancleProject" class="btn btn-danger" data-dismiss="modal" type="button" value="취소">		
-
 				</div>
 			</div>
 		</div>
