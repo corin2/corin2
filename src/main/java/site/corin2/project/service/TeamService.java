@@ -71,4 +71,10 @@ public class TeamService {
 		result = dao.insertTeamProject(team);
 		return result;
 	}
+	
+	//오너 위임
+	public void ownerChange(String userId) {
+		TeamDAO dao = sqlSession.getMapper(TeamDAO.class);
+		dao.ownerChange(userId);
+	}
 }

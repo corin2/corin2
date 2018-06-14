@@ -26,4 +26,6 @@ public interface TeamDAO {
 	//팀프로젝트 생성 
 	public int insertTeamProject(TeamDTO team);
 	
+	//오너위임
+	public void ownerChange(String userId);
 }

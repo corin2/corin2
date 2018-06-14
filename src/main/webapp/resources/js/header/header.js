@@ -43,7 +43,7 @@ function projectMemberShow(userProfiles){
 						
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
 							htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
-							+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberMendate(this)">팀장위임</a></li>';
+							+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="ownerChange(this)">팀장위임</a></li>';
 						}else if (userId ==  elt.userId && elt.gradeNum=='G400') {
 							htmltext += '<li><a onclick="memberDelete()">멤버탈퇴</a></li>';
 						}
@@ -61,6 +61,7 @@ function projectMemberShow(userProfiles){
 	});
 }
 
+//프로젝트의 이름을 보여준다.
 function projectNameView(){
 	$.ajax({
 		type : "post",
@@ -72,5 +73,54 @@ function projectNameView(){
 			
 			$('#headerProjectName').html(data.data.projectName);
 		}
+	});
+}
+
+//오너위임(팀장위임)
+function ownerChange(obj) {
+	
+	$.ajax({
+			url : "ownerChange",
+			datatype : "JSON",
+			data : {
+					userId : $(obj).parent().children("input").val(),
+					projectNum : $('#hiddenProjectNum').val()
+			},
+			success: function (data){
+				projectMemberProfile();
+			}
+	});
+}
+
+//팀원제명
+function memberToKickOut(obj) {
+	var userId = $("#getsession").val();
+	var id = $(obj).parent().children("input").val();
+	$.ajax({
+		url : "tokickout.project",
+		datatype : "JSON",
+		data : {
+				userId : userId,
+				outUserId : id
+		},
+		success: function (data){
+				memberList()
+				callprojectlist()
+				
+		}
+	});
+}
+
+//팀탈퇴
+function memberDelete() {
+	var userId = $("#getsession").val();
+	$.ajax({
+			url : "memberdeleteproject.project",
+			data : {userId : userId},
+			datatype : "JSON",
+			success : function (data) {
+				memberList()
+				callprojectlist()
+			}
 	});
 }

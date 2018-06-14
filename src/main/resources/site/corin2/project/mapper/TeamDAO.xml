@@ -30,4 +30,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		values(#{projectNum}, #{userId},'G300',null,0)
 	</insert>
 	
+	<!-- 오너위임 (팀장위임) -->
+	<update id="ownerChange">
+		update team set gradenum = 'G300'
+		where projectnum = #{projectNum} and userid = #{userId}
+	</update>
+		
 	</mapper>

@@ -61,4 +61,11 @@ public class TeamController {
 		result = service.insertTeamProject(team);
 		return jsonview;
 	}
+	
+	
+	@RequestMapping("/ownerChange")
+	public View ownerChange(@RequestParam("userId") String userId) {
+		service.ownerChange(userId);
+		return jsonview;
+	}
 }
