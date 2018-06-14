@@ -14,7 +14,7 @@
 	  					   login-processing-url="/login"
 	  					   username-parameter="userId"
 	  					   password-parameter="password"
-	  					   default-target-url="/content"
+	  					   default-target-url="/gridstack"
 	  					   authentication-failure-url="/login.html?error"
 	  					   always-use-default-target="true"
 	  					   authentication-failure-handler-ref="loginFailureHandler"
