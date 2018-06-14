@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- Google Icon -->
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <div id="content-md">
 	<h2 id='boardTitle'>트러블슈팅 게시판</h2>
@@ -73,7 +72,7 @@
 			<tr>
 				<td>${ts.boardNum}</td>
 				<td>${ts.userName}<br> <img
-					src="../resources/profile/${ts.userProfile}"
+					src="${pageContext.request.contextPath}/resources/profile/${ts.userProfile}"
 					class="img-circle person" width="30" height="30" /></td>
 				<td>${ts.problem}<hr>${ts.solution}</td>
 				<td>${ts.boardDate}</td>
@@ -92,7 +91,7 @@
 		console.log("안녕");
 	    var htmlString = '<td><input type=label name="boardNum" value="'+boardNum+'" readonly></td>'
 						 +'<td><input type=label name="userName" value="'+userName+'" readonly></td>'
-						 +'<td><input type=text name="problem" value="'+problem+'"><hr><input type=text name="solution" value="'+solution+'"></td>'
+						 +'<td><input type=textarea name="problem" value="'+problem+'"><hr><input type=textarea name="solution" value="'+solution+'"></td>'
 						 +'<td><input type=label name="boardDate" value="'+boardDate+'" readonly></td>' 
 						 +'<td><input type="submit" class="btn btn-success" value="완료"></td>';
 	    	

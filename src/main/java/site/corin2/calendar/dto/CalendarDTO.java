@@ -6,7 +6,7 @@
 */
 package site.corin2.calendar.dto;
 
-public class CalenderDTO {
+public class CalendarDTO {
 
 	private int calendarNum;
 	private int projectNum;
@@ -16,7 +16,7 @@ public class CalenderDTO {
 	private String calendarColor;
 	private int isDeleted;
 	
-	public CalenderDTO() {}
+	public CalendarDTO() {}
 
 	public int getCalendarNum() {
 		return calendarNum;

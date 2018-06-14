@@ -24,7 +24,7 @@
         </a>
     </li>
     <li>
-        <a href="/controller/">
+        <a href="calendar">
             <i class="glyphicon glyphicon-calendar"></i>
             Calendar
         </a>

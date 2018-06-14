@@ -25,10 +25,6 @@ public class TroubleController {
 	public String troubleList(TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSelect(1);
 		
-		System.out.println("troubles value:"+troubles);
-		for(TroubleShootingDTO data: troubles) {
-			System.out.println(data.getBoardNum()+"/"+data.getProblem()+"/"+data.getSolution());
-		}
 		model.addAttribute("data",troubles);
 		return "board.trouble";
 	}
