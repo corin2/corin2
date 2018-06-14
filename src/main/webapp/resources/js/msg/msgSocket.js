@@ -15,7 +15,9 @@ function disconnect() {
 	wsocket.close();
 }
 
-function onOpen(evt) {}
+function onOpen(evt) {
+	console.log("zz")
+}
 
 function onMessage(evt) {
 	var data = evt.data;
