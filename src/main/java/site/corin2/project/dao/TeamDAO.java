@@ -29,9 +29,17 @@ public interface TeamDAO {
 	public List<UserDTO> allTeamMemberProfileSelect(int projectNum);
 	
 	/**
+
 	 날      짜 : 2018. 6. 11.
 	 기      능 : Team 멤버를 추가한다. 
 	 작성자명 : 김 진 원
 	*/
 	public void addTeamMemberInsert(TeamDTO team);
+	
+	/**
+	  날      짜 : 2018. 6. 12.
+	  기      능 : 팀프로젝트 생성 
+	  작성자명 : 최 재 욱
+	 */
+	public int insertTeamProject(TeamDTO team);
 }

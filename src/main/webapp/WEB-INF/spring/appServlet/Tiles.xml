@@ -18,4 +18,11 @@
      
      <definition name="login.*" template="login.html" />
      <definition name="user.*" template="/WEB-INF/views/login/{1}.jsp" />
+     
+     <definition name="project.*" template="/WEB-INF/views/includes/layout.jsp" > 
+     	 <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
+         <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 
+         <put-attribute name="content" value="/WEB-INF/views/project/{1}.jsp" /> 
+     </definition>
+
 </tiles-definitions>          
