@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="site.corin2.project.dao.ProjectDAO">
+	
 		<insert id="projectInsert">
 			insert into 
 			project(projectname, languagenum, projectdate, isdeleted) 
@@ -49,7 +50,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			update team set bookmark=0
 			where projectnum=#{projectNum}
 		</update>
-	
-
+		
+		<!-- 프로젝트 하나 검색 -->
+		<select id="projectSelect" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project where projectnum = #{projectNum}
+		</select>
 		
 	</mapper>

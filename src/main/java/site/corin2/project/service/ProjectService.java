@@ -95,6 +95,21 @@ public class ProjectService {
 		int result = 0;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
 		result = dao.projectNoneBookmarkUpdate(project);
+		
 		return result;
 	}
+	
+	//해당 프로젝트의 대한 DTO 조회
+	public ProjectDTO projectSelect(int projectNum){
+		ProjectDAO projectDAO = sqlSession.getMapper(ProjectDAO.class);
+		ProjectDTO project = null;
+		try {
+			project = (ProjectDTO)projectDAO.projectSelect(projectNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return project;
+	}
+	
 }

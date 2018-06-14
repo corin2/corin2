@@ -8,6 +8,7 @@ package site.corin2.user.service;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -298,5 +299,18 @@ public class UserService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	//모든 유저 조회
+	public List<UserDTO> allUserSelect(){
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		List<UserDTO> users = null;
+		try {
+			users = userdao.allUserSelect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return users;
 	}
 }

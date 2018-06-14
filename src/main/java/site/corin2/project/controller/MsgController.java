@@ -26,15 +26,32 @@ public class MsgController {
 	@Autowired
 	private View jsonview;
 	
+	//메시지를 삭제한다
 	@RequestMapping("/msgdel")
 	public View msgdel(MsgDTO msg, Model model) {
 		service.inviteMsgDelete(msg);
 		return jsonview;
 	}
 	
+	//초대메시지를 승락한다.
 	@RequestMapping("/msgagree")
 	public View msgagree(TeamDTO team, Model model) {
 		service.addTeamMemberInsert(team);
+		return jsonview;
+	}
+	
+	//해당 프로젝트에 멤버가 속해있는지 & 메시지가 이미 있는지 확인한다.
+	@RequestMapping("/isTeamAndisMsg")
+	public View isTeamAndisMsg(MsgDTO msg, Model model) {
+		int result = service.isTeamAndisMsg(msg);
+		model.addAttribute("data", result);
+		return jsonview;
+	}
+	
+	//메시지를 보낸다.
+	@RequestMapping("/inviteMsg")
+	public View inviteMsg(MsgDTO msg, Model model) {
+		service.inviteMsg(msg);
 		return jsonview;
 	}
 }

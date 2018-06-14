@@ -7,7 +7,6 @@
 package site.corin2.project.dao;
 
 import java.util.List;
-import java.util.Map;
 
 import site.corin2.project.dto.ProjectDTO;
 import site.corin2.user.dto.UserDTO;
@@ -37,4 +36,8 @@ public interface ProjectDAO {
 	
 	//프로젝트 즐겨찾기 해제
 	public int projectNoneBookmarkUpdate(ProjectDTO project);
+
+	//프로젝트 하나 검색
+	public ProjectDTO projectSelect(int projectNum);
+	
 }

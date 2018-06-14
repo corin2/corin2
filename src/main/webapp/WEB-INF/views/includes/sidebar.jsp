@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="resources/js/msg/inviteMsg.js"></script>
+<script src="resources/js/keyUp.js"></script>
+
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
@@ -25,20 +27,6 @@
             Alarm
         </a>
         <ul class="collapse list-unstyled" id="inviteMsg">
-            <li><a>
-            	<label>RRRRRRRRRRRRRRRRRw</label>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li>
-            <li><a>
-            	<label>18바이트만이하임</label>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li><li><a>
-            	<label>18바이트만이상입니다</label><br>
-            	<button class="btn-warning">Y</button>
-            	<button class="btn-success">N</button>
-            </a></li>
         </ul>
     </li>
     <li>
@@ -66,7 +54,7 @@
         </a>
     </li>
     <li>
-        <a href="kanban?projectNum=1">
+        <a href="kanban">
             <i class="glyphicon glyphicon-tasks"></i>
             Kanban
         </a>

@@ -14,17 +14,15 @@ import site.corin2.project.dto.ProjectDTO;
 
 public interface MsgDAO {
 	
-	/**
-	 날      짜 : 2018. 6. 11.
-	 기      능 : 송신아이디가 받은 모든 초대 메세지의 projectDTO를 조회한다. 
-	 작성자명 : 김 진 원
-	*/
+	//송신아이디가 받은 모든 초대 메시지의 projectDTO를 조회한다.
 	public List<ProjectDTO> allInviteMsgSelect(String receptionId);
 	
-	/**
-	 날      짜 : 2018. 6. 11.
-	 기      능 : 메세지를 삭제한다. 
-	 작성자명 : 김 진 원
-	*/
+	//메세지를 삭제한다.
 	public void inviteMsgDelete(MsgDTO msg);
+	
+	//팀에 참여되어 있는지, 메시지가 있는지 확인한다
+	public int isTeamAndisMsg(MsgDTO msg);
+	
+	//초대메시지를 보낸다.
+	public void inviteMsg(MsgDTO msg);
 }

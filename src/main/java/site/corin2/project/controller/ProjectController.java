@@ -113,4 +113,13 @@ public class ProjectController {
 		result = service.projectNoneBookmarkUpdate(project);
 		return jsonview;
 	}
+	
+	//해당 프로젝트의 대한 DTO 조회
+	@RequestMapping("/showProject")
+	public View showProject(@RequestParam("projectNum") String projectNum, Model model) {
+		ProjectDTO project = service.projectSelect(Integer.parseInt(projectNum));
+		model.addAttribute("data", project);
+		return jsonview;
+	}
+	
 }

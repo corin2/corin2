@@ -100,10 +100,9 @@ function showKanban(){
 //멤버 사진과 닉네임 뿌리기
 function showUserFrofiles(){
 	var userProfiles = [];
-	
 	$.ajax({
 		type : "post",
-		url  : "showUserProfile",
+		url  : "showMemberUserProfile",
 		datatype:"JSON",
 		data : {projectNum : $('#hiddenProjectNum').val()},
 		success : function(data){
@@ -111,7 +110,7 @@ function showUserFrofiles(){
 				userProfiles.push(elt);
 			});
 			
-			showUserField(userProfiles)
+			showUserField(userProfiles);
 		}
 	});
 }
@@ -120,7 +119,7 @@ function showUserFrofiles(){
 function showUserField(userProfiles){
 	$.ajax({
 		type : "post",
-		url  : "showUserField",
+		url  : "showMember",
 		datatype:"JSON",
 		data : {projectNum : $('#hiddenProjectNum').val()},
 		success : function(data){

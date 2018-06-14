@@ -25,6 +25,7 @@ public class KanbanService {
 	@Autowired
 	private SqlSession sqlSession;
 
+	//카드를 생성한다.
 	public int cardInsert(CardDTO card) {
 		int result =0;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
@@ -33,6 +34,7 @@ public class KanbanService {
 		return result;
 	}
 	
+	//카드를 조회한다.
 	public CardDTO cardSelect(int cardNum) {
 		CardDTO dto = null;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
@@ -41,6 +43,7 @@ public class KanbanService {
 		return dto;
 	}
 	
+	//카드를 수정한다. & 카드 제목을 변경한다.
 	public int cardUpdate(CardDTO card) {
 		int result = 0;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
@@ -48,6 +51,8 @@ public class KanbanService {
 		
 		return result;
 	}
+	
+	//모든 리스트를 조회한다.
 	public List<ListDTO> listAllSelect(){
 		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		List<ListDTO> lists = null;
@@ -60,6 +65,7 @@ public class KanbanService {
 		return lists;
 	}
 	
+	//모든 카드를 조회한다.
 	public List<CardDTO> cardAllSelect(int projectNum){
 		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		List<CardDTO> cards = null;
@@ -72,6 +78,7 @@ public class KanbanService {
 		return cards;
 	}
 	
+	//카드를 삭제한다.
 	public int cardDelete(int cardNum) {
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
 		int result = 0;
@@ -81,6 +88,7 @@ public class KanbanService {
 		return result;
 	}
 	
+	//카드의 순서를 변경한다.
 	public int cardTaxisUpdate(String listNum, String userId, String cardTaxis) {
 		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		int result = 0;
