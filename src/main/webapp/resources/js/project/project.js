@@ -143,6 +143,7 @@ function projectDetailView() {
 
 //프로젝트칼라 지정해주기
 function languageColorView() {
+	console.log($('hiddenUserId').val());
 	var projectArray = [];
 	$.ajax({
 		url:"languageColorAllList",

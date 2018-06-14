@@ -78,7 +78,6 @@ function projectNameView(){
 
 //오너위임(팀장위임)
 function ownerChange(obj) {
-	
 	$.ajax({
 			url : "ownerChange",
 			datatype : "JSON",
@@ -94,33 +93,33 @@ function ownerChange(obj) {
 
 //팀원제명
 function memberToKickOut(obj) {
-	var userId = $("#getsession").val();
-	var id = $(obj).parent().children("input").val();
 	$.ajax({
-		url : "tokickout.project",
+		url : "tokickOut",
 		datatype : "JSON",
 		data : {
-				userId : userId,
-				outUserId : id
+				userId : $(obj).parent().children("input").val(),
+				projectNum : $('#hiddenProjectNum').val()
 		},
 		success: function (data){
-				memberList()
-				callprojectlist()
-				
+			projectMemberProfile();
 		}
 	});
 }
 
 //팀탈퇴
 function memberDelete() {
-	var userId = $("#getsession").val();
+	console.log('zzz')
+	console.log($('hiddenUserId').val() + '/' + $('#hiddenProjectNum').val())
 	$.ajax({
-			url : "memberdeleteproject.project",
-			data : {userId : userId},
-			datatype : "JSON",
-			success : function (data) {
-				memberList()
-				callprojectlist()
-			}
+		url : "tokickOut",
+		datatype : "JSON",
+		data : {
+				userId : $('hiddenUserId').val(),
+				projectNum : $('#hiddenProjectNum').val()
+		},
+		success: function (data){
+			console.log("qqqq")
+			projectMemberProfile();
+		}
 	});
 }

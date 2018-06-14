@@ -62,10 +62,17 @@ public class TeamController {
 		return jsonview;
 	}
 	
-	
+	//팀장위임(오너위임)
 	@RequestMapping("/ownerChange")
-	public View ownerChange(@RequestParam("userId") String userId) {
-		service.ownerChange(userId);
+	public View ownerChange(TeamDTO team) {
+		service.ownerChange(team);
+		return jsonview;
+	}
+	
+	//팀원제명 & 회원탈퇴
+	@RequestMapping("/tokickOut")
+	public View tokickOut(TeamDTO team) {
+		service.tokickOut(team);
 		return jsonview;
 	}
 }

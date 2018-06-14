@@ -73,8 +73,14 @@ public class TeamService {
 	}
 	
 	//오너 위임
-	public void ownerChange(String userId) {
+	public void ownerChange(TeamDTO team) {
 		TeamDAO dao = sqlSession.getMapper(TeamDAO.class);
-		dao.ownerChange(userId);
+		dao.ownerChange(team);
+	}
+	
+	//팀원제명 & 회원탈퇴
+	public void tokickOut(TeamDTO team) {
+		TeamDAO dao = sqlSession.getMapper(TeamDAO.class);
+		dao.tokickOut(team);
 	}
 }
