@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 <script src="resources/js/header/header.js"></script>
 <script src="resources/js/header/headerSocket.js"></script>
-<!-- Compiled and minified CSS -->
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css"> -->
-<!-- Compiled and minified JavaScript -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script> -->
 <header>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">

@@ -2,6 +2,7 @@ $(function () {
 	languageColorView();
 })
 var projectcnt = 0;
+
 //프로젝트 생성 함수
 function addProject() {
 	if($('input[name="language"]').is(':checked')){
