@@ -130,12 +130,13 @@ $(function() {
 		//$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
 		
 		if(currentUser == message.username) {
-			$('#mainDialogs').append(
+			// 보낸 메시지
+			$('#conversation').append(
 					'<div class="row message-body">'
 					+ '<div class="col-sm-12 message-main-sender">'
 					+ '<div class="sender">'
 					+ '<div class="message-text">'
-					+ message.username + ': ' + message.text
+					+ message.text
 					+ '</div>'
 					+ '<span class="message-time pull-right">'
 					+ convertTime(message.timestamp)
@@ -145,12 +146,16 @@ $(function() {
 					+ '</div>'
 			);
 		}else {
-			$('#mainDialogs').append(
+			// 받은 메시지
+			$('#conversation').append(
 					'<div class="row message-body">'
 					+ '<div class="col-sm-12 message-main-receiver">'
 					+ '<div class="receiver">'
+					+ '<div class="heading-avatar-icon">'
+		            + '<img src="https://pbs.twimg.com/profile_images/887622532647469056/IG7Zk1wS_400x400.jpg">'
+		            + '</div>'
 					+ '<div class="message-text">'
-					+ message.username + ': ' + message.text
+					+ message.text
 					+ '</div>'
 					+ '<span class="message-time pull-right">'
 					+ convertTime(message.timestamp)
@@ -160,6 +165,9 @@ $(function() {
 					+ '</div>'
 			);
 		}
+		
+		// 대화창 스크롤을 항상 아래로
+		$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
 	}
 	
 	// DB변동 시 메시지 출력
