@@ -27,7 +27,7 @@
 		            User
 		        </a>
 		        <ul class="collapse list-unstyled" id="homeSubmenu">
-		            <li><a href="content">User Info</a></li>
+		            <li><a href="#">User Info</a></li>
 		            <li><a href="#">Profile Modification</a></li>
 		            <li><a href="#">Delete</a></li>
 		        </ul>
