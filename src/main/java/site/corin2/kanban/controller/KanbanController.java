@@ -39,9 +39,7 @@ public class KanbanController {
 		
 	//칸반으로 보내준다.
 	@RequestMapping("/kanban")
-	public String newFile(@RequestParam("projectNum") String projectNum, Model model, HttpSession session) {
-		model.addAttribute("projectNum", projectNum);
-		session.setAttribute("sessionProjectNum", projectNum);
+	public String newFile() {
 		return "kanban.kanban";
 	}
 	
