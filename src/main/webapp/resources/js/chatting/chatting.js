@@ -1,5 +1,11 @@
 $(function() {
+	
+	// 채팅 페이지 시작 시, 함수 콜
+	getUsers(69); // 멤버 가져오기 함수 TODO: projectNum 변경할 것.
 
+	
+	
+	
 	// Firebase 초기화
 	// [초기화 시작]
 	var config = {
@@ -17,14 +23,17 @@ $(function() {
 	// [초기화 끝]
 	
 	// 변수, 상수 설정
-	//var users;
 	var messages;
 	var currentProject;
-	var currentUser = "테스트";
-	var currentUserUid = "-LEvfIYw9ZVRaiXNUDRB";
-	const MAKE_UID = "@make@";
-	const TARGET_UID = "@target@";
-	//const TIME_NOW = "@time@";
+	var currentUser = $('#hiddenUserId').val();
+	
+	console.log("현재 유저: " + currentUser);
+	$('#currentUser').html(currentUser);
+	
+	// 이메일주소 . -> *로 변경
+	function convertEmail(userId) {
+		return userId.replace(".", "*");
+	}
 	
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
@@ -35,186 +44,89 @@ $(function() {
 			success:function(data){
 				console.log(data);
 				$.each(data.data, function(index, obj) {
-					console.log("오브젝트: " + obj.userName);
-					var userUid = initialData(obj);
+					var userUid = convertEmail(obj.userId);
+					initialData(userUid, obj);
+					updateUserList(userUid, obj);
 					updateInfo(userUid, projectNum);
 				});
 			}
 		});
 	}
 	
-	// 멤버 가져오기 함수 콜
-	getUsers(69);
-	
 	// 초기 데이터 생성
-	function initialData(obj) {
-		db.child('users').push({
+	function initialData(userUid, obj) {
+		db.child('users/' + userUid).update({
 			'userid': obj.userId,
 			'username': obj.userName,
 			'userprofile': obj.userProfile,
-/*			'projects': {
-				1: true,
-				2: true
-			}*/
 		});
-		
-		db.child('users').on('child_changed', function(snapshot) {
-			return snapshot.key;
-		});
-		
-		/*db.child('projects/1').set({
-			'projectname': '테스트',
-			'users': {
-				'-LF-nn2JnUBU_2yQ6B4Q': true
-			}
-		});*/
 	}
 	
-	// updateInfo
+	// 팀원 추가
+	function updateUserList(userUid, obj) {
+		$('#userList').append("<div id=" + userUid + ">" + "<h3>" + obj.userName + "</h3>" + "</div>");
+	}
+	
+	// DB 정보 수정
 	function updateInfo(userUid, projectNum) {
+		// 유저DB 내 프로젝트 정보 수정
 		var updateProject = {};
 		updateProject[projectNum] = true;
-		db.child('users/' + userUid).update(updateProject);
+		db.child('users/' + userUid + '/projects').update(updateProject);
 		
+		// 프로젝트DB 내 유저 정보 수정
 		var updateUser = {};
 		updateUser[userUid] = true;
-		
 		db.child('projects/' + projectNum + '/users').update(updateUser);
 	}
-	
-	//initialData();
-	
-	// User 데이터 읽기
-	/*db.child('users').on('child_added', function(snapshot) {
-		var user = snapshot.val();
-		user.key = snapshot.key;
-		console.log("유저 키: " + user.key);
-		console.log("유저아이디: " + user.userid);
-		db.child('users/' + user.key + '/project')
-	});*/
-	
-	
-	
-	
-	// 프로젝트 생성
-	$('#createProjectBtn').click(function() {
-		db.child('projects').push({
-			projectNum: $('#projectNum').val(),
-			projectName: $('#projectName').val()
-		}, function() {
-			alert('프로젝트 생성 완료!');
-		})
-	});
 
-	// 프로젝트가 추가 되었을 때
-	db.child('projects').on('child_added', function(snapshot) {
-		// 프로젝트 데이터
-		var project = snapshot.val();
-
-		// Firebase DB의 data key
-		project.key = snapshot.key;
-
-		$('#projectList').append("<div id=" + project.key + ">" + "<h3>" + project.projectName + "</h3>" + "</div>");
-
-		// 팀원 보기
-		function showTeam() {
-			for(var prop in project.team) {
-
-				// 팀원 추가
-				db.child('users').on('child_added', function(snapshot) {
-					var teamUser = snapshot.val();
-					teamUser.key = snapshot.key;
-					if(prop == teamUser.key) {
-						$('#userList').append("<div id=" + teamUser.key + ">" + "<h3>" + teamUser.username + "</h3>" + "</div>");
-						
-						// 사용자 클릭 시
-						$('#' + teamUser.key).click(function() {
-							// 1:1 대화방 개설
-							
-							//var roomPath = MAKE_UID + '-LEvfIYw9ZVRaiXNUDRB' + TIME_NOW + yyyyMMddHHmmsss();
-							var roomPath = MAKE_UID + currentUserUid + TARGET_UID + teamUser.key;
-							var reverseRoomPath = MAKE_UID + teamUser.key + TARGET_UID + currentUserUid;
-							if(db.child('messages/' + roomPath)) {
-								console.log("뭔데: " + db.child('messages/' + roomPath));
-								alert(roomPath + "로 연결합니다.");
-								messages = db.child('messages/' + roomPath);
-							}else if(db.child('messages/' + reverseRoomPath)) {
-								alert(reverseRoomPath + "로 연결합니다.");
-								messages = db.child('messages/' + reverseRoomPath);
-							}else {
-								var userRoomsUpdates = {
-										'roomUid': roomPath,
-										'tergetUserUid': teamUser.key,
-										'targetUserName': teamUser.username,
-										'timestamp': Date.now()
-								};
-								db.child('userRooms/' + roomPath).update(userRoomsUpdates);
-							}
-							
-							alert(teamUser.username + "님과 대화를 시작합니다.");
-							$('#mainDialogs').empty();
-							messages.on('child_added', showMessage);
-						});
-					}
-				})
-			}
-		}
+	// 팀원 보기
+	/*function showTeam() {
 		
-		// 프로젝트 클릭 시
-		$('#' + project.key).click(function() {
-			console.log("프로젝트 키: " + project.key)
-			console.log("프로젝트 제목: " + project.projectName)
-			$('#userList').empty();
-			$('#userList').html("<h1>Users</h1>");
-			showTeam();
-			selectProject();
-			$('#currentUser').append(currentUser);
-		});
 
-		// 프로젝트 선택했을 때
-		function selectProject() {
-			alert("눌러짐");
-			$('#mainDialogs').empty();
-			messages = db.child('messages/' + project.key);
-			messages.on('child_added', showMessage);
+			// 팀원 추가
+			db.child('users').on('child_added', function(snapshot) {
+				var teamUser = snapshot.val();
+				teamUser.key = snapshot.key;
+				if(prop == teamUser.key) {
+					$('#userList').append("<div id=" + teamUser.key + ">" + "<h3>" + teamUser.username + "</h3>" + "</div>");
+					
+					// 사용자 클릭 시
+					$('#' + teamUser.key).click(function() {
+						// 1:1 대화방 개설
+						
+						//var roomPath = MAKE_UID + '-LEvfIYw9ZVRaiXNUDRB' + TIME_NOW + yyyyMMddHHmmsss();
+						var roomPath = MAKE_UID + currentUserUid + TARGET_UID + teamUser.key;
+						var reverseRoomPath = MAKE_UID + teamUser.key + TARGET_UID + currentUserUid;
+						if(db.child('messages/' + roomPath)) {
+							console.log("뭔데: " + db.child('messages/' + roomPath));
+							alert(roomPath + "로 연결합니다.");
+							messages = db.child('messages/' + roomPath);
+						}else if(db.child('messages/' + reverseRoomPath)) {
+							alert(reverseRoomPath + "로 연결합니다.");
+							messages = db.child('messages/' + reverseRoomPath);
+						}else {
+							var userRoomsUpdates = {
+									'roomUid': roomPath,
+									'tergetUserUid': teamUser.key,
+									'targetUserName': teamUser.username,
+									'timestamp': Date.now()
+							};
+							db.child('userRooms/' + roomPath).update(userRoomsUpdates);
+						}
+						
+						alert(teamUser.username + "님과 대화를 시작합니다.");
+						$('#mainDialogs').empty();
+						messages.on('child_added', showMessage);
+					});
+				}
+			})
 		}
+	}*/
 
-		// 사용자가 추가 될 때 프로젝트에 입력
-		db.child('users').on('child_added', function(snapshot) {
-			var user = snapshot.val();
-			user.key = snapshot.key;
-
-			var userUpdates = {};
-			userUpdates[user.key] = true;
-
-			// db.child('projects/' + project.key + "/team").update(userUpdates);
-		});
-	});
-
-	// 사용자 명
-	//users = db.child('users');
-
-	// 사용자 추가
-	function addUser() {
-		db.child('users').push({
-			userid: $('#userid').val(),
-			username: $('#username').val(),
-			userprofile: "",
-			gradenum: "G200"
-		});
-	}
-
-	// 이메일 입력 시 사용자 추가
-	$('#register').click(function() {
-		addUser();
-
-		alert("사용자가 추가되었습니다.");
-
-		$('#userid').val('');
-	});
 
 	// 메시지 변수
-	//messages = db.child('messages/' + 'test');
+	messages = db.child('messages/' + 'test');
 
 	// 메시지 보내기
 	function sendMessage() {
