@@ -26,4 +26,18 @@ public interface TeamDAO {
 	//팀프로젝트 생성 
 	public int insertTeamProject(TeamDTO team);
 	
+	//오너위임
+	public void ownerChange(TeamDTO team);
+	
+	//오너위임시 팀원으로 변경
+	public void downOwnerChange(TeamDTO team);
+	
+	//팀원제명 & 회원탈퇴
+	public void tokickOut(TeamDTO team);
+	
+	//팀 재가입
+	public void tokickIn(TeamDTO team);
+	
+	//프로젝트넘버와 유저의 아이디로 하나의 팀DTO를 조회한다.
+	public TeamDTO teamMemberSelect(TeamDTO team);
 }

@@ -6,6 +6,7 @@
 */
 package site.corin2.project.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -16,6 +17,7 @@ import site.corin2.project.dao.LanguageDAO;
 import site.corin2.project.dao.ProjectDAO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.project.dto.ProjectDTO;
+import site.corin2.project.dto.TeamDTO;
 import site.corin2.user.dto.UserDTO;
 
 @Service
@@ -54,7 +56,6 @@ public class ProjectService {
 		List<LanguageDTO> list = null;
 		LanguageDAO dao = sqlSession.getMapper(LanguageDAO.class);
 		list = dao.languageColorAllList();
-		System.out.println("리스트 " + list.toString());
 		return list;
 	}
 	
@@ -110,6 +111,23 @@ public class ProjectService {
 		}
 		
 		return project;
+	}
+	
+	public List<ProjectDTO> searchProject(TeamDTO team, ProjectDTO project) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", team.getUserId());
+		map.put("projectName", project.getProjectName());
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		List<ProjectDTO> list = null;
+		list = dao.searchProject(map);
+		return list;
+	}
+	
+	public List<ProjectDTO> autoCompletProject(TeamDTO team){
+		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
+		List<ProjectDTO> list = null;
+		list = dao.autoCompletProject(team);
+		return list;
 	}
 	
 }
