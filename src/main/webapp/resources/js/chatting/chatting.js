@@ -15,12 +15,51 @@ $(function() {
 
 	var db = firebase.database().ref();
 	// [초기화 끝]
-
+	
+	// 변수, 상수 설정
 	//var users;
 	var messages;
 	var currentProject;
-	var currentUser = "[no selected]";
-
+	var currentUser = "테스트";
+	var currentUserUid = "-LEvfIYw9ZVRaiXNUDRB";
+	const MAKE_UID = "@make@";
+	const TARGET_UID = "@target@";
+	//const TIME_NOW = "@time@";
+	
+	// 초기 데이터 생성
+	function initialData() {
+		db.child('users').update({
+			'userid': 'test@naver.com',
+			'username': 'test',
+			'userprofile': '',
+			'projects': {
+				1: true,
+				2: true
+			}
+		});
+		
+		db.child('projects/1').set({
+			'projectname': '테스트',
+			'users': {
+				'-LF-nn2JnUBU_2yQ6B4Q': true
+			}
+		});
+	}
+	
+	//initialData();
+	
+	// User 데이터 읽기
+	db.child('users').on('child_added', function(snapshot) {
+		var user = snapshot.val();
+		user.key = snapshot.key;
+		console.log("유저 키: " + user.key);
+		console.log("유저아이디: " + user.userid);
+		db.child('users/' + user.key + '/project')
+	});
+	
+	
+	
+	
 	// 프로젝트 생성
 	$('#createProjectBtn').click(function() {
 		db.child('projects').push({
@@ -55,17 +94,30 @@ $(function() {
 						// 사용자 클릭 시
 						$('#' + teamUser.key).click(function() {
 							// 1:1 대화방 개설
-							messages = db.child('messages/' + '-LEvfIYw9ZVRaiXNUDRB');
-							var userRoomsUpdates = {
-									'tergetUser': teamUser.key,
-									'timestamp': Date.now()
-							};
-							db.child('userRooms/' + '-LEvfIYw9ZVRaiXNUDRB/' + teamUser.key).update(userRoomsUpdates);
+							
+							//var roomPath = MAKE_UID + '-LEvfIYw9ZVRaiXNUDRB' + TIME_NOW + yyyyMMddHHmmsss();
+							var roomPath = MAKE_UID + currentUserUid + TARGET_UID + teamUser.key;
+							var reverseRoomPath = MAKE_UID + teamUser.key + TARGET_UID + currentUserUid;
+							if(db.child('messages/' + roomPath)) {
+								console.log("뭔데: " + db.child('messages/' + roomPath));
+								alert(roomPath + "로 연결합니다.");
+								messages = db.child('messages/' + roomPath);
+							}else if(db.child('messages/' + reverseRoomPath)) {
+								alert(reverseRoomPath + "로 연결합니다.");
+								messages = db.child('messages/' + reverseRoomPath);
+							}else {
+								var userRoomsUpdates = {
+										'roomUid': roomPath,
+										'tergetUserUid': teamUser.key,
+										'targetUserName': teamUser.username,
+										'timestamp': Date.now()
+								};
+								db.child('userRooms/' + roomPath).update(userRoomsUpdates);
+							}
+							
 							alert(teamUser.username + "님과 대화를 시작합니다.");
 							$('#mainDialogs').empty();
 							messages.on('child_added', showMessage);
-							//currentUser = teamUser.username;
-							//$('#selectedUser').html(currentUser);
 						});
 					}
 				})
@@ -80,7 +132,7 @@ $(function() {
 			$('#userList').html("<h1>Users</h1>");
 			showTeam();
 			selectProject();
-			$('#currentUser').append("뚱이");
+			$('#currentUser').append(currentUser);
 		});
 
 		// 프로젝트 선택했을 때
@@ -132,7 +184,7 @@ $(function() {
 	function sendMessage() {
 		var text = $('#messageText');
 
-		messages.push({
+		messages.update({
 			username: currentUser,
 			text: text.val(),
 			timestamp: Date.now()
@@ -202,5 +254,20 @@ $(function() {
     function pad(n) {
         return n > 9 ? "" + n: "0" + n;
     }
+    
+    // 현재 시간을 yyyyMMddHHmmsss 형식으로 맞추기
+    function yyyyMMddHHmmsss() {
+        var vDate = new Date();
+        var yyyy = vDate.getFullYear().toString();
+        var MM = (vDate.getMonth() + 1).toString();
+        var dd = vDate.getDate().toString();
+        var HH = vDate.getHours().toString();
+        var mm = vDate.getMinutes().toString();
+
+        var ss = vDate.getSeconds().toString();
+        var sss= vDate.getMilliseconds().toString();
+        return yyyy + (MM[1] ? MM : '0'+MM[0]) + (dd[1] ? dd : '0'+dd[0]) + (HH[1] ? HH : '0'+ HH[0])
+            + (mm[1] ? mm : '0'+ mm[0]) + (ss[1] ? ss : '0'+ss[0])+ sss;
+    };
 
 }); // end - jQuery
