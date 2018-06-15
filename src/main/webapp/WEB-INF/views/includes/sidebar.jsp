@@ -4,7 +4,8 @@
 <script src="resources/js/msg/inviteMsg.js"></script>
 <script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
@@ -51,38 +52,38 @@
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
-		        <a href="calendar">
-		            <i class="glyphicon glyphicon-calendar"></i>
+		        <a class="sidebaricon" href="calendar" id="calendaricon">
+		             <i class="glyphicon glyphicon-calendar"></i>
 		            Calendar
 		        </a>
 		    </li>
 		    <li>
-				<a href="#">
+				<a class="sidebaricon" href="#" id="checklisticon">
 				    <i class="glyphicon glyphicon-th-list"></i>
 				    Checklist
 				</a>
 		    </li>
 		    <li>
-		        <a href="#">
+		        <a class="sidebaricon" href="#" id="charticon">
 		            <i class="glyphicon glyphicon-stats"></i>
 		            Chart
 		        </a>
 		    </li>
 		    <li>
-		        <a href="fileUpload">
-		            <i class="glyphicon glyphicon-file"></i>
+		        <a class="sidebaricon" href="fileUpload" id="filesicon">
+		          <i class="glyphicon glyphicon-file"></i>
 		            Files
 		        </a>
 		    </li>
 		    <li>
-		        <a href="kanban?projectNum=${sessionScope.sessionProjectNum}">
+		        <a class="sidebaricon" href="kanban?projectNum=${sessionScope.sessionProjectNum}" id="kanbanicon">
 		            <i class="glyphicon glyphicon-tasks"></i>
 		            Kanban
 		        </a>
 		    </li>
 		    <li>
-		        <a href="trouble">
-		            <i class="glyphicon glyphicon-exclamation-sign"></i>
+		        <a class="sidebaricon" href="trouble" id="troubleshootingicon">
+					<i class="glyphicon glyphicon-exclamation-sign"></i>
 		            Trouble Shooting
 		        </a>
 		    </li>
@@ -95,7 +96,13 @@
 			<ul class="list-unstyled CTAs">
 	    		<li><a href="#" class="#">corin2</a></li>
 			</ul>
-		</c:when>
+		    <li>
+		        <a href="chatting">
+		            <i class="glyphicon glyphicon-comment"></i>
+		            Chatting
+		        </a>
+		    </li>
+    	</c:when>
 	</c:choose>
 </ul>
 
