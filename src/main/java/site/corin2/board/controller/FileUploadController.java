@@ -45,7 +45,53 @@ public class FileUploadController {
 	}
 	
 
-	@RequestMapping(value="upload", method = RequestMethod.POST)
+/*	@RequestMapping(value="upload", method = RequestMethod.POST)
+	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
+		System.out.println("파일 업로드 커늩롤러");
+		//1. build an iterator
+		 Iterator<String> itr =  request.getFileNames();
+		 System.out.println(itr);
+		 MultipartFile mpf = null;
+
+		 //2. get each file
+		 while(itr.hasNext()){
+			 
+			 //2.1 get next MultipartFile
+			 mpf = request.getFile(itr.next()); 
+			 System.out.println(mpf.getOriginalFilename() +" uploaded! "+files.size());
+
+			 //2.2 if files > 10 remove the first from the list
+			 if(files.size() >= 10)
+				 files.pop();
+			 
+			 //2.3 create new fileMeta
+			 fileMeta = new FileMeta();
+			 fileMeta.setFileName(mpf.getOriginalFilename());
+			 fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
+			 fileMeta.setFileType(mpf.getContentType());
+			 
+			 try {
+				fileMeta.setBytes(mpf.getBytes());
+				
+				// 1. copy file to local disk (make sure the path "e.g. D:/temp/files" exists)
+				// 2. transto(file)
+				// 3. 그냥 temp 로 하면 안 올라가네... 폴더 따로 만들어야 사진이 들어감
+				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("C:/Temp/file/"+mpf.getOriginalFilename()));
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			 //2.4 add to files
+			 files.add(fileMeta);
+			 
+		 }
+		 
+	
+		return files;
+ 
+	}*/
+
+	@RequestMapping(value="dragInsert", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
 		System.out.println("파일 업로드 커늩롤러");
 		//1. build an iterator
@@ -90,7 +136,7 @@ public class FileUploadController {
 		return files;
  
 	}
-
+		
 
 	@RequestMapping(value = "get/{value}", method = RequestMethod.GET)
 	 public void get(HttpServletResponse response,@PathVariable String value){
