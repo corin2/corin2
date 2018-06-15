@@ -43,8 +43,7 @@ public class MsgHandler extends TextWebSocketHandler {
 	@Override
 	protected void handleTextMessage(
 			WebSocketSession session, TextMessage message) throws Exception {
-		String userId = getUserId(session);
-		for (Map.Entry m : usermap.get(userId).entrySet()) {
+		for (Map.Entry m : usermap.get(message.getPayload()).entrySet()) {
 			WebSocketSession sess = (WebSocketSession) m.getValue();
 			sess.sendMessage(message);
 		}

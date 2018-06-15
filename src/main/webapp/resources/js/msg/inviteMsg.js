@@ -4,7 +4,9 @@ $(function(){
 
 //메시지가 존재하는지 알람~
 function existMsg(){
+	console.log("2222222222")
 	if($('#inviteMsg').children('li').length > 0) {
+		console.log("33333")
 		var content = '<span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span>';
 		$('#inviteMsg').closest('li').children('a').append(content);
 	}
@@ -12,6 +14,7 @@ function existMsg(){
 
 //모든 메시지를 보여준다
 function showMsg(){
+	console.log("111111111111")
 	$.ajax({
 		type : "post",
 		url  : "showMsg",
@@ -126,6 +129,7 @@ function inviteMsg(){
 			   },
 		success : function(datas) {
 			alert('초대메시지 발송이 완료되었습니다');
+			sendMsg($("#emailSearch").val().trim());
 		}
 	});
 }

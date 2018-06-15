@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="resources/js/msg/inviteMsg.js"></script>
+<script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
 
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
