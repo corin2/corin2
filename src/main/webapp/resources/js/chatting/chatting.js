@@ -75,7 +75,7 @@ $(function() {
 				+ '</span>'
 				+ '</div>'
 				+ '<div class="col-sm-4 col-xs-4 pull-right sideBar-time">'
-				+ '<span class="time-meta pull-right">00:00'
+				+ '<span class="time-meta pull-right">today'
 				+ '</span>'
 				+ '</div>'
 				+ '</div>'
@@ -127,7 +127,39 @@ $(function() {
 	// 메시지 출력
 	function showMessage(snapshot) {
 		var message = snapshot.val();
-		$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
+		//$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
+		
+		if(currentUser == message.username) {
+			$('#mainDialogs').append(
+					'<div class="row message-body">'
+					+ '<div class="col-sm-12 message-main-sender">'
+					+ '<div class="sender">'
+					+ '<div class="message-text">'
+					+ message.username + ': ' + message.text
+					+ '</div>'
+					+ '<span class="message-time pull-right">'
+					+ convertTime(message.timestamp)
+					+ '</span>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+			);
+		}else {
+			$('#mainDialogs').append(
+					'<div class="row message-body">'
+					+ '<div class="col-sm-12 message-main-receiver">'
+					+ '<div class="receiver">'
+					+ '<div class="message-text">'
+					+ message.username + ': ' + message.text
+					+ '</div>'
+					+ '<span class="message-time pull-right">'
+					+ convertTime(message.timestamp)
+					+ '</span>'
+					+ '</div>'
+					+ '</div>'
+					+ '</div>'
+			);
+		}
 	}
 	
 	// DB변동 시 메시지 출력
