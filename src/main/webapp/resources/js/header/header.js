@@ -5,7 +5,6 @@ $(function(){
 //프로젝트에 속한 멤버 리스트 뿌려주기
 function projectMemberProfile(){
 	var userProfiles = [];
-	
 	$.ajax({
 		type : "post",
 		url  : "showMemberUserProfile",
@@ -43,7 +42,7 @@ function projectMemberShow(userProfiles){
 						
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
 							htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
-							+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberMendate(this)">팀장위임</a></li>';
+							+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="ownerChange(this)">팀장위임</a></li>';
 						}else if (userId ==  elt.userId && elt.gradeNum=='G400') {
 							htmltext += '<li><a onclick="memberDelete()">멤버탈퇴</a></li>';
 						}
@@ -61,6 +60,7 @@ function projectMemberShow(userProfiles){
 	});
 }
 
+//프로젝트의 이름을 보여준다.
 function projectNameView(){
 	$.ajax({
 		type : "post",
@@ -74,3 +74,55 @@ function projectNameView(){
 		}
 	});
 }
+
+//오너위임(팀장위임)
+function ownerChange(obj) {
+	$.ajax({
+			url : "ownerChange",
+			datatype : "JSON",
+			data : {
+					userId : $(obj).parent().children("input").val(),
+					projectNum : $('#hiddenProjectNum').val(),
+					gradeNum : $('#hiddenUserId').val() // 오너위임시 자신도 팀원으로 돌아가기위해 gradeNum이지만 서비스에서 userId가 될 예정
+			},
+			success: function (data){
+				sendHeader('1:'+$('#hiddenProjectNum').val());
+			}
+	});
+}
+
+//팀원제명
+function memberToKickOut(obj) {
+	$.ajax({
+		url : "tokickOut",
+		datatype : "JSON",
+		data : {
+				userId : $(obj).parent().children("input").val(),
+				projectNum : $('#hiddenProjectNum').val()
+		},
+		success: function (data){
+			sendHeader('2:'+$('#hiddenProjectNum').val()+':'+$(obj).parent().children("input").val());
+		}
+	});
+}
+
+//팀탈퇴
+function memberDelete() {
+	$.ajax({
+		url : "tokickOut",
+		datatype : "JSON",
+		data : {
+				userId : $('#hiddenUserId').val(),
+				projectNum : $('#hiddenProjectNum').val()
+		},
+		success: function (data){
+			sendHeader('3:'+$('#hiddenProjectNum').val()+':'+$('#hiddenUserId').val());
+		}
+	});
+}
+
+//js 파일에서 ContextPath 가져오기
+function getContextPath() {
+	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+};

@@ -47,10 +47,8 @@ public class FileUploadController {
 
 /*	@RequestMapping(value="upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
-		System.out.println("파일 업로드 커늩롤러");
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
-		 System.out.println(itr);
 		 MultipartFile mpf = null;
 
 		 //2. get each file
@@ -58,7 +56,6 @@ public class FileUploadController {
 			 
 			 //2.1 get next MultipartFile
 			 mpf = request.getFile(itr.next()); 
-			 System.out.println(mpf.getOriginalFilename() +" uploaded! "+files.size());
 
 			 //2.2 if files > 10 remove the first from the list
 			 if(files.size() >= 10)

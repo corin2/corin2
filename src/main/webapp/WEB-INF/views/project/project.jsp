@@ -4,8 +4,6 @@
 <link rel="stylesheet" href="resources/css/project/project.css">
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
-<link rel="stylesheet" href="resources/css/kanban.css">
-<link rel="stylesheet" href="resources/css/jquery.mCustomScrollbar.css">
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="resources/js/project/project.js"></script>
 <jsp:include page="ProjectDetail.jsp"></jsp:include>

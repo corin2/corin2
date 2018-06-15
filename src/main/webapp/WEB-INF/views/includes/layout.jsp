@@ -33,8 +33,12 @@
 		
 		<!-- Page Content Holder -->
 		<div id="content">
-			<!-- Header 영역 -->
-			<tiles:insertAttribute name="header" />
+			<c:choose>
+				<c:when test="${sessionScope.sessionProjectNum != null}">
+					<!-- Header 영역 -->
+					<tiles:insertAttribute name="header" />
+				</c:when>
+			</c:choose>
 			
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />

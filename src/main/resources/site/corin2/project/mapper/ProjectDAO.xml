@@ -19,7 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- site.corin2.project.dto.ProjectDTO -->
 		<select id="projectAllList" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project p
-			join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0 or t.bookmark = 0 and t.bookmark=null
+			join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0 and t.isdeleted = 0 and (t.bookmark = 0 or t.bookmark is null)
 			order by p.projectnum
 		</select>
 		
@@ -27,7 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="projectBookList" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project p	join team t
 			on p.projectnum = t.projectnum
-			where userid=#{userId} and p.isdeleted = 0 and t.bookmark = 1
+			where userid=#{userId} and p.isdeleted = 0 and t.bookmark = 1 and t.isdeleted = 0
 			order by p.projectnum
 		</select>
 		
