@@ -19,15 +19,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- site.corin2.project.dto.ProjectDTO -->
 		<select id="projectAllList" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project p
-			join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0 or t.bookmark = 0 and t.bookmark=null
-			order by p.projectnum
+            join team t on  p.projectnum = t.projectnum where userid=#{userId} and p.isdeleted = 0 and t.isdeleted = 0 and (t.bookmark = 0 or t.bookmark is null)
+            order by p.projectnum
 		</select>
 		
 		<!-- site.corin2.project.dto.ProjectDTO -->
 		<select id="projectBookList" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project p	join team t
 			on p.projectnum = t.projectnum
-			where userid=#{userId} and p.isdeleted = 0 and t.bookmark = 1
+			where userid=#{userId} and p.isdeleted = 0 and t.bookmark = 1 and t.isdeleted = 0
 			order by p.projectnum
 		</select>
 		
@@ -54,6 +54,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 프로젝트 하나 검색 -->
 		<select id="projectSelect" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project where projectnum = #{projectNum}
+		</select>
+		
+		<select id="searchProject" parameterType="hashmap" resultType="site.corin2.project.dto.ProjectDTO">
+			select * from project p join team t
+			on p.projectnum = t.projectnum
+			where t.userid=#{userId} and p.projectname like '%${projectName}%'
+		</select>
+		
+		<select id="autoCompletProject" resultType="site.corin2.project.dto.ProjectDTO">
+			select p.projectname from project p join team t
+			on p.projectnum = t.projectnum
+			where t.userid=#{userId}
 		</select>
 		
 	</mapper>

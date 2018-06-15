@@ -7,14 +7,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 프로젝트에 속한 모든 팀 멤버 TeamDTO 조회 -->
 	<select id="allTeamMemberSelect" resultType="site.corin2.project.dto.TeamDTO">
-		select * from team where projectnum = #{projectNum}
+		select * from team where projectnum = #{projectNum} and isdeleted = 0
 	</select>
 	
 	<!-- 프로젝트에 속한 모든 팀 멤버 UserDTO 조회 -->
 	<select id="allTeamMemberProfileSelect" resultType="site.corin2.user.dto.UserDTO">
 		select *
 		from user
-		where userid in (select t.USERID from team t inner join user u on t.USERID = u.USERID where t.PROJECTNUM = #{projectNum});
+		where userid in (select t.USERID from team t inner join user u on t.USERID = u.USERID where t.PROJECTNUM = #{projectNum})
 	</select>
 	
 	<!-- Team 멤버를 추가한다. -->
@@ -29,5 +29,36 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(projectnum, userid, gradenum, bookmark, isdeleted)
 		values(#{projectNum}, #{userId},'G300',null,0)
 	</insert>
+	
+	<!-- 오너위임 (팀장위임) -->
+	<update id="ownerChange">
+		update team set gradenum = 'G300'
+		where projectnum = #{projectNum} and userid = #{userId}
+	</update>
+	
+	<!-- 오너위임시 자신은 팀원으로 -->
+	<update id="downOwnerChange">
+		update team set gradenum = 'G400'
+		where projectnum = #{projectNum} and userid = #{userId}
+	</update>
+	
+	<!-- 팀원제명 & 회원탈퇴 -->
+	<update id="tokickOut">
+		update team set isdeleted = 1
+		where projectnum = #{projectNum} and userid = #{userId}
+	</update>
+	
+	<!-- 팀 재가입 -->
+	<update id="tokickIn">
+		update team set isdeleted = 0
+		where projectnum = #{projectNum} and userid = #{userId}
+	</update>
+	
+	<!-- 프로젝트에 속한 모든 팀 멤버 UserDTO 조회 -->
+	<select id="teamMemberSelect" resultType="site.corin2.project.dto.TeamDTO">
+		select *
+		from team
+		where userid = #{userId} and projectnum = #{projectNum}
+	</select>
 	
 	</mapper>

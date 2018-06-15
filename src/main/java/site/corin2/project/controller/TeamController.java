@@ -61,4 +61,18 @@ public class TeamController {
 		result = service.insertTeamProject(team);
 		return jsonview;
 	}
+	
+	//팀장위임(오너위임)
+	@RequestMapping("/ownerChange")
+	public View ownerChange(TeamDTO team) {
+		service.ownerChange(team);
+		return jsonview;
+	}
+	
+	//팀원제명 & 회원탈퇴
+	@RequestMapping("/tokickOut")
+	public View tokickOut(TeamDTO team) {
+		service.tokickOut(team);
+		return jsonview;
+	}
 }

@@ -1,29 +1,29 @@
 $(function(){
-	connect();
+	Msgconnect();
 });
 
-var wsocket;
+var wMsgSocket;
 
-function connect() {
-	wsocket = new WebSocket("ws://"+ document.domain +":8090/controller/msgWebSocket?userId=" + $("#hiddenUserId").val());
-	wsocket.onopen = onOpen;
-	wsocket.onmessage = onMessage;
-	wsocket.onclose = onClose;
+function Msgconnect() {
+	wMsgSocket = new WebSocket("ws://"+ document.domain +":8090/controller/msgWebSocket?userId=" + $("#hiddenUserId").val());
+	wMsgSocket.onopen = onMsgOpen;
+	wMsgSocket.onmessage = onMsgMessage;
+	wMsgSocket.onclose = onMsgClose;
 }
 
-function disconnect() {
-	wsocket.close();
+function disMsgconnect() {
+	wMsgSocket.close();
 }
 
-function onOpen(evt) {}
+function onMsgOpen(evt) {}
 
-function onMessage(evt) {
+function onMsgMessage(evt) {
 	var data = evt.data;
 	showMsg();
 }
 
-function onClose(evt) {}
+function onMsgClose(evt) {}
 
-function send(msg) {
-	wsocket.send(msg);
+function sendMsg(msg) {
+	wMsgSocket.send(msg);
 }

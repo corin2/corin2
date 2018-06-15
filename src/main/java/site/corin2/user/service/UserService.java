@@ -45,16 +45,12 @@ public class UserService {
 	public String userInsert(UserDTO userdto) {
 		int result = 0;
 		String viewpage = "";
-		System.out.println(userdto.toString());
 		try {
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 			//userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
 			userdto.setPassword(userdto.getPassword());
-			System.out.println("1111");
 			result = userdao.userInsert(userdto);
-			System.out.println("2222");
 			if (result > 0) {
-				System.out.println("삽입 성공");
 				MimeMessage message = javamailsender.createMimeMessage();
 				message.setSubject("corin2입니다.");
 				message.setFrom(new InternetAddress("corin2site@gmail.com"));
@@ -63,7 +59,6 @@ public class UserService {
 				javamailsender.send(message);
 				viewpage = "user.insertsuccess";
 			} else {
-				System.out.println("삽입 실패");
 				viewpage = "user.insertfail";
 			}
 		} catch (Exception e) {
@@ -76,9 +71,6 @@ public class UserService {
 	//email 인증 페이지
 	public String emailConfirm(UserDTO userdto, String userid) {
 
-		System.out.println("mailconfirm 탔당");
-		System.out.println(userid);
-		System.out.println(userdto);
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO authuser;
 		try {
@@ -99,7 +91,6 @@ public class UserService {
 	public String repass(String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		String [] useridsplit = userid.split("=");
-		System.out.println(useridsplit[0]);
 		int result = 0;
 		try {
 			result = userdao.idCheck(useridsplit[0]);
@@ -110,12 +101,9 @@ public class UserService {
 			e.printStackTrace();
 		}
 		String check;
-		System.out.println(result);
 		if (result > 0) {
-			System.out.println("아이디 중복");
 			check = "true";
 		} else {
-			System.out.println("노 중복");
 			check = "false";
 		}
 		
@@ -124,23 +112,17 @@ public class UserService {
 
 	//비밀번호 재설정 기능 실행
 	public String repassword(UserDTO userdto) {
-		System.out.println("repassword service 기능 실행");
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO repassuser;
 		String viewpage= null;
 		try {
 			String repassword = ""+(int)((Math.random()*100000)+1);
 			repassuser = userdao.userSelect(userdto.getUserId());
-			System.out.println(userdto.getUserId());
 			//updateuser.setPassword(bCryptPasswordEncoder.encode(userdto.getPassword()));
 			repassuser.setPassword(repassword);
-			System.out.println("2");
 			userdao.repassword(repassuser);
-			System.out.println("3");
 			MimeMessage message = javamailsender.createMimeMessage();
-			System.out.println("4");
 			message.setSubject("corin2입니다.");
-			System.out.println("5");
 			message.setFrom(new InternetAddress("corin2site@gmail.com"));
 			message.setText("새로운 비밀번호는 "+repassword+" 입니다.","utf-8", "html");
 			message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
@@ -159,7 +141,6 @@ public class UserService {
 		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
 		
 		String [] useridsplit = userid.split("=");
-		System.out.println(useridsplit[0]);
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(useridsplit[0]);
 		boolean err = m.matches();
@@ -173,12 +154,9 @@ public class UserService {
 			e.printStackTrace();
 		}
 		String check;
-		System.out.println(result);
 		if (result > 0 || err == false ) {
-			System.out.println("아이디 중복");
 			check = "true";
 		} else {
-			System.out.println("노 중복");
 			check = "false";
 		}
 		return check;
@@ -193,10 +171,8 @@ public class UserService {
 		boolean err = m.matches();
 		String check;
 		if (err == false ) {
-			System.out.println("비밀번호 글자 수");
 			check = "true";
 		} else {
-			System.out.println("비밀번호 ok");
 			check = "false";
 		}
 		return check;
@@ -211,10 +187,8 @@ public class UserService {
 		boolean err = m.matches();
 		String check;
 		if (err == false ) {
-			System.out.println("닉네임 글자 수");
 			check = "true";
 		} else {
-			System.out.println("닉네임 ok");
 			check = "false";
 		}
 		return check;
@@ -231,7 +205,6 @@ public class UserService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println("update controller GET");
 		return userdto;
 	}
 	
@@ -241,18 +214,11 @@ public class UserService {
 		UserDTO updateuser;
 		try {
 			updateuser = userdao.userSelect(userdto.getUserId());
-		//System.out.println("2");
 			updateuser.setUserName(userdto.getUserName());
-		//System.out.println("3");
-			//updateuser.setPassword(bCryptPasswordEncoder.encode(userdto.getPassword()));
 			updateuser.setPassword(userdto.getPassword());
-		//System.out.println("4");
 			updateuser.setUserProfile(userdto.getUserProfile());
-		//System.out.println("5");
 			updateuser.setGradeNum(userdto.getGradeNum());
-		//System.out.println("6");
 			userdao.userUpdate(updateuser);
-		//System.out.println("7");
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
@@ -287,10 +253,8 @@ public class UserService {
 			userdto.setEnabled(1);
 			result = userdao.oauthinsert(userdto);
 			if (result > 0) {
-				System.out.println("삽입 성공");
 				viewpage = "user.content";
 			} else {
-				System.out.println("삽입 실패");
 				viewpage = "login.html";
 			}
 		} catch (ClassNotFoundException e) {

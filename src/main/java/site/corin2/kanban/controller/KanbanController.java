@@ -8,6 +8,8 @@ package site.corin2.kanban.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,8 +39,9 @@ public class KanbanController {
 		
 	//칸반으로 보내준다.
 	@RequestMapping("/kanban")
-	public String newFile(@RequestParam("projectNum") String projectNum, Model model) {
+	public String newFile(@RequestParam("projectNum") String projectNum, Model model, HttpSession session) {
 		model.addAttribute("projectNum", projectNum);
+		session.setAttribute("sessionProjectNum", projectNum);
 		return "kanban.kanban";
 	}
 	

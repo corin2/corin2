@@ -6,9 +6,11 @@
 */
 package site.corin2.project.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import site.corin2.project.dto.ProjectDTO;
+import site.corin2.project.dto.TeamDTO;
 import site.corin2.user.dto.UserDTO;
 
 public interface ProjectDAO {
@@ -39,5 +41,11 @@ public interface ProjectDAO {
 
 	//프로젝트 하나 검색
 	public ProjectDTO projectSelect(int projectNum);
+	
+	//프로젝트 검색
+	public List<ProjectDTO> searchProject(HashMap map);
+	
+	//프로젝트이름 오토컴플릿
+	public List<ProjectDTO> autoCompletProject (TeamDTO team);
 	
 }

@@ -1,13 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
-  <!-- ckedior -->
-  <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-  <script src="resources/js/board/vendor/jquery.ui.widget.js"></script>
-  <script src="resources/js/board/jquery.iframe-transport.js"></script>
-  <script src="resources/js/board/jquery.fileupload.js"></script>
-  <script src="resources/js/board/myuploadfunction.js"></script>  
-  <link href="resources/css/board/dropzone.css" type="text/css" rel="stylesheet" />
 
 	<div id="notificationBlock" class="form-group">
 	    <label class="control-label">알림 메시지</label>

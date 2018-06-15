@@ -39,10 +39,6 @@ public class KakaoLogin {
 			final HttpResponse response = client.execute(post);
 			final int responseCode = response.getStatusLine().getStatusCode();
 
-			System.out.println("\nSending 'POST' request to URL : " + RequestUrl);
-			System.out.println("Post parameters : " + postParams);
-			System.out.println("Response Code : " + responseCode);
-
 			// JSON 형태 반환값 처리
 			ObjectMapper mapper = new ObjectMapper();
 			returnNode = mapper.readTree(response.getEntity().getContent());
@@ -77,9 +73,6 @@ public class KakaoLogin {
 			final HttpResponse response = client.execute(post);
 			final int responseCode = response.getStatusLine().getStatusCode();
 
-			System.out.println("\nSending 'POST' request to URL : " + RequestUrl);
-			System.out.println("Response Code : " + responseCode);
-
 			// JSON 형태 반환값 처리
 			ObjectMapper mapper = new ObjectMapper();
 			returnNode = mapper.readTree(response.getEntity().getContent());
@@ -99,7 +92,6 @@ public class KakaoLogin {
 
 	public static UserDTO changeData(JsonNode userInfo) {
 		UserDTO userdto = new UserDTO();
-		System.out.println("changedata 타니");
 		if (userInfo.path("kaccount_email_verified").asText().equals("true")) { // 이메일 받기 허용 한 경우
 			userdto.setUserId(userInfo.path("kaccount_email").asText()); // email -> vo 넣기
 
