@@ -29,6 +29,9 @@ public interface TeamDAO {
 	//오너위임
 	public void ownerChange(TeamDTO team);
 	
+	//오너위임시 팀원으로 변경
+	public void downOwnerChange(TeamDTO team);
+	
 	//팀원제명 & 회원탈퇴
 	public void tokickOut(TeamDTO team);
 	

@@ -5,7 +5,6 @@ $(function(){
 //프로젝트에 속한 멤버 리스트 뿌려주기
 function projectMemberProfile(){
 	var userProfiles = [];
-	
 	$.ajax({
 		type : "post",
 		url  : "showMemberUserProfile",
@@ -83,10 +82,11 @@ function ownerChange(obj) {
 			datatype : "JSON",
 			data : {
 					userId : $(obj).parent().children("input").val(),
-					projectNum : $('#hiddenProjectNum').val()
+					projectNum : $('#hiddenProjectNum').val(),
+					gradeNum : $('#hiddenUserId').val() // 오너위임시 자신도 팀원으로 돌아가기위해 gradeNum이지만 서비스에서 userId가 될 예정
 			},
 			success: function (data){
-				projectMemberProfile();
+				sendHeader('1:'+$('#hiddenProjectNum').val());
 			}
 	});
 }
@@ -101,25 +101,28 @@ function memberToKickOut(obj) {
 				projectNum : $('#hiddenProjectNum').val()
 		},
 		success: function (data){
-			projectMemberProfile();
+			sendHeader('2:'+$('#hiddenProjectNum').val()+':'+$(obj).parent().children("input").val());
 		}
 	});
 }
 
 //팀탈퇴
 function memberDelete() {
-	console.log('zzz')
-	console.log($('hiddenUserId').val() + '/' + $('#hiddenProjectNum').val())
 	$.ajax({
 		url : "tokickOut",
 		datatype : "JSON",
 		data : {
-				userId : $('hiddenUserId').val(),
+				userId : $('#hiddenUserId').val(),
 				projectNum : $('#hiddenProjectNum').val()
 		},
 		success: function (data){
-			console.log("qqqq")
-			projectMemberProfile();
+			sendHeader('3:'+$('#hiddenProjectNum').val()+':'+$('#hiddenUserId').val());
 		}
 	});
 }
+
+//js 파일에서 ContextPath 가져오기
+function getContextPath() {
+	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+};

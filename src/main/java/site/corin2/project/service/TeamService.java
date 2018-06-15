@@ -76,6 +76,8 @@ public class TeamService {
 	public void ownerChange(TeamDTO team) {
 		TeamDAO dao = sqlSession.getMapper(TeamDAO.class);
 		dao.ownerChange(team);
+		team.setUserId(team.getGradeNum());
+		dao.downOwnerChange(team);
 	}
 	
 	//팀원제명 & 회원탈퇴
