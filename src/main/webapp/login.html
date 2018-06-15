@@ -118,6 +118,9 @@
 	    background-color: #337ab7;
 	    border-color: #2e6da4;
 	}
+	a{
+		margin-top : 10px;
+	}
 	.sns-icon{
 	 width:40px;
 	}
@@ -173,20 +176,10 @@
         <input class="text" type="text" id="userId" name="userId" placeholder="email@domain.com" required="required">
         <input class="text" type="password" id="password" name="password" placeholder="Password" required="required">
         
-        <div class="col-sm-12">
-	        <div class="col-md-6">
-	        	<button class="btn btn-default" type="submit" id="btnLogin" value="Login">Login</button>
-	        </div>
-	        <div class="col-md-6">
-	        	<button type="button" data-toggle="modal" data-target="#signupmodal" class="btn btn-default">Sign Up</button>
-	        </div>
-        </div>
-        <div class="col-sm-12">
-	        <div class="col-md-12">
-	        	<button type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default">비밀번호재설정하기</button>
-	        </div>
-	    </div>
         <div class="text-center social-btn" style="margin-top: 3px;">
+        	<button class="btn btn-default btn-block" type="submit" id="btnLogin" value="Login">Login</button>
+        	<a type="button" data-toggle="modal" data-target="#signupmodal" class="btn btn-default btn-block">Sign Up</a>
+        	<a type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default btn-block">비밀번호재설정하기</a>
     		<a href="#" id="google" class="btn btn-danger btn-block"><img class="sns-icon" src="resources/images/google.svg">Sign in with <b>Google</b></a>
             <a href="#" id="facebook" class="btn btn-primary btn-block"><img class="sns-icon" src="resources/images/facebo.svg">Sign in with <b>Facebook</b></a>
             <a href="https://kauth.kakao.com/oauth/authorize?client_id=fbe288f80d621d2eb6d941ab8e9617fd&redirect_uri=http://localhost:8090/controller/kakaologin" id="kakao" class="btn btn-warning btn-block"><img class="sns-icon" src="resources/images/kakao.svg">Sign in with <b>Kakao</b></a>
