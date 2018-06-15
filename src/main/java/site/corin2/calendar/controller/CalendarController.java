@@ -39,7 +39,8 @@ public class CalendarController {
 	@RequestMapping("/calendarview")
 	public View CalendarSelect(@RequestParam("projectNum") String projectNum, Model model) {
 		
-		List<CalendarDTO> calendardto = service.calendarSelect(Integer.parseInt(projectNum));
+		//List<CalendarDTO> calendardto = service.calendarSelect(Integer.parseInt(projectNum));
+		List<CalendarDTO> calendardto = service.calendarSelect(1);
 		model.addAttribute("data", calendardto);
 		
 		return jsonview;

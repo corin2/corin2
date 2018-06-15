@@ -5,20 +5,26 @@
     작성자: 배현준
 */
 
+$(function(){
+	showCalendar();
+});
 //일정 조회하여 풀캘린더에 뿌리기 
-function showUserFrofiles(){
-	var userProfiles = [];
+function showCalendar(){
+	var calendars = [];
 	$.ajax({
 		type : "post",
-		url  : "showMemberUserProfile",
+		url  : "calendarview",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		//data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : 1},
 		success : function(data){
 			$.each(data.data, function(index, elt) {
-				userProfiles.push(elt);
+				calendars.push(elt);
 			});
 			
-			showUserField(userProfiles);
-		}
+			//showCalendar(calendars);
+			console.log(calendars);
+			}
+		
 	});
 }

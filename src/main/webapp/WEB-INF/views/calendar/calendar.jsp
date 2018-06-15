@@ -8,6 +8,8 @@
 <script src='${pageContext.request.contextPath}/resources/js/calendar/jquery.min.js'></script> --%>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/fullcalendar.min.js'></script>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/gcal.min.js'></script>
+
+
 <script>
 
   $(document).ready(function() {
@@ -53,4 +55,4 @@
 
 <h2 id='boardTitle'>일정관리</h2>
   <div id='calendar'></div>
-
+<script src='${pageContext.request.contextPath}/resources/js/calendar/calendar.js'></script>
