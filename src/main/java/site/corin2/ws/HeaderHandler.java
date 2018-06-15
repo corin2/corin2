@@ -15,19 +15,19 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class MsgHandler extends TextWebSocketHandler {
+public class HeaderHandler extends TextWebSocketHandler {
 	private Map<String, HashMap<String, WebSocketSession>> usermap = new HashMap<>();
 	
 	@Override
 	public void afterConnectionEstablished(
 			WebSocketSession session) throws Exception {
-		String userId = getUserId(session);
-		if(usermap.containsKey(userId)) {
-			usermap.get(userId).put(session.getId(), session);
+		String projectNum = getProjectNum(session);
+		if(usermap.containsKey(projectNum)) {
+			usermap.get(projectNum).put(session.getId(), session);
 		} else {
 			Map<String, WebSocketSession> list = new HashMap<String, WebSocketSession>();
 			list.put(session.getId(), session);
-			usermap.put(userId, (HashMap<String, WebSocketSession>) list);
+			usermap.put(projectNum, (HashMap<String, WebSocketSession>) list);
 		}
 		
 	}
@@ -35,24 +35,24 @@ public class MsgHandler extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionClosed(
 			WebSocketSession session, CloseStatus status) throws Exception {
-		String userId = getUserId(session);
-		usermap.get(userId).remove(session.getId());
+		String projectNum = getProjectNum(session);
+		usermap.get(projectNum).remove(session.getId());
 		session.close();
 	}
 
 	@Override
 	protected void handleTextMessage(
 			WebSocketSession session, TextMessage message) throws Exception {
-		for (Map.Entry m : usermap.get(message.getPayload()).entrySet()) {
+		for (Map.Entry m : usermap.get(message.getPayload().split(":")[1]).entrySet()) {
 			WebSocketSession sess = (WebSocketSession) m.getValue();
 			sess.sendMessage(message);
 		}
 	}
 	
-	public String getUserId(WebSocketSession session) {
+	public String getProjectNum(WebSocketSession session) {
 		Map<String, Object> map = session.getAttributes();
 		
-		return (String) map.get("userId");
+		return (String) map.get("projectNum");
 	}
 	
 }

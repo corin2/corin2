@@ -22,23 +22,30 @@
 	<context:component-scan base-package="site.corin2.*.service" />
 	
 	<!-- 소켓 시작~~ -->
-	
+	<!-- 칸반소켓 -->
 	<websocket:handlers>
 		<websocket:mapping handler="kanbanHandler" path="/kanbanWebSocket" />
 		<websocket:handshake-interceptors>
 			<bean class="site.corin2.ws.KanbanHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
-	
+	<!-- 메시지소켓 -->
 	<websocket:handlers>
 		<websocket:mapping handler="msgHandler" path="/msgWebSocket" />
 		<websocket:handshake-interceptors>
 			<bean class="site.corin2.ws.MsgHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
+	<!-- 헤더소켓(멤버제명, 멤버탈퇴, 팀장위임) -->
+	<websocket:handlers>
+		<websocket:mapping handler="headerHandler" path="/headerWebSocket" />
+		<websocket:handshake-interceptors>
+			<bean class="site.corin2.ws.HeaderHandInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 	<bean id="kanbanHandler" class="site.corin2.ws.KanbanHandler" />
 	<bean id="msgHandler" class="site.corin2.ws.MsgHandler" />
-	
+	<bean id="headerHandler" class="site.corin2.ws.HeaderHandler" />
 	<mvc:default-servlet-handler />
 	
 	<!-- 비동기 필요 -->

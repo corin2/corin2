@@ -80,7 +80,6 @@ public class UserController {
 	//비밀번호 재설정 기능 실행
 	@RequestMapping(value = "repassword", method = RequestMethod.POST)
 	public String repassword(UserDTO userdto) {
-		System.out.println("repassword controller 기능 실행");
 		String viewpage = service.repassword(userdto);
 		return viewpage;
 	}	
@@ -110,7 +109,6 @@ public class UserController {
 	@RequestMapping(value="userupdate" , method=RequestMethod.GET)
 	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
 		UserDTO userdto = service.userUpdate(principal.getName());
-		System.out.println(principal.getName());
 		model.addAttribute("userdto", userdto);
 		return "user.update";
 	}
@@ -118,7 +116,6 @@ public class UserController {
 	//사용자 수정하기 기능 실행
 	@RequestMapping(value="userupdate", method=RequestMethod.POST)
 	public String userUpdate(UserDTO userdto) {
-		System.out.println("update controller POST");
 		service.userUpdate(userdto);
 		return "login.html";
 	}
@@ -126,7 +123,6 @@ public class UserController {
 	//회원 삭제하기
 	@RequestMapping(value="userdelete" , method=RequestMethod.POST)
 	public String userDelete(UserDTO userdto ,Principal principal) throws ClassNotFoundException, SQLException {
-		System.out.println("delete controller POST");
 		service.userDelete(principal.getName());
 		return "login.html";
 	}
@@ -134,19 +130,14 @@ public class UserController {
 	//kakao Oauth
 	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
-	  System.out.println("kakao login 들어오니");
 	  JsonNode token = KakaoLogin.getAccessToken(code);
 
 	  JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
-	  System.out.println(profile);
 	  UserDTO userdto = KakaoLogin.changeData(profile);
 	  String check = service.idCheck(userdto.getUserId());
-	  System.out.println(check);
 	  if(check=="false") {
 		  service.KakaoLogin(userdto);
 	  }
-	  System.out.println(userdto.getUserId());
-	  System.out.println(userdto.getUserName());
 	  return "user.content";
 	}
 	

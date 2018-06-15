@@ -93,7 +93,6 @@ function memberinvite() {
 		data : $("#emailSearch").val().trim(),
 		contentType: "application/json; charset=utf-8",
 		success : function (data) {
-			console.log(data)
 			if(data.trim() === 'true') isInviteMsg();
 			else alert('없는 회원입니다');
 		}
@@ -126,6 +125,7 @@ function inviteMsg(){
 			   },
 		success : function(datas) {
 			alert('초대메시지 발송이 완료되었습니다');
+			sendMsg($("#emailSearch").val().trim());
 		}
 	});
 }

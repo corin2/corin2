@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 팀에 참여되어 있는지, 메시지가 있는지 확인한다 -->
 	<select id="isTeamAndisMsg" resultType="int">
-		select IFNULL(count(*), 0) + (select IFNULL(count(*), 0) from team where projectnum = #{projectNum} and userid = #{receptionId})
+		select IFNULL(count(*), 0) + (select IFNULL(count(*), 0) from team where projectnum = #{projectNum} and userid = #{receptionId} and isdeleted = 0)
 		from msg where projectnum = #{projectNum} and receptionid = #{receptionId}
 	</select>
 	
