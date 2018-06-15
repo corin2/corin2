@@ -25,27 +25,4 @@
     opacity: 1;
 }
 
-.dropnamesuper {
-    position: absolute;
-    background-color: lightgray;
-    width: 300px;
-    height: 300px;
-}
 
-.dropnamechild{
-	margin-top:25%;
-	margin-left:25%;
-    display:inline-table;
-    float: left;
-    width: 150px;
-    height: 150px;
-    border: 1px solid white;
-     text-align: center;
-}
-.dropzonecontent{
-	background-color: lightwhite;
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-    color: black;
-}
