@@ -76,48 +76,6 @@ $(function() {
 		db.child('projects/' + projectNum + '/users').update(updateUser);
 	}
 
-	// 팀원 보기
-	/*function showTeam() {
-		
-
-			// 팀원 추가
-			db.child('users').on('child_added', function(snapshot) {
-					
-					// 사용자 클릭 시
-					$('#' + teamUser.key).click(function() {
-						// 1:1 대화방 개설
-						
-						//var roomPath = MAKE_UID + '-LEvfIYw9ZVRaiXNUDRB' + TIME_NOW + yyyyMMddHHmmsss();
-						var roomPath = MAKE_UID + currentUserUid + TARGET_UID + teamUser.key;
-						var reverseRoomPath = MAKE_UID + teamUser.key + TARGET_UID + currentUserUid;
-						if(db.child('messages/' + roomPath)) {
-							console.log("뭔데: " + db.child('messages/' + roomPath));
-							alert(roomPath + "로 연결합니다.");
-							messages = db.child('messages/' + roomPath);
-						}else if(db.child('messages/' + reverseRoomPath)) {
-							alert(reverseRoomPath + "로 연결합니다.");
-							messages = db.child('messages/' + reverseRoomPath);
-						}else {
-							var userRoomsUpdates = {
-									'roomUid': roomPath,
-									'tergetUserUid': teamUser.key,
-									'targetUserName': teamUser.username,
-									'timestamp': Date.now()
-							};
-							db.child('userRooms/' + roomPath).update(userRoomsUpdates);
-						}
-						
-						alert(teamUser.username + "님과 대화를 시작합니다.");
-						$('#mainDialogs').empty();
-						messages.on('child_added', showMessage);
-					});
-				}
-			})
-		}
-	}*/
-	
-	
-
 	// 메시지 보내기
 	function sendMessage() {
 		var text = $('#messageText');
