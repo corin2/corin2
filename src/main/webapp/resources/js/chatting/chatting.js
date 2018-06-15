@@ -26,36 +26,72 @@ $(function() {
 	const TARGET_UID = "@target@";
 	//const TIME_NOW = "@time@";
 	
-	// 초기 데이터 생성
-	function initialData() {
-		db.child('users').update({
-			'userid': 'test@naver.com',
-			'username': 'test',
-			'userprofile': '',
-			'projects': {
-				1: true,
-				2: true
+	// 프로젝트 내 멤버 정보 가져오기
+	function getUsers(projectNum) {
+		$.ajax({
+			url:"showMemberUserProfile",
+			datatype:"JSON",
+			data:{projectNum:projectNum},
+			success:function(data){
+				console.log(data);
+				$.each(data.data, function(index, obj) {
+					console.log("오브젝트: " + obj.userName);
+					var userUid = initialData(obj);
+					updateInfo(userUid, projectNum);
+				});
 			}
 		});
+	}
+	
+	// 멤버 가져오기 함수 콜
+	getUsers(69);
+	
+	// 초기 데이터 생성
+	function initialData(obj) {
+		db.child('users').push({
+			'userid': obj.userId,
+			'username': obj.userName,
+			'userprofile': obj.userProfile,
+/*			'projects': {
+				1: true,
+				2: true
+			}*/
+		});
 		
-		db.child('projects/1').set({
+		db.child('users').on('child_changed', function(snapshot) {
+			return snapshot.key;
+		});
+		
+		/*db.child('projects/1').set({
 			'projectname': '테스트',
 			'users': {
 				'-LF-nn2JnUBU_2yQ6B4Q': true
 			}
-		});
+		});*/
+	}
+	
+	// updateInfo
+	function updateInfo(userUid, projectNum) {
+		var updateProject = {};
+		updateProject[projectNum] = true;
+		db.child('users/' + userUid).update(updateProject);
+		
+		var updateUser = {};
+		updateUser[userUid] = true;
+		
+		db.child('projects/' + projectNum + '/users').update(updateUser);
 	}
 	
 	//initialData();
 	
 	// User 데이터 읽기
-	db.child('users').on('child_added', function(snapshot) {
+	/*db.child('users').on('child_added', function(snapshot) {
 		var user = snapshot.val();
 		user.key = snapshot.key;
 		console.log("유저 키: " + user.key);
 		console.log("유저아이디: " + user.userid);
 		db.child('users/' + user.key + '/project')
-	});
+	});*/
 	
 	
 	

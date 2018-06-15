@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="allTeamMemberProfileSelect" resultType="site.corin2.user.dto.UserDTO">
 		select *
 		from user
-		where userid in (select t.USERID from team t inner join user u on t.USERID = u.USERID where t.PROJECTNUM = #{projectNum});
+		where userid in (select t.USERID from team t inner join user u on t.USERID = u.USERID where t.PROJECTNUM = #{projectNum})
 	</select>
 	
 	<!-- Team 멤버를 추가한다. -->
