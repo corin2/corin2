@@ -10,6 +10,13 @@
     <h3>corin2</h3>
     <strong>C2</strong>
 </div>
+<c:choose>
+	<c:when test="${pageContext.request.userPrincipal.name eq null}">
+	    <script>
+	    	location.href="http://localhost:8090/controller/login.html";
+	    </script>
+	</c:when>
+</c:choose>
 
 <ul class="list-unstyled components">
 	<c:choose>
@@ -85,20 +92,28 @@
 		            Notices
 		        </a>
 		    </li>
-    	</c:when>
+			<ul class="list-unstyled CTAs">
+	    		<li><a href="#" class="#">corin2</a></li>
+			</ul>
+		</c:when>
 	</c:choose>
 </ul>
 
-<ul class="list-unstyled CTAs">
-    <li><a href="#" class="#">corin2</a></li>
-    <li><a href="#" class="#">corin2</a></li>
-</ul>
-
 <ul class="list-unstyled components">
+<c:choose>
+	<c:when test="${sessionScope.sessionProjectNum != null}" >
+		<li>
+		    <a href="chatting">
+		        <i class="glyphicon glyphicon-comment"></i>
+		        Chatting
+		    </a>
+		</li>
+    </c:when>
+</c:choose>
     <li>
-        <a href="chatting">
-            <i class="glyphicon glyphicon-comment"></i>
-            Chatting
+        <a href="logout">
+            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+            Logout
         </a>
     </li>
 </ul>
