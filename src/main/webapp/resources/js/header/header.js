@@ -32,6 +32,13 @@ function projectMemberShow(userProfiles){
 			$('#headerProjectMemberProfile').empty();
 			var htmltext = '';
 			var projectName = '';
+			var myGrade = '';
+			$.each(data.data, function(index, elt) {
+				if(elt.userId == userId) {
+					myGrade = elt.gradeNum;
+					return false;
+				}
+			});
 			$.each(data.data, function(index, elt) {
 				projectName = elt.projectName;
 				$.each(userProfiles, function(i, elt2) {
@@ -39,10 +46,11 @@ function projectMemberShow(userProfiles){
 						htmltext += '<div class="dropdown" style="float:left;">'
 							+ '<a data-toggle="dropdown" style="font-size: 25pt; top: 7px; cursor: pointer;"><img style="width: 50px;height:50px" class="img-circle" src = "resources/profile/'+elt2.userProfile+'" /></a>'
 							+ '<ul class="dropdown-menu" style="cursor: pointer;">';
-						
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
-							htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
-							+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="ownerChange(this)">팀장위임</a></li>';
+							if(myGrade == 'G300'){
+								htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
+								+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="ownerChange(this)">팀장위임</a></li>';
+							}
 						}else if (userId ==  elt.userId && elt.gradeNum=='G400') {
 							htmltext += '<li><a onclick="memberDelete()">멤버탈퇴</a></li>';
 						}

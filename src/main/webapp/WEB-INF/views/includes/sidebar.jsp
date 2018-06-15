@@ -26,21 +26,23 @@
 		        </ul>
 		    </li>
 		</c:when>
-		<c:otherwise>
-			<li>
-		        <a href="project">
-		            <i class="glyphicon glyphicon-th-large"></i>
-		            Projects
-		        </a>
-		    </li>
-		    <li>
-		    	<a href="#inviteMsg" data-toggle="collapse" aria-expanded="false" onclick="showMsg()">
-		            <i class="glyphicon glyphicon-envelope"></i>
-		            Alarm
-		        </a>
-		        <ul class="collapse list-unstyled" id="inviteMsg">
-		        </ul>
-		    </li>
+	</c:choose>
+		<li>
+	        <a href="project">
+	            <i class="glyphicon glyphicon-th-large"></i>
+	            Projects
+	        </a>
+	    </li>
+		<li>
+	    	<a href="#inviteMsg" data-toggle="collapse" aria-expanded="false" onclick="showMsg()">
+	            <i class="glyphicon glyphicon-envelope"></i>
+	            Alarm
+	        </a>
+	        <ul class="collapse list-unstyled" id="inviteMsg">
+	        </ul>
+	    </li>
+	<c:choose>
+		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
 		        <a href="calendar">
 		            <i class="glyphicon glyphicon-calendar"></i>
@@ -66,7 +68,7 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a href="kanban">
+		        <a href="kanban?projectNum=${sessionScope.sessionProjectNum}">
 		            <i class="glyphicon glyphicon-tasks"></i>
 		            Kanban
 		        </a>
@@ -83,7 +85,7 @@
 		            Notices
 		        </a>
 		    </li>
-    	</c:otherwise>
+    	</c:when>
 	</c:choose>
 </ul>
 
@@ -94,7 +96,7 @@
 
 <ul class="list-unstyled components">
     <li>
-        <a href="#">
+        <a href="chatting">
             <i class="glyphicon glyphicon-comment"></i>
             Chatting
         </a>

@@ -49,6 +49,7 @@ function msgaccept(projectNum){
           data:param,
           success:function(data){
         	  showMsg();
+        	  languageColorView();
           }
 	})
 }
