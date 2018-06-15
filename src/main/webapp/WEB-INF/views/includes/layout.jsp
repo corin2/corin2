@@ -50,6 +50,9 @@
 	        $('.sidebar-header').on('click', function () {
 	            $('#sidebar').toggleClass('active');
 	        });
+	        if(${sessionScope.sessionProjectNum} != null){
+	    		$('#sidebar').toggleClass('active');
+	    	}
 	    });
 	</script>        
 </body>
