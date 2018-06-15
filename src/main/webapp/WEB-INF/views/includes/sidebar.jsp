@@ -85,20 +85,24 @@
 		            Notices
 		        </a>
 		    </li>
+			<ul class="list-unstyled CTAs">
+	    		<li><a href="#" class="#">corin2</a></li>
+			</ul>
+		    <li>
+		        <a href="chatting">
+		            <i class="glyphicon glyphicon-comment"></i>
+		            Chatting
+		        </a>
+		    </li>
+</ul>
     	</c:when>
 	</c:choose>
-</ul>
-
-<ul class="list-unstyled CTAs">
-    <li><a href="#" class="#">corin2</a></li>
-    <li><a href="#" class="#">corin2</a></li>
-</ul>
 
 <ul class="list-unstyled components">
     <li>
-        <a href="chatting">
-            <i class="glyphicon glyphicon-comment"></i>
-            Chatting
+        <a href="logout">
+            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+            Logout
         </a>
     </li>
 </ul>
