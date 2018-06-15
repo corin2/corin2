@@ -21,6 +21,12 @@ import site.corin2.calendar.dto.CalendarDTO;
 @Controller
 public class CalendarController {
 	
+	//position 칸반으로 보내준다.
+	@RequestMapping("/position.calendar")
+	public String positioncalendar() {
+		return "position.calendar";
+	}
+		
 	@RequestMapping("/calendar")
 	public String CalendarView() {
 		return "calendar.calendar";

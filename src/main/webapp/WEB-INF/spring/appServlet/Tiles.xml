@@ -18,5 +18,6 @@
      
      <definition name="login.*" template="login.html" />
      <definition name="user.*" template="/WEB-INF/views/login/{1}.jsp" />
-     <definition name="position.kanban" template="/WEB-INF/views/kanban/kanban.jsp" />
+     <definition name="position.kanban" template="/WEB-INF/views/kanban/kanban.jsp"/>
+     <definition name="position.calendar" template="/WEB-INF/views/calendar/calendar.jsp"/>
 </tiles-definitions>
