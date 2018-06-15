@@ -176,7 +176,8 @@ function printProjectDetailLanguage() {
 		success:function(data){
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<br>"
+				console.log(elt)
+				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
 		}
@@ -193,7 +194,7 @@ function printProjectDetailLanguageChecked(projectNum) {
 			$.each(data.list, function(index, elt) {
 				html += "<input type='radio' name='language' value='"+elt.languageNum+"'";
 				if($('#hiddenLanguageNum'+projectNum).val() == elt.languageNum)	html += " checked ";
-				html += ">"+elt.languageMain+"<br>";
+				html += ">"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>";
 			})
 			$("#projectDetail").append(html)
 		}
