@@ -10,7 +10,9 @@
 
 <nav class="navbar navbar-default">
 		<div id="search">
-		<input type="text" class="search">&nbsp;<span class="glyphicon glyphicon-search"></span>
+		<input type="text" id="searchProject" class="search" onclick="autoCompleteProject()">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
+		<div id="searchBox">
+		</div>
 		</div>
 </nav>
 <nav class="navbar navbar-default">
