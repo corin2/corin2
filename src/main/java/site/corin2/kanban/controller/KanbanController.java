@@ -29,6 +29,13 @@ public class KanbanController {
 	private KanbanService service;
 
 	//칸반으로 보내준다.
+	@RequestMapping("/position.kanban")
+	public String positionkanban(@RequestParam("projectNum") String projectNum, Model model) {
+		model.addAttribute("projectNum", projectNum);
+		return "position.kanban";
+	}
+		
+	//칸반으로 보내준다.
 	@RequestMapping("/kanban")
 	public String newFile(@RequestParam("projectNum") String projectNum, Model model) {
 		model.addAttribute("projectNum", projectNum);

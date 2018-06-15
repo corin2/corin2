@@ -14,7 +14,7 @@
 	  					   login-processing-url="/login"
 	  					   username-parameter="userId"
 	  					   password-parameter="password"
-	  					   default-target-url="/project"
+	  					   default-target-url="/position"
 	  					   authentication-failure-url="/login.html?error"
 	  					   always-use-default-target="true"
 	  					   authentication-failure-handler-ref="loginFailureHandler"

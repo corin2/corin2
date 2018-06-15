@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class PositionController {
 	
-	//skill
-	@RequestMapping(value="gridstack",method=RequestMethod.GET)
+	//position
+	@RequestMapping(value="position",method=RequestMethod.GET)
 	public String content() {
-		return "skill.example";
+		return "position.position";
 	}
 	
 	/*

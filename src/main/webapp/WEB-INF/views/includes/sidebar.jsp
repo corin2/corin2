@@ -18,8 +18,12 @@
         <ul class="collapse list-unstyled" id="homeSubmenu">
             <li><a href="content">User Info</a></li>
             <li><a href="#">Profile Modification</a></li>
-            <li><a href="#">Delete</a></li>
-        </ul>
+			<li>
+				<form method="post" action="userdelete">
+					<a class="btn btn-default" type="submit" value="Login">delete</a>
+				</form>
+			</li>
+		</ul>
     </li>
     <li>
     	<a href="#inviteMsg" data-toggle="collapse" aria-expanded="false" onclick="showMsg()">

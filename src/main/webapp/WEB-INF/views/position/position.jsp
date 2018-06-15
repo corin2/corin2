@@ -50,15 +50,8 @@
 		    });
 		    new function () { 
 		    	var grid = $(".grid-stack").data("gridstack");
-		    	<!--add-->
-		   	
-			    this.addNewWidget = function () {
-			    	grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div id="calendar"></div></div></div>'), 0, 0, 4, 5, true)
-			    }.bind(this);
-		    	
-		    	$('#add-new-widget').click(this.addNewWidget);
-		    	 
-			    <!--removeall-->
+
+		    	<!--removeall-->
 			    this.clearGrid = function () {
 			        grid.removeAll();
 			        return false;
@@ -156,61 +149,74 @@
 				   
 			   });
 			   
+			  	
+				
 		    };
-		     
-		    //drag drop
-		    $(".glyphicon").draggable({
-		    	 start : function(event) {
-		    	  img_choice = $(this).attr("src");
-		    	  img_choice_id = $(this).attr("id");
-		    	 },
-		    	 stop : function() {
-		    	  
-		    	 },
-		    	 revert : true
-		    	});
-
-	    	$(".grid-stack").droppable({
-	    	 drop : function(event, ui) {
-		    	  if ($(this).attr("id") == "calendaricon") {
-		    		  this.addNewWidget = function () {
-		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i> <div id="calendar"></div></div></div>'), 0, 0, 4, 5, true);
-					  }.bind(this);
-		    	  }else if($(this).attr("id")=="checklisticon"){
-		    		  this.addNewWidget = function () {
-		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
-					  }.bind(this);
-		    		  
-		    	  }else if($(this).attr("id")=="charticon"){
-		    		  this.addNewWidget = function () {
-		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
-					  }.bind(this);
-		    	  }else if($(this).attr("id")=="filesicon"){
-		    		  this.addNewWidget = function () {
-		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
-					  }.bind(this);
-		    	  }else if($(this).attr("id")=="kanbanicon"){
-		    		  this.addNewWidget = function () {
-		    			  grid.addWidget($('<div class="grid-stack-item" id="c"
-		    				        data-gs-x="0" data-gs-y="0" 
-		    					        data-gs-width="4" data-gs-height="2" id="first">
-		    					            <div class="grid-stack-item-content">
-		    					            <i class="fa fa-close"></i>
-		    					            <i class="fa fa-star"></i>
-		    					            <i class="fa fa-bell"></i>
-		    					            <i class="fa fa-heart"></i>
-		    					              	<jsp:include page="/WEB-INF/views/kanban/kanban.jsp"></jsp:include>
-		    					              </div>
-		    					    </div>'), 0, 0, 4, 5, true);
-					  }.bind(this);
-		    	  }else{
-		    		  this.addNewWidget = function () {
-		    			  grid.addWidget($('<div><div class="grid-stack-item-content"><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div></div></div>'), 0, 0, 4, 5, true);
-					  }.bind(this);
-		    	  }
-		   		}
-	    	});      
 		 });
+			    $(function(){
+				    //drag drop
+				    $("#calendaricon").draggable({
+				    	 revert : true
+				    	});
+				    $("#checklisticon").draggable({
+				    	 revert : true
+				    	});
+				    $("#charticon").draggable({
+				    	 revert : true
+				    	});
+				    $("#filesicon").draggable({
+				    	 revert : true
+				    	});
+				    $("#troubleshootingicon").draggable({
+				    	 revert : true
+				    });
+				    $("#kanbanicon").draggable({
+				    	 revert : true
+				    });
+				    
+				    $(".1").droppable({
+				    	accept:"#calendaricon",
+				    	drop : $(this).addNewWidget = function () {
+			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="calendar"></div></div>'), 0, 0, 4, 5, true);
+			    			 $("#calendar").load("position.calendar");
+				    	}.bind(this)
+				    });
+				    $(".2").droppable({
+				    	accept:"#checklisticon",
+				    	drop : $(this).addNewWidget = function () {
+			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="checklist"></div></div>'), 0, 0, 4, 5, true);
+			    			 $("#checklist").load("position.checklist");
+				    	}.bind(this)
+				    });
+				    $(".3").droppable({
+				    	accept:"#charticon",
+				    	drop : $(this).addNewWidget = function () {
+			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="chart"></div></div>'), 0, 0, 4, 5, true);
+			    			 $("#chart").load("position.chart");
+				    	}.bind(this)
+				    });
+				    $(".4").droppable({
+				    	accept:"#filesicon",
+				    	drop : $(this).addNewWidget = function () {
+			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="files"></div></div>'), 0, 0, 4, 5, true);
+			    			 $("#files").load("position.files");
+				    	}.bind(this)
+				    }); 
+				    $(".5").droppable({
+				    	accept:"#troubleshootingicon",
+				    	drop : $(this).addNewWidget = function () {
+			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="troubleshooting"></div></div>'), 0, 0, 4, 5, true);
+			    			 $("#troubleshooting").load("troubleshooting");
+				    	}.bind(this)
+				    });
+				    $(".6").droppable({
+				    	accept:"#kanbanicon",
+				    	drop : $(this).addNewWidget = function () {
+			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="kanban"></div></div>'), 0, 0, 8, 8, true);
+			    			 $("#kanban").load("position.kanban?projectNum=1");
+				    	}.bind(this)
+				    });
+			    });	
 		</script>
 	<style type="text/css">
 		body {
@@ -230,9 +236,8 @@
 		.grid-stack {
 			background: #FFF;
 			width: 86%;
-			height: 100%;
-			position: absolute; 
-		
+			
+			position: absolute;
 		}
 		
 		.grid-stack-item-content {
@@ -258,8 +263,7 @@
 	            <a class="btn btn-default" id="resize" href="#">resize</a>
 	    </div>
 	
-		<div class="grid-stack">
-			
+		<div class="grid-stack 1 2 3 4 5 6">
 		    <div class="grid-stack-item" id="c"
 		        data-gs-x="0" data-gs-y="0" 
 		        data-gs-width="4" data-gs-height="2" id="first">
@@ -268,8 +272,7 @@
 		            <i class="fa fa-star"></i>
 		            <i class="fa fa-bell"></i>
 		            <i class="fa fa-heart"></i>
-		              	<jsp:include page="/WEB-INF/views/kanban/kanban.jsp"></jsp:include>
-		              </div>
+		            </div>
 		    </div>
 		</div>
 	</div>
