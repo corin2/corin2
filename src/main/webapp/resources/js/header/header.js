@@ -9,7 +9,7 @@ function projectMemberProfile(){
 		type : "post",
 		url  : "showMemberUserProfile",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$.each(data.data, function(index, elt) {
 				userProfiles.push(elt);
@@ -27,7 +27,7 @@ function projectMemberShow(userProfiles){
 		type : "post",
 		url  : "showMember",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$('#headerProjectMemberProfile').empty();
 			var htmltext = '';
@@ -74,7 +74,7 @@ function projectNameView(){
 		type : "post",
 		url  : "showProject",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$('#headerProjectName').empty();
 			
@@ -90,11 +90,11 @@ function ownerChange(obj) {
 			datatype : "JSON",
 			data : {
 					userId : $(obj).parent().children("input").val(),
-					projectNum : $('#hiddenProjectNum').val(),
+					projectNum : sessionProjectNum,
 					gradeNum : $('#hiddenUserId').val() // 오너위임시 자신도 팀원으로 돌아가기위해 gradeNum이지만 서비스에서 userId가 될 예정
 			},
 			success: function (data){
-				sendHeader('1:'+$('#hiddenProjectNum').val());
+				sendHeader('1:'+sessionProjectNum);
 			}
 	});
 }
@@ -106,10 +106,10 @@ function memberToKickOut(obj) {
 		datatype : "JSON",
 		data : {
 				userId : $(obj).parent().children("input").val(),
-				projectNum : $('#hiddenProjectNum').val()
+				projectNum : sessionProjectNum
 		},
 		success: function (data){
-			sendHeader('2:'+$('#hiddenProjectNum').val()+':'+$(obj).parent().children("input").val());
+			sendHeader('2:'+sessionProjectNum+':'+$(obj).parent().children("input").val());
 		}
 	});
 }
@@ -121,10 +121,10 @@ function memberDelete() {
 		datatype : "JSON",
 		data : {
 				userId : $('#hiddenUserId').val(),
-				projectNum : $('#hiddenProjectNum').val()
+				projectNum : sessionProjectNum
 		},
 		success: function (data){
-			sendHeader('3:'+$('#hiddenProjectNum').val()+':'+$('#hiddenUserId').val());
+			sendHeader('3:'+sessionProjectNum+':'+$('#hiddenUserId').val());
 		}
 	});
 }
