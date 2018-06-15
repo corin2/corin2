@@ -68,9 +68,8 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a href="kanban">
-		             <i class="glyphicon glyphicon-tasks" id="kanbanicon"></i>
-		            Kanban
+		        <a href="kanban?projectNum=${sessionScope.sessionProjectNum}" id="kanbanicon">
+		            <i class="glyphicon glyphicon-tasks"></i>
 		        </a>
 		    </li>
 		    <li>

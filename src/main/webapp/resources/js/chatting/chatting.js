@@ -23,9 +23,8 @@ $(function() {
 	
 	console.log("현재 유저: " + currentUser);
 	$('#currentUser').html(currentUser);
-	
 	// 채팅 페이지 시작 시, 함수 콜
-	getUsers(69); // 멤버 가져오기 함수 TODO: projectNum 변경할 것.
+	getUsers(sessionProjectNum); // 멤버 가져오기 함수
 	$('#mainDialogs').empty();
 	
 	// 프로젝트 내 멤버 정보 가져오기
