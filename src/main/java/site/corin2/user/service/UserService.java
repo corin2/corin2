@@ -251,7 +251,7 @@ public class UserService {
 			userdto.setPassword("kakaologin");
 			userdto.setUserProfile(userdto.getUserProfile());
 			userdto.setEnabled(1);
-			result = userdao.oauthinsert(userdto);
+			result = userdao.oauthInsert(userdto);
 			if (result > 0) {
 				viewpage = "user.content";
 			} else {
