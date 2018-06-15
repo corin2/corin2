@@ -56,7 +56,6 @@ public class ProjectService {
 		List<LanguageDTO> list = null;
 		LanguageDAO dao = sqlSession.getMapper(LanguageDAO.class);
 		list = dao.languageColorAllList();
-		System.out.println("리스트 " + list.toString());
 		return list;
 	}
 	

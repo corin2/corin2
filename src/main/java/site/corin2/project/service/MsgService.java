@@ -36,8 +36,12 @@ public class MsgService {
 	public void addTeamMemberInsert(TeamDTO team){
 		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
 		MsgDAO msgDAO = sqlsession.getMapper(MsgDAO.class);
+		TeamDTO team2 = null;
 		try {
-			teamDAO.addTeamMemberInsert(team);
+			team2 = teamDAO.teamMemberSelect(team);
+			if(team2 == null) teamDAO.addTeamMemberInsert(team);
+			else teamDAO.tokickIn(team);
+			
 			MsgDTO msg = new MsgDTO();
 			msg.setProjectNum(team.getProjectNum());
 			msg.setReceptionId(team.getUserId());

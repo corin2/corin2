@@ -15,14 +15,10 @@ function disMsgconnect() {
 	wMsgSocket.close();
 }
 
-function onMsgOpen(evt) {
-	console.log('eee')
-}
+function onMsgOpen(evt) {}
 
 function onMsgMessage(evt) {
 	var data = evt.data;
-	console.log("assdasdasdsadsa")
-	console.log(data)
 	showMsg();
 }
 

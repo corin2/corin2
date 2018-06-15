@@ -41,7 +41,7 @@
 	    overflow-x: auto;
 	    overflow-y: unset;
 	    position:relative;
-	    max-height: 765px;
+	    max-height: 700px;
 	}
 	
 	.listingbox {
@@ -53,7 +53,6 @@
 	    height:200px;
 	    float:left;
 	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.donebox {
@@ -67,7 +66,6 @@
 	    overflow-x: auto;
 	    overflow-y: auto;
 	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.userbox {
@@ -78,7 +76,6 @@
 	    width:150px;
 	    float:left;
 	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.userprofilebox {
@@ -90,7 +87,6 @@
 	    height:200px;
 	    float:left;
 	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.kanbanbox {
@@ -101,7 +97,6 @@
 	    width:350px;
 	    float:left;
 	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.listtitle {
