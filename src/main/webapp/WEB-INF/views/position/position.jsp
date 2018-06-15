@@ -1,15 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.0/jquery-ui.js"></script>
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.0/lodash.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<!--  full calender-->
-	<link href='resources/css/fullcalendar/fullcalendar.min.css' rel='stylesheet' />
-	<link href='resources/css/fullcalendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-	<script src='resources/js/fullcalendar/moment.min.js'></script>
-	<script src='resources/js/fullcalendar/fullcalendar.min.js'></script>
 	<!-- gridstack -->
 	<link rel="stylesheet" href="resources/css/position/gridstack.min.css"/>
 	<script src="resources/js/position/gridstack.min.js"></script>
@@ -50,7 +43,85 @@
 		    });
 		    new function () { 
 		    	var grid = $(".grid-stack").data("gridstack");
-
+		    	var dragID = '';
+			    
+		    	//insert
+		    	$(function(){
+				    //drag drop
+				    $("#calendaricon").draggable({
+				    	 revert : true,
+				    	 drag: function( event, ui ) {
+				    		 dragID = $(this).attr("id");
+				    		 console.log(dragID);
+				    	 }
+				    	});
+				    $("#checklisticon").draggable({
+				    	 revert : true,
+				    	 drag: function( event, ui ) {
+				    		 dragID = $(this).attr("id");
+				    		 console.log(dragID);
+				    	 }
+				    	});
+				    $("#charticon").draggable({
+				    	 revert : true,
+				    	 drag: function( event, ui ) {
+				    		 dragID = $(this).attr("id");
+				    		 console.log(dragID);
+				    	 }
+				    	});
+				    $("#filesicon").draggable({
+				    	 revert : true,
+				    	 drag: function( event, ui ) {
+				    		 dragID = $(this).attr("id");
+				    		 console.log(dragID);
+				    	 }
+				    	});
+				    $("#troubleshootingicon").draggable({
+				    	 revert : true,
+				    	 drag: function( event, ui ) {
+				    		 dragID = $(this).attr("id");
+				    		 console.log(dragID);
+				    	 }
+				    });
+				    $("#kanbanicon").draggable({
+				    	 revert : true,
+				    	 drag: function( event, ui ) {
+				    		 dragID = $(this).attr("id");
+				    		 console.log(dragID);
+				    	 }
+				    });
+				    
+				    $(".grid-stack").droppable({
+				    	accept:".sidebaricon",
+				    	drop : $(this).addNewWidget = function () {
+				    		if(dragID == 'calendaricon'){
+				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 8, 0, 4, 4);
+				    			 $(".grid-stack").children().last().children().attr("id","calendar");
+			    				 $("#calendar").load("position.calendar");
+				    		}else if(dragID == 'checklisticon'){
+				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 4, 0, 4, 4);
+				    			 $(".grid-stack").children().last().children().attr("id","checklist");
+			    				 $("#checklist").load("position.checklist");
+				    		}else if(dragID == 'charticon'){
+				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 0, 4, 4);
+				    			 $(".grid-stack").children().last().children().attr("id","chart");
+			    				 $("#chart").load("position.chart");
+				    		}else if(dragID == 'filesicon'){
+				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 6, 4, 6, 6);
+				    			 $(".grid-stack").children().last().children().attr("id","files");
+			    				 $("#files").load("position.files");
+				    		}else if(dragID == 'troubleshootingicon'){
+				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 4, 6, 6);
+				    			 $(".grid-stack").children().last().children().attr("id","troubleshooting");
+			    				 $("#troubleshooting").load("position.troubleshooting");
+				    		}else if(dragID == 'kanbanicon') {
+				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 10, 12, 8);
+				    			 $(".grid-stack").children().last().children().attr("id","kanban");
+				    			 $("#kanban").load("position.kanban?projectNum=1");
+				    		}
+				    	}.bind(this)
+				    });
+			    });
 		    	<!--removeall-->
 			    this.clearGrid = function () {
 			        grid.removeAll();
@@ -153,95 +224,7 @@
 				
 		    };
 		 });
-			  var dragID = '';
-			    $(function(){
-				    //drag drop
-				    $("#calendaricon").draggable({
-				    	 revert : true,
-				    	 drag: function( event, ui ) {
-				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
-				    	 }
-				    	});
-				    $("#checklisticon").draggable({
-				    	 revert : true,
-				    	 drag: function( event, ui ) {
-				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
-				    	 }
-				    	});
-				    $("#charticon").draggable({
-				    	 revert : true
-				    	});
-				    $("#filesicon").draggable({
-				    	 revert : true
-				    	});
-				    $("#troubleshootingicon").draggable({
-				    	 revert : true
-				    });
-				    $("#kanbanicon").draggable({
-				    	 revert : true,
-				    	 drag: function( event, ui ) {
-				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
-				    	 }
-				    });
-				    
-				    $(".grid-stack").droppable({
-				    	accept:".glyphicon",
-				    	drop : $(this).addNewWidget = function () {
-				    		console.log(dragID);
-			    				 $(".grid-stack").data("gridstack").addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 0, 4, 5, true);
-				    		if(dragID == 'calendaricon'){
-				    			console.log($(this));
-				    			console.log(this);
-				    			 $(".grid-stack").attr("id","calendar");
-			    				 $("#calendar").load("position.calendar");
-				    		}else if(dragID == 'kanbanicon') {
-				    			 $(this).attr("id","kanban");
-				    			 $("#kanban").load("position.kanban?projectNum=1");
-				    		}
-				    	}.bind(this)
-				    });
-				    /* 
-				     $(".grid-stack").children().children().attr("id","calendar");
-				    
-				    $(".grid-stack").droppable({
-				    	accept:"#checklisticon",
-				    	drop : $(this).addNewWidget = function () {
-			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="checklist"></div></div>'), 0, 0, 4, 5, true);
-			    			 $("#checklist").load("position.checklist");
-				    	}.bind(this)
-				    });
-				    $(".grid-stack").droppable({
-				    	accept:"#charticon",
-				    	drop : $(this).addNewWidget = function () {
-			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="chart"></div></div>'), 0, 0, 4, 5, true);
-			    			 $("#chart").load("position.chart");
-				    	}.bind(this)
-				    });
-				    $(".grid-stack").droppable({
-				    	accept:"#filesicon",
-				    	drop : $(this).addNewWidget = function () {
-			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="files"></div></div>'), 0, 0, 4, 5, true);
-			    			 $("#files").load("position.files");
-				    	}.bind(this)
-				    }); 
-				    $(".grid-stack").droppable({
-				    	accept:"#troubleshootingicon",
-				    	drop : $(this).addNewWidget = function () {
-			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="troubleshooting"></div></div>'), 0, 0, 4, 5, true);
-			    			 $("#troubleshooting").load("troubleshooting");
-				    	}.bind(this)
-				    });
-				    $(".grid-stack").droppable({
-				    	accept:"#kanbanicon",
-				    	drop : $(this).addNewWidget = function () {
-			    			 $(".grid-stack").data("gridstack").addWidget($('<div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i><div class="grid-stack-item-content" id="kanban"></div></div>'), 0, 0, 8, 8, true);
-			    			 $("#kanban").load("position.kanban?projectNum=1");
-				    	}.bind(this)
-				    }); */
-			    });	
+			  	
 		</script>
 	<style type="text/css">
 		body {
