@@ -57,7 +57,6 @@
 				</a>
 		    </li>
 		    <li>
-		        <a href="#">
 		        <a class="sidebaricon" href="#" id="charticon">
 		            <i class="glyphicon glyphicon-stats"></i>
 		            Chart

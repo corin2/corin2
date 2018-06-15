@@ -9,22 +9,6 @@
 	<script src="resources/js/position/gridstack.jQueryUI.min.js"></script> 
 	<script>
 		  $(document).ready(function() {
-			$('#cal').click(function(){
-			 $('#calendar').fullCalendar({
-		      header: {
-		        left: 'prev,next today',
-		        center: 'title',
-		        right: 'month,agendaWeek,agendaDay,listMonth'
-		      },
-		      defaultDate: '2018-03-12',
-		      navLinks: true, // can click day/week names to navigate views
-		      businessHours: true, // display business hours
-		      editable: true,
-		      contentHeight: 'auto',
-			    height: 'auto'
-		    });
-			});
-		
 		    var options = {
 		        cellHeight: 80,
 		        verticalMargin: 10,
@@ -47,7 +31,7 @@
 			    
 		    	//insert
 		    	$(function(){
-				    //drag drop
+				    //menu drag drop
 				    $("#calendaricon").draggable({
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
@@ -99,23 +83,23 @@
 				    			 $(".grid-stack").children().last().children().attr("id","calendar");
 			    				 $("#calendar").load("position.calendar");
 				    		}else if(dragID == 'checklisticon'){
-				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 4, 0, 4, 4);
+				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 4, 0, 4, 4);
 				    			 $(".grid-stack").children().last().children().attr("id","checklist");
 			    				 $("#checklist").load("position.checklist");
 				    		}else if(dragID == 'charticon'){
-				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 0, 4, 4);
+				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 0, 4, 4);
 				    			 $(".grid-stack").children().last().children().attr("id","chart");
 			    				 $("#chart").load("position.chart");
 				    		}else if(dragID == 'filesicon'){
-				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 6, 4, 6, 6);
+				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 6, 4, 6, 6);
 				    			 $(".grid-stack").children().last().children().attr("id","files");
 			    				 $("#files").load("position.files");
 				    		}else if(dragID == 'troubleshootingicon'){
-				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 4, 6, 6);
+				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 4, 6, 6);
 				    			 $(".grid-stack").children().last().children().attr("id","troubleshooting");
 			    				 $("#troubleshooting").load("position.troubleshooting");
 				    		}else if(dragID == 'kanbanicon') {
-				    			grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 10, 12, 8);
+				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 10, 12, 8);
 				    			 $(".grid-stack").children().last().children().attr("id","kanban");
 				    			 $("#kanban").load("position.kanban?projectNum=1");
 				    		}
@@ -235,52 +219,34 @@
 			height: 100%;
 			width: 100%;
 		}
-		
-		#calendar {
-			width: auto%;
-			margin: 0 auto;
-		}
-		
 		.grid-stack {
 			background: #FFF;
-			width: 86%;
-			
+			width: 100% !important;
+			height: 100% !important;
 			position: absolute;
 		}
-		
 		.grid-stack-item-content {
 			color: #2c3e50;
 			text-align: center;
-			background-color: #e0e3da;
+			border-color : #000000;
+			background-color: none;
 			-ms-overflow-style: none;
 		}
-		
 		::-webkit-scrollbar {
 			display: none;
 		}
 	</style>
-	<div class="content-wrapper" style="width:1900px;">
-		<div>
-	        	<a class="btn btn-default" id="add-new-widget" href="#">Add Widget</a>
+	
+		<!-- <div>
 	            <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
 	            <a class="btn btn-default" id="load-grid" href="#">Load Grid</a>
 	            <a class="btn btn-default" id="clear-grid" href="#">Clear Grid</a>
-	            <a class="btn btn-default" id="cal" href="#">addcal</a>
 	            <a class="btn btn-default" id="fix" href="#">allfix</a>
 	            <a class="btn btn-default" id="unfix" href="#">allunfix</a>
 	            <a class="btn btn-default" id="resize" href="#">resize</a>
-	    </div>
+	    </div> -->
 	
 		<div class="grid-stack">
-		    <div class="grid-stack-item" id="c"
-		        data-gs-x="0" data-gs-y="0" 
-		        data-gs-width="4" data-gs-height="2" id="first">
-		            <div class="grid-stack-item-content">
-		            <i class="fa fa-close"></i>
-		            <i class="fa fa-star"></i>
-		            <i class="fa fa-bell"></i>
-		            <i class="fa fa-heart"></i>
-		            </div>
-		    </div>
+		<!-- 기능 들어가는 곳 -->
 		</div>
-	</div>
+	
