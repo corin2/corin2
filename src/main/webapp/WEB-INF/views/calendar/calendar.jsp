@@ -4,7 +4,8 @@
 <link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/resources/js/calendar/moment.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/calendar/jquery.min.js'></script>
+<%-- 중복부분.. 삭제할것!! 
+<script src='${pageContext.request.contextPath}/resources/js/calendar/jquery.min.js'></script> --%>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/fullcalendar.min.js'></script>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/gcal.min.js'></script>
 <script>
@@ -14,22 +15,15 @@
     $('#calendar').fullCalendar({
       defaultDate: '2018-06-14',
       editable: true,
-      eventLimit: true, // allow "more" link when too many events
+      eventLimit: true, 
+      
+    //구글캘린더 공휴일 api 호출을 위한 키값(*필수)
       googleCalendarApiKey : "AIzaSyDcnW6WejpTOCffshGDDb4neIrXVUA1EAE",
       
-      //googleCalendarApiKey : "yC5-uzXehepIksN7F4Qw0Q7A",
-
-    	
       events: 
         {        	
-        	/*
-          googleCalendarId : 'ko.south_korea#holiday@group.v.calendar.google.com'
-          , className : 'koHolidays'
-          , color : '#FF0000'
-          , textColor : '#FFFFFF' */
-          
+          	  //구글캘린더 공휴일 api 호출
         	  googleCalendarId: 'ko.south_korea#holiday@group.v.calendar.google.com'
-          //  ,  className: 'gcal-event' 
         	  , className : 'koHolidays'
         	  , color : '#FF0000'
         	  , textColor : '#FFFFFF'

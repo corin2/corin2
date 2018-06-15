@@ -91,7 +91,7 @@
 		console.log("안녕");
 	    var htmlString = '<td><input type=label name="boardNum" value="'+boardNum+'" readonly></td>'
 						 +'<td><input type=label name="userName" value="'+userName+'" readonly></td>'
-						 +'<td><input type=textarea name="problem" value="'+problem+'"><hr><input type=textarea name="solution" value="'+solution+'"></td>'
+						 +'<td><input type=text name="problem" class="form-control" value="'+problem+'" ><hr><input type=textarea name="solution" class="form-control" value="'+solution+'" ></td>'
 						 +'<td><input type=label name="boardDate" value="'+boardDate+'" readonly></td>' 
 						 +'<td><input type="submit" class="btn btn-success" value="완료"></td>';
 	    	
