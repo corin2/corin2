@@ -59,7 +59,29 @@ $(function() {
 	
 	// 팀원 추가
 	function updateUserList(userUid, obj) {
-		$('#userList').append("<div id=" + userUid + ">" + "<h3>" + obj.userName + "</h3>" + "</div>");
+		//$('#userList').append("<div id=" + userUid + ">" + "<h3>" + obj.userName + "</h3>" + "</div>");
+		
+		$('.sideBar').append(
+				'<div class="row sideBar-body">'
+				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
+				+ '<div class="avatar-icon">'
+				+ '<img src=' + "resources/profile/nogon.JPG" +'>'
+				+ '</div>'
+				+ '</div>'
+				+ '<div class="col-sm-9 col-xs-9 sideBar-main">'
+				+ '<div class="row">'
+				+ '<div class="col-sm-8 col-xs-8 sideBar-name">'
+				+ '<span class="name-meta">' + obj.userName
+				+ '</span>'
+				+ '</div>'
+				+ '<div class="col-sm-4 col-xs-4 pull-right sideBar-time">'
+				+ '<span class="time-meta pull-right">00:00'
+				+ '</span>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+		);
 	}
 	
 	// DB 정보 수정
