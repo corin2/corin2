@@ -99,7 +99,9 @@ $(function() {
 			sendMessage();
 		}
 	})
-
+	
+    ////////////[메시지] ////////////
+          
 	// 메시지 출력
 	function showMessage(snapshot) {
 		var message = snapshot.val();
