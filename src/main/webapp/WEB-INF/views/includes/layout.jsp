@@ -46,11 +46,12 @@
 	</div>
 	
 	<script type="text/javascript">
+		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
 	    $(document).ready(function () {
 	        $('.sidebar-header').on('click', function () {
 	            $('#sidebar').toggleClass('active');
 	        });
-	        if(${sessionScope.sessionProjectNum} != null){
+	        if(sessionProjectNum != 'null'){
 	    		$('#sidebar').toggleClass('active');
 	    	}
 	    });
