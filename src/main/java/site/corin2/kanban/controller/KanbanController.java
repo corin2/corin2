@@ -30,11 +30,16 @@ public class KanbanController {
 	@Autowired
 	private KanbanService service;
 
+	//position 칸반으로 보내준다.
+	@RequestMapping("/position.kanban")
+	public String positionkanban(@RequestParam("projectNum") String projectNum, Model model) {
+		model.addAttribute("projectNum", projectNum);
+		return "position.kanban";
+	}
+		
 	//칸반으로 보내준다.
 	@RequestMapping("/kanban")
-	public String newFile(@RequestParam("projectNum") String projectNum, Model model, HttpSession session) {
-		model.addAttribute("projectNum", projectNum);
-		session.setAttribute("sessionProjectNum", projectNum);
+	public String newFile() {
 		return "kanban.kanban";
 	}
 	

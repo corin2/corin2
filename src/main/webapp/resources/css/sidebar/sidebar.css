@@ -28,7 +28,7 @@ a, a:hover, a:focus {
     background: #fff;
     border: none;
     border-radius: 0;
-    margin-bottom: 40px;
+    margin-bottom: 0px !important;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -165,6 +165,11 @@ ul ul a {
     padding-left: 30px !important;
     background: #6d7fcc;
 }
+ul ul form a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
 
 ul.CTAs {
     padding: 20px;
@@ -194,7 +199,7 @@ a.article, a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    padding: 20px;
+   
     min-height: 100vh;
     transition: all 0.3s;
 }
