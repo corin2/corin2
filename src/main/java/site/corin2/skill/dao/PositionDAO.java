@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import site.corin2.skill.dto.PositionDTO;
 
 public interface PositionDAO {
-	/*
-	//insert position
-	public String positionInsert(PositionDTO positiondto) throws ClassNotFoundException, SQLException;
 	
+	//insert position
+	public int positionInsert(PositionDTO positiondto) throws ClassNotFoundException, SQLException;
+	/*
 	//update position
 	public String positionUpdate(PositionDTO positiondto) throws ClassNotFoundException, SQLException;
 		

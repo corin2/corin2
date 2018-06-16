@@ -16,17 +16,9 @@
 		        
 		    };
 		    $('.grid-stack').gridstack(options);
+	    	var grid = $(".grid-stack").data("gridstack");
 		    
-		    <!--remove-->
-		    $('body').on('click', '.fa-close', function (e) {
-		        e.preventDefault();
-		        var grid = $('.grid-stack').data('gridstack'),
-		            el = $(this).closest('.grid-stack-item')
-		
-		        grid.removeWidget(el);
-		    });
 		    new function () { 
-		    	var grid = $(".grid-stack").data("gridstack");
 		    	var dragID = '';
 			    
 		    	//insert
@@ -103,9 +95,76 @@
 				    			 $(".grid-stack").children().last().children().attr("id","kanban");
 				    			 $("#kanban").load("position.kanban?projectNum=1");
 				    		}
+				    		<!--save-->
+						       this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+						           el = $(el);
+						           var node = el.data('_gridstack_node');
+						           return {
+						               x: node.x,
+						               y: node.y,
+						               width: node.width,
+						               height: node.height,
+						               content: $('.grid-stack-item-content', el).parent().html()
+						           };
+						       }, this);
+						
+						       /* $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
+								console.log(this.serializedData);
+						       var items = GridStackUI.Utils.sort(this.serializedData);
+						       localStorage.setItem("items", JSON.stringify(items));
+								 */
+								console.log(this.serializedData);
+								 console.log(this.serializedData[0].x);
+						       console.log('grid is saved');
+				    		$.ajax({
+							    	type: "post",
+						 			url:  "positioninsert",
+						 			data: { "X" : this.serializedData[0].x,
+						 					"y" : this.serializedData[0].y,
+						 					"width" : this.serializedData[0].width,
+						 					"height" :  this.serializedData[0].height},
+						 			contentType: "application/json; charset=utf-8",
+						 		    success:function(data){
+						 		    	console.log(date);
+						 		    }
+					    		}); 
 				    	}.bind(this)
 				    });
 			    });
+		    	
+			   	<!--save-->
+			    this.saveGrid = function () {
+			       this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
+			           el = $(el);
+			           var node = el.data('_gridstack_node');
+			           return {
+			               x: node.x,
+			               y: node.y,
+			               width: node.width,
+			               height: node.height,
+			               content: $('.grid-stack-item-content', el).parent().html()
+			           };
+			       }, this);
+			
+			       /* $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
+					console.log(this.serializedData);
+			       var items = GridStackUI.Utils.sort(this.serializedData);
+			       localStorage.setItem("items", JSON.stringify(items));
+					 */
+				   console.log(this.serializedData);
+				   console.log(this.serializedData[0].x);
+			       console.log('grid is saved');
+			       return this.serializedData;
+			   }.bind(this);
+			   $('#save-grid').click(this.saveGrid);
+			   
+			    <!--remove-->
+			    $('body').on('click', '.fa-close', function (e) {
+			        e.preventDefault();
+			            el = $(this).closest('.grid-stack-item')
+			        grid.removeWidget(el);
+			    });
+			    
 		    	<!--removeall-->
 			    this.clearGrid = function () {
 			        grid.removeAll();
@@ -131,6 +190,7 @@
 			            grid.movable(el, true);
 			      	 	grid.resizable(el, true);
 			    });	
+			    
 			    <!--전체고정-->
 			    $('body').on('click', '#fix', function (e) {
 			        e.preventDefault();
@@ -138,6 +198,7 @@
 			            grid.movable(el, false);
 			   	 		grid.resizable(el, false);
 			    });
+			    
 			    <!--전체고정풀기-->
 			    $('body').on('click', '#unfix', function (e) {
 			        e.preventDefault();
@@ -146,30 +207,6 @@
 			      	 	grid.resizable(el, true);
 			    });	
 		   
-			   	<!--save-->
-			    this.saveGrid = function () {
-			       this.serializedData = _.map($('.grid-stack > .grid-stack-item:visible'), function (el) {
-			           el = $(el);
-			           var node = el.data('_gridstack_node');
-			           return {
-			               x: node.x,
-			               y: node.y,
-			               width: node.width,
-			               height: node.height,
-			               content: $('.grid-stack-item-content', el).parent().html()
-			           };
-			       }, this);
-			
-			       $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
-			
-			       var items = GridStackUI.Utils.sort(this.serializedData);
-			       localStorage.setItem("items", JSON.stringify(items));
-			
-			       console.log('grid is saved');
-			       return false;
-			   }.bind(this);
-			   $('#save-grid').click(this.saveGrid);
-			   
 			   <!--Load-->
 			   loadGrid = function () {
 			       grid.removeAll();
@@ -220,9 +257,9 @@
 			width: 100%;
 		}
 		.grid-stack {
-			background: #FFF;
-			width: 100% !important;
-			height: 100% !important;
+			background: #000;
+			width: 88% !important;
+			height: 159% !important;
 			position: absolute;
 		}
 		.grid-stack-item-content {
@@ -237,14 +274,14 @@
 		}
 	</style>
 	
-		<!-- <div>
+		<div>
 	            <a class="btn btn-default" id="save-grid" href="#">Save Grid</a>
 	            <a class="btn btn-default" id="load-grid" href="#">Load Grid</a>
 	            <a class="btn btn-default" id="clear-grid" href="#">Clear Grid</a>
 	            <a class="btn btn-default" id="fix" href="#">allfix</a>
 	            <a class="btn btn-default" id="unfix" href="#">allunfix</a>
 	            <a class="btn btn-default" id="resize" href="#">resize</a>
-	    </div> -->
+	    </div>
 	
 		<div class="grid-stack">
 		<!-- 기능 들어가는 곳 -->

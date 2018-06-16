@@ -37,13 +37,19 @@ public class PositionController {
 		return "position.position";
 	}
 	
-/*	//insert position
-	@RequestMapping(value="positioninsert",method=RequestMethod.POST)
-	public String positionInsert(@RequestParam("projectNum") String projectNum,HttpSession session,PositionDTO positiondto) {
-		String viewpage = service.positionInsert(positiondto);
-		return viewpage;
+	//insert position
+	@RequestMapping(value="positioninsert",method= {RequestMethod.POST,RequestMethod.GET})
+	public View positionInsert(@RequestParam("x") String x , @RequestParam("y") String y , @RequestParam("width") String width , @RequestParam("height") String height , Model model) {
+		System.out.println("position controller");
+		System.out.println(x);
+		System.out.println(y);
+		System.out.println(width);
+		System.out.println(height);
+		PositionDTO positiondto = null;
+		int result = service.positionInsert(positiondto);
+		return jsonview;
 	}
-	
+/*	
 	//update position
 	@RequestMapping(value="positionupdate",method=RequestMethod.POST)
 	public String positionUpdate(PositionDTO positiondto) {
