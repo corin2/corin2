@@ -17,8 +17,7 @@
         <div class="row heading">
           <div class="col-sm-3 col-xs-3 heading-avatar">
             <div class="heading-avatar-icon">
-              <img src="https://pbs.twimg.com/profile_images/887622532647469056/IG7Zk1wS_400x400.jpg">
-              <p id="tempId"></p>
+              <img src="https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Messages-512.png">
             </div>
           </div>
           <div class="col-sm-1 col-xs-1  heading-dot  pull-right">
@@ -42,7 +41,7 @@
 		<!-- 유저리스트 -->
         <div class="row sideBar">
           <!-- 유저 -->
-          <div class="row sideBar-body" style="background-color: lightgrey;">
+          <div class="row sideBar-body" id="allUsers" style="background-color: #c0daff;">
             <div class="col-sm-3 col-xs-3 sideBar-avatar">
               <div class="avatar-icon">
                 <img src="resources/images/chatting/all.png">
@@ -72,11 +71,11 @@
       <div class="row heading">
         <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
           <div class="heading-avatar-icon">
-            <img src="https://pbs.twimg.com/profile_images/887622532647469056/IG7Zk1wS_400x400.jpg">
+            <img src="resources/profile/nogon.JPG">
           </div>
         </div>
         <div class="col-sm-8 col-xs-7 heading-name">
-          <a class="heading-name-meta">뚱이
+          <a class="heading-name-meta" id="currentUser">
           </a>
           <span class="heading-online">Online</span>
         </div>
@@ -102,6 +101,7 @@
         <div class="col-sm-1 col-xs-1 reply-send" id="sendMessageBtn">
           <i class="fa fa-send fa-2x" aria-hidden="true"></i>
         </div>
+      </div>
     </div>
   </div>
 </div>

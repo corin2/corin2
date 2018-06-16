@@ -26,22 +26,28 @@ $(function() {
 	const TARGET_UID = "@target@";
 	
 	console.log("현재 유저: " + currentUser);
-	$('#tempId').html(currentUser);
+	$('#currentUser').html(currentUser);
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
 	getUsers(currentProject); // 멤버 가져오기 함수
 	
+	// All 버튼 클릭 시
+	$('#allUsers').click(function() {
+		changeColor('#allUsers'); // 클릭 시 색상변경
+		messages = db.child('messages/' + currentProject); // 전체채팅 메시지 경로
+		showMessage(); // 메시지 출력
+	});
+	
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
-		messages = db.child('messages/' + projectNum);
+		messages = db.child('messages/' + projectNum); // 전체채팅 메시지 경로
 		
 		$.ajax({
 			url:"showMemberUserProfile",
 			datatype:"JSON",
 			data:{projectNum:projectNum},
 			success:function(data){
-				console.log(data);
 				$.each(data.data, function(index, obj) {
 					var userUid = convertEmail(obj.userId);
 					
@@ -52,8 +58,7 @@ $(function() {
 			}
 		});
 		
-		// DB변동 시 메시지 출력
-		// messages.on('child_added', showMessage);
+		showMessage(); // 메시지 출력
 	}
 	
 	// 초기 데이터 생성
@@ -104,49 +109,16 @@ $(function() {
 		updateUser[userUid] = true;
 		db.child('projects/' + projectNum + '/users').update(updateUser);
 	}
-	
-	// 사용자 클릭 시
-	//db.child('projects/' + sessionProjectNum + '/users').on('child_added', function(snapshot) {
-	/*db.child('users').on('value', function(snapshot) {
-		var user = snapshot.val();
 		
-		for(var userUid in user) {
-			$('#' + userUid).click(function() {
-				console.log(user.username + "님을 클릭함");
-				
-				privateChat(user); // 1:1 대화
-				
-				console.log("현재 메시지 경로: " + messages);
-				
-		        if (messages) {
-		            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
-		            $('#conversation').empty(); // 대화창 초기화
-		        }
-				
-				// DB변동 시 메시지 출력
-				messages.on('child_added', showMessage);
-			});
-		}
-	});*/
-	
-	// 사용자 클릭 시
+	// 사용자 검색
 	db.child('users').on('child_added', function(snapshot) {
 		var user = snapshot.val();
 		user.key = snapshot.key;
+		
+		// 사용자 클릭 시
 		$('#' + user.key).click(function() {
-			console.log(user.username + "님을 클릭함");
-			
+			changeColor('#' + user.key); // 클릭 시 색상변경
 			privateChat(user); // 1:1 대화
-			
-			console.log("1 현재 메시지 경로: " + messages);
-			
-	        /*if (messages) {
-	            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
-	            $('#conversation').empty(); // 대화창 초기화
-	        }*/
-			
-			// DB변동 시 메시지 출력
-			//messages.on('child_added', showMessage);
 		});
 	});
 	
@@ -159,11 +131,9 @@ $(function() {
 		var roomPath = MAKE_UID + currentUid + TARGET_UID + user.key;
 		var reverseRoomPath = MAKE_UID + user.key + TARGET_UID + currentUid;
 		
-		
 		// FirebaseDB 검색
 		//db.child('privateChats/').on('value', function(snapshot) {
 		db.child('privateChats/').once('value',function(snapshot) {
-			console.log("2 FirebaseDB 검색 발동됨");
 			var userRoom = snapshot.val();
 			var hasRoom = searchPrivateRoom(userRoom, roomPath, reverseRoomPath); // 1:1 대화방 검색
 			
@@ -171,18 +141,10 @@ $(function() {
 				makePrivateRoom(roomPath, currentUid, user); //1:1 대화방 생성
 				messages = db.child('messages/' + roomPath);
 			}
-			console.log("3 현재메시지: " + messages);
-			console.log("4 FirebaseDB 검색끝");
-			
 			
 	        //messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
-	        $('#conversation').empty(); // 대화창 초기화
-	        
-			messages.on('child_added', showMessage); // DB변동 시 메시지 출력
-			
+			showMessage(); // 메시지 출력
 		});
-		console.log("5 FirebaseDB 검색함수 끝");
-		
 	}
 	
 	// 1:1 대화방 검색
@@ -243,8 +205,14 @@ $(function() {
 		}
 	})
 	
-	// 메시지 출력 함수
-	function showMessage(snapshot) {
+	// DB변동 시 메시지 출력 함수
+	function showMessage() {
+		$('#conversation').empty(); // 대화창 초기화
+		messages.on('child_added', makeMessage); // DB변동 시 메시지 출력
+	}
+	
+	// 메시지 생성 함수
+	function makeMessage(snapshot) {
 		var message = snapshot.val();
 		//$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
 		
@@ -289,10 +257,13 @@ $(function() {
 		$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
 	}
 	
-	// DB변동 시 메시지 출력
-	messages.on('child_added', showMessage);
-	
 	//////////// [유틸 함수] ////////////
+	
+	// 버튼 클릭시 색 변경
+	function changeColor(btnId) {
+		$('.sideBar-body').css('background-color', '');
+		$(btnId).css('background-color', '#c0daff');
+	}
 	
 	// 이메일주소  -> Uid로 변경 
 	function convertEmail(userId) {
