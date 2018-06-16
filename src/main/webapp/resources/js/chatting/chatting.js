@@ -22,8 +22,8 @@ $(function() {
 	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
 	var messages;
-	const MAKE_UID = "_make_";
-	const TARGET_UID = "_target_";
+	const MAKE_UID = "@make@";
+	const TARGET_UID = "@target@";
 	
 	console.log("현재 유저: " + currentUser);
 	$('#tempId').html(currentUser);
