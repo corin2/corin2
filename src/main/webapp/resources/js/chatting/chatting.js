@@ -1,4 +1,6 @@
 $(function() {
+	// FirebaseDB 권한 정책에 따름
+	'use strict';
 		
 	// Firebase 초기화
 	// [초기화 시작]
@@ -17,9 +19,9 @@ $(function() {
 	// [초기화 끝]
 	
 	// 변수, 상수 설정
-	var messages;
-	var currentProject;
+	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
+	var messages;
 	const MAKE_UID = "_make_";
 	const TARGET_UID = "_target_";
 	
@@ -28,7 +30,7 @@ $(function() {
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
-	getUsers(sessionProjectNum); // 멤버 가져오기 함수
+	getUsers(currentProject); // 멤버 가져오기 함수
 	
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
@@ -46,14 +48,12 @@ $(function() {
 					initialData(userUid, obj); // 초기 데이터 생성
 					updateUserList(userUid, obj); // 팀원 추가
 					updateInfo(userUid, projectNum); // DB 정보 수정
-					
-					
 				});
 			}
 		});
 		
 		// DB변동 시 메시지 출력
-		messages.on('child_added', showMessage);
+		// messages.on('child_added', showMessage);
 	}
 	
 	// 초기 데이터 생성
@@ -107,17 +107,46 @@ $(function() {
 	
 	// 사용자 클릭 시
 	//db.child('projects/' + sessionProjectNum + '/users').on('child_added', function(snapshot) {
+	/*db.child('users').on('value', function(snapshot) {
+		var user = snapshot.val();
+		
+		for(var userUid in user) {
+			$('#' + userUid).click(function() {
+				console.log(user.username + "님을 클릭함");
+				
+				privateChat(user); // 1:1 대화
+				
+				console.log("현재 메시지 경로: " + messages);
+				
+		        if (messages) {
+		            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
+		            $('#conversation').empty(); // 대화창 초기화
+		        }
+				
+				// DB변동 시 메시지 출력
+				messages.on('child_added', showMessage);
+			});
+		}
+	});*/
+	
+	// 사용자 클릭 시
 	db.child('users').on('child_added', function(snapshot) {
 		var user = snapshot.val();
 		user.key = snapshot.key;
 		$('#' + user.key).click(function() {
 			console.log(user.username + "님을 클릭함");
-			$('#conversation').empty();
 			
 			privateChat(user); // 1:1 대화
 			
+			console.log("현재 메시지 경로: " + messages);
+			
+	        /*if (messages) {
+	            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
+	            $('#conversation').empty(); // 대화창 초기화
+	        }*/
+			
 			// DB변동 시 메시지 출력
-			messages.on('child_added', showMessage);
+			//messages.on('child_added', showMessage);
 		});
 	});
 	
@@ -130,8 +159,9 @@ $(function() {
 		var roomPath = MAKE_UID + currentUid + TARGET_UID + user.key;
 		var reverseRoomPath = MAKE_UID + user.key + TARGET_UID + currentUid;
 		
-		
+		// FirebaseDB 검색
 		db.child('privateChats/').on('value', function(snapshot) {
+			console.log("FirebaseDB 검색 발동됨");
 			var userRoom = snapshot.val();
 			var hasRoom = searchPrivateRoom(userRoom, roomPath, reverseRoomPath); // 1:1 대화방 검색
 			
@@ -139,7 +169,17 @@ $(function() {
 				makePrivateRoom(roomPath, currentUid, user); //1:1 대화방 생성
 				messages = db.child('messages/' + roomPath);
 			}
+			console.log("FirebaseDB 검색끝");
 		});
+		console.log("FirebaseDB 검색함수 끝");
+		
+		// DB변동 시 메시지 출력
+		if (messages) {
+            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
+            $('#conversation').empty(); // 대화창 초기화
+        }
+		
+		messages.on('child_added', showMessage);
 	}
 	
 	// 1:1 대화방 검색
@@ -147,13 +187,10 @@ $(function() {
 		var hasRoom = false; // 방 존재여부
 		
 		for(var prop in userRoom) {
-			console.log("방 이름: " + prop);
 			if(prop == roomPath) {
-				console.log("룸패스와 동일: " + prop);
 				messages = db.child('messages/' + roomPath);
 				hasRoom = true;
 			}else if(prop == reverseRoomPath) {
-				console.log("@리버스룸패스와 동일: " + prop);
 				messages = db.child('messages/' + reverseRoomPath);
 				hasRoom = true;
 			}
@@ -188,7 +225,7 @@ $(function() {
 	
 	// 메시지 보내기
 	function sendMessage() {
-		var text = $('#messageText');
+		var text = $('#messageText'); // 메시지 내용
 
 		messages.push({
 			username: currentUser,
@@ -196,7 +233,7 @@ $(function() {
 			timestamp: Date.now()
 		});
 
-		text.val('');
+		text.val(''); // 메시지 초기화
 	}
 
 	// 버튼 클릭 시 메시지 보내기
@@ -211,7 +248,7 @@ $(function() {
 		}
 	})
 	
-	// 메시지 출력
+	// 메시지 출력 함수
 	function showMessage(snapshot) {
 		var message = snapshot.val();
 		//$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
@@ -256,6 +293,9 @@ $(function() {
 		// 대화창 스크롤을 항상 아래로
 		$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
 	}
+	
+	// DB변동 시 메시지 출력
+	messages.on('child_added', showMessage);
 	
 	//////////// [유틸 함수] ////////////
 	
