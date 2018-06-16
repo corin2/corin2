@@ -27,8 +27,8 @@ $(function() {
 	$('#tempId').html(currentUser);
 	
 	// 채팅 페이지 시작 시, 함수 콜
+	$('#conversation').empty(); // 대화창 초기화
 	getUsers(sessionProjectNum); // 멤버 가져오기 함수
-	$('#mainDialogs').empty();
 	
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
@@ -43,12 +43,17 @@ $(function() {
 				$.each(data.data, function(index, obj) {
 					var userUid = convertEmail(obj.userId);
 					
-					initialData(userUid, obj);
-					updateUserList(userUid, obj);
-					updateInfo(userUid, projectNum);
+					initialData(userUid, obj); // 초기 데이터 생성
+					updateUserList(userUid, obj); // 팀원 추가
+					updateInfo(userUid, projectNum); // DB 정보 수정
+					
+					
 				});
 			}
 		});
+		
+		// DB변동 시 메시지 출력
+		messages.on('child_added', showMessage);
 	}
 	
 	// 초기 데이터 생성
@@ -106,12 +111,12 @@ $(function() {
 		var user = snapshot.val();
 		user.key = snapshot.key;
 		$('#' + user.key).click(function() {
-			alert(user.username + "을 눌렀나요?");
-			
-			privateChat(user);
-			
-			alert(user.username + "님과 대화를 시작합니다.");
+			console.log(user.username + "님을 클릭함");
 			$('#conversation').empty();
+			
+			privateChat(user); // 1:1 대화
+			
+			// DB변동 시 메시지 출력
 			messages.on('child_added', showMessage);
 		});
 	});
@@ -121,119 +126,56 @@ $(function() {
 		// 현재 사용자의 FirebaseDB용 Uid
 		var currentUid = convertEmail(currentUser);
 		
-		if(currentUid == user.key) {
-			alert("자기 자신입니다.");
-			return;
-		}
-
+		// FirebaseDB 내 저장될 1:1대화방 Uid 명
 		var roomPath = MAKE_UID + currentUid + TARGET_UID + user.key;
 		var reverseRoomPath = MAKE_UID + user.key + TARGET_UID + currentUid;
-		console.log("roomPath: " + roomPath);
-		console.log("reverseRoomPath: " + reverseRoomPath);
 		
-		// 최초 만들기
-		/*db.child('privateChats').update({
-			roomPath2 : {
-				'roomUid': roomPath,
-				'tergetUserUid': user.key,
-				'targetUserName': user.username,
-				'timestamp': Date.now()
-			}
-		});*/
 		
 		db.child('privateChats/').on('value', function(snapshot) {
 			var userRoom = snapshot.val();
-			userRoom.key = snapshot.key;
-			//console.log("방 이름이? " + userRoom.key);
-			
-			// 방 검색
-			var hasRoom = false;
-			
-			for(var prop in userRoom) {
-				console.log("방 이름: " + prop);
-				if(prop == roomPath) {
-					console.log("룸패스와 동일: " + prop);
-					messages = db.child('messages/' + roomPath);
-					hasRoom = true;
-				}else if(prop == reverseRoomPath) {
-					console.log("@리버스룸패스와 동일: " + prop);
-					messages = db.child('messages/' + reverseRoomPath);
-					hasRoom = true;
-				}
-			}
+			var hasRoom = searchPrivateRoom(userRoom, roomPath, reverseRoomPath); // 1:1 대화방 검색
 			
 			if(!hasRoom) {
-				var createPrivateChat = {
-						'roomUid': roomPath,
-						'makeUserUid': currentUid,
-						'makeUserUid': "추가예정",
-						'tergetUserUid': user.key,
-						'targetUserName': user.username,
-						'timestamp': Date.now()
-				};
-				db.child('privateChats/' + roomPath).update(createPrivateChat);
+				makePrivateRoom(roomPath, currentUid, user); //1:1 대화방 생성
 				messages = db.child('messages/' + roomPath);
 			}
-			
-			/*if(userRoom.key == "roomPath") {
-				console.log("룸패스와 동일");
-				//db.child('privateChats/').off();
-			}else if(userRoom.key == "roomPath2") {
-				console.log("@리버스룸패스와 동일");
-				//db.child('privateChats/').off();
-			}else {
-				console.log("둘 다 동일하지 않음");
-				//db.child('privateChats/').off();
-			}*/
-			
-			/*if(userRoom.key == roomPath && userRoom.key == roomPath) {
-				if(userRoom.key == roomPath) {
-					alert(roomPath + "로 연결합니다.");
-					messages = db.child('messages/' + roomPath);
-				}else if(userRoom.key == reverseRoomPath) {
-					alert("[변경]" + roomPath + "로 연결합니다.");
-					messages = db.child('messages/' + reverseRoomPath);
-				}else {
-					var createPrivateChat = {
-							'roomUid': roomPath,
-							'tergetUserUid': user.key,
-							'targetUserName': user.username,
-							'timestamp': Date.now()
-					};
-					db.child('privateChats/' + roomPath).update(createPrivateChat);
-					messages = db.child('messages/' + roomPath);
-				}
-			}*/
 		});
 	}
 	
-	/*$('#' + teamUser.key).click(function() {
-		// 1:1 대화방 개설
+	// 1:1 대화방 검색
+	function searchPrivateRoom(userRoom, roomPath, reverseRoomPath) {
+		var hasRoom = false; // 방 존재여부
 		
-		//var roomPath = MAKE_UID + '-LEvfIYw9ZVRaiXNUDRB' + TIME_NOW + yyyyMMddHHmmsss();
-		var roomPath = MAKE_UID + currentUserUid + TARGET_UID + teamUser.key;
-		var reverseRoomPath = MAKE_UID + teamUser.key + TARGET_UID + currentUserUid;
-		if(db.child('messages/' + roomPath)) {
-			console.log("뭔데: " + db.child('messages/' + roomPath));
-			alert(roomPath + "로 연결합니다.");
-			messages = db.child('messages/' + roomPath);
-		}else if(db.child('messages/' + reverseRoomPath)) {
-			alert(reverseRoomPath + "로 연결합니다.");
-			messages = db.child('messages/' + reverseRoomPath);
-		}else {
-			var userRoomsUpdates = {
-					'roomUid': roomPath,
-					'tergetUserUid': teamUser.key,
-					'targetUserName': teamUser.username,
-					'timestamp': Date.now()
-			};
-			db.child('userRooms/' + roomPath).update(userRoomsUpdates);
+		for(var prop in userRoom) {
+			console.log("방 이름: " + prop);
+			if(prop == roomPath) {
+				console.log("룸패스와 동일: " + prop);
+				messages = db.child('messages/' + roomPath);
+				hasRoom = true;
+			}else if(prop == reverseRoomPath) {
+				console.log("@리버스룸패스와 동일: " + prop);
+				messages = db.child('messages/' + reverseRoomPath);
+				hasRoom = true;
+			}
 		}
 		
-		alert(teamUser.username + "님과 대화를 시작합니다.");
-		$('#mainDialogs').empty();
-		messages.on('child_added', showMessage);
-	});*/
+		return hasRoom;
+	}
+	
+	// 1:1 대화방 생성
+	function makePrivateRoom(roomPath, currentUid, user) {
+		var createPrivateChat = {
+				'roomUid': roomPath,
+				'makeUserUid': currentUid,
+				'makeUserUid': "추가예정",
+				'tergetUserUid': user.key,
+				'targetUserName': user.username,
+				'timestamp': Date.now()
+		};
+		
+		db.child('privateChats/' + roomPath).update(createPrivateChat);
+	}
+
 
 	
 	
@@ -314,11 +256,6 @@ $(function() {
 		// 대화창 스크롤을 항상 아래로
 		$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
 	}
-	
-	// DB변동 시 메시지 출력
-	messages.on('child_added', showMessage);
-
-	
 	
 	//////////// [유틸 함수] ////////////
 	
