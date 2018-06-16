@@ -138,7 +138,7 @@ $(function() {
 			
 			privateChat(user); // 1:1 대화
 			
-			console.log("현재 메시지 경로: " + messages);
+			console.log("1 현재 메시지 경로: " + messages);
 			
 	        /*if (messages) {
 	            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
@@ -159,9 +159,11 @@ $(function() {
 		var roomPath = MAKE_UID + currentUid + TARGET_UID + user.key;
 		var reverseRoomPath = MAKE_UID + user.key + TARGET_UID + currentUid;
 		
+		
 		// FirebaseDB 검색
-		db.child('privateChats/').on('value', function(snapshot) {
-			console.log("FirebaseDB 검색 발동됨");
+		//db.child('privateChats/').on('value', function(snapshot) {
+		db.child('privateChats/').once('value',function(snapshot) {
+			console.log("2 FirebaseDB 검색 발동됨");
 			var userRoom = snapshot.val();
 			var hasRoom = searchPrivateRoom(userRoom, roomPath, reverseRoomPath); // 1:1 대화방 검색
 			
@@ -169,17 +171,18 @@ $(function() {
 				makePrivateRoom(roomPath, currentUid, user); //1:1 대화방 생성
 				messages = db.child('messages/' + roomPath);
 			}
-			console.log("FirebaseDB 검색끝");
+			console.log("3 현재메시지: " + messages);
+			console.log("4 FirebaseDB 검색끝");
+			
+			
+	        //messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
+	        $('#conversation').empty(); // 대화창 초기화
+	        
+			messages.on('child_added', showMessage); // DB변동 시 메시지 출력
+			
 		});
-		console.log("FirebaseDB 검색함수 끝");
+		console.log("5 FirebaseDB 검색함수 끝");
 		
-		// DB변동 시 메시지 출력
-		if (messages) {
-            messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
-            $('#conversation').empty(); // 대화창 초기화
-        }
-		
-		messages.on('child_added', showMessage);
 	}
 	
 	// 1:1 대화방 검색
@@ -212,14 +215,6 @@ $(function() {
 		
 		db.child('privateChats/' + roomPath).update(createPrivateChat);
 	}
-
-
-	
-	
-	
-	
-	
-
 	
     ////////////[메시지] ////////////
 	
