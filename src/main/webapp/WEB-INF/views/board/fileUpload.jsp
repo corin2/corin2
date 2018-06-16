@@ -13,9 +13,8 @@
 	 </div>
 	projectNum
 
-	<!-- <input id="fileupload" type="file" name="files[]" data-url="dragSelect"  multiple>
-	 -->
-		<input id="fileupload" type="file" name="files[]" data-url="fileInsert"  multiple>
+	    <input id="fileupload" type="file" name="files[]" data-url="upload"  multiple>
+ 
 		<input type="hidden" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
 
 

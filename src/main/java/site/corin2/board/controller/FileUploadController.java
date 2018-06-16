@@ -12,9 +12,11 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,8 +47,8 @@ public class FileUploadController {
 		return "board.fileUpload";
 	}
 	
-	//select시
-/*	@RequestMapping(value="dragSelect", method = RequestMethod.POST)
+	//select시/*
+	@RequestMapping(value="upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
 		System.out.println("파일 업로드 커늩롤러" );
 		//1. build an iterator
@@ -87,13 +89,14 @@ public class FileUploadController {
 			 
 		 }
 		 
-	
 		return files;
  
-	}*/
+	}
 	//insert시	
 	@RequestMapping(value="fileInsert")
-	public View fileInsert(){
+	public View fileInsert(@RequestParam("projectNum") String projectNum, Model model, HttpSession session ,
+			MultipartHttpServletRequest request, HttpServletResponse response){
+			System.out.println("탔다");
 		
 		
 		

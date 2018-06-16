@@ -8,7 +8,7 @@ $(function () {
 function fileselect(){
 
 	$('#fileupload').fileupload({
-        dataType: 'json',
+     dataType: 'json',
         
      done: function (e, data) {
     	  
@@ -30,7 +30,10 @@ function fileselect(){
           $(".dropzonediv").html(html);  
         
       },
-		 dropZone: $('#dropzone') 
+		 dropZone: $('#dropzone') ,
+		 
+		 
+		 
     });
 	
 	
@@ -40,17 +43,17 @@ function fileselect(){
 
 
 //DB에 있는 파일들을 화면에 뿌려준다.
-function fileInsert(){
+/*function fileInsert(){
 	
 
     $.ajax({
     	type: "post",
-    	url: "dragInsert" ,
+    	url: "dragInsert",
     	datatype:"JSON",
 		data : {projectNum : $('#hiddenProjectNum').val()
 				
 				
-			},
+		},
     	success: function(data) {
     		conosole.log(data);
 //    		select(ds);
@@ -59,12 +62,12 @@ function fileInsert(){
     	}
  	   
     });   
-		      /*      ajax()
+		            ajax()
 		            성공 {
 		            	b();
-		            }*/
+		            }
 
-}
+}*/
 
 function download(index) {
 	 location.href='get/'+index
