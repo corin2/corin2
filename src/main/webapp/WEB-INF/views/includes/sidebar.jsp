@@ -107,16 +107,6 @@
 </ul>
 
 <ul class="list-unstyled components">
-<c:choose>
-	<c:when test="${sessionScope.sessionProjectNum != null}" >
-		<li>
-		    <a href="chatting">
-		        <i class="glyphicon glyphicon-comment"></i>
-		        Chatting
-		    </a>
-		</li>
-    </c:when>
-</c:choose>
     <li>
         <a href="logout">
             <i class="glyphicon glyphicon glyphicon-log-out"></i>
