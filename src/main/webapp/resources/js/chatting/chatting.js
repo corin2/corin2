@@ -129,6 +129,7 @@ $(function() {
 		var currentUid = convertEmail(currentUser);
 		
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
+		var userSort = [user.key, currentUid].sort().join('@@'); // TODO: sort 사용해서 roomPath
 		var roomPath = PROJECT_NUM + currentProject + MAKE_UID + currentUid + TARGET_UID + user.key;
 		var reverseRoomPath = PROJECT_NUM + currentProject + MAKE_UID + user.key + TARGET_UID + currentUid;
 		
@@ -207,9 +208,15 @@ $(function() {
 	})
 	
 	// DB변동 시 메시지 출력 함수
+	var currentMessages;
 	function showMessage() {
 		$('#conversation').empty(); // 대화창 초기화
+		
+		if (currentMessages) {
+			currentMessages.off('child_added', makeMessage);
+		}
 		messages.on('child_added', makeMessage); // DB변동 시 메시지 출력
+		currentMessages = messages;
 	}
 	
 	// 메시지 생성 함수
