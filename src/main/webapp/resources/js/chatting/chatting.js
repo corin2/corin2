@@ -22,6 +22,7 @@ $(function() {
 	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
 	var messages;
+	const PROJECT_NUM = "@project@";
 	const MAKE_UID = "@make@";
 	const TARGET_UID = "@target@";
 	
@@ -128,8 +129,8 @@ $(function() {
 		var currentUid = convertEmail(currentUser);
 		
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
-		var roomPath = MAKE_UID + currentUid + TARGET_UID + user.key;
-		var reverseRoomPath = MAKE_UID + user.key + TARGET_UID + currentUid;
+		var roomPath = PROJECT_NUM + currentProject + MAKE_UID + currentUid + TARGET_UID + user.key;
+		var reverseRoomPath = PROJECT_NUM + currentProject + MAKE_UID + user.key + TARGET_UID + currentUid;
 		
 		// FirebaseDB 검색
 		//db.child('privateChats/').on('value', function(snapshot) {
