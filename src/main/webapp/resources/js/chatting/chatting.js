@@ -49,7 +49,8 @@ $(function() {
 			data:{projectNum:projectNum},
 			success:function(data){
 				$.each(data.data, function(index, obj) {
-					var userUid = convertEmail(obj.userId);
+					// 현재 프로젝트의 사용자들의 FirebaseDB용 Uid를 md5형식으로 변환
+					var userUid = md5(obj.userId);
 					
 					initialData(userUid, obj); // 초기 데이터 생성
 					updateUserList(userUid, obj); // 팀원 추가
@@ -72,8 +73,6 @@ $(function() {
 	
 	// 팀원 추가
 	function updateUserList(userUid, obj) {
-		//$('#userList').append("<div id=" + userUid + ">" + "<h3>" + obj.userName + "</h3>" + "</div>");
-		
 		$('.sideBar').append(
 				'<div class="row sideBar-body" id=' + userUid + '>'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
@@ -124,9 +123,9 @@ $(function() {
 	
 	// 1:1 대화
 	function privateChat(user) {
-		// 현재 사용자의 FirebaseDB용 Uid
-		var currentUid = convertEmail(currentUser);
-		
+		// 현재 사용자의 FirebaseDB용 Uid를 md5형식으로 변환
+		var currentUid = md5(currentUser);
+				
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
 		var userSort = [user.key, currentUid].sort().join('@sort@');
 		var roomPath = PROJECT_NUM + currentProject + PRIVATE_STR + userSort;
@@ -179,7 +178,6 @@ $(function() {
 	function sendMessage() {
 		var text = $('#messageText'); // 메시지 내용
 		
-		console.log("텍스트 " + text);
 		// 공백 입력시 처리
 		if(text.val() == "") {
 			return false;
@@ -269,11 +267,6 @@ $(function() {
 	function changeColor(btnId) {
 		$('.sideBar-body').css('background-color', '');
 		$(btnId).css('background-color', '#c0daff');
-	}
-	
-	// 이메일주소  -> Uid로 변경 
-	function convertEmail(userId) {
-		return userId.replace("@", "-").replace(".", "-");;
 	}
 	
     // 10미만 숫자 앞에 0 붙이기

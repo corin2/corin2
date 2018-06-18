@@ -106,5 +106,6 @@
   </div>
 </div>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script src="resources/js/chatting/chatting.js"></script>
 
