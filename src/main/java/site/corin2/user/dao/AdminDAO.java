@@ -30,4 +30,7 @@ public interface AdminDAO {
 	
 	//language 업데이트
 	public void languageUpdate(LanguageDTO language);
+	
+	//userGrade 업데이트
+	public void userGradeUpdate(UserGradeDTO userGrade);
 }

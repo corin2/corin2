@@ -13,17 +13,31 @@ function skillMenu(){
 			
 			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
 						 + '<tbody><th>기능넘버</th><th>기능명</th><th>사용여부</th>'
-						 + '<th><input class="btn btn-primary" type="button" value="추가"></th></tbody>';
+						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="skillAdd(this)"></th></tbody>';
 			$.each(data.data, function(index, elt) {
 				texthtml += '<tr><td>'+elt.skillNum+'</td>'
 						 + '<td>'+elt.skillName+'</td><td>'+elt.skillUse+'</td>'
-						 + '<td><input type="button" value="수정" class="btn btn-info" onclick="skillEdit(this)" />';
+						 + '<td><input type="button" value="수정" class="btn btn-info" onclick="skillEdit(this)" ></td>';
 			});
 			texthtml += '</table>';
 			
 			$('#menuManagement').html(texthtml);
 		}
 	});
+}
+
+//기능 생성하는 박스 생성
+function skillAdd(obj){
+	var content = '<tr><td><input type="text" value="S" ></td>'
+				+ '<td><input type="text" placeholder="기능의 이름을 입력하세요"></td>'
+				+ '<td><select><option value="0">0</option><option value="1">1</option></td>'
+				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="skillAddOk(this)"></td></tr>';
+	$(obj).closest('table').append(content);
+	$(obj).closest('th').html("생성중");
+}
+
+function skillAddOk(obj){
+	
 }
 
 //기능 수정하는 박스 생성
@@ -99,7 +113,7 @@ function listEdit(obj){
 	tr.children('td:eq(2)').html('<input type="button" value="완료" class="btn btn-info" onclick="listEditOk(this)" />');
 }
 
-//기능 수정
+//리스트 수정
 function listEditOk(obj){
 	var tr = $(obj).closest('tr');
 	var listNum = tr.children('td:eq(0)').text();
@@ -143,7 +157,7 @@ function languageMenu(){
 	});
 }
 
-//리스트 수정하는 박스 생성
+//언어 수정하는 박스 생성
 function languageEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
@@ -156,7 +170,7 @@ function languageEdit(obj){
 	tr.children('td:eq(3)').html('<input type="button" value="완료" class="btn btn-info" onclick="languageEditOk(this)" />');
 }
 
-//기능 수정
+//언어 수정
 function languageEditOk(obj){
 	var tr = $(obj).closest('tr');
 	var languageNum = tr.children('td:eq(0)').text();
@@ -192,11 +206,41 @@ function userGradeMenu(){
 			$.each(data.data, function(index, elt) {
 				texthtml += '<tr><td>'+elt.gradeNum+'</td>'
 						 + '<td>'+elt.gradeName+'</td>'
-						 + '<td><input type="button" value="수정" class="btn btn-info" onclick="" />';
+						 + '<td><input type="button" value="수정" class="btn btn-info" onclick="userGradeEdit(this)" />';
 			});
 			texthtml += '</table>';
 			
 			$('#menuManagement').html(texthtml);
 		}
 	});
+}
+
+//유저등급 수정하는 박스 생성
+function userGradeEdit(obj){
+	var tr = $(obj).closest('tr');
+	var text = tr.children('td:eq(1)').text();
+	var texthtml = '<input type="text" placeholder="'+text+'" >';
+	
+	tr.children('td:eq(1)').html(texthtml);
+	tr.children('td:eq(2)').html('<input type="button" value="완료" class="btn btn-info" onclick="userGradeEditOk(this)" />');
+}
+
+//유저등급 수정
+function userGradeEditOk(obj){
+	var tr = $(obj).closest('tr');
+	var gradeNum = tr.children('td:eq(0)').text();
+	var gradeName = tr.children('td:eq(1)').children('input').val();
+	if(gradeName.substr(0, 5) == 'ROLE_') {
+		$.ajax({
+			type : "post",
+			url  : "userGradeEdit",
+			datatype:"JSON",
+			data : {gradeNum:gradeNum, gradeName:gradeName.trim()},
+			success : function(data){
+				userGradeMenu();
+			}
+		});
+	}else{
+		alert("ROLE_로 시작하지 않습니다.");
+	}
 }

@@ -68,4 +68,10 @@ public class AdminService {
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.languageUpdate(language);
 	}
+	
+	//유저등급 수정
+	public void userGradeUpdate(UserGradeDTO userGrade){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.userGradeUpdate(userGrade);
+	}
 }

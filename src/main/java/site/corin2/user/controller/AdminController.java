@@ -72,4 +72,11 @@ public class AdminController {
 		service.languageUpdate(language);
 		return jsonview;
 	}
+	
+	//유저등급수정
+	@RequestMapping("userGradeEdit")
+	public View userGradeEdit(UserGradeDTO userGrade) {
+		service.userGradeUpdate(userGrade);
+		return jsonview;
+	}
 }
