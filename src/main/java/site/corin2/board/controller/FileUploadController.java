@@ -36,7 +36,11 @@ public class FileUploadController {
 	
 	@Autowired
 	private View jsonview;
-
+	
+	@RequestMapping("position.files")
+	public String positionfileUpload() {
+		return "position.files";
+	}
 	
 	@RequestMapping("fileUpload")
 	public String fileUpload() {

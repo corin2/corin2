@@ -19,6 +19,14 @@ public class TroubleController {
 	
 	@Autowired
 	private TroubleService service; 
+
+	//position trouble
+	@RequestMapping("/position.troubleshooting")
+	public String positiontrouble(TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleSelect(1);
+		model.addAttribute("data",troubles);
+		return "position.troubleshooting";
+	}
 	
 	//트러블 슈팅 게시판조회 (팀가입 미구현으로 전체조회만 됨 추후 팀별조회 구현필요)
 	@RequestMapping("/trouble")

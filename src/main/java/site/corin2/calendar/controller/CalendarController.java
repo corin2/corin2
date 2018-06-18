@@ -27,6 +27,13 @@ public class CalendarController {
 	private View jsonview;
 	
 	//프로젝트 별 일정조회 (프로젝트 넘버로 구분하여 일정 전체조회)
+
+	//position 칸반으로 보내준다.
+	@RequestMapping("/position.calendar")
+	public String positioncalendar() {
+		return "position.calendar";
+	}
+		
 	@RequestMapping("/calendar")
 	public String CalendarView(CalendarDTO calendardto, Model model) {
 		//List<CalendarDTO> caldata = service.calendarSelect(1);

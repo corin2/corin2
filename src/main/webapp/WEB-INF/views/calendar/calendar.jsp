@@ -50,9 +50,10 @@
   }
 
 </style>
-
+<div>
 <h2 id='boardTitle'>일정관리</h2>
   <div id='calendar'></div>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/calendar.js'></script>
 
+</div>
 

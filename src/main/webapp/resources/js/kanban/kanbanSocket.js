@@ -5,7 +5,7 @@ $(function(){
 var wsocket;
 
 function connect() {
-	wsocket = new WebSocket("ws://"+ document.domain +":8090/controller/kanbanWebSocket?projectNum=" + $("#hiddenProjectNum").val());
+	wsocket = new WebSocket("ws://"+ document.domain +":8090/controller/kanbanWebSocket?projectNum=" + sessionProjectNum);
 	wsocket.onopen = onOpen;
 	wsocket.onmessage = onMessage;
 	wsocket.onclose = onClose;
