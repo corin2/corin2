@@ -5,7 +5,7 @@
 <!-- Google Icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<div id="content-md">
+<div id="trouble-md">
 	<h2 id='boardTitle'>트러블슈팅 게시판</h2>
 
 	<ul class="nav nav-tabs">

@@ -35,7 +35,7 @@ public class CalendarController {
 		return "calendar.calendar";
 	}
 	
-	//해당 프로젝트의 모든 멤버의 일정을 조회한다.(풀캘린더에 일정조회 위함)
+	//해당 프로젝트의 모든 멤버의 일정을 조회한다.(캘린더에 일정조회 기능)
 	@RequestMapping("/calendarview")
 	public View CalendarSelect(@RequestParam("projectNum") String projectNum, Model model) {
 		

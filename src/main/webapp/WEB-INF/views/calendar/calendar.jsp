@@ -4,8 +4,6 @@
 <link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.min.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
 <script src='${pageContext.request.contextPath}/resources/js/calendar/moment.min.js'></script>
-<%-- 중복부분.. 삭제할것!! 
-<script src='${pageContext.request.contextPath}/resources/js/calendar/jquery.min.js'></script> --%>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/fullcalendar.min.js'></script>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/gcal.min.js'></script>
 
@@ -56,3 +54,5 @@
 <h2 id='boardTitle'>일정관리</h2>
   <div id='calendar'></div>
 <script src='${pageContext.request.contextPath}/resources/js/calendar/calendar.js'></script>
+
+
