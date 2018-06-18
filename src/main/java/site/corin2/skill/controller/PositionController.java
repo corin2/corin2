@@ -39,13 +39,9 @@ public class PositionController {
 	
 	//insert position
 	@RequestMapping(value="positioninsert",method= {RequestMethod.POST,RequestMethod.GET})
-	public View positionInsert(@RequestParam("x") String x , @RequestParam("y") String y , @RequestParam("width") String width , @RequestParam("height") String height , Model model) {
+	public View positionInsert(PositionDTO positiondto , Model model) {
 		System.out.println("position controller");
-		System.out.println(x);
-		System.out.println(y);
-		System.out.println(width);
-		System.out.println(height);
-		PositionDTO positiondto = null;
+		System.out.println(positiondto);
 		int result = service.positionInsert(positiondto);
 		return jsonview;
 	}

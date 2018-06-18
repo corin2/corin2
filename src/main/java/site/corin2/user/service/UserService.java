@@ -6,21 +6,34 @@
 */
 package site.corin2.user.service;
 
+import java.io.StringWriter;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
+import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.RuntimeConstants;
+import org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
+import org.springframework.ui.velocity.VelocityEngineUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,8 +54,11 @@ public class UserService {
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	@Autowired
+	VelocityEngine velocityEngine;
+	
 	//회원가입 기능 실행
-	public String userInsert(UserDTO userdto) {
+	public String userInsert(UserDTO userdto , HttpServletRequest request) {
 		int result = 0;
 		String viewpage = "";
 		try {
@@ -52,11 +68,32 @@ public class UserService {
 			result = userdao.userInsert(userdto);
 			if (result > 0) {
 				MimeMessage message = javamailsender.createMimeMessage();
-				message.setSubject("corin2입니다.");
-				message.setFrom(new InternetAddress("corin2site@gmail.com"));
-				message.setText("<a href='http://localhost:8090/controller/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
-				message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
+				System.out.println("1");
+				MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, false);
+				System.out.println("2");
+				mimeMessageHelper.setSubject("corin2입니다.");
+				System.out.println("3");
+				mimeMessageHelper.setFrom(new InternetAddress("corin2site@gmail.com"));
+				System.out.println("4");
+				mimeMessageHelper.setTo(userdto.getUserId());
+				//message.setText("<a href='http://"+request.getRequestURL()+"/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
+				System.out.println("5");
+				velocityEngine.setProperty("resource.loader", "class");
+				velocityEngine.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+				velocityEngine.init();
+				Template template = velocityEngine.getTemplate("signup.vm"); 
+				System.out.println("6");
+				VelocityContext velocityContext = new VelocityContext(); 
+				System.out.println("7");
+				velocityContext.put("userId",userdto.getUserId());
+				System.out.println("8");
+				StringWriter stringWriter = new StringWriter(); 
+				template.merge(velocityContext, stringWriter); 
+				System.out.println("9");
+				mimeMessageHelper.setText(stringWriter.toString(),true); 
+				System.out.println("10");
 				javamailsender.send(message);
+				System.out.println("11");
 				viewpage = "user.insertsuccess";
 			} else {
 				viewpage = "user.insertfail";

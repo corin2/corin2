@@ -59,7 +59,7 @@ public class UserController {
 	@RequestMapping(value="signup",method=RequestMethod.POST)
 	public String userInsert(UserDTO userdto) {
 		//회원가입 처리 ... NewMemberDao
-		String viewpage = service.userInsert(userdto);
+		String viewpage = service.userInsert(userdto,null);
 		return viewpage;
 	}
 	

@@ -74,6 +74,7 @@
 				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 8, 0, 4, 4);
 				    			 $(".grid-stack").children().last().children().attr("id","calendar");
 			    				 $("#calendar").load("position.calendar");
+			    				 
 				    		}else if(dragID == 'checklisticon'){
 				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 4, 0, 4, 4);
 				    			 $(".grid-stack").children().last().children().attr("id","checklist");
@@ -119,13 +120,19 @@
 				    		$.ajax({
 							    	type: "post",
 						 			url:  "positioninsert",
-						 			data: { "X" : this.serializedData[0].x,
+						 			data: { "projectNum" : sessionProjectNum,
+							 				"userId" : $('#hiddenUserId').val().trim(),
+							 				"X" : this.serializedData[0].x,
 						 					"y" : this.serializedData[0].y,
 						 					"width" : this.serializedData[0].width,
 						 					"height" :  this.serializedData[0].height},
 						 			contentType: "application/json; charset=utf-8",
 						 		    success:function(data){
 						 		    	console.log(date);
+						 		    	console.log("1111")
+						 		    },
+						 		    error:function(){
+						 		    	console.log("2222")
 						 		    }
 					    		}); 
 				    	}.bind(this)
@@ -257,7 +264,7 @@
 			width: 100%;
 		}
 		.grid-stack {
-			background: #000;
+			background: #00ff0000;
 			width: 88% !important;
 			height: 159% !important;
 			position: absolute;
