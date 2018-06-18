@@ -11,7 +11,6 @@
 <div class="content-wrapper">
 	<div id="mainScreen" class="container-fluid" scrollTop="5px">
 		<h2 id='boardTitle'>칸반보드</h2>
-		<input type="hidden" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" > <!-- value값 바꿀 것! -->
 		<hr>
 		<div id="content-md">
 		
