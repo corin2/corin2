@@ -217,7 +217,7 @@ public class UserService {
 	
 	//닉네임 비동기 유효성 확인
 	public String nickCheck(String nickname) {
-		String regex = "^[a-zA-Z0-9]{3,10}$";
+		String regex = "^[a-zA-Z0-9가-힣]{3,10}$";
 		String [] useridsplit = nickname.split("=");
 		Pattern p = Pattern.compile(regex);
 		Matcher m = p.matcher(useridsplit[0]);
