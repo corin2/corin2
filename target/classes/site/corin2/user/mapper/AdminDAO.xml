@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.corin2.user.dao.AdminDAO">
+
+	<select id="skillAllSelect" resultType="site.corin2.skill.dto.SkillDTO">
+		select * from skill
+	</select>
+	
+	<select id="userGradeAllSelect" resultType="site.corin2.user.dto.UserGradeDTO">
+		select * from usergrade
+	</select>
+	
+	<update id="skillUpdate">
+		update skill set skillName = #{skillName}, skillUse = #{skillUse} where skillNum = #{skillNum}
+	</update>
+	
+	<update id="listUpdate">
+		update list set listName = #{listName} where listNum = #{listNum}
+	</update>
+	
+	<update id="languageUpdate">
+		update language set languageMain = #{languageMain}, languageColor = #{languageColor} where languageNum = #{languageNum}
+	</update>
+	
+</mapper>
