@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="resources/js/header/header.js"></script>
-<script src="resources/js/header/headerSocket.js"></script>
+
 <header>
 	<nav class="navbar navbar-default">
 		<div class="navbar-header">

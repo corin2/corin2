@@ -7,6 +7,7 @@
 <script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+<script src="resources/js/header/headerSocket.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
@@ -46,13 +47,31 @@
 		    </se:authorize>
 		    <se:authorize access="hasRole('ROLE_ADMIN')">
 		    	<li>
-			        <a href="boardList">
+			        <a href="adminMain">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-			            (통계)
+			            (메인)
 			        </a>
 			    </li>
 			    <li>
-			        <a href="boardList">
+			        <a href="adminUserController">
+			            <i class="glyphicon glyphicon-bullhorn"></i>
+						(회원관리)
+			        </a>
+			    </li>
+			    <li>
+			        <a href="adminMenu">
+			            <i class="glyphicon glyphicon-bullhorn"></i>
+						(메뉴관리)
+			        </a>
+			    </li>
+			    <li>
+			        <a href="adminMail">
+			            <i class="glyphicon glyphicon-bullhorn"></i>
+						(메일관리)
+			        </a>
+			    </li>
+			    <li>
+			        <a href="adminPeaples">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
 						(만든사람들)
 			        </a>
