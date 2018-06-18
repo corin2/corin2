@@ -23,8 +23,7 @@ $(function() {
 	var currentUser = $('#hiddenUserId').val();
 	var messages;
 	const PROJECT_NUM = "@project@";
-	const MAKE_UID = "@make@";
-	const TARGET_UID = "@target@";
+	const PRIVATE_STR = "@private@";
 	
 	console.log("현재 유저: " + currentUser);
 	$('#currentUser').html(currentUser);
@@ -129,41 +128,35 @@ $(function() {
 		var currentUid = convertEmail(currentUser);
 		
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
-		var userSort = [user.key, currentUid].sort().join('@@'); // TODO: sort 사용해서 roomPath
-		var roomPath = PROJECT_NUM + currentProject + MAKE_UID + currentUid + TARGET_UID + user.key;
-		var reverseRoomPath = PROJECT_NUM + currentProject + MAKE_UID + user.key + TARGET_UID + currentUid;
+		var userSort = [user.key, currentUid].sort().join('@sort@');
+		var roomPath = PROJECT_NUM + currentProject + PRIVATE_STR + userSort;
 		
 		// FirebaseDB 검색
-		//db.child('privateChats/').on('value', function(snapshot) {
 		db.child('privateChats/').once('value',function(snapshot) {
 			var userRoom = snapshot.val();
-			var hasRoom = searchPrivateRoom(userRoom, roomPath, reverseRoomPath); // 1:1 대화방 검색
+			var hasRoom = searchPrivateRoom(userRoom, roomPath); // 1:1 대화방 검색
 			
-			if(!hasRoom) {
+			if(!hasRoom) { // hasRoom이 false이면
 				makePrivateRoom(roomPath, currentUid, user); //1:1 대화방 생성
 				messages = db.child('messages/' + roomPath);
 			}
 			
-	        //messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
 			showMessage(); // 메시지 출력
 		});
 	}
 	
 	// 1:1 대화방 검색
-	function searchPrivateRoom(userRoom, roomPath, reverseRoomPath) {
-		var hasRoom = false; // 방 존재여부
+	function searchPrivateRoom(userRoom, roomPath) {
+		// 1:1 대화방 존재 여부 확인
 		
-		for(var prop in userRoom) {
-			if(prop == roomPath) {
-				messages = db.child('messages/' + roomPath);
-				hasRoom = true;
-			}else if(prop == reverseRoomPath) {
-				messages = db.child('messages/' + reverseRoomPath);
-				hasRoom = true;
-			}
-		}
-		
-		return hasRoom;
+        for(var prop in userRoom) {
+            if(prop === roomPath) {
+                messages = db.child('messages/' + roomPath);
+                return true; // 존재하면 true return
+            }
+        }
+        
+        return false; // 존재하지 않으면 false return
 	}
 	
 	// 1:1 대화방 생성
@@ -185,6 +178,12 @@ $(function() {
 	// 메시지 보내기
 	function sendMessage() {
 		var text = $('#messageText'); // 메시지 내용
+		
+		console.log("텍스트 " + text);
+		// 공백 입력시 처리
+		if(text.val() == "") {
+			return false;
+		}
 
 		messages.push({
 			username: currentUser,
@@ -222,7 +221,6 @@ $(function() {
 	// 메시지 생성 함수
 	function makeMessage(snapshot) {
 		var message = snapshot.val();
-		//$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
 		
 		if(currentUser == message.username) {
 			// 보낸 메시지
