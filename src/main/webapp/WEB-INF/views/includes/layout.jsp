@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +56,7 @@
   	}
   	
   	.sidebar-chat {
-  		position: absolute;
+  		position: fixed;
   		margin-top: 60px;
   		top: 0;
 	    right: 0;
@@ -63,16 +64,11 @@
 	    display: none;
 	    /* overflow: hidden; */
 	    height: auto;
-  		border: 3px solid red;
+  		/* border: 3px solid red; */
 	    z-index: 200;
-	    width: 400px;
+	    width: 420px;
 	    height: 100%
   	}
-  	
-/*   	.sidebar-chat-open {
-  		display: block;
-  	} */
-  	
   </style>
 
   <!-- jQuery library -->
@@ -105,10 +101,12 @@
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>
-		<div class="sidebar-chat">
-			<!-- Chatting 영역 -->
-			<tiles:insertAttribute name="chatting" />
-		</div>
+		<se:authorize access="hasRole('ROLE_USER')">
+			<div class="sidebar-chat">
+				<!-- Chatting 영역 -->
+				<tiles:insertAttribute name="chatting" />
+			</div>
+		</se:authorize>
 	</div>
 	
 	<script type="text/javascript">

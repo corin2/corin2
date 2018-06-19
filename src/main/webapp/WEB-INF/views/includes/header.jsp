@@ -44,9 +44,6 @@
 </header>
 <script>
 	$(function() {
-		/* $('#showChatting').click(function() {
-			$('.sidebar-chat').toggleClass("sidebar-right-open");
-		}); */
 		$('#showChatting').click(function() {
 			// $('.sidebar-chat').toggle();
 			$('.sidebar-chat').animate({width: 'toggle'});
