@@ -61,7 +61,7 @@
 			    <li>
 			        <a href="adminMenu">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(메뉴관리)
+						MenuManagement
 			        </a>
 			    </li>
 			    <li>
