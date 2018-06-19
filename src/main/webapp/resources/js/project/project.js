@@ -64,7 +64,7 @@ function projectView(projectArray) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
-							 + "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							 + "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							 + "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -101,7 +101,7 @@ function projectBookView(projectArray) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
-							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -282,7 +282,7 @@ function searchProject(projectArray) {
 				console.log(elt.languageNum)
 				if(elt.languageNum == elt2.languageNum){
 				html +=	"<div style='float:left;'>"
-					+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+					+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 					+ "</div>";
 				
 				}

@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import site.corin2.kanban.dao.CheckListDAO;
+import site.corin2.kanban.dao.CardCheckListDAO;
 import site.corin2.kanban.dto.CardCheckListDTO;
 
 @Service
@@ -24,7 +24,7 @@ public class CardCheckListService {
 	//카드체크리스트를 생성한다
 	public int cardCheckListInsert(CardCheckListDTO checkList) {
 		int result = 0;
-		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		CardCheckListDAO dao = sqlSession.getMapper(CardCheckListDAO.class);
 		result = dao.checkListInsert(checkList);
 		
 		return result;
@@ -33,21 +33,21 @@ public class CardCheckListService {
 	//카드체크리스트를 조회한다
 	public List<CardCheckListDTO> checkListAllSelect(CardCheckListDTO checkList){
 		List<CardCheckListDTO> lists = null;
-		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		CardCheckListDAO dao = sqlSession.getMapper(CardCheckListDAO.class);
 		lists = dao.checkListSelect(checkList);
 		return lists;
 	}
 	
 	//카드체크리스트의 체크여부를 변경한다.
 	public void checkListUpdate(CardCheckListDTO checkList){
-		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		CardCheckListDAO dao = sqlSession.getMapper(CardCheckListDAO.class);
 		dao.checkListUpdate(checkList);
 	}
 	
 	//카드체크리스트를 삭제한다.
 	public int cardCheckListDelete(CardCheckListDTO checkList) {
 		int result = 0;
-		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		CardCheckListDAO dao = sqlSession.getMapper(CardCheckListDAO.class);
 		result = dao.checkListDelete(checkList);
 		
 		return result;

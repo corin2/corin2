@@ -17,5 +17,10 @@
      </definition>
      
      <definition name="login.*" template="login.html" />
-     <definition name="user.*" template="/WEB-INF/views/login/{1}.jsp" />
+     <definition name="position.kanban" template="/WEB-INF/views/kanban/kanban.jsp"/>
+     <definition name="position.calendar" template="/WEB-INF/views/calendar/calendar.jsp"/>
+     <definition name="position.checklist" template="/WEB-INF/views/checklist/checklist.jsp"/>
+     <definition name="position.chart" template="/WEB-INF/views/chart/chart.jsp"/>
+     <definition name="position.files" template="/WEB-INF/views/board/fileUpload.jsp"/>
+     <definition name="position.troubleshooting" template="/WEB-INF/views/board/trouble.jsp"/>
 </tiles-definitions>

@@ -1,16 +1,3 @@
-	
-	#calendar {
-		    width: 65%;
-		    margin-top : 3px;
-		    margin-left : 11%;
-		    margin-right : 5%;
-		 /*    background-coor: white; */
-	}
-	body {
-		position: absolute;
-		height: 100%;
-		width: 100%;
-	}
 	#mainScreen {
 		white-space: nowrap; 
 		padding: 10px 10px 5px;
@@ -113,9 +100,6 @@
 	    background-color:white;
 	    padding : 10px;
 	}
-	hr {
-		clear: both;
-	}
 
 	.close {
     float: right;
@@ -128,24 +112,11 @@
     opacity: .4;
     }
 
-    	input[type="checkbox"]{
-	  position:absolute; 
+    input[type="checkbox"]{
 	  overflow:hidden;
 	  clip:rect(0 0 0 0);
 	}
 	
-	p label{
-	  height:15px; 
-	  line-height:15px; 
-	  padding-left:20px; 
-	  display:inline-block; 
-	  background:url(http://hcs1105.com/wp/wp-content/themes/hcs1105/images/checkbox1.png) no-repeat 0 0; 
-	  font-size:15px; 
-	  vertical-align:middle; 
-	  cursor:pointer;
-	  font-weight: 1;
-	}
-	 
 	input[type="checkbox"]:checked + label{
 	  background-position: 0 -15px;
 	}

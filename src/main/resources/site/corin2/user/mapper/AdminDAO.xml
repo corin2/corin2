@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.corin2.user.dao.AdminDAO">
+
+	<select id="skillAllSelect" resultType="site.corin2.skill.dto.SkillDTO">
+		select * from skill order by skillNum
+	</select>
+	
+	<select id="userGradeAllSelect" resultType="site.corin2.user.dto.UserGradeDTO">
+		select * from usergrade order by gradeNum
+	</select>
+	
+	<update id="skillUpdate">
+		update skill set skillName = #{skillName}, skillUse = #{skillUse} where skillNum = #{skillNum}
+	</update>
+	
+	<update id="listUpdate">
+		update list set listName = #{listName} where listNum = #{listNum}
+	</update>
+	
+	<update id="languageUpdate">
+		update language set languageMain = #{languageMain}, languageColor = #{languageColor} where languageNum = #{languageNum}
+	</update>
+	
+	<update id="userGradeUpdate">
+		update userGrade set gradeName = #{gradeName} where gradeNum = #{gradeNum}
+	</update>
+	
+	<insert id="skillInsert">
+		insert into skill values(#{skillNum}, #{skillName}, #{skillUse})
+	</insert>
+	
+	<insert id="listInsert">
+		insert into list values(#{listNum}, #{listName})
+	</insert>
+	
+	<insert id="languageInsert">
+		insert into language values(#{languageNum}, #{languageMain}, #{languageColor})
+	</insert>
+	
+	<insert id="userGradeInsert">
+		insert into userGrade values(#{gradeNum}, #{gradeName})
+	</insert>
+	
+	<delete id="skillDelete">
+		delete from skill where skillNum = #{skillNum}
+	</delete>
+	
+	<delete id="listDelete">
+		delete from list where listNum = #{listNum}
+	</delete>
+	
+	<delete id="languageDelete">
+		delete from language where languageNum = #{languageNum}
+	</delete>
+	
+	<delete id="userGradeDelete">
+		delete from userGrade where gradeNum = #{gradeNum}
+	</delete>
+</mapper>

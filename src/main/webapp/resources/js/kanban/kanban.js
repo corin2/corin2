@@ -104,7 +104,7 @@ function showUserFrofiles(){
 		type : "post",
 		url  : "showMemberUserProfile",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$.each(data.data, function(index, elt) {
 				userProfiles.push(elt);
@@ -121,7 +121,7 @@ function showUserField(userProfiles){
 		type : "post",
 		url  : "showMember",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var firsttext1 = ''; var firsttext2 = ''; var firsttext3 = '';
 			var nexttext1 = ''; var nexttext2 = ''; var nexttext3 = '';
@@ -130,7 +130,7 @@ function showUserField(userProfiles){
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId) {
 						text1 += '<div class="userprofilebox">'
-							+ '<img src="resources/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
+							+ '<img src="resources/images/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
 							+ elt2.userName +'</div>';
 					}
 				});
@@ -192,7 +192,7 @@ function showCard(){
 		type : "post",
 		url  : "showCard",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var htmlText;
 			$('.ui-sortable').children('div').empty();
@@ -208,7 +208,7 @@ function showCard(){
 				}
 			});
 			
-			$('#listnum1').append('<div id="addcard"><a class="cardcreate" onclick="addCardView('+$('#hiddenProjectNum').val()+')">Add a card...</a></div>');
+			$('#listnum1').append('<div id="addcard"><a class="cardcreate" onclick="addCardView('+sessionProjectNum+')">Add a card...</a></div>');
 			
 			autoWidth();
 			sortable();

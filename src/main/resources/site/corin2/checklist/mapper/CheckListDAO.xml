@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<mapper namespace="site.corin2.checklist.dao.CheckListDAO">
 	
 	<insert id="insertCheckList">
-		insert into checklist (skillnum, checkcontent, isdeleted)
-		values ('S200', #{checkContent}, 0)
+		insert into checklist (checkcontent, isdeleted)
+		values (#{checkContent}, 0)
 	</insert>
 	</mapper>
