@@ -8,14 +8,14 @@
 <script src="resources/js/project/project.js"></script>
 <jsp:include page="ProjectDetail.jsp"></jsp:include>
 
-<nav class="navbar navbar-default">
+<!-- <nav class="navbar navbar-default"> -->
 		<div id="search">
 		<input type="text" id="searchProject" class="search" onclick="autoCompleteProject()">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
 		<div id="searchBox">
 		</div>
 		</div>
-</nav>
-<nav class="navbar navbar-default">
+<!-- </nav> -->
+<!-- <nav class="navbar navbar-default"> -->
 		<div id="bookmark">
 		<h1>즐겨찾기</h1>
 		<hr>
@@ -23,13 +23,13 @@
 		</div>
 		<hr>
 		</div>
-</nav>
+<!-- </nav> -->
 
-<nav class="navbar navbar-default">
+<!-- <nav class="navbar navbar-default"> -->
 	<div id="project">
 		<h1>프로젝트<img src="https://png.icons8.com/ios/50/000000/plus.png" onclick="projectDetailView()" style="float:right;" data-toggle="modal" data-target="#myModal2"></h1>
 		<hr>
 		<div id="projectbox">
 		</div>
 	</div>
-</nav>
+<!-- </nav> -->
