@@ -16,9 +16,10 @@
 
 <div id="search-area" style="margin: 0 30px 0 30px;">
 	<br> <i class="material-icons">search</i><input type="text" /> <input
-		type="button" value="검색" class="btn btn-primary" /> <input
+		type="button" value="검색" class="btn btn-primary" /> <!-- <input
 		class="btn btn-primary" data-toggle="modal" data-target="#myModal1"
-		type="button" id="mamodal1" value="추가" style="float: right;">
+		type="button" id="mamodal1" value="추가" style="float: right;"> -->
+		<a href="troubleins"><input type=button class="btn btn-primary"  value="추가" style="float: right;" ></button></a>
 
 	<!-- 글쓰기 모달영역 start -->
 	<div id="myModal1" class="modal fade" role="dialog">
@@ -76,8 +77,10 @@
 					class="img-circle person" width="30" height="30" /></td>
 				<td>${ts.problem}<hr>${ts.solution}</td>
 				<td>${ts.boardDate}</td>
-				<td><input type="button" value="수정" class="btn btn-info"
-					onclick="edit(this, ${ts.boardNum},'${ts.userName}','${ts.problem}', '${ts.solution}','${ts.boardDate}') " />
+				<td><%-- <input type="button" value="수정" class="btn btn-info"
+					onclick="edit(this, ${ts.boardNum},'${ts.userName}','${ts.problem}', '${ts.solution}','${ts.boardDate}') " /> --%>
+					<input type="button" value="수정" class="btn btn-info"
+					onclick="" />
 					<a href="delete?boardNum=${ts.boardNum}" class="btn btn-danger"
 					type="button ">삭제</a></td>
 			</tr>

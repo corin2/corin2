@@ -25,8 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  		select IFNULL(MAX(boardNum), 0) boardNum from board where skillnum='S500'
 		  	</selectKey>
 			insert into 
-			troubleshooting (boardNum,skillNum,projectNum,problem,solution)
-			values(#{boardNum},'S500',1,#{problem},#{solution})
+			troubleshooting (boardNum,skillNum,projectNum,problem,solution,hashtag)
+			values(#{boardNum},'S500',1,#{problem},#{solution},#{hashtag})
 		</insert>
 		
 		<!-- 트러블슈팅수정 -->

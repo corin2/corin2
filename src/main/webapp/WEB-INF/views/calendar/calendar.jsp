@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.min.css' rel='stylesheet' />
-<link href='${pageContext.request.contextPath}/resources/css/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<script src='${pageContext.request.contextPath}/resources/js/calendar/moment.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/calendar/fullcalendar.min.js'></script>
-<script src='${pageContext.request.contextPath}/resources/js/calendar/gcal.min.js'></script>
+<link href='resources/css/calendar/fullcalendar.min.css' rel='stylesheet' />
+<link href='resources/css/calendar/fullcalendar.print.min.css' rel='stylesheet' media='print' />
+<script src='resources/js/calendar/moment.min.js'></script>
+<script src='resources/js/calendar/fullcalendar.min.js'></script>
+<script src='resources/js/calendar/gcal.min.js'></script>
 
 
 <script>
@@ -53,7 +53,7 @@
 <div>
 <h2 id='boardTitle'>일정관리</h2>
   <div id='calendar'></div>
-<script src='${pageContext.request.contextPath}/resources/js/calendar/calendar.js'></script>
+<script src='resources/js/calendar/calendar.js'></script>
 
 </div>
 

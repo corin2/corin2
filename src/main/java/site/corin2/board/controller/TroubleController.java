@@ -37,6 +37,13 @@ public class TroubleController {
 		return "board.trouble";
 	}
 	
+	//트러블 슈팅 게시판조회 (팀가입 미구현으로 전체조회만 됨 추후 팀별조회 구현필요)
+		@RequestMapping("/troubleins")
+		public String troubleIns() {
+			
+			return "board.troubleInsert";
+		}
+	
 	//트러블 슈팅 글쓰기
 	@RequestMapping("/insert")
 	public String troubleInsert(TroubleShootingDTO dto) {
@@ -45,7 +52,7 @@ public class TroubleController {
 		
 		//board 테이블 insert 결과
 		int result = service.troubleInsert(dto);
-		
+			
 		if (result>0) {
 			result2 = service.troubleInsertDetail(dto);
 		}

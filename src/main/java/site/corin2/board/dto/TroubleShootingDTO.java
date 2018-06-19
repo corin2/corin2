@@ -20,6 +20,9 @@ public class TroubleShootingDTO {
 	private String boardDate;
 	private int isDeleted;
 	
+	//DTO 추가 배현준 6.19
+	private String hashtag;
+	
 	public TroubleShootingDTO() {}
 
 	public int getBoardNum() {
@@ -94,6 +97,16 @@ public class TroubleShootingDTO {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
+	public String getHashtag() {
+		return hashtag;
+	}
+
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
+	}
+	
+	
 
 	
 }
