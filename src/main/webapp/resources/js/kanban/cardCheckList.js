@@ -32,7 +32,7 @@ function addCardCheckList() {
 function showCardCheckList(){
 	$.ajax({
 		type : "post",
-		url  : "cardCheckListSelect",
+		url  : "CheckListSelect",
 		datatype:"JSON",
 		data : {cardNum : $('#hiddenCardNum').val()},
 		success : function(data){
