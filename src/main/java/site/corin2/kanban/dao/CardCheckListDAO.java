@@ -13,7 +13,7 @@ import site.corin2.kanban.dto.CardCheckListDTO;
 
 
 
-public interface CheckListDAO {
+public interface CardCheckListDAO {
 	
 	//카드체크리스트 추가 
 	public int checkListInsert(CardCheckListDTO checkList);
