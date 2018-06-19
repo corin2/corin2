@@ -72,7 +72,7 @@
 			<tr>
 				<td>${ts.boardNum}</td>
 				<td>${ts.userName}<br> <img
-					src="${pageContext.request.contextPath}/resources/profile/${ts.userProfile}"
+					src="${pageContext.request.contextPath}/resources/images/profile/${ts.userProfile}"
 					class="img-circle person" width="30" height="30" /></td>
 				<td>${ts.problem}<hr>${ts.solution}</td>
 				<td>${ts.boardDate}</td>

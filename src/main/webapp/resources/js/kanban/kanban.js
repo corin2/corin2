@@ -130,7 +130,7 @@ function showUserField(userProfiles){
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId) {
 						text1 += '<div class="userprofilebox">'
-							+ '<img src="resources/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
+							+ '<img src="resources/images/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
 							+ elt2.userName +'</div>';
 					}
 				});
