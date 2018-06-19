@@ -8,8 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 체크리스트추가 -->
 		<insert id="checkListInsert">
 			insert into cardchecklist
-			(skillnum, cardnum, checkcontent, ischecked, isdeleted)
-			values('S400', #{cardNum}, #{checkContent}, 0, 0)
+			(cardnum, checkcontent, ischecked, isdeleted)
+			values(#{cardNum}, #{checkContent}, 0, 0)
 		</insert>
 		
 		<!-- 체크리스트전체조회 -->

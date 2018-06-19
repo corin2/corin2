@@ -8,7 +8,13 @@
 	<div>
 		<h1>프로젝트 진행률</h1>
 		<hr>
-		<canvas id="projectChart" width="400" height="400"></canvas>
+		<canvas id="projectChart"></canvas>
+		<hr>
+	</div>
+	<div>
+		<h1>작업일 진행 바</h1>
+		<hr>달력이 만들어지면 만듭니다~
+		<canvas></canvas>
 		<hr>
 	</div>
 </nav>
