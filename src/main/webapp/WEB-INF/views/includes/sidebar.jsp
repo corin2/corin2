@@ -110,7 +110,7 @@
 				</a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="#" id="charticon">
+		        <a class="sidebaricon" href="chart" id="charticon">
 		            <i class="glyphicon glyphicon-stats"></i>
 		            Chart
 		        </a>

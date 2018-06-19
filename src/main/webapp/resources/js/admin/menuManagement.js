@@ -1,7 +1,3 @@
-$(function(){
-	
-});
-
 //skillMenu 뿌려주기
 function skillMenu(){
 	$.ajax({
