@@ -117,11 +117,11 @@ public class UserController {
 	@RequestMapping(value="userupdate", method=RequestMethod.POST)
 	public String userUpdate(UserDTO userdto) {
 		service.userUpdate(userdto);
-		return "login.html";
+		return "project.project";
 	}
 	
 	//회원 삭제하기
-	@RequestMapping(value="userdelete" , method=RequestMethod.POST)
+	@RequestMapping(value="userdelete" , method= {RequestMethod.POST,RequestMethod.GET})
 	public String userDelete(UserDTO userdto ,Principal principal) throws ClassNotFoundException, SQLException {
 		service.userDelete(principal.getName());
 		return "login.html";

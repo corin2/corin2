@@ -29,8 +29,8 @@
 		        </a>
 		        <ul class="collapse list-unstyled" id="homeSubmenu">
 		            <li><a href="content">User Info</a></li>
-		            <li><a href="#">Profile Modification</a></li>
-		            <li><a href="#">Delete</a></li>
+		            <li><a href="userupdate">Profile Modification</a></li>
+		            <li><a href="userdelete">Delete</a></li>
 		        </ul>
 		    </li>
 		</c:when>

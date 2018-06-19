@@ -68,32 +68,22 @@ public class UserService {
 			result = userdao.userInsert(userdto);
 			if (result > 0) {
 				MimeMessage message = javamailsender.createMimeMessage();
-				System.out.println("1");
 				MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, false);
-				System.out.println("2");
 				mimeMessageHelper.setSubject("corin2입니다.");
-				System.out.println("3");
 				mimeMessageHelper.setFrom(new InternetAddress("corin2site@gmail.com"));
-				System.out.println("4");
 				mimeMessageHelper.setTo(userdto.getUserId());
 				//message.setText("<a href='http://"+request.getRequestURL()+"/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
-				System.out.println("5");
 				velocityEngine.setProperty("resource.loader", "class");
 				velocityEngine.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
 				velocityEngine.init();
-				Template template = velocityEngine.getTemplate("signup.vm"); 
-				System.out.println("6");
 				VelocityContext velocityContext = new VelocityContext(); 
-				System.out.println("7");
 				velocityContext.put("userId",userdto.getUserId());
-				System.out.println("8");
+				System.out.println(userdto.getUserId());
+				Template template = velocityEngine.getTemplate("templete.vm"); 
 				StringWriter stringWriter = new StringWriter(); 
 				template.merge(velocityContext, stringWriter); 
-				System.out.println("9");
 				mimeMessageHelper.setText(stringWriter.toString(),true); 
-				System.out.println("10");
 				javamailsender.send(message);
-				System.out.println("11");
 				viewpage = "user.insertsuccess";
 			} else {
 				viewpage = "user.insertfail";
