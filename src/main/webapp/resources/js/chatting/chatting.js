@@ -21,13 +21,13 @@ $(function() {
 	// 변수, 상수 설정
 	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
+	var currentUserName;
+	var currentUserProfile;
 	var messages;
 	const PROJECT_NUM = "@project@";
-	const MAKE_UID = "@make@";
-	const TARGET_UID = "@target@";
+	const PRIVATE_STR = "@private@";
 	
 	console.log("현재 유저: " + currentUser);
-	$('#currentUser').html(currentUser);
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
@@ -50,8 +50,10 @@ $(function() {
 			data:{projectNum:projectNum},
 			success:function(data){
 				$.each(data.data, function(index, obj) {
-					var userUid = convertEmail(obj.userId);
+					// 현재 프로젝트의 사용자들의 FirebaseDB용 Uid를 md5형식으로 변환
+					var userUid = md5(obj.userId);
 					
+					showCurrentUserProfile(userUid, obj); // 프로필 이미지 표시
 					initialData(userUid, obj); // 초기 데이터 생성
 					updateUserList(userUid, obj); // 팀원 추가
 					updateInfo(userUid, projectNum); // DB 정보 수정
@@ -60,6 +62,21 @@ $(function() {
 		});
 		
 		showMessage(); // 메시지 출력
+	}
+	
+	// 현재 사용자의 프로필 이미지 표시 함수
+	function showCurrentUserProfile(userUid, obj) {
+		var currentUserUid = md5(currentUser);
+		if(userUid === currentUserUid) {
+			currentUserName = obj.userName; // 현재 사용자의 이름
+			currentUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+			
+			// 현재 사용자의 이름 표시
+			$('#currentUserName').html(currentUserName);
+			
+			// 현재 사용자의 프로필 이미지 표시
+			$('#currentUserProfile').attr("src","resources/images/profile/" + currentUserProfile);
+		}
 	}
 	
 	// 초기 데이터 생성
@@ -73,13 +90,11 @@ $(function() {
 	
 	// 팀원 추가
 	function updateUserList(userUid, obj) {
-		//$('#userList').append("<div id=" + userUid + ">" + "<h3>" + obj.userName + "</h3>" + "</div>");
-		
 		$('.sideBar').append(
 				'<div class="row sideBar-body" id=' + userUid + '>'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
 				+ '<div class="avatar-icon">'
-				+ '<img src=' + "resources/profile/nogon.JPG" +'>'
+				+ '<img src="resources/images/profile/' + obj.userProfile +'">'
 				+ '</div>'
 				+ '</div>'
 				+ '<div class="col-sm-9 col-xs-9 sideBar-main">'
@@ -125,45 +140,39 @@ $(function() {
 	
 	// 1:1 대화
 	function privateChat(user) {
-		// 현재 사용자의 FirebaseDB용 Uid
-		var currentUid = convertEmail(currentUser);
-		
+		// 현재 사용자의 FirebaseDB용 Uid를 md5형식으로 변환
+		var currentUid = md5(currentUser);
+				
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
-		var userSort = [user.key, currentUid].sort().join('@@'); // TODO: sort 사용해서 roomPath
-		var roomPath = PROJECT_NUM + currentProject + MAKE_UID + currentUid + TARGET_UID + user.key;
-		var reverseRoomPath = PROJECT_NUM + currentProject + MAKE_UID + user.key + TARGET_UID + currentUid;
+		var userSort = [user.key, currentUid].sort().join('@sort@');
+		var roomPath = PROJECT_NUM + currentProject + PRIVATE_STR + userSort;
 		
 		// FirebaseDB 검색
-		//db.child('privateChats/').on('value', function(snapshot) {
 		db.child('privateChats/').once('value',function(snapshot) {
 			var userRoom = snapshot.val();
-			var hasRoom = searchPrivateRoom(userRoom, roomPath, reverseRoomPath); // 1:1 대화방 검색
+			var hasRoom = searchPrivateRoom(userRoom, roomPath); // 1:1 대화방 검색
 			
-			if(!hasRoom) {
+			if(!hasRoom) { // hasRoom이 false이면
 				makePrivateRoom(roomPath, currentUid, user); //1:1 대화방 생성
 				messages = db.child('messages/' + roomPath);
 			}
 			
-	        //messages.off('child_added', showMessage); // 이전 메시지 경로 리스너를 삭제
 			showMessage(); // 메시지 출력
 		});
 	}
 	
 	// 1:1 대화방 검색
-	function searchPrivateRoom(userRoom, roomPath, reverseRoomPath) {
-		var hasRoom = false; // 방 존재여부
+	function searchPrivateRoom(userRoom, roomPath) {
+		// 1:1 대화방 존재 여부 확인
 		
-		for(var prop in userRoom) {
-			if(prop == roomPath) {
-				messages = db.child('messages/' + roomPath);
-				hasRoom = true;
-			}else if(prop == reverseRoomPath) {
-				messages = db.child('messages/' + reverseRoomPath);
-				hasRoom = true;
-			}
-		}
-		
-		return hasRoom;
+        for(var prop in userRoom) {
+            if(prop === roomPath) {
+                messages = db.child('messages/' + roomPath);
+                return true; // 존재하면 true return
+            }
+        }
+        
+        return false; // 존재하지 않으면 false return
 	}
 	
 	// 1:1 대화방 생성
@@ -171,7 +180,7 @@ $(function() {
 		var createPrivateChat = {
 				'roomUid': roomPath,
 				'makeUserUid': currentUid,
-				'makeUserUid': "추가예정",
+				'makeUserName': currentUserName,
 				'tergetUserUid': user.key,
 				'targetUserName': user.username,
 				'timestamp': Date.now()
@@ -185,11 +194,18 @@ $(function() {
 	// 메시지 보내기
 	function sendMessage() {
 		var text = $('#messageText'); // 메시지 내용
+		
+		// 공백 입력시 처리
+		if(text.val() == "") {
+			return false;
+		}
 
 		messages.push({
-			username: currentUser,
-			text: text.val(),
-			timestamp: Date.now()
+			'userid': currentUser,
+			'username': currentUserName,
+			'userprofile': currentUserProfile,
+			'text': text.val(),
+			'timestamp': Date.now()
 		});
 
 		text.val(''); // 메시지 초기화
@@ -222,9 +238,8 @@ $(function() {
 	// 메시지 생성 함수
 	function makeMessage(snapshot) {
 		var message = snapshot.val();
-		//$('#mainDialogs').append("<p>" + message.username + ": " + message.text + " (" + convertTime(message.timestamp) +")" + "</p>");
 		
-		if(currentUser == message.username) {
+		if(currentUser == message.userid) {
 			// 보낸 메시지
 			$('#conversation').append(
 					'<div class="row message-body">'
@@ -247,7 +262,8 @@ $(function() {
 					+ '<div class="col-sm-12 message-main-receiver">'
 					+ '<div class="receiver">'
 					+ '<div class="heading-avatar-icon">'
-		            + '<img src="https://pbs.twimg.com/profile_images/887622532647469056/IG7Zk1wS_400x400.jpg">'
+		            + '<img src="resources/images/profile/' + message.userprofile + '">'
+		            + '<span style="font-size: 15px; font-weight:bold;">' + message.username +'</span>'
 		            + '</div>'
 					+ '<div class="message-text">'
 					+ message.text
@@ -271,11 +287,6 @@ $(function() {
 	function changeColor(btnId) {
 		$('.sideBar-body').css('background-color', '');
 		$(btnId).css('background-color', '#c0daff');
-	}
-	
-	// 이메일주소  -> Uid로 변경 
-	function convertEmail(userId) {
-		return userId.replace("@", "-").replace(".", "-");;
 	}
 	
     // 10미만 숫자 앞에 0 붙이기

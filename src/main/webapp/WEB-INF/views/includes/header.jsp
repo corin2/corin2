@@ -7,7 +7,7 @@
 		<div class="navbar-header">
 			<label class="navbar-brand" id="headerProjectName" >코린이</label>
 			<label id="headerProjectMemberProfile" >
-				<img src="resources/profile/nogon.JPG" class="img-circle person" width="30" height="30">
+				<img src="resources/images/profile/nogon.JPG" class="img-circle person" width="30" height="30">
 			</label>
 			<div class="dropdown"  style="float:right; margin-top:10px; cursor: pointer;">
 				<button type="button" id = "plus" class="btn btn-default"  data-toggle="dropdown" style="margin: 0px 0px 10px 30px;">

@@ -71,11 +71,11 @@
       <div class="row heading">
         <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
           <div class="heading-avatar-icon">
-            <img src="resources/profile/nogon.JPG">
+            <img id="currentUserProfile" src="resources/images/profile/nogon.JPG">
           </div>
         </div>
         <div class="col-sm-8 col-xs-7 heading-name">
-          <a class="heading-name-meta" id="currentUser">
+          <a class="heading-name-meta" id="currentUserName">
           </a>
           <span class="heading-online">Online</span>
         </div>
@@ -106,5 +106,6 @@
   </div>
 </div>
 
+<script src="//cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>
 <script src="resources/js/chatting/chatting.js"></script>
 
