@@ -21,18 +21,10 @@
 	    top: 0;
 	    left: 0;
 	    bottom: 0;
-	    z-index: 1000;
+	    z-index: 100;
 	    display: block;
 	    overflow: hidden;
 	    height: auto;
-  	}
-  	
-  	#content {
-  	    position: relative;
-	    margin-left: 100px;
-	    margin-top: 91px;
-	    padding-left: 30px;
-	    padding-top: 20px;
   	}
   	
   	#header {
@@ -41,18 +33,45 @@
   		top: 0;
   		left: 0;
   		right: 0;
-  		z-index: 1000;
+  		z-index: 100;
   		display: block;
   		height: 60px;
   		background-color: #ededed;
   		box-shadow: 0 2px 2px rgba(12,13,14,0.2);
   	}
   	
+  	#content {
+  	    position: relative;
+	    margin-left: 80px;
+	    margin-top: 60px;
+	    padding-left: 20px;
+	    padding-top: 20px;
+  	}
+  	
+  	
   	.navbar-user {
   	    padding: 0px 30px 0px 0px;
   		background-color: #ededed;
   	}
   	
+  	.sidebar-chat {
+  		position: absolute;
+  		margin-top: 60px;
+  		top: 0;
+	    right: 0;
+	    bottom: 0;
+	    display: none;
+	    /* overflow: hidden; */
+	    height: auto;
+  		border: 3px solid red;
+	    z-index: 200;
+	    width: 400px;
+	    height: 100%
+  	}
+  	
+/*   	.sidebar-chat-open {
+  		display: block;
+  	} */
   	
   </style>
 
@@ -86,18 +105,14 @@
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>
+		<div class="sidebar-chat">
+			<!-- Chatting 영역 -->
+			<tiles:insertAttribute name="chatting" />
+		</div>
 	</div>
 	
 	<script type="text/javascript">
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
-	    $(document).ready(function () {
-	        /* $('#foldable').on('click', function () {
-	            $('#sidebar').toggleClass('active');
-	        }); */
-	        /* if(sessionProjectNum != 'null'){
-	    		$('#sidebar').toggleClass('active');
-	    	} */
-	    });
 	</script>        
 </body>
 </html>

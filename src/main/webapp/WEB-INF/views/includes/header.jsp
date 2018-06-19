@@ -8,8 +8,8 @@
 	
 <script src="resources/js/header/header.js"></script>
 
-<header class="navbar-right">
-	<nav class="navbar navbar-default navbar-user">
+<header>
+	<nav class="navbar navbar-left navbar-default navbar-user">
 		<div class="navbar-header">
 			<label class="navbar-brand" id="headerProjectName" >코린이</label>
 			<label id="headerProjectMemberProfile" >
@@ -36,4 +36,20 @@
 			</div>
 		</div>
 	</nav>
+	<nav class="navbar-right">
+		<button type="button" class="btn btn-info" id="showChatting">
+			<span class="glyphicon glyphicon-comment"></span>
+		</button>
+	</nav>
 </header>
+<script>
+	$(function() {
+		/* $('#showChatting').click(function() {
+			$('.sidebar-chat').toggleClass("sidebar-right-open");
+		}); */
+		$('#showChatting').click(function() {
+			// $('.sidebar-chat').toggle();
+			$('.sidebar-chat').animate({width: 'toggle'});
+		});
+	});
+</script>
