@@ -149,7 +149,7 @@
 						    </c:when>
 						</c:choose>
 					</se:authorize>
-				    <li>
+				    <li style="background-color: #333333;">
 				        <a href="logout">
 				            <i class="glyphicon glyphicon glyphicon-log-out"></i>
 				            Logout

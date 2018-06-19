@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <style>
-	.dropdown {
-		z-index;
+	.dropdown-menu {
+		z-index: 1100;
 	}
 </style>
 	
@@ -16,8 +16,8 @@
 				<img src="resources/images/profile/nogon.JPG" class="img-circle person" width="30" height="30">
 			</label>
 			<div class="dropdown"  style="float:right; margin-top:10px; cursor: pointer;">
-				<button type="button" id = "plus" class="btn btn-default"  data-toggle="dropdown" style="margin: 0px 0px 10px 30px;">
-					<span class="glyphicon glyphicon-plus" ></span> 멤버초대
+				<button aria-expanded="true" type="button" id="plus" class="btn btn-default"  data-toggle="dropdown" style="margin: 0px 0px 10px 30px;">
+					<span class="glyphicon glyphicon-plus"></span>
 				</button>
 				<ul class="dropdown-menu" id="friend" onclick="notHideAuto(event)" style="width: 300px; height:200px;">
 					<li><div class="input-group">

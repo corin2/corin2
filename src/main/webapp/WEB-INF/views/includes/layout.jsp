@@ -29,10 +29,10 @@
   	
   	#content {
   	    position: relative;
-	    margin-left: 120px;
+	    margin-left: 100px;
 	    margin-top: 91px;
 	    padding-left: 30px;
-	    padding-top: 20px !important;
+	    padding-top: 20px;
   	}
   	
   	#header {
@@ -43,13 +43,13 @@
   		right: 0;
   		z-index: 1000;
   		display: block;
-  		overflow: hidden;
-  		height: 91px;
+  		height: 60px;
   		background-color: #ededed;
+  		box-shadow: 0 2px 2px rgba(12,13,14,0.2);
   	}
   	
   	.navbar-user {
-  		padding-right: 30px;
+  	    padding: 0px 30px 0px 0px;
   		background-color: #ededed;
   	}
   	
