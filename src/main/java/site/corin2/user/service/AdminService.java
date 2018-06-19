@@ -74,4 +74,52 @@ public class AdminService {
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeUpdate(userGrade);
 	}
+	
+	//기능 수정
+	public void skillInsert(SkillDTO skill){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.skillInsert(skill);
+	}
+	
+	//기능 수정
+	public void listInsert(ListDTO list){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.listInsert(list);
+	}
+	
+	//언어 수정
+	public void languageInsert(LanguageDTO language){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.languageInsert(language);
+	}
+	
+	//유저등급 수정
+	public void userGradeInsert(UserGradeDTO userGrade){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.userGradeInsert(userGrade);
+	}
+	
+	//기능 삭제
+	public void skillDelete(SkillDTO skill){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.skillDelete(skill);
+	}
+	
+	//리스트 삭제
+	public void listDelete(ListDTO list){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.listDelete(list);
+	}
+	
+	//언어 삭제
+	public void languageDelete(LanguageDTO language){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.languageDelete(language);
+	}
+	
+	//유저등급 삭제
+	public void userGradeDelete(UserGradeDTO userGrade){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.userGradeDelete(userGrade);
+	}
 }

@@ -33,4 +33,28 @@ public interface AdminDAO {
 	
 	//userGrade 업데이트
 	public void userGradeUpdate(UserGradeDTO userGrade);
+	
+	//skill 추가
+	public void skillInsert(SkillDTO skill);
+	
+	//list 추가
+	public void listInsert(ListDTO list);
+	
+	//language 추가
+	public void languageInsert(LanguageDTO language);
+	
+	//userGrade 추가
+	public void userGradeInsert(UserGradeDTO userGrade);
+	
+	//skill 삭제
+	public void skillDelete(SkillDTO skill);
+	
+	//list 삭제
+	public void listDelete(ListDTO list);
+	
+	//language 삭제
+	public void languageDelete(LanguageDTO language);
+	
+	//userGrade 삭제
+	public void userGradeDelete(UserGradeDTO userGrade);
 }

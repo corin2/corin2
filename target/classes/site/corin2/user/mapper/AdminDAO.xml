@@ -26,4 +26,35 @@
 		update userGrade set gradeName = #{gradeName} where gradeNum = #{gradeNum}
 	</update>
 	
+	<insert id="skillInsert">
+		insert into skill values(#{skillNum}, #{skillName}, #{skillUse})
+	</insert>
+	
+	<insert id="listInsert">
+		insert into list values(#{listNum}, #{listName})
+	</insert>
+	
+	<insert id="languageInsert">
+		insert into language values(#{languageNum}, #{languageMain}, #{languageColor})
+	</insert>
+	
+	<insert id="userGradeInsert">
+		insert into userGrade values(#{gradeNum}, #{gradeName})
+	</insert>
+	
+	<delete id="skillDelete">
+		delete from skill where skillNum = #{skillNum}
+	</delete>
+	
+	<delete id="listDelete">
+		delete from list where listNum = #{listNum}
+	</delete>
+	
+	<delete id="languageDelete">
+		delete from language where languageNum = #{languageNum}
+	</delete>
+	
+	<delete id="userGradeDelete">
+		delete from userGrade where gradeNum = #{gradeNum}
+	</delete>
 </mapper>

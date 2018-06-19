@@ -79,4 +79,60 @@ public class AdminController {
 		service.userGradeUpdate(userGrade);
 		return jsonview;
 	}
+	
+	//스킬생성
+	@RequestMapping("skillAdd")
+	public View skillAdd(SkillDTO skill) {
+		service.skillInsert(skill);
+		return jsonview;
+	}
+	
+	//리스트생성
+	@RequestMapping("listAdd")
+	public View listAdd(ListDTO list) {
+		service.listInsert(list);
+		return jsonview;
+	}
+	
+	//언어생성
+	@RequestMapping("languageAdd")
+	public View languageAdd(LanguageDTO language) {
+		service.languageInsert(language);
+		return jsonview;
+	}
+	
+	//유저등급생성
+	@RequestMapping("userGradeAdd")
+	public View userGradeAdd(UserGradeDTO userGrade) {
+		service.userGradeInsert(userGrade);
+		return jsonview;
+	}
+	
+	//스킬삭제
+	@RequestMapping("skillDel")
+	public View skillDel(SkillDTO skill) {
+		service.skillDelete(skill);
+		return jsonview;
+	}
+	
+	//리스트삭제
+	@RequestMapping("listDel")
+	public View listDel(ListDTO list) {
+		service.listDelete(list);
+		return jsonview;
+	}
+	
+	//언어삭제
+	@RequestMapping("languageDel")
+	public View languageDel(LanguageDTO language) {
+		service.languageDelete(language);
+		return jsonview;
+	}
+	
+	//유저등급삭제
+	@RequestMapping("userGradeDel")
+	public View userGradeDel(UserGradeDTO userGrade) {
+		service.userGradeDelete(userGrade);
+		return jsonview;
+	}
 }
