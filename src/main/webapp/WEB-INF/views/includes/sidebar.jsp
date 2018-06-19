@@ -136,29 +136,26 @@
 		            Trouble Shooting
 		        </a>
 		    </li>
+			<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+					<se:authorize access="hasRole('ROLE_USER')">
+						<c:choose>
+							<c:when test="${sessionScope.sessionProjectNum != null}" >
+								<li>
+								    <a href="chatting">
+								        <i class="glyphicon glyphicon-comment"></i>
+								        Chatting
+								    </a>
+								</li>
+						    </c:when>
+						</c:choose>
+					</se:authorize>
+				    <li>
+				        <a href="logout">
+				            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+				            Logout
+				        </a>
+				    </li>
+			</se:authorize>
     	</c:when>
 	</c:choose>
 </ul>
-
-<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
-	<ul class="list-unstyled components">
-		<se:authorize access="hasRole('ROLE_USER')">
-			<c:choose>
-				<c:when test="${sessionScope.sessionProjectNum != null}" >
-					<li>
-					    <a href="chatting">
-					        <i class="glyphicon glyphicon-comment"></i>
-					        Chatting
-					    </a>
-					</li>
-			    </c:when>
-			</c:choose>
-		</se:authorize>
-	    <li>
-	        <a href="logout">
-	            <i class="glyphicon glyphicon glyphicon-log-out"></i>
-	            Logout
-	        </a>
-	    </li>
-	</ul>
-</se:authorize>

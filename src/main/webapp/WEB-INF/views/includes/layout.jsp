@@ -16,9 +16,44 @@
   <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css">
   
   <style>
-/*   	#sidebar {
-  		position: absolute;
-  	} */
+   	#sidebar {
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    bottom: 0;
+	    z-index: 1000;
+	    display: block;
+	    overflow: hidden;
+	    height: auto;
+  	}
+  	
+  	#content {
+  	    position: relative;
+	    margin-left: 120px;
+	    margin-top: 91px;
+	    padding-left: 30px;
+	    padding-top: 20px !important;
+  	}
+  	
+  	#header {
+  		position: fixed;
+  		margin-left: 80px;
+  		top: 0;
+  		left: 0;
+  		right: 0;
+  		z-index: 1000;
+  		display: block;
+  		overflow: hidden;
+  		height: 91px;
+  		background-color: #ededed;
+  	}
+  	
+  	.navbar-user {
+  		padding-right: 30px;
+  		background-color: #ededed;
+  	}
+  	
+  	
   </style>
 
   <!-- jQuery library -->
@@ -37,15 +72,17 @@
 			<tiles:insertAttribute name="sidebar" />
 		</nav>
 		
-		<!-- Page Content Holder -->
-		<div id="content">
+		<div id="header">
 			<c:choose>
 				<c:when test="${sessionScope.sessionProjectNum != null}">
 					<!-- Header 영역 -->
 					<tiles:insertAttribute name="header" />
 				</c:when>
 			</c:choose>
-			
+		</div>
+		
+		<!-- Page Content Holder -->
+		<div id="content">
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>

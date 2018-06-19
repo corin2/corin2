@@ -1,9 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<style>
+	.dropdown {
+		z-index;
+	}
+</style>
+	
 <script src="resources/js/header/header.js"></script>
 
-<header>
-	<nav class="navbar navbar-default">
+<header class="navbar-right">
+	<nav class="navbar navbar-default navbar-user">
 		<div class="navbar-header">
 			<label class="navbar-brand" id="headerProjectName" >코린이</label>
 			<label id="headerProjectMemberProfile" >
