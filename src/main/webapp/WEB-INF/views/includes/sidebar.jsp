@@ -12,7 +12,7 @@
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
-    <strong>C2</strong>
+    <strong><i class="glyphicon glyphicon-leaf"></i></strong>
 </div>
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
@@ -22,6 +22,9 @@
 	</c:when>
 </c:choose>
 <ul class="list-unstyled components">
+ 				<li>
+				    <img class="img-circle" src="resources/images/profile/patrick.jpg" width=40 height=40>
+				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
 			<se:authorize access="hasRole('ROLE_USER')">
@@ -133,9 +136,6 @@
 		            Trouble Shooting
 		        </a>
 		    </li>
-			<ul class="list-unstyled CTAs">
-	    		<li><a href="#" class="#">corin2</a></li>
-			</ul>
     	</c:when>
 	</c:choose>
 </ul>

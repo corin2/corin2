@@ -14,6 +14,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- CSS 세부설정 변경을 위한 external CSS 링크 -->
   <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css">
+  
+  <style>
+/*   	#sidebar {
+  		position: absolute;
+  	} */
+  </style>
 
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -26,7 +32,7 @@
 <body>
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
-		<nav id="sidebar">
+		<nav id="sidebar" class="active">
 			<!-- sidebar 영역 -->
 			<tiles:insertAttribute name="sidebar" />
 		</nav>
@@ -48,12 +54,12 @@
 	<script type="text/javascript">
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
 	    $(document).ready(function () {
-	        $('.sidebar-header').on('click', function () {
+	        /* $('#foldable').on('click', function () {
 	            $('#sidebar').toggleClass('active');
-	        });
-	        if(sessionProjectNum != 'null'){
+	        }); */
+	        /* if(sessionProjectNum != 'null'){
 	    		$('#sidebar').toggleClass('active');
-	    	}
+	    	} */
 	    });
 	</script>        
 </body>
