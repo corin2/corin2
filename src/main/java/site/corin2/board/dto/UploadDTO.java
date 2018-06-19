@@ -6,14 +6,21 @@
 */
 package site.corin2.board.dto;
 
+import java.util.List;
+
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+
 public class UploadDTO {
 	
 	private int boardNum;
 	private String skillNum;
 	private int projectNum;
-	private String uploadAlias;
-	private String uploadOrigin;
-	
+	private String uploadAlias;//가명 1(1).jpg
+	private String uploadOrigin;//실명1.jpg
+	private String userName;
+	private String userProfile;
+
 	public UploadDTO() {}
 
 	public int getBoardNum() {
@@ -55,7 +62,24 @@ public class UploadDTO {
 	public void setSkillNum(String skillNum) {
 		this.skillNum = skillNum;
 	}
-	
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(String userProfile) {
+		this.userProfile = userProfile;
+	}
+
+
 	
 	
 }

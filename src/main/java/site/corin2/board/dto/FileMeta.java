@@ -8,7 +8,6 @@ public class FileMeta {
 	private String fileName;
 	private String fileSize;
 	private String fileType;
-	
 	private byte[] bytes;
 	
 	public String getFileName() {
@@ -35,4 +34,5 @@ public class FileMeta {
 	public void setBytes(byte[] bytes) {
 		this.bytes = bytes;
 	}
+
 }

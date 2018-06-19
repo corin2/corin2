@@ -60,8 +60,8 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a href="fileUpload">
-		            <i class="glyphicon glyphicon-file"></i>
+		        <a href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		            <i class="glyphicon glyphicon-file" ></i>
 		            Files
 		        </a>
 		    </li>

@@ -11,18 +11,21 @@
 	 <div class="container">
 	
 	 </div>
-	projectNum
 
-	    <input id="fileupload" type="file" name="files[]" data-url="upload"  multiple>
- 
-		<input type="hidden" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
+ 		<form action="upload" method="post" enctype="multipart/form-data"> 
+	    	<input id="fileupload" type="file" name="files[]"  multiple>
+ 			<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
+ 			<input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 
-
+ 	    </form>
 
 
 
 
 	<div id="dropzone" class="fade well" style="width: 200px;height: 200px;">Drop files here</div>
-	<div class="dropzonediv"></div>
+	<div class="dropzonediv">	 
+			
+	
+	</div>
 	
 			

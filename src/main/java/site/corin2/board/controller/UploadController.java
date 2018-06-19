@@ -6,6 +6,9 @@
 */
 package site.corin2.board.controller;
 
+
+
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
@@ -25,32 +28,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.FileMeta;
+import site.corin2.board.dto.UploadDTO;
+import site.corin2.board.service.BoardService;
+import site.corin2.board.service.UploadService;
 
 
 
 @Controller
-public class FileUploadController {
+public class UploadController {
 	
 	LinkedList<FileMeta> files = new LinkedList<FileMeta>();
-	FileMeta fileMeta = null;
+	FileMeta fileMeta = new FileMeta();
+	
+	@Autowired
+	private UploadService service;
+	
+
 	
 	@Autowired
 	private View jsonview;
 
-	
-	@RequestMapping("fileUpload")
-	public String fileUpload() {
-		
+	@RequestMapping(value="fileUpload", method =RequestMethod.GET )
+	public String fileUpload(@RequestParam("projectNum") String projectNum,Model model) {
 		return "board.fileUpload";
 	}
 	
-	//select시/*
-	@RequestMapping(value="upload", method = RequestMethod.POST)
+	
+	@RequestMapping(value="fileUpload1", method= RequestMethod.GET)
+	public View fileUpload1(@RequestParam("projectNum") String projectNum,Model model) {
+		System.out.println("으아아");
+		model.addAttribute("file1", service.uploadSelect(Integer.parseInt(projectNum)));
+		return jsonview;
+	}
+	/*
+	@RequestMapping(value="/upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<FileMeta> upload(MultipartHttpServletRequest request, HttpServletResponse response) {
-		System.out.println("파일 업로드 커늩롤러" );
+		System.out.println("파일 업로드 커늩롤러");
 		//1. build an iterator
 		 Iterator<String> itr =  request.getFileNames();
 		 System.out.println(itr);
@@ -79,7 +97,7 @@ public class FileUploadController {
 				// 1. copy file to local disk (make sure the path "e.g. D:/temp/files" exists)
 				// 2. transto(file)
 				// 3. 그냥 temp 로 하면 안 올라가네... 폴더 따로 만들어야 사진이 들어감
-				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("C:/Temp/file/"+mpf.getOriginalFilename()));
+				FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("C:/Temp/bbbb/"+mpf.getOriginalFilename()));
 				
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -89,20 +107,53 @@ public class FileUploadController {
 			 
 		 }
 		 
+		// result will be like this
+		// [{"fileName":"app_engine-85x77.png","fileSize":"8 Kb","fileType":"image/png"},...]
 		return files;
  
 	}
-	//insert시	
-	@RequestMapping(value="fileInsert")
-	public View fileInsert(@RequestParam("projectNum") String projectNum, Model model, HttpSession session ,
-			MultipartHttpServletRequest request, HttpServletResponse response){
-			System.out.println("탔다");
+	*/
+	@RequestMapping(value = "upload", method = RequestMethod.POST)
+	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
+			
+		System.out.println("파일 업로드 커늩롤러"+projectNum);
+		System.out.println(boardDTO.getUserId());
+		Iterator<String> itr = request.getFileNames();
 		
+		MultipartFile mpf =  request.getFile(itr.next()); 
+		 	
+			while(itr.hasNext()){}
+		System.out.println("uploadDTO" + uploadDTO.getProjectNum() +"/"+uploadDTO.getBoardNum() + "/");
+			
+		System.out.println(mpf.getOriginalFilename() +" uploaded! ");
+			 						//000.jpg            
+		//게시판 insert
+		service.boardInsert(boardDTO);
 		
+		//파일 insert
+		uploadDTO.setUploadAlias(mpf.getOriginalFilename());
+		uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
 		
-		return jsonview;
+		service.uploadInsert(uploadDTO);
+		
+		 fileMeta = new FileMeta();
+		 fileMeta.setFileName(mpf.getOriginalFilename());
+		 fileMeta.setFileSize(mpf.getSize()/1024+" Kb");
+		 fileMeta.setFileType(mpf.getContentType());
+		 
+
+		try {
+			fileMeta.setBytes(mpf.getBytes());
+			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream("C:/Temp/file/"+mpf.getOriginalFilename()));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		files.add(fileMeta);
+
+		return service.uploadSelect(Integer.parseInt(projectNum));
+ 
 	}
-	
 
 	@RequestMapping(value = "get/{value}", method = RequestMethod.GET)
 	 public void get(HttpServletResponse response,@PathVariable String value){
@@ -116,4 +167,5 @@ public class FileUploadController {
 				e.printStackTrace();
 		 }
 	 }
+
 }
