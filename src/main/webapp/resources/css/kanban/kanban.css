@@ -1,5 +1,9 @@
+	#mainScreen, .donebox {
+	    overflow-y: auto;
+	}
+	
 	#mainScreen {
-		white-space: nowrap; 
+		white-space: nowrap;
 		padding: 10px 10px 5px;
 		background: #00FF0000;
 		width: 90%;
@@ -17,18 +21,24 @@
 		height: 85%;
 	}
 	
-	.listbox, .listingbox, .donebox {
-		border:10px solid #D7EEF2;
+	.listbox, .listingbox, .donebox, .userbox, .userprofilebox, .kanbanbox {
 		border-radius: 12px;
-		background-color: #D7EEF2;
+		float: left;
+		position: relative;
+	}
+	
+	.listbox, .listingbox, .donebox, .listtitle {
 		margin: 10px;
+	}
+	
+	.listbox, .listingbox, .donebox {
+		border:10px solid #E2E4E6;
+		background-color: #E2E4E6;
 		width: 300px;
 	}
 	
-	.listingbox, .donebox {
-		height:220px;
-	    float:left;
-	    position:relative;
+	.listingbox, .donebox, .userprofilebox {
+		height: 220px;
 	}
 	
 	.listbox, .donebox {
@@ -36,23 +46,14 @@
 	}
 	
 	.listbox {
-	    float:left;
 	    overflow-y: unset;
-	    position:relative;
 	    max-height: 700px;
-	}
-	
-	.donebox {
-	    overflow-y: auto;
 	}
 	
 	.userbox, .userprofilebox, .kanbanbox {
 		border:10px solid #00FF0000;
-		border-radius: 12px;
 		background-color: #00FF0000;
 		margin:10px;
-		float:left;
-		position:relative;
 	}
 	
 	.userbox {
@@ -60,8 +61,15 @@
 	}
 	
 	.userprofilebox {
-	    width:100px;
-	    height:220px;
+		position: relative;
+	    width: 100px;
+	}
+	
+	.userprofilebox img {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		margin: auto;
 	}
 	
 	.kanbanbox {
@@ -72,13 +80,12 @@
 		text-align:left;
 	    font-weight:bold;
 	    overflow: auto;
-	    margin: 10px;
 	    z-index: 2;
 	}
 	
 	.card {
 		margin-top:15px;
-		border : 1px solid white;
+		border : 1px solid black;
 	    border-radius: 8px;
 	    background-color:white;
 	    padding : 10px;
