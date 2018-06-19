@@ -21,12 +21,13 @@ $(function() {
 	// 변수, 상수 설정
 	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
+	var currentUserName;
+	var currentUserProfile;
 	var messages;
 	const PROJECT_NUM = "@project@";
 	const PRIVATE_STR = "@private@";
 	
 	console.log("현재 유저: " + currentUser);
-	$('#currentUser').html(currentUser);
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
@@ -52,6 +53,7 @@ $(function() {
 					// 현재 프로젝트의 사용자들의 FirebaseDB용 Uid를 md5형식으로 변환
 					var userUid = md5(obj.userId);
 					
+					showCurrentUserProfile(userUid, obj); // 프로필 이미지 표시
 					initialData(userUid, obj); // 초기 데이터 생성
 					updateUserList(userUid, obj); // 팀원 추가
 					updateInfo(userUid, projectNum); // DB 정보 수정
@@ -60,6 +62,21 @@ $(function() {
 		});
 		
 		showMessage(); // 메시지 출력
+	}
+	
+	// 현재 사용자의 프로필 이미지 표시 함수
+	function showCurrentUserProfile(userUid, obj) {
+		var currentUserUid = md5(currentUser);
+		if(userUid === currentUserUid) {
+			currentUserName = obj.userName; // 현재 사용자의 이름
+			currentUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+			
+			// 현재 사용자의 이름 표시
+			$('#currentUserName').html(currentUserName);
+			
+			// 현재 사용자의 프로필 이미지 표시
+			$('#currentUserProfile').attr("src","resources/images/profile/" + currentUserProfile);
+		}
 	}
 	
 	// 초기 데이터 생성
@@ -77,7 +94,7 @@ $(function() {
 				'<div class="row sideBar-body" id=' + userUid + '>'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
 				+ '<div class="avatar-icon">'
-				+ '<img src=' + "resources/profile/nogon.JPG" +'>'
+				+ '<img src="resources/images/profile/' + obj.userProfile +'">'
 				+ '</div>'
 				+ '</div>'
 				+ '<div class="col-sm-9 col-xs-9 sideBar-main">'
@@ -163,7 +180,7 @@ $(function() {
 		var createPrivateChat = {
 				'roomUid': roomPath,
 				'makeUserUid': currentUid,
-				'makeUserUid': "추가예정",
+				'makeUserName': currentUserName,
 				'tergetUserUid': user.key,
 				'targetUserName': user.username,
 				'timestamp': Date.now()
@@ -184,9 +201,11 @@ $(function() {
 		}
 
 		messages.push({
-			username: currentUser,
-			text: text.val(),
-			timestamp: Date.now()
+			'userid': currentUser,
+			'username': currentUserName,
+			'userprofile': currentUserProfile,
+			'text': text.val(),
+			'timestamp': Date.now()
 		});
 
 		text.val(''); // 메시지 초기화
@@ -220,7 +239,7 @@ $(function() {
 	function makeMessage(snapshot) {
 		var message = snapshot.val();
 		
-		if(currentUser == message.username) {
+		if(currentUser == message.userid) {
 			// 보낸 메시지
 			$('#conversation').append(
 					'<div class="row message-body">'
@@ -243,7 +262,8 @@ $(function() {
 					+ '<div class="col-sm-12 message-main-receiver">'
 					+ '<div class="receiver">'
 					+ '<div class="heading-avatar-icon">'
-		            + '<img src="https://pbs.twimg.com/profile_images/887622532647469056/IG7Zk1wS_400x400.jpg">'
+		            + '<img src="resources/images/profile/' + message.userprofile + '">'
+		            + '<span style="font-size: 15px; font-weight:bold;">' + message.username +'</span>'
 		            + '</div>'
 					+ '<div class="message-text">'
 					+ message.text
