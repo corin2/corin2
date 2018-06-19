@@ -16,6 +16,7 @@
          <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" /> 
      </definition>
      
+     <definition name="velocity.templete" template="/WEB-INF/views/velocity/templete.jsp"/>
      <definition name="position.kanban" template="/WEB-INF/views/kanban/kanban.jsp"/>
      <definition name="position.calendar" template="/WEB-INF/views/calendar/calendar.jsp"/>
      <definition name="position.checklist" template="/WEB-INF/views/checklist/checklist.jsp"/>

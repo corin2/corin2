@@ -24,19 +24,6 @@
 <ul class="list-unstyled components">
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
-<<<<<<< HEAD
-		    <li class="active">
-		        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-		            <i class="glyphicon glyphicon-user"></i>
-		            User
-		        </a>
-		        <ul class="collapse list-unstyled" id="homeSubmenu">
-		            <li><a href="content">User Info</a></li>
-		            <li><a href="userupdate">Profile Modification</a></li>
-		            <li><a href="userdelete">Delete</a></li>
-		        </ul>
-		    </li>
-=======
 			<se:authorize access="hasRole('ROLE_USER')">
 			    <li class="active">
 			        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
@@ -45,8 +32,8 @@
 			        </a>
 			        <ul class="collapse list-unstyled" id="homeSubmenu">
 			            <li><a href="content">User Info</a></li>
-			            <li><a href="#">Profile Modification</a></li>
-			            <li><a href="#">Delete</a></li>
+			            <li><a href="userupdate">Profile Modification</a></li>
+			            <li><a href="userdelete">Delete</a></li>
 			        </ul>
 			    </li>
 		    </se:authorize>
@@ -90,7 +77,6 @@
 			        </a>
 			    </li>
 		    </se:authorize>
->>>>>>> cbec3b39c0128622e69117ac922bb2d18d319b80
 		</c:when>
 	</c:choose>
 	<se:authorize access="hasRole('ROLE_USER')">

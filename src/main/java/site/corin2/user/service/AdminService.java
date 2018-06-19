@@ -7,16 +7,28 @@
 
 package site.corin2.user.service;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.View;
 
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
 import site.corin2.user.dao.AdminDAO;
+import site.corin2.user.dto.EmailDTO;
 import site.corin2.user.dto.UserGradeDTO;
 
 @Service
@@ -25,6 +37,11 @@ public class AdminService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	@Autowired
+	private MailSender mailSender;
+	
+	@Autowired
+	private UserService userservice;
 	//모든 기능 조회
 	public List<SkillDTO> skillAllSelect(){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
@@ -121,5 +138,44 @@ public class AdminService {
 	public void userGradeDelete(UserGradeDTO userGrade){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeDelete(userGrade);
+	}
+	
+	//vmfileload하기
+	public String vmLoad() {
+		  BufferedReader br;
+		  String line = "";
+		try {
+			br = new BufferedReader(new FileReader("D:\\bitcamp104\\FinalProject\\corin2\\src\\main\\webapp\\WEB-INF\\views\\velocity\\templete.vm"));
+			while(true) {
+				String content = br.readLine();
+				line += content;
+				if (content==null) break;
+			}
+			br.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return line;
+	}
+	
+	//vmfilesave하기
+	public void vmSave(String savedata) {
+		System.out.println("222"+savedata);
+		BufferedWriter bw;
+		try {
+			bw = new BufferedWriter(new FileWriter("D:\\bitcamp104\\FinalProject\\corin2\\src\\main\\webapp\\WEB-INF\\views\\velocity\\templete.vm"));
+			while(true) {
+				System.out.println("333"+savedata);
+				bw.write(savedata);
+			    bw.newLine(); // 줄바꿈
+			    System.out.println("444"+savedata);
+			    if(savedata!=null) break;
+			}
+			System.out.println("555"+savedata);
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
 	}
 }

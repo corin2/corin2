@@ -8,6 +8,7 @@ package site.corin2.user.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.user.dao.UserDAO;
@@ -113,9 +115,17 @@ public class UserController {
 		return "user.update";
 	}
 	
+	//프로필 올리기
+	@RequestMapping(value="userProfile", method=RequestMethod.POST)
+	public String userProfile(MultipartHttpServletRequest request) {
+		System.out.println(request.getFileNames());
+		service.userProfile(request);
+		return "project.project";
+	}
 	//사용자 수정하기 기능 실행
 	@RequestMapping(value="userupdate", method=RequestMethod.POST)
 	public String userUpdate(UserDTO userdto) {
+		System.out.println(userdto.getPassword());
 		service.userUpdate(userdto);
 		return "project.project";
 	}

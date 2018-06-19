@@ -13,11 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
+import site.corin2.user.dto.EmailDTO;
 import site.corin2.user.dto.UserGradeDTO;
 import site.corin2.user.service.AdminService;
 
@@ -134,5 +138,28 @@ public class AdminController {
 	public View userGradeDel(UserGradeDTO userGrade) {
 		service.userGradeDelete(userGrade);
 		return jsonview;
+	}
+	
+	//메일관리 페이지 이동하기
+	@RequestMapping(value = "adminMail" , method = RequestMethod.GET)
+	public String adminMailEditView() {
+		return "admin.mailedit";
+	}
+	
+	//vmfileload하기
+	@RequestMapping(value = "vmload" , method = RequestMethod.POST)
+	public View vmLoad(Model model) {
+		String line = service.vmLoad();
+		model.addAttribute("line", line);
+		return jsonview;
+	}
+	
+	//vmfilesave하기
+	@RequestMapping(value = "vmsave" , method = {RequestMethod.POST,RequestMethod.GET})
+	public String vmSave(@RequestParam("savedata") String savedata) {
+		System.out.println("111"+savedata);
+		service.vmSave(savedata);
+		return null;
+			
 	}
 }

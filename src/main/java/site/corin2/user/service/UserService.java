@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.UserDTO;
@@ -235,6 +236,11 @@ public class UserService {
 		return userdto;
 	}
 	
+	//프로필 올리기
+	public void userProfile(MultipartHttpServletRequest request) {
+		
+	}
+	
 	//사용자 수정하기 기능 실행
 	public void userUpdate(UserDTO userdto) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -243,7 +249,9 @@ public class UserService {
 			updateuser = userdao.userSelect(userdto.getUserId());
 			updateuser.setUserName(userdto.getUserName());
 			updateuser.setPassword(userdto.getPassword());
+			System.out.println("1111111111"+userdto.getUserProfile());
 			updateuser.setUserProfile(userdto.getUserProfile());
+			System.out.println("11211111111"+userdto.getUserProfile());
 			updateuser.setGradeNum(userdto.getGradeNum());
 			userdao.userUpdate(updateuser);
 		}catch(Exception e) {
