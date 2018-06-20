@@ -23,7 +23,8 @@ function fileselect(){
 	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img></div>"
 	    		  +"<div class ='dropzonecontent' style='float:left;width:200px;height:100px;background-color:white;vertical-align:middle;text-align:center;color:black;border: 1px solid white;margin-left:50px;margin-top:20px;border-radius:10px;'>"
 	    		  +"<p style='text-align:center;margin-top:20px;color:black;font-size:30px;'>"+file.uploadOrigin+"</p>"
-	    		  +"<p><img class='sns-icon' style='width:30px;hight:30px;margin-right:10px' src='resources/images/"+file.userProfile+"'><label style='margin-top:30px;color:black'>"+file.userName+"</label></p></img>"
+	    		  +"<p><img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='resources/images/"+file.userProfile+"'><label style='margin-top:30px;color:black'>"+file.userName+"</label></p></img>"
+	    		  +"<p style='color:black;'>"+file.boardDate+"</p>"
 	    		  +"</div>"
 	    		  +"</div>"
 		})
@@ -51,15 +52,17 @@ function firstFileSelect() {
     		 $(".dropzonediv").empty();
     		 $.each(data.file1, function(index , file) {
     			 html +=
-    			  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
+   				  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
    				  +"<div style='margin-left:220px;margin-top:5px'><img style='width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
    				  +"></img>"
    	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img></div>"
    	    		  +"<div class ='dropzonecontent' style='float:left;width:200px;height:100px;background-color:white;vertical-align:middle;text-align:center;color:black;border: 1px solid white;margin-left:50px;margin-top:20px;border-radius:10px;'>"
    	    		  +"<p style='text-align:center;margin-top:20px;color:black;font-size:30px;'>"+file.uploadOrigin+"</p>"
-   	    		  +"<p><img class='sns-icon' style='width:30px;hight:30px;margin-right:10px' src='resources/images/"+file.userProfile+"'><label style='margin-top:30px;color:black'>"+file.userName+"</label></p></img>"
+   	    		  +"<p><img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='resources/images/"+file.userProfile+"'><label style='margin-top:30px;color:black'>"+file.userName+"</label></p></img>"
+   	    		  +"<p style='color:black;'>"+file.boardDate+"</p>"
    	    		  +"</div>"
    	    		  +"</div>"
+   	    	
    		})
     		
 			$(".dropzonediv").html(html);  
@@ -95,34 +98,6 @@ function deleteFile(boardNum) {
  	   
     }); 
     
-/*function name() {
-	$(document).bind('dragover', function (e) {
-	    var dropZone = $('.zone'),
-	        timeout = window.dropZoneTimeout;
-	    if (!timeout) {
-	        dropZone.addClass('in');
-	    } else {
-	        clearTimeout(timeout);
-	    }
-	    var found = false,
-	        node = e.target;
-	    do {
-	        if (node === dropZone[0]) {
-	            found = true;
-	            break;
-	        }
-	        node = node.parentNode;
-	    } while (node != null);
-	    if (found) {
-	        dropZone.addClass('hover');
-	    } else {
-	        dropZone.removeClass('hover');
-	    }
-	    window.dropZoneTimeout = setTimeout(function () {
-	        window.dropZoneTimeout = null;
-	        dropZone.removeClass('in hover');
-	    }, 100);
-	});
-}*/    
+   
     
 }
