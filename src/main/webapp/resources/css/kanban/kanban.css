@@ -63,6 +63,13 @@
 	.userprofilebox {
 		position: relative;
 	    width: 100px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: flex; /* add */
+		justify-content: center; /* add to align horizontal */
+		align-items: center; /* add to align vertical */
 	}
 	
 	.userprofilebox img {
@@ -70,6 +77,12 @@
 		top: 0;
 		bottom: 0;
 		margin: auto;
+	}
+	
+	.userprofilebox label {
+		position: absolute;
+		bottom: 30px;
+		
 	}
 	
 	.kanbanbox {
