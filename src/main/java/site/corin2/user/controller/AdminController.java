@@ -35,6 +35,11 @@ public class AdminController {
 	public String adminMenu() {
 		return "admin.adminMenu";
 	}
+	//만든사람들
+	@RequestMapping("adminPeaples")
+	public String adminPeaples() {
+		return "admin.makeparson";
+	}
 	
 	//스킬메뉴관리
 	@RequestMapping("skillManagement")
