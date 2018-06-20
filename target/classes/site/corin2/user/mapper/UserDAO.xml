@@ -23,7 +23,13 @@
 	
 	<update id="userUpdate">
 		update user
-		set username=#{userName},password = #{password}, userprofile=#{userProfile}
+		set username=#{userName},password = #{password}
+		where userid = #{userId}
+	</update>
+	
+	<update id="profileUpdate">
+		update user
+		set userprofile=#{userProfile}
 		where userid = #{userId}
 	</update>
 	

@@ -6,9 +6,12 @@
 */
 package site.corin2.user.controller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,14 +31,17 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
+import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.UserDTO;
 import site.corin2.user.dto.UserGradeDTO;
@@ -166,6 +172,13 @@ public class UserController {
 		UserDTO user = service.oneUserSelect(userid);
 		model.addAttribute("data", user);
 		return jsonview;
+	}
+	
+	//프로필 수정하기
+	@RequestMapping("profileupdate")
+	public void profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, HttpServletResponse response) {
+		System.out.println("111"+userid);
+		service.profileupdate(userid,request);
 	}
 	
 	//ex페이지
