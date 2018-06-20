@@ -9,7 +9,7 @@ function addCardCheckListView() {
 			+ "</div>";
 	
 	$('#checkListForm').append(div)
-	$('#cardCheckBoxInput').focus();;
+	$('#cardCheckBoxInput').focus();
 }
 
 //체크리스트 등록 성공
