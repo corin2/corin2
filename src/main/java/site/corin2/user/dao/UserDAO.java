@@ -34,4 +34,6 @@ public interface UserDAO {
 
 	//모든 유저 조회
 	public List<UserDTO> allUserSelect();
+
+	public void profileUpdate(UserDTO updateuser);
 }
