@@ -22,7 +22,7 @@ $(function() {
 	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
 	var currentUserName;
-	var currentUserProfile;
+	var currentChatUserProfile;
 	var messages;
 	const PROJECT_NUM = "@project@";
 	const PRIVATE_STR = "@private@";
@@ -56,7 +56,7 @@ $(function() {
 					// 현재 프로젝트의 사용자들의 FirebaseDB용 Uid를 md5형식으로 변환
 					var userUid = md5(obj.userId);
 					
-					showCurrentUserProfile(userUid, obj); // 프로필 이미지 표시
+					showcurrentChatUserProfile(userUid, obj); // 프로필 이미지 표시
 					initialData(userUid, obj); // 초기 데이터 생성
 					updateUserList(userUid, obj); // 팀원 추가
 					updateInfo(userUid, projectNum); // DB 정보 수정
@@ -68,17 +68,19 @@ $(function() {
 	}
 	
 	// 현재 사용자의 프로필 이미지 표시 함수
-	function showCurrentUserProfile(userUid, obj) {
+	function showcurrentChatUserProfile(userUid, obj) {
 		var currentUserUid = md5(currentUser);
 		if(userUid === currentUserUid) {
 			currentUserName = obj.userName; // 현재 사용자의 이름
-			currentUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+			currentChatUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+			
+			console.log("현재 사용자의 프로필: " + currentChatUserProfile);
 			
 			// 현재 사용자의 이름 표시
 			$('#currentUserName').html(currentUserName);
 			
 			// 현재 사용자의 프로필 이미지 표시
-			$('#currentUserProfile').attr("src","resources/images/profile/" + currentUserProfile);
+			$('#currentChatUserProfile').attr("src","resources/images/profile/" + currentChatUserProfile);
 		}
 	}
 	
@@ -195,7 +197,7 @@ $(function() {
 		messages.push({
 			'userid': currentUser,
 			'username': currentUserName,
-			'userprofile': currentUserProfile,
+			'userprofile': currentChatUserProfile,
 			'text': text.val(),
 			'timestamp': Date.now()
 		});
