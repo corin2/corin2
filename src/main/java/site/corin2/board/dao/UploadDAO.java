@@ -14,6 +14,7 @@ import org.springframework.web.servlet.View;
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.FileMeta;
 import site.corin2.board.dto.UploadDTO;
+import site.corin2.project.dto.TeamDTO;
 
 public interface UploadDAO {
 
@@ -22,5 +23,10 @@ public interface UploadDAO {
 	void uploadInsert(UploadDTO uploadDTO);
 
 	void boardInsert(BoardDTO boardDTO);
+
+	void fileDelete(UploadDTO uploadDTO);
+
+	void gradeSelect(int projectNum);
+
 
 }

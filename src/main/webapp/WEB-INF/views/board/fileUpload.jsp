@@ -16,7 +16,6 @@
 	    	<input id="fileupload" type="file" name="files[]"  multiple>
  			<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
  			<input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
-
  	    </form>
 
 
@@ -24,7 +23,7 @@
 
 	<div id="dropzone" class="fade well" style="width: 200px;height: 200px;">Drop files here</div>
 	<div class="dropzonediv">	 
-			
+
 	
 	</div>
 	

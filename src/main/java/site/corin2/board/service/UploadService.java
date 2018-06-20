@@ -18,6 +18,7 @@ import site.corin2.board.dao.UploadDAO;
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.FileMeta;
 import site.corin2.board.dto.UploadDTO;
+import site.corin2.project.dto.TeamDTO;
 @Service
 public class UploadService {
 
@@ -40,6 +41,17 @@ public class UploadService {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		dao.boardInsert(boardDTO);
 		
+	}
+
+	public void fileDelete(UploadDTO uploadDTO) {
+		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
+		dao.fileDelete(uploadDTO);
+		
+	}
+
+	public void gradeSelect(int projectNum) {
+		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
+		dao.gradeSelect(projectNum);
 	}
 
 }

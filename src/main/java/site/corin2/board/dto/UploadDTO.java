@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 
-
+@JsonIgnoreProperties({"bytes"})
 public class UploadDTO {
 	
 	private int boardNum;
@@ -21,6 +21,7 @@ public class UploadDTO {
 	private String userName;
 	private String userProfile;
 
+	
 	public UploadDTO() {}
 
 	public int getBoardNum() {
@@ -80,6 +81,5 @@ public class UploadDTO {
 	}
 
 
-	
 	
 }
