@@ -6,10 +6,14 @@
 */
 package site.corin2.user.service;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -19,6 +23,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.velocity.Template;
@@ -34,12 +39,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.ui.velocity.VelocityEngineUtils;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.AdminDTO;
@@ -254,9 +262,6 @@ public class UserService {
 			updateuser = userdao.userSelect(userdto.getUserId());
 			updateuser.setUserName(userdto.getUserName());
 			updateuser.setPassword(userdto.getPassword());
-			System.out.println("1111111111"+userdto.getUserProfile());
-			updateuser.setUserProfile(userdto.getUserProfile());
-			System.out.println("11211111111"+userdto.getUserProfile());
 			updateuser.setGradeNum(userdto.getGradeNum());
 			userdao.userUpdate(updateuser);
 		}catch(Exception e) {
@@ -329,5 +334,47 @@ public class UserService {
 		}
 		
 		return user;
+	}
+	
+	//프로필 수정하기
+	public void profileupdate(String userid , MultipartHttpServletRequest request) {
+		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+		FileMeta fileMeta = null;
+		Iterator<String> itr = request.getFileNames();
+		System.out.println(request.getFileNames());
+		MultipartFile mpf = null;
+		while (itr.hasNext()) {
+			mpf = request.getFile(itr.next());
+			if (files.size() >= 10)
+				files.pop();
+			fileMeta = new FileMeta();
+			fileMeta.setFileName(mpf.getOriginalFilename());
+			fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
+			fileMeta.setFileType(mpf.getContentType());
+			System.out.println(mpf.getOriginalFilename());
+			System.out.println(mpf.getContentType());
+			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+			UserDTO updateuser;
+			try {
+				fileMeta.setBytes(mpf.getBytes());
+				FileCopyUtils.copy(mpf.getBytes(),
+						new FileOutputStream(
+								"D:\\bitcamp104\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\corin2\\resources\\images\\profile\\"
+											+ mpf.getOriginalFilename()));
+				try {
+					updateuser = userdao.userSelect(userid);
+					updateuser.setUserProfile(mpf.getOriginalFilename());
+					userdao.profileUpdate(updateuser);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			files.add(fileMeta);
+
+		}
 	}
 }
