@@ -9,14 +9,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="troubleSelect" resultType="site.corin2.board.dto.TroubleShootingDTO">
 			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
 				from troubleshooting a, board b,user c  
-			where a.boardnum=b.boardnum and b.userid=c.userid and a.projectnum=1 and b.isdeleted=0 order by boardnum desc  
+			where a.boardnum=b.boardnum and b.userid=c.userid and a.projectnum=#{projectNum} and b.isdeleted=0 order by boardnum desc  
+		</select>
+		
+		<!-- 트러블슈팅 전체조회 -->
+		<select id="troubleAllSelect" resultType="site.corin2.board.dto.TroubleShootingDTO">
+			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 order by boardnum desc  
 		</select>
 		
 		<!-- 공통 게시판 테이블에 먼저 Insert -->
 		<insert id="troubleInsert" parameterType="site.corin2.board.dto.TroubleShootingDTO">
 			insert into 
 			board (skillnum,userid,boarddate,isdeleted)
-			values('S500','jin@naver.com',now(),0)
+			values('S500','gosmgo@naver.com',now(),0)
 		</insert>
 		
 		<!-- 생성된 boardNum 으로 트러블슈팅 테이블에 Insert -->
@@ -26,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  	</selectKey>
 			insert into 
 			troubleshooting (boardNum,skillNum,projectNum,problem,solution,hashtag)
-			values(#{boardNum},'S500',1,#{problem},#{solution},#{hashtag})
+			values(#{boardNum},'S500',#{projectNum},#{problem},#{solution},#{hashtag})
 		</insert>
 		
 		<!-- 트러블슈팅수정 -->

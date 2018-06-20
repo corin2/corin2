@@ -37,6 +37,23 @@ public class TroubleService {
 		return troubles;
 	}
 	
+	//트러블 슈팅게시물 전체 조회
+		public List<TroubleShootingDTO> troubleAllSelect(){
+			TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+			List<TroubleShootingDTO> troubles = null;
+			
+			try {
+				
+				System.out.println();
+				troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleAllSelect();
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return troubles;
+		}
+	
 	//트러블 슈팅 게시물 추가(1차 board 테이블에 insert)
 	public int troubleInsert(TroubleShootingDTO tsdto) {
 		int result=0;

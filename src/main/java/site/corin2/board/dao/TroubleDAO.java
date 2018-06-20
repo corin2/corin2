@@ -15,6 +15,9 @@ public interface TroubleDAO {
 	//프로젝트 넘버로 트러블 슈팅게시물 조회
 	public List<TroubleShootingDTO> troubleSelect(int projectNum);
 	
+	//프로젝트 넘버로 트러블 슈팅게시물 조회
+	public List<TroubleShootingDTO> troubleAllSelect();
+	
 	//트러블 슈팅 게시물 추가(1차 board 테이블에 insert)
 	public int troubleInsert(TroubleShootingDTO tsdto);
 	
@@ -26,6 +29,5 @@ public interface TroubleDAO {
 	
 	//트러블 슈팅 게시물 삭제
 	public int troubleDelete(TroubleShootingDTO tsdto);
-	
 	
 }

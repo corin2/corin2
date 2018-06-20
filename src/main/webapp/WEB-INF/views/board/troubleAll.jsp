@@ -39,10 +39,12 @@ function fncTegSplit(str){
 </script>
 
 <div id="troubleContent">
-	<h2 id='boardTitle'>팀 트러블슈팅</h2>
+	<h2 id='boardTitle'>전체 트러블슈팅</h2>
 
 	<ul class="nav nav-tabs ">
-		<li><a id="memberts" href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
+		<li><a id="memberts"
+			href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀
+				트러블슈팅</a></li>
 		<li><a id="allts" href="troubleAll">전체 트러블슈팅</a></li>
 	</ul>
 </div>
@@ -56,15 +58,17 @@ function fncTegSplit(str){
 			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 			검색
 		</button>
+
+
 		<button type="button" class="btn btn-success btn-wide">
 			<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
 		</button>
+
 		<a href="troubleins"><button type="button"
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				새 글 쓰기
 			</button></a>
-
 	</form>
 </div>
 

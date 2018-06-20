@@ -109,7 +109,7 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="trouble" id="troubleshootingicon">
+		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="troubleshootingicon">
 					<i class="glyphicon glyphicon-exclamation-sign"></i>
 		            Trouble Shooting
 		        </a>
