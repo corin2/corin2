@@ -37,12 +37,8 @@
 		height: 220px;
 	}
 	
-	.listbox, .donebox{
+	.donebox{
 		overflow-y: auto;
-	}
-	
-	.listbox {
-	    max-height: 700px;
 	}
 	
 	.userbox, .userprofilebox, .kanbanbox {

@@ -26,7 +26,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- External JavaScript 파일: index.js -->
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
-  
+  	<script type="text/javascript">
+		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
+	</script>   
 </head>
 <body>
 	<!-- 페이지 로딩 -->
@@ -61,7 +63,7 @@
 			</div>
 		</se:authorize>
 	</div>
-	
+
 	<!-- 페이지 로딩 -->
 	<script src="resources/js/loading/fakeLoader.js"></script>
 	

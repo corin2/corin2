@@ -23,7 +23,13 @@
 	
 	<update id="userUpdate">
 		update user
-		set username=#{userName},password = #{password}, userprofile=#{userProfile}
+		set username=#{userName},password = #{password}
+		where userid = #{userId}
+	</update>
+	
+	<update id="profileUpdate">
+		update user
+		set userprofile=#{userProfile}
 		where userid = #{userId}
 	</update>
 	
@@ -47,7 +53,7 @@
 	</select>
 	
 	<select id="allUserSelect" resultType="site.corin2.user.dto.UserDTO">
-		select * from user
+		select * from user order by JOINDATE
 	</select>
 	
 </mapper>

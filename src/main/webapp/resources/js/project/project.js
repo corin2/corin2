@@ -267,6 +267,7 @@ function updateProjectNoneBookmark(projectNum) {
 
 //프로젝트 검색
 function searchProject(projectArray) {
+	$("#searchBox").empty();
 	var userId = $("#hiddenUserId").val();
 	var projectName = $("#searchProject").val();
 	var html='';
@@ -277,6 +278,7 @@ function searchProject(projectArray) {
 		datatype:"JSON",
 		data:{userId:userId, projectName:projectName},
 		success: function (data) {
+			if(projectName!=""){
 			$.each(data.data, function(index, elt) {
 			$.each(projectArray[0], function(index, elt2) {
 				console.log(elt.languageNum)
@@ -288,6 +290,7 @@ function searchProject(projectArray) {
 				}
 			})
 			})
+			}
 			$("#searchBox").append(html);
 			
 			console.log(data.data.projectNum);

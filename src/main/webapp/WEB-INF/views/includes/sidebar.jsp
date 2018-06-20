@@ -58,13 +58,13 @@
 			    <li>
 			        <a href="adminUserController">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(회원관리)
+						User Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMenu">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						MenuManagement
+						Menu Manager
 			        </a>
 			    </li>
 			    <li>
@@ -76,7 +76,7 @@
 			    <li>
 			        <a href="adminPeaples">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(만든사람들)
+						Make Person
 			        </a>
 			    </li>
 		    </se:authorize>
@@ -119,8 +119,8 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="fileUpload" id="filesicon">
-		          <i class="glyphicon glyphicon-file"></i>
+		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		            <i class="glyphicon glyphicon-file" ></i>
 		            Files
 		        </a>
 		    </li>
@@ -158,7 +158,6 @@
 				data : {userId : $('#hiddenUserId').val()},
 				success : function(data){
 					$.each(data, function(index, obj) {
-						console.log("결과:  " + obj.userProfile);
 						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 					});
 				}

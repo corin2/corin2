@@ -38,9 +38,9 @@
 				var dialogName = ev.data.name;
 				var dialogDefinition = ev.data.definition;
 				
-				switch (dialogName) {
+			/* 	switch (dialogName) {
 			   		 case 'image':dialogDefinition.removeContents('Link');
 					 break;
-			 }
+			 } */
 			});
 	</script>
