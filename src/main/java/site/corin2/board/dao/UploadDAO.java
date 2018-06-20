@@ -7,14 +7,8 @@
 package site.corin2.board.dao;
 
 import java.util.LinkedList;
-
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.View;
-
 import site.corin2.board.dto.BoardDTO;
-import site.corin2.board.dto.FileMeta;
 import site.corin2.board.dto.UploadDTO;
-import site.corin2.project.dto.TeamDTO;
 
 public interface UploadDAO {
 

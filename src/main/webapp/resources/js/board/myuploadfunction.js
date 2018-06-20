@@ -14,7 +14,7 @@ function fileselect(){
      $(".dropzonediv").empty();
        
      var html="" 
-     
+    	
     	 $.each(data.result, function(index , file) {
 			 html +=
 				  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
@@ -48,10 +48,10 @@ function firstFileSelect() {
 		},
     	success: function(data) {
     		var html=""
-    	
+    		 $(".dropzonediv").empty();
     		 $.each(data.file1, function(index , file) {
     			 html +=
-    				  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
+    			  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
    				  +"<div style='margin-left:220px;margin-top:5px'><img style='width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
    				  +"></img>"
    	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img></div>"
@@ -88,7 +88,6 @@ function deleteFile(boardNum) {
     	success: function(data) {
     
     		console.log(data);
-    		
     		firstFileSelect();
     		
 		

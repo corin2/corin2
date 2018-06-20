@@ -6,11 +6,7 @@
 */
 package site.corin2.board.dto;
 
-import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
-
-@JsonIgnoreProperties({"bytes"})
 public class UploadDTO {
 	
 	private int boardNum;

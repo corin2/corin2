@@ -26,7 +26,6 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,7 +36,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.BoardDTO;
-import site.corin2.board.dto.FileMeta;
 import site.corin2.board.dto.UploadDTO;
 
 import site.corin2.board.service.UploadService;
@@ -95,7 +93,7 @@ public class UploadController {
 		String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
 	
 		
-		//파일 insert
+		//파일명 정하기
 		if(null != mpf && mpf.getSize() > 0) {
 			fileName = fileName1[0]+"_"+ System.currentTimeMillis()+"."+fileName1[1]; //파일_현재날짜.확장자 
 			uploadDTO.setUploadAlias(fileName);
@@ -103,16 +101,16 @@ public class UploadController {
 			filePath = downloadpath + "\\" + fileName;
 			
 		}else {
-			uploadDTO.setUploadAlias(mpf.getOriginalFilename());
+			uploadDTO.setUploadAlias(mpf.getOriginalFilename());//파일명.확장자 
 			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
 			filePath = downloadpath + "\\" + mpf.getOriginalFilename();
 			
 		}
-		 System.out.println();
+		 //파일 insert
 		 service.uploadInsert(uploadDTO);
 		
 		try {
-	
+			//D:\bitcamp104\FinalProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\corin2\ 경로에 파일 업로드
 			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -142,7 +140,7 @@ public class UploadController {
 
 		byte[] b = new byte[4096];
 		try {
-			
+			//파일 다운로드
 			FileInputStream in = new FileInputStream(filePath);		
 		    response.setHeader("Content-Disposition", 
 		            "attachment;filename="+new String(filename.getBytes(),"ISO8859_1"));
