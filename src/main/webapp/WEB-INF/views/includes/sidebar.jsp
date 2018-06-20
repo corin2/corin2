@@ -64,7 +64,7 @@
 			    <li>
 			        <a href="adminMenu">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						MenuManagement
+						Menu Manager
 			        </a>
 			    </li>
 			    <li>
@@ -76,7 +76,7 @@
 			    <li>
 			        <a href="adminPeaples">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(만든사람들)
+						Make Person
 			        </a>
 			    </li>
 		    </se:authorize>
