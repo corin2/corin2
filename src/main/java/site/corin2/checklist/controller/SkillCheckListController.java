@@ -34,9 +34,9 @@ public class SkillCheckListController {
 	}
 	//기본 데이터 뿌려주기
 	@RequestMapping("/checkListSelect")
-	public View skillCheckListAllSelect(SkillCheckListDTO skillcheck, Model model) {
+	public View skillCheckListAllSelect(CheckListDTO check, Model model) {
 		List<CheckListDTO> list = null;
-		list = service.checkListAllSelect();
+		list = service.checkListAllSelect(check);
 		model.addAttribute("list", list);
 		return jsonview;
 	}
@@ -63,6 +63,22 @@ public class SkillCheckListController {
 	public View checkedDelete(SkillCheckListDTO skillcheck, Model model) {
 		int result = 0;
 		result = service.checkedDelete(skillcheck);
+		return jsonview;
+	}
+	
+	@RequestMapping("/skillCheckListUserId")
+	public View skillCheckListUserId(SkillCheckListDTO skillcheck, Model model) {
+		List<SkillCheckListDTO> list = null;
+		list = service.dataCheckListUserId(skillcheck);
+		model.addAttribute("list",list);
+		return jsonview;
+	}
+	
+	@RequestMapping("/selectCheckedConfirm")
+	public View selectCheckedConfirm (SkillCheckListDTO skillcheck, Model model) {
+		List<SkillCheckListDTO> list = null;
+		list = service.selectCheckListConfirm(skillcheck);
+		model.addAttribute("list",list);
 		return jsonview;
 	}
 	

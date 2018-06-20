@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<!-- DB에 저장된 값 보여주기 -->
 		<select id="checkListAllSelect" resultType="site.corin2.checklist.dto.CheckListDTO">
-			select * from checklist where category is not null and isdeleted=0
+			select * from checklist where category is not null and isdeleted=0 and (languagenum = (select languagenum from project where projectnum=#{projectNum}) or (languagenum is null and category is not null))
 		</select>
 		
 		<!-- check여부 삽입 -->
@@ -23,5 +23,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<delete id="checkedDelete">
 			delete from skillchecklist where userid=#{userId} and projectnum=#{projectNum} and checknum=#{checkNum}
 		</delete>
+		
+		<select id="dataCheckListUserId" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
+			select * from team where projectnum=#{projectNum} and isdeleted=0
+		</select>
+		
+		<select id="selectCheckListConfirm" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
+			select * from skillchecklist where projectnum=#{projectNum}
+		</select>
 		
 	</mapper>

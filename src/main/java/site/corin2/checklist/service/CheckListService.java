@@ -6,12 +6,15 @@
 */
 package site.corin2.checklist.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.corin2.checklist.dao.CheckListDAO;
 import site.corin2.checklist.dto.CheckListDTO;
+import site.corin2.project.dto.TeamDTO;
 
 @Service
 public class CheckListService {
@@ -20,15 +23,39 @@ public class CheckListService {
 	private SqlSession sqlSession;
 	
 	public int insertCheckList(CheckListDTO check) {
-		System.out.println("들어왔니?/");
 		int result = 0;
 		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
-		System.out.println("111111");
 		result = dao.insertCheckList(check);
-		System.out.println("22222");
 		
 		return result;
+	}
+	
+	public List<CheckListDTO> selectCheckListAll (CheckListDTO check){
+		List<CheckListDTO> list = null;
+		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		list=dao.selectCheckListAll(check);
 		
-		
+		return list;
+	}
+	
+	public int updateCheckListContent (CheckListDTO check) {
+		int result = 0;
+		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		result = dao.updateCheckListContent(check);
+		return result;
+	}
+	
+	public int deleteCheckLiset (CheckListDTO check) {
+		int result = 0;
+		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		result = dao.deleteCheckLiset(check);
+		return result;
+	}
+	
+	public List<TeamDTO> userGradeProject (TeamDTO team){
+		List<TeamDTO> list = null;
+		CheckListDAO dao = sqlSession.getMapper(CheckListDAO.class);
+		list = dao.userGradeProject(team);
+		return list;
 	}
 }

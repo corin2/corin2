@@ -6,7 +6,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<mapper namespace="site.corin2.checklist.dao.CheckListDAO">
 	
 	<insert id="insertCheckList">
-		insert into checklist (checkcontent, isdeleted)
-		values (#{checkContent}, 0)
+		insert into checklist (projectnum, checkcontent, isdeleted)
+		values (#{projectNum},#{checkContent}, 0)
 	</insert>
+	
+	<select id="selectCheckListAll" resultType="site.corin2.checklist.dto.CheckListDTO">
+		select * from checklist where projectnum=#{projectNum}
+	</select>
+	
+	<update id="updateCheckListContent">
+		update checklist set checkcontent=#{checkContent}
+		where checknum=#{checkNum} and projectnum=#{projectNum}
+	</update>
+	
+	<update id="deleteCheckLiset">
+		update checklist set isdeleted=1
+		where checknum=#{checkNum} and projectnum=#{projectNum}
+	</update>
+	
+	<select id="userGradeProject" resultType="site.corin2.project.dto.TeamDTO">
+		select * from team where projectnum=#{projectNum} and userid=#{userId}
+	</select>
+		
 	</mapper>

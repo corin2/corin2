@@ -21,11 +21,11 @@ public class SkillCheckListService {
 	private SqlSession sqlSession;
 	
 	//DB저장된 값 뿌려주기
-	public List<CheckListDTO> checkListAllSelect (){
+	public List<CheckListDTO> checkListAllSelect (CheckListDTO check){
 		
 		List<CheckListDTO> list = null;
 		SkillCheckListDAO dao = sqlSession.getMapper(SkillCheckListDAO.class);
-		list = dao.checkListAllSelect();
+		list = dao.checkListAllSelect(check);
 		
 		return list;
 	}
@@ -51,5 +51,19 @@ public class SkillCheckListService {
 		SkillCheckListDAO dao = sqlSession.getMapper(SkillCheckListDAO.class);
 		result = dao.checkedDelete(skillcheck);
 		return result;
+	}
+	
+	public List<SkillCheckListDTO> dataCheckListUserId (SkillCheckListDTO skillcheck){
+		List<SkillCheckListDTO> list = null;
+		SkillCheckListDAO dao = sqlSession.getMapper(SkillCheckListDAO.class);
+		list = dao.dataCheckListUserId(skillcheck);
+		return list;
+	}
+	
+	public List<SkillCheckListDTO> selectCheckListConfirm (SkillCheckListDTO skillcheck){
+		List<SkillCheckListDTO> list = null;
+		SkillCheckListDAO dao = sqlSession.getMapper(SkillCheckListDAO.class);
+		list = dao.selectCheckListConfirm(skillcheck);
+		return list;
 	}
 }

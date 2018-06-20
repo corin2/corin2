@@ -8,7 +8,8 @@ package site.corin2.checklist.dto;
 
 public class CheckListDTO {
 	private int checkNum;
-	private String skillNum;
+	private String languageNum;
+	private int projectNum;
 	private String category;
 	private String checkTitle;
 	private String checkContent;
@@ -23,13 +24,21 @@ public class CheckListDTO {
 	public void setCheckNum(int checkNum) {
 		this.checkNum = checkNum;
 	}
-
-	public String getSkillNum() {
-		return skillNum;
+	
+	public String getLanguageNum() {
+		return languageNum;
 	}
 
-	public void setSkillNum(String skillNum) {
-		this.skillNum = skillNum;
+	public void setLanguageNum(String languageNum) {
+		this.languageNum = languageNum;
+	}
+
+	public int getProjectNum() {
+		return projectNum;
+	}
+
+	public void setProjectNum(int projectNum) {
+		this.projectNum = projectNum;
 	}
 
 	public String getCategory() {

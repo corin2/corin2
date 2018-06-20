@@ -15,7 +15,7 @@ public interface SkillCheckListDAO {
 	
 	
 	//DB저장된 데이터 뿌려주기
-	public List<CheckListDTO> checkListAllSelect ();
+	public List<CheckListDTO> checkListAllSelect (CheckListDTO check);
 	
 	//체크한 인원 삽입
 	public int checkListCheckInsert(SkillCheckListDTO skillcheck); 
@@ -25,5 +25,9 @@ public interface SkillCheckListDAO {
 	
 	//체크여부 삭제
 	public int checkedDelete (SkillCheckListDTO skillcheck);
+	
+	public List<SkillCheckListDTO> dataCheckListUserId (SkillCheckListDTO skillcheck);
+	
+	public List<SkillCheckListDTO> selectCheckListConfirm (SkillCheckListDTO skillcheck);
 	
 }
