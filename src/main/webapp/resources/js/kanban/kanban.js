@@ -21,7 +21,7 @@ $(function(){
                     }
                 }
                 $('#content-md').off('mousemove')
-            }
+            },
         }
     )
 	$('body').attr({
@@ -41,15 +41,27 @@ function autoWidth(){
 //todo와 inprogress에 카드를 3개씩 만 가지게 할 수 있는 변수
 var sortablecnt = 0; var sortablecnt2 = 0; var sortablecnt3 = 0;
 
+/*{
+	overflow-y: auto;
+}*/
+
 //드래그&드랍
 function sortable(){
 	$('div[class=listbox], div[class=listingbox], div[class=donebox]').sortable({
 		items:'div:not(#addcard)',
 		placeholder: "ui-state-highlight",
 		connectWith: '.listbox, .listingbox, .donebox',
-		
+		scroll: false,
+		opacity: 0.8,
+		zIndex: 9999,
+		start: function(event, ui) {
+			console.log(ui.item[0].id)
+			/*$('.listbox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');
+			$('.donebox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');*/
+		},
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
+			console.log(ui)
 			var productOrder = $(this).sortable('toArray').toString();
 			var children = $(this)[0].children
 			var listNum;
