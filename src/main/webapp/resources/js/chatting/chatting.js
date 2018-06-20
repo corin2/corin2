@@ -22,7 +22,7 @@ $(function() {
 	var currentProject = sessionProjectNum;
 	var currentUser = $('#hiddenUserId').val();
 	var currentUserName;
-	var currentUserProfile;
+	var currentChatUserProfile;
 	var messages;
 	const PROJECT_NUM = "@project@";
 	const PRIVATE_STR = "@private@";
@@ -32,6 +32,9 @@ $(function() {
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
 	getUsers(currentProject); // 멤버 가져오기 함수
+	
+	// 사용자명 툴팁
+	$('[data-toggle="tooltip"]').tooltip(); //TODO 수정할 것
 	
 	// All 버튼 클릭 시
 	$('#allUsers').click(function() {
@@ -53,7 +56,7 @@ $(function() {
 					// 현재 프로젝트의 사용자들의 FirebaseDB용 Uid를 md5형식으로 변환
 					var userUid = md5(obj.userId);
 					
-					showCurrentUserProfile(userUid, obj); // 프로필 이미지 표시
+					showcurrentChatUserProfile(userUid, obj); // 프로필 이미지 표시
 					initialData(userUid, obj); // 초기 데이터 생성
 					updateUserList(userUid, obj); // 팀원 추가
 					updateInfo(userUid, projectNum); // DB 정보 수정
@@ -65,17 +68,19 @@ $(function() {
 	}
 	
 	// 현재 사용자의 프로필 이미지 표시 함수
-	function showCurrentUserProfile(userUid, obj) {
+	function showcurrentChatUserProfile(userUid, obj) {
 		var currentUserUid = md5(currentUser);
 		if(userUid === currentUserUid) {
 			currentUserName = obj.userName; // 현재 사용자의 이름
-			currentUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+			currentChatUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+			
+			console.log("현재 사용자의 프로필: " + currentChatUserProfile);
 			
 			// 현재 사용자의 이름 표시
 			$('#currentUserName').html(currentUserName);
 			
 			// 현재 사용자의 프로필 이미지 표시
-			$('#currentUserProfile').attr("src","resources/images/profile/" + currentUserProfile);
+			$('#currentChatUserProfile').attr("src","resources/images/profile/" + currentChatUserProfile);
 		}
 	}
 	
@@ -91,22 +96,11 @@ $(function() {
 	// 팀원 추가
 	function updateUserList(userUid, obj) {
 		$('.sideBar').append(
-				'<div class="row sideBar-body" id=' + userUid + '>'
+				//TODO 수정할 것
+				'<div class="row sideBar-body" id=' + userUid + ' data-toggle="tooltip" title="' + obj.userName + '">'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
 				+ '<div class="avatar-icon">'
 				+ '<img src="resources/images/profile/' + obj.userProfile +'">'
-				+ '</div>'
-				+ '</div>'
-				+ '<div class="col-sm-9 col-xs-9 sideBar-main">'
-				+ '<div class="row">'
-				+ '<div class="col-sm-8 col-xs-8 sideBar-name">'
-				+ '<span class="name-meta">' + obj.userName
-				+ '</span>'
-				+ '</div>'
-				+ '<div class="col-sm-4 col-xs-4 pull-right sideBar-time">'
-				+ '<span class="time-meta pull-right">today'
-				+ '</span>'
-				+ '</div>'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
@@ -203,7 +197,7 @@ $(function() {
 		messages.push({
 			'userid': currentUser,
 			'username': currentUserName,
-			'userprofile': currentUserProfile,
+			'userprofile': currentChatUserProfile,
 			'text': text.val(),
 			'timestamp': Date.now()
 		});
@@ -304,7 +298,7 @@ $(function() {
             minute = date.getMinutes(),
             week = new Array('일', '월', '화', '수', '목', '금', '토');
 
-        var convertDate = year + "년 "+month+"월 "+ day +"일 ("+ week[date.getDay()] +") ";
+        var convertDate = year + "."+month+"."+ day +"("+ week[date.getDay()] +") ";
         var convertHour="";
         if(hour < 12){
             convertHour = "오전 " + pad(hour) +":" + pad(minute);

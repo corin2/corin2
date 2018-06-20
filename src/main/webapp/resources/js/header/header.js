@@ -43,8 +43,11 @@ function projectMemberShow(userProfiles){
 				projectName = elt.projectName;
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId){
+						/*if(elt.userId == userId) {
+							$('#currentUserProfile').attr("src", "resources/images/profile/" + elt2.userProfile);
+						}*/
 						htmltext += '<div class="dropdown" style="float:left;">'
-							+ '<a data-toggle="dropdown" style="font-size: 25pt; top: 7px; cursor: pointer;"><img style="width: 50px;height:50px" class="img-circle" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
+							+ '<a data-toggle="dropdown" style="font-size: 25pt; top: 7px; cursor: pointer;"><img style="width: 35px;height:35px" class="img-circle" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
 							+ '<ul class="dropdown-menu" style="cursor: pointer;">';
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
 							if(myGrade == 'G300'){

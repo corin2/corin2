@@ -67,4 +67,23 @@
 	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
  		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
 	</bean>
+	
+	<!-- Velocity 설정 -->
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="velocityProperties">
+			<value>
+				input.encoding=UTF-8
+				output.encoding=UTF-8
+			</value>
+		</property>
+	</bean>
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean"> 
+		<property name="velocityProperties"> 
+			<props> 
+				<prop key="resource.loader">file</prop> 
+				<prop key="class.resource.loader.class"> org.apache.velocity.runtime.resource.loader.FileResourceLoader </prop> 
+			</props> 
+		</property> 
+		<property name="resourceLoaderPath" value="/WEB-INF/views/velocity/" />
+	</bean>
 </beans>
