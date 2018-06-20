@@ -65,7 +65,7 @@ function projectView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
 							 + "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							 + "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
+							 + "<p style='float:right; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -102,7 +102,7 @@ function projectBookView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
 							+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
+							+ "<p style='float:right; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -129,14 +129,17 @@ function projectDetailView() {
 	$("#detailButton").empty();
 	var html="";
 		html = "<div id='projectDetail' class='form-group'>"
-			 + "<h3>프로젝트제목입력:</h3>"
-			 + "<input id ='ProjectName' type='text' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<h3>프로젝트제목입력</h3>"
+			 + "<input id ='ProjectName' type='text' class='search1' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<br>"
 			 + "<br>"
 		 	 + "</div>"
+		 	 + "<br>"
 		     +"<input id='addProject' class='btn btn-success' type='button' onclick='addProject()' value='생성'>"
 			 +"<input id='cancleProject' class='btn btn-danger' data-dismiss='modal' type='button' value='취소'>";
-			 $("#detailButton").html(html)
-			 printProjectDetailLanguage()
+			 $("#detailButton").html(html);
+			 printProjectDetailLanguage();
+			 $('#ProjectName').focus();
 	
 }
 
@@ -217,15 +220,19 @@ function projectUpdateView(projectNum) {
 	$("#detailButton").empty();
 	var html="";
 		html ="<div id='projectDetail' class='form-group'>" 
-			 +"<h3>프로젝트제목입력:</h3>"
-			 + "<input id ='ProjectName' type='text' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
+			 +"<h3>프로젝트제목입력</h3>"
+			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<br>"
 			 + "<br>"
 			 + "</div>"
-			 + "<input id='addProject' class='btn btn-success' type='button' onclick='updateLanguage("+projectNum+")' data-dismiss='modal' value='수정'>"
-			 + "<input id='cancleProject' class='btn btn-danger' data-dismiss='modal' type='button' value='취소'>"
-			 + "<input id='deleteProject' class='btn btn-danger' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<div>"
+			 + "<input id='addProject' class='btn btn-success' style='margin-right:10px;' type='button' onclick='updateLanguage("+projectNum+")' data-dismiss='modal' value='수정'>"
+			 + "<input id='deleteProject' class='btn btn-danger' style='margin-right:10px;' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<input id='cancleProject' class='btn btn-info' style='margin-right:10px;' data-dismiss='modal' type='button' value='취소'>"
+			 + "</div>"
 			 $("#detailButton").html(html)
 			 printProjectDetailLanguageChecked(projectNum)
+			 $("#ProjectName").focus();
 	}
 
 //프로젝트 삭제
