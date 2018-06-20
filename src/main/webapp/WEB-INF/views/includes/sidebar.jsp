@@ -136,16 +136,16 @@
 		            Trouble Shooting
 		        </a>
 		    </li>
-			<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
-				    <li style="background-color: #333333;">
-				        <a href="logout">
-				            <i class="glyphicon glyphicon glyphicon-log-out"></i>
-				            Logout
-				        </a>
-				    </li>
-			</se:authorize>
     	</c:when>
 	</c:choose>
+	<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+		    <li style="background-color: #333333;">
+		        <a href="logout">
+		            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+		            Logout
+		        </a>
+		    </li>
+	</se:authorize>
 </ul>
 
 <script>
