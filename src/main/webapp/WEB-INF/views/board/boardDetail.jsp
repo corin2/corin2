@@ -34,10 +34,10 @@
 
 						<input type="button" value="목록가기" onclick="location.href='boardList'">
 							
-					<%-- 	<se:authorize access= hasRole('ROLE_ADMIN')"> --%>
+				  		<se:authorize access= "hasRole('ROLE_ADMIN')">  
 							<input type="button" value="수정" onclick="location.href='boardUpdate?boardnum=${detail.boardNum}'">
 							<input type="button" value="삭제" onclick="location.href='boardDelete?boardnum=${detail.boardNum}'">
-					<%-- 	</se:authorize>  --%>
+						</se:authorize>  
 							
 					</td>
 				</tr>		
