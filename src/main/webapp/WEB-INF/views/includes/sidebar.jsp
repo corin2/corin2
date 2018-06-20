@@ -12,7 +12,7 @@
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
-    <strong>C2</strong>
+    <strong><i class="glyphicon glyphicon-leaf"></i></strong>
 </div>
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
@@ -22,6 +22,9 @@
 	</c:when>
 </c:choose>
 <ul class="list-unstyled components">
+ 				<li>
+				    <img class="img-circle" id="currentUserProfile" src="resources/images/profile/none.png" width=40 height=40>
+				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
 			<se:authorize access="hasRole('ROLE_USER')">
@@ -133,32 +136,35 @@
 		            Trouble Shooting
 		        </a>
 		    </li>
-			<ul class="list-unstyled CTAs">
-	    		<li><a href="#" class="#">corin2</a></li>
-			</ul>
+			<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+				    <li style="background-color: #333333;">
+				        <a href="logout">
+				            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+				            Logout
+				        </a>
+				    </li>
+			</se:authorize>
     	</c:when>
 	</c:choose>
 </ul>
 
-<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
-	<ul class="list-unstyled components">
-		<se:authorize access="hasRole('ROLE_USER')">
-			<c:choose>
-				<c:when test="${sessionScope.sessionProjectNum != null}" >
-					<li>
-					    <a href="chatting">
-					        <i class="glyphicon glyphicon-comment"></i>
-					        Chatting
-					    </a>
-					</li>
-			    </c:when>
-			</c:choose>
-		</se:authorize>
-	    <li>
-	        <a href="logout">
-	            <i class="glyphicon glyphicon glyphicon-log-out"></i>
-	            Logout
-	        </a>
-	    </li>
-	</ul>
-</se:authorize>
+<script>
+	$(function() {
+		function getCurrentUserProfile() {
+			$.ajax({
+				type : "post",
+				url  : "showUser",
+				datatype:"JSON",
+				data : {userId : $('#hiddenUserId').val()},
+				success : function(data){
+					$.each(data, function(index, obj) {
+						console.log("결과:  " + obj.userProfile);
+						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
+					});
+				}
+			});
+		}
+		
+		getCurrentUserProfile();
+	});
+</script>
