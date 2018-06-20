@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.checklist.dao.SkillCheckListDAO">
+		
+		<!-- DB에 저장된 값 보여주기 -->
+		<select id="checkListAllSelect" resultType="site.corin2.checklist.dto.CheckListDTO">
+			select * from checklist where category is not null and isdeleted=0 and (languagenum = (select languagenum from project where projectnum=#{projectNum}) or (languagenum is null and category is not null))
+		</select>
+		
+		<!-- check여부 삽입 -->
+		<insert id="checkListCheckInsert">
+			insert into skillchecklist values(#{checkNum}, #{projectNum}, #{userId}, 1)
+		</insert>
+		
+		<!-- check여부 뿌려주기 -->
+			<select id="checkedSelect" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
+				select * from skillchecklist where userid=#{userId} and projectnum=#{projectNum}
+			</select>	
+		
+		<!-- check여부 삭제  -->
+		<delete id="checkedDelete">
+			delete from skillchecklist where userid=#{userId} and projectnum=#{projectNum} and checknum=#{checkNum}
+		</delete>
+		
+		<!-- 사용자 유저 등급 확인 -->
+		<select id="dataCheckListUserId" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
+			select * from team where projectnum=#{projectNum} and isdeleted=0
+		</select>
+		
+		<!-- 체크여부 가져오기 -->
+		<select id="selectCheckListConfirm" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
+			select * from skillchecklist where projectnum=#{projectNum}
+		</select>
+		
+	</mapper>

@@ -6,7 +6,7 @@
 		values(#{userId},#{userName},#{password},'0','pi.png',NOW(),'G200','0')
 	</insert>
 	
-	<insert id="oauthinsert" parameterType="site.corin2.user.dto.UserDTO">
+	<insert id="oauthInsert" parameterType="site.corin2.user.dto.UserDTO">
 		insert into user(userid,username,password,enabled,userprofile,joindate,gradenum,isdeleted)
 		values(#{userId},#{userName},#{password},'1',#{userProfile},NOW(),'G200','0')
 	</insert>
@@ -23,7 +23,13 @@
 	
 	<update id="userUpdate">
 		update user
-		set username=#{userName},password = #{password}, userprofile=#{userProfile}
+		set username=#{userName},password = #{password}
+		where userid = #{userId}
+	</update>
+	
+	<update id="profileUpdate">
+		update user
+		set userprofile=#{userProfile}
 		where userid = #{userId}
 	</update>
 	

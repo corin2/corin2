@@ -23,7 +23,6 @@ function fncTegSplit(str){
 				break;
 			case 3:
 				result += "<a href='#'><span class='label label-warning'>#";
-				break;
 			case 4:
 				result += "<a href='#'><span class='label label-danger'>#";
 				break;

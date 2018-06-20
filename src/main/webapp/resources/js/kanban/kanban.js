@@ -21,7 +21,7 @@ $(function(){
                     }
                 }
                 $('#content-md').off('mousemove')
-            }
+            },
         }
     )
 	$('body').attr({
@@ -41,15 +41,27 @@ function autoWidth(){
 //todo와 inprogress에 카드를 3개씩 만 가지게 할 수 있는 변수
 var sortablecnt = 0; var sortablecnt2 = 0; var sortablecnt3 = 0;
 
+/*{
+	overflow-y: auto;
+}*/
+
 //드래그&드랍
 function sortable(){
 	$('div[class=listbox], div[class=listingbox], div[class=donebox]').sortable({
 		items:'div:not(#addcard)',
 		placeholder: "ui-state-highlight",
 		connectWith: '.listbox, .listingbox, .donebox',
-		
+		scroll: false,
+		opacity: 0.8,
+		zIndex: 9999,
+		start: function(event, ui) {
+			console.log(ui.item[0].id)
+			/*$('.listbox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');
+			$('.donebox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');*/
+		},
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
+			console.log(ui)
 			var productOrder = $(this).sortable('toArray').toString();
 			var children = $(this)[0].children
 			var listNum;
@@ -130,8 +142,8 @@ function showUserField(userProfiles){
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId) {
 						text1 += '<div class="userprofilebox">'
-							+ '<img src="resources/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
-							+ elt2.userName +'</div>';
+							+ '<img src="resources/images/profile/'+elt2.userProfile+'" class="img-circle person" width="75" height="75">'
+							+ '<label>' + elt2.userName +'</label></div>';
 					}
 				});
 				
@@ -219,9 +231,9 @@ function showCard(){
 //카드를 추가하는 텍스트박스를 생성한다
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
-			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"a\"), "+ projectNum +");}' "
+			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</a>";
+			+ "<label style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 	$('#addcard').children('input').focus();
@@ -295,9 +307,9 @@ function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
-			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"a\"), "+ cardNum +");}' "
+			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</a>";
+			+ "<label style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 	$('#div' + cardNum).children('input').focus();

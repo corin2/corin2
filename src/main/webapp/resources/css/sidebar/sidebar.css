@@ -29,7 +29,7 @@ a, a:hover, a:focus {
     border: none;
     border-radius: 0;
     margin-bottom: 0px !important;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); */
 }
 
 .navbar-btn {
@@ -60,7 +60,7 @@ i, span {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #566270;
     color: #fff;
     transition: all 0.3s;
 }
@@ -111,7 +111,7 @@ i, span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #566270;
 }
 
 #sidebar .sidebar-header strong {
@@ -121,7 +121,7 @@ i, span {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    /* border-bottom: 1px solid #404851; */
 }
 
 #sidebar ul li a {
@@ -130,7 +130,7 @@ i, span {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #566270;
     background: #fff;
 }
 #sidebar ul li a i {
@@ -139,7 +139,7 @@ i, span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #566270;
 }
 
 
@@ -163,12 +163,12 @@ a[aria-expanded="true"]::before {
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #566270;
 }
 ul ul form a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #566270;
 }
 
 ul.CTAs {
@@ -185,11 +185,11 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #7386D5;
+    color: #566270;
 }
 
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #566270 !important;
     color: #fff !important;
 }
 

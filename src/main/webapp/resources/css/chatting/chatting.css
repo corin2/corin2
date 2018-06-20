@@ -1,6 +1,6 @@
-#conversation {
-  height: 580px;
-}
+/* #conversation {
+  height: calc(70% + 38px);
+} */
 
 .fa-2x {
   font-size: 1.5em;
@@ -10,7 +10,9 @@
   position: relative;
   overflow: hidden;
   top: 19px;
-  height: calc(70% - 38px);
+  /* height: calc(70% - 38px); */
+  height: calc(70% - 38px); /* 추가한 내용 */
+  width: 400px; /* 추가한 내용 */
   margin: auto;
   padding: 0;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
@@ -353,7 +355,7 @@
 
 .message-time {
   margin: 0 !important;
-  margin-left: 50px !important;
+  /* margin-left: 50px !important; */
   font-size: 12px;
   text-align: right;
   color: #9a9a9a;
@@ -452,7 +454,7 @@
   box-shadow: none;
 }
 
-@media screen and (max-width: 700px) {
+/* @media screen and (max-width: 700px) {
   .app {
     top: 0;
     height: 100%;
@@ -524,14 +526,14 @@
     color: rgba(0, 0, 0, .4);
     vertical-align: baseline;
   }
-  /*Conversation*/
+  Conversation
   .conversation {
     padding: 0 !important;
     margin: 0 !important;
     height: 100%;
-    /*width: 100%;*/
+    width: 100%;
     border-left: 1px solid rgba(0, 0, 0, .08);
-    /*overflow-y: auto;*/
+    overflow-y: auto;
   }
   .message {
     height: calc(100% - 140px);
@@ -566,5 +568,5 @@
   .reply-send i {
     padding: 5px 2px 5px 0 !important;
     font-size: 1.8em !important;
-  }
+  } */
 }

@@ -32,7 +32,7 @@ function addCardCheckList() {
 function showCardCheckList(){
 	$.ajax({
 		type : "post",
-		url  : "cardCheckListSelect",
+		url  : "CheckListSelect",
 		datatype:"JSON",
 		data : {cardNum : $('#hiddenCardNum').val()},
 		success : function(data){
@@ -42,11 +42,11 @@ function showCardCheckList(){
 			$.each(data.list, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = "<p>";
+					htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' ";
 					
-					if(elt.isChecked == '0') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' >";
-					else if(elt.isChecked == '1') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' checked>";
+					if(elt.isChecked == '1') htmlText += "checked ";
 					
-					htmlText += "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
+					htmlText += "><label for='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
 							 + "<button class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
 							 + "<button class='glyphicon close' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					

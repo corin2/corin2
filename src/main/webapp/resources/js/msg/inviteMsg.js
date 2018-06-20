@@ -49,7 +49,8 @@ function msgaccept(projectNum){
           data:param,
           success:function(data){
         	  showMsg();
-        	  languageColorView();
+        	  if(sessionProjectNum == 'null') languageColorView();
+        	  sendHeader('1:'+projectNum);
           }
 	})
 }

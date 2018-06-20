@@ -7,11 +7,12 @@
 <script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+<script src="resources/js/header/headerSocket.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
     <h3>corin2</h3>
-    <strong>C2</strong>
+    <strong><i class="glyphicon glyphicon-leaf"></i></strong>
 </div>
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
@@ -21,6 +22,9 @@
 	</c:when>
 </c:choose>
 <ul class="list-unstyled components">
+ 				<li>
+				    <img class="img-circle" id="currentUserProfile" src="resources/images/profile/none.png" width=40 height=40>
+				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
 			<se:authorize access="hasRole('ROLE_USER')">
@@ -31,8 +35,8 @@
 			        </a>
 			        <ul class="collapse list-unstyled" id="homeSubmenu">
 			            <li><a href="content">User Info</a></li>
-			            <li><a href="#">Profile Modification</a></li>
-			            <li><a href="#">Delete</a></li>
+			            <li><a href="userupdate">Profile Modification</a></li>
+			            <li><a href="userdelete">Delete</a></li>
 			        </ul>
 			    </li>
 		    </se:authorize>
@@ -46,13 +50,31 @@
 		    </se:authorize>
 		    <se:authorize access="hasRole('ROLE_ADMIN')">
 		    	<li>
-			        <a href="boardList">
+			        <a href="adminMain">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-			            (통계)
+			            (메인)
 			        </a>
 			    </li>
 			    <li>
-			        <a href="boardList">
+			        <a href="adminUserController">
+			            <i class="glyphicon glyphicon-bullhorn"></i>
+						(회원관리)
+			        </a>
+			    </li>
+			    <li>
+			        <a href="adminMenu">
+			            <i class="glyphicon glyphicon-bullhorn"></i>
+						MenuManagement
+			        </a>
+			    </li>
+			    <li>
+			        <a href="adminMail">
+			            <i class="glyphicon glyphicon-bullhorn"></i>
+						(메일관리)
+			        </a>
+			    </li>
+			    <li>
+			        <a href="adminPeaples">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
 						(만든사람들)
 			        </a>
@@ -85,20 +107,20 @@
 		        </a>
 		    </li>
 		    <li>
-				<a class="sidebaricon" href="#" id="checklisticon">
+				<a class="sidebaricon" href="checklist" id="checklisticon">
 				    <i class="glyphicon glyphicon-th-list"></i>
 				    Checklist
 				</a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="#" id="charticon">
+		        <a class="sidebaricon" href="chart" id="charticon">
 		            <i class="glyphicon glyphicon-stats"></i>
 		            Chart
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="fileUpload" id="filesicon">
-		          <i class="glyphicon glyphicon-file"></i>
+		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		            <i class="glyphicon glyphicon-file" ></i>
 		            Files
 		        </a>
 		    </li>
@@ -114,32 +136,35 @@
 		            Trouble Shooting
 		        </a>
 		    </li>
-			<ul class="list-unstyled CTAs">
-	    		<li><a href="#" class="#">corin2</a></li>
-			</ul>
     	</c:when>
 	</c:choose>
+	<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+		    <li style="background-color: #333333;">
+		        <a href="logout">
+		            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+		            Logout
+		        </a>
+		    </li>
+	</se:authorize>
 </ul>
 
-<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
-	<ul class="list-unstyled components">
-		<se:authorize access="hasRole('ROLE_USER')">
-			<c:choose>
-				<c:when test="${sessionScope.sessionProjectNum != null}" >
-					<li>
-					    <a href="chatting">
-					        <i class="glyphicon glyphicon-comment"></i>
-					        Chatting
-					    </a>
-					</li>
-			    </c:when>
-			</c:choose>
-		</se:authorize>
-	    <li>
-	        <a href="logout">
-	            <i class="glyphicon glyphicon glyphicon-log-out"></i>
-	            Logout
-	        </a>
-	    </li>
-	</ul>
-</se:authorize>
+<script>
+	$(function() {
+		function getCurrentUserProfile() {
+			$.ajax({
+				type : "post",
+				url  : "showUser",
+				datatype:"JSON",
+				data : {userId : $('#hiddenUserId').val()},
+				success : function(data){
+					$.each(data, function(index, obj) {
+						console.log("결과:  " + obj.userProfile);
+						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
+					});
+				}
+			});
+		}
+		
+		getCurrentUserProfile();
+	});
+</script>

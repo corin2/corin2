@@ -12,7 +12,7 @@ public interface UserDAO {
 	public int userInsert(UserDTO usesrdto) throws ClassNotFoundException, SQLException;
 	
 	//oauth 회원가입
-	public int oauthinsert(UserDTO userdto) throws ClassNotFoundException, SQLException;
+	public int oauthInsert(UserDTO userdto) throws ClassNotFoundException, SQLException;
 
 	//회원정보 얻기
 	public UserDTO userSelect(String userid) throws ClassNotFoundException, SQLException;
@@ -34,4 +34,6 @@ public interface UserDAO {
 
 	//모든 유저 조회
 	public List<UserDTO> allUserSelect();
+
+	public void profileUpdate(UserDTO updateuser);
 }
