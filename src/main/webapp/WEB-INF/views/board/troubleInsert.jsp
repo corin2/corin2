@@ -1,7 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 
+<!-- include hashtags css/js -->
 <link rel="stylesheet" href="resources/css/board/tagsinput.css">
 <script src="resources/js/board/tagsinput.js"></script>
 
@@ -17,9 +21,7 @@
 	
 </script>
 
-<!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+
 <h2 id='boardTitle'>트러블슈팅 등록</h2>
 	<div class="container" style="margin-top: 20px;">
 		<form action="insert"  method="post" name="insfrm" >

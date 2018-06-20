@@ -5,6 +5,27 @@
 <!-- Google Icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<script>
+//태그 값을 불러와 ',' 단위로 잘라서 tag버튼들을 생성하는 스크립트.
+function fncTegSplit(str){
+
+	var result='';
+	var split = str.split(',');
+	var i  = 0;
+
+	for( i; i<split.length; i++ ){
+	
+		result += "<a href='#'><span class='label label-primary'>#";
+ 		result += split[i];
+ 		result += "</span></a>&nbsp&nbsp";
+ 		
+	}
+	
+	document.write(result);	
+}
+
+</script>
+
 <div id="troubleContent">
 	<h2 id='boardTitle'>트러블슈팅 게시판</h2>
 
@@ -16,10 +37,10 @@
 
 <div id="search-area" style="margin: 0 30px 0 30px;">
 	<br> <i class="material-icons">search</i><input type="text" /> <input
-		type="button" value="검색" class="btn btn-primary" /> <!-- <input
+		type="button" value="검색" class="btn btn-success" /> <!-- <input
 		class="btn btn-primary" data-toggle="modal" data-target="#myModal1"
 		type="button" id="mamodal1" value="추가" style="float: right;"> -->
-		<a href="troubleins"><input type=button class="btn btn-primary"  value="추가" style="float: right;" ></button></a>
+		<a href="troubleins"><input type=button class="btn btn-success"  value="추가" style="float: right;" ></button></a>
 
 	<!-- 글쓰기 모달영역 start -->
 	<div id="myModal1" class="modal fade" role="dialog">
@@ -66,26 +87,31 @@
 			<th>작성자</th>
 			<th>트러블슈팅</th>
 			<th>작성일</th>
-			<th>편집</th>
+			<!-- <th>편집</th> -->
 		</tbody>
 
 		<c:forEach items="${data}" var="ts">
 			<tr>
 				<td>${ts.boardNum}</td>
-				<td>${ts.userName}<br> <img
+				<td align=center><img
 					src="${pageContext.request.contextPath}/resources/profile/${ts.userProfile}"
-					class="img-circle person" width="30" height="30" /></td>
-				<td>${ts.problem}<hr>${ts.solution}</td>
+					 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
+				<td id="tags">
+				<%-- <input type="label" name="hashtag" data-role="tagsinput" placeholder="" value="${ts.hashtag}" disabled="disabled" /><hr>${ts.problem}<hr>${ts.solution}</td> --%>
+				<script>fncTegSplit('${ts.hashtag}');</script>
+				<br><br>${ts.problem}
+				</td>
 				<td>${ts.boardDate}</td>
-				<td><%-- <input type="button" value="수정" class="btn btn-info"
-					onclick="edit(this, ${ts.boardNum},'${ts.userName}','${ts.problem}', '${ts.solution}','${ts.boardDate}') " /> --%>
+				<%-- <td><input type="button" value="수정" class="btn btn-info"
+					onclick="edit(this, ${ts.boardNum},'${ts.userName}','${ts.problem}', '${ts.solution}','${ts.boardDate}') " />
 					<input type="button" value="수정" class="btn btn-info"
 					onclick="" />
 					<a href="delete?boardNum=${ts.boardNum}" class="btn btn-danger"
-					type="button ">삭제</a></td>
+					type="button ">삭제</a></td> --%>
 			</tr>
 		</c:forEach>
 	</table>
+	
 </form>
 
 <!-- 게시글수정스크립트 edit();-->

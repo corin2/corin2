@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<!-- 트러블슈팅 전체조회 -->
 		<select id="troubleSelect" resultType="site.corin2.board.dto.TroubleShootingDTO">
-			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
+			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
 				from troubleshooting a, board b,user c  
 			where a.boardnum=b.boardnum and b.userid=c.userid and a.projectnum=1 and b.isdeleted=0 order by boardnum desc  
 		</select>
