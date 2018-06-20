@@ -60,6 +60,7 @@
 		        if (index + 1 === data.files.length) {
 		            data.context.find('button')
 		                .text('Upload')
+		                .prop('disabled', !!data.files.error);
 		        }
 		    }).on('fileuploadprogressall', function (e, data) {
 		        var progress = parseInt(data.loaded / data.total * 100, 10);

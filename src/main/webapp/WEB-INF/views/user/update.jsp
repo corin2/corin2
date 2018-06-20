@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <script src="resources/js/board/vendor/jquery.ui.widget.js"></script>
 <script src="resources/js/board/jquery.fileupload.js"></script>
 <script src="resources/js/user/update.js"></script>
@@ -39,7 +40,7 @@
 			    <span class="btn btn-success fileinput-button">
 			        <i class="glyphicon glyphicon-plus"></i>
 			        <span>Add files...</span>
-			        <input id="fileupload" type="file" name="files[]" data-url="profileupdate" multiple>
+			        <input id="fileupload" type="file" name="files" data-url="profileupdate">
 			    </span>
 			    <div id="progress" class="progress">
 			        <div class="progress-bar progress-bar-success"></div>
