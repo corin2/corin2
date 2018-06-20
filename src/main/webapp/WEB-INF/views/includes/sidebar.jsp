@@ -104,7 +104,7 @@
 		        </a>
 		    </li>
 		    <li>
-				<a class="sidebaricon" href="#" id="checklisticon">
+				<a class="sidebaricon" href="checklist" id="checklisticon">
 				    <i class="glyphicon glyphicon-th-list"></i>
 				    Checklist
 				</a>
