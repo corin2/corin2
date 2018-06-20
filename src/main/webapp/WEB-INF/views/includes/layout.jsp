@@ -15,8 +15,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <!-- CSS 세부설정 변경을 위한 external CSS 링크 -->
   <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css">
+  <!-- 페이지 로딩 CSS 링크 -->
+  <link rel="stylesheet" type="text/css" href="resources/css/loading/fakeLoader.css">
   
   <style>
+    /* 사이드바 */
    	#sidebar {
 	    position: fixed;
 	    top: 0;
@@ -28,6 +31,7 @@
 	    height: auto;
   	}
   	
+  	/* 헤더 */
   	#header {
   		position: fixed;
   		margin-left: 80px;
@@ -42,6 +46,7 @@
   		box-shadow: 0 2px 2px rgba(12,13,14,0.2);
   	}
   	
+  	/* 컨텐츠 */
   	#content {
   	    position: relative;
 	    margin-left: 80px;
@@ -50,12 +55,13 @@
 	    padding-top: 20px;
   	}
   	
-  	
+  	/* header 배경색 */
   	.navbar-user {
   	    padding: 0px 30px 0px 0px;
   		background-color: #ededed;
   	}
   	
+  	/* 채팅 사이드바 */
   	.sidebar-chat {
   		position: fixed;
   		margin-top: 60px;
@@ -110,8 +116,14 @@
 		</se:authorize>
 	</div>
 	
-	<script type="text/javascript">
+	<!-- 페이지 로딩 -->
+	<div id="fakeloader"></div>
+	
+	<script src="resources/js/loading/fakeLoader.js">
+	
+	<script>
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
+		$("#fakeloader").fakeLoader();
 	</script>        
 </body>
 </html>
