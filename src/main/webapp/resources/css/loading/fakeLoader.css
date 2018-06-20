@@ -335,7 +335,8 @@
     }
 
     .spinner7 > div {
-      background-color: #fff;
+      /* background-color: #fff; */
+      background-color: #336699; /* 로딩 이미지 색상 변경 */
       height: 15px;
       width: 15px;
       margin-left:3px;

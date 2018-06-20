@@ -17,7 +17,7 @@
             left:'0px', // Default Left value
             width:'100%', // Default width 
             height:'100%', // Default Height
-            zIndex: '3999',  // Default zIndex 
+            zIndex: '999',  // Default zIndex 
             bgColor: '#2ecc71', // Default background color
             spinner:'spinner7', // Default Spinner
             imagePath:'' // Default Path custom image

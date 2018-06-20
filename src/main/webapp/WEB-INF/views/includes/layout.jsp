@@ -87,6 +87,10 @@
   
 </head>
 <body>
+	<!-- 페이지 로딩 -->
+	<div id="fakeloader"></div>
+	
+	<!-- 레이아웃 -->
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
 		<nav id="sidebar" class="active">
@@ -117,13 +121,14 @@
 	</div>
 	
 	<!-- 페이지 로딩 -->
-	<div id="fakeloader"></div>
-	
-	<script src="resources/js/loading/fakeLoader.js">
+	<script src="resources/js/loading/fakeLoader.js"></script>
 	
 	<script>
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
-		$("#fakeloader").fakeLoader();
+		$("#fakeloader").fakeLoader({
+			zIndex: '3999',
+			bgColor:"rgba(51, 102, 153, 0.2)",
+		});
 	</script>        
 </body>
 </html>
