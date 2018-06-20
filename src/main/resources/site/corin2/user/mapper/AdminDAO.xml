@@ -57,4 +57,13 @@
 	<delete id="userGradeDelete">
 		delete from userGrade where gradeNum = #{gradeNum}
 	</delete>
+	
+	<select id="templateFileNameSelect" resultType="site.corin2.user.dto.AdminDTO">
+		select TEMPLATEFILENAME from template
+	</select>
+
+	<update id="templateFileNameUpdate">
+		update template
+		set templatefilename = #{templatefilename};
+	</update>
 </mapper>

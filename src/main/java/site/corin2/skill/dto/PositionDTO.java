@@ -67,6 +67,11 @@ public class PositionDTO {
 	public void setSkillNum(String skillNum) {
 		this.skillNum = skillNum;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "PositionDTO [projectNum=" + projectNum + ", userId=" + userId + ", skillNum=" + skillNum + ", x=" + x
+				+ ", y=" + y + ", width=" + width + ", height=" + height + "]";
+	}
 	
 }
