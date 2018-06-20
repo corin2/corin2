@@ -61,13 +61,13 @@ public class UploadController {
 	
 	@RequestMapping(value="fileUpload1", method= RequestMethod.GET)
 	public View fileUpload1(@RequestParam("projectNum") String projectNum,Model model) {
-		model.addAttribute("uploadselect", service.uploadSelect(Integer.parseInt(projectNum)));
+		model.addAttribute("file1", service.uploadSelect(Integer.parseInt(projectNum)));
 		return jsonview;
 	}
 
 	//파일업로드 upload
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
-	public View upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
+	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
 			
 		System.out.println("파일 업로드 커늩롤러"+projectNum);
 	
@@ -94,6 +94,7 @@ public class UploadController {
 		String fileName =null;
 		String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
 	
+		
 		//파일 insert
 		if(null != mpf && mpf.getSize() > 0) {
 			fileName = fileName1[0]+"_"+ System.currentTimeMillis()+"."+fileName1[1]; //파일_현재날짜.확장자 
@@ -107,10 +108,9 @@ public class UploadController {
 			filePath = downloadpath + "\\" + mpf.getOriginalFilename();
 			
 		}
+		 System.out.println();
 		 service.uploadInsert(uploadDTO);
 		
-
-		 
 		try {
 	
 			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
@@ -118,9 +118,7 @@ public class UploadController {
 			e.printStackTrace();
 		}
 	
-		model.addAttribute("uploadselect", service.uploadSelect(Integer.parseInt(projectNum)));
-	
-		return jsonview;
+		return service.uploadSelect(Integer.parseInt(projectNum));
  
 	}
 
@@ -164,10 +162,6 @@ public class UploadController {
 		
 		
 	}
-	@RequestMapping(value="gradeSelect")
-	public @ResponseBody void gradeSelect(@RequestParam("projectNum") String projectNum) {
-		
-		service.gradeSelect(Integer.parseInt(projectNum));
-	}
+
 
 }

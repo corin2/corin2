@@ -31,8 +31,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<delete id="fileDelete" parameterType="site.corin2.board.dto.UploadDTO">
 			delete from upload where boardnum = #{boardNum} and skillnum ='S700' and projectnum = #{projectNum}
 		</delete>
-		
-		<select id="gradeSelect" parameterType="int">
-		select * from Team where  projectnum= #{projectNum}
-		</select>
+	
 	</mapper>

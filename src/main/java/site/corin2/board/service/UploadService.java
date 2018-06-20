@@ -49,9 +49,6 @@ public class UploadService {
 		
 	}
 
-	public void gradeSelect(int projectNum) {
-		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
-		dao.gradeSelect(projectNum);
-	}
+
 
 }

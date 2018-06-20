@@ -1,6 +1,6 @@
 $(function () {
-	firstFileSelect();
 	fileselect();
+	firstFileSelect();
 
 });
 
@@ -15,19 +15,17 @@ function fileselect(){
        
      var html="" 
      
-    	 $.each(data.uploadselect , function(index , uploadselect) {
-
+    	 $.each(data.result, function(index , file) {
 			 html +=
 				  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
-	    		  +"<div style='margin-left:220px;margin-top:5px'><img style='width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('"+uploadselect.uploadAlias+"')" 
-	    		  +"></img>"
-	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+uploadselect.boardNum+")'></img></div>"
+				  +"<div style='margin-left:220px;margin-top:5px'><img style='width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
+				  +"></img>"
+	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img></div>"
 	    		  +"<div class ='dropzonecontent' style='float:left;width:200px;height:100px;background-color:white;vertical-align:middle;text-align:center;color:black;border: 1px solid white;margin-left:50px;margin-top:20px;border-radius:10px;'>"
-	    		  +"<p style='text-align:center;margin-top:20px;color:black;font-size:30px;'>"+uploadselect.uploadOrigin+"</p>"
-	    		  +"<p><img class='sns-icon' style='width:30px;hight:30px;margin-right:10px' src='resources/images/"+uploadselect.userProfile+"'><label style='margin-top:30px;color:black'>"+uploadselect.userName+"</label></p></img>"
+	    		  +"<p style='text-align:center;margin-top:20px;color:black;font-size:30px;'>"+file.uploadOrigin+"</p>"
+	    		  +"<p><img class='sns-icon' style='width:30px;hight:30px;margin-right:10px' src='resources/images/"+file.userProfile+"'><label style='margin-top:30px;color:black'>"+file.userName+"</label></p></img>"
 	    		  +"</div>"
 	    		  +"</div>"
-	    		  
 		})
           $(".dropzonediv").html(html);  
         
@@ -50,24 +48,19 @@ function firstFileSelect() {
 		},
     	success: function(data) {
     		var html=""
-    		console.log(data);
-    		
-    		 $.each(data.uploadselect , function(index , uploadselect) {
-    			 
-    			
+    	
+    		 $.each(data.file1, function(index , file) {
     			 html +=
     				  "<div class='dropzonechild' style='float:left;background-color:lightgray;width:300px;height:200px;margin-right:50px;margin-bottom:50px;border-radius:20px;'>"
-    	    		  +"<div style='margin-left:220px;margin-top:5px'><img style='width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('"+uploadselect.uploadAlias+"')" 
-    	    		  +"></img>"
-    	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+uploadselect.boardNum+")'></img></div>"
-    	    		  +"<div class ='dropzonecontent' style='float:left;width:200px;height:100px;background-color:white;vertical-align:middle;text-align:center;color:black;border: 1px solid white;margin-left:50px;margin-top:20px;border-radius:10px;'>"
-    	    		  +"<p style='text-align:center;margin-top:20px;color:black;font-size:30px;'>"+uploadselect.uploadOrigin+"</p>"
-    	    		  +"<p><img class='sns-icon' style='width:30px;hight:30px;margin-right:10px' src='resources/images/"+uploadselect.userProfile+"'><label style='margin-top:30px;color:black'>"+uploadselect.userName+"</label></p></img>"
-    	    		  +"</div>"
-    	    		  +"</div>"
-    	    		  
-    			
-			})
+   				  +"<div style='margin-left:220px;margin-top:5px'><img style='width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
+   				  +"></img>"
+   	    		  +"<img style='width:30px;height:30px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img></div>"
+   	    		  +"<div class ='dropzonecontent' style='float:left;width:200px;height:100px;background-color:white;vertical-align:middle;text-align:center;color:black;border: 1px solid white;margin-left:50px;margin-top:20px;border-radius:10px;'>"
+   	    		  +"<p style='text-align:center;margin-top:20px;color:black;font-size:30px;'>"+file.uploadOrigin+"</p>"
+   	    		  +"<p><img class='sns-icon' style='width:30px;hight:30px;margin-right:10px' src='resources/images/"+file.userProfile+"'><label style='margin-top:30px;color:black'>"+file.userName+"</label></p></img>"
+   	    		  +"</div>"
+   	    		  +"</div>"
+   		})
     		
 			$(".dropzonediv").html(html);  
     	}
