@@ -82,13 +82,6 @@
 		                    .append(error);
 		            }
 		        });
-		    }).on('fileuploadfail', function (e, data) {
-		        $.each(data.files, function (index) {
-		            var error = $('<span class="text-danger"/>').text('File upload failed.');
-		            $(data.context.children()[index])
-		                .append('<br>')
-		                .append(error);
-		        });
 		    })
 		});
 		
