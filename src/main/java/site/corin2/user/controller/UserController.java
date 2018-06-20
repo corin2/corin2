@@ -8,6 +8,7 @@ package site.corin2.user.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.user.dao.UserDAO;
@@ -60,7 +62,7 @@ public class UserController {
 	@RequestMapping(value="signup",method=RequestMethod.POST)
 	public String userInsert(UserDTO userdto) {
 		//회원가입 처리 ... NewMemberDao
-		String viewpage = service.userInsert(userdto);
+		String viewpage = service.userInsert(userdto,null);
 		return viewpage;
 	}
 	
@@ -114,15 +116,23 @@ public class UserController {
 		return "user.update";
 	}
 	
+	//프로필 올리기
+	@RequestMapping(value="userProfile", method=RequestMethod.POST)
+	public String userProfile(MultipartHttpServletRequest request) {
+		System.out.println(request.getFileNames());
+		service.userProfile(request);
+		return "project.project";
+	}
 	//사용자 수정하기 기능 실행
 	@RequestMapping(value="userupdate", method=RequestMethod.POST)
 	public String userUpdate(UserDTO userdto) {
+		System.out.println(userdto.getPassword());
 		service.userUpdate(userdto);
-		return "login.html";
+		return "project.project";
 	}
 	
 	//회원 삭제하기
-	@RequestMapping(value="userdelete" , method=RequestMethod.POST)
+	@RequestMapping(value="userdelete" , method= {RequestMethod.POST,RequestMethod.GET})
 	public String userDelete(UserDTO userdto ,Principal principal) throws ClassNotFoundException, SQLException {
 		service.userDelete(principal.getName());
 		return "login.html";

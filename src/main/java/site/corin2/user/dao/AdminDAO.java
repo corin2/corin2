@@ -7,11 +7,13 @@
 
 package site.corin2.user.dao;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
+import site.corin2.user.dto.AdminDTO;
 import site.corin2.user.dto.UserGradeDTO;
 
 public interface AdminDAO {
@@ -57,4 +59,10 @@ public interface AdminDAO {
 	
 	//userGrade 삭제
 	public void userGradeDelete(UserGradeDTO userGrade);
+	
+	//email template파일이름 가져오기
+	public AdminDTO templateFileNameSelect() throws ClassNotFoundException, SQLException;
+	
+	//email template파일 이름 수정하기
+	public void templateFileNameUpdate(String templatefilename) throws ClassNotFoundException, SQLException;
 }
