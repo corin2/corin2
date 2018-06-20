@@ -66,4 +66,8 @@
 		update template
 		set templatefilename = #{templatefilename};
 	</update>
+	
+	<update id="userEdit">
+		update user set userName = #{userName}, enabled = #{enabled}, gradeNum = #{gradeNum} where userId = #{userId}
+	</update>
 </mapper>

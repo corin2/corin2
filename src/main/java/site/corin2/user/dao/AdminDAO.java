@@ -14,6 +14,7 @@ import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
 import site.corin2.user.dto.AdminDTO;
+import site.corin2.user.dto.UserDTO;
 import site.corin2.user.dto.UserGradeDTO;
 
 public interface AdminDAO {
@@ -65,4 +66,7 @@ public interface AdminDAO {
 	
 	//email template파일 이름 수정하기
 	public void templateFileNameUpdate(String templatefilename) throws ClassNotFoundException, SQLException;
+	
+	//admin이 user수정
+	public void userEdit(UserDTO user);
 }
