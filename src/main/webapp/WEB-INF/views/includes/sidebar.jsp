@@ -58,7 +58,7 @@
 			    <li>
 			        <a href="adminUserController">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(회원관리)
+						User Manager
 			        </a>
 			    </li>
 			    <li>
