@@ -158,7 +158,6 @@
 				data : {userId : $('#hiddenUserId').val()},
 				success : function(data){
 					$.each(data, function(index, obj) {
-						console.log("결과:  " + obj.userProfile);
 						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 					});
 				}
