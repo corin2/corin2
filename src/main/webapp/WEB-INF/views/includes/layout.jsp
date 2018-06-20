@@ -31,6 +31,7 @@
   	#header {
   		position: fixed;
   		margin-left: 80px;
+  		padding: 5px 5px;
   		top: 0;
   		left: 0;
   		right: 0;
@@ -87,14 +88,14 @@
 			<tiles:insertAttribute name="sidebar" />
 		</nav>
 		
-		<div id="header">
+		<nav class="navbar navbar-default" id="header">
 			<c:choose>
 				<c:when test="${sessionScope.sessionProjectNum != null}">
 					<!-- Header 영역 -->
 					<tiles:insertAttribute name="header" />
 				</c:when>
 			</c:choose>
-		</div>
+		</nav>
 		
 		<!-- Page Content Holder -->
 		<div id="content">

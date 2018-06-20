@@ -36,6 +36,7 @@ import org.springframework.web.servlet.View;
 
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.UserDTO;
+import site.corin2.user.dto.UserGradeDTO;
 import site.corin2.user.service.KakaoLogin;
 import site.corin2.user.service.UserService;
 
@@ -146,6 +147,14 @@ public class UserController {
 	public View allUser(Model model) {
 		List<UserDTO> users = service.allUserSelect();
 		model.addAttribute("data", users);
+		return jsonview;
+	}
+		
+	//특정 유저 정보
+	@RequestMapping("/showUser")
+	public View showUser(@RequestParam("userId") String userid, Model model) {
+		UserDTO user = service.oneUserSelect(userid);
+		model.addAttribute("data", user);
 		return jsonview;
 	}
 	

@@ -23,7 +23,7 @@
 </c:choose>
 <ul class="list-unstyled components">
  				<li>
-				    <img class="img-circle" src="resources/images/profile/patrick.jpg" width=40 height=40>
+				    <img class="img-circle" id="currentUserProfile" src="resources/images/profile/none.png" width=40 height=40>
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
@@ -147,3 +147,24 @@
     	</c:when>
 	</c:choose>
 </ul>
+
+<script>
+	$(function() {
+		function getCurrentUserProfile() {
+			$.ajax({
+				type : "post",
+				url  : "showUser",
+				datatype:"JSON",
+				data : {userId : $('#hiddenUserId').val()},
+				success : function(data){
+					$.each(data, function(index, obj) {
+						console.log("결과:  " + obj.userProfile);
+						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
+					});
+				}
+			});
+		}
+		
+		getCurrentUserProfile();
+	});
+</script>

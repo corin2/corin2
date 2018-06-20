@@ -277,4 +277,17 @@ public class UserService {
 		
 		return users;
 	}
+	
+	//특정 유저 조회
+	public UserDTO oneUserSelect(String userid){
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		UserDTO user = null;
+		try {
+			user = userdao.userSelect(userid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return user;
+	}
 }
