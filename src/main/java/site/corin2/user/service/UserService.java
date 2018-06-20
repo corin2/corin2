@@ -40,7 +40,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dao.UserDAO;
+import site.corin2.user.dto.AdminDTO;
 import site.corin2.user.dto.UserDTO;
 
 @Service
@@ -80,7 +82,10 @@ public class UserService {
 				VelocityContext velocityContext = new VelocityContext(); 
 				velocityContext.put("userId",userdto.getUserId());
 				System.out.println(userdto.getUserId());
-				Template template = velocityEngine.getTemplate("templete.vm"); 
+				AdminDAO admindao = sqlsession.getMapper(AdminDAO.class);
+				AdminDTO admindto = admindao.templateFileNameSelect();
+				String templatename = admindto.getTemplatefilename();
+				Template template = velocityEngine.getTemplate(templatename); 
 				StringWriter stringWriter = new StringWriter(); 
 				template.merge(velocityContext, stringWriter); 
 				mimeMessageHelper.setText(stringWriter.toString(),true); 

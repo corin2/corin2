@@ -12,6 +12,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +22,7 @@ import org.springframework.web.servlet.View;
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
-import site.corin2.user.dto.EmailDTO;
+import site.corin2.user.dto.UserDTO;
 import site.corin2.user.dto.UserGradeDTO;
 import site.corin2.user.service.AdminService;
 
@@ -154,12 +155,31 @@ public class AdminController {
 		return jsonview;
 	}
 	
+
+	//vmfileload하기
+	@RequestMapping(value = "vmload2" , method = RequestMethod.POST)
+	public View vmLoad2(Model model) {
+		String line = service.vmLoad2();
+		model.addAttribute("line", line);
+		return jsonview;
+	}
+	
 	//vmfilesave하기
-	@RequestMapping(value = "vmsave" , method = {RequestMethod.POST,RequestMethod.GET})
-	public String vmSave(@RequestParam("savedata") String savedata) {
-		System.out.println("111"+savedata);
-		service.vmSave(savedata);
-		return null;
+	@RequestMapping("vmsave")
+	public View vmSave(String savedata , String signup) {
+		service.vmSave(savedata,signup);
+		return jsonview;
 			
 	}
+	
+	//vmfile 변경하기
+	@RequestMapping("usetemplate")
+	public View usetemplate(String signup) {
+		System.out.println("444"+signup);
+		service.usetemplate(signup);
+		return jsonview;
+			
+	}
+	
+	
 }

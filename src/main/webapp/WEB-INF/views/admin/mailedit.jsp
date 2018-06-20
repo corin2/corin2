@@ -9,9 +9,11 @@
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
     <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
     <script>
+    var signup = '';
+    
     $(document).ready(function() { 
     	  $('#summernote').summernote({
-    		 height: 300,
+    		 height: 690,
     		 toolbar:[
 
     	      // This is a Custom Button in a new Toolbar Area
@@ -35,37 +37,65 @@
                 ['help', ['help']]
             ]
     	});
-    
+    	  
+    	  
     	  $('#signup').click(function(){
     		  $.ajax({
 					type : "post",
 					url : "vmload",
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
+						signup = "signup";
+						console.log(signup);
+						$(".summernote").summernote("code", data.line);
+					}
+    		  });
+    	  });
+    	  
+    	  $('#signup2').click(function(){
+    		  $.ajax({
+					type : "post",
+					url : "vmload2",
+					contentType : "application/json; charset=utf-8",
+					success : function(data) {
+						signup = "signup2";
+						console.log(signup);
 						$(".summernote").summernote("code", data.line);
 					}
     		  });
     	  });
     	  
     	  $('#save').click(function(){
+    		  console.log(signup);
     		  var savedata = $('#summernote').summernote('code');
-    		  console.log(savedata);
     		  $.ajax({
     			  	type : "post",
 					url : "vmsave",
-					data :{savedata : savedata},
-					contentType : "application/json; charset=utf-8",
+					data : {savedata : $('#summernote').summernote('code') , signup : signup},
+					success : function(data) {
+						alert("변경이 완료되었습니다.");
+					}
+		 	 });
+    	  });
+    	  
+    	  $('#usetemplate').click(function(){
+				console.log("333"+signup);
+    		  $.ajax({
+    			  	type : "post",
+					url : "usetemplate",
+					data : {signup : signup},
 					success : function(data) {
 						alert("저장이 완료되었습니다.");
 					}
 		 	 });
     	  });
+    	  
     });
     </script>
 </head>
 <body>
 	<div class="container">
-		<h4>메일 templete 변경하기</h4>
+		<h4>메일 template 변경하기</h4>
 		<form action=""
 			method="post">
 			<textarea id="summernote" class="summernote"></textarea>
@@ -76,8 +106,10 @@
 			  </script>
 			<p>
 			<div align="center">
-				<input type="button" id="signup" value="sign up templete" class="btn btn-warning">
+				<input type="button" id="signup" value="sign up template" class="btn btn-warning">
+				<input type="button" id="signup2" value="sign up template2" class="btn btn-warning">
 				<input type="button" id="save" value="save form" class="btn btn-warning">
+				<input type="button" id="usetemplate" value="use this template" class="btn btn-warning">
 			</div>
 			
 		</form>
