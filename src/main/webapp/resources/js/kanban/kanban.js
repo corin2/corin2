@@ -231,9 +231,9 @@ function showCard(){
 //카드를 추가하는 텍스트박스를 생성한다
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
-			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"a\"), "+ projectNum +");}' "
+			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</a>";
+			+ "<label style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 	$('#addcard').children('input').focus();
@@ -307,9 +307,9 @@ function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
-			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"a\"), "+ cardNum +");}' "
+			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</a>";
+			+ "<label style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 	$('#div' + cardNum).children('input').focus();
