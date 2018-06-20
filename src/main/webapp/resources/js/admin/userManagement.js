@@ -27,9 +27,10 @@ function allUser(enabled, isDelete, pageNum){
 					if(elt.gradeNum == 'G100') texthtml += '관리자';
 					else texthtml += '회원';
 					texthtml += '</td><td>'
-							 + '<input type="button" value="수정" class="btn btn-info" onclick="userEdit(this, '+enabled+', '+isDelete+', '+pageNum+')" >'
-							 + '<input type="button" value="삭제" class="btn btn-danger" onclick="" >'
-							 + '</tr></tbody>';
+							 + '<input type="button" value="수정" class="btn btn-info" onclick="userEdit(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
+					if(isDelete == '0')	texthtml += '<input type="button" value="제명" class="btn btn-danger" onclick="userDel(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
+					if(isDelete == '1')	texthtml += '<input type="button" value="복구" class="btn btn-danger" onclick="userReset(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
+					texthtml += '</tr></tbody>';
 				}
 			});
 			texthtml += '</table>';
@@ -37,6 +38,42 @@ function allUser(enabled, isDelete, pageNum){
 			userPaging(enabled, isDelete, pageNum, viewData);
 		}
 	});
+}
+
+//유저 제명
+function userDel(obj, enabled, isDelete, pageNum) {
+	var tr = $(obj).closest('tr');
+	var userId = tr.children('td:eq(1)').text();
+	var deluserId = prompt("삭제하실 유저 명을 입력해 주세요.");
+
+	if(userId.toLowerCase() == deluserId.toLowerCase()){
+		$.ajax({
+			url : "userDel",
+			datatype:"JSON",
+			data : {userId:userId},
+			success : function(data) {
+				allUser(enabled, isDelete, pageNum);
+			}
+		})
+	}
+}
+
+//유저 복구
+function userReset(obj, enabled, isDelete, pageNum) {
+	var tr = $(obj).closest('tr');
+	var userId = tr.children('td:eq(1)').text();
+	var deluserId = prompt("복구하실 유저 명을 입력해 주세요.");
+
+	if(userId.toLowerCase() == deluserId.toLowerCase()){
+		$.ajax({
+			url : "userReset",
+			datatype:"JSON",
+			data : {userId:userId},
+			success : function(data) {
+				allUser(enabled, isDelete, pageNum);
+			}
+		})
+	}
 }
 
 //유저 수정하는 박스 생성

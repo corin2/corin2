@@ -189,4 +189,11 @@ public class UserController {
 		return "user.admin";
 	}
 	
+	//회원 삭제하기
+	@RequestMapping(value="userDel" , method= {RequestMethod.POST,RequestMethod.GET})
+	public String userDel(UserDTO userdto) throws ClassNotFoundException, SQLException {
+		service.userDelete(userdto.getUserId());
+		return "login.html";
+	}
+		
 }

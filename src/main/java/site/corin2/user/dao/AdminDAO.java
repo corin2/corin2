@@ -69,4 +69,7 @@ public interface AdminDAO {
 	
 	//admin이 user수정
 	public void userEdit(UserDTO user);
+	
+	//admin이 user복구
+	public void userReset(UserDTO user);
 }

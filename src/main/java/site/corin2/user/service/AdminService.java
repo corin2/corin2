@@ -214,4 +214,10 @@ public class AdminService {
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userEdit(user);
 	}
+	
+	//유저 수정
+	public void userReset(UserDTO user){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.userReset(user);
+	}
 }

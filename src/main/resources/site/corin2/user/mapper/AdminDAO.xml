@@ -70,4 +70,8 @@
 	<update id="userEdit">
 		update user set userName = #{userName}, enabled = #{enabled}, gradeNum = #{gradeNum} where userId = #{userId}
 	</update>
+	
+	<update id="userReset">
+		update user set enabled = 1, isdeleted = 0 where userId = #{userId}
+	</update>
 </mapper>

@@ -193,4 +193,11 @@ public class AdminController {
 		service.userEdit(user);
 		return jsonview;
 	}
+	
+	//유저수정
+	@RequestMapping("userReset")
+	public View userReset(UserDTO user) {
+		service.userReset(user);
+		return jsonview;
+	}
 }
