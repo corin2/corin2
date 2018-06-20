@@ -14,8 +14,23 @@ function fncTegSplit(str){
 	var i  = 0;
 
 	for( i; i<split.length; i++ ){
-	
-		result += "<a href='#'><span class='label label-primary'>#";
+		switch(i){
+			case 0:
+				result += "<a href='#'><span class='label label-primary'>#";
+				break;
+			case 1:
+				result += "<a href='#'><span class='label label-success'>#";
+				break;
+			case 2:
+				result += "<a href='#'><span class='label label-info'>#";
+				break;
+			case 3:
+				result += "<a href='#'><span class='label label-warning'>#";
+				break;
+			case 4:
+				result += "<a href='#'><span class='label label-danger'>#";
+				break;
+		}
  		result += split[i];
  		result += "</span></a>&nbsp&nbsp";
  		
@@ -37,10 +52,10 @@ function fncTegSplit(str){
 
 <div id="search-area" style="margin: 0 30px 0 30px;">
 	<br> <i class="material-icons">search</i><input type="text" /> <input
-		type="button" value="검색" class="btn btn-success" /> <!-- <input
+		type="button" value="검색" class="btn btn-primary" /> <!-- <input
 		class="btn btn-primary" data-toggle="modal" data-target="#myModal1"
 		type="button" id="mamodal1" value="추가" style="float: right;"> -->
-		<a href="troubleins"><input type=button class="btn btn-success"  value="추가" style="float: right;" ></button></a>
+		<a href="troubleins"><input type=button class="btn btn-primary"  value="추가" style="float: right;" ></button></a>
 
 	<!-- 글쓰기 모달영역 start -->
 	<div id="myModal1" class="modal fade" role="dialog">
