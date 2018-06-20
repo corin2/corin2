@@ -1,7 +1,3 @@
-	#mainScreen, .donebox {
-	    overflow-y: auto;
-	}
-	
 	#mainScreen {
 		white-space: nowrap;
 		padding: 10px 10px 5px;
@@ -41,12 +37,11 @@
 		height: 220px;
 	}
 	
-	.listbox, .donebox {
-		overflow-x: auto;
+	.listbox, .donebox{
+		overflow-y: auto;
 	}
 	
 	.listbox {
-	    overflow-y: unset;
 	    max-height: 700px;
 	}
 	
@@ -105,18 +100,18 @@
 	}
 
 	.close {
-    float: right;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    filter: alpha(opacity=20);
-    opacity: .4;
+	    float: right;
+	    font-size: 20px;
+	    font-weight: 700;
+	    line-height: 1;
+	    color: #000;
+	    text-shadow: 0 1px 0 #fff;
+	    filter: alpha(opacity=20);
+	    opacity: .4;
     }
 
     input[type="checkbox"]{
-	  overflow:hidden;
+	  overflow: hidden;
 	  clip:rect(0 0 0 0);
 	}
 	
