@@ -40,12 +40,8 @@ import site.corin2.board.dto.UploadDTO;
 
 import site.corin2.board.service.UploadService;
 
-
-
 @Controller
 public class UploadController {
-	
-	
 	@Autowired
 	private UploadService service;
 	
@@ -117,11 +113,8 @@ public class UploadController {
 		}
 	
 		return service.uploadSelect(Integer.parseInt(projectNum));
- 
 	}
 
-	
-	
 	//삭제하는 함수
 	@RequestMapping(value ="deleteFile", method=RequestMethod.GET)
 	public @ResponseBody void delete(UploadDTO uploadDTO) {
@@ -160,6 +153,11 @@ public class UploadController {
 		
 		
 	}
-
+	//검색기능
+	@RequestMapping(value="seacherSelect" , method = RequestMethod.GET)
+	public void seacherSelect() {
+		
+		service.seacherSelect();
+	}
 
 }
