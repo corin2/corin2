@@ -9,18 +9,20 @@
 <jsp:include page="ProjectDetail.jsp"></jsp:include>
 
 <nav class="navbar navbar-default">
-		<div id="search">
-		<input type="text" class="search">&nbsp;<span class="glyphicon glyphicon-search"></span>
-		</div>
+	<div id="search">
+	<input type="text" id="searchProject" class="search" onclick="autoCompleteProject()">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
+	<div id="searchBox">
+	</div>
+	</div>
 </nav>
 <nav class="navbar navbar-default">
-		<div id="bookmark">
-		<h1>즐겨찾기</h1>
-		<hr>
-		<div id="bookmarkbox">
-		</div>
-		<hr>
-		</div>
+	<div id="bookmark">
+	<h1>즐겨찾기</h1>
+	<hr>
+	<div id="bookmarkbox">
+	</div>
+	<hr>
+	</div>
 </nav>
 
 <nav class="navbar navbar-default">

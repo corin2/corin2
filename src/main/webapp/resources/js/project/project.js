@@ -64,9 +64,8 @@ function projectView(projectArray) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
-							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>";
-							if(elt.bookMark == "1") html += "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>";
-							else html += "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>";
+							 + "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							 + "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -102,7 +101,7 @@ function projectBookView(projectArray) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div style='float:left;'>"
-							+ "<a href='kanban?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -131,7 +130,7 @@ function projectDetailView() {
 	var html="";
 		html = "<div id='projectDetail' class='form-group'>"
 			 + "<h3>프로젝트제목입력:</h3>"
-			 + "<input id ='ProjectName' type='text'>"
+			 + "<input id ='ProjectName' type='text' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
 			 + "<br>"
 		 	 + "</div>"
 		     +"<input id='addProject' class='btn btn-success' type='button' onclick='addProject()' value='생성'>"
@@ -155,6 +154,20 @@ function languageColorView() {
 		}
 	})
 }
+
+//프로젝트칼라 지정해주기
+function searchColorView() {
+	var projectArray = [];
+	$.ajax({
+		url:"languageColorAllList",
+		datatype:"JSON",
+		success:function(data){
+			projectArray.push(data.list);
+			searchProject(projectArray)
+			
+		}
+	})
+}
 //프로젝트모달창 주언어 뿌려주기
 function printProjectDetailLanguage() {
 	$.ajax({
@@ -163,7 +176,8 @@ function printProjectDetailLanguage() {
 		success:function(data){
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<br>"
+				console.log(elt)
+				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
 		}
@@ -180,7 +194,7 @@ function printProjectDetailLanguageChecked(projectNum) {
 			$.each(data.list, function(index, elt) {
 				html += "<input type='radio' name='language' value='"+elt.languageNum+"'";
 				if($('#hiddenLanguageNum'+projectNum).val() == elt.languageNum)	html += " checked ";
-				html += ">"+elt.languageMain+"<br>";
+				html += ">"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>";
 			})
 			$("#projectDetail").append(html)
 		}
@@ -193,6 +207,7 @@ function updateLanguage(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum, languageNum:$('input[name="language"]:checked').val(), projectName:$("#ProjectName").val()},
 		success:function(data){
+			alert("프로젝트 수정 성공")
 			languageColorView();
 		}
 	})
@@ -203,7 +218,7 @@ function projectUpdateView(projectNum) {
 	var html="";
 		html ="<div id='projectDetail' class='form-group'>" 
 			 +"<h3>프로젝트제목입력:</h3>"
-			 + "<input id ='ProjectName' type='text' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"'>"
+			 + "<input id ='ProjectName' type='text' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
 			 + "<br>"
 			 + "</div>"
 			 + "<input id='addProject' class='btn btn-success' type='button' onclick='updateLanguage("+projectNum+")' data-dismiss='modal' value='수정'>"
@@ -246,6 +261,59 @@ function updateProjectNoneBookmark(projectNum) {
 		data:{projectNum:projectNum},
 		success:function(data){
 			languageColorView();
+		}
+	})
+}
+
+//프로젝트 검색
+function searchProject(projectArray) {
+	var userId = $("#hiddenUserId").val();
+	var projectName = $("#searchProject").val();
+	var html='';
+	console.log(projectName)
+	console.log(userId)
+	$.ajax({
+		url:"prjectSearch",
+		datatype:"JSON",
+		data:{userId:userId, projectName:projectName},
+		success: function (data) {
+			$.each(data.data, function(index, elt) {
+			$.each(projectArray[0], function(index, elt2) {
+				console.log(elt.languageNum)
+				if(elt.languageNum == elt2.languageNum){
+				html +=	"<div style='float:left;'>"
+					+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+					+ "</div>";
+				
+				}
+			})
+			})
+			$("#searchBox").append(html);
+			
+			console.log(data.data.projectNum);
+			console.log(data.data.projectName);
+			
+		}
+	})
+	
+}
+
+//오토컴플릿
+function autoCompleteProject() {
+	console.log("진원이 미워")
+	 $.ajax({
+ 		url : "allProject",
+ 		datatype : "JSON",
+ 		data : {userId:$("#hiddenUserId").val()},
+ 		success : function (data) {
+ 			var name = [];
+ 			$.each(data.list, function(index, elt) {
+ 				name.push(elt.projectName)
+ 			});
+			$('#searchProject').autocomplete({
+				 source: name,
+				 minLength: 2
+			});
 		}
 	})
 }

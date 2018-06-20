@@ -5,7 +5,7 @@
 <!-- Google Icon -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<div id="content-md">
+<div id="troubleContent">
 	<h2 id='boardTitle'>트러블슈팅 게시판</h2>
 
 	<ul class="nav nav-tabs">
@@ -72,7 +72,7 @@
 			<tr>
 				<td>${ts.boardNum}</td>
 				<td>${ts.userName}<br> <img
-					src="${pageContext.request.contextPath}/resources/profile/${ts.userProfile}"
+					src="${pageContext.request.contextPath}/resources/images/profile/${ts.userProfile}"
 					class="img-circle person" width="30" height="30" /></td>
 				<td>${ts.problem}<hr>${ts.solution}</td>
 				<td>${ts.boardDate}</td>

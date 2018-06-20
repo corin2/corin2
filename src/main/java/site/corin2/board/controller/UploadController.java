@@ -79,7 +79,7 @@ public class UploadController {
 		service.boardInsert(boardDTO);
 
 		//경로설정
-		String savepath = "upload";  
+		String savepath = "resources/upload";  
 		String downloadpath = request.getRealPath(savepath);
 		String filePath = null;
 		/* 
@@ -126,7 +126,7 @@ public class UploadController {
 	public void download(HttpServletRequest request, HttpServletResponse response){
 
 		String filename = request.getParameter("fileName");
-		String savepath = "upload";  
+		String savepath = "resources/upload";  
 		String downloadpath = request.getRealPath(savepath);
 		String filePath = downloadpath + "\\" + filename;
 		

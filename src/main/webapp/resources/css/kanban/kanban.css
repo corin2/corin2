@@ -1,21 +1,7 @@
-	
-	#calendar {
-		    width: 65%;
-		    margin-top : 3px;
-		    margin-left : 11%;
-		    margin-right : 5%;
-		 /*    background-coor: white; */
-	}
-	body {
-	    font-family: "Lato", sans-serif;
-		position: absolute;
-		height: 100%;
-		width: 100%;
-	}
 	#mainScreen {
-		white-space: nowrap; 
+		white-space: nowrap;
 		padding: 10px 10px 5px;
-		background: #fff;
+		background: #00FF0000;
 		width: 90%;
 		position: absolute;
 		margin-top:-30px;
@@ -31,127 +17,100 @@
 		height: 85%;
 	}
 	
-	.listbox {
-	    border:10px solid #D7EEF2;
-	    border-radius: 12px;
-	    background-color: #D7EEF2;
-	    margin: 10px;
-	    width: 300px;
-	    float:left;
-	    overflow-x: auto;
-	    overflow-y: unset;
-	    position:relative;
-	    max-height: 765px;
+	.listbox, .listingbox, .donebox, .userbox, .userprofilebox, .kanbanbox {
+		border-radius: 12px;
+		float: left;
+		position: relative;
 	}
 	
-	.listingbox {
-	    border:10px solid #D7EEF2;
-	    border-radius: 12px;
-	    background-color: #D7EEF2;
-	    margin:10px;
-	    width:300px;
-	    height:200px;
-	    float:left;
-	    position:relative;
-	    max-height: 600px;
+	.listbox, .listingbox, .donebox, .listtitle {
+		margin: 10px;
 	}
 	
-	.donebox {
-	    border:10px solid #D7EEF2;
-	    border-radius: 12px;
-	    background-color: #D7EEF2;
-	    margin:10px;
-	    width:300px;
-	    height:200px;
-	    float:left;
-	    overflow-x: auto;
-	    overflow-y: auto;
-	    position:relative;
-	    max-height: 600px;
+	.listbox, .listingbox, .donebox {
+		border:10px solid #E2E4E6;
+		background-color: #E2E4E6;
+		width: 300px;
+	}
+	
+	.listingbox, .donebox, .userprofilebox {
+		height: 220px;
+	}
+	
+	.donebox{
+		overflow-y: auto;
+	}
+	
+	.userbox, .userprofilebox, .kanbanbox {
+		border:10px solid #00FF0000;
+		background-color: #00FF0000;
+		margin:10px;
 	}
 	
 	.userbox {
-		border:10px solid white;
-	    border-radius: 12px;
-	    background-color: white;
-	    margin:10px;
 	    width:150px;
-	    float:left;
-	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.userprofilebox {
-		border:10px solid #D7EEF2;
-	    border-radius: 12px;
-	    background-color: #D7EEF2;
-	    margin:10px;
-	    width:100px;
-	    height:200px;
-	    float:left;
-	    position:relative;
-	    max-height: 600px;
+		position: relative;
+	    width: 100px;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		display: flex; /* add */
+		justify-content: center; /* add to align horizontal */
+		align-items: center; /* add to align vertical */
+	}
+	
+	.userprofilebox img {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+	}
+	
+	.userprofilebox label {
+		position: absolute;
+		bottom: 30px;
+		
 	}
 	
 	.kanbanbox {
-	    border:10px solid white;
-	    border-radius: 12px;
-	    background-color: white;
-	    margin:10px;
 	    width:350px;
-	    float:left;
-	    position:relative;
-	    max-height: 600px;
 	}
 	
 	.listtitle {
 		text-align:left;
 	    font-weight:bold;
 	    overflow: auto;
-	    margin: 10px;
 	    z-index: 2;
 	}
 	
 	.card {
 		margin-top:15px;
-		border : 1px solid white;
+		border : 1px solid black;
 	    border-radius: 8px;
 	    background-color:white;
 	    padding : 10px;
 	}
-	hr {
-		clear: both;
-	}
 
 	.close {
-    float: right;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1;
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    filter: alpha(opacity=20);
-    opacity: .4;
+	    float: right;
+	    font-size: 20px;
+	    font-weight: 700;
+	    line-height: 1;
+	    color: #000;
+	    text-shadow: 0 1px 0 #fff;
+	    filter: alpha(opacity=20);
+	    opacity: .4;
     }
 
-    	input[type="checkbox"]{
-	  position:absolute; 
-	  overflow:hidden;
+    input[type="checkbox"]{
+	  overflow: hidden;
 	  clip:rect(0 0 0 0);
 	}
 	
-	p label{
-	  height:15px; 
-	  line-height:15px; 
-	  padding-left:20px; 
-	  display:inline-block; 
-	  background:url(http://hcs1105.com/wp/wp-content/themes/hcs1105/images/checkbox1.png) no-repeat 0 0; 
-	  font-size:15px; 
-	  vertical-align:middle; 
-	  cursor:pointer;
-	  font-weight: 1;
-	}
-	 
 	input[type="checkbox"]:checked + label{
 	  background-position: 0 -15px;
 	}

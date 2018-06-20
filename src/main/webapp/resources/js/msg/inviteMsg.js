@@ -49,6 +49,8 @@ function msgaccept(projectNum){
           data:param,
           success:function(data){
         	  showMsg();
+        	  if(sessionProjectNum == 'null') languageColorView();
+        	  sendHeader('1:'+projectNum);
           }
 	})
 }
@@ -104,7 +106,7 @@ function isInviteMsg(){
 	$.ajax({
 		url :"isTeamAndisMsg",
 		data : {
-				projectNum : $('#hiddenProjectNum').val(),
+				projectNum : sessionProjectNum,
 				receptionId : $("#emailSearch").val().trim()
 			   },
 		success : function(data) {
@@ -119,7 +121,7 @@ function inviteMsg(){
 	$.ajax({
 		url :"inviteMsg",
 		data : {
-				projectNum : $('#hiddenProjectNum').val(),
+				projectNum : sessionProjectNum,
 				receptionId : $("#emailSearch").val().trim(),
 				sendId : $('#hiddenUserId').val()
 			   },

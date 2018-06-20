@@ -9,7 +9,7 @@ function projectMemberProfile(){
 		type : "post",
 		url  : "showMemberUserProfile",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$.each(data.data, function(index, elt) {
 				userProfiles.push(elt);
@@ -27,22 +27,33 @@ function projectMemberShow(userProfiles){
 		type : "post",
 		url  : "showMember",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$('#headerProjectMemberProfile').empty();
 			var htmltext = '';
 			var projectName = '';
+			var myGrade = '';
+			$.each(data.data, function(index, elt) {
+				if(elt.userId == userId) {
+					myGrade = elt.gradeNum;
+					return false;
+				}
+			});
 			$.each(data.data, function(index, elt) {
 				projectName = elt.projectName;
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId){
+						/*if(elt.userId == userId) {
+							$('#currentUserProfile').attr("src", "resources/images/profile/" + elt2.userProfile);
+						}*/
 						htmltext += '<div class="dropdown" style="float:left;">'
-							+ '<a data-toggle="dropdown" style="font-size: 25pt; top: 7px; cursor: pointer;"><img style="width: 50px;height:50px" class="img-circle" src = "resources/profile/'+elt2.userProfile+'" /></a>'
+							+ '<a data-toggle="dropdown" style="font-size: 25pt; top: 7px; cursor: pointer;"><img style="width: 35px;height:35px" class="img-circle" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
 							+ '<ul class="dropdown-menu" style="cursor: pointer;">';
-						
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
-							htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
-							+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="ownerChange(this)">팀장위임</a></li>';
+							if(myGrade == 'G300'){
+								htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
+								+ '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="ownerChange(this)">팀장위임</a></li>';
+							}
 						}else if (userId ==  elt.userId && elt.gradeNum=='G400') {
 							htmltext += '<li><a onclick="memberDelete()">멤버탈퇴</a></li>';
 						}
@@ -66,7 +77,7 @@ function projectNameView(){
 		type : "post",
 		url  : "showProject",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$('#headerProjectName').empty();
 			
@@ -82,11 +93,11 @@ function ownerChange(obj) {
 			datatype : "JSON",
 			data : {
 					userId : $(obj).parent().children("input").val(),
-					projectNum : $('#hiddenProjectNum').val(),
+					projectNum : sessionProjectNum,
 					gradeNum : $('#hiddenUserId').val() // 오너위임시 자신도 팀원으로 돌아가기위해 gradeNum이지만 서비스에서 userId가 될 예정
 			},
 			success: function (data){
-				sendHeader('1:'+$('#hiddenProjectNum').val());
+				sendHeader('1:'+sessionProjectNum);
 			}
 	});
 }
@@ -98,10 +109,10 @@ function memberToKickOut(obj) {
 		datatype : "JSON",
 		data : {
 				userId : $(obj).parent().children("input").val(),
-				projectNum : $('#hiddenProjectNum').val()
+				projectNum : sessionProjectNum
 		},
 		success: function (data){
-			sendHeader('2:'+$('#hiddenProjectNum').val()+':'+$(obj).parent().children("input").val());
+			sendHeader('2:'+sessionProjectNum+':'+$(obj).parent().children("input").val());
 		}
 	});
 }
@@ -113,10 +124,10 @@ function memberDelete() {
 		datatype : "JSON",
 		data : {
 				userId : $('#hiddenUserId').val(),
-				projectNum : $('#hiddenProjectNum').val()
+				projectNum : sessionProjectNum
 		},
 		success: function (data){
-			sendHeader('3:'+$('#hiddenProjectNum').val()+':'+$('#hiddenUserId').val());
+			sendHeader('3:'+sessionProjectNum+':'+$('#hiddenUserId').val());
 		}
 	});
 }

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.View;
 import site.corin2.kanban.service.KanbanService;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.project.dto.ProjectDTO;
+import site.corin2.project.dto.TeamDTO;
 import site.corin2.project.service.ProjectService;
 import site.corin2.user.dto.UserDTO;
 
@@ -122,6 +123,20 @@ public class ProjectController {
 	public View showProject(@RequestParam("projectNum") String projectNum, Model model) {
 		ProjectDTO project = service.projectSelect(Integer.parseInt(projectNum));
 		model.addAttribute("data", project);
+		return jsonview;
+	}
+	
+	@RequestMapping("/prjectSearch")
+	public View searchProject(TeamDTO team, ProjectDTO project, Model model) {
+		List<ProjectDTO> projectDto = service.searchProject(team, project);
+		model.addAttribute("data",projectDto);
+		return jsonview;
+	}
+	
+	@RequestMapping("/allProject")
+	public View autoCompletProject(TeamDTO team, Model model) {
+		List<ProjectDTO> list = service.autoCompletProject(team);
+		model.addAttribute("list", list);
 		return jsonview;
 	}
 	

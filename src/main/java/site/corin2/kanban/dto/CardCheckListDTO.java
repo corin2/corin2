@@ -3,7 +3,6 @@ package site.corin2.kanban.dto;
 public class CardCheckListDTO {
 
 	private int checkNum;
-	private String skillNum;
 	private int cardNum;
 	private String checkContent;
 	private int isChecked;
@@ -17,14 +16,6 @@ public class CardCheckListDTO {
 
 	public void setCheckNum(int checkNum) {
 		this.checkNum = checkNum;
-	}
-
-	public String getSkillNum() {
-		return skillNum;
-	}
-
-	public void setSkillNum(String skillNum) {
-		this.skillNum = skillNum;
 	}
 
 	public int getCardNum() {
