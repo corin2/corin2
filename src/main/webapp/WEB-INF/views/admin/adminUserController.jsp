@@ -15,6 +15,11 @@
 			</ul>
 		</div>
 		<hr>
+		<div>
+			<input type="text" id="searchUser" class="search">&nbsp;
+			<span class="glyphicon glyphicon-search" onclick="allUser(3, $(this).parent().children('input').val(), 1)"></span>
+		</div>
+		<hr>
 		<div id="userManagement"></div>
 		<ul id="pageChange" class="pagination pagination-lg">
 		</ul>

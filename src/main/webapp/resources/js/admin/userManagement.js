@@ -10,7 +10,10 @@ function allUser(enabled, isDelete, pageNum){
 		success : function (data) {
 			$('#userManagement').empty();
 			var viewData = [];
-			$.each(data.data, function(i, elt) {if(elt.enabled == enabled && elt.isDeleted == isDelete)	viewData.push(elt);});
+			if(enabled != 3)
+				$.each(data.data, function(i, elt) {if(elt.enabled == enabled && elt.isDeleted == isDelete)	viewData.push(elt);});
+			else 
+				$.each(data.data, function(i, elt) {if(elt.userId.indexOf(isDelete) > -1) viewData.push(elt);});
 			
 			var texthtml = '<table class="table table-bordered">'
 				 		 + '<thead><tr><th>프로필사진</th><th>아이디</th><th>닉네임</th>'
@@ -120,6 +123,7 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 
 //페이지 보여주기
 function userPaging(enabled, isDelete, pageNum, pagingData) {
+	console.log(isDelete)
 	$('#pageChange').empty();
 	var pagehtml = '';
 	var maxPage = Math.ceil(pagingData.length/5);
@@ -128,19 +132,19 @@ function userPaging(enabled, isDelete, pageNum, pagingData) {
 			pagehtml += '<li><a ';
 			if(maxPage <= 5) {
 				if(pageNum == i) pagehtml += 'style="background-color: black; color: white;"';
-				pagehtml += 'onclick="allUser('+enabled+', '+isDelete+', '+i+')">'+i;
+				pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+i+')">'+i;
 			}else if(maxPage > 5) {
 				if(pageNum < 3) {
 					if(pageNum == i) pagehtml += 'style="background-color: black; color: white;"';
-					pagehtml += 'onclick="allUser('+enabled+', '+isDelete+', '+i+')">'+i;
+					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+i+')">'+i;
 				}
 				else if(pageNum > (maxPage-2)){
 					if(pageNum == (maxPage-5+i)) pagehtml += 'style="background-color: black; color: white;"';
-					pagehtml += 'onclick="allUser('+enabled+', '+isDelete+', '+(maxPage-5+i)+')">'+(maxPage-5+i);
+					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+(maxPage-5+i)+')">'+(maxPage-5+i);
 				}
 				else {
 					if(pageNum == (pageNum-3+i)) pagehtml += 'style="background-color: black; color: white;"';
-					pagehtml += 'onclick="allUser('+enabled+', '+isDelete+', '+(pageNum-3+i)+')">'+(pageNum-3+i);
+					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+(pageNum-3+i)+')">'+(pageNum-3+i);
 				}
 			}
 			pagehtml += '</a></li>'; 
