@@ -1,13 +1,10 @@
 $( function() {
     $( "#tabs" ).tabs();
-    /*skillCheckListTable();
-    skillCheckListTableConfirm();
-    showSkillCheckList();
-    checkedSelect();*/
   });
 
 //테이블 생성
 function skillCheckListTable() {
+	$('#tabs-1').empty();
 	var table ="";
 	
 	table = "<table class='table table-striped table-bordered table-hover'>"
@@ -25,8 +22,9 @@ function skillCheckListTable() {
 }
 
 
-//테이블 생성
+//Confirm 테이블 생성
 function skillCheckListTableConfirm() {
+	$('#tabs-3').empty();
 	$.ajax({
 		url:"skillCheckListUserId",
 		dataType: "JSON",
@@ -56,7 +54,7 @@ function skillCheckListTableConfirm() {
 	
 }
 
-//기본 체크리스트 내용 뿌리기
+//Confirm 기본 체크리스트 내용 뿌리기
 function showSkillCheckListConfirm(user){
 	$.ajax({
 		type : "post",

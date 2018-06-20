@@ -19,15 +19,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<select id="checkedSelect" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
 				select * from skillchecklist where userid=#{userId} and projectnum=#{projectNum}
 			</select>	
+		
 		<!-- check여부 삭제  -->
 		<delete id="checkedDelete">
 			delete from skillchecklist where userid=#{userId} and projectnum=#{projectNum} and checknum=#{checkNum}
 		</delete>
 		
+		<!-- 사용자 유저 등급 확인 -->
 		<select id="dataCheckListUserId" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
 			select * from team where projectnum=#{projectNum} and isdeleted=0
 		</select>
 		
+		<!-- 체크여부 가져오기 -->
 		<select id="selectCheckListConfirm" resultType="site.corin2.checklist.dto.SkillCheckListDTO">
 			select * from skillchecklist where projectnum=#{projectNum}
 		</select>

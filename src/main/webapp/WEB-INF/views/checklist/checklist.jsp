@@ -8,10 +8,10 @@
 <script src="resources/js/checklist/skillchecklist.js"></script>
 <div id="tabs">
   <ul>
-    <li><a href="#tabs-1">CHECKLIST</a></li>
-    <li><a href="#tabs-2">USERCHECKLIST</a></li>
-    <li id="tab3"><a id="3tab" href="#tabs-3">CHECKLIST CONFIRM</a></li>
-    <li id="tab4"><a id="4tab" href="#tabs-4">USERCHECKLIST CONFIRM</a></li>
+    <li><a href="#tabs-1" onclick="userGradeCheckList()">CHECKLIST</a></li>
+    <li><a href="#tabs-2" onclick="userGradeCheckList()">USERCHECKLIST</a></li>
+    <li id="tab3"><a id="3tab" href="#tabs-3" onclick="userGradeCheckList()">CHECKLIST CONFIRM</a></li>
+    <li id="tab4"><a id="4tab" href="#tabs-4" onclick="userGradeCheckList()">USERCHECKLIST CONFIRM</a></li>
     
   </ul>
   <div id="tabs-1">

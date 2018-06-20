@@ -1,7 +1,5 @@
 $( function() {
     $( "#tabs" ).tabs();
- /*   checkListTable();
-    showCheckList();*/
     userGradeCheckList();
 });
 
@@ -32,8 +30,9 @@ function checkListTable() {
 		showCheckList();
 }
 
-//테이블 생성
+//Confirm 테이블 생성
 function checkListTableConfirm() {
+	$('#tabs-4').empty();
 	$.ajax({
 		url:"skillCheckListUserId",
 		dataType: "JSON",
@@ -120,7 +119,7 @@ function showCheckList(){
 	});
 }
 
-//체크리스트 뿌리기
+//Confirm 체크리스트 뿌리기
 function showCheckListConfrim(user){
 	console.log("체크리스트뿌리기")
 	$('#CheckConfrimAddBox').empty();
@@ -239,7 +238,7 @@ function checkedSelectAllConfirm() {
 	})
 	
 }
-
+//로그인한 사용자의 멤버등급
 function userGradeCheckList() {
 	$.ajax({
 		url:"userGradeCheckList",

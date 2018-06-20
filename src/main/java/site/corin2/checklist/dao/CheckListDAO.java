@@ -13,13 +13,18 @@ import site.corin2.project.dto.TeamDTO;
 
 public interface CheckListDAO {
 	
+	//체크리스트 삽입
 	public int insertCheckList(CheckListDTO check);
 	
+	//체크리스트 가져요기
 	public List<CheckListDTO> selectCheckListAll(CheckListDTO check);
 	
+	//체크리스트 수정
 	public int updateCheckListContent (CheckListDTO check);
 	
+	//체크리스트 삭제
 	public int deleteCheckLiset (CheckListDTO check);
 	
+	//사용자 등급 가져오기
 	public List<TeamDTO> userGradeProject (TeamDTO team);
 }

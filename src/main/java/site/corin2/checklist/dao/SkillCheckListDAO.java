@@ -26,8 +26,10 @@ public interface SkillCheckListDAO {
 	//체크여부 삭제
 	public int checkedDelete (SkillCheckListDTO skillcheck);
 	
+	//프로젝트 멤버 아이디 가져오기
 	public List<SkillCheckListDTO> dataCheckListUserId (SkillCheckListDTO skillcheck);
 	
+	//체크여부 가져오기
 	public List<SkillCheckListDTO> selectCheckListConfirm (SkillCheckListDTO skillcheck);
 	
 }

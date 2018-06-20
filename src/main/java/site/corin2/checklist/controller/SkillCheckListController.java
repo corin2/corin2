@@ -66,6 +66,7 @@ public class SkillCheckListController {
 		return jsonview;
 	}
 	
+	//체크리스트 프로젝트에 해당하는 멤버 아이디 가져오기
 	@RequestMapping("/skillCheckListUserId")
 	public View skillCheckListUserId(SkillCheckListDTO skillcheck, Model model) {
 		List<SkillCheckListDTO> list = null;
@@ -74,6 +75,7 @@ public class SkillCheckListController {
 		return jsonview;
 	}
 	
+	//체크여부 가져오기
 	@RequestMapping("/selectCheckedConfirm")
 	public View selectCheckedConfirm (SkillCheckListDTO skillcheck, Model model) {
 		List<SkillCheckListDTO> list = null;

@@ -27,6 +27,7 @@ public class CheckListController {
 	@Autowired
 	private CheckListService service;
 	
+	//체크리스트 삽입
 	@RequestMapping("/insertCheckList")
 	public View checkListInsert(CheckListDTO check, Model model) {
 		int result = 0;
@@ -34,6 +35,7 @@ public class CheckListController {
 		return jsonview;
 	}
 	
+	//체크리스트 전체 검색
 	@RequestMapping("/CheckListSelectAll")
 	public View selectCheckListAll(CheckListDTO check, Model model) {
 		List<CheckListDTO> list = null;
@@ -42,6 +44,7 @@ public class CheckListController {
 		return jsonview;
 	}
 	
+	//체크리스트 수정
 	@RequestMapping("/updateCheckListContent")
 	public View updateCheckListContent(CheckListDTO check, Model model) {
 		int result = 0;
@@ -49,6 +52,7 @@ public class CheckListController {
 		return jsonview;
 	}
 	
+	//체크리스트 삭제
 	@RequestMapping("/deleteCheckListContent")
 	public View deleteCheckLiset (CheckListDTO check, Model model) {
 		int result = 0;
@@ -56,6 +60,7 @@ public class CheckListController {
 		return jsonview;
 	}
 	
+	//사용자 등급 가져오기
 	@RequestMapping("/userGradeCheckList")
 	public View userGradeCheckList (TeamDTO team, Model model) {
 		List<TeamDTO> list = null;
