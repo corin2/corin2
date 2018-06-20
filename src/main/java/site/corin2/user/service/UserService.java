@@ -338,6 +338,8 @@ public class UserService {
 	
 	//프로필 수정하기
 	public void profileupdate(String userid , MultipartHttpServletRequest request) {
+		String savepath = "resources/upload";  
+        String downloadpath = request.getRealPath(savepath);
 		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 		FileMeta fileMeta = null;
 		Iterator<String> itr = request.getFileNames();
@@ -359,7 +361,7 @@ public class UserService {
 				fileMeta.setBytes(mpf.getBytes());
 				FileCopyUtils.copy(mpf.getBytes(),
 						new FileOutputStream(
-								"D:\\bitcamp104\\FinalProject\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\corin2\\resources\\images\\profile\\"
+								downloadpath+"\\"
 											+ mpf.getOriginalFilename()));
 				try {
 					updateuser = userdao.userSelect(userid);
