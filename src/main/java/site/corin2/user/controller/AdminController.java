@@ -43,7 +43,7 @@ public class AdminController {
 	//만든사람들
 	@RequestMapping("adminPeaples")
 	public String adminPeaples() {
-		return "admin.makeparson";
+		return "admin.makeperson";
 	}
 	
 	//스킬메뉴관리
