@@ -13,6 +13,8 @@
 
   <!-- [css] Bootstrap CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- [css] font-awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- [css] 레이아웃 -->
   <link rel="stylesheet" type="text/css" href="resources/css/layout/layout.css">
   <!-- [css] 사이드바 -->
@@ -62,17 +64,18 @@
 				<tiles:insertAttribute name="chatting" />
 			</div>
 		</se:authorize>
+		
 	</div>
 
 	<!-- 페이지 로딩 -->
-	<script src="resources/js/loading/fakeLoader.js"></script>
+	<!-- <script src="resources/js/loading/fakeLoader.js"></script> -->
 	
 	<script>
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
-		$("#fakeloader").fakeLoader({
+		/* $("#fakeloader").fakeLoader({
 			zIndex: '3999',
 			bgColor:"rgba(51, 102, 153, 0.2)",
-		});
+		}); */
 	</script>        
 </body>
 </html>
