@@ -61,7 +61,6 @@ function sortable(){
 		},
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
-			console.log(ui)
 			var productOrder = $(this).sortable('toArray').toString();
 			var children = $(this)[0].children
 			var listNum;
