@@ -104,7 +104,8 @@ function showCheckList(){
 				html="<tr id='index"+(i+1)+"'>"
 					+"<td>"+(i+1)+"</td>"
 					+"<td>"+elt.checkContent+"</td>"
-					+ "<td><input type='checkbox' id='checkedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")'></td>"
+					+"<td><input type='checkbox' id='checkedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")' class='icheckbox_flat-green'>"
+					+"</td>"
 					if(myGradeNum == 'G300'){
 				html+="<td><button class='btn btn-info' style='float:right;' onclick='updateCheckListAdd("+(i+1)+","+elt.checkNum+")'>수정</button>"
 					+"<button class='btn btn-danger' style='float:right;' onclick='deleteCheckListContent("+elt.checkNum+")'>삭제</button></td>" 
@@ -138,7 +139,7 @@ function showCheckListConfrim(user){
 					+"<td>"+(i+1)+"</td>"
 					+"<td>"+elt.checkContent+"</td>";
 					$.each(user, function(i, elt2) {
-					html += "<td><input type='checkbox' id='"+elt.checkNum+elt2.userId.split('@')[0]+elt2.userId.split('@')[1].split('.')[0]
+					html += "<td><input type='checkbox' class='icheckbox_flat-green' id='"+elt.checkNum+elt2.userId.split('@')[0]+elt2.userId.split('@')[1].split('.')[0]
 						 + "'disabled readonly></td>";
 					});
 					html += "</tr>";
@@ -160,6 +161,7 @@ function removeCheckListAdd() {
 
 //체크리스트 수정하는 창 생성
 function updateCheckListAdd(index,checkNum) {
+	$("#index"+index).empty();
 	console.log("야야야야")
 	console.log(checkNum)
 	$("#checkedBox"+checkNum).parent().parent().empty();

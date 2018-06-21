@@ -68,7 +68,7 @@ function showSkillCheckListConfirm(user){
 						+ elt.checkContent + "</td>";
 				$.each(user, function(i, elt2) {
 					html += "<td><input type='checkbox' id='"+elt2.userId.split('@')[0]+elt2.userId.split('@')[1].split('.')[0]
-							+ elt.checkNum + "'disabled readonly></td>";
+							+ elt.checkNum + "' class='icheckbox_flat-green' disabled readonly></td>";
 				});
 				html += "</tr>";
 
@@ -94,7 +94,7 @@ function showSkillCheckList(){
 				html="<tr>"
 				 	+"<td>"+elt.category+"</td>"
 				 	+"<td>"+elt.checkContent+"</td>"
-					+ "<td><input type='checkbox' id='skillCheckedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")'></td>"
+					+ "<td><input type='checkbox' class='icheckbox_flat-green' id='skillCheckedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")'></td>"
 					+"</tr>";
 					$('#skillCheckAddBox').append(html);
 			});
