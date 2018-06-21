@@ -12,7 +12,7 @@
 			
 			<input type="hidden" id="hiddenCardNum">
 			
-			<div class="modal-body container">
+			<div class="modal-body">
 				<div class="flex2">
 					<div class="form-group">
 						<label for="content">상세 내용</label>

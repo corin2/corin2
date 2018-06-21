@@ -17,7 +17,7 @@
 	        </ul>
 	      </div>
 	      <div class="right col-xs-5 text-center">
-	        <img src="resources/images/makeperson/sunghoon_Front.jpg" alt="" class="img-circle img-responsive">
+	        <img src="resources/images/makeperson/sunghoon1.PNG" alt="" class="img-circle img-responsive">
 	      </div>
 	    </div>
 	    <div class="col-xs-12 bottom text-center" style="background-color: #FDD692">
@@ -122,7 +122,7 @@
 	        </ul>
 	      </div>
 	      <div class="right col-xs-5 text-center">
-	        <img src="resources/images/makeperson/nayoung_Front.jpg" alt="" class="img-circle img-responsive">
+	        <img src="resources/images/makeperson/nayoung.jpg" alt="" class="img-circle img-responsive">
 	      </div>
 	    </div>
 	    <div class="col-xs-12 bottom text-center" style="background-color: #9DC8C8">
