@@ -64,7 +64,7 @@ function checkListTableConfirm() {
 function addCardCheckListView() {
 	$('#checkBoxAdd').remove();
 	var div = "<tr>"
-			+ "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext' style='float:left;'>"
+			+ "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext' style='float:left;' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
 			+ "<button class='btn btn-danger' style='float:right;' onclick='removeCheckListAdd()'>취소</button>"
 			+ "<button class='btn btn-success' style='float:right;' onclick='checkListInsert()'>추가</button></td></tr>";
 
@@ -161,21 +161,22 @@ function removeCheckListAdd() {
 
 //체크리스트 수정하는 창 생성
 function updateCheckListAdd(index,checkNum) {
+	if($("#checkBoxAdd").val() != ''){
 	$("#index"+index).empty();
-	console.log("야야야야")
-	console.log(checkNum)
 	$("#checkedBox"+checkNum).parent().parent().empty();
-	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext' style='float:left;'>"
+	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}' style='float:left;'>"
 			+ "<button class='btn btn-danger' style='float:right;' onclick='removeCheckListAdd()'>취소</button>"
 			+ "<button class='btn btn-success' style='float:right;' onclick='updateCheckListContent("+checkNum+")'>수정</button></td>"
-			
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
-			
+	}else{
+		alert("수정먼저해")
+	}
 }
 
 //체크리스트 수정
 function updateCheckListContent(checkNum) {
+	if($("#CheckBoxInput").val()!=''){
 	$.ajax({
 		url : "updateCheckListContent",
 		datatype : "JSON",
@@ -183,11 +184,15 @@ function updateCheckListContent(checkNum) {
 				checkContent:$("#CheckBoxInput").val(),
 				checkNum:checkNum},
 		success:function(data){
+			
 			console.log("업데이트성공"+data.result);
 			showCheckList();
 		}
 				
 	})
+	}else{
+		alert("수정할 문자열을 입력해주세요")
+	}
 }
 
 //체크리스트 삭제

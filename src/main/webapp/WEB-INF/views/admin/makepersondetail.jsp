@@ -23,14 +23,8 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
 
-      <div class="item active">
-        <img src="resources/images/makeperson/낙곱새.jpg" alt="Chania" width="460" height="345">
-        <div class="carousel-caption">
-          <h3>즐거운회식</h3>
-        </div>
-      </div>
 
-      <div class="item">
+      <div class="item active">
         <img src="resources/images/makeperson/열심히코딩.jpg" alt="Chania" width="460" height="345">
         <div class="carousel-caption">
           <h3>코딩하는 우리들</h3>
@@ -43,6 +37,14 @@
           <h3>회의하는 우리들</h3>
         </div>
       </div>
+
+      <div class="item">
+        <img src="resources/images/makeperson/낙곱새.jpg" alt="Chania" width="460" height="345">
+        <div class="carousel-caption">
+          <h3>즐거운회식</h3>
+        </div>
+      </div>
+      
 <!-- 
       <div class="item">
         <img src="img_flower2.jpg" alt="Flower" width="460" height="345">

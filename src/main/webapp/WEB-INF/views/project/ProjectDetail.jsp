@@ -8,7 +8,7 @@
 			
 			<input type="hidden" id="hiddenCardNum">
 			
-			<div class="modal-body container">
+			<div class="modal-body">
 				<div id="detailButton" class="flex2">
 					<div id="projectDetail" class="form-group">
 					<h3>프로젝트제목입력:</h3>

@@ -59,7 +59,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="searchProject" parameterType="hashmap" resultType="site.corin2.project.dto.ProjectDTO">
 			select * from project p join team t
 			on p.projectnum = t.projectnum
-			where t.userid=#{userId} and p.projectname like '%${projectName}%'
+			where t.userid=#{userId} and p.projectname like '%${projectName}%' and p.isdeleted = 0
 		</select>
 		
 		<select id="autoCompletProject" resultType="site.corin2.project.dto.ProjectDTO">

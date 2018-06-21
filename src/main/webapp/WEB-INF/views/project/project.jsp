@@ -6,12 +6,14 @@
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="resources/js/project/project.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <jsp:include page="ProjectDetail.jsp"></jsp:include>
-
+<div class="container">
 <div class="navbar navbar-default">
 	<div id="search">
-	<input type="text" id="searchProject" class="search" onclick="autoCompleteProject()">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
+	<input type="text" id="searchProject" class="search" placeholder="프로젝트명을입력하세요" onclick="autoCompleteProject()" onkeypress="if(event.keyCode==13) {searchColorView();}">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
+	<hr>
 	<div id="searchBox">
 	</div>
 	</div>
@@ -27,9 +29,10 @@
 
 <div class="navbar navbar-default">
 	<div id="project">
-		<h1>프로젝트<img src="https://png.icons8.com/ios/50/000000/plus.png" onclick="projectDetailView()" data-toggle="modal" data-target="#myModal2"></h1>
+		<h1>프로젝트</h1>
 		<hr>
 		<div id="projectbox">
 		</div>
 	</div>
+</div>
 </div>

@@ -81,4 +81,6 @@
 
 .tdpositionclass{
 	width: 8%;
+	vertical-align:inherit ;
+    text-align: center;
 }

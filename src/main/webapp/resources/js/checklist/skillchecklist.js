@@ -10,7 +10,7 @@ function skillCheckListTable() {
 	table = "<table class='table table-striped table-bordered table-hover'>"
 		  + "<tbody>"
 		  + "<tr>"
-		  + "<th class='tdpositionclass tdalignclass'>구분</th>"
+		  + "<th class='tdpositionclass tdalignclass'>CLASS</th>"
 		  + "<th class='tdalignclass' style='width:89%'>CHECKLIST</th>"
 		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
@@ -36,7 +36,7 @@ function skillCheckListTableConfirm() {
 			table = "<table class='table table-striped table-bordered table-hover'>"
 				+ "<tbody>"
 				+ "<tr>"
-				+ "<th class='tdpositionclass tdalignclass'>구분</th>"
+				+ "<th class='tdpositionclass tdalignclass'>CLASS</th>"
 				+ "<th class='tdalignclass' style='width:87%'>CHECKLIST</th>";
 			$.each(data.list, function(index, elt) {
 				table += "<th class='tdalignclass'>"+elt.userId+"</th>"
