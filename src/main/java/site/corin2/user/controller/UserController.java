@@ -98,11 +98,11 @@ public class UserController {
 	}
 	
 	//사용자 수정하기 페이지 이동
-	@RequestMapping(value="userupdate" , method=RequestMethod.GET)
+	@RequestMapping(value="userprofile" , method=RequestMethod.GET)
 	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
 		UserDTO userdto = service.userUpdate(principal.getName());
 		model.addAttribute("userdto", userdto);
-		return "user.update";
+		return "user.profile";
 	}
 	
 	//프로필 올리기

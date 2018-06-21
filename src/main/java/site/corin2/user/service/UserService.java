@@ -340,25 +340,26 @@ public class UserService {
 			fileMeta.setFileName(mpf.getOriginalFilename());
 			fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
 			fileMeta.setFileType(mpf.getContentType());
+			String fileName = System.currentTimeMillis()+mpf.getOriginalFilename();
 			System.out.println(mpf.getOriginalFilename());
 			System.out.println(mpf.getContentType());
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 			UserDTO updateuser;
 			try {
+				updateuser = userdao.userSelect(userid);
+				updateuser.setUserProfile(fileName);
+				userdao.profileUpdate(updateuser);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			try {
 				fileMeta.setBytes(mpf.getBytes());
 				FileCopyUtils.copy(mpf.getBytes(),
 						new FileOutputStream(
 								downloadpath+"\\"
-											+ mpf.getOriginalFilename()));
-				try {
-					updateuser = userdao.userSelect(userid);
-					updateuser.setUserProfile(mpf.getOriginalFilename());
-					userdao.profileUpdate(updateuser);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+											+ fileName));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
