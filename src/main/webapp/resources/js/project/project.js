@@ -305,6 +305,7 @@ function searchProject(projectArray) {
 				console.log(elt.languageNum)
 				if(elt.languageNum == elt2.languageNum){
 				html +=	"<div style='float:left;'>"
+					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
 					+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 					+ "</div>";
 				
