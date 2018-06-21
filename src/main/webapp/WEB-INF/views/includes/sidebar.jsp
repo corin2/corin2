@@ -17,7 +17,7 @@
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
 	    <script>
-	    	location.href="http://localhost:8090/controller/login.html";
+	    	location.href="http://"+ document.domain +":8090/controller/login.html";
 	    </script>
 	</c:when>
 </c:choose>
