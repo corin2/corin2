@@ -38,7 +38,7 @@
 			<div class="container">
 			    <span class="btn btn-success fileinput-button">
 			        <i class="glyphicon glyphicon-plus"></i>
-			        <span>프로필 변경하기</span>
+			        <span>Add files...</span>
 			        <input id="fileupload" type="file" name="files" data-url="profileupdate">
 			    </span>
 			</div>

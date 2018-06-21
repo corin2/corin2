@@ -1,6 +1,4 @@
 	$(function(){
-		
-		timer = setInterval( function () {
 			$.ajax({
 				type : "post",
 				url  : "showUser",
@@ -12,23 +10,37 @@
 					});
 				}
 			});
-		}, 1); 
 		
-		$(function () {
-		    'use strict';
-		    // Change this to the location of your server-side upload handler:
-		    var url = window.location.hostname === 'blueimp.github.io' ?
-		                '//jquery-file-upload.appspot.com/' : 'server/php/';
-		    $('#fileupload').fileupload({
-		        url: url,
-		        dataType: 'json',
-		        done: function (e, data) {
-		            $.each(data.result.files, function (index, file) {
-		                $('<p/>').text(file.name).appendTo('#files');
-		            });
-		        },
-		    })
-		});
+	    $('#fileupload').fileupload({
+	        dataType: 'json',
+	        add: function(e, data){
+                var uploadFile = data.files[0];
+                var isValid = true;
+                if (!(/png|jpe?g|gif|svg/i).test(uploadFile.name)) {
+                    alert('png, jpg, gif 만 가능합니다');
+                    isValid = false;
+                }
+                if (isValid) {
+                    data.submit();
+                }
+	        },
+	        done: function (e, data) {
+	        	console.log(data.result);
+	        	$.ajax({
+					type : "post",
+					url  : "showUser",
+					datatype:"JSON",
+					data : {userId : $('#hiddenUserId').val()},
+					success : function(data){
+						$.each(data, function(index, obj) {
+							$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
+						});
+					}
+				});
+	        },
+	    }).on('fileuploadfail', function (e, data) {
+	    	alert("형식이 맞지 않습니다.")
+	    });
 		
 		$('#button').click(function(){
 			if($('#password').val() != "" && $('#password').val() == $('#password2').val()){
