@@ -63,7 +63,7 @@ function projectView(projectArray) {
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
-						html +=	"<div style='float:left;'>"
+						html +=	"<div style='float:left; magin-top:5px;'>"
 							 + "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							 + "<p style='float:right; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
@@ -100,7 +100,7 @@ function projectBookView(projectArray) {
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
-						html +=	"<div style='float:left;'>"
+						html +=	"<div style='float:left; magin-top:5px;'>"
 							+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							+ "<p style='float:right; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
@@ -135,7 +135,7 @@ function projectDetailView() {
 			 + "<br>"
 		 	 + "</div>"
 		 	 + "<br>"
-		     +"<input id='addProject' class='btn btn-success' type='button' onclick='addProject()' value='생성'>"
+		     +"<input id='addProject' class='btn btn-create' type='button' onclick='addProject()' value='생성'>"
 			 +"<input id='cancleProject' class='btn btn-danger' data-dismiss='modal' type='button' value='취소'>";
 			 $("#detailButton").html(html);
 			 printProjectDetailLanguage();
@@ -180,7 +180,7 @@ function printProjectDetailLanguage() {
 			var html = '';
 			$.each(data.list, function(index, elt) {
 				console.log(elt)
-				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
+				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
 		}
@@ -195,7 +195,7 @@ function printProjectDetailLanguageChecked(projectNum) {
 		success:function(data){
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				html += "<input type='radio' name='language' value='"+elt.languageNum+"'";
+				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'";
 				if($('#hiddenLanguageNum'+projectNum).val() == elt.languageNum)	html += " checked ";
 				html += ">"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>";
 			})
@@ -226,9 +226,9 @@ function projectUpdateView(projectNum) {
 			 + "<br>"
 			 + "</div>"
 			 + "<div>"
-			 + "<input id='addProject' class='btn btn-success' style='margin-right:10px;' type='button' onclick='updateLanguage("+projectNum+")' data-dismiss='modal' value='수정'>"
-			 + "<input id='deleteProject' class='btn btn-danger' style='margin-right:10px;' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
-			 + "<input id='cancleProject' class='btn btn-info' style='margin-right:10px;' data-dismiss='modal' type='button' value='취소'>"
+			 + "<input id='addProject' class='btn btn-success' type='button' onclick='updateLanguage("+projectNum+")' data-dismiss='modal' value='수정'>"
+			 + "<input id='deleteProject' class='btn btn-danger' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<input id='cancleProject' class='btn btn-info' data-dismiss='modal' type='button' value='취소'>"
 			 + "</div>"
 			 $("#detailButton").html(html)
 			 printProjectDetailLanguageChecked(projectNum)

@@ -16,7 +16,7 @@ function checkListTable() {
 			   + "<tbody>"
 			   + "<tr>"
 			   + "<th class='tdalignclass'>NO</th>"
-			   + "<th class='tdalignclass' style='width:92%'>CHECKLIST</th>"
+			   + "<th class='tdalignclass' style='width:90%'>CHECKLIST</th>"
 			   + "<th class='tdalignclass'>CHECK</th>"
 	  if(myGradeNum=='G300'){
 		  table+= "<th class='tdpositionclass'>EDIT</th>"
