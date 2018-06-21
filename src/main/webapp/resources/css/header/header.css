@@ -1,1 +1,5 @@
 /* header css */
+#headerProjectName {
+	border-left: 20px solid;
+	border-color: lightblue;
+}

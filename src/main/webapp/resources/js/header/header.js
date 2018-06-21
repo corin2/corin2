@@ -82,6 +82,7 @@ function projectNameView(){
 			$('#headerProjectName').empty();
 			
 			$('#headerProjectName').html(data.data.projectName);
+			//$('#headerProjectName').css('border-color', data.data.project); //프로젝트 언어 색상
 		}
 	});
 }

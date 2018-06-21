@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<link rel="stylesheet" type="text/css" href="resources/css/header/header.css">
 <script src="resources/js/header/header.js"></script>
 
 <!-- 프로젝트 정보 -->
@@ -8,7 +8,6 @@
 	<div class="navbar-header">
 		<!-- 프로젝트 명, 멤버 리스트 -->
 		<div class="navbar-header">
-	    	<!-- <label class="navbar-brand" id="headerProjectName">코린이</label> -->
 	    	<a class="navbar-brand" id="headerProjectName" href="#">코린이</a>
 	    </div>
 	    <div class="nav navbar-nav">
