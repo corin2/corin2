@@ -1,21 +1,53 @@
 #dropzone {
     background: #ccccc;
-    width: 150px;
-    height: 50px;
+    width: 100%;
+    height: 100%;
     line-height: 50px;
     text-align: center;
     font-weight: bold;
+	border:1px solid #566270;
 }
+/* #dropzone dropzoneimg{
+	width: 200px;
+    height: 100px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: bold;
+    opacity: 0;
+	transition: opacity 1s;
+    background-image:url('resources/images/board/dropzone1.png');
+}
+
+
+#dropzone:hover > dropzoneimg {
+opaci ty: 1;
+} 
+*/
+
 #dropzone.in {
     width: 600px;
     height: 200px;
     line-height: 200px;
     font-size: larger;
-    background-color: yellow;
+ 	
+   
+    
 }
-#dropzone.hover {
-    background: lawngreen;
+
+.wrap {
+    width: 1600px;
+    height: 100%;
+    text-align:center;
 }
+.over {
+   	display:inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+
+	  
+
 #dropzone.fade {
     -webkit-transition: all 0.3s ease-out;
     -moz-transition: all 0.3s ease-out;
@@ -23,6 +55,42 @@
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     opacity: 1;
+ 
+    
 }
 
+.preview{
+     z-index: 9999;
+     position:absolute;
+     border:0px solid #ccc;
+     background:#333;
+     padding:1px;
+     display:none;
+     color:#fff;
+  }
+  
+ .filebox label { 
+  width:100%;
+  height:50px;
+  color: #999; 
+  font-size: 30px; 
+  line-height: normal;
+  vertical-align: middle; 
+  background-color: #566270; 
+  color:white;
+  cursor: pointer; 
+  border: 1px solid #ebebeb; 
+  border-bottom-color: #e2e2e2; 
+  border-radius: .25em; 
+  margin: 0
+  } 
+  .filebox input[type="file"] { /* 파일 필드 숨기기 */ 
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+
+  overflow: hidden; 
+  clip:rect(0,0,0,0); 
+  border: 0; }
 
