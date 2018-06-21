@@ -35,13 +35,14 @@ function showCalendar() {
 					calendarColor : '#3A87AD'
 				},
 				success : function(data){
-					calendarCardView();
+					send(2);
 				}
 			});
 		},
 		eventClick: function(event) {
-			console.log(event.id)
-			//cardDetail()
+			cardDetail(event.id.substr(10));
+			 $("#myModal").modal();
+			//onclick="cardDetail(event.id.substr(10))" data-toggle="modal" data-target="#myModal"
 	    },
 	    eventDrop: function(event, delta, revertFunc, jsEvent, ui, view) { // Drag를 통한 날짜 변경 처리 함수
 	    	var calendarData = {
@@ -76,7 +77,7 @@ function showCalendar() {
 		    		datatype:"JSON",
 		    		data : {cardNum : event.id.substr(10)},
 		    		success : function(data){
-		    			dragCardCalendar();
+		    			send(3);
 		    		}
 		    	});
 		    }
@@ -92,7 +93,7 @@ function calendarDateUpdate(calendarData){
 		datatype:"JSON",
 		data : calendarData,
 		success : function(data){
-			calendarCardView();
+			send(2);
 		}
 	});
 }
@@ -105,12 +106,12 @@ function dragCardCalendar() {
 		datatype:"JSON",
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
-			console.log(data.data)
 			var htmlText = '';
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText += '<div id="cardNumber'+elt.cardNum+'" ' 
-							 + 'class="fc-event ui-draggable ui-draggable-handle">'+elt.cardName+'</div>';
+							 + 'class="fc-event ui-draggable ui-draggable-handle" ' 
+							 + 'onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName+'</div>';
 				}
 			});
 			

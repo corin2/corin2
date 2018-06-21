@@ -254,7 +254,7 @@ function addCard(obj, projectNum){
 	}
 }
 
-//카드 디텔일 총합 뿌려주기
+//카드 디테일 총합 뿌려주기
 function cardDetail(cardNum){
 	$('#hiddenCardNum').attr('value', cardNum);
 	selectCard(cardNum);
