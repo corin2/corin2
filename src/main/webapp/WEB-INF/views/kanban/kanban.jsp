@@ -8,7 +8,7 @@
 <script src="resources/js/kanban/kanbanSocket.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
-<div class="content-wrapper">
+<div style="width:100%;">
 	<div id="mainScreen" class="container-fluid" scrollTop="5px">
 		<h2 id='boardTitle'>칸반보드</h2>
 		<hr>
