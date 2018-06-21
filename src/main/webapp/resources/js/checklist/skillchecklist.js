@@ -10,9 +10,9 @@ function skillCheckListTable() {
 	table = "<table class='table table-striped table-bordered table-hover'>"
 		  + "<tbody>"
 		  + "<tr>"
-		  + "<th>구분</th>"
-		  + "<th width='100%'>CHECKLIST</th>"
-		  + "<th>CHECK</th>"
+		  + "<th class='tdpositionclass tdalignclass'>구분</th>"
+		  + "<th class='tdalignclass' style='width:89%'>CHECKLIST</th>"
+		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
 		  + "</tbody>"
 		  + "<tbody id='skillCheckAddBox'>"
@@ -36,10 +36,10 @@ function skillCheckListTableConfirm() {
 			table = "<table class='table table-striped table-bordered table-hover'>"
 				+ "<tbody>"
 				+ "<tr>"
-				+ "<th>구분</th>"
-				+ "<th width='100%'>CHECKLIST</th>";
+				+ "<th class='tdpositionclass tdalignclass'>구분</th>"
+				+ "<th class='tdalignclass' style='width:87%'>CHECKLIST</th>";
 			$.each(data.list, function(index, elt) {
-				table += "<th>"+elt.userId+"</th>"
+				table += "<th class='tdalignclass'>"+elt.userId+"</th>"
 			});
 			table += "</tr>"
 				  + "</tbody>"
@@ -64,10 +64,10 @@ function showSkillCheckListConfirm(user){
 		success : function(data){
 			var html="";
 			$.each(data.list, function(index, elt) {
-				html = "<tr>" + "<td>" + elt.category + "</td>" + "<td>"
+				html = "<tr>" + "<td class='tdalignclass'>" + elt.category + "</td>" + "<td>"
 						+ elt.checkContent + "</td>";
 				$.each(user, function(i, elt2) {
-					html += "<td><input type='checkbox' id='"+elt2.userId.split('@')[0]+elt2.userId.split('@')[1].split('.')[0]
+					html += "<td class='tdalignclass'><input type='checkbox' id='"+elt2.userId.split('@')[0]+elt2.userId.split('@')[1].split('.')[0]
 							+ elt.checkNum + "' class='icheckbox_flat-green' disabled readonly></td>";
 				});
 				html += "</tr>";
@@ -92,9 +92,9 @@ function showSkillCheckList(){
 			var html="";
 			$.each(data.list, function(index, elt) {
 				html="<tr>"
-				 	+"<td>"+elt.category+"</td>"
+				 	+"<td class='tdalignclass'>"+elt.category+"</td>"
 				 	+"<td>"+elt.checkContent+"</td>"
-					+ "<td><input type='checkbox' class='icheckbox_flat-green' id='skillCheckedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")'></td>"
+					+ "<td class='tdalignclass'><input type='checkbox' class='icheckbox_flat-green' id='skillCheckedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")'></td>"
 					+"</tr>";
 					$('#skillCheckAddBox').append(html);
 			});

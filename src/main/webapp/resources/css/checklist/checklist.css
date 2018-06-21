@@ -74,6 +74,11 @@
     transform: rotate(45deg);
 }
 
-td {
-    vertical-align: inherit;
+.tdalignclass {
+    vertical-align:inherit ;
+    text-align: center;
+}
+
+.tdpositionclass{
+	width: 8%;
 }
