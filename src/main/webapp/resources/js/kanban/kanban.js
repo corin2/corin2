@@ -61,7 +61,6 @@ function sortable(){
 		},
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
-			console.log(ui)
 			var productOrder = $(this).sortable('toArray').toString();
 			var children = $(this)[0].children
 			var listNum;
@@ -255,7 +254,7 @@ function addCard(obj, projectNum){
 	}
 }
 
-//카드 디텔일 총합 뿌려주기
+//카드 디테일 총합 뿌려주기
 function cardDetail(cardNum){
 	$('#hiddenCardNum').attr('value', cardNum);
 	selectCard(cardNum);

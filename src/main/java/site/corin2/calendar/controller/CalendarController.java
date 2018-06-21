@@ -6,6 +6,8 @@
 */
 package site.corin2.calendar.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +17,17 @@ import org.springframework.web.servlet.View;
 
 
 import site.corin2.calendar.service.CalendarService;
-
+import site.corin2.kanban.dto.CardDTO;
 import site.corin2.calendar.dto.CalendarDTO;
 
 @Controller
 public class CalendarController {
+	
+	@Autowired
+	private View jsonview;
+	
+	@Autowired
+	private CalendarService service;
 	
 	//position 칸반으로 보내준다.
 	@RequestMapping("/position.calendar")
@@ -30,5 +38,34 @@ public class CalendarController {
 	@RequestMapping("/calendar")
 	public String CalendarView() {
 		return "calendar.calendar";
+	}
+	
+	//캘린터 추가
+	@RequestMapping("addCalendar")
+	public View addCalendar(CalendarDTO calendar) {
+		service.addCalendar(calendar);
+		return jsonview;
+	}
+	
+	//모든 캘린더 찾기
+	@RequestMapping("calendarView")
+	public View calendarView(CalendarDTO calendar, Model model) {
+		List<CalendarDTO> calendars = service.calendarAllSelect(calendar);
+		model.addAttribute("data", calendars);
+		return jsonview;
+	}
+	
+	//일정 위치수정
+	@RequestMapping("calendarDateUpdate")
+	public View calendarDateUpdate(CalendarDTO calendar, Model model) {
+		service.calendarDateUpdate(calendar);
+		return jsonview;
+	}
+	
+	//일정 삭제
+	@RequestMapping("calendarDelete")
+	public View calendarDelete(CalendarDTO calendar, Model model) {
+		service.calendarDelete(calendar);
+		return jsonview;
 	}
 }
