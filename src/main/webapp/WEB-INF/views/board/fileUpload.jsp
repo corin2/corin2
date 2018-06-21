@@ -19,21 +19,20 @@ pageEncoding="UTF-8"%>
 
 	<br>
 	<br>
-	<div class ="wrap" >
-		 	 <form action="upload" method="post" enctype="multipart/form-data"> 
-					<div class="filebox"> 
-						<label for="fileupload">파일함</label> 
-					    <input id="fileupload" type="file" name="files[]"  multiple>
-					</div>
-		 			<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
-		 			<input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
-		 	 </form>
+	
+	<div id ="wrap" >
+		<form action="upload" method="post" enctype="multipart/form-data"> 
+			<div class="filebox"> 
+				<label for="fileupload">파일함</label> 
+				<input id="fileupload" type="file" name="files[]"  multiple>
+			</div>
+		 		<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
+		 		<input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
+		</form>
 		<div id="dropzone" class="fade well" style='width:100%;height:100%;'>
-			 <div class ="over">
+			 <div id ="over">
 				<img class="dropzoneimg" ></img>
-				
-				<div class="dropzonediv">	 
-				</div>
+				<div class="dropzonediv"></div>
 			 </div>	
 		</div>
 	</div>

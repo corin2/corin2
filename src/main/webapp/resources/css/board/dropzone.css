@@ -6,6 +6,8 @@
     text-align: center;
     font-weight: bold;
 	border:1px solid #566270;
+/* 	border: 3px dashed #566270; */
+	
 }
 /* #dropzone dropzoneimg{
 	width: 200px;
@@ -15,7 +17,6 @@
     font-weight: bold;
     opacity: 0;
 	transition: opacity 1s;
-    background-image:url('resources/images/board/dropzone1.png');
 }
 
 
@@ -29,23 +30,28 @@ opaci ty: 1;
     height: 200px;
     line-height: 200px;
     font-size: larger;
- 	
-   
+	    
     
 }
 
-.wrap {
+#wrap {
     width: 1600px;
     height: 100%;
     text-align:center;
 }
-.over {
+#over {
    	display:inline-block;
     width: 100%;
     height: 100%;
 }
 
-
+.dropzoneimg {
+    position: absolute;
+    opacity: 1;
+    margin: -150px 0 0 -75px;
+    top: 50%;
+    left: 50%;
+}
 	  
 
 #dropzone.fade {
@@ -55,8 +61,7 @@ opaci ty: 1;
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     opacity: 1;
- 
-    
+
 }
 
 .preview{
@@ -82,14 +87,14 @@ opaci ty: 1;
   border: 1px solid #ebebeb; 
   border-bottom-color: #e2e2e2; 
   border-radius: .25em; 
-  margin: 0
+  margin: 0;
   } 
   .filebox input[type="file"] { /* 파일 필드 숨기기 */ 
   position: absolute; 
   width: 1px; 
   height: 1px; 
   padding: 0; 
-
+  margin: -1px; 
   overflow: hidden; 
   clip:rect(0,0,0,0); 
   border: 0; }

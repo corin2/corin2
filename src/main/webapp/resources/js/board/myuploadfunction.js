@@ -1,9 +1,26 @@
 $(function () {
 	fileselect();
 	firstFileSelect();
-
+	drag();
 });
 
+function drag() {
+    // handle drag/drop
+    $('body').bind("dragover", function (e) {
+        $('#dropzone').addClass('drag');
+        $('#dropzoneimg').addClass('drag');
+        $('.dropzoneimg').attr('src','resources/images/board/dropzone1.png');
+        return false;
+    }).bind("dragleave", function (e) {
+        $('#dropzone').removeClass('drag');
+        $('.dropzoneimg').removeAttr('src','resources/images/board/dropzone1.png'); 
+        return false;
+    }).bind("drop", function (e) {
+        $('#dropzone').removeClass('drag');
+        $('.dropzoneimg').removeAttr('src','resources/images/board/dropzone1.png'); 
+        return false;
+    });
+}
 //드래그로 파일 업로드 ( DB에 저장 된는 동시에 파일뿌리기)
 function fileselect(){
 
@@ -131,12 +148,37 @@ function deleteFile(boardNum) {
     
     		console.log(data);
     		firstFileSelect();
-    		
-		
     	}
- 	   
     }); 
-    
+}
 
+function name() {
+	$(document).bind('dragover', function (e) {
+	    var dropZone = $('.dropzone'),
+	        timeout = window.dropZoneTimeout;
+	    if (!timeout) {
+	        dropZone.addClass('in');
+	    } else {
+	        clearTimeout(timeout);
+	    }
+	    var found = false,
+	        node = e.target;
+	    do {
+	        if (node === dropZone[0]) {
+	            found = true;
+	            break;
+	        }
+	        node = node.parentNode;
+	    } while (node != null);
+	    if (found) {
+	        dropZone.addClass('hover');
+	    } else {
+	        dropZone.removeClass('hover');
+	    }
+	    window.dropZoneTimeout = setTimeout(function () {
+	        window.dropZoneTimeout = null;
+	        dropZone.removeClass('in hover');
+	    }, 100);
+	});
 }
  
