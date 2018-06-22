@@ -6,7 +6,6 @@
 <script src="resources/js/board/jquery.fileupload.js"></script>
 <script src="resources/js/user/profile.js"></script>
 <link rel="stylesheet" href="resources/css/user/profile.css">
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <div id="content" class="profilediv">
 	<form action="" method="post">
 		<h2>Profile</h2>

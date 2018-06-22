@@ -56,7 +56,8 @@ public class UserService {
 	VelocityEngine velocityEngine;
 	
 	//회원가입 기능 실행
-	public String userInsert(UserDTO userdto , HttpServletRequest request) {
+	public void userInsert(UserDTO userdto) {
+		System.out.println("service탔니");
 		int result = 0;
 		String viewpage = "";
 		try {
@@ -85,15 +86,11 @@ public class UserService {
 				template.merge(velocityContext, stringWriter); 
 				mimeMessageHelper.setText(stringWriter.toString(),true); 
 				javamailsender.send(message);
-				viewpage = "user.insertsuccess";
-			} else {
-				viewpage = "user.insertfail";
-			}
+			} 
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
-		return viewpage;
 	}
 	
 	//email 인증 페이지
@@ -137,29 +134,45 @@ public class UserService {
 		
 		return check;
 	}
-
+	
 	//비밀번호 재설정 기능 실행
-	public String repassword(UserDTO userdto) {
+	public void repassemailconfirm(String result , String userId) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO repassuser;
-		String viewpage= null;
 		try {
-			String repassword = ""+(int)((Math.random()*100000)+1);
-			repassuser = userdao.userSelect(userdto.getUserId());
-			//updateuser.setPassword(bCryptPasswordEncoder.encode(userdto.getPassword()));
-			repassuser.setPassword(repassword);
+			repassuser = userdao.userSelect(userId);
+			repassuser.setPassword(result);
 			userdao.repassword(repassuser);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	//비밀번호 재설정 이메일 보내기
+	public void repassword(UserDTO userdto) {
+		try {
 			MimeMessage message = javamailsender.createMimeMessage();
-			message.setSubject("corin2입니다.");
-			message.setFrom(new InternetAddress("corin2site@gmail.com"));
-			message.setText("새로운 비밀번호는 "+repassword+" 입니다.","utf-8", "html");
-			message.addRecipient(RecipientType.TO,new InternetAddress(userdto.getUserId()));
+			MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(message, false);
+			mimeMessageHelper.setSubject("corin2입니다.");
+			mimeMessageHelper.setFrom(new InternetAddress("corin2site@gmail.com"));
+			mimeMessageHelper.setTo(userdto.getUserId());
+			//message.setText("<a href='http://"+request.getRequestURL()+"/emailConfirm?userid=" + userdto.getUserId()+("'>이메일 인증 확인</a>"),"utf-8", "html");
+			velocityEngine.setProperty("resource.loader", "class");
+			velocityEngine.setProperty("class.resource.loader.class", "org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader");
+			velocityEngine.init();
+			VelocityContext velocityContext = new VelocityContext(); 
+			velocityContext.put("userId",userdto.getUserId());
+			System.out.println(userdto.getUserId());
+			Template template = velocityEngine.getTemplate("repassword.vm"); 
+			StringWriter stringWriter = new StringWriter(); 
+			template.merge(velocityContext, stringWriter); 
+			mimeMessageHelper.setText(stringWriter.toString(),true); 
 			javamailsender.send(message);
-			viewpage = "redirect:login.html";
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}	
-		return viewpage;
 	}
 
 	//아이디 중복확인
@@ -234,11 +247,6 @@ public class UserService {
 			e.printStackTrace();
 		}
 		return userdto;
-	}
-	
-	//프로필 올리기
-	public void userProfile(MultipartHttpServletRequest request) {
-		
 	}
 	
 	//사용자 수정하기 기능 실행

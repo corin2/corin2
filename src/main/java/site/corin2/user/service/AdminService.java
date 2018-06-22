@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
@@ -23,6 +25,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.kanban.dto.ListDTO;
@@ -143,11 +146,13 @@ public class AdminService {
 	}
 	
 	//vmfileload하기
-	public String vmLoad() {
+	public String vmLoad(HttpServletRequest request) {
+		String savepath = "resources/admin/velocity";  
+		String realpath = request.getSession().getServletContext().getRealPath(savepath);
 		  BufferedReader br;
 		  String line = "";
 		try {
-			br = new BufferedReader(new FileReader("D:\\bitcamp104\\FinalProject\\corin2\\src\\main\\webapp\\WEB-INF\\views\\velocity\\signup.vm"));
+			br = new BufferedReader(new FileReader(realpath+"\\signup.vm"));
 			while(true) {
 				String content = br.readLine();
 				if (content==null) break;
@@ -161,11 +166,13 @@ public class AdminService {
 	}
 	
 	//vmfile2load하기
-	public String vmLoad2() {
+	public String vmLoad2(HttpServletRequest request) {
+		String savepath = "resources/admin/velocity";  
+        String realpath = request.getSession().getServletContext().getRealPath(savepath);
 		  BufferedReader br;
 		  String line = "";
 		try {
-			br = new BufferedReader(new FileReader("D:\\bitcamp104\\FinalProject\\corin2\\src\\main\\webapp\\WEB-INF\\views\\velocity\\signup2.vm"));
+			br = new BufferedReader(new FileReader(realpath+"\\signup2.vm"));
 			while(true) {
 				String content = br.readLine();
 				if (content==null) break;
@@ -179,10 +186,12 @@ public class AdminService {
 	}
 	
 	//vmfilesave하기
-	public void vmSave(String savedata , String signup) {
+	public void vmSave(String savedata , String signup , HttpServletRequest request) {
+		String savepath = "resources/admin/velocity";  
+		String realpath = request.getSession().getServletContext().getRealPath(savepath);
 		BufferedWriter bw;
 		try {
-			bw = new BufferedWriter(new FileWriter("D:\\bitcamp104\\FinalProject\\corin2\\src\\main\\webapp\\WEB-INF\\views\\velocity\\"+signup+".vm"));
+			bw = new BufferedWriter(new FileWriter(realpath+"\\"+signup+".vm"));
 			while(true) {
 				bw.write(savedata);
 			    bw.newLine(); // 줄바꿈
