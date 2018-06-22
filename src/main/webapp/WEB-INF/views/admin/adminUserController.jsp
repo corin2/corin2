@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="resources/js/admin/userManagement.js"></script>
+<link rel="stylesheet" href="resources/css/admin/admin.css">
 <nav class="navbar navbar-default">
 	<div>
 		<h1>UserManager</h1>

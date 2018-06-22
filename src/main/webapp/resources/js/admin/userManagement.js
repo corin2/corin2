@@ -85,7 +85,7 @@ function userEdit(obj, enabled, isDelete, pageNum) {
 	var text1 = tr.children('td:eq(2)').text();
 	var text2 = tr.children('td:eq(3)').text();
 	var text3 = tr.children('td:eq(5)').text();
-	var texthtml = '<input type="text" value="'+text1+'" >';
+	var texthtml = '<input type="text" class="inputtext" value="'+text1+'" >';
 	var texthtm12 = '<select><option value="0">비인증회원</option><option value="1" ';
 	if(text2 == '인증회원') texthtm12 += 'selected ';
 	texthtm12 += '>인증회원</option></select>';
@@ -131,19 +131,19 @@ function userPaging(enabled, isDelete, pageNum, pagingData) {
 		if(i <= 5){
 			pagehtml += '<li><a ';
 			if(maxPage <= 5) {
-				if(pageNum == i) pagehtml += 'style="background-color: black; color: white;"';
+				if(pageNum == i) pagehtml += 'class="thisPage"';
 				pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+i+')">'+i;
 			}else if(maxPage > 5) {
 				if(pageNum < 3) {
-					if(pageNum == i) pagehtml += 'style="background-color: black; color: white;"';
+					if(pageNum == i) pagehtml += 'class="thisPage"';
 					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+i+')">'+i;
 				}
 				else if(pageNum > (maxPage-2)){
-					if(pageNum == (maxPage-5+i)) pagehtml += 'style="background-color: black; color: white;"';
+					if(pageNum == (maxPage-5+i)) pagehtml += 'class="thisPage"';
 					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+(maxPage-5+i)+')">'+(maxPage-5+i);
 				}
 				else {
-					if(pageNum == (pageNum-3+i)) pagehtml += 'style="background-color: black; color: white;"';
+					if(pageNum == (pageNum-3+i)) pagehtml += 'class="thisPage"';
 					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+(pageNum-3+i)+')">'+(pageNum-3+i);
 				}
 			}

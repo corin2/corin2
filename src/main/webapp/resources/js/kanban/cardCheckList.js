@@ -3,7 +3,7 @@ function addCardCheckListView() {
 	$('#addCheckListdiv').remove();
 	
 	var div = "<div id='addCheckListdiv'>"
-			+ "<input id='cardCheckBoxInput' type='text' class='inputtext' style='float:left;' "
+			+ "<input id='cardCheckBoxInput' type='text' class='inputtext floatLeftKanban' "
 			+ "onkeypress='if(event.keyCode==13) {addCardCheckList();}' "
 			+ "onfocusout='showCardCheckList()' onkeyup='fnChkByte(this, 80)' >"			+ "<button class='close glyphicon' id='addBtnCheck' onclick='addCardCheckList()' onmouseover='focusOutCheckListDisgard(this)'>&#xe013;</button>"
 			+ "</div>";
@@ -52,13 +52,13 @@ function showCardCheckList(){
 			$.each(data.list, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = "<p>";
-					htmlText += "<input type='checkbox' style='margin-right:8px;' class='icheckbox_flat-green' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' ";
+					htmlText += "<input type='checkbox' class='icheckbox_flat-green kanbanCheckboxMR' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' ";
 					
 					if(elt.isChecked == '1') htmlText += "checked ";
 					
-					htmlText += "><label for='checkbox"+elt.checkNum+"' style='vertical-align: text-top;'>"+elt.checkContent+"</label>"
+					htmlText += "><label for='checkbox"+elt.checkNum+"' class='kanbanCheckboxLabel'>"+elt.checkContent+"</label>"
 							 + "<button class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
-							 + "<button class='glyphicon close' style='margin-right:5px;' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
+							 + "<button class='glyphicon close kanbanCheckMod' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}

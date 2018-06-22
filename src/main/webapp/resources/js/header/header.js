@@ -47,12 +47,12 @@ function projectMemberShow(userProfiles){
 						/*if(elt.userId == userId) {
 							$('#currentUserProfile').attr("src", "resources/images/profile/" + elt2.userProfile);
 						}*/
-						htmltext += '<div class="dropdown" style="float:left;">';
+						htmltext += '<div class="dropdown headerFloatLeft">';
 						if(elt.gradeNum == 'G300')
 							htmltext += '<span class="glyphicon glyphicon-king leader" aria-hidden="true"></span>';
 						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
 								 + '<img class="img-circle profileimg" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
-								 + '<ul class="dropdown-menu" style="cursor: pointer;">';
+								 + '<ul class="dropdown-menu headerCuror">';
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
 							if(myGrade == 'G300'){
 								htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
