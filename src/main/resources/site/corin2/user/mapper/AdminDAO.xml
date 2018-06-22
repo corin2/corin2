@@ -10,6 +10,10 @@
 		select * from usergrade order by gradeNum
 	</select>
 	
+	<select id="checkListAllSelect" resultType="site.corin2.checklist.dto.CheckListDTO">
+		select * from checklist order by checkNum
+	</select>
+	
 	<update id="skillUpdate">
 		update skill set skillName = #{skillName}, skillUse = #{skillUse} where skillNum = #{skillNum}
 	</update>
@@ -24,6 +28,10 @@
 	
 	<update id="userGradeUpdate">
 		update userGrade set gradeName = #{gradeName} where gradeNum = #{gradeNum}
+	</update>
+	
+	<update id="checkListUpdate">
+		update checkList set category = #{category}, checkContent = #{checkContent} where checkNum = #{checkNum}
 	</update>
 	
 	<insert id="skillInsert">
@@ -42,6 +50,20 @@
 		insert into userGrade values(#{gradeNum}, #{gradeName})
 	</insert>
 	
+	<insert id="checkListInsert">
+		insert into checkList(languageNum, category, checkContent, isdeleted)
+		values(
+		<choose>
+			<when test="languageNum == 'null'">
+				null,
+			</when>
+			<otherwise>
+				#{languageNum},
+			</otherwise>
+		</choose>
+		#{category}, #{checkContent}, 0)
+	</insert>
+	
 	<delete id="skillDelete">
 		delete from skill where skillNum = #{skillNum}
 	</delete>
@@ -58,6 +80,10 @@
 		delete from userGrade where gradeNum = #{gradeNum}
 	</delete>
 	
+	<update id="checkListDelete">
+		update checkList set isdeleted = 1 where checkNum = #{checkNum}
+	</update>
+	
 	<select id="templateFileNameSelect" resultType="site.corin2.user.dto.AdminDTO">
 		select TEMPLATEFILENAME from template
 	</select>
@@ -73,5 +99,9 @@
 	
 	<update id="userReset">
 		update user set enabled = 1, isdeleted = 0 where userId = #{userId}
+	</update>
+	
+	<update id="checkListReset">
+		update checkList set isdeleted = 0 where checkNum = #{checkNum}
 	</update>
 </mapper>

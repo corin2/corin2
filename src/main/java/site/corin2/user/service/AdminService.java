@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.View;
 
+import site.corin2.checklist.dto.CheckListDTO;
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
@@ -57,7 +58,7 @@ public class AdminService {
 		return skills;
 	}
 	
-	//모든 기능 조회
+	//모든 유저등급 조회
 	public List<UserGradeDTO> userGradeAllSelect(){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		List<UserGradeDTO> userGrades = null;
@@ -68,6 +69,19 @@ public class AdminService {
 		}
 		
 		return userGrades;
+	}
+	
+	//모든 체크리스트 조회
+	public List<CheckListDTO> checkListAllSelect(){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		List<CheckListDTO> checkLists = null;
+		try {
+			checkLists = adminDAO.checkListAllSelect();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return checkLists;
 	}
 	
 	//기능 수정
@@ -94,28 +108,40 @@ public class AdminService {
 		adminDAO.userGradeUpdate(userGrade);
 	}
 	
-	//기능 수정
+	//체크리스트 수정
+	public void checkListUpdate(CheckListDTO checkList){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.checkListUpdate(checkList);
+	}
+	
+	//기능 생성
 	public void skillInsert(SkillDTO skill){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.skillInsert(skill);
 	}
 	
-	//기능 수정
+	//리스트 생성
 	public void listInsert(ListDTO list){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.listInsert(list);
 	}
 	
-	//언어 수정
+	//언어 생성
 	public void languageInsert(LanguageDTO language){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.languageInsert(language);
 	}
 	
-	//유저등급 수정
+	//유저등급 생성
 	public void userGradeInsert(UserGradeDTO userGrade){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeInsert(userGrade);
+	}
+	
+	//체크리스트 생성
+	public void checkListInsert(CheckListDTO checkList){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.checkListInsert(checkList);
 	}
 	
 	//기능 삭제
@@ -140,6 +166,12 @@ public class AdminService {
 	public void userGradeDelete(UserGradeDTO userGrade){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeDelete(userGrade);
+	}
+	
+	//체크리스트 삭제
+	public void checkListDelete(CheckListDTO checkList){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.checkListDelete(checkList);
 	}
 	
 	//vmfileload하기
@@ -219,5 +251,11 @@ public class AdminService {
 	public void userReset(UserDTO user){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userReset(user);
+	}
+	
+	//유저 수정
+	public void checkListReset(CheckListDTO checkList){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.checkListReset(checkList);
 	}
 }

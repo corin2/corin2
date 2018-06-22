@@ -11,7 +11,7 @@
 			}
 		});
 		
-	    $('#fileupload').fileupload({
+	    $('#profileupload').fileupload({
 	        dataType: 'json',
 	        add: function(e, data){
                 var uploadFile = data.files[0];
@@ -52,7 +52,7 @@
 				data:{userId:$("#userId").val(), 
 					  userName:$("#userName").val(),
 					  password:$("#password").val(), 
-					  userProfile:$("#fileupload").val()},
+					  userProfile:$("#profileupload").val()},
 				success:function(data){
 					swal("수정하기에 성공하였습니다.");
 					

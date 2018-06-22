@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.View;
 
+import site.corin2.checklist.dto.CheckListDTO;
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
@@ -69,6 +70,14 @@ public class AdminController {
 		return jsonview;
 	}
 	
+	//체크리스트메뉴관리
+	@RequestMapping("checkListManagement")
+	public View checkListManagement(Model model) {
+		List<CheckListDTO> checkLists = service.checkListAllSelect();
+		model.addAttribute("data", checkLists);
+		return jsonview;
+	}
+	
 	//스킬수정
 	@RequestMapping("skillEdit")
 	public View skillEdit(SkillDTO skill) {
@@ -94,6 +103,13 @@ public class AdminController {
 	@RequestMapping("userGradeEdit")
 	public View userGradeEdit(UserGradeDTO userGrade) {
 		service.userGradeUpdate(userGrade);
+		return jsonview;
+	}
+	
+	//체크리스트수정
+	@RequestMapping("checkListEdit")
+	public View checkListEdit(CheckListDTO checkList) {
+		service.checkListUpdate(checkList);
 		return jsonview;
 	}
 	
@@ -125,6 +141,13 @@ public class AdminController {
 		return jsonview;
 	}
 	
+	//체크리스트생성
+	@RequestMapping("checkListAdd")
+	public View checkListAdd(CheckListDTO checkList) {
+		service.checkListInsert(checkList);
+		return jsonview;
+	}
+	
 	//스킬삭제
 	@RequestMapping("skillDel")
 	public View skillDel(SkillDTO skill) {
@@ -150,6 +173,13 @@ public class AdminController {
 	@RequestMapping("userGradeDel")
 	public View userGradeDel(UserGradeDTO userGrade) {
 		service.userGradeDelete(userGrade);
+		return jsonview;
+	}
+	
+	//체크리스트삭제 (실제로는 업데이트)
+	@RequestMapping("checkListDel")
+	public View checkListDel(CheckListDTO checkList) {
+		service.checkListDelete(checkList);
 		return jsonview;
 	}
 	
@@ -206,10 +236,17 @@ public class AdminController {
 		return jsonview;
 	}
 	
-	//유저수정
+	//유저복구
 	@RequestMapping("userReset")
 	public View userReset(UserDTO user) {
 		service.userReset(user);
+		return jsonview;
+	}
+	
+	//유저복구
+	@RequestMapping("checkListReset")
+	public View checkListReset(CheckListDTO checkList) {
+		service.checkListReset(checkList);
 		return jsonview;
 	}
 }

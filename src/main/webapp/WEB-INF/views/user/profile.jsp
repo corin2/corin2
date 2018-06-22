@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
-<script src="resources/js/board/vendor/jquery.ui.widget.js"></script>
-<script src="resources/js/board/jquery.fileupload.js"></script>
 <script src="resources/js/user/profile.js"></script>
 <link rel="stylesheet" href="resources/css/user/profile.css">
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -15,7 +13,7 @@
 			    <span class="btn btn-success fileinput-button">
 			        <i class="glyphicon glyphicon-plus"></i>
 			        <span>Add files...</span>
-			        <input id="fileupload" type="file" name="files" data-url="profileupdate">
+			        <input id="profileupload" type="file" name="files" data-url="profileupdate">
 			    </span>
 		</div>
 		<div id="join-form" class="join-form margin-large">

@@ -1,3 +1,159 @@
+function checkListMenuView() {
+	$.ajax({
+		type : "post",
+		url  : "languageColorAllList",
+		datatype:"JSON",
+		success : function(data){
+			$('#menuManagement').empty();
+			
+			var texthtml = '<div id="adminTabs"><ul>';
+			$.each(data.list, function(index, elt) {
+				texthtml += '<li><a href="#'+elt.languageNum+'Tab" onclick="checkListMenu(\''+elt.languageNum+'\')">'+elt.languageMain+'</a></li>';
+			});
+			texthtml += '<li><a href="#nullTab" onclick="checkListMenu(\'null\')">공통</a></li></ul>';
+			$.each(data.list, function(index, elt) {
+				texthtml += '<div id="'+elt.languageNum+'Tab"></div>';
+			});
+			texthtml += '<div id="nullTab"></div>'
+					 + '</div>'
+			
+			$('#menuManagement').html(texthtml);
+			$('#adminTabs').tabs();
+			$('#adminTabs').children('ul').children('li:eq(0)').children('a:eq(0)').trigger('click');
+		}
+	});
+}
+
+//checkListMenu 뿌려주기
+function checkListMenu(languageNumber){
+	$.ajax({
+		type : "post",
+		url  : "checkListManagement",
+		datatype:"JSON",
+		success : function(data){
+			$('#'+languageNumber+'Tab').empty();
+			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
+						 + '<thead><tr><th>체크넘버</th><th>카테고리</th><th>내용</th><th>사용여부</th>'
+						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="checkListAdd(this)"></th></tr></thead>';
+			$.each(data.data, function(index, elt) {
+				var result = elt.languageNum;
+				if(elt.languageNum == null) result = 'null';
+				if(result == languageNumber && elt.category != null) {
+					texthtml += '<tbody><tr>'
+							 + '<td>'+elt.checkNum+'</td>'
+							 + '<td>'+elt.category+'</td>'
+							 + '<td>'+elt.checkContent+'</td>';
+					if(elt.isDeleted == '0') texthtml += '<td><input type="button" value="삭제" class="btn btn-danger" onclick="checkListDel(this)" ></td>';
+					else if(elt.isDeleted == '1') texthtml += '<td><input type="button" value="복구" class="btn btn-info" onclick="checkListReset(this)" ></td>';
+					texthtml += '<td><input type="button" value="수정" class="btn btn-info" onclick="checkListEdit(this)" ></td>'
+							 + '</tr></tbody>';
+				}
+			});
+			texthtml += '</table>';
+			$('#'+languageNumber+'Tab').html(texthtml);
+		}
+	});
+}
+
+//체크리스트 삭제
+function checkListDel(obj){
+	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
+	var tr = $(obj).closest('tr');
+	var checkNum = tr.children('td:eq(0)').text();
+	$.ajax({
+		type : "post",
+		url  : "checkListDel",
+		datatype:"JSON",
+		data : {checkNum:checkNum},
+		success : function(data){
+			$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+		}
+	});
+}
+
+//체크리스트 복구
+function checkListReset(obj){
+	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
+	var tr = $(obj).closest('tr');
+	var checkNum = tr.children('td:eq(0)').text();
+	$.ajax({
+		type : "post",
+		url  : "checkListReset",
+		datatype:"JSON",
+		data : {checkNum:checkNum},
+		success : function(data){
+			$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+		}
+	});
+}
+
+//체크리스트 생성하는 박스 생성
+function checkListAdd(obj){
+	var content = '<tbody><tr><td>생성중</td>'
+				+ '<td><input class="inputtext" type="text" placeholder="카테고리 입력하세요"></td>'
+				+ '<td colspan="2"><input class="inputtext" type="text" placeholder="내용을 입력하세요"></td>'
+				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="checkListAddOk(this)"></td></tr></tbody>';
+	$(obj).closest('table').append(content);
+	$(obj).closest('th').html("생성중");
+}
+
+//체크리스트 생성
+function checkListAddOk(obj){
+	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
+	var tr = $(obj).closest('tr');
+	var category = tr.children('td:eq(1)').children('input').val();
+	var checkContent = tr.children('td:eq(2)').children('input').val();
+	if(category != "" && checkContent != "") {
+		$.ajax({
+			type : "post",
+			url  : "checkListAdd",
+			datatype:"JSON",
+			data : {languageNum:languageNum, category:category.trim(), checkContent:checkContent.trim()},
+			success : function(data){
+				$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+			}
+		});
+	}else{
+		alert("내용을 입력하세요");
+	}
+}
+
+//체크리스트 수정하는 박스 생성
+function checkListEdit(obj){
+	var tr = $(obj).closest('tr');
+	var text1 = tr.children('td:eq(1)').text();
+	var text2 = tr.children('td:eq(2)').text();
+	var texthtml = '<input class="inputtext" type="text" placeholder="'+text1+'" >';
+	var texthtm12 = '<input class="inputtext" type="text" placeholder="'+text2+'" >';
+	
+	tr.children('td:eq(1)').html(texthtml);
+	tr.children('td:eq(2)').html(texthtm12);
+	tr.children('td:eq(3)').html('수정중');
+	tr.children('td:eq(4)').html('<input type="button" value="완료" class="btn btn-info" onclick="checkListEditOk(this)" />');
+}
+
+//체크리스트 수정
+function checkListEditOk(obj){
+	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
+	var tr = $(obj).closest('tr');
+	var checkNum = tr.children('td:eq(0)').text();
+	var category = tr.children('td:eq(1)').children('input').val();
+	var checkContent = tr.children('td:eq(2)').children('input').val();
+	if(category != "" && checkContent != "") {
+		$.ajax({
+			type : "post",
+			url  : "checkListEdit",
+			datatype:"JSON",
+			data : {checkNum:checkNum, category:category.trim(), checkContent:checkContent.trim()},
+			success : function(data){
+				$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+			}
+		});
+	}else{
+		alert("내용을 입력하세요");
+	}
+}
+
 //skillMenu 뿌려주기
 function skillMenu(){
 	$.ajax({

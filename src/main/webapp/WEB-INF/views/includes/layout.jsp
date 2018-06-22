@@ -22,10 +22,15 @@
   <!-- [css] 페이지 로딩 -->
   <link rel="stylesheet" type="text/css" href="resources/css/loading/fakeLoader.css">
 
+  <!-- js파일 순서 변경하지말것! 순서 중요! -->
   <!-- [js] jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- [js] jQuery ui widget -->
+  <script src="resources/js/board/vendor/jquery.ui.widget.js"></script>
   <!-- [js] Bootstrap 3 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- [js] fileupload -->
+  <script src="resources/js/board/jquery.fileupload.js"></script>
   <!-- External JavaScript 파일: index.js -->
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
   	<script type="text/javascript">
