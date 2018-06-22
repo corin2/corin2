@@ -64,10 +64,10 @@ function projectView(projectArray) {
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
-						html +=	"<div style='float:left; magin-top:5px;'>"
+						html +=	"<div class='projectListDiv'>"
 							 + "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-							 + "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							 + "<p style='float:right; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
+							 + "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							 + "<p class='projectp'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -84,7 +84,7 @@ function projectView(projectArray) {
 					projectcnt = 0;
 				}*/
 			});
-			html += "<div style='float:left; magin-top:5px;'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='button1' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
+			html += "<div class='projectListDiv'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='buttonproject' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
 			projectcnt=0;
 			$("#projectbox").html(html);
 			
@@ -105,10 +105,10 @@ function projectBookView(projectArray) {
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
-						html +=	"<div style='float:left; magin-top:5px;'>"
+						html +=	"<div class='projectListDiv'>"
 							+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-							+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							+ "<p style='float:right; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
+							+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<p class='projectp'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -140,7 +140,7 @@ function projectDetailView() {
 			 + "<br>"
 			 + "<br>"
 		 	 + "</div>"
-		 	 +"<input id='cancleProject' class='btn btn-danger' data-dismiss='modal' type='button' value='취소'>"
+		 	 +"<input id='cancleProject' class='btn btn-danger-project' data-dismiss='modal' type='button' value='취소'>"
 		 	 +"<input id='addProject' class='btn btn-create' type='button' onclick='addProject()' value='생성'>"
 		 	 + "<br>"
 		 	 + "<br>"
@@ -238,9 +238,9 @@ function projectUpdateView(projectNum) {
 			 + "<br>"
 			 + "</div>"
 			 + "<div>"
-			 + "<input id='cancleProject' class='btn btn-info' data-dismiss='modal' type='button' value='취소'>"
-			 + "<input id='deleteProject' class='btn btn-danger' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
-			 + "<input id='addProject' class='btn btn-success' type='button' onclick='updateLanguage("+projectNum+")' value='수정'>"
+			 + "<input id='cancleProject' class='btn btn-info-project' data-dismiss='modal' type='button' value='취소'>"
+			 + "<input id='deleteProject' class='btn btn-danger-project' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<input id='addProject' class='btn btn-success-project' type='button' onclick='updateLanguage("+projectNum+")' value='수정'>"
 			 + "</div>"
 			 + "<br>"
 			 + "<br>"
@@ -304,9 +304,9 @@ function searchProject(projectArray) {
 			$.each(projectArray[0], function(index, elt2) {
 				console.log(elt.languageNum)
 				if(elt.languageNum == elt2.languageNum){
-				html +=	"<div style='float:left;'>"
+				html +=	"<div class='projectSerchDiv'>"
 					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-					+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+					+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 					+ "</div>";
 				
 				}

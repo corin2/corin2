@@ -31,7 +31,7 @@
 	    max-height: 765px;
 	}
 
-.button {
+.buttonProject {
   background-color: #f4511e;
   border: none;
   color: white;
@@ -50,44 +50,58 @@
   margin-bottom: 20px;
 }
 
-.button:hover {opacity: 0.6}
+.projectp{
+	float:right; 
+	margin-right:14px;
+}
 
-.btn-success  {
+.projectSerchDiv{
+	float:left;
+}
+
+.projectListDiv{
+	float:left; 
+	magin-top:5px;
+}
+
+.buttonProject:hover {opacity: 0.6}
+
+.btn-success-project  {
 	background-color: #fff;
 	color:#000;
 	border : 1px solid #30A9DE;
 	float: right;
 
 }
-.btn-success:hover{
+.btn-success-project:hover{
 	background-color: #30A9DE;
 	color:#fff;
 	border: 1px solid #fff;
 	float: right;
 }
 
-.btn-info  {
+.btn-info-project  {
 	background-color: #fff;
 	color:#000;
 	border : 1px solid #EFDC05;
 	float: right;
 
 }
-.btn-info:hover{
+.btn-info-project:hover{
 	background-color: #EFDC05;
 	color:#fff;
 	border: 1px solid #fff;
 	float: right;
 }
 
-.btn-danger  {
+.btn-danger-project  {
 	background-color: #fff;
 	color:#000;
 	border : 1px solid #E53A40;
 	float: right;
 
 }
-.btn-danger:hover{
+.btn-danger-project:hover{
 	background-color: #E53A40;
 	color:#fff;
 	border: 1px solid #fff;
@@ -108,7 +122,7 @@
 	float: right;
 }
 
-.button1 {
+.buttonproject {
   background-color: #fff;
   border: 5px solid #a3a1a1;
   color: #000;
@@ -131,7 +145,7 @@
 .h4margin{
 	margin-bottom:0px;
 }
-.button1:hover {
+.buttonproject:hover {
   background-color: #a3a1a1;
   border: 1px solid #fff;
   color: #fff;
