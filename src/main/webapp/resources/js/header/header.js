@@ -1,5 +1,6 @@
 $(function(){
 	projectMemberProfile();
+	projectColorView();
 });
 
 //프로젝트에 속한 멤버 리스트 뿌려주기
@@ -82,7 +83,19 @@ function projectNameView(){
 			$('#headerProjectName').empty();
 			
 			$('#headerProjectName').html(data.data.projectName);
-			//$('#headerProjectName').css('border-color', data.data.project); //프로젝트 언어 색상
+		}
+	});
+}
+
+//해당 프로젝트 언어 색상
+function projectColorView() {
+	$.ajax({
+		type : "post",
+		url  : "languageInfoByProjectNum",
+		datatype:"JSON",
+		data : {projectNum : sessionProjectNum},
+		success : function(data){
+			$('#headerProjectName').css('border-color', data.list.languageColor); //프로젝트 언어 색상
 		}
 	});
 }

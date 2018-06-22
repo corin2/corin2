@@ -7,4 +7,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="languageColorAllList" resultType="site.corin2.project.dto.LanguageDTO">
 			select * from language
 		</select>
+		
+		<select id="languageInfoByProjectNum" resultType="site.corin2.project.dto.LanguageDTO">
+			select * from language
+			where languagenum = (select languagenum from project where projectnum = #{projectNum})
+		</select>
 	</mapper>
