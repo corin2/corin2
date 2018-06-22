@@ -17,7 +17,7 @@
 					<div class="form-group">
 						<label for="content">상세 내용</label>
 					</div>
-					<textarea id="contentDetail" style="width: 100%; height: 400px;"></textarea>
+					<textarea id="contentDetail" style="width: 100%; height: 400px; resize: none;"></textarea>
 					<br>
 					<div class="form-group">
 						

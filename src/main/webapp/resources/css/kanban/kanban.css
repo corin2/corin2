@@ -129,21 +129,7 @@
     padding: 15px;
 }
 
-.btn-success  {
-	background-color: green;
-	color:#fff;
-	border : 1px solid #fff;
-
-
-}
-.btn-success:hover{
-	background-color: #fff;
-	color:#000;
-	border: 1px solid #30A9DE;
-
-}
 
 p {
     margin: 0 0 0px;
-
 }
