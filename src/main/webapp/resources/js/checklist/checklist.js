@@ -10,13 +10,13 @@ function checkListTable() {
 	 $('#tabs-2').empty();
  	 var table = '';
 	 if(myGradeNum=='G300'){
-		 table += "<img src='https://png.icons8.com/ios/50/000000/plus.png' style='float: right;height: 30px;' onclick='addCardCheckListView()'>"
+		 table += "<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
 		 }
 		 table += "<table class='table table-striped table-bordered table-hover'>"
 			   + "<tbody>"
 			   + "<tr>"
 			   + "<th class='tdalignclass'>NO</th>"
-			   + "<th class='tdalignclass' style='width:90%'>CHECKLIST</th>"
+			   + "<th class='tdalignclass tdCheckListContent'>CHECKLIST</th>"
 			   + "<th class='tdalignclass'>CHECK</th>"
 	  if(myGradeNum=='G300'){
 		  table+= "<th class='tdpositionclass'>EDIT</th>"
@@ -45,7 +45,7 @@ function checkListTableConfirm() {
 			  + "<tbody>"
 			  + "<tr>"
 			  + "<th class='tdalignclass'>NO</th>"
-			  + "<th class='tdalignclass' style='width:100%'>CHECKLIST</th>";
+			  + "<th class='tdalignclass tdCheckListContentMod'>CHECKLIST</th>";
 			$.each(data.list, function(index, elt) {
 				table += "<th class='tdalignclass'>"+elt.userId+"</th>"
 			});
@@ -64,9 +64,9 @@ function checkListTableConfirm() {
 function addCardCheckListView() {
 	$('#checkBoxAdd').remove();
 	var div = "<tr>"
-			+ "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext' style='float:left;' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
-			+ "<button class='btn btn-danger' style='float:right;' onclick='removeCheckListAdd()'>취소</button>"
-			+ "<button class='btn btn-success' style='float:right;' onclick='checkListInsert()'>추가</button></td></tr>";
+			+ "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
+			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
+			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button></td></tr>";
 
 $('#CheckAddBox').append(div)
 $('#CheckBoxInput').focus();
@@ -107,8 +107,8 @@ function showCheckList(){
 					+"<td class='tdalignclass'><input type='checkbox' id='checkedBox"+elt.checkNum+"' onclick='checkedInsert("+elt.checkNum+")' class='icheckbox_flat-green'>"
 					+"</td>"
 					if(myGradeNum == 'G300'){
-				html+="<td><button class='btn btn-info' style='float:left;' onclick='updateCheckListAdd("+(i+1)+","+elt.checkNum+")'>수정</button>"
-					+"<button class='btn btn-danger' style='float:left;' onclick='deleteCheckListContent("+elt.checkNum+")'>삭제</button></td>" 
+				html+="<td><button class='btn btn-info checkFloat' onclick='updateCheckListAdd("+(i+1)+","+elt.checkNum+")'>수정</button>"
+					+"<button class='btn btn-danger checkFloat' onclick='deleteCheckListContent("+elt.checkNum+")'>삭제</button></td>" 
 					}
 				html+="</tr>";
 					$('#CheckAddBox').append(html);
@@ -164,9 +164,9 @@ function updateCheckListAdd(index,checkNum) {
 	if($("#checkBoxAdd").val() != ''){
 	$("#index"+index).empty();
 	$("#checkedBox"+checkNum).parent().parent().empty();
-	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}' style='float:left;'>"
-			+ "<button class='btn btn-danger' style='float:right;' onclick='removeCheckListAdd()'>취소</button>"
-			+ "<button class='btn btn-success' style='float:right;' onclick='updateCheckListContent("+checkNum+")'>수정</button></td>"
+	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}'>"
+			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
+			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button></td>"
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
 	}else{

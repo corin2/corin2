@@ -8,6 +8,7 @@
 <script src="resources/js/keyUp.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <script src="resources/js/header/headerSocket.js"></script>
+<script src="resources/js/loading/cursor.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
@@ -27,19 +28,6 @@
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
-			<se:authorize access="hasRole('ROLE_USER')">
-			    <li class="active">
-			        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-			            <i class="glyphicon glyphicon-user"></i>
-			            User
-			        </a>
-			        <ul class="collapse list-unstyled" id="homeSubmenu">
-			            <li><a href="content">User Info</a></li>
-			            <li><a href="userprofile">Profile Modification</a></li>
-			            <li><a href="userdelete">Delete</a></li>
-			        </ul>
-			    </li>
-		    </se:authorize>
 		    <se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
 			        <a href="boardList">
