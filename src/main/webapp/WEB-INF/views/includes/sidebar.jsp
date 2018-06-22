@@ -17,7 +17,7 @@
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
 	    <script>
-	    	location.href="http://localhost:8090/controller/login.html";
+	    	location.href="http://"+ document.domain +":8090/controller/login.html";
 	    </script>
 	</c:when>
 </c:choose>
@@ -35,7 +35,7 @@
 			        </a>
 			        <ul class="collapse list-unstyled" id="homeSubmenu">
 			            <li><a href="content">User Info</a></li>
-			            <li><a href="userupdate">Profile Modification</a></li>
+			            <li><a href="userprofile">Profile Modification</a></li>
 			            <li><a href="userdelete">Delete</a></li>
 			        </ul>
 			    </li>
@@ -51,32 +51,32 @@
 		    <se:authorize access="hasRole('ROLE_ADMIN')">
 		    	<li>
 			        <a href="adminMain">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-			            (메인)
+			            <i class="glyphicon glyphicon-stats"></i>
+			            Statistics
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminUserController">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(회원관리)
+			            <i class="glyphicon glyphicon-user"></i>
+						User Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMenu">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-						MenuManagement
+			            <i class="glyphicon glyphicon-list"></i>
+						Menu Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMail">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(메일관리)
+			            <i class="glyphicon glyphicon-envelope"></i>
+						Mail Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminPeaples">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(만든사람들)
+			            <i class="glyphicon glyphicon-heart"></i>
+						Credits
 			        </a>
 			    </li>
 		    </se:authorize>
@@ -158,7 +158,6 @@
 				data : {userId : $('#hiddenUserId').val()},
 				success : function(data){
 					$.each(data, function(index, obj) {
-						console.log("결과:  " + obj.userProfile);
 						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 					});
 				}
@@ -166,5 +165,27 @@
 		}
 		
 		getCurrentUserProfile();
+		
+		function profile() {
+			$.ajax({
+				type : "post",
+				url  : "showUser",
+				datatype:"JSON",
+				data : {userId : $('#hiddenUserId').val()},
+				success : function(data){
+					$.each(data, function(index, obj) {
+						$('#userId').attr("value", obj.userId);
+						$('#userName').attr("value", obj.userName);
+					});
+				}
+			});
+		}
+		
+		profile();
+		
+		$("#currentUserProfile").click(function() {
+			$('.profile').animate({width: 'toggle'});
+		});
 	});
+	
 </script>

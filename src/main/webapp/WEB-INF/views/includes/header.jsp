@@ -1,27 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<style>
-/* 	.header-project-info {
-		position: responsive;
-		width: 300px;
-		height: 100%;
-	}
-	.header-btn {
-		position: responsive;
-		width: 300px;
-		height: 100%;
-	}
-	.align-left {
-		top: 0;
-	    left: 0;
-	}
-	.align-right {
-		top: 0;
-	    right: 0;
-	} */
-	
-</style>
-	
+<link rel="stylesheet" type="text/css" href="resources/css/header/header.css">
 <script src="resources/js/header/header.js"></script>
 
 <!-- 프로젝트 정보 -->
@@ -29,12 +8,11 @@
 	<div class="navbar-header">
 		<!-- 프로젝트 명, 멤버 리스트 -->
 		<div class="navbar-header">
-	    	<!-- <label class="navbar-brand" id="headerProjectName">코린이</label> -->
 	    	<a class="navbar-brand" id="headerProjectName" href="#">코린이</a>
 	    </div>
 	    <div class="nav navbar-nav">
 	    	<label id="headerProjectMemberProfile">
-				<img src="resources/images/profile/nogon.JPG" class="img-circle person" width="35" height="35">
+				<img src="resources/images/profile/none.png" class="img-circle person" width="35" height="35">
 			</label>
 	    </div>
 			

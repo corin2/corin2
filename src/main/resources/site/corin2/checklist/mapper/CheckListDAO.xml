@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 체크리스트 가져오기 -->
 	<select id="selectCheckListAll" resultType="site.corin2.checklist.dto.CheckListDTO">
-		select * from checklist where projectnum=#{projectNum}
+		select * from checklist where projectnum=#{projectNum} and isdeleted = 0
 	</select>
 	
 	<!-- 체크리스트 내용 수정 -->
@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 사용자의 등급 가져오기 -->
 	<select id="userGradeProject" resultType="site.corin2.project.dto.TeamDTO">
-		select * from team where projectnum=#{projectNum} and userid=#{userId}
+		select * from team where projectnum=#{projectNum} and userid=#{userId} and isdeleted = 0
 	</select>
 		
 	</mapper>

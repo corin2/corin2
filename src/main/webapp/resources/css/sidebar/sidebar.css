@@ -25,10 +25,10 @@ a, a:hover, a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
     border: none;
     border-radius: 0;
     margin-bottom: 0px !important;
+    background: #FAFAFA;/*배경색바꿈*/
     /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); */
 }
 
@@ -53,7 +53,7 @@ i, span {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 .wrapper {
-    display: flex;
+    /* display: flex; */
     align-items: stretch;
 }
 
@@ -148,7 +148,7 @@ a[data-toggle="collapse"] {
 }
 
 a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
+    /* content: '\e259'; */
     display: block;
     position: absolute;
     right: 20px;
@@ -156,7 +156,7 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     font-size: 0.6em;
 }
 a[aria-expanded="true"]::before {
-    content: '\e260';
+    /* content: '\e260'; */
 }
 
 
@@ -199,8 +199,7 @@ a.article, a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-   
-    min-height: 100vh;
+    min-height: 60vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 

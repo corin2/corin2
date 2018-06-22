@@ -41,6 +41,18 @@ public class AdminController {
 		return "admin.adminMenu";
 	}
 	
+	//메인페이지
+	@RequestMapping("adminMain")
+	public String adminMain() {
+		return "admin.adminMain";
+	}
+	
+	//만든사람들
+	@RequestMapping("adminPeaples")
+	public String adminPeaples() {
+		return "admin.makeperson";
+	}
+	
 	//스킬메뉴관리
 	@RequestMapping("skillManagement")
 	public View skillManagement(Model model) {
@@ -181,5 +193,23 @@ public class AdminController {
 			
 	}
 	
+	//회원관리
+	@RequestMapping("adminUserController")
+	public String adminUserController() {
+		return "admin.adminUserController";
+	}
 	
+	//유저수정
+	@RequestMapping("userEdit")
+	public View userEdit(UserDTO user) {
+		service.userEdit(user);
+		return jsonview;
+	}
+	
+	//유저수정
+	@RequestMapping("userReset")
+	public View userReset(UserDTO user) {
+		service.userReset(user);
+		return jsonview;
+	}
 }

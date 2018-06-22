@@ -4,11 +4,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
 
+<div class="container">
 <nav class="navbar navbar-default">
 	<div>
 		<h1>프로젝트 진행률</h1>
 		<hr>
-		<canvas id="projectChart"></canvas>
+		<canvas id="projectChart" style="width: 30%;height: 30%;"></canvas>
 		<hr>
 	</div>
 	<div>
@@ -18,3 +19,4 @@
 		<hr>
 	</div>
 </nav>
+</div>

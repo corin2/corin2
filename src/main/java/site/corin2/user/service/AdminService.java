@@ -30,6 +30,7 @@ import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
 import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dto.AdminDTO;
+import site.corin2.user.dto.UserDTO;
 import site.corin2.user.dto.UserGradeDTO;
 
 @Service
@@ -206,5 +207,17 @@ public class AdminService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	//유저 수정
+	public void userEdit(UserDTO user){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.userEdit(user);
+	}
+	
+	//유저 수정
+	public void userReset(UserDTO user){
+		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
+		adminDAO.userReset(user);
 	}
 }

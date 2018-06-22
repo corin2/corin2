@@ -156,6 +156,12 @@
   overflow-y: auto;
   border: 1px solid #f7f7f7;
   height: calc(100% - 120px);
+  
+}
+
+/* 스크롤 기능은 되지만, 스크롤바를 안보이게 하는 방법 */
+.sideBar::-webkit-scrollbar {
+  display:none;
 }
 
 .sideBar-body {

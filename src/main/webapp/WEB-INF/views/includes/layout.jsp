@@ -11,82 +11,44 @@
   <!-- 모바일 반응형을 위한 viewport 설정 -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Bootstrap CSS 링크 -->
+  <!-- [css] Bootstrap CDN -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <!-- CSS 세부설정 변경을 위한 external CSS 링크 -->
+  <!-- [css] font-awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- [css] 레이아웃 -->
+  <link rel="stylesheet" type="text/css" href="resources/css/layout/layout.css">
+  <!-- [css] 사이드바 -->
   <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css">
-  
-  <style>
-   	#sidebar {
-	    position: fixed;
-	    top: 0;
-	    left: 0;
-	    bottom: 0;
-	    z-index: 100;
-	    display: block;
-	    overflow: hidden;
-	    height: auto;
-  	}
-  	
-  	#header {
-  		position: fixed;
-  		margin-left: 80px;
-  		padding: 5px 5px;
-  		top: 0;
-  		left: 0;
-  		right: 0;
-  		z-index: 100;
-  		display: block;
-  		height: 60px;
-  		background-color: #ededed;
-  		box-shadow: 0 2px 2px rgba(12,13,14,0.2);
-  	}
-  	
-  	#content {
-  	    position: relative;
-	    margin-left: 80px;
-	    margin-top: 60px;
-	    padding-left: 20px;
-	    padding-top: 20px;
-  	}
-  	
-  	
-  	.navbar-user {
-  	    padding: 0px 30px 0px 0px;
-  		background-color: #ededed;
-  	}
-  	
-  	.sidebar-chat {
-  		position: fixed;
-  		margin-top: 60px;
-  		top: 0;
-	    right: 0;
-	    bottom: 0;
-	    display: none;
-	    /* overflow: hidden; */
-	    height: auto;
-  		/* border: 3px solid red; */
-	    z-index: 200;
-	    width: 420px;
-	    height: 100%
-  	}
-  </style>
+  <!-- [css] 페이지 로딩 -->
+  <link rel="stylesheet" type="text/css" href="resources/css/loading/fakeLoader.css">
 
-  <!-- jQuery library -->
+  <!-- [js] jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <!-- Bootstrap JavaScript 파일 -->
+  <!-- [js] Bootstrap 3 -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- External JavaScript 파일: index.js -->
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
-  
+  	<script type="text/javascript">
+		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
+	</script>   
 </head>
 <body>
+	<!-- 페이지 로딩 -->
+	<div id="fakeloader"></div>
+	
+	<!-- 레이아웃 -->
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
 		<nav id="sidebar" class="active">
 			<!-- sidebar 영역 -->
 			<tiles:insertAttribute name="sidebar" />
 		</nav>
+		<se:authorize access="hasRole('ROLE_USER')">
+			<div class="profile">
+				<!-- profile -->
+				<tiles:insertAttribute name="profile" />
+			</div>
+		</se:authorize>
 		
 		<nav class="navbar navbar-default" id="header">
 			<c:choose>
@@ -108,10 +70,18 @@
 				<tiles:insertAttribute name="chatting" />
 			</div>
 		</se:authorize>
+		
 	</div>
+
+	<!-- 페이지 로딩 -->
+	<!-- <script src="resources/js/loading/fakeLoader.js"></script> -->
 	
-	<script type="text/javascript">
+	<script>
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
+		/* $("#fakeloader").fakeLoader({
+			zIndex: '3999',
+			bgColor:"rgba(51, 102, 153, 0.2)",
+		}); */
 	</script>        
 </body>
 </html>

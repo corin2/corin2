@@ -123,3 +123,13 @@
 		boder-bottom:0px;
 		width: 86%;
 	}
+
+	.modal-body {
+    position: relative;
+    padding: 15px;
+}
+
+
+p {
+    margin: 0 0 0px;
+}

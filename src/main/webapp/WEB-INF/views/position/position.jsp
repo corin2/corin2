@@ -92,7 +92,7 @@
 				    			 $(".grid-stack").children().last().children().attr("id","troubleshooting");
 			    				 $("#troubleshooting").load("position.troubleshooting");
 				    		}else if(dragID == 'kanbanicon') {
-				    			 grid.addWidget($('<div><div class="grid-stack-item-content"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 10, 12, 8);
+				    			 grid.addWidget($('<div style="min-height:440px; min-width:100%;"><div class="grid-stack-item-content" style="min-height:440px; min-width:100%;"></div><i class="fa fa-close"></i><i class="fa fa-star"></i><i class="fa fa-bell"></i><i class="fa fa-heart"></i></div>'), 0, 10, 12, 8);
 				    			 $(".grid-stack").children().last().children().attr("id","kanban");
 				    			 $("#kanban").load("position.kanban?projectNum=1");
 				    		}
@@ -260,13 +260,13 @@
 			font-family: "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 			font-size: 14px;
 			position: absolute;
-			height: 100%;
-			width: 100%;
+			height:200%;
+			width: 200%;
 		}
 		.grid-stack {
 			background: #00ff0000;
-			width: 88% !important;
-			height: 159% !important;
+			width: 370% !important;
+			min-height: 200px !important;
 			position: absolute;
 		}
 		.grid-stack-item-content {
@@ -290,7 +290,7 @@
 	            <a class="btn btn-default" id="resize" href="#">resize</a>
 	    </div>
 	
-		<div class="grid-stack">
+		<div id="grid" class="grid-stack" style="data-gs-current-height:1;">
 		<!-- 기능 들어가는 곳 -->
 		</div>
 	

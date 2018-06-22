@@ -61,7 +61,6 @@ function sortable(){
 		},
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
-			console.log(ui)
 			var productOrder = $(this).sortable('toArray').toString();
 			var children = $(this)[0].children
 			var listNum;
@@ -233,10 +232,11 @@ function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<label style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</label>";
+			+ "<label id='addLabel' style='float: right;' onclick='addCard(this, "+ projectNum +")'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 	$('#addcard').children('input').focus();
+	focusOutDisgard($('#addLabel'));
 }
 
 //카드 등록 성공
@@ -255,7 +255,7 @@ function addCard(obj, projectNum){
 	}
 }
 
-//카드 디텔일 총합 뿌려주기
+//카드 디테일 총합 뿌려주기
 function cardDetail(cardNum){
 	$('#hiddenCardNum').attr('value', cardNum);
 	selectCard(cardNum);
@@ -309,10 +309,11 @@ function updateCardTitle(e, cardNum) {
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<label style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</label>";
+			+ "<label id='editLabel' style='float: right;' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 	$('#div' + cardNum).children('input').focus();
+	focusOutDisgard($('#editLabel'));
 }
 
 //카드 제목 수정 확인

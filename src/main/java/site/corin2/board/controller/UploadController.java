@@ -40,23 +40,19 @@ import site.corin2.board.dto.UploadDTO;
 
 import site.corin2.board.service.UploadService;
 
-
-
 @Controller
 public class UploadController {
-	
-	
 	@Autowired
 	private UploadService service;
 	
 	@Autowired
 	private View jsonview;
-
+	//초기화면 ui
 	@RequestMapping(value="fileUpload", method =RequestMethod.GET )
 	public String fileUpload(@RequestParam("projectNum") String projectNum,Model model) {
 		return "board.fileUpload";
 	}
-	
+	//초기화면 전체조회
 	@RequestMapping(value="fileUpload1", method= RequestMethod.GET)
 	public View fileUpload1(@RequestParam("projectNum") String projectNum,Model model) {
 		model.addAttribute("file1", service.uploadSelect(Integer.parseInt(projectNum)));
@@ -117,11 +113,8 @@ public class UploadController {
 		}
 	
 		return service.uploadSelect(Integer.parseInt(projectNum));
- 
 	}
 
-	
-	
 	//삭제하는 함수
 	@RequestMapping(value ="deleteFile", method=RequestMethod.GET)
 	public @ResponseBody void delete(UploadDTO uploadDTO) {
@@ -143,7 +136,7 @@ public class UploadController {
 			//파일 다운로드
 			FileInputStream in = new FileInputStream(filePath);		
 		    response.setHeader("Content-Disposition", 
-		            "attachment;filename="+new String(filename.getBytes(),"ISO8859_1"));
+		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
 		    ServletOutputStream out2 = response.getOutputStream();
 		    int numread;
 		    while((numread = in.read(b,0,b.length)) != -1){
@@ -160,6 +153,11 @@ public class UploadController {
 		
 		
 	}
-
+/*	//검색기능
+	@RequestMapping(value="searchSelect" , method = RequestMethod.GET)
+	public void searcherSelect() {
+		
+		service.searcherSelect();
+	}*/
 
 }

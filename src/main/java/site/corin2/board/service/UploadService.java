@@ -19,31 +19,36 @@ public class UploadService {
 
 	@Autowired
 	private SqlSession sqlSession;
-	
+	//전체조회 
 	public LinkedList<UploadDTO> uploadSelect(int projectNum) {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		return dao.uploadSelect(projectNum);
 	
 		
 	}
-
+	//파일 insert
 	public void uploadInsert(UploadDTO uploadDTO) {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		dao.uploadInsert(uploadDTO);
 	}
-
+	//게시판 insert
 	public void boardInsert(BoardDTO boardDTO) {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		dao.boardInsert(boardDTO);
 		
 	}
-
+	//삭제하는 함수
 	public void fileDelete(UploadDTO uploadDTO) {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		dao.fileDelete(uploadDTO);
 		
 	}
 
+/*	public void searcherSelect() {
+		// TODO Auto-generated method stub
+		
+	}
+*/
 
 
 }
