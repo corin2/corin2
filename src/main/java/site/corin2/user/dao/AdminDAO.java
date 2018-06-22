@@ -10,6 +10,7 @@ package site.corin2.user.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import site.corin2.checklist.dto.CheckListDTO;
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
@@ -25,6 +26,9 @@ public interface AdminDAO {
 	//UserGradeDTO 모두 가져오기
 	public List<UserGradeDTO> userGradeAllSelect();
 	
+	//List<CheckListDTO> 모두 가져오기
+	public List<CheckListDTO> checkListAllSelect();
+	
 	//skill 업데이트
 	public void skillUpdate(SkillDTO skill);
 	
@@ -36,6 +40,9 @@ public interface AdminDAO {
 	
 	//userGrade 업데이트
 	public void userGradeUpdate(UserGradeDTO userGrade);
+	
+	//checkList 업데이트
+	public void checkListUpdate(CheckListDTO checkList);
 	
 	//skill 추가
 	public void skillInsert(SkillDTO skill);
@@ -49,6 +56,9 @@ public interface AdminDAO {
 	//userGrade 추가
 	public void userGradeInsert(UserGradeDTO userGrade);
 	
+	//checkList 추가
+	public void checkListInsert(CheckListDTO checkList);
+	
 	//skill 삭제
 	public void skillDelete(SkillDTO skill);
 	
@@ -61,6 +71,9 @@ public interface AdminDAO {
 	//userGrade 삭제
 	public void userGradeDelete(UserGradeDTO userGrade);
 	
+	//checkList 삭제 실제로는 업데이트
+	public void checkListDelete(CheckListDTO checkList);
+	
 	//email template파일이름 가져오기
 	public AdminDTO templateFileNameSelect() throws ClassNotFoundException, SQLException;
 	
@@ -72,4 +85,7 @@ public interface AdminDAO {
 	
 	//admin이 user복구
 	public void userReset(UserDTO user);
+	
+	//checkList 복구
+	public void checkListReset(CheckListDTO checkList);
 }
