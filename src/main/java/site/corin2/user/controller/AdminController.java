@@ -40,6 +40,13 @@ public class AdminController {
 	public String adminMenu() {
 		return "admin.adminMenu";
 	}
+	
+	//메인페이지
+	@RequestMapping("adminMain")
+	public String adminMain() {
+		return "admin.adminMain";
+	}
+	
 	//만든사람들
 	@RequestMapping("adminPeaples")
 	public String adminPeaples() {
