@@ -15,7 +15,7 @@
 			    <span class="btn btn-success fileinput-button">
 			        <i class="glyphicon glyphicon-plus"></i>
 			        <span>Add files...</span>
-			        <input id="fileupload" type="file" name="files" data-url="profileupdate">
+			        <input id="profileupload" type="file" name="files" data-url="profileupdate">
 			    </span>
 		</div>
 		<div id="join-form" class="join-form margin-large">
