@@ -4,7 +4,7 @@
 <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <script src="resources/js/user/profile.js"></script>
 <link rel="stylesheet" href="resources/css/user/profile.css">
-<div id="content" class="profilediv">
+<div id="profile-content" class="profilediv">
 	<form action="" method="post">
 		<h2>Profile</h2>
 		<img class="img-circle" id="recentUserProfile" width="100" height="100">

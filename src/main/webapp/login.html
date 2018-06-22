@@ -7,6 +7,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+    <!-- loading -->
+    <link rel="stylesheet" type="text/css" href="resources/css/loading/fakeLoader.css">
+    <script src="resources/js/loading/fakeLoader.js"></script>
     <meta charset="utf-8">
     
     <title>corin2 Login</title>
@@ -127,6 +130,9 @@
     </style>
 </head>
 <body>
+	<!-- 페이지 로딩 -->
+	<div id="fakeloader"></div>
+	
     <form id="form"method="post" action="./login">
         <svg id="ryan" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
             <path d="M0,150 C0,65 120,65 120,150" fill="#E0E3DA" stroke="#000" stroke-width="2.5" />
@@ -187,6 +193,7 @@
         </div>
     </form>  
     <script type="text/javascript">
+    
     (function(){
 
 		const ryan = document.querySelector('#ryan');
@@ -401,6 +408,11 @@
 
     <script type="text/javascript">
 		    $(function(){
+		    	//loading
+		    	$("#fakeloader").fakeLoader({
+					zIndex: '3999',
+					bgColor:"rgba(51, 102, 153, 0.2)",
+				});
 		    	//sign up ajax
 				$('#sign_up_button').click(function(){
 					console.log($('#modalid').val().trim());
