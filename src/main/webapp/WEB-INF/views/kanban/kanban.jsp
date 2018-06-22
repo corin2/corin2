@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="resources/css/kanban/kanban.css">
 <link rel="stylesheet" href="resources/css/kanban/jquery.mCustomScrollbar.css">
+<link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <script src="resources/js/kanban/kanban.js"></script>
 <script src="resources/js/kanban/cardCheckList.js"></script>
 <script src="resources/js/kanban/kanbanSocket.js"></script>

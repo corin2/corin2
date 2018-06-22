@@ -42,13 +42,13 @@ function showCardCheckList(){
 			$.each(data.list, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = "<p>";
-					htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' ";
+					htmlText += "<input type='checkbox' class='icheckbox_flat-green' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' ";
 					
 					if(elt.isChecked == '1') htmlText += "checked ";
 					
-					htmlText += "><label for='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
+					htmlText += "><label for='checkbox"+elt.checkNum+"'>&nbsp;&nbsp;&nbsp;"+elt.checkContent+"</label>"
 							 + "<button class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
-							 + "<button class='glyphicon close' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
+							 + "<button class='glyphicon close' style='margin-right:5px;' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}
