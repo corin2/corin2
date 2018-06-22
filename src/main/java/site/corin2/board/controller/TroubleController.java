@@ -120,5 +120,22 @@ public class TroubleController {
 		
 		return "redirect:trouble?projectNum="+dto.getProjectNum();
 	}
+	
+	//엑셀저장
+	@RequestMapping("/excel")
+	public String troubleExcel(TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
+		List<TroubleShootingDTO> troubleDTO = service.troubleSelect(projectNum);
+		
+		model.addAttribute("data",troubleDTO);
+		return "troubleExcel";
+	}
+	//엑셀저장
+	@RequestMapping("/excelAll")
+	public String troubleExcel(TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubleDTO = service.troubleAllSelect();
+			
+		model.addAttribute("data",troubleDTO);
+		return "troubleExcel";
+	}
 }
 
