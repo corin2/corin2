@@ -36,7 +36,7 @@
 
 
 <h2 id='boardTitle'>트러블슈팅 등록</h2>
-	<div class="container" style="margin-top: 20px;">
+	<div class="container-ts" style="margin-top: 20px;">
 	<form action="update?boardNum=${data.boardNum}"
 		method="post" name="insfrm">
 		<b>태그등록 :</b> <input type="text" name="hashtag" data-role="tagsinput"
