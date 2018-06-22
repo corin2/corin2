@@ -20,7 +20,7 @@ public interface UploadDAO {
 	//삭제기능
 	void fileDelete(UploadDTO uploadDTO);
 
-/*	LinkedList<UploadDTO> searcherSelect();
-*/
+	LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO);
+
 
 }

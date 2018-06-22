@@ -150,14 +150,16 @@ public class UploadController {
 			
 			e.printStackTrace();
 		}
-		
-		
 	}
-/*	//검색기능
-	@RequestMapping(value="searchSelect" , method = RequestMethod.GET)
-	public void searcherSelect() {
-		
-		service.searcherSelect();
-	}*/
+	//검색기능
+	@RequestMapping(value="searcherFileSelect" , method = RequestMethod.GET)
+	public @ResponseBody LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO) {
+/*			
+ 	fileName : keyup,
+	projectNum : $('#hiddenProjectNum').val()
+	
+*/
+		return service.searcherFileSelect(uploadDTO);
+	}
 
 }

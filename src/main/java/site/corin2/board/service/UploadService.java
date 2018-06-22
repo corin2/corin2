@@ -44,11 +44,11 @@ public class UploadService {
 		
 	}
 
-/*	public void searcherSelect() {
-		// TODO Auto-generated method stub
-		
+	public LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO) {
+		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
+		return  dao.searcherFileSelect(uploadDTO);
 	}
-*/
+
 
 
 }

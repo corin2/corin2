@@ -28,10 +28,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<delete id="fileDelete" parameterType="site.corin2.board.dto.UploadDTO">
 			delete from upload where boardnum = #{boardNum} and skillnum ='S700' and projectnum = #{projectNum}
 		</delete>
-<!-- 	
-		<select id="searcherSelect" resultType="site.corin2.board.dto.UploadDTO">
-			SELECT * FROM upload
-			WHERE uploadorigin LIKE '%${uploadOrigin}%' 
-		</select> -->
+ 	
+		<select id="searcherFileSelect" resultType="site.corin2.board.dto.UploadDTO">
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,b.boarddate,u.boardnum  from board b ,upload u,user m 
+			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
+			and (u.uploadorigin LIKE '%${uploadOrigin}%' or  m.username LIKE '%${uploadOrigin}%')
+			
+		</select> 
 		
 	</mapper>

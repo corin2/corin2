@@ -10,9 +10,10 @@ pageEncoding="UTF-8"%>
 
 	
 	<!-- 검색기능 -->
- 	 <form action="searchSelect" method="post">
- 	 	<input type="text" placeholder="검색" />
- 	 	<input type="submit" value="검색"></input>
+ 	 <form action="searcherFileSelect" method="get"  onsubmit="return false">
+ 	 	<input id="uploadOriginInput" type="text" name ="uploadOrigin"  onkeypress="if( event.keyCode==13 ){searcherFileSelect();}" placeholder="파일명 or 작성자를 입력하세요" style="width:200px;" />
+ 	 	
+ 	 	<input type="submit"  value="검색" onclick="searcherFileSelect()"/>
 	 </form>
 
 	<br>
