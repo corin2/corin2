@@ -181,10 +181,10 @@ function showList(){
 							 + '<div id="listnum' + elt.listNum + '" class="listbox"><input type="hidden" class="null"></div></div>';
 				}else if(elt.listNum =="2"){
 					htmltext += '<div><div id="listnum' + elt.listNum + '" class="userbox">'
-							 + '<div class="listtitle" style="float: left;"><label>'+ elt.listName +'</label></div>'+userhtml1+'</div>';	
+							 + '<div class="listtitle floatLeftKanban"><label>'+ elt.listName +'</label></div>'+userhtml1+'</div>';	
 				}else {
 					htmltext += '<div id="listnum' + elt.listNum + '" class="kanbanbox">'
-							 + '<div class="listtitle" style="float: left;"><label>'+ elt.listName +'</label></div>';
+							 + '<div class="listtitle floatLeftKanban"><label>'+ elt.listName +'</label></div>';
 					if(elt.listNum != data.data.length) htmltext += userhtml2
 					else htmltext += userhtml3
 				}
@@ -232,7 +232,7 @@ function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<label id='addLabel' style='float: right;' onclick='addCard(this, "+ projectNum +")'>완료</label>";
+			+ "<label id='addLabel floatRightKanban' onclick='addCard(this, "+ projectNum +")'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 	$('#addcard').children('input').focus();
@@ -309,7 +309,7 @@ function updateCardTitle(e, cardNum) {
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<label id='editLabel' style='float: right;' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
+			+ "<label id='editLabel floatRightKanban' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 	$('#div' + cardNum).children('input').focus();

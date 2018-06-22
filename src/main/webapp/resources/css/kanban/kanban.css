@@ -1,139 +1,158 @@
-	#mainScreen {
-		white-space: nowrap;
-		padding: 10px 10px 5px;
-		background: #00FF0000;
-		width: 90%;
-		position: absolute;
-		margin-top:-30px;
-		margin-left:70px;
-		height: 100%;
-		overflow-x: hidden;
-		overflow-y: auto;
-		background-color: inherit;
-		
-	}
+#mainScreen {
+	white-space: nowrap;
+	padding: 10px 10px 5px;
+	background: #00FF0000;
+	width: 90%;
+	position: absolute;
+	margin-top:-30px;
+	margin-left:70px;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+	background-color: inherit;
 	
-	#content-md{
-		height: 85%;
-	}
-	
-	.listbox, .listingbox, .donebox, .userbox, .userprofilebox, .kanbanbox {
-		border-radius: 12px;
-		float: left;
-		position: relative;
-	}
-	
-	.listbox, .listingbox, .donebox, .listtitle {
-		margin: 10px;
-	}
-	
-	.listbox, .listingbox, .donebox {
-		border:10px solid #E2E4E6;
-		background-color: #E2E4E6;
-		width: 300px;
-	}
-	
-	.listingbox, .donebox, .userprofilebox {
-		height: 220px;
-	}
-	
-	.donebox{
-		overflow-y: auto;
-	}
-	
-	.donebox::-webkit-scrollbar {
-		display:none;
-	}
-	
-	.userbox, .userprofilebox, .kanbanbox {
-		border:10px solid #00FF0000;
-		background-color: #00FF0000;
-		margin:10px;
-	}
-	
-	.userbox {
-	    width:150px;
-	}
-	
-	.userprofilebox {
-		position: relative;
-	    width: 100px;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		display: flex; /* add */
-		justify-content: center; /* add to align horizontal */
-		align-items: center; /* add to align vertical */
-	}
-	
-	.userprofilebox img {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		margin: auto;
-	}
-	
-	.userprofilebox label {
-		position: absolute;
-		bottom: 30px;
-		
-	}
-	
-	.kanbanbox {
-	    width:350px;
-	}
-	
-	.listtitle {
-		text-align:left;
-	    font-weight:bold;
-	    overflow: auto;
-	    z-index: 2;
-	}
-	
-	.card {
-		margin-top:15px;
-		border : 1px solid black;
-	    border-radius: 8px;
-	    background-color:white;
-	    padding : 10px;
-	}
+}
 
-	.close {
-	    float: right;
-	    font-size: 20px;
-	    font-weight: 700;
-	    line-height: 1;
-	    color: #000;
-	    text-shadow: 0 1px 0 #fff;
-	    filter: alpha(opacity=20);
-	    opacity: .4;
-    }
+#content-md{
+	height: 85%;
+}
 
-    input[type="checkbox"]{
-	  overflow: hidden;
-	  clip:rect(0 0 0 0);
-	}
-	
-	input[type="checkbox"]:checked + label{
-	  background-position: 0 -15px;
-	}
-	
-	.inputtext {
-		border: none;
-		border-right: 0px;
-		border-top: 0px;
-		boder-left: 0px;
-		boder-bottom:0px;
-		width: 86%;
-	}
+.listbox, .listingbox, .donebox, .userbox, .userprofilebox, .kanbanbox {
+	border-radius: 12px;
+	float: left;
+	position: relative;
+}
 
-	.modal-body {
+.listbox, .listingbox, .donebox, .listtitle {
+	margin: 10px;
+}
+
+.listbox, .listingbox, .donebox {
+	border:10px solid #E2E4E6;
+	background-color: #E2E4E6;
+	width: 300px;
+}
+
+.listingbox, .donebox, .userprofilebox {
+	height: 220px;
+}
+
+.donebox{
+	overflow-y: auto;
+}
+
+.donebox::-webkit-scrollbar {
+	display:none;
+}
+
+.userbox, .userprofilebox, .kanbanbox {
+	border:10px solid #00FF0000;
+	background-color: #00FF0000;
+	margin:10px;
+}
+
+.userbox {
+    width:150px;
+}
+
+.userprofilebox {
+	position: relative;
+    width: 100px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	display: flex; /* add */
+	justify-content: center; /* add to align horizontal */
+	align-items: center; /* add to align vertical */
+}
+
+.userprofilebox img {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+}
+
+.userprofilebox label {
+	position: absolute;
+	bottom: 30px;
+	
+}
+
+.kanbanbox {
+    width:350px;
+}
+
+.listtitle {
+	text-align:left;
+    font-weight:bold;
+    overflow: auto;
+    z-index: 2;
+}
+
+.card {
+	margin-top:15px;
+	border : 1px solid black;
+    border-radius: 8px;
+    background-color:white;
+    padding : 10px;
+}
+
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .4;
+   }
+
+   input[type="checkbox"]{
+  overflow: hidden;
+  clip:rect(0 0 0 0);
+}
+
+input[type="checkbox"]:checked + label{
+  background-position: 0 -15px;
+}
+
+.inputtext {
+	border: none;
+	border-right: 0px;
+	border-top: 0px;
+	boder-left: 0px;
+	boder-bottom:0px;
+	width: 86%;
+}
+
+.modal-body {
     position: relative;
     padding: 15px;
 }
 
-
 p {
     margin: 0 0 0px;
+}
+
+.floatLeftKanban {
+	float: left;
+}
+
+.floatRightKanban {
+	float: right;
+}
+
+.kanbanCheckboxMR {
+	margin-right: 8px;
+}
+
+.kanbanCheckboxLabel {
+	vertical-align: text-top;
+}
+
+.kanbanCheckMod {
+	margin-right: 5px;
 }
