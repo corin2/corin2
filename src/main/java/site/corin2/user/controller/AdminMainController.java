@@ -25,9 +25,9 @@ public class AdminMainController {
 	private AdminMainService service;
 	
 	// isDeleted = 0인 모든 회원 수
-	@RequestMapping("allProjectCount")
+	@RequestMapping("allUserCount")
 	public View allUserCount(Model model) {
-		int allUserCountResult = service.allProjectCount();
+		int allUserCountResult = service.allUserCount();
 		model.addAttribute("count", allUserCountResult);
 		return jsonview;
 	}

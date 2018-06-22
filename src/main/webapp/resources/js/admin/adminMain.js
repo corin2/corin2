@@ -191,7 +191,7 @@ $(function() {
 			}
 		})
 	}
-	allProjectCount();	
+	allUserCount();	
 	
 	// isDeleted = 0인 모든 프로젝트 수
 	function allProjectCount() {

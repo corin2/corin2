@@ -51,32 +51,32 @@
 		    <se:authorize access="hasRole('ROLE_ADMIN')">
 		    	<li>
 			        <a href="adminMain">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-			            (메인)
+			            <i class="glyphicon glyphicon-stats"></i>
+			            Statistics
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminUserController">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
+			            <i class="glyphicon glyphicon-user"></i>
 						User Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMenu">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
+			            <i class="glyphicon glyphicon-list"></i>
 						Menu Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMail">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(메일관리)
+			            <i class="glyphicon glyphicon-envelope"></i>
+						Mail Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminPeaples">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
-						Make Person
+			            <i class="glyphicon glyphicon-heart"></i>
+						Credits
 			        </a>
 			    </li>
 		    </se:authorize>

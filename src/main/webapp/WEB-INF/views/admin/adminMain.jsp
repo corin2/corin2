@@ -2,32 +2,6 @@
     pageEncoding="UTF-8"%>
     
 <link rel="stylesheet" type="text/css" href="resources/css/admin/adminMain.css">
-<style>
-	.admin-align-center {
-		text-align: center;
-	}
-	.admin-chart-box {
-		text-align: center;
-		border: 1px solid #E6E9ED;
-	}
-	.admin-top {
-		text-align: center;
-		border: 1px solid #E6E9ED;
-	}
-	.admin-center {
-		text-align: center;
-		border: 1px solid #E6E9ED;
-	}
-	.admin-bottom {
-		text-align: center;
-		border: 1px solid #E6E9ED;
-	}
-	.admin-icon {
-		font-size: 5em;
-		padding: 50px 0;
-	    text-align: center;
-	}
-</style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script> <!-- Chart JS -->
 <script src="resources/js/chart/echarts.min.js"></script> <!-- ECharts -->
@@ -70,7 +44,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<h1 id="allUserCountResult">null</h1>
+							<h1 id="allUserCountResult"></h1>
 						</div>
 					</div>
 				</div>
@@ -90,7 +64,7 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<h1 id="allProjectCountResult">null</h1>
+							<h1 id="allProjectCountResult"></h1>
 						</div>
 					</div>
 				</div>
