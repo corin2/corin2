@@ -8,7 +8,7 @@
 	<form action="" method="post">
 		<h2>Profile</h2>
 		<img class="img-circle" id="recentUserProfile" width="100" height="100">
-		<div class="container">
+		<div class="container-fluid">
 			    <span class="btn btn-success fileinput-button">
 			        <i class="glyphicon glyphicon-plus"></i>
 			        <span>Add files...</span>
