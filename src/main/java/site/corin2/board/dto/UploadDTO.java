@@ -16,7 +16,7 @@ public class UploadDTO {
 	private String uploadOrigin;//실명1.jpg
 	private String userName;
 	private String userProfile;
-
+	private String boardDate;
 	
 	public UploadDTO() {}
 
@@ -74,6 +74,14 @@ public class UploadDTO {
 
 	public void setUserProfile(String userProfile) {
 		this.userProfile = userProfile;
+	}
+
+	public String getBoardDate() {
+		return boardDate;
+	}
+
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
 
 
