@@ -352,7 +352,7 @@
 		 		    success:function(data){ 
 		 		    	swal({
 		 		    		text : "비밀번호 재설정 이메일이 발송되었습니다.",
-		 		    		icon : "success"
+		 		    		type: 'success',
 		 		    		});
 		 		    }
 			    });
@@ -650,9 +650,9 @@
 		    	var request = new Request();
 				var error = request.getParameter("error");
 				if(error == '103'){
-					swal("이메일 인증을 해주세요");
+					swal({text : "이메일 인증을 해주세요"});
 				}else if(error == '108'){
-					swal("아이디와 비밀번호를 확인해주세요");
+					swal({text : "아이디와 비밀번호를 확인해주세요"});
 				}
 		 
 		    };
