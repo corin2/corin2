@@ -4,15 +4,15 @@
 }
 
 #external-events {
-	float: left;
-	position: relative;
-	z-index: 2;
-	top: 20px;
-	left: 20px;
-	width: 150px;
-	padding: 0 10px;
-	border: 1px solid #ccc;
-	background: #eee;
+    float: left;
+    position: relative;
+    z-index: 2;
+    bottom: 667px;
+    left: 205px;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
 }
 
 #external-events .fc-event {

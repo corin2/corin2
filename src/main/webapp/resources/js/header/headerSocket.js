@@ -24,14 +24,14 @@ function onHeaderMessage(evt) {
 	}else if(data.split(':')[0] == '2'){
 		if(data.split(':')[2] == $('#hiddenUserId').val()){
 			location.href=getContextPath()+'/project';
-			alert('해당 프로젝트에서 제명 되었습니다.');
+			swal('해당 프로젝트에서 제명 되었습니다.');
 		}else{
 			projectMemberProfile();
 		}
 	}else if(data.split(':')[0] == '3'){
 		if(data.split(':')[2] == $('#hiddenUserId').val()){
 			location.href=getContextPath()+'/project';
-			alert('프로젝트에서 탈퇴 하였습니다.');
+			swal('프로젝트에서 탈퇴 하였습니다.');
 		}else{
 			projectMemberProfile();
 		}

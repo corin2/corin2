@@ -15,7 +15,8 @@
 <div>
 	<div id="calendar-md" class="container-fluid">
 		<h2>일정관리</h2>
-		<div id="external-events"></div>
+		
 		<div id="calendar"></div>
 	</div>
+	<div id="external-events"></div>
 </div>

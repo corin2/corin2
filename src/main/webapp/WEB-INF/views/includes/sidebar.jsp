@@ -89,27 +89,15 @@
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
-		        <a class="sidebaricon" href="calendar" id="calendaricon">
-		             <i class="glyphicon glyphicon-calendar"></i>
-		            Calendar
-		        </a>
-		    </li>
-		    <li>
 				<a class="sidebaricon" href="checklist" id="checklisticon">
 				    <i class="glyphicon glyphicon-th-list"></i>
 				    Checklist
 				</a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="chart" id="charticon">
-		            <i class="glyphicon glyphicon-stats"></i>
-		            Chart
-		        </a>
-		    </li>
-		    <li>
-		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
-		            <i class="glyphicon glyphicon-file" ></i>
-		            Files
+		        <a class="sidebaricon" href="calendar" id="calendaricon">
+		             <i class="glyphicon glyphicon-calendar"></i>
+		            Calendar
 		        </a>
 		    </li>
 		    <li>
@@ -122,6 +110,18 @@
 		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="troubleshootingicon">
 					<i class="glyphicon glyphicon-exclamation-sign"></i>
 		            Trouble Shooting
+		        </a>
+		    </li>
+		    <li>
+		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		            <i class="glyphicon glyphicon-file" ></i>
+		            Files
+		        </a>
+		    </li>
+		    <li>
+		        <a class="sidebaricon" href="chart" id="charticon">
+		            <i class="glyphicon glyphicon-stats"></i>
+		            Chart
 		        </a>
 		    </li>
     	</c:when>

@@ -117,7 +117,7 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 

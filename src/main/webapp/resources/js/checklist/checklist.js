@@ -170,7 +170,7 @@ function updateCheckListAdd(index,checkNum) {
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
 	}else{
-		alert("수정먼저해")
+		swal("수정을 완료해 주세요")
 	}
 }
 
@@ -191,7 +191,7 @@ function updateCheckListContent(checkNum) {
 				
 	})
 	}else{
-		alert("수정할 문자열을 입력해주세요")
+		swal("수정할 문자열을 입력해주세요")
 	}
 }
 
