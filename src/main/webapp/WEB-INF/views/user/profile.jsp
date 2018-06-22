@@ -4,12 +4,20 @@
 <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <script src="resources/js/board/vendor/jquery.ui.widget.js"></script>
 <script src="resources/js/board/jquery.fileupload.js"></script>
-<script src="resources/js/user/update.js"></script>
-<link rel="stylesheet" href="resources/css/user/update.css">
-<div id="content">
+<script src="resources/js/user/profile.js"></script>
+<link rel="stylesheet" href="resources/css/user/profile.css">
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<div id="content" class="profilediv">
 	<form action="" method="post">
-		<h2>수정하기</h2>
+		<h2>Profile</h2>
 		<img class="img-circle" id="recentUserProfile" width="100" height="100">
+		<div class="container">
+			    <span class="btn btn-success fileinput-button">
+			        <i class="glyphicon glyphicon-plus"></i>
+			        <span>Add files...</span>
+			        <input id="fileupload" type="file" name="files" data-url="profileupdate">
+			    </span>
+		</div>
 		<div id="join-form" class="join-form margin-large">
 			<dl class="join-form-row">
 				<dt class="join-form-title">아이디</dt>
@@ -35,16 +43,9 @@
 					<input type="password" name="password2" id="password2" required="required"/>
 				</dd>
 			</dl>
-			<div class="container">
-			    <span class="btn btn-success fileinput-button">
-			        <i class="glyphicon glyphicon-plus"></i>
-			        <span>프로필 변경하기</span>
-			        <input id="fileupload" type="file" name="files" data-url="profileupdate">
-			    </span>
-			</div>
 		</div>
 		<div id="buttonLine">
-			<input class="btn-okay button" type="button" id="button" value="수정하기" />
+			<input class="btn btn-primary btn-okay" type="button" id="profilebutton" value="수정하기" />
 		</div>
 	</form>
 </div>

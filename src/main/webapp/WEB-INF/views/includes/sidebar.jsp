@@ -35,7 +35,7 @@
 			        </a>
 			        <ul class="collapse list-unstyled" id="homeSubmenu">
 			            <li><a href="content">User Info</a></li>
-			            <li><a href="userupdate">Profile Modification</a></li>
+			            <li><a href="userprofile">Profile Modification</a></li>
 			            <li><a href="userdelete">Delete</a></li>
 			        </ul>
 			    </li>
@@ -165,5 +165,27 @@
 		}
 		
 		getCurrentUserProfile();
+		
+		function profile() {
+			$.ajax({
+				type : "post",
+				url  : "showUser",
+				datatype:"JSON",
+				data : {userId : $('#hiddenUserId').val()},
+				success : function(data){
+					$.each(data, function(index, obj) {
+						$('#userId').attr("value", obj.userId);
+						$('#userName').attr("value", obj.userName);
+					});
+				}
+			});
+		}
+		
+		profile();
+		
+		$("#currentUserProfile").click(function() {
+			$('.profile').animate({width: 'toggle'});
+		});
 	});
+	
 </script>

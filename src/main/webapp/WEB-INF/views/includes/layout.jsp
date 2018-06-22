@@ -57,19 +57,36 @@
   	}
   	
   	.sidebar-chat {
+  	
   		position: fixed;
   		margin-top: 60px;
   		top: 0;
 	    right: 0;
 	    bottom: 0;
 	    display: none;
-	    /* overflow: hidden; */
 	    height: auto;
-  		/* border: 3px solid red; */
 	    z-index: 200;
 	    width: 420px;
 	    height: 100%
+	    
   	}
+  	
+  	.profile {
+  	
+  		position: fixed;
+  		margin-top: 40px;
+  		margin-left : 80px;
+  		top: 0;
+	    left: 0;
+	    bottom: 0;
+	    display: none;
+	    height: auto;
+	    z-index: 200;
+	    width: 250px;
+	    height: 60%
+	    
+  	}
+  	
   </style>
 
   <!-- jQuery library -->
@@ -89,6 +106,12 @@
 			<!-- sidebar 영역 -->
 			<tiles:insertAttribute name="sidebar" />
 		</nav>
+		<se:authorize access="hasRole('ROLE_USER')">
+			<div class="profile">
+				<!-- profile -->
+				<tiles:insertAttribute name="profile" />
+			</div>
+		</se:authorize>
 		
 		<nav class="navbar navbar-default" id="header">
 			<c:choose>

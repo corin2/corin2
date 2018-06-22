@@ -8,6 +8,7 @@ package site.corin2.user.controller;
 
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
+import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dto.UserDTO;
 import site.corin2.user.service.KakaoLogin;
 import site.corin2.user.service.UserService;
@@ -96,11 +98,11 @@ public class UserController {
 	}
 	
 	//사용자 수정하기 페이지 이동
-	@RequestMapping(value="userupdate" , method=RequestMethod.GET)
+	@RequestMapping(value="userprofile" , method=RequestMethod.GET)
 	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
 		UserDTO userdto = service.userUpdate(principal.getName());
 		model.addAttribute("userdto", userdto);
-		return "user.update";
+		return "user.profile";
 	}
 	
 	//프로필 올리기
@@ -157,9 +159,11 @@ public class UserController {
 	
 	//프로필 수정하기
 	@RequestMapping("profileupdate")
-	public void profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, HttpServletResponse response) {
+	public View profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, HttpServletResponse response, Model model) {
 		System.out.println("111"+userid);
-		service.profileupdate(userid,request);
+		LinkedList<FileMeta> files = service.profileupdate(userid,request);
+		model.addAttribute("data", files);
+		return jsonview;
 	}
 	
 	//ex페이지

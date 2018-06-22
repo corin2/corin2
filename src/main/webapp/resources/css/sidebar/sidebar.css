@@ -200,7 +200,7 @@ a.article, a.article:hover {
 ----------------------------------------------------- */
 #content {
    
-    min-height: 100vh;
+    min-height: 60vh;
     transition: all 0.3s;
 }
 
