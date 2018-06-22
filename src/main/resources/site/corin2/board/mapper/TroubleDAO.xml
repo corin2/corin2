@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<mapper namespace="site.corin2.board.dao.TroubleDAO">
 		
-		<!-- 트러블슈팅 전체조회 -->
+		<!-- 트러블슈팅 팀별 조회 -->
 		<select id="troubleSelect" resultType="site.corin2.board.dto.TroubleShootingDTO">
 			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
 				from troubleshooting a, board b,user c  
@@ -19,11 +19,34 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 order by boardnum desc  
 		</select>
 		
+		<!-- 트러블슈팅 검색어조회 -->
+		<select id="troubleSearch" resultType="site.corin2.board.dto.TroubleShootingDTO">
+			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 and a.problem like 
+			CONCAT('%',#{searchWord}, '%') order by boardnum desc  
+		</select>
+		
+		<!-- 트러블슈팅 태그조회 -->
+		<select id="troubleSearchTag" resultType="site.corin2.board.dto.TroubleShootingDTO">
+			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 and a.hashtag like 
+			CONCAT('%',#{searchTag}, '%') order by boardnum desc  
+		</select>
+		
+		<!-- 트러블슈팅 게시물 조회 -->
+		<select id="troubleView" resultType="site.corin2.board.dto.TroubleShootingDTO">
+			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d') as boarddate
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 and b.boardNum=#{boardNum}  
+		</select>
+		
 		<!-- 공통 게시판 테이블에 먼저 Insert -->
 		<insert id="troubleInsert" parameterType="site.corin2.board.dto.TroubleShootingDTO">
 			insert into 
 			board (skillnum,userid,boarddate,isdeleted)
-			values('S500','gosmgo@naver.com',now(),0)
+			values('S500',#{userId},now(),0)
 		</insert>
 		
 		<!-- 생성된 boardNum 으로 트러블슈팅 테이블에 Insert -->

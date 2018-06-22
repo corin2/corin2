@@ -39,6 +39,24 @@ public class TroubleController {
 		return "board.trouble";
 	}
 	
+	//트러블 슈팅 게시판조회 (전체,검색어)
+	@RequestMapping("/search")
+	public String troubleListSearch(String searchWord,TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleSearch(searchWord);
+			
+		model.addAttribute("data",troubles);
+		return "board.troubleAll";
+	}
+	
+	//트러블 슈팅 게시판조회 (전체,태그)
+	@RequestMapping("/searchTag")
+	public String troubleListTag(String searchTag,TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleSearchTag(searchTag);
+				
+		model.addAttribute("data",troubles);
+		return "board.troubleAll";
+	}
+	
 	//트러블 슈팅 게시판조회 (전체)
 		@RequestMapping("/troubleAll")
 		public String troubleAllList(TroubleShootingDTO trouble, Model model) {
@@ -73,6 +91,15 @@ public class TroubleController {
 		
 	}
 	
+	//트러블 슈팅 게시판조회 (팀별)
+	@RequestMapping("/troubleView")
+	public String troubleDetailView(Model model,int boardNum) {
+		TroubleShootingDTO troubleDTO = service.troubleView(boardNum);
+			
+		model.addAttribute("data",troubleDTO);
+		return "board.troubleView";
+	}
+	
 	//트러블 슈팅 게시글 수정
 	@RequestMapping("/update")
 	public String troubleUpdate(TroubleShootingDTO dto, Model model) {
@@ -80,7 +107,7 @@ public class TroubleController {
 		result = service.troubleUpdate(dto);
 		model.addAttribute("result",result);
 		
-		return "redirect:trouble";
+		return "redirect:trouble?projectNum="+dto.getProjectNum();
 	}
 	
 	//트러블 슈팅 게시글 삭제 (삭제가 아닌, isdeleted 를 1로 업데이트)
@@ -91,7 +118,7 @@ public class TroubleController {
 		result = service.troubleDelete(dto);
 		model.addAttribute("result",result);
 		
-		return "redirect:trouble";
+		return "redirect:trouble?projectNum="+dto.getProjectNum();
 	}
 }
 

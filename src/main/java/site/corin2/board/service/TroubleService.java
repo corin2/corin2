@@ -26,11 +26,7 @@ public class TroubleService {
 		List<TroubleShootingDTO> troubles = null;
 		
 		try {
-			
-			System.out.println(projectNum);
 			troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSelect(projectNum);
-			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -38,22 +34,61 @@ public class TroubleService {
 	}
 	
 	//트러블 슈팅게시물 전체 조회
-		public List<TroubleShootingDTO> troubleAllSelect(){
-			TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
-			List<TroubleShootingDTO> troubles = null;
+	public List<TroubleShootingDTO> troubleAllSelect(){
+		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+		List<TroubleShootingDTO> troubles = null;
 			
-			try {
-				
-				System.out.println();
-				troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleAllSelect();
+		try {
+			troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleAllSelect();
 				
 				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return troubles;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		return troubles;
+	}
 	
+	//트러블 슈팅게시물 검색어 조회
+	public List<TroubleShootingDTO> troubleSearch(String searchWord){
+		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+		List<TroubleShootingDTO> troubles = null;
+			System.out.println("service:"+searchWord);
+		try {
+			troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearch(searchWord);
+					
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return troubles;
+	}
+		
+	//트러블 슈팅게시물 태그로 조회
+	public List<TroubleShootingDTO> troubleSearchTag(String searchTag){
+		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+		List<TroubleShootingDTO> troubles = null;
+			System.out.println("service:"+searchTag);
+		try {
+			troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearchTag(searchTag);
+							
+							
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return troubles;
+	}
+		
+	//트러블 슈팅 게시글 상세보기 및 편집화면 진입
+	public TroubleShootingDTO troubleView(int boardNum) {
+			
+		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+		TroubleShootingDTO troubleDTO = null;
+			
+		troubleDTO = troubleDAO.troubleView(boardNum);
+		
+		return troubleDTO;
+	}
+		
 	//트러블 슈팅 게시물 추가(1차 board 테이블에 insert)
 	public int troubleInsert(TroubleShootingDTO tsdto) {
 		int result=0;
@@ -93,5 +128,5 @@ public class TroubleService {
 		return result;
 		
 	}
-	
+
 }

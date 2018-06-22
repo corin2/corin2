@@ -37,22 +37,23 @@
 
 <h2 id='boardTitle'>트러블슈팅 등록</h2>
 	<div class="container" style="margin-top: 20px;">
-	<form action="insert?pNum=${sessionScope.sessionProjectNum}"
+	<form action="update?boardNum=${data.boardNum}"
 		method="post" name="insfrm">
 		<b>태그등록 :</b> <input type="text" name="hashtag" data-role="tagsinput"
-			placeholder="Add tags" /> <br />
+			placeholder="Add tags" value=${data.hashtag}></input> <br />
 		<h3>발생한 문제</h3>
-		<textarea id="summernote" name="problem"></textarea>
+		<textarea id="summernote" name="problem">${data.problem}</textarea>
 		<h3>해결/조치 방법</h3>
-		<textarea id="summernote2" name="solution"></textarea>
-		<div> 
-			<input type="submit" class="btn btn-primary" value="작성" style="margin-right: 15px"> 
-			<input type="button" class="btn btn-danger" value="취소" OnClick="history.back()">
+		<textarea id="summernote2" name="solution">${data.solution}</textarea>
+		<div>
+			<input type="submit" class="btn btn-primary" value="작성" style="margin-right: 15px">
+			<a href="delete?boardNum=${data.boardNum}" class="btn btn-danger" type="button ">삭제</a>
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-warning" value="취소" OnClick="history.back()">
 		</div>
 		<input type="hidden" name="projectNum"
-			value="${sessionScope.sessionProjectNum}" />
-		<input type="hidden" name="userId"
-			value="${pageContext.request.userPrincipal.name}" />
+			value="${sessionScope.sessionProjectNum}" /> <input type="hidden"
+			name="userId" value="${pageContext.request.userPrincipal.name}" />
 	</form>
 
 </div>
