@@ -22,7 +22,7 @@ public interface CalendarDAO {
 	//카드일정 위치수정
 	public void cardCalendarDateUpdate(CalendarDTO calendar);
 	
-	//카드일정 삭제
+	//카드일정 삭제(업데이트)
 	public void cardCalendarDelete(CalendarDTO calendar);
 	
 	//카드일정 복구
@@ -30,4 +30,13 @@ public interface CalendarDAO {
 	
 	//Calendar 한개 조회
 	public CalendarDTO calendarSelect(CalendarDTO calendar);
+	
+	//Calendar 수정
+	public void modCalendar(CalendarDTO calendar);
+	
+	//Calendar 위치수정
+	public void calendarDateUpdate(CalendarDTO calendar);
+	
+	//일정 삭제(업데이트)
+	public void calendarDelete(CalendarDTO calendar);
 }

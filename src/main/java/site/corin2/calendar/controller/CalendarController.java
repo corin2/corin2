@@ -37,10 +37,17 @@ public class CalendarController {
 		return "calendar.calendar";
 	}
 	
-	//캘린터 추가
+	//캘린더 추가
 	@RequestMapping("addCalendar")
 	public View addCalendar(CalendarDTO calendar) {
 		service.addCalendar(calendar);
+		return jsonview;
+	}
+	
+	//캘린더 수정
+	@RequestMapping("modCalendar")
+	public View modCalendar(CalendarDTO calendar) {
+		service.modCalendar(calendar);
 		return jsonview;
 	}
 	
@@ -52,17 +59,31 @@ public class CalendarController {
 		return jsonview;
 	}
 	
-	//일정 위치수정
+	//카드일정 위치수정
 	@RequestMapping("cardCalendarDateUpdate")
 	public View cardCalendarDateUpdate(CalendarDTO calendar, Model model) {
 		service.cardCalendarDateUpdate(calendar);
 		return jsonview;
 	}
 	
-	//일정 삭제
+	//카드일정 삭제
 	@RequestMapping("cardCalendarDelete")
 	public View cardCalendarDelete(CalendarDTO calendar, Model model) {
 		service.cardCalendarDelete(calendar);
+		return jsonview;
+	}
+	
+	//일정 위치수정
+	@RequestMapping("calendarDateUpdate")
+	public View calendarDateUpdate(CalendarDTO calendar, Model model) {
+		service.calendarDateUpdate(calendar);
+		return jsonview;
+	}
+	
+	//일정 삭제
+	@RequestMapping("calendarDelete")
+	public View calendarDelete(CalendarDTO calendar, Model model) {
+		service.calendarDelete(calendar);
 		return jsonview;
 	}
 }
