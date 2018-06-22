@@ -47,12 +47,12 @@ public class UploadController {
 	
 	@Autowired
 	private View jsonview;
-
+	//초기화면 ui
 	@RequestMapping(value="fileUpload", method =RequestMethod.GET )
 	public String fileUpload(@RequestParam("projectNum") String projectNum,Model model) {
 		return "board.fileUpload";
 	}
-	
+	//초기화면 전체조회
 	@RequestMapping(value="fileUpload1", method= RequestMethod.GET)
 	public View fileUpload1(@RequestParam("projectNum") String projectNum,Model model) {
 		model.addAttribute("file1", service.uploadSelect(Integer.parseInt(projectNum)));
@@ -153,11 +153,11 @@ public class UploadController {
 		
 		
 	}
-	//검색기능
-	@RequestMapping(value="seacherSelect" , method = RequestMethod.GET)
-	public void seacherSelect() {
+/*	//검색기능
+	@RequestMapping(value="searchSelect" , method = RequestMethod.GET)
+	public void searcherSelect() {
 		
-		service.seacherSelect();
-	}
+		service.searcherSelect();
+	}*/
 
 }

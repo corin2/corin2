@@ -3,7 +3,12 @@ $(function () {
 	firstFileSelect();
 	drag();
 });
-
+/*//검색 keyup
+function searcherSelect(){
+	
+}
+*/
+//드래그시 이미지 보이게 
 function drag() {
     // handle drag/drop
     $('body').bind("dragover", function (e) {
@@ -50,7 +55,6 @@ function fileselect(){
 	
 		})
           $(".dropzonediv").html(html);  
-        
       },
       dropZone: $('#dropzone') 
 		 
@@ -123,15 +127,14 @@ function preview(uploadAlias){
   
 }
 
-
+//파일 다운로드
 function download(uploadAlias) {
 
 	 location.href='download?fileName='+uploadAlias;
 }
 
 
-
-
+//파일삭제
 function deleteFile(boardNum) {
 	console.log(boardNum);
 	var boardnum = boardNum;
@@ -152,33 +155,4 @@ function deleteFile(boardNum) {
     }); 
 }
 
-function name() {
-	$(document).bind('dragover', function (e) {
-	    var dropZone = $('.dropzone'),
-	        timeout = window.dropZoneTimeout;
-	    if (!timeout) {
-	        dropZone.addClass('in');
-	    } else {
-	        clearTimeout(timeout);
-	    }
-	    var found = false,
-	        node = e.target;
-	    do {
-	        if (node === dropZone[0]) {
-	            found = true;
-	            break;
-	        }
-	        node = node.parentNode;
-	    } while (node != null);
-	    if (found) {
-	        dropZone.addClass('hover');
-	    } else {
-	        dropZone.removeClass('hover');
-	    }
-	    window.dropZoneTimeout = setTimeout(function () {
-	        window.dropZoneTimeout = null;
-	        dropZone.removeClass('in hover');
-	    }, 100);
-	});
-}
  

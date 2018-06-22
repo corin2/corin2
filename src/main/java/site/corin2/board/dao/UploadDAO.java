@@ -11,16 +11,16 @@ import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.UploadDTO;
 
 public interface UploadDAO {
-
+	//전체조회
 	LinkedList<UploadDTO> uploadSelect(int projectNum);
-
+	//파일 insert
 	void uploadInsert(UploadDTO uploadDTO);
-
+	//게시판 insert
 	void boardInsert(BoardDTO boardDTO);
-
+	//삭제기능
 	void fileDelete(UploadDTO uploadDTO);
 
-	void gradeSelect(int projectNum);
-
+/*	LinkedList<UploadDTO> searcherSelect();
+*/
 
 }

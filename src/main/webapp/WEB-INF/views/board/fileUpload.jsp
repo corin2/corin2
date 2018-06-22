@@ -11,8 +11,8 @@ pageEncoding="UTF-8"%>
 
 
 	
-	
- 	 <form>
+	<!-- 검색기능 -->
+ 	 <form action="searchSelect" method="post">
  	 	<input type="text" placeholder="검색" />
  	 	<input type="submit" value="검색"></input>
 	 </form>
@@ -20,6 +20,7 @@ pageEncoding="UTF-8"%>
 	<br>
 	<br>
 	
+	<!-- 파일함 기능  -->
 	<div id ="wrap" >
 		<form action="upload" method="post" enctype="multipart/form-data"> 
 			<div class="filebox"> 
