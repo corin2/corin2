@@ -62,7 +62,7 @@
 					url : "vmsave",
 					data : {savedata : $('#summernote').summernote('code') , signup : signup},
 					success : function(data) {
-						alert("변경이 완료되었습니다.");
+						swal("변경이 완료되었습니다.");
 					}
 		 	 });
     	  });
@@ -74,7 +74,7 @@
 					url : "usetemplate",
 					data : {signup : signup},
 					success : function(data) {
-						alert("저장이 완료되었습니다.");
+						swal("저장이 완료되었습니다.");
 					}
 		 	 });
     	  });

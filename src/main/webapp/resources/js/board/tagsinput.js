@@ -164,7 +164,7 @@
 			if(self.findInputWrapper().closest('div').children('span').length < 5){
 				self.findInputWrapper().before($tag);
 			}else {
-				alert('태그는 5개까지 생성 가능합니다.');
+				swal('태그는 5개까지 생성 가능합니다.');
 			}
 			
 			$tag.after(' ');
