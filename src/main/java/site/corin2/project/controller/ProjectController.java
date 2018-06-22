@@ -74,6 +74,15 @@ public class ProjectController {
 		return jsonview;
 	}
 	
+	//프로젝트 번호로 주언어 정보 보기
+	@RequestMapping("/languageInfoByProjectNum")
+	public View languageInfoByProjectNumView(@RequestParam("projectNum") String projectNum, Model model) {
+		LanguageDTO list = null;
+		list = service.languageInfoByProjectNum(projectNum);
+		model.addAttribute("list",list);
+		return jsonview;
+	}
+	
 	//프로젝트 넘버 확인
 	@RequestMapping("/selectProjectNum")
 	public View selectProjectNumView(ProjectDTO project, Model model) {

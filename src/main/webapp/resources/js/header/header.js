@@ -1,5 +1,6 @@
 $(function(){
 	projectMemberProfile();
+	projectColorView();
 });
 
 //프로젝트에 속한 멤버 리스트 뿌려주기
@@ -46,9 +47,12 @@ function projectMemberShow(userProfiles){
 						/*if(elt.userId == userId) {
 							$('#currentUserProfile').attr("src", "resources/images/profile/" + elt2.userProfile);
 						}*/
-						htmltext += '<div class="dropdown" style="float:left;">'
-							+ '<a data-toggle="dropdown" style="font-size: 25pt; top: 7px; cursor: pointer;"><img style="width: 35px;height:35px" class="img-circle" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
-							+ '<ul class="dropdown-menu" style="cursor: pointer;">';
+						htmltext += '<div class="dropdown" style="float:left;">';
+						if(elt.gradeNum == 'G300')
+							htmltext += '<span class="glyphicon glyphicon-grain leader" aria-hidden="true"></span>';
+						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
+								 + '<img class="img-circle profileimg" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
+								 + '<ul class="dropdown-menu" style="cursor: pointer;">';
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
 							if(myGrade == 'G300'){
 								htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
@@ -82,7 +86,19 @@ function projectNameView(){
 			$('#headerProjectName').empty();
 			
 			$('#headerProjectName').html(data.data.projectName);
-			//$('#headerProjectName').css('border-color', data.data.project); //프로젝트 언어 색상
+		}
+	});
+}
+
+//해당 프로젝트 언어 색상
+function projectColorView() {
+	$.ajax({
+		type : "post",
+		url  : "languageInfoByProjectNum",
+		datatype:"JSON",
+		data : {projectNum : sessionProjectNum},
+		success : function(data){
+			$('#headerProjectName').css('border-color', data.list.languageColor); //프로젝트 언어 색상
 		}
 	});
 }

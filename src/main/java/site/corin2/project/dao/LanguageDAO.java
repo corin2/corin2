@@ -15,4 +15,6 @@ public interface LanguageDAO {
 	
 	public List<LanguageDTO> languageColorAllList();
 	
+	// 프로젝트 번호에 해당하는 언어 정보
+	public LanguageDTO languageInfoByProjectNum(String projectNum);
 }

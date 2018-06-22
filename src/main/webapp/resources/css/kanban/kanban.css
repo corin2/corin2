@@ -41,6 +41,10 @@
 		overflow-y: auto;
 	}
 	
+	.donebox::-webkit-scrollbar {
+		display:none;
+	}
+	
 	.userbox, .userprofilebox, .kanbanbox {
 		border:10px solid #00FF0000;
 		background-color: #00FF0000;
