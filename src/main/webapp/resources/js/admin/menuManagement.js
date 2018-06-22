@@ -200,7 +200,7 @@ function skillDel(obj){
 function skillAdd(obj){
 	var nextNum = 'S'+(Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text().substr(1))+100);
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
-				+ '<td><input type="text" placeholder="기능의 이름을 입력하세요"></td>'
+				+ '<td><input class="inputtext" type="text" placeholder="기능의 이름을 입력하세요"></td>'
 				+ '<td><select><option value="0">사용안함</option><option value="1">사용</option></td>'
 				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="skillAddOk(this)"></td></tr></tbody>';
 	$(obj).closest('table').append(content);
@@ -233,7 +233,7 @@ function skillEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text1 = tr.children('td:eq(1)').text();
 	var text2 = tr.children('td:eq(2)').text();
-	var texthtml = '<input type="text" placeholder="'+text1+'" >';
+	var texthtml = '<input class="inputtext" type="text" placeholder="'+text1+'" >';
 	var texthtm12 = '<select><option value="0">사용안함</option><option value="1" ';
 	if(text2 == '1') texthtm12 += 'selected ';
 	texthtm12 += '>사용</option></select>';
@@ -309,7 +309,7 @@ function listDel(obj){
 function listAdd(obj){
 	var nextNum = Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text())+1;
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
-				+ '<td><input type="text" placeholder="기능의 이름을 입력하세요"></td>'
+				+ '<td><input class="inputtext" type="text" placeholder="기능의 이름을 입력하세요"></td>'
 				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="listAddOk(this)"></td></tr></tbody>';
 	$(obj).closest('table').append(content);
 	$(obj).closest('th').html("생성중");
@@ -339,7 +339,7 @@ function listAddOk(obj){
 function listEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
-	var texthtml = '<input type="text" placeholder="'+text+'" >';
+	var texthtml = '<input class="inputtext" type="text" placeholder="'+text+'" >';
 	
 	tr.children('td:eq(1)').html(texthtml);
 	tr.children('td:eq(2)').html('<input type="button" value="완료" class="btn btn-info" onclick="listEditOk(this)" />');
@@ -414,7 +414,7 @@ function languageAdd(obj){
 	else if(num < 100 && num >= 10) nextNum = 'L0'+num;
 	else nextNum = 'L00'+num;
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
-				+ '<td><input type="text" placeholder="기능의 이름을 입력하세요" ></td>'
+				+ '<td><input class="inputtext" type="text" placeholder="기능의 이름을 입력하세요" ></td>'
 				+ '<td><input type="color" value="#555" ></td>'
 				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="languageAddOk(this)"></td></tr></tbody>';
 	$(obj).closest('table').append(content);
@@ -447,7 +447,7 @@ function languageEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
 	var text2 = tr.children('td:eq(2)').text();
-	var texthtml = '<input type="text" placeholder="'+text+'" >';
+	var texthtml = '<input class="inputtext" type="text" placeholder="'+text+'" >';
 	var texthtml2 = '<input type="color" value="'+text2+'" >';
 	
 	tr.children('td:eq(1)').html(texthtml);
@@ -521,7 +521,7 @@ function userGradeDel(obj){
 function userGradeAdd(obj){
 	var nextNum = 'G'+(Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text().substr(1))+100);
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
-				+ '<td><input type="text" placeholder="기능의 이름을 입력하세요"></td>'
+				+ '<td><input class="inputtext" type="text" placeholder="기능의 이름을 입력하세요"></td>'
 				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="userGradeAddOk(this)"></td></tr></tbody>';
 	$(obj).closest('table').append(content);
 	$(obj).closest('th').html("생성중");
@@ -551,7 +551,7 @@ function userGradeAddOk(obj){
 function userGradeEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
-	var texthtml = '<input type="text" placeholder="'+text+'" >';
+	var texthtml = '<input class="inputtext" type="text" placeholder="'+text+'" >';
 	
 	tr.children('td:eq(1)').html(texthtml);
 	tr.children('td:eq(2)').html('<input type="button" value="완료" class="btn btn-info" onclick="userGradeEditOk(this)" />');
