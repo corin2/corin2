@@ -22,3 +22,11 @@
 	top: 7px;
 	cursor: pointer;
 }
+
+.headerFloatLeft {
+	float: left;
+}
+
+.headerCuror {
+	cursor: pointer;
+}
