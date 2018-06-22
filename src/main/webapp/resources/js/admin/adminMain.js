@@ -1,27 +1,54 @@
+//////////// $(document).ready() ////////////
+$(function() {
+	// 프로그래밍 언어 차트 표시
+	showLanguageChart();
+	
+	// 이메일 차트 표시
+	showEmailChart();
+	
+	// 통계 차트 표시
+	showStatsChart();
+	
+	allUserCount();
+	allProjectCount();
+	allLanguageCount();
+	
+	
+}); //end - jQuery
+
 //////////// 차트 구성 ////////////
 // 프로그래밍 언어 차트
-$(function() {
+function showLanguageChart() {
+	var countData =[];
+	
+	
+	
+	
+	
 	var text = 'Java, C#, C, Ruby, Python, Go, ASP, VisualBasic, PHP, JavaScript, '
-				+ 'Eiffel, VHDL, Scala, Emacs Lisp, Delphi, Ada, Vim, Perl, Lua, Objective-C'
-				+ 'Rebol, Verilog, Factor, loke, Erlang, Nu, D, Shell, Assembly, Turing'
-				+ 'TypeScript, Arduino, Dart, CoffeScript, Arc, Elixir, Groovy, R, Clojure'
-				+ 'Rust, Prolog, Gosu, FORTRAN, Fancy, Haskell, Vala, Smaltalk, Scheme, Matlab';
+		+ 'Eiffel, VHDL, Scala, Emacs Lisp, Delphi, Ada, Vim, Perl, Lua, Objective-C'
+		+ 'Rebol, Verilog, Factor, loke, Erlang, Nu, D, Shell, Assembly, Turing'
+		+ 'TypeScript, Arduino, Dart, CoffeScript, Arc, Elixir, Groovy, R, Clojure'
+		+ 'Rust, Prolog, Gosu, FORTRAN, Fancy, Haskell, Vala, Smaltalk, Scheme, Matlab';
 	var lines = text.split(/[,. ]+/g),
-	  data = Highcharts.reduce(lines, function (arr, word) {
-	    var obj = Highcharts.find(arr, function (obj) {
-	      return obj.name === word;
-	    });
-	    if (obj) {
-	      obj.weight += 1;
-	    } else {
-	      obj = {
-	        name: word,
-	        weight: 1
-	      };
-	      arr.push(obj);
-	    }
-	    return arr;
-	  }, []);
+	data = Highcharts.reduce(lines, function (arr, word) {
+	var obj = Highcharts.find(arr, function (obj) {
+	  return obj.name === word;
+	});
+	if (obj) {
+	  obj.weight += 1;
+	} else {
+	  obj = {
+	    name: word,
+	    weight: 1
+	  };
+	  arr.push(obj);
+	}
+	return arr;
+	}, []);
+	
+	console.log("라인스: " + lines)
+	console.log("데이타: " + data)
 	
 	Highcharts.chart('container', {
 	  series: [{
@@ -33,8 +60,10 @@ $(function() {
 	    text: ''
 	  }
 	});
-	
-	// 이메일 차트
+}
+
+// 이메일 차트
+function showEmailChart() {
 	var chartMailRank = echarts.init(document.getElementById('emailRank'));
 	var option = {
 	    title: {
@@ -86,8 +115,10 @@ $(function() {
 	};
 	
 	chartMailRank.setOption(option);
-	
-	// 통계 차트
+}
+
+// 통계 차트
+function showStatsChart() {
 	var chartStats = echarts.init(document.getElementById('stats'));
 	var optionStats = {
 	    title: {
@@ -176,40 +207,54 @@ $(function() {
 	};
 	
 	chartStats.setOption(optionStats);
-}); // end - $(document).ready()
+}
+
 
 //////////// 기능 ////////////
-$(function() {
 	
-	// isDeleted = 0인 모든 회원 수
-	function allUserCount() {
-		$.ajax({
-			url : "allUserCount",
-			datatype:"text",
-			success : function(data) {
-				$('#allUserCountResult').text(numberWithCommas(data.count));
-			}
-		})
-	}
-	allUserCount();	
-	
-	// isDeleted = 0인 모든 프로젝트 수
-	function allProjectCount() {
-		$.ajax({
-			url : "allProjectCount",
-			datatype:"text",
-			success : function(data) {
-				$('#allProjectCountResult').text(numberWithCommas(data.count));
-			}
-		})
-	}
-	allProjectCount();
+// isDeleted = 0인 모든 회원 수
+function allUserCount() {
+	$.ajax({
+		url: "allUserCount",
+		datatype:"text",
+		success: function(data) {
+			$('#allUserCountResult').text(numberWithCommas(data.count));
+		}
+	})
+}
 
+// isDeleted = 0인 모든 프로젝트 수
+function allProjectCount() {
+	$.ajax({
+		url: "allProjectCount",
+		datatype:"text",
+		success: function(data) {
+			$('#allProjectCountResult').text(numberWithCommas(data.count));
+		}
+	})
+}
 
+// 프로젝트 언어별 수
+function allLanguageCount() {
+	var countData = []; 
 	
-}); // end - jQuery
+	$.ajax({
+		url: "allLanguageCount",
+		datatype: "JSON",
+		success: function(data) {
+			$.each(data.count, function(index, obj) {
+				console.log("랭귀지메인: " + obj.languageMain);
+				console.log("랭귀지카운트: " + obj.languageCount);
+				countData.push(obj.languageMain);
+			});
+		}
+	});
+	
+	
+}
 
 //////////// 유틸 ////////////
+// 3자리 숫자 이상에 콤마
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

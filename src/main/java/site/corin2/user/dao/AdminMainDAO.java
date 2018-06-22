@@ -7,6 +7,10 @@
 
 package site.corin2.user.dao;
 
+import java.util.List;
+
+import site.corin2.user.dto.LanguageCountDTO;
+
 public interface AdminMainDAO {
 	// isDeleted = 0인 모든 회원 수
 	public int allUserCount();
@@ -19,6 +23,7 @@ public interface AdminMainDAO {
 	// 날짜별 프로젝트 수
 	
 	// 프로젝트 언어별 수
+	public List<LanguageCountDTO> allLanguageCount();
 	
 	// 회원 이메일별 수
 	

@@ -11,5 +11,12 @@
 		select count(*) from project where isdeleted = 0
 	</select>
 	
+	<!-- 프로젝트 언어별 수 -->
+	<select id="allLanguageCount" resultType="site.corin2.user.dto.LanguageCountDTO">
+		select p.languagenum, l.languagemain, l.languagecolor, count(*) as languagecount
+		from project p join language l
+		on p.languagenum = l.languagenum
+		group by p.languagenum
+	</select>
 	
 </mapper>
