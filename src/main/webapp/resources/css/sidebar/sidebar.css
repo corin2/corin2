@@ -199,7 +199,7 @@ a.article, a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    min-height: 60vh; /* 콘텐츠 height */
+    min-height: 100vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 
