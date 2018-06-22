@@ -52,8 +52,6 @@ public class KanbanHandler extends TextWebSocketHandler {
 	
 	public String getProjectNum(WebSocketSession session) {
 		Map<String, Object> map = session.getAttributes();
-		
 		return (String) map.get("projectNum");
 	}
-	
 }

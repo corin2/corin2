@@ -8,7 +8,7 @@ package site.corin2.calendar.dto;
 
 public class CalendarDTO {
 
-	private int calendarNum;
+	private int cardNum;
 	private int projectNum;
 	private String calendarName;
 	private String startDate;
@@ -18,12 +18,12 @@ public class CalendarDTO {
 	
 	public CalendarDTO() {}
 
-	public int getCalendarNum() {
-		return calendarNum;
+	public int getCardNum() {
+		return cardNum;
 	}
 
-	public void setCalendarNum(int calendarNum) {
-		this.calendarNum = calendarNum;
+	public void setCardNum(int cardNum) {
+		this.cardNum = cardNum;
 	}
 
 	public int getProjectNum() {
@@ -73,4 +73,5 @@ public class CalendarDTO {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
+
 }

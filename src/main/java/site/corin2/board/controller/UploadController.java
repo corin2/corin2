@@ -136,7 +136,7 @@ public class UploadController {
 			//파일 다운로드
 			FileInputStream in = new FileInputStream(filePath);		
 		    response.setHeader("Content-Disposition", 
-		            "attachment;filename="+new String(filename.getBytes(),"ISO8859_1"));
+		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
 		    ServletOutputStream out2 = response.getOutputStream();
 		    int numread;
 		    while((numread = in.read(b,0,b.length)) != -1){

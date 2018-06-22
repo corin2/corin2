@@ -4,6 +4,7 @@
     작성일: 2018. 6. 20.
     작성자: 전나영
 */
+
 package site.corin2.board.dto;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;

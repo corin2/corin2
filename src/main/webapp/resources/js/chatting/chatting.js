@@ -31,7 +31,7 @@ $(function() {
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
-	getUsers(currentProject); // 멤버 가져오기 함수
+	if(sessionProjectNum != 'null') getUsers(currentProject); // 멤버 가져오기 함수
 	
 	// 사용자명 툴팁
 	$('[data-toggle="tooltip"]').tooltip(); //TODO 수정할 것
@@ -46,7 +46,7 @@ $(function() {
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
 		messages = db.child('messages/' + projectNum); // 전체채팅 메시지 경로
-		
+
 		$.ajax({
 			url:"showMemberUserProfile",
 			datatype:"JSON",

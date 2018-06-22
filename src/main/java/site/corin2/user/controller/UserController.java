@@ -6,45 +6,26 @@
 */
 package site.corin2.user.controller;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
-import site.corin2.board.dto.FileMeta;
-import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.UserDTO;
-import site.corin2.user.dto.UserGradeDTO;
 import site.corin2.user.service.KakaoLogin;
 import site.corin2.user.service.UserService;
 
@@ -202,4 +183,11 @@ public class UserController {
 		return "user.admin";
 	}
 	
+	//회원 삭제하기
+	@RequestMapping(value="userDel" , method= {RequestMethod.POST,RequestMethod.GET})
+	public String userDel(UserDTO userdto) throws ClassNotFoundException, SQLException {
+		service.userDelete(userdto.getUserId());
+		return "login.html";
+	}
+		
 }

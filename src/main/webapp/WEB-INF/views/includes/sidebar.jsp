@@ -17,7 +17,7 @@
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
 	    <script>
-	    	location.href="http://localhost:8090/controller/login.html";
+	    	location.href="http://"+ document.domain +":8090/controller/login.html";
 	    </script>
 	</c:when>
 </c:choose>
@@ -58,13 +58,13 @@
 			    <li>
 			        <a href="adminUserController">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(회원관리)
+						User Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMenu">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						MenuManagement
+						Menu Manager
 			        </a>
 			    </li>
 			    <li>
@@ -76,7 +76,7 @@
 			    <li>
 			        <a href="adminPeaples">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
-						(만든사람들)
+						Make Person
 			        </a>
 			    </li>
 		    </se:authorize>
@@ -158,7 +158,6 @@
 				data : {userId : $('#hiddenUserId').val()},
 				success : function(data){
 					$.each(data, function(index, obj) {
-						console.log("결과:  " + obj.userProfile);
 						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 					});
 				}

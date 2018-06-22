@@ -9,7 +9,7 @@ function addCardCheckListView() {
 			+ "</div>";
 	
 	$('#checkListForm').append(div)
-	$('#cardCheckBoxInput').focus();;
+	$('#cardCheckBoxInput').focus();
 }
 
 //체크리스트 등록 성공
@@ -32,7 +32,7 @@ function addCardCheckList() {
 function showCardCheckList(){
 	$.ajax({
 		type : "post",
-		url  : "CheckListSelect",
+		url  : "cardCheckListSelect",
 		datatype:"JSON",
 		data : {cardNum : $('#hiddenCardNum').val()},
 		success : function(data){
