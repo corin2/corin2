@@ -49,7 +49,7 @@ function projectMemberShow(userProfiles){
 						}*/
 						htmltext += '<div class="dropdown" style="float:left;">';
 						if(elt.gradeNum == 'G300')
-							htmltext += '<span class="glyphicon glyphicon-grain leader" aria-hidden="true"></span>';
+							htmltext += '<span class="glyphicon glyphicon-king leader" aria-hidden="true"></span>';
 						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
 								 + '<img class="img-circle profileimg" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
 								 + '<ul class="dropdown-menu" style="cursor: pointer;">';

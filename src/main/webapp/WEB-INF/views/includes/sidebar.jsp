@@ -28,19 +28,6 @@
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
-			<se:authorize access="hasRole('ROLE_USER')">
-			    <li class="active">
-			        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-			            <i class="glyphicon glyphicon-user"></i>
-			            User
-			        </a>
-			        <ul class="collapse list-unstyled" id="homeSubmenu">
-			            <li><a href="content">User Info</a></li>
-			            <li><a href="userprofile">Profile Modification</a></li>
-			            <li><a href="userdelete">Delete</a></li>
-			        </ul>
-			    </li>
-		    </se:authorize>
 		    <se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
 			        <a href="boardList">

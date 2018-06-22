@@ -11,7 +11,7 @@ function skillCheckListTable() {
 		  + "<tbody>"
 		  + "<tr>"
 		  + "<th class='tdpositionclass tdalignclass'>CLASS</th>"
-		  + "<th class='tdalignclass' style='width:89%'>CHECKLIST</th>"
+		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST</th>"
 		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
 		  + "</tbody>"
@@ -37,7 +37,7 @@ function skillCheckListTableConfirm() {
 				+ "<tbody>"
 				+ "<tr>"
 				+ "<th class='tdpositionclass tdalignclass'>CLASS</th>"
-				+ "<th class='tdalignclass' style='width:87%'>CHECKLIST</th>";
+				+ "<th class='tdalignclass thCheckListStyleWidth'>CHECKLIST</th>";
 			$.each(data.list, function(index, elt) {
 				table += "<th class='tdalignclass'>"+elt.userId+"</th>"
 			});

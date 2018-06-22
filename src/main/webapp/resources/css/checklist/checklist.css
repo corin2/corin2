@@ -84,3 +84,31 @@
 	vertical-align:inherit ;
     text-align: center;
 }
+
+.checkFloatRight, .checkProfileimg {
+	float: right;
+}
+
+.checkFloat {
+	float: left;
+}
+
+.checkProfileimg {
+	height: 30px;
+}
+
+.tdCheckListContent {
+	width: 90%;
+}
+
+.tdCheckListContentMod {
+	width: 100%;
+}
+
+.thCheckListWidth {
+	width: 89%;
+}
+
+.thCheckListStyleWidth {
+	width: 87%;
+}
