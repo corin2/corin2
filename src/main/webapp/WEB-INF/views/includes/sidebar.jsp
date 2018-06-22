@@ -27,19 +27,6 @@
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
-			<se:authorize access="hasRole('ROLE_USER')">
-			    <li class="active">
-			        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-			            <i class="glyphicon glyphicon-user"></i>
-			            User
-			        </a>
-			        <ul class="collapse list-unstyled" id="homeSubmenu">
-			            <li><a href="content">User Info</a></li>
-			            <li><a href="userprofile">Profile Modification</a></li>
-			            <li><a href="userdelete">Delete</a></li>
-			        </ul>
-			    </li>
-		    </se:authorize>
 		    <se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
 			        <a href="boardList">
@@ -101,27 +88,15 @@
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
-		        <a class="sidebaricon" href="calendar" id="calendaricon">
-		             <i class="glyphicon glyphicon-calendar"></i>
-		            Calendar
-		        </a>
-		    </li>
-		    <li>
 				<a class="sidebaricon" href="checklist" id="checklisticon">
 				    <i class="glyphicon glyphicon-th-list"></i>
 				    Checklist
 				</a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="chart" id="charticon">
-		            <i class="glyphicon glyphicon-stats"></i>
-		            Chart
-		        </a>
-		    </li>
-		    <li>
-		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
-		            <i class="glyphicon glyphicon-file" ></i>
-		            Files
+		        <a class="sidebaricon" href="calendar" id="calendaricon">
+		             <i class="glyphicon glyphicon-calendar"></i>
+		            Calendar
 		        </a>
 		    </li>
 		    <li>
@@ -134,6 +109,18 @@
 		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="troubleshootingicon">
 					<i class="glyphicon glyphicon-exclamation-sign"></i>
 		            Trouble Shooting
+		        </a>
+		    </li>
+		    <li>
+		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		            <i class="glyphicon glyphicon-file" ></i>
+		            Files
+		        </a>
+		    </li>
+		    <li>
+		        <a class="sidebaricon" href="chart" id="charticon">
+		            <i class="glyphicon glyphicon-stats"></i>
+		            Chart
 		        </a>
 		    </li>
     	</c:when>
