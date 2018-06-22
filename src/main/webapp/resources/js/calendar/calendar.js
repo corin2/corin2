@@ -15,7 +15,6 @@ function showCalendar() {
 		editable: true,
 		droppable: true,
 		drop: function(date, jsEvent, ui, resourceId) {
-			
 			var start = date.format();
 			var cardNumber = $(this).attr('id').substr(10);
 			var calendarName = ui.helper[0].innerText.trim();
@@ -50,7 +49,7 @@ function showCalendar() {
 		    		startDate : event.start.format(),
 		    		endDate : dateProcess(event.end.format(), -1)
 		    	}
-	    	calendarDateUpdate(calendarData);
+	    	cardCalendarDateUpdate(calendarData);
 	    },
 		eventResize: function(event, delta, revertFunc) { // Editable을 통한 날짜 변경 처리 함수
 			var calendarData = {
@@ -58,7 +57,7 @@ function showCalendar() {
 		    		startDate : event.start.format(),
 		    		endDate : dateProcess(event.end.format(), -1)
 		    	}
-			calendarDateUpdate(calendarData);
+			cardCalendarDateUpdate(calendarData);
 		},
 		eventDragStop: function (event, jsEvent) { // Drag 후 삭제 기능
 		    var trashEl = $('#external-events');
@@ -73,7 +72,7 @@ function showCalendar() {
 		        jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
 		    	$.ajax({
 		    		type : "post",
-		    		url  : "calendarDelete",
+		    		url  : "cardCalendarDelete",
 		    		datatype:"JSON",
 		    		data : {cardNum : event.id.substr(10)},
 		    		success : function(data){
@@ -86,10 +85,10 @@ function showCalendar() {
 }
 
 //일정 위치수정
-function calendarDateUpdate(calendarData){
+function cardCalendarDateUpdate(calendarData){
 	$.ajax({
 		type : "post",
-		url  : "calendarDateUpdate",
+		url  : "cardCalendarDateUpdate",
 		datatype:"JSON",
 		data : calendarData,
 		success : function(data){
