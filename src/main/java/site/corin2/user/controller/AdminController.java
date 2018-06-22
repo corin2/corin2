@@ -9,6 +9,8 @@ package site.corin2.user.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.checklist.dto.CheckListDTO;
@@ -190,26 +193,26 @@ public class AdminController {
 	}
 	
 	//vmfileload하기
-	@RequestMapping(value = "vmload" , method = RequestMethod.POST)
-	public View vmLoad(Model model) {
-		String line = service.vmLoad();
+	@RequestMapping("vmload")
+	public View vmLoad(Model model , HttpServletRequest request) {
+		String line = service.vmLoad(request);
 		model.addAttribute("line", line);
 		return jsonview;
 	}
 	
 
 	//vmfileload하기
-	@RequestMapping(value = "vmload2" , method = RequestMethod.POST)
-	public View vmLoad2(Model model) {
-		String line = service.vmLoad2();
+	@RequestMapping("vmload2")
+	public View vmLoad2(Model model , HttpServletRequest request) {
+		String line = service.vmLoad2(request);
 		model.addAttribute("line", line);
 		return jsonview;
 	}
 	
 	//vmfilesave하기
 	@RequestMapping("vmsave")
-	public View vmSave(String savedata , String signup) {
-		service.vmSave(savedata,signup);
+	public View vmSave(String savedata , String signup , HttpServletRequest request) {
+		service.vmSave(savedata,signup,request);
 		return jsonview;
 			
 	}
