@@ -14,6 +14,7 @@
      <definition name="*.*" template="/WEB-INF/views/includes/layout.jsp" > 
      	 <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
          <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" />
+         <put-attribute name="profileimage" value="/WEB-INF/views/user/profileimage.jsp" />
          <put-attribute name="profile" value="/WEB-INF/views/user/profile.jsp" />
          <put-attribute name="chatting" value="/WEB-INF/views/chatting/chatting.jsp" />
          <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />

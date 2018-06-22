@@ -108,19 +108,12 @@ public class UserController {
 		return check;
 	}
 	
-	//사용자 수정하기 기능 실행
-	@RequestMapping(value="userupdate", method=RequestMethod.POST)
-	public String userUpdate(UserDTO userdto) {
-		System.out.println(userdto.getPassword());
-		service.userUpdate(userdto);
-		return "project.project";
-	}
 	
 	//회원 삭제하기
 	@RequestMapping(value="userdelete" , method= {RequestMethod.POST,RequestMethod.GET})
-	public String userDelete(UserDTO userdto ,Principal principal) throws ClassNotFoundException, SQLException {
+	public View userDelete(UserDTO userdto ,Principal principal) throws ClassNotFoundException, SQLException {
 		service.userDelete(principal.getName());
-		return "login.html";
+		return jsonview;
 	}
 	
 	//kakao Oauth
@@ -153,9 +146,27 @@ public class UserController {
 		return jsonview;
 	}
 	
+	//사용자 수정하기 비밀번호 변경
+	@RequestMapping(value="userpassupdate", method=RequestMethod.POST)
+	public View userpassUpdate(UserDTO userdto) {
+		System.out.println(userdto.getPassword());
+		service.userpassUpdate(userdto);
+		return jsonview;
+	}
+	
+
+	//사용자 수정하기 닉네임 변경
+	@RequestMapping(value="usernickupdate", method=RequestMethod.POST)
+	public View usernickUpdate(UserDTO userdto) {
+		System.out.println(userdto.getPassword());
+		service.usernickUpdate(userdto);
+		return jsonview;
+	}
+	
 	//프로필 수정하기
-	@RequestMapping("profileupdate")
-	public View profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, HttpServletResponse response, Model model) {
+	@RequestMapping("profileimageupdate")
+	public View profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, Model model) {
+		System.out.println("controller"+userid);
 		LinkedList<FileMeta> files = service.profileupdate(userid,request);
 		model.addAttribute("data", files);
 		return jsonview;

@@ -31,20 +31,37 @@ body {
 .profilediv {
   position: relative;
   overflow: hidden;
-  top: 40px;
+  top: 13px;
   /* height: calc(70% - 38px); */
   height: calc(70% - 38px); /* 추가한 내용 */
   width: 250px; /* 추가한 내용 */
   background-color: #f7f7f7;
-  height: 50%;
+  height: 80%;
   overflow: hidden;
   margin: 0 !important;
   padding: 0;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
   left: 12px;
 }
-
+.profileimagediv {
+  position: relative;
+  overflow: hidden;
+  top: 5px;
+  /* height: calc(70% - 38px); */
+  height: calc(70% - 38px); /* 추가한 내용 */
+  width: 250px; /* 추가한 내용 */
+  background-color: #f7f7f7;
+  height: 40%;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
+  left: 12px;
+}
+#profileimage-content {
+    min-height: 25vh; /* 콘텐츠 height */
+    transition: all 0.3s;
+}
 #profile-content {
-    min-height: 60vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }

@@ -68,7 +68,20 @@
 /* 프로필 수정 */
 .profile {
 	position: fixed;
-	margin-top: 40px;
+	margin-left : 80px;
+	top: 315px;
+	left: 0;
+	bottom: 0;
+	display: none;
+	height: auto;
+	z-index: 200;
+	width: 270px;
+	height: 60%
+}
+
+.profileimage{
+	position: fixed;
+	margin-top: 80px;
 	margin-left : 80px;
 	top: 0;
 	left: 0;
@@ -76,6 +89,6 @@
 	display: none;
 	height: auto;
 	z-index: 200;
-	width: 250px;
-	height: 60%
+	width: 265px;
+	height: 26%
 }

@@ -1,61 +1,16 @@
 	$(function(){
-		$.ajax({
-			type : "post",
-			url  : "showUser",
-			datatype:"JSON",
-			data : {userId : $('#hiddenUserId').val()},
-			success : function(data){
-				$.each(data, function(index, obj) {
-					$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-				});
-			}
-		});
-		
-	    $('#profileupload').fileupload({
-	        dataType: 'json',
-	        add: function(e, data){
-                var uploadFile = data.files[0];
-                var isValid = true;
-                if (!(/png|jpe?g|gif|svg/i).test(uploadFile.name)) {
-                    swal('png, jpg, gif 만 가능합니다');
-                    isValid = false;
-                }
-                if (isValid) {
-                    data.submit();
-                }
-	        },
-	        done: function (e, data) {
-	        	console.log(data.result);
-	        	$.ajax({
-					type : "post",
-					url  : "showUser",
-					datatype:"JSON",
-					data : {userId : $('#hiddenUserId').val()},
-					success : function(data){
-						$.each(data, function(index, obj) {
-							$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-							$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-						});
-					}
-				});
-	        },
-	    }).on('fileuploadfail', function (e, data) {
-	    	swal("형식이 맞지 않습니다.");
-	    });
-		
-		$('#profilebutton').click(function(){
+		//비밀번호 변경하기
+		$('#password-button').click(function(){
 			if($('#password').val() != "" && $('#password').val() == $('#password2').val()){
 			$.ajax({
-				url:"userupdate",
+				url:"userpassupdate",
 				type: "post",
 				datatype:"JSON",
 				data:{userId:$("#userId").val(), 
-					  userName:$("#userName").val(),
 					  password:$("#password").val(), 
-					  userProfile:$("#profileupload").val()},
+					  },
 				success:function(data){
-					swal("수정하기에 성공하였습니다.");
-					
+					swal("비밀번호 수정하기에 성공하였습니다.");
 					$.ajax({
 						type : "post",
 						url  : "showUser",
@@ -63,8 +18,6 @@
 						data : {userId : $('#hiddenUserId').val()},
 						success : function(data){
 							$.each(data, function(index, obj) {
-								$('#userId').attr("value", obj.userId);
-								$('#userName').attr("value", obj.userName);
 								$('#password').val("");
 								$('#password2').val("");
 							});
@@ -79,7 +32,52 @@
 				swal("비밀번호와 비밀번호 확인이 다릅니다.");
 			}
 		});
-	
+		//닉네임 변경하기
+		$('#nickname-button').click(function(){
+			if($('#userName').val() != "" ){
+				$.ajax({
+					url:"usernickupdate",
+					type: "post",
+					datatype:"JSON",
+					data:{userId:$("#userId").val(), 
+						  userName:$("#userName").val()},
+					success:function(data){
+						swal({text:"닉네임 수정하기에 성공하였습니다."});
+						$.ajax({
+							type : "post",
+							url  : "showUser",
+							datatype:"JSON",
+							data : {userId : $('#hiddenUserId').val()},
+							success : function(data){
+								$.each(data, function(index, obj) {
+									$('#userId').attr("value", obj.userId);
+									$('#userName').attr("value", obj.userName);
+								});
+							}
+						});
+					}
+				});
+			}else if($('#userName').val() == ""){
+				swal("닉네임을 입력해주세요.");
+			}
+		});
+		
+		//user delete
+		$('#delete-button').click(function(){
+			$.ajax({
+		    	type: "post",
+	 			url:  "userdelete",
+	 			data: $("#userId").val(),
+	 			contentType: "application/json; charset=utf-8",
+	 		    success:function(data){ 
+	 		    	swal({
+	 		    		text: "삭제가 완료 되었습니다."
+	 		    		}).then((willDelete) => {
+	 		    			location.href = "login.html";
+	 				});
+		        }
+		    });
+		});
 	});
 	
 	

@@ -172,7 +172,11 @@
 		profile();
 		
 		$("#currentUserProfile").click(function() {
-			$('.profile').animate({width: 'toggle'});
+			//if('.profile'). TO DO
+			$('.profileimage').animate({width: 'toggle'});
+		});
+		$("#reformbutton").click(function(){
+			$('.profile').slideToggle();
 		});
 	});
 	

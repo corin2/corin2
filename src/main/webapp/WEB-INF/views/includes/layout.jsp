@@ -54,6 +54,12 @@
 				<tiles:insertAttribute name="profile" />
 			</div>
 		</se:authorize>
+		<se:authorize access="hasRole('ROLE_USER')">
+			<div class="profileimage">
+				<!-- profile -->
+				<tiles:insertAttribute name="profileimage" />
+			</div>
+		</se:authorize>
 		
 		<nav class="navbar navbar-default" id="header">
 			<c:choose>

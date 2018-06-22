@@ -21,9 +21,15 @@
 		where userid = #{userId}
 	</update>
 	
-	<update id="userUpdate">
+	<update id="userpassUpdate">
 		update user
-		set username=#{userName},password = #{password}
+		set password = #{password}
+		where userid = #{userId}
+	</update>
+	
+	<update id="usernickUpdate">
+		update user
+		set username=#{userName}
 		where userid = #{userId}
 	</update>
 	

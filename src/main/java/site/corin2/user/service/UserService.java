@@ -31,8 +31,11 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dao.AdminDAO;
@@ -249,20 +252,6 @@ public class UserService {
 		return userdto;
 	}
 	
-	//사용자 수정하기 기능 실행
-	public void userUpdate(UserDTO userdto) {
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		UserDTO updateuser;
-		try {
-			updateuser = userdao.userSelect(userdto.getUserId());
-			updateuser.setUserName(userdto.getUserName());
-			updateuser.setPassword(userdto.getPassword());
-			updateuser.setGradeNum(userdto.getGradeNum());
-			userdao.userUpdate(updateuser);
-		}catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
 	
 	//회원 삭제하기
 	public void userDelete(String userId) {
@@ -331,6 +320,32 @@ public class UserService {
 		return user;
 	}
 	
+	//사용자 수정하기 기능 실행
+	public void userpassUpdate(UserDTO userdto) {
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		UserDTO updateuser;
+		try {
+			updateuser = userdao.userSelect(userdto.getUserId());
+			updateuser.setPassword(userdto.getPassword());
+			userdao.userpassUpdate(updateuser);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	//사용자 수정하기 닉네임 변경
+	public void usernickUpdate(UserDTO userdto) {
+		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+		UserDTO updateuser;
+		try {
+			updateuser = userdao.userSelect(userdto.getUserId());
+			updateuser.setUserName(userdto.getUserName());
+			userdao.usernickUpdate(updateuser);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+		
 	//프로필 수정하기
 	public LinkedList<FileMeta> profileupdate(String userid , MultipartHttpServletRequest request) {
 		String savepath = "resources/images/profile";  

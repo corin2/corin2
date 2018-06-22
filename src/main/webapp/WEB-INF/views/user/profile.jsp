@@ -6,15 +6,6 @@
 <link rel="stylesheet" href="resources/css/user/profile.css">
 <div id="profile-content" class="profilediv">
 	<form action="" method="post">
-		<h2>Profile</h2>
-		<img class="img-circle" id="recentUserProfile" width="100" height="100">
-		<div class="container-fluid">
-			    <span class="btn btn-success fileinput-button">
-			        <i class="glyphicon glyphicon-plus"></i>
-			        <span>Add files...</span>
-			        <input id="profileupload" type="file" name="files" data-url="profileupdate">
-			    </span>
-		</div>
 		<div id="join-form" class="join-form margin-large">
 			<dl class="join-form-row">
 				<dt class="join-form-title">아이디</dt>
@@ -28,6 +19,13 @@
 					<input type="text" name="userName" id="userName" value="${userdto.userName}"/>
 				</dd>
 			</dl>
+			<div id="buttonLine">
+				<input class="btn btn-primary btn-okay" type="button" id="nickname-button" value="수정하기" />
+			</div>
+		</div>
+	</form>
+	<form>
+		<div>
 			<dl class="join-form-row">
 				<dt class="join-form-title">비밀번호</dt>
 				<dd class="join-form-data">
@@ -40,9 +38,10 @@
 					<input type="password" name="password2" id="password2" required="required"/>
 				</dd>
 			</dl>
-		</div>
-		<div id="buttonLine">
-			<input class="btn btn-primary btn-okay" type="button" id="profilebutton" value="수정하기" />
+			<div id="buttonLine">
+				<input class="btn btn-primary btn-okay" type="button" id="password-button" value="수정하기" />
+			</div>
 		</div>
 	</form>
+	<input class="btn btn-primary btn-okay" type="button" id="delete-button" value="탈퇴하기" />
 </div>

@@ -421,10 +421,6 @@
 									type: 'success',
 									});
 							}
-						}).ajaxStart(function(){
-							loading.show(); 
-						}).ajaxStop(function() { 
-							loading.hide(); 
 						});
 
 				});
@@ -657,7 +653,7 @@
 		    	var request = new Request();
 				var error = request.getParameter("error");
 				if(error == '103'){
-					swal({text : "이메일 인증을 해주세요"});
+					swal({text : "인증이 안된 사용자 이거나 삭제된 사용자 입니다."});
 				}else if(error == '108'){
 					swal({text : "아이디와 비밀번호를 확인해주세요"});
 				}
