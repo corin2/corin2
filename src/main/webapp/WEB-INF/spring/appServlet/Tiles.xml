@@ -4,7 +4,8 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>     
-     <definition name="login.*" template="login.html" />
+	 <definition name="login.html" template="login.html" />
+     <definition name="noTiles.*.*.*" template="/WEB-INF/views/{1}/{2}.{3}" />
      <definition name="home.*" template="/WEB-INF/views/includes/layout.jsp"> 
          <put-attribute name="header"  value="/WEB-INF/views/includes/header.jsp" /> 
          <put-attribute name="sidebar" value="/WEB-INF/views/includes/sidebar.jsp" /> 

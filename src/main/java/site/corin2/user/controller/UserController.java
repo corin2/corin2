@@ -41,25 +41,22 @@ public class UserController {
 	@Autowired
 	private UserService service;
 	
-	//회원가입 페이지이동
-	@RequestMapping(value="signup",method=RequestMethod.GET)
-	public String userInsert() {
-		return "user.signup";
-	}
-	
 	//회원가입 기능 실행
-	@RequestMapping(value="signup",method=RequestMethod.POST)
-	public String userInsert(UserDTO userdto) {
+	@RequestMapping("signup")
+	public View userInsert(UserDTO userdto) {
 		//회원가입 처리 ... NewMemberDao
-		String viewpage = service.userInsert(userdto,null);
-		return viewpage;
+		System.out.println(userdto.toString());
+		
+		service.userInsert(userdto);
+		return jsonview;
 	}
 	
 	//email 인증 페이지
 	@RequestMapping(value = "emailConfirm", method = RequestMethod.GET)
 	public String emailConfirm(UserDTO userdto, String userid){ // 이메일인증
+		System.out.println("controller" + userid);
 		service.emailConfirm(userdto, userid);
-		return "user.emailconfirm";
+		return "noTiles.user.emailconfirm.jsp";
 	}
 	
 	//비밀번호 재설정 id확인
@@ -69,11 +66,25 @@ public class UserController {
 		return check;
 	}	
 	
+	//비밀번호 재설정 email에서 modal 실행
+	@RequestMapping(value="repassemail",method = RequestMethod.GET)
+	public String repassemail(String userid) {
+		System.out.println("111"+userid);
+		return "noTiles.user.repassword.jsp";
+	}	
+	
 	//비밀번호 재설정 기능 실행
+	@RequestMapping("repassemailconfirm")
+	public View repassemailconfirm(String result , String userId) {
+		service.repassemailconfirm(result,userId);
+		return jsonview;
+	}
+	
+	//비밀번호 재설정 이메일 보내기
 	@RequestMapping(value = "repassword", method = RequestMethod.POST)
-	public String repassword(UserDTO userdto) {
-		String viewpage = service.repassword(userdto);
-		return viewpage;
+	public View repassword(UserDTO userdto) {
+		service.repassword(userdto);
+		return jsonview;
 	}	
 	
 	//아이디 중복확인
@@ -97,21 +108,6 @@ public class UserController {
 		return check;
 	}
 	
-	//사용자 수정하기 페이지 이동
-	@RequestMapping(value="userprofile" , method=RequestMethod.GET)
-	public String userUpdate(Model model  , Principal principal) throws ClassNotFoundException, SQLException {
-		UserDTO userdto = service.userUpdate(principal.getName());
-		model.addAttribute("userdto", userdto);
-		return "user.profile";
-	}
-	
-	//프로필 올리기
-	@RequestMapping(value="userProfile", method=RequestMethod.POST)
-	public String userProfile(MultipartHttpServletRequest request) {
-		System.out.println(request.getFileNames());
-		service.userProfile(request);
-		return "project.project";
-	}
 	//사용자 수정하기 기능 실행
 	@RequestMapping(value="userupdate", method=RequestMethod.POST)
 	public String userUpdate(UserDTO userdto) {
@@ -160,7 +156,6 @@ public class UserController {
 	//프로필 수정하기
 	@RequestMapping("profileupdate")
 	public View profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, HttpServletResponse response, Model model) {
-		System.out.println("111"+userid);
 		LinkedList<FileMeta> files = service.profileupdate(userid,request);
 		model.addAttribute("data", files);
 		return jsonview;

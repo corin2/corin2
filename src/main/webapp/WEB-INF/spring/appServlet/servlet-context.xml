@@ -84,6 +84,6 @@
 				<prop key="class.resource.loader.class"> org.apache.velocity.runtime.resource.loader.FileResourceLoader </prop> 
 			</props> 
 		</property> 
-		<property name="resourceLoaderPath" value="/WEB-INF/views/velocity/" />
+		<property name="resourceLoaderPath" value="/resources/admin/velocity/" />
 	</bean>
 </beans>
