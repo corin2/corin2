@@ -3,6 +3,10 @@
 	border-left: 20px solid;
 }
 
+#showChatting {
+	margin: 4px 4px;
+}
+
 .leader {
 	position: absolute;
 	top: 30px;

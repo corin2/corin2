@@ -17,7 +17,7 @@
         <div class="row heading">
           <div class="col-sm-3 col-xs-3 heading-avatar">
             <div class="heading-avatar-icon">
-              <img src="https://cdn4.iconfinder.com/data/icons/keynote-and-powerpoint-icons/256/Messages-512.png">
+              <img src="resources/images/chatting/chatting-icon.png">
             </div>
           </div>
         </div>
