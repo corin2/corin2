@@ -114,7 +114,7 @@ function checkListAddOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -150,7 +150,7 @@ function checkListEditOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -224,7 +224,7 @@ function skillAddOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -260,7 +260,7 @@ function skillEditOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -331,7 +331,7 @@ function listAddOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -361,7 +361,7 @@ function listEditOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -438,7 +438,7 @@ function languageAddOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -472,7 +472,7 @@ function languageEditOk(obj){
 			}
 		});
 	}else{
-		alert("내용을 입력하세요");
+		swal("내용을 입력하세요");
 	}
 }
 
@@ -543,7 +543,7 @@ function userGradeAddOk(obj){
 			}
 		});
 	}else{
-		alert("ROLE_로 시작하지 않습니다.");
+		swal("ROLE_로 시작하지 않습니다.");
 	}
 }
 
@@ -573,6 +573,6 @@ function userGradeEditOk(obj){
 			}
 		});
 	}else{
-		alert("ROLE_로 시작하지 않습니다.");
+		swal("ROLE_로 시작하지 않습니다.");
 	}
 }

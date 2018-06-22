@@ -96,7 +96,7 @@ function memberinvite() {
 		contentType: "application/json; charset=utf-8",
 		success : function (data) {
 			if(data.trim() === 'true') isInviteMsg();
-			else alert('없는 회원입니다');
+			else swal('없는 회원입니다');
 		}
 	})
 }
@@ -111,7 +111,7 @@ function isInviteMsg(){
 			   },
 		success : function(data) {
 			if(data.data == '0') inviteMsg();
-			else alert('이미 프로젝트에 참여하고 있거나 \n해당프로젝트의 메시지가 이미 회원에게 있습니다.');
+			else swal('이미 프로젝트에 참여하고 있거나 \n해당프로젝트의 메시지가 이미 회원에게 있습니다.');
 		}
 	});
 }
@@ -126,7 +126,7 @@ function inviteMsg(){
 				sendId : $('#hiddenUserId').val()
 			   },
 		success : function(datas) {
-			alert('초대메시지 발송이 완료되었습니다');
+			swal('초대메시지 발송이 완료되었습니다');
 			sendMsg($("#emailSearch").val().trim());
 		}
 	});

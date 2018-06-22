@@ -81,7 +81,7 @@ function sortable(){
 			sortablecnt = 1;
 			
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
-				alert('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
+				swal('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
 				send(1);
 			}else{
 				$.ajax({
