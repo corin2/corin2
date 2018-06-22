@@ -123,8 +123,8 @@ function checkListEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text1 = tr.children('td:eq(1)').text();
 	var text2 = tr.children('td:eq(2)').text();
-	var texthtml = '<input type="text" placeholder="'+text1+'" >';
-	var texthtm12 = '<input type="text" placeholder="'+text2+'" >';
+	var texthtml = '<input class="inputtext" type="text" placeholder="'+text1+'" >';
+	var texthtm12 = '<input class="inputtext" type="text" placeholder="'+text2+'" >';
 	
 	tr.children('td:eq(1)').html(texthtml);
 	tr.children('td:eq(2)').html(texthtm12);
