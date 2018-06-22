@@ -13,6 +13,7 @@
     padding: 0 10px;
     border: 1px solid #ccc;
     background: #eee;
+    min-height: 50px;
 }
 
 #external-events .fc-event {
