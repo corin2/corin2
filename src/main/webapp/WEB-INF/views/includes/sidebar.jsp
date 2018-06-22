@@ -8,6 +8,7 @@
 <script src="resources/js/keyUp.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <script src="resources/js/header/headerSocket.js"></script>
+<script src="resources/js/loading/cursor.js"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
