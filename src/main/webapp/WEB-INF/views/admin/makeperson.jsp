@@ -23,11 +23,7 @@
 	    <div class="col-xs-12 bottom text-center" style="background-color: #FDD692">
 	      <div class="col-xs-12 col-sm-6 emphasis">
 	        <p class="ratings">
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star-o"></span></a>
+	        <br>
 	        </p>
 	      </div>
 	      <div class="col-xs-12 col-sm-6 emphasis">
@@ -52,17 +48,13 @@
 	        </ul>
 	      </div>
 	      <div class="right col-xs-5 text-center">
-	        <img src="resources/images/노곤하개.JPG" alt="" class="img-circle img-responsive">
+	        <img src="resources/images/makeperson/BHJ.PNG" alt="" class="img-circle img-responsive">
 	      </div>
 	    </div>
 	    <div class="col-xs-12 bottom text-center" style="background-color: #D09E88">
 	      <div class="col-xs-12 col-sm-6 emphasis">
 	        <p class="ratings">
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star-o"></span></a>
+	         <br>
 	        </p>
 	      </div>
 	      <div class="col-xs-12 col-sm-6 emphasis">
@@ -93,11 +85,7 @@
 	    <div class="col-xs-12 bottom text-center" style="background-color: #A593E0">
 	      <div class="col-xs-12 col-sm-6 emphasis">
 	        <p class="ratings">
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star-o"></span></a>
+	         <br>
 	        </p>
 	      </div>
 	      <div class="col-xs-12 col-sm-6 emphasis">
@@ -128,11 +116,7 @@
 	    <div class="col-xs-12 bottom text-center" style="background-color: #9DC8C8">
 	      <div class="col-xs-12 col-sm-6 emphasis">
 	        <p class="ratings">
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star-o"></span></a>
+	          <br>
 	        </p>
 	      </div>
 	      <div class="col-xs-12 col-sm-6 emphasis">
@@ -163,11 +147,7 @@
 	    <div class="col-xs-12 bottom text-center" style="background-color: #fab1ce">
 	      <div class="col-xs-12 col-sm-6 emphasis">
 	        <p class="ratings">
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star-o"></span></a>
+	        <br>
 	        </p>
 	      </div>
 	      <div class="col-xs-12 col-sm-6 emphasis">
@@ -198,11 +178,7 @@
 	    <div class="col-xs-12 bottom text-center" style="background-color: #8EC0E4">
 	      <div class="col-xs-12 col-sm-6 emphasis">
 	        <p class="ratings">
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star"></span></a>
-	          <a href="#"><span class="fa fa-star-o"></span></a>
+	          <br>
 	        </p>
 	      </div>
 	      <div class="col-xs-12 col-sm-6 emphasis">

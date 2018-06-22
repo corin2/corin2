@@ -2,3 +2,22 @@
 #headerProjectName {
 	border-left: 20px solid;
 }
+
+.leader {
+	position: absolute;
+	top: 30px;
+	right: 8px;
+	width: 10px;
+}
+
+.profileimg {
+	width: 35px;
+	height: 35px;
+	margin: 5px;
+}
+
+.profileDropdown {
+	font-size: 25pt;
+	top: 7px;
+	cursor: pointer;
+}
