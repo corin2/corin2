@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script src="resources/js/admin/menuManagement.js"></script>
+<link rel="stylesheet" href="resources/css/kanban/kanban.css">
 <nav class="navbar navbar-default">
 	<div>
 		<h1>MenuManagement</h1>
@@ -13,6 +14,7 @@
 				<li><a onclick="listMenu()">LIST</a></li>
 				<li><a onclick="languageMenu()">LANGUAGE</a></li>
 				<li><a onclick="userGradeMenu()">USERGRADE</a></li>
+				<li><a onclick="checkListMenuView()">CHECKLIST</a></li>
 			</ul>
 		</div>
 		<hr>
