@@ -9,6 +9,7 @@ package site.corin2.user.dao;
 
 import java.util.List;
 
+import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 
 public interface AdminMainDAO {
@@ -25,7 +26,7 @@ public interface AdminMainDAO {
 	// 프로젝트 언어별 수
 	public List<LanguageCountDTO> allLanguageCount();
 	
-	// 회원 이메일별 수
-	
+	// isDeleted = 0인 회원의 모든 이메일 수
+	public List<EmailCountDTO> allEmailCount();
 
 }

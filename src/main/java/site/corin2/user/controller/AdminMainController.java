@@ -15,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
+import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 import site.corin2.user.service.AdminMainService;
 
@@ -50,4 +51,13 @@ public class AdminMainController {
 		model.addAttribute("count", allLanguageCountResult);
 		return jsonview;
 	}
+	
+	// isDeleted = 0인 회원의 모든 이메일 수
+	@RequestMapping("allEmailCount")
+	public View allEmailCountView(Model model) {
+		List<EmailCountDTO> allEmailCountResult = service.allEmailCount();
+		model.addAttribute("count", allEmailCountResult);
+		return jsonview;
+	}
+	
 }

@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.corin2.user.dao.AdminMainDAO;
+import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 
 @Service
@@ -61,4 +62,19 @@ public class AdminMainService {
 		
 		return allLanguageCountResult;
 	}
+	
+	
+	// isDeleted = 0인 회원의 모든 이메일 수
+	public List<EmailCountDTO> allEmailCount(){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<EmailCountDTO> allEmailCountResult = null;
+		try {
+			allEmailCountResult = adminMainDAO.allEmailCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return allEmailCountResult;
+	}
+	
 }

@@ -19,4 +19,10 @@
 		group by p.languagenum
 	</select>
 	
+	<!-- isDeleted = 0인 회원의 모든 이메일 수 -->
+	<select id="allEmailCount" resultType="site.corin2.user.dto.EmailCountDTO">
+		select SUBSTRING_INDEX(userid, '@', -1) as email, count(*) as emailcount
+		from user where isdeleted = 0
+		group by email
+	</select>
 </mapper>

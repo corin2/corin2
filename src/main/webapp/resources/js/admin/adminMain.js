@@ -1,16 +1,18 @@
 //////////// $(document).ready() ////////////
 $(function() {
+	// 모든 회원 수
+	allUserCount();
+	// 모든 프로젝트 수
+	allProjectCount();
+	// 모든 이메일 수
+	allEmailCount();
+	
 	// 프로그래밍 언어 차트 표시
 	showLanguageZingChart();
-	
 	// 이메일 차트 표시
 	showEmailChart();
-	
 	// 통계 차트 표시
 	showStatsChart();
-	
-	allUserCount();
-	allProjectCount();
 	
 }); //end - jQuery
 
@@ -33,21 +35,8 @@ function showLanguageZingChart() {
 		});
 	});
 	
-	// 프로젝트 언어 카운트
-	$.ajax({
-		url: "allLanguageCount",
-		datatype: "JSON",
-		async:false,
-		success: function(data) {
-			$.each(data.count, function(index, obj) {
-				languageData.push({
-					"text": obj.languageMain,
-					"count": obj.languageCount,
-					"color": obj.languageColor
-				});
-			});
-		}
-	});	
+	// 프로젝트 언어별 수 카운트
+	allLanguageCount(languageData)
 	
 	// 차트 데이터
 	var myConfig = {
@@ -78,6 +67,13 @@ function showLanguageZingChart() {
 // 이메일 차트
 function showEmailChart() {
 	var chartMailRank = echarts.init(document.getElementById('emailRank'));
+	
+	var email = [];
+	var emailCount = [];
+	
+	// 이메일 카운트
+	allEmailCount(email, emailCount);
+	
 	var option = {
 	    title: {
 	        text: '회원 이메일 순위',
@@ -111,18 +107,21 @@ function showEmailChart() {
 	    },
 	    yAxis: {
 	        type: 'category',
-	        data: ['Zum','Nate','Kakao','Naver','Facebook','Google']
+	        /*data: ['Zum','Nate','Kakao','Naver','Facebook','Google']*/
+	        data: email
 	    },
 	    series: [
 	        {
-	            name: '2017년',
-	            type: 'bar',
-	            data: [18203, 23489, 29034, 104970, 131744, 630230]
-	        },
-	        {
 	            name: '2018년',
 	            type: 'bar',
-	            data: [19325, 23438, 31000, 121594, 134141, 681807]
+	            /*data: [18203, 23489, 29034, 104970, 131744, 630230]*/
+	            data: emailCount
+	        },
+	        {
+	            name: '2017년',
+	            type: 'bar',
+	            /*data: [19325, 23438, 31000, 121594, 134141, 681807]*/
+	            data: [1, 2, 2, 1, 1, 1]
 	        }
 	    ]
 	};
@@ -243,6 +242,41 @@ function allProjectCount() {
 		datatype:"text",
 		success: function(data) {
 			$('#allProjectCountResult').text(numberWithCommas(data.count));
+		}
+	})
+}
+
+// 프로젝트 언어별 수
+function allLanguageCount(arr) {
+	$.ajax({
+		url: "allLanguageCount",
+		datatype: "JSON",
+		async:false,
+		success: function(data) {
+			$.each(data.count, function(index, obj) {
+				arr.push({
+					"text": obj.languageMain,
+					"count": obj.languageCount,
+					"color": obj.languageColor
+				});
+			});
+		}
+	});	
+}
+
+// isDeleted = 0인 회원의 모든 이메일 수
+function allEmailCount(arr1, arr2) {
+	$.ajax({
+		url: "allEmailCount",
+		datatype:"JSON",
+		async:false,
+		success: function(data) {
+			$.each(data.count, function(index, obj) {
+				console.log("데이타: " + obj.email);
+				console.log("데이타: " + obj.emailCount);
+				arr1.push(obj.email);
+				arr2.push(obj.emailCount);
+			});
 		}
 	})
 }
