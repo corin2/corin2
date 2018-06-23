@@ -1,7 +1,6 @@
 //////////// $(document).ready() ////////////
 $(function() {
 	// 프로그래밍 언어 차트 표시
-	//showLanguageChart();
 	showLanguageZingChart();
 	
 	// 이메일 차트 표시
@@ -12,13 +11,11 @@ $(function() {
 	
 	allUserCount();
 	allProjectCount();
-	// allLanguageCount();
-	
 	
 }); //end - jQuery
 
 //////////// 차트 구성 ////////////
-//프로그래밍 언어 차트
+//프로그래밍 언어 차트 - ZingChart
 function showLanguageZingChart() {
 	// 프로그래밍 언어
 	var text = 'Eiffel, VHDL, Scala, Emacs Lisp, Delphi, Ada, Vim, Perl, Lua, Objective-C'
@@ -35,49 +32,8 @@ function showLanguageZingChart() {
 			"count": 1
 		});
 	});
-
 	
-/*	var languageData = [
-		{"text": "Eiffel", "count": 1, "color": '#946d57'},
-		{"text": "VHDL", "count": 1, "color": '#543978'},
-		{"text": "Scala", "count": 1, "color": '#7dd3b0'},
-		{"text": "Emacs Lisp", "count": 1, "color": '#7dd3b0'},
-		{"text": "Delphi", "count": 1, "color": '#7dd3b0'},
-		{"text": "Ada", "count": 1, "color": '#7dd3b0'},
-		{"text": "Vim", "count": 1, "color": '#7dd3b0'},
-		{"text": "Perl", "count": 1, "color": '#7dd3b0'},
-		{"text": "Lua", "count": 1, "color": '#7dd3b0'},
-		{"text": "Rebol", "count": 1, "color": '#7dd3b0'},
-		{"text": "Verilog", "count": 1, "color": '#7dd3b0'},
-		{"text": "Factor", "count": 1, "color": '#7dd3b0'},
-		{"text": "loke", "count": 1, "color": '#7dd3b0'},
-		{"text": "Erlang", "count": 1, "color": '#7dd3b0'},
-		{"text": "Nu", "count": 1, "color": '#7dd3b0'},
-		{"text": "D", "count": 1, "color": '#7dd3b0'},
-		{"text": "Shell", "count": 1, "color": '#7dd3b0'},
-		{"text": "Assembly", "count": 1, "color": '#7dd3b0'},
-		{"text": "Turing", "count": 1, "color": '#7dd3b0'},
-		{"text": "TypeScript", "count": 1, "color": '#7dd3b0'},
-		{"text": "Arduino", "count": 1, "color": '#7dd3b0'},
-		{"text": "Dart", "count": 1, "color": '#7dd3b0'},
-		{"text": "CoffeScript", "count": 1, "color": '#7dd3b0'},
-		{"text": "Arc", "count": 1, "color": '#7dd3b0'},
-		{"text": "Elixir", "count": 1, "color": '#7dd3b0'},
-		{"text": "Groovy", "count": 1},
-		{"text": "R", "count": 1},
-		{"text": "Clojure", "count": 1},
-		{"text": "Rust", "count": 1},
-		{"text": "Prolog", "count": 1},
-		{"text": "Gosu", "count": 1},
-		{"text": "FORTRAN", "count": 1},
-		{"text": "Fancy", "count": 1},
-		{"text": "Haskell", "count": 1},
-		{"text": "Vala", "count": 1},
-		{"text": "Smaltalk", "count": 1},
-		{"text": "Scheme", "count": 1},
-		{"text": "Matlab", "count": 1},
-	];*/
-
+	// 프로젝트 언어 카운트
 	$.ajax({
 		url: "allLanguageCount",
 		datatype: "JSON",
@@ -93,6 +49,7 @@ function showLanguageZingChart() {
 		}
 	});	
 	
+	// 차트 데이터
 	var myConfig = {
 	  "graphset": [{
 	    "type": "wordcloud",
@@ -108,103 +65,13 @@ function showLanguageZingChart() {
 	    }
 	  }]
 	};
-
+	
+	// 차트 표시
 	zingchart.render({
 	  id: 'languageRank',
 	  data: myConfig,
 	  height: '100%',
 	  width: '100%'
-	});
-}
-
-// 프로그래밍 언어 차트
-function showLanguageChart() {
-	var text = 'Java, C#, C, Ruby, Python, Go, ASP, VisualBasic, PHP, JavaScript, '
-		+ 'Eiffel, VHDL, Scala, Emacs Lisp, Delphi, Ada, Vim, Perl, Lua, Objective-C'
-		+ 'Rebol, Verilog, Factor, loke, Erlang, Nu, D, Shell, Assembly, Turing'
-		+ 'TypeScript, Arduino, Dart, CoffeScript, Arc, Elixir, Groovy, R, Clojure'
-		+ 'Rust, Prolog, Gosu, FORTRAN, Fancy, Haskell, Vala, Smaltalk, Scheme, Matlab';
-	
-	var languageData = [
-			{name: "Eiffel", weight: 1},
-			{name: "VHDL", weight: 5}
-		];
-	
-	$.ajax({
-		url: "allLanguageCount",
-		datatype: "JSON",
-		async:false,
-		success: function(data) {
-			$.each(data.count, function(index, obj) {
-				languageData.push({
-					name: obj.languageMain,
-					weight: obj.languageCount
-				});
-			});
-		}
-	});
-	
-	console.log("입구");
-	
-	var convert = JSON.stringify(languageData);
-	console.log(convert);
-	
-	$.each(languageData, function(index, obj) {
-		console.log("언어: " + obj.name);
-		console.log("숫자: " + obj.weight);
-	});
-	
-	console.log("출구");
-	
-	//var jsonData = JSON.stringify(testList);
-
-	
-	/*console.log("데이터: " + testList);
-	console.log("데이터: " + jsonData);*/
-	
-	//////////
-	/*var text = 'Java, C#, C, Ruby, Python, Go, ASP, VisualBasic, PHP, JavaScript, '
-		+ 'Eiffel, VHDL, Scala, Emacs Lisp, Delphi, Ada, Vim, Perl, Lua, Objective-C'
-		+ 'Rebol, Verilog, Factor, loke, Erlang, Nu, D, Shell, Assembly, Turing'
-		+ 'TypeScript, Arduino, Dart, CoffeScript, Arc, Elixir, Groovy, R, Clojure'
-		+ 'Rust, Prolog, Gosu, FORTRAN, Fancy, Haskell, Vala, Smaltalk, Scheme, Matlab';
-	var lines = text.split(/[,. ]+/g),
-	data = Highcharts.reduce(lines, function (arr, word) {
-	var obj = Highcharts.find(arr, function (obj) {
-	  return obj.name === word;
-	});
-	if (obj) {
-	  obj.weight += 1;
-	} else {
-	  obj = {
-	    name: word,
-	    weight: 1
-	  };
-	  arr.push(obj);
-	}
-	return arr;
-	}, []);*/
-	
-	/*Highcharts.chart('container', {
-	  series: [{
-	    type: 'wordcloud',
-	    data: data,
-	    name: 'Occurrences'
-	  }],
-	  title: {
-	    text: ''
-	  }
-	});*/
-	//////////
-	Highcharts.chart('container', {
-	  series: [{
-	    type: 'wordcloud',
-	    data: languageData,
-	    name: 'Count'
-	  }],
-	  title: {
-	    text: ''
-	  }
 	});
 }
 
@@ -378,20 +245,6 @@ function allProjectCount() {
 			$('#allProjectCountResult').text(numberWithCommas(data.count));
 		}
 	})
-}
-
-// 프로젝트 언어별 수
-function allLanguageCount() {
-	$.ajax({
-		url: "allLanguageCount",
-		datatype: "JSON",
-		success: function(data) {
-			$.each(data.count, function(index, obj) {
-				console.log("랭귀지메인: " + obj.languageMain);
-				console.log("랭귀지카운트: " + obj.languageCount);
-			});
-		}
-	});
 }
 
 //////////// 유틸 ////////////
