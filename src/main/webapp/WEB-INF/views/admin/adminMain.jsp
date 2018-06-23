@@ -7,6 +7,10 @@
 <script src="resources/js/chart/echarts.min.js"></script> <!-- ECharts -->
 <script src="https://code.highcharts.com/highcharts.js"></script> <!-- highcharts -->
 <script src="https://code.highcharts.com/modules/wordcloud.js"></script> <!-- highcharts: wordcloud -->
+<script src= "https://cdn.zingchart.com/zingchart.min.js"></script> <!-- zingchart -->
+<script> zingchart.MODULESDIR = "https://cdn.zingchart.com/modules/";
+ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf6d"];</script>
+
 <!-- [js] adminMain -->
 <script src="resources/js/admin/adminMain.js"></script>
 
@@ -82,7 +86,7 @@
 				<h1>프로그래밍 언어</h1>
 			</div>
 			<div class="row">
-				<div id="container"></div>
+				<div id="languageRank"></div>
 			</div>
 		</div>
 		<!-- 회원 이메일 순위 -->
