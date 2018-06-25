@@ -40,9 +40,9 @@
 	
 	<!-- 채팅 버튼 -->
     <div class="nav navbar-nav navbar-right">
-    	<button class="btn btn-warning navbar-btn" id="showChatting">
-    		<span class="glyphicon glyphicon-comment"></span>
-    	</button>
+    	<div id="showChatting">
+    		<img id="showChatting" src="resources/images/chatting/chatting-icon.png" width=35 height=35>
+    	</div>
     </div>
 	
 </div>

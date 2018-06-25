@@ -60,15 +60,11 @@ function fncTegSplit(str){
 		</button>
 
 
-		<button type="button" class="btn btn-success btn-wide">
-			<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
-		</button>
+		<a href="excelAll"><button type="button"
+				class="btn btn-success btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
+		</button></a>
 
-		<a href="troubleins"><button type="button"
-				class="btn btn-primary btn-wide">
-				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-				새 글 쓰기
-			</button></a>
 	</form>
 </div>
 

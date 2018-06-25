@@ -10,12 +10,15 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
 import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dto.UserDTO;
@@ -40,6 +44,17 @@ public class UserController {
 	
 	@Autowired
 	private UserService service;
+	
+	//login시 defalut page
+    @RequestMapping(value = "/defaultpage")
+	protected View welcome() {
+		Set<String> roles = AuthorityUtils
+				.authorityListToSet(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
+		if (roles.contains("ROLE_ADMIN")) {
+			return new RedirectView("adminMain");
+		}
+		return new RedirectView("project.project");
+	}
 	
 	//회원가입 기능 실행
 	@RequestMapping("signup")
