@@ -8,7 +8,7 @@
 <body>
  ${refresh}
 	 <script>
-		self.location = 'user.content';
+		self.location = "project.project";
 	</script>
 </body>
 

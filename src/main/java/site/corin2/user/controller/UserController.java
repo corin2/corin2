@@ -120,14 +120,14 @@ public class UserController {
 	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 	  JsonNode token = KakaoLogin.getAccessToken(code);
-
+	  System.out.println("kakaocontroller");
 	  JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
 	  UserDTO userdto = KakaoLogin.changeData(profile);
 	  String check = service.idCheck(userdto.getUserId());
 	  if(check=="false") {
 		  service.KakaoLogin(userdto);
 	  }
-	  return "user.content";
+	  return "project.project";
 	}
 	
 	//모든 유저 정보
