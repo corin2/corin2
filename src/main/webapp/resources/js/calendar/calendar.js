@@ -272,10 +272,14 @@ function dragCardCalendar() {
 					}
 				}
 			});
-			if($('#external-events').attr('class') == 'chevron-up')
-				htmlText += '<div class="middleCalendar" onclick="cardNowResult(0)"><span class="glyphicon glyphicon-chevron-down"></span></div>';
-			else if($('#external-events').attr('class') == 'chevron-down')
-				htmlText += '<div class="middleCalendar" onclick="cardNowResult(1)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
+			if(data.data.length > 4) {
+				if($('#external-events').attr('class') == 'chevron-up')
+					htmlText += '<div class="middleCalendar" onclick="cardNowResult(0)"><span class="glyphicon glyphicon-chevron-down"></span></div>';
+				else if($('#external-events').attr('class') == 'chevron-down')
+					htmlText += '<div class="middleCalendar" onclick="cardNowResult(1)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
+			}else if(data.data.length < 1) {
+				htmlText += '<div>사용하지 않은 카드가 없습니다</div>'
+			}
 			
 			$('#external-events').html(htmlText);
 			canDragCard();
