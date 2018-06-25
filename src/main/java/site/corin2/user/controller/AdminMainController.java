@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 import site.corin2.user.dto.CountByDateDTO;
+import site.corin2.user.dto.DateParamDTO;
 import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 import site.corin2.user.service.AdminMainService;
@@ -64,17 +65,17 @@ public class AdminMainController {
 	
 	// 날짜별 회원 수
 	@RequestMapping("userCountByDate")
-	//public View userCountByDateView(@RequestParam("startdate") String startdate, @RequestParam("enddate") String enddate, Model model) {
-	public View userCountByDateView(Model model) {
-		List<CountByDateDTO> userCountByDateResult = service.userCountByDate();
+	public View userCountByDateView(DateParamDTO date, Model model) {
+	//public View userCountByDateView(Model model) {
+		List<CountByDateDTO> userCountByDateResult = service.userCountByDate(date);
 		model.addAttribute("count", userCountByDateResult);
 		return jsonview;
 	}
 	
 	// 날짜별 프로젝트 수
 	@RequestMapping("projectCountByDate")
-	public View projectCountByDateView(Model model) {
-		List<CountByDateDTO> projectCountByDateResult = service.projectCountByDate();
+	public View projectCountByDateView(DateParamDTO date, Model model) {
+		List<CountByDateDTO> projectCountByDateResult = service.projectCountByDate(date);
 		model.addAttribute("count", projectCountByDateResult);
 		return jsonview;
 	}

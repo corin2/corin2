@@ -123,13 +123,16 @@ function showEmailChart() {
 function showStatsChart() {
 	var chartStats = echarts.init(document.getElementById('stats'));
 	
-	var userDate = [];
-	var userCount = [];
-	var projectDate = [];
-	var projectCount = [];
+	var nowDate = formatDate(Date.now(), 0); // 오늘 날짜
+	var twoWeeksAgoDate = formatDate(Date.now(), -14); // 2주 전 날짜
 	
-	userCountByDate(userDate, userCount); // 날짜별 회원 수
-	projectCountByDate(projectDate, projectCount); // 날짜별 프로젝트 수
+	var userDate = [],
+		userCount = [],
+		projectDate = [],
+		projectCount = [];
+	
+	userCountByDate(userDate, userCount, twoWeeksAgoDate, nowDate); // 날짜별 회원 수
+	projectCountByDate(projectDate, projectCount, twoWeeksAgoDate, nowDate); // 날짜별 프로젝트 수
 	
 	var optionStats = {
 	    title: {
@@ -248,10 +251,11 @@ function allEmailCount(arr1, arr2) {
 
 
 // 날짜별 회원 수
-function userCountByDate(arr1, arr2) {
+function userCountByDate(arr1, arr2, start, end) {
 	$.ajax({
 		url: "userCountByDate",
 		datatype: "JSON",
+		data: {startdate: start, enddate: end},
 		async: false,
 		success: function(data) {
 			$.each(data.count, function(index, obj) {
@@ -263,10 +267,11 @@ function userCountByDate(arr1, arr2) {
 }
 
 //날짜별 프로젝트 수
-function projectCountByDate(arr1, arr2) {
+function projectCountByDate(arr1, arr2, start, end) {
 	$.ajax({
 		url: "projectCountByDate",
 		datatype: "JSON",
+		data: {startdate: start, enddate: end},
 		async: false,
 		success: function(data) {
 			$.each(data.count, function(index, obj) {
@@ -283,3 +288,23 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+// Date(timestamp) -> YYYY-MM-DD 형식 변환
+function formatDate(date, days) {
+	var d = new Date(date);
+	d.setDate(d.getDate() + days);
+	
+	var month = '' + (d.getMonth() + 1);
+	var day = '' + d.getDate();
+	var year = d.getFullYear();
+	
+	if (month.length < 2) month = '0' + month;
+	if (day.length < 2) day = '0' + day;
+	
+	return [year, month, day].join('-');
+}
+
+/*function formatDateCalc(date, days) {
+	var myDate = new Date(date)
+	myDate.setDate(myDate.getDate() + days);
+	return myDate;
+}*/

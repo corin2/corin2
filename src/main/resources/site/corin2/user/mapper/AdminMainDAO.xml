@@ -41,7 +41,7 @@
 		 GROUP BY DATE_FORMAT(joindate,'%Y-%m-%d')
 		 ORDER BY DATE_FORMAT(joindate,'%Y-%m-%d')) u
 		on v.gen_date = u.date
-		where gen_date between '2018-06-01' and '2018-06-30'
+		where gen_date between #{startdate} and #{enddate}
 	</select>
 	
 	<!-- 날짜별 프로젝트 수 -->
@@ -59,7 +59,7 @@
 		 GROUP BY DATE_FORMAT(projectdate,'%Y-%m-%d')
 		 ORDER BY DATE_FORMAT(projectdate,'%Y-%m-%d')) u
 		on v.gen_date = u.date
-		where gen_date between '2018-06-01' and '2018-06-30'
+		where gen_date between #{startdate} and #{enddate}
 	</select>
 	
 </mapper>

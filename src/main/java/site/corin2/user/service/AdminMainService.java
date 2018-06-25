@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import site.corin2.user.dao.AdminMainDAO;
 import site.corin2.user.dto.CountByDateDTO;
+import site.corin2.user.dto.DateParamDTO;
 import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 
@@ -78,11 +79,11 @@ public class AdminMainService {
 	}
 	
 	// 날짜별 회원 수
-	public List<CountByDateDTO> userCountByDate(){
+	public List<CountByDateDTO> userCountByDate(DateParamDTO date){
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> userCountByDateResult = null;
 		try {
-			userCountByDateResult = adminMainDAO.userCountByDate();
+			userCountByDateResult = adminMainDAO.userCountByDate(date);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -91,11 +92,11 @@ public class AdminMainService {
 	}
 	
 	// 날짜별 프로젝트 수
-	public List<CountByDateDTO> projectCountByDate(){
+	public List<CountByDateDTO> projectCountByDate(DateParamDTO date){
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> projectCountByDateResult = null;
 		try {
-			projectCountByDateResult = adminMainDAO.projectCountByDate();
+			projectCountByDateResult = adminMainDAO.projectCountByDate(date);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
