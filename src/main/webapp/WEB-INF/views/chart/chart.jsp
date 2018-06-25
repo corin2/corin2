@@ -3,7 +3,7 @@
 <script src="resources/js/chart/chart.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
 
-<div class="container">
+<div>
 <nav class="navbar navbar-default">
 	<div>
 		<div style="float: left; border: solid; 1px; margin: 5px; width: 45%;">
