@@ -50,4 +50,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			UPDATE board SET ISDELETED = 1 where skillnum ='s100' and boardnum = #{boardNum}
 		</update>
 		
+		
 	</mapper>

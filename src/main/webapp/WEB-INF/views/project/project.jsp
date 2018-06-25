@@ -2,34 +2,35 @@
     pageEncoding="UTF-8"%>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <link rel="stylesheet" href="resources/css/project/project.css">
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="resources/js/project/project.js"></script>
+
+<link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <jsp:include page="ProjectDetail.jsp"></jsp:include>
+<div class="container">
+<div class="navbar navbar-default">
+	<div id="search">
+	<input type="text" id="searchProject" class="search" placeholder="프로젝트명을입력하세요" onclick="autoCompleteProject()" onkeypress="if(event.keyCode==13) {searchColorView();}">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
+	<hr>
+	<div id="searchBox">
+	</div>
+	</div>
+</div>
+<div class="navbar navbar-default">
+	<div id="bookmark">
+	<h1>즐겨찾기</h1>
+	<hr>
+	<div id="bookmarkbox">
+	</div>
+	</div>
+</div>
 
-<nav class="navbar navbar-default">
-		<div id="search">
-		<input type="text" id="searchProject" class="search" onclick="autoCompleteProject()">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
-		<div id="searchBox">
-		</div>
-		</div>
-</nav>
-<nav class="navbar navbar-default">
-		<div id="bookmark">
-		<h1>즐겨찾기</h1>
-		<hr>
-		<div id="bookmarkbox">
-		</div>
-		<hr>
-		</div>
-</nav>
-
-<nav class="navbar navbar-default">
+<div class="navbar navbar-default">
 	<div id="project">
-		<h1>프로젝트<img src="https://png.icons8.com/ios/50/000000/plus.png" onclick="projectDetailView()" style="float:right;" data-toggle="modal" data-target="#myModal2"></h1>
+		<h1>프로젝트</h1>
 		<hr>
 		<div id="projectbox">
 		</div>
 	</div>
-</nav>
+</div>
+</div>

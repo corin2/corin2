@@ -1,0 +1,36 @@
+/* header css */
+#headerProjectName {
+	border-left: 20px solid;
+}
+
+#showChatting {
+	margin: 4px 4px;
+}
+
+.leader {
+	position: absolute;
+	top: 30px;
+	right: 8px;
+	width: 10px;
+	color: #D81159;
+}
+
+.profileimg {
+	width: 35px;
+	height: 35px;
+	margin: 5px;
+}
+
+.profileDropdown {
+	font-size: 25pt;
+	top: 7px;
+	cursor: pointer;
+}
+
+.headerFloatLeft {
+	float: left;
+}
+
+.headerCuror {
+	cursor: pointer;
+}

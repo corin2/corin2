@@ -3,13 +3,23 @@ function addCardCheckListView() {
 	$('#addCheckListdiv').remove();
 	
 	var div = "<div id='addCheckListdiv'>"
-			+ "<input id='cardCheckBoxInput' type='text' class='inputtext' style='float:left;' "
+			+ "<input id='cardCheckBoxInput' type='text' class='inputtext floatLeftKanban' "
 			+ "onkeypress='if(event.keyCode==13) {addCardCheckList();}' "
-			+ "onfocusout='showCardCheckList()' onkeyup='fnChkByte(this, 80)' >"			+ "<button class='close glyphicon' onclick='addCardCheckList()' onmouseover='focusOutCheckListDisgard(this)'>&#xe013;</button>"
+			+ "onfocusout='showCardCheckList()' onkeyup='fnChkByte(this, 80)' >"			+ "<button class='close glyphicon' id='addBtnCheck' onclick='addCardCheckList()' onmouseover='focusOutCheckListDisgard(this)'>&#xe013;</button>"
 			+ "</div>";
 	
 	$('#checkListForm').append(div)
-	$('#cardCheckBoxInput').focus();;
+	$('#cardCheckBoxInput').focus();
+	focusOutDisgardCardCheck($('#addBtnCheck'));
+}
+
+//확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
+function  focusOutDisgardCardCheck(obj) {
+	$(obj).hover(function() {
+		$(obj).closest('div').children('input').removeAttr('onfocusout');
+	}, function(){
+		$(obj).closest('div').children('input').attr('onfocusout', 'addCardCheckListView()');
+	});
 }
 
 //체크리스트 등록 성공
@@ -42,13 +52,13 @@ function showCardCheckList(){
 			$.each(data.list, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = "<p>";
+					htmlText += "<input type='checkbox' class='icheckbox_flat-green kanbanCheckboxMR' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' ";
 					
-					if(elt.isChecked == '0') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' >";
-					else if(elt.isChecked == '1') htmlText += "<input type='checkbox' id='checkbox"+elt.checkNum+"' onclick='checkClick(this, "+elt.checkNum+")' checked>";
+					if(elt.isChecked == '1') htmlText += "checked ";
 					
-					htmlText += "<label for ='checkbox"+elt.checkNum+"'>"+elt.checkContent+"</label>"
+					htmlText += "><label for='checkbox"+elt.checkNum+"' class='kanbanCheckboxLabel'>"+elt.checkContent+"</label>"
 							 + "<button class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
-							 + "<button class='glyphicon close' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
+							 + "<button class='glyphicon close kanbanCheckMod' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}

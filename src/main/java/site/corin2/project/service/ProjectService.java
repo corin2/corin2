@@ -59,6 +59,14 @@ public class ProjectService {
 		return list;
 	}
 	
+	//프로젝트 번호로 주언어 정보 보기
+	public LanguageDTO languageInfoByProjectNum(String projectNum) {
+		LanguageDTO list = null;
+		LanguageDAO dao = sqlSession.getMapper(LanguageDAO.class);
+		list = dao.languageInfoByProjectNum(projectNum);
+		return list;
+	}
+	
 	//프로젝트 선택시 프로젝트 보기
 	public List<ProjectDTO> selectProject(ProjectDTO project) {
 		List<ProjectDTO> list = null;

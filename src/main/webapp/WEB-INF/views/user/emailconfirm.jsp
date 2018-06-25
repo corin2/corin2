@@ -5,15 +5,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
+<style>
+.swal-overlay {
+			  background-color: rgb(86,98,112);
+			  }
+</style>
 </head>
 <body>
 	<script type="text/javascript">
-		var userId = '${userId}';
-
-		alert(userId + '님 회원가입을 축하합니다. 이제 로그인이 가능 합니다.');
-
-		window.open('', '_self', ''); // 브라우저창 닫기
-		window.close(); // 브라우저 창 닫기
+		swal({
+		  title: "인증성공",
+		  text: "이메일 인증에 성공하셨습니다. 로그인을 해주세요",
+		  type: "success",
+		}).then((willDelete) => {
+			window.open('', '_self', ''); // 브라우저창 닫기
+			window.close(); // 브라우저 창 닫기
+		});
 	</script>
 </body>
 </html>

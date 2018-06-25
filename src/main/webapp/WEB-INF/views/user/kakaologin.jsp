@@ -8,7 +8,9 @@
 <body>
  ${refresh}
 	 <script>
-		self.location = 'user.content';
+	 var userid = "<%=request.getParameter("userid")%>";
+	 console.log("kakaologin.jsp");
+		location.href = "./defaultpage";
 	</script>
 </body>
 

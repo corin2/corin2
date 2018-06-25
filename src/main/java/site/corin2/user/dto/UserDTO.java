@@ -83,4 +83,11 @@ public class UserDTO {
 		this.isDeleted = isDeleted;
 	}
 
+	@Override
+	public String toString() {
+		return "UserDTO [userId=" + userId + ", userName=" + userName + ", password=" + password + ", enabled="
+				+ enabled + ", userProfile=" + userProfile + ", joinDate=" + joinDate + ", gradeNum=" + gradeNum
+				+ ", isDeleted=" + isDeleted + "]";
+	}
+	
 }

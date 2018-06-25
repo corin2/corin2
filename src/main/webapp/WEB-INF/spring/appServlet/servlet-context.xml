@@ -63,4 +63,31 @@
 			  </list>
 		 </property>
 	</bean>
+	
+	<bean id="urlBasedViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+ 		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</bean>
+	
+	<!-- 엑셀 저장을 위한 viewResolver 설정 -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	<bean id="troubleExcel" class="site.corin2.board.controller.TroubleExcel" />
+	
+	<!-- Velocity 설정 -->
+	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="velocityProperties">
+			<value>
+				input.encoding=UTF-8
+				output.encoding=UTF-8
+			</value>
+		</property>
+	</bean>
+	<bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean"> 
+		<property name="velocityProperties"> 
+			<props> 
+				<prop key="resource.loader">file</prop> 
+				<prop key="class.resource.loader.class"> org.apache.velocity.runtime.resource.loader.FileResourceLoader </prop> 
+			</props> 
+		</property> 
+		<property name="resourceLoaderPath" value="/resources/admin/velocity/" />
+	</bean>
 </beans>

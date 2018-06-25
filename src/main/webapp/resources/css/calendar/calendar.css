@@ -1,0 +1,26 @@
+#calendar {
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+#external-events {
+    float: left;
+    position: relative;
+    z-index: 2;
+    bottom: 667px;
+    left: 205px;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+    min-height: 50px;
+}
+
+#external-events .fc-event {
+	margin: 1em 0;
+	cursor: move;
+}
+
+#calendar-md {
+	width: 1400px;
+}

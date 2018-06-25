@@ -25,11 +25,11 @@ a, a:hover, a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
     border: none;
     border-radius: 0;
     margin-bottom: 0px !important;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+    background: #FAFAFA;/*배경색바꿈*/
+    /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); */
 }
 
 .navbar-btn {
@@ -53,14 +53,14 @@ i, span {
     SIDEBAR STYLE
 ----------------------------------------------------- */
 .wrapper {
-    display: flex;
+    /* display: flex; */
     align-items: stretch;
 }
 
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #7386D5;
+    background: #566270;
     color: #fff;
     transition: all 0.3s;
 }
@@ -111,7 +111,7 @@ i, span {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #566270;
 }
 
 #sidebar .sidebar-header strong {
@@ -121,7 +121,7 @@ i, span {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid #47748b;
+    /* border-bottom: 1px solid #404851; */
 }
 
 #sidebar ul li a {
@@ -130,7 +130,7 @@ i, span {
     display: block;
 }
 #sidebar ul li a:hover {
-    color: #7386D5;
+    color: #566270;
     background: #fff;
 }
 #sidebar ul li a i {
@@ -139,7 +139,7 @@ i, span {
 
 #sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
-    background: #6d7fcc;
+    background: #566270;
 }
 
 
@@ -148,7 +148,7 @@ a[data-toggle="collapse"] {
 }
 
 a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
-    content: '\e259';
+    /* content: '\e259'; */
     display: block;
     position: absolute;
     right: 20px;
@@ -156,19 +156,19 @@ a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
     font-size: 0.6em;
 }
 a[aria-expanded="true"]::before {
-    content: '\e260';
+    /* content: '\e260'; */
 }
 
 
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #566270;
 }
 ul ul form a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
-    background: #6d7fcc;
+    background: #566270;
 }
 
 ul.CTAs {
@@ -185,11 +185,11 @@ ul.CTAs a {
 
 a.download {
     background: #fff;
-    color: #7386D5;
+    color: #566270;
 }
 
 a.article, a.article:hover {
-    background: #6d7fcc !important;
+    background: #566270 !important;
     color: #fff !important;
 }
 
@@ -199,8 +199,7 @@ a.article, a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-   
-    min-height: 100vh;
+    min-height: 100vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 

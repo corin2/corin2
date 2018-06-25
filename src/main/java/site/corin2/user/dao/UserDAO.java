@@ -17,8 +17,11 @@ public interface UserDAO {
 	//회원정보 얻기
 	public UserDTO userSelect(String userid) throws ClassNotFoundException, SQLException;
 	
-	//회원정보 업데이트
-	public int userUpdate(UserDTO userdto) throws ClassNotFoundException, SQLException;
+	//회원정보 비밀번호 업데이트
+	public int userpassUpdate(UserDTO userdto) throws ClassNotFoundException, SQLException;
+	
+	//회원정보 닉네임 업데이트
+	public int usernickUpdate(UserDTO userdto) throws ClassNotFoundException, SQLException;
 	
 	//회원정보 삭제
 	public void userDelete(UserDTO userdto) throws ClassNotFoundException, SQLException;  
@@ -34,4 +37,6 @@ public interface UserDAO {
 
 	//모든 유저 조회
 	public List<UserDTO> allUserSelect();
+
+	public void profileUpdate(UserDTO updateuser);
 }

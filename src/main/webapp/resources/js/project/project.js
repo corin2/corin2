@@ -5,7 +5,7 @@ var projectcnt = 0;
 
 //프로젝트 생성 함수
 function addProject() {
-	if($('input[name="language"]').is(':checked')){
+	if($('input[name="language"]').is(':checked')&&$("#ProjectName").val()!=""){
 	var radioVal = $('input[name="language"]:checked').val();
 	var projectName = $("#ProjectName").val();
 	$.ajax({
@@ -13,16 +13,16 @@ function addProject() {
 		datatype:"JSON",
 		data:{projectName:$("#ProjectName").val(), languageNum:radioVal},
 		success:function(data){
-			alert("프로젝트생성성공");
+			swal("프로젝트생성성공");
 			projectProjectNum(projectName)
 		}
 		
 	})
 	}else if($("#ProjectName").val()==""){
-		alert("프로젝트명을 입력하세요")
+		swal("프로젝트명을 입력하세요");
 	}else
 	{
-		alert("주언어를 체크해주세요")
+		swal("주언어를 체크해주세요");
 	}
 }
 //프로젝트넘필요
@@ -53,6 +53,7 @@ function insertTeamProject(projectNum) {
 
 //프로젝트 뿌려주기
 function projectView(projectArray) {
+	$("#projectbox").empty();
 	$.ajax({
 		url:"projectAllList",
 		datatype : "JSON",
@@ -63,9 +64,10 @@ function projectView(projectArray) {
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
-						html +=	"<div style='float:left;'>"
-							 + "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							 + "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
+						html +=	"<div class='projectListDiv'>"
+							 + "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
+							 + "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							 + "<p class='projectp'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -77,16 +79,19 @@ function projectView(projectArray) {
 					}
 				});
 				projectcnt++;
-				if(projectcnt == 6){
+			/*	if(projectcnt == 6){
 					html += '<br>';
 					projectcnt = 0;
-				}
+				}*/
 			});
+			html += "<div class='projectListDiv'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='buttonproject' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
 			projectcnt=0;
 			$("#projectbox").html(html);
+			
 		}
 	})
 }
+
 
 //프로젝트 북마크 뿌려주기
 function projectBookView(projectArray) {
@@ -100,9 +105,10 @@ function projectBookView(projectArray) {
 			$.each(data.list, function (index, elt) {
 				$.each(projectArray[0], function(i, elt2) {
 					if(elt.languageNum == elt2.languageNum){
-						html +=	"<div style='float:left;'>"
-							+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
-							+ "<p style='float:left; margin-right:14px;'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
+						html +=	"<div class='projectListDiv'>"
+							+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
+							+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<p class='projectp'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
 							}
@@ -129,14 +135,18 @@ function projectDetailView() {
 	$("#detailButton").empty();
 	var html="";
 		html = "<div id='projectDetail' class='form-group'>"
-			 + "<h3>프로젝트제목입력:</h3>"
-			 + "<input id ='ProjectName' type='text' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<h3>프로젝트제목입력</h3>"
+			 + "<input id ='ProjectName' type='text' class='search1' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<br>"
 			 + "<br>"
 		 	 + "</div>"
-		     +"<input id='addProject' class='btn btn-success' type='button' onclick='addProject()' value='생성'>"
-			 +"<input id='cancleProject' class='btn btn-danger' data-dismiss='modal' type='button' value='취소'>";
-			 $("#detailButton").html(html)
-			 printProjectDetailLanguage()
+		 	 +"<input id='cancleProject' class='btn btn-danger-project' data-dismiss='modal' type='button' value='취소'>"
+		 	 +"<input id='addProject' class='btn btn-create' type='button' onclick='addProject()' value='생성'>"
+		 	 + "<br>"
+		 	 + "<br>"
+			 $("#detailButton").html(html);
+			 printProjectDetailLanguage();
+			 $('#ProjectName').focus();
 	
 }
 
@@ -177,7 +187,7 @@ function printProjectDetailLanguage() {
 			var html = '';
 			$.each(data.list, function(index, elt) {
 				console.log(elt)
-				html += "<input type='radio' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
+				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
 		}
@@ -192,7 +202,7 @@ function printProjectDetailLanguageChecked(projectNum) {
 		success:function(data){
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				html += "<input type='radio' name='language' value='"+elt.languageNum+"'";
+				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'";
 				if($('#hiddenLanguageNum'+projectNum).val() == elt.languageNum)	html += " checked ";
 				html += ">"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>";
 			})
@@ -202,30 +212,41 @@ function printProjectDetailLanguageChecked(projectNum) {
 }
 //주언어 업데이트하기
 function updateLanguage(projectNum) {
+	if($('input[name="language"]').is(':checked')&&$("#ProjectName").val()!=""){
 	$.ajax({
 		url:"languageUpdate",
 		datatype:"JSON",
 		data:{projectNum:projectNum, languageNum:$('input[name="language"]:checked').val(), projectName:$("#ProjectName").val()},
 		success:function(data){
-			alert("프로젝트 수정 성공")
+			swal("프로젝트 수정 성공");
 			languageColorView();
 		}
 	})
+	}else
+	{
+		swal("프로젝트명을 입력하세요");
+	}
 }
 //프로젝트 업데이트 모달창 내용 뿌리기
 function projectUpdateView(projectNum) {
 	$("#detailButton").empty();
 	var html="";
 		html ="<div id='projectDetail' class='form-group'>" 
-			 +"<h3>프로젝트제목입력:</h3>"
-			 + "<input id ='ProjectName' type='text' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
+			 +"<h3>프로젝트제목입력</h3>"
+			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<br>"
 			 + "<br>"
 			 + "</div>"
-			 + "<input id='addProject' class='btn btn-success' type='button' onclick='updateLanguage("+projectNum+")' data-dismiss='modal' value='수정'>"
-			 + "<input id='cancleProject' class='btn btn-danger' data-dismiss='modal' type='button' value='취소'>"
-			 + "<input id='deleteProject' class='btn btn-danger' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<div>"
+			 + "<input id='cancleProject' class='btn btn-info-project' data-dismiss='modal' type='button' value='취소'>"
+			 + "<input id='deleteProject' class='btn btn-danger-project' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<input id='addProject' class='btn btn-success-project' type='button' onclick='updateLanguage("+projectNum+")' value='수정'>"
+			 + "</div>"
+			 + "<br>"
+			 + "<br>"
 			 $("#detailButton").html(html)
 			 printProjectDetailLanguageChecked(projectNum)
+			 $("#ProjectName").focus();
 	}
 
 //프로젝트 삭제
@@ -267,6 +288,7 @@ function updateProjectNoneBookmark(projectNum) {
 
 //프로젝트 검색
 function searchProject(projectArray) {
+	$("#searchBox").empty();
 	var userId = $("#hiddenUserId").val();
 	var projectName = $("#searchProject").val();
 	var html='';
@@ -277,17 +299,20 @@ function searchProject(projectArray) {
 		datatype:"JSON",
 		data:{userId:userId, projectName:projectName},
 		success: function (data) {
+			if(projectName!=""){
 			$.each(data.data, function(index, elt) {
 			$.each(projectArray[0], function(index, elt2) {
 				console.log(elt.languageNum)
 				if(elt.languageNum == elt2.languageNum){
-				html +=	"<div style='float:left;'>"
-					+ "<a href='position?projectNum="+elt.projectNum+"' class='button' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+				html +=	"<div class='projectSerchDiv'>"
+					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
+					+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 					+ "</div>";
 				
 				}
 			})
 			})
+			}
 			$("#searchBox").append(html);
 			
 			console.log(data.data.projectNum);

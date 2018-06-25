@@ -1,0 +1,94 @@
+/* 사이드바 */
+#sidebar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	display: block;
+	overflow: hidden;
+	height: auto;
+}
+
+/* 헤더 */
+#header {
+	/* position: fixed;
+	margin-left: 80px;
+	padding: 5px 5px;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 100;
+	display: block;
+	height: 60px;
+	background-color: #ededed;
+	box-shadow: 0 2px 2px rgba(12,13,14,0.2); */
+	position: fixed;
+    margin-left: 80px;
+    padding: 0px 0px;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: block;
+    height: 50px;
+    background-color: #ededed;
+    box-shadow: 0 2px 2px rgba(12,13,14,0.2);
+}
+
+/* 컨텐츠 */
+#content {
+	position: relative;
+	margin-left: 80px;
+	margin-top: 60px;
+	padding-left: 20px;
+	padding-top: 20px;
+}
+
+/* header 배경색 */
+.navbar-user {
+    padding: 0px 30px 0px 0px;
+	background-color: #ededed;
+}
+
+/* 채팅 사이드바 */
+.sidebar-chat {
+	position: fixed;
+	margin-top: 60px;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: none;
+	height: auto;
+	z-index: 200;
+	width: 420px;
+	height: 100%
+}
+
+/* 프로필 수정 */
+.profile {
+	position: fixed;
+	margin-left : 80px;
+	top: 315px;
+	left: 0;
+	bottom: 0;
+	display: none;
+	height: auto;
+	z-index: 200;
+	width: 270px;
+	height: 60%
+}
+
+.profileimage{
+	position: fixed;
+	margin-top: 80px;
+	margin-left : 80px;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	display: none;
+	height: auto;
+	z-index: 200;
+	width: 265px;
+	height: 26%
+}

@@ -21,7 +21,7 @@ $(function(){
                     }
                 }
                 $('#content-md').off('mousemove')
-            }
+            },
         }
     )
 	$('body').attr({
@@ -41,13 +41,24 @@ function autoWidth(){
 //todo와 inprogress에 카드를 3개씩 만 가지게 할 수 있는 변수
 var sortablecnt = 0; var sortablecnt2 = 0; var sortablecnt3 = 0;
 
+/*{
+	overflow-y: auto;
+}*/
+
 //드래그&드랍
 function sortable(){
 	$('div[class=listbox], div[class=listingbox], div[class=donebox]').sortable({
 		items:'div:not(#addcard)',
 		placeholder: "ui-state-highlight",
 		connectWith: '.listbox, .listingbox, .donebox',
-		
+		scroll: false,
+		opacity: 0.8,
+		zIndex: 9999,
+		start: function(event, ui) {
+			console.log(ui.item[0].id)
+			/*$('.listbox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');
+			$('.donebox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');*/
+		},
 		//카드 위치 변경 시 카드 순번 업데이트
 		update: function(event, ui) {
 			var productOrder = $(this).sortable('toArray').toString();
@@ -70,7 +81,7 @@ function sortable(){
 			sortablecnt = 1;
 			
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
-				alert('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
+				swal('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
 				send(1);
 			}else{
 				$.ajax({
@@ -104,7 +115,7 @@ function showUserFrofiles(){
 		type : "post",
 		url  : "showMemberUserProfile",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$.each(data.data, function(index, elt) {
 				userProfiles.push(elt);
@@ -121,7 +132,7 @@ function showUserField(userProfiles){
 		type : "post",
 		url  : "showMember",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var firsttext1 = ''; var firsttext2 = ''; var firsttext3 = '';
 			var nexttext1 = ''; var nexttext2 = ''; var nexttext3 = '';
@@ -130,8 +141,8 @@ function showUserField(userProfiles){
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId) {
 						text1 += '<div class="userprofilebox">'
-							+ '<img src="resources/profile/'+elt2.userProfile+'" class="img-circle person" width="30" height="30">'
-							+ elt2.userName +'</div>';
+							+ '<img src="resources/images/profile/'+elt2.userProfile+'" class="img-circle person" width="75" height="75">'
+							+ '<label>' + elt2.userName +'</label></div>';
 					}
 				});
 				
@@ -170,10 +181,10 @@ function showList(){
 							 + '<div id="listnum' + elt.listNum + '" class="listbox"><input type="hidden" class="null"></div></div>';
 				}else if(elt.listNum =="2"){
 					htmltext += '<div><div id="listnum' + elt.listNum + '" class="userbox">'
-							 + '<div class="listtitle" style="float: left;"><label>'+ elt.listName +'</label></div>'+userhtml1+'</div>';	
+							 + '<div class="listtitle floatLeftKanban"><label>'+ elt.listName +'</label></div>'+userhtml1+'</div>';	
 				}else {
 					htmltext += '<div id="listnum' + elt.listNum + '" class="kanbanbox">'
-							 + '<div class="listtitle" style="float: left;"><label>'+ elt.listName +'</label></div>';
+							 + '<div class="listtitle floatLeftKanban"><label>'+ elt.listName +'</label></div>';
 					if(elt.listNum != data.data.length) htmltext += userhtml2
 					else htmltext += userhtml3
 				}
@@ -192,7 +203,7 @@ function showCard(){
 		type : "post",
 		url  : "showCard",
 		datatype:"JSON",
-		data : {projectNum : $('#hiddenProjectNum').val()},
+		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var htmlText;
 			$('.ui-sortable').children('div').empty();
@@ -208,7 +219,7 @@ function showCard(){
 				}
 			});
 			
-			$('#listnum1').append('<div id="addcard"><a class="cardcreate" onclick="addCardView('+$('#hiddenProjectNum').val()+')">Add a card...</a></div>');
+			$('#listnum1').append('<div id="addcard"><a class="cardcreate" onclick="addCardView('+sessionProjectNum+')">Add a card...</a></div>');
 			
 			autoWidth();
 			sortable();
@@ -219,12 +230,13 @@ function showCard(){
 //카드를 추가하는 텍스트박스를 생성한다
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
-			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"a\"), "+ projectNum +");}' "
+			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<a style='float: right;' onclick='addCard(this, "+ projectNum +")' onmouseover='focusOutDisgard(this)'>완료</a>";
+			+ "<label id='addLabel floatRightKanban' onclick='addCard(this, "+ projectNum +")'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 	$('#addcard').children('input').focus();
+	focusOutDisgard($('#addLabel'));
 }
 
 //카드 등록 성공
@@ -243,7 +255,7 @@ function addCard(obj, projectNum){
 	}
 }
 
-//카드 디텔일 총합 뿌려주기
+//카드 디테일 총합 뿌려주기
 function cardDetail(cardNum){
 	$('#hiddenCardNum').attr('value', cardNum);
 	selectCard(cardNum);
@@ -295,12 +307,13 @@ function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
-			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"a\"), "+ cardNum +");}' "
+			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
 			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<a style='float: right;' onclick='updateCard(this, "+ cardNum +")' onmouseover='focusOutDisgard(this)')>완료</a>";
+			+ "<label id='editLabel floatRightKanban' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 	$('#div' + cardNum).children('input').focus();
+	focusOutDisgard($('#editLabel'));
 }
 
 //카드 제목 수정 확인

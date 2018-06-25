@@ -15,10 +15,14 @@ public class TroubleShootingDTO {
 	private String solution;
 	
 	//DTO 추가 배현준 6.8
+	private String userId;
 	private String userName;
 	private String userProfile;
 	private String boardDate;
 	private int isDeleted;
+	
+	//DTO 추가 배현준 6.19
+	private String hashtag;
 	
 	public TroubleShootingDTO() {}
 
@@ -61,6 +65,14 @@ public class TroubleShootingDTO {
 	public void setSolution(String solution) {
 		this.solution = solution;
 	}
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -69,7 +81,6 @@ public class TroubleShootingDTO {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	
 	
 	public String getUserProfile() {
 		return userProfile;
@@ -95,5 +106,12 @@ public class TroubleShootingDTO {
 		this.isDeleted = isDeleted;
 	}
 
+	public String getHashtag() {
+		return hashtag;
+	}
+
+	public void setHashtag(String hashtag) {
+		this.hashtag = hashtag;
+	}
 	
 }
