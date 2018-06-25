@@ -96,7 +96,7 @@ function showCalendar() {
 			center: '',
 			right:  'title'
 		},
-		dragRevertDuration : 0, // 드래그 속도
+		dragRevertDuration : 0, // 원래 값으로 돌아가는 속도
 		editable: true,
 		droppable: true,
 		drop: function(date, jsEvent, ui, resourceId) {
@@ -223,6 +223,7 @@ function showCalendar() {
 			dialogStart('추가');
 			$('#calEventDialog').dialog('open');
 		},
+		eventLimit: true, // 너무 많아지면 more로 표시
 	});
 }
 
