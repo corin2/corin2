@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.board.dao.UploadDAO">
+
+		<insert id="boardInsert" parameterType="site.corin2.board.dto.BoardDTO">
+			insert into board(skillnum , userid, boarddate,isdeleted) 
+			values('S700',#{userId},now(),0)
+			
+		</insert>
+				
+		<insert id="uploadInsert" parameterType="site.corin2.board.dto.UploadDTO">
+			<selectKey order="BEFORE" keyProperty="boardNum" resultType="int">
+				select IFNULL(max(boardnum), 0) from board where skillnum ='S700'
+			</selectKey>
+			insert into upload(boardnum , skillnum , projectnum , uploadalias ,uploadorigin) 
+			values(#{boardNum},'S700',#{projectNum},#{uploadAlias},#{uploadOrigin})
+		</insert>
+		
+		<select id="uploadSelect" resultType="site.corin2.board.dto.UploadDTO">
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,b.boarddate,u.boardnum  from board b ,upload u,user m 
+			WHERE b.boardnum = u.boardnum and b.userid= m.userid 
+			and b.SKILLNUM ='S700' and b.isdeleted = 0 and u.projectnum =  #{projectNum} order by b.boarddate DESC
+		</select>
+	
+		<delete id="fileDelete" parameterType="site.corin2.board.dto.UploadDTO">
+			delete from upload where boardnum = #{boardNum} and skillnum ='S700' and projectnum = #{projectNum}
+		</delete>
+<!-- 	
+		<select id="searcherSelect" resultType="site.corin2.board.dto.UploadDTO">
+			SELECT * FROM upload
+			WHERE uploadorigin LIKE '%${uploadOrigin}%' 
+		</select> -->
+		
+	</mapper>
