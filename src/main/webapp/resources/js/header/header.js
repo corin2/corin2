@@ -1,6 +1,6 @@
 $(function(){
 	projectMemberProfile();
-	projectColorView();
+	if(sessionProjectNum != 'null') projectColorView();
 });
 
 //프로젝트에 속한 멤버 리스트 뿌려주기

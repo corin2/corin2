@@ -4,8 +4,9 @@ $(function(){
 
 //메시지가 존재하는지 알람~
 function existMsg(){
+	console.log($('#inviteMsg').children('li').length)
 	if($('#inviteMsg').children('li').length > 0) {
-		var content = '<span class="glyphicon glyphicon-exclamation-sign" style="color:red;"></span>';
+		var content = '<span class="badge">'+$('#inviteMsg').children('li').length+'</span>';
 		$('#inviteMsg').closest('li').children('a').append(content);
 	}
 }
@@ -26,11 +27,12 @@ function showMsg(){
 			
 			var htmltext = '';
 			$.each(data.data, function(index, elt) {
-				htmltext += '<li><a><label>'+elt.projectName+'에 초대받았습니다</label>';
-				var byte = byteInt(elt.projectName);
-				if(byte > 1) htmltext += '<br>';
-				htmltext += '<button class="btn-warning" onclick="msgaccept('+elt.projectNum+')">Y</button>'
-						 + '<button class="btn-success" onclick="msgreject('+elt.projectNum+')">N</button>'
+				htmltext += '<li><a><span>'
+						 + '<img src="resources/images/profile/'+elt.projectDate+'" class="img-circle" width="50" height="50"></span>'
+						 + '<span>'+elt.languageNum+'</span>' // LANGUAGENUM = sendId , PROJECTDATE = userprofile
+						 + '<span class="btnSpan"><button class="btn-warning" onclick="msgaccept('+elt.projectNum+')">Y</button>'
+						 + '<button class="btn-success" onclick="msgreject('+elt.projectNum+')">N</button></span>'
+						 + '<span class="messageInvite"><label>'+elt.projectName+'<br> 너! 내 동료가 되라</label></span>'
 						 + '</a></li>';
 			});
 			
