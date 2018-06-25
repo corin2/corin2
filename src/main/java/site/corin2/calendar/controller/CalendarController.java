@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.View;
 
 import site.corin2.calendar.service.CalendarService;
+import site.corin2.kanban.dto.CardDTO;
 import site.corin2.calendar.dto.CalendarDTO;
 
 @Controller
@@ -61,29 +62,37 @@ public class CalendarController {
 	
 	//카드일정 위치수정
 	@RequestMapping("cardCalendarDateUpdate")
-	public View cardCalendarDateUpdate(CalendarDTO calendar, Model model) {
+	public View cardCalendarDateUpdate(CalendarDTO calendar) {
 		service.cardCalendarDateUpdate(calendar);
 		return jsonview;
 	}
 	
 	//카드일정 삭제
 	@RequestMapping("cardCalendarDelete")
-	public View cardCalendarDelete(CalendarDTO calendar, Model model) {
+	public View cardCalendarDelete(CalendarDTO calendar) {
 		service.cardCalendarDelete(calendar);
 		return jsonview;
 	}
 	
 	//일정 위치수정
 	@RequestMapping("calendarDateUpdate")
-	public View calendarDateUpdate(CalendarDTO calendar, Model model) {
+	public View calendarDateUpdate(CalendarDTO calendar) {
 		service.calendarDateUpdate(calendar);
 		return jsonview;
 	}
 	
 	//일정 삭제
 	@RequestMapping("calendarDelete")
-	public View calendarDelete(CalendarDTO calendar, Model model) {
+	public View calendarDelete(CalendarDTO calendar) {
 		service.calendarDelete(calendar);
+		return jsonview;
+	}
+	
+	//모든 카드 가져오되, 캘린더에 저장된 카드는 가져오지 않는다.
+	@RequestMapping("allCardNoCallendar")
+	public View allCardNoCallendar(String projectNum, Model model) {
+		List<CardDTO> cards = service.allCardNoCallendar(Integer.parseInt(projectNum));
+		model.addAttribute("data", cards);
 		return jsonview;
 	}
 }

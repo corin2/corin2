@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import site.corin2.calendar.dao.CalendarDAO;
 import site.corin2.calendar.dto.CalendarDTO;
@@ -73,5 +74,15 @@ public class CalendarService {
 	public void calendarDelete(CalendarDTO calendar) {
 		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
 		try {calendarDAO.calendarDelete(calendar);} catch (Exception e) {e.getMessage();}
+	}
+	
+	//카드일정 삭제
+	public List<CardDTO> allCardNoCallendar(int projectNum) {
+		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
+		List<CardDTO> cards = null;
+		try {
+			cards = calendarDAO.allCardNoCallendar(projectNum);
+		} catch (Exception e) {e.getMessage();}
+		return cards;
 	}
 }

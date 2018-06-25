@@ -19,5 +19,5 @@
 		
 		<div id="calendar"></div>
 	</div>
-	<div id="external-events"></div>
+	<div id="external-events" class="chevron-up"></div>
 </div>

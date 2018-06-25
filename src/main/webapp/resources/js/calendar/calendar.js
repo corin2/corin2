@@ -1,6 +1,6 @@
 $(function() {
 	showCalendar();
-	dragCardCalendar(0);
+	dragCardCalendar();
 });
 
 function dialogStart(titleName, calendarNum) {
@@ -252,16 +252,17 @@ function calendarDateUpdate(calendarData, id){
 }
 
 //일정을 생성하는 곳 (카드들~)
-function dragCardCalendar(check) {
+function dragCardCalendar() {
 	$.ajax({
 		type : "post",
-		url  : "showCard",
+		url  : "allCardNoCallendar",
 		datatype:"JSON",
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var htmlText = '';
 			var result = 4;
-			if(check == 1) result = data.data.length;
+			if($('#external-events').attr('class') == 'chevron-down') result = data.data.length;
+			
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					if(index < result) {
@@ -271,15 +272,21 @@ function dragCardCalendar(check) {
 					}
 				}
 			});
-			if(check == 0)
-				htmlText += '<div class="middleCalendar" onclick="dragCardCalendar(1)"><span class="glyphicon glyphicon-chevron-down"></span></div>';
-			else if(check == 1)
-				htmlText += '<div class="middleCalendar" onclick="dragCardCalendar(0)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
+			if($('#external-events').attr('class') == 'chevron-up')
+				htmlText += '<div class="middleCalendar" onclick="cardNowResult(0)"><span class="glyphicon glyphicon-chevron-down"></span></div>';
+			else if($('#external-events').attr('class') == 'chevron-down')
+				htmlText += '<div class="middleCalendar" onclick="cardNowResult(1)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
 			
 			$('#external-events').html(htmlText);
 			canDragCard();
 		}
 	});
+}
+
+function cardNowResult(check) {
+	if(check == 0) $('#external-events').attr('class', 'chevron-down');
+	else if(check == 1) $('#external-events').attr('class', 'chevron-up');
+	dragCardCalendar();
 }
 
 //카드들이 캘린더에 드래그가 가능하게 된다.
@@ -353,7 +360,7 @@ function calendarRenderEvent(calendarArr) {
 	dateProcessArray(calendarArr, 1); //출력시 DB종료일 + 1일
 	$('#calendar').fullCalendar('removeEvents');
 	for(var i in calendarArr) {
-		if(calendarArr[i].id.indexOf('card') > -1) { $('#'+calendarArr[i].id).remove(); }
+		//if(calendarArr[i].id.indexOf('card') > -1) { $('#'+calendarArr[i].id).remove(); }
 		$('#calendar').fullCalendar('renderEvent', calendarArr[i], true);	
 	}
 }

@@ -29,14 +29,14 @@ function onMessage(evt) {
 	
 	if(evt.data == '1'){ //1 = 카드 생성 수정 삭제 위치이동 시
 		if(skill == 'kanban') showKanban();
-		else if(skill == 'calendar') dragCardCalendar(0);
+		else if(skill == 'calendar') dragCardCalendar();
 		else { // 그리드스택에서 사용
-			showKanban(); dragCardCalendar(0);
+			showKanban(); dragCardCalendar();
 		}
 	}else if(evt.data == '2'){ //2 = 캘린더 생성 수정 위치이동 시 
-		calendarCardView();
+		dragCardCalendar();
 	}else if(evt.data == '3'){ //3 = 캘린더 삭제 시
-		dragCardCalendar(0);
+		dragCardCalendar();
 	}
 }
 

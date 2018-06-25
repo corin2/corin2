@@ -62,4 +62,9 @@
 		where calendarNum = #{calendarNum}
 	</update>
 	
+	<select id="allCardNoCallendar" resultType="site.corin2.kanban.dto.CardDTO">
+		select * from card where projectNum = #{projectNum} and 
+		cardNum not in (select cardNum from calendar where projectNum = #{projectNum} and isDeleted = 0 and cardNum is not null)
+	</select>
+	
 </mapper>
