@@ -283,6 +283,7 @@ function updateCardDetail(e){
 		datatype:"JSON",
 		data:{cardNum:$('#hiddenCardNum').val(), cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
 		success:function(data){
+			swal("작성 완료");
 			selectCard($('#hiddenCardNum').val());
 		}
 	});
@@ -357,7 +358,6 @@ function cardNameModOk(e){
 				e.stopPropagation();
 				selectCard(cardNum);
 				send(1);
-				//showKanban();
 			}
 		});
 	}else{

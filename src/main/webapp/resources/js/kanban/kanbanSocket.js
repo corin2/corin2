@@ -34,7 +34,7 @@ function onMessage(evt) {
 			showKanban(); dragCardCalendar();
 		}
 	}else if(evt.data == '2'){ //2 = 캘린더 생성 수정 위치이동 시 
-		calendarCardView();
+		dragCardCalendar();
 	}else if(evt.data == '3'){ //3 = 캘린더 삭제 시
 		dragCardCalendar();
 	}

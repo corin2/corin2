@@ -24,7 +24,7 @@ function dialogStart(titleName, calendarNum) {
 				var eventData = null; // 이벤트 객체 변수 선언
 				
 				if(title === "" ){
-					swal("보드명을 입력해주세요.");
+					swal("일정명을 입력해주세요.");
 					return;
 				}else {
 						eventData = { // 이벤트 객체
@@ -96,7 +96,7 @@ function showCalendar() {
 			center: '',
 			right:  'title'
 		},
-		dragRevertDuration : 0, // 드래그 속도
+		dragRevertDuration : 0, // 원래 값으로 돌아가는 속도
 		editable: true,
 		droppable: true,
 		drop: function(date, jsEvent, ui, resourceId) {
@@ -223,6 +223,7 @@ function showCalendar() {
 			dialogStart('추가');
 			$('#calEventDialog').dialog('open');
 		},
+		eventLimit: true, // 너무 많아지면 more로 표시
 	});
 }
 
@@ -255,23 +256,42 @@ function calendarDateUpdate(calendarData, id){
 function dragCardCalendar() {
 	$.ajax({
 		type : "post",
-		url  : "showCard",
+		url  : "allCardNoCallendar",
 		datatype:"JSON",
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var htmlText = '';
+			var result = 4;
+			if($('#external-events').attr('class') == 'chevron-down') result = data.data.length;
+			
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '0') {
-					htmlText += '<div id="cardNumber'+elt.cardNum+'" ' 
-							 + 'class="fc-event ui-draggable ui-draggable-handle" ' 
-							 + 'onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName+'</div>';
+					if(index < result) {
+						htmlText += '<div id="cardNumber'+elt.cardNum+'" ' 
+								 + 'class="fc-event ui-draggable ui-draggable-handle" ' 
+								 + 'onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName+'</div>';
+					}
 				}
 			});
+			if(data.data.length > 4) {
+				if($('#external-events').attr('class') == 'chevron-up')
+					htmlText += '<div class="middleCalendar" onclick="cardNowResult(0)"><span class="glyphicon glyphicon-chevron-down"></span></div>';
+				else if($('#external-events').attr('class') == 'chevron-down')
+					htmlText += '<div class="middleCalendar" onclick="cardNowResult(1)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
+			}else if(data.data.length < 1) {
+				htmlText += '<div>사용하지 않은 카드가 없습니다</div>'
+			}
 			
 			$('#external-events').html(htmlText);
 			canDragCard();
 		}
 	});
+}
+
+function cardNowResult(check) {
+	if(check == 0) $('#external-events').attr('class', 'chevron-down');
+	else if(check == 1) $('#external-events').attr('class', 'chevron-up');
+	dragCardCalendar();
 }
 
 //카드들이 캘린더에 드래그가 가능하게 된다.
@@ -345,7 +365,7 @@ function calendarRenderEvent(calendarArr) {
 	dateProcessArray(calendarArr, 1); //출력시 DB종료일 + 1일
 	$('#calendar').fullCalendar('removeEvents');
 	for(var i in calendarArr) {
-		if(calendarArr[i].id.indexOf('card') > -1) { $('#'+calendarArr[i].id).remove(); }
+		//if(calendarArr[i].id.indexOf('card') > -1) { $('#'+calendarArr[i].id).remove(); }
 		$('#calendar').fullCalendar('renderEvent', calendarArr[i], true);	
 	}
 }

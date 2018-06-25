@@ -10,6 +10,7 @@ package site.corin2.calendar.dao;
 import java.util.List;
 
 import site.corin2.calendar.dto.CalendarDTO;
+import site.corin2.kanban.dto.CardDTO;
 
 public interface CalendarDAO {
 	
@@ -39,4 +40,7 @@ public interface CalendarDAO {
 	
 	//일정 삭제(업데이트)
 	public void calendarDelete(CalendarDTO calendar);
+	
+	//캘린더 isdeleted 가 0인 것을 뺀 모든 카드 조회
+	public List<CardDTO> allCardNoCallendar(int projectNum);
 }

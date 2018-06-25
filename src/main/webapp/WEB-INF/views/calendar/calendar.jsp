@@ -15,9 +15,9 @@
 <jsp:include page="addCalendar.jsp"></jsp:include>
 <div>
 	<div id="calendar-md" class="container-fluid">
-		<h2>일정관리</h2>
+		<h1>일정관리</h1>
+		<div id="external-events" class="chevron-up"></div>
+		<div><div id="calendar"></div></div>
 		
-		<div id="calendar"></div>
 	</div>
-	<div id="external-events"></div>
 </div>
