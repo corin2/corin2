@@ -1,6 +1,6 @@
 $(function() {
 	showCalendar();
-	dragCardCalendar();
+	dragCardCalendar(0);
 });
 
 function dialogStart(titleName, calendarNum) {
@@ -252,7 +252,7 @@ function calendarDateUpdate(calendarData, id){
 }
 
 //일정을 생성하는 곳 (카드들~)
-function dragCardCalendar() {
+function dragCardCalendar(check) {
 	$.ajax({
 		type : "post",
 		url  : "showCard",
@@ -260,13 +260,21 @@ function dragCardCalendar() {
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			var htmlText = '';
+			var result = 4;
+			if(check == 1) result = data.data.length;
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '0') {
-					htmlText += '<div id="cardNumber'+elt.cardNum+'" ' 
-							 + 'class="fc-event ui-draggable ui-draggable-handle" ' 
-							 + 'onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName+'</div>';
+					if(index < result) {
+						htmlText += '<div id="cardNumber'+elt.cardNum+'" ' 
+								 + 'class="fc-event ui-draggable ui-draggable-handle" ' 
+								 + 'onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName+'</div>';
+					}
 				}
 			});
+			if(check == 0)
+				htmlText += '<div class="middleCalendar" onclick="dragCardCalendar(1)"><span class="glyphicon glyphicon-chevron-down"></span></div>';
+			else if(check == 1)
+				htmlText += '<div class="middleCalendar" onclick="dragCardCalendar(0)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
 			
 			$('#external-events').html(htmlText);
 			canDragCard();

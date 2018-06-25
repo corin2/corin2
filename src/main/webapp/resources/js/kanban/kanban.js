@@ -358,7 +358,6 @@ function cardNameModOk(e){
 				e.stopPropagation();
 				selectCard(cardNum);
 				send(1);
-				//showKanban();
 			}
 		});
 	}else{
