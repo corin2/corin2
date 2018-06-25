@@ -28,21 +28,38 @@
 	
 	<!-- 날짜별 회원 수 -->
 	<select id="userCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
-		SELECT DATE_FORMAT(joindate,'%Y-%m-%d') as date, COUNT(*) as count
-		FROM user
-		<!-- WHERE joindate between #{startdate} and #{enddate} -->
-		WHERE joindate between '2018-01-01' and '2018-12-31'
-		GROUP BY DATE_FORMAT(joindate,'%Y-%m-%d')
-		ORDER BY DATE_FORMAT(joindate,'%Y-%m-%d')
+		select v.gen_date as date, ifnull(u.count, 0) as count from 
+		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
+		 (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+		 (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+		 (select 0 t2 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+		 (select 0 t3 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+		 (select 0 t4 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+		left join
+		 (SELECT DATE_FORMAT(joindate,'%Y-%m-%d') as date, COUNT(*) as count
+		 FROM user
+		 GROUP BY DATE_FORMAT(joindate,'%Y-%m-%d')
+		 ORDER BY DATE_FORMAT(joindate,'%Y-%m-%d')) u
+		on v.gen_date = u.date
+		where gen_date between '2018-06-01' and '2018-06-30'
 	</select>
 	
 	<!-- 날짜별 프로젝트 수 -->
 	<select id="projectCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
-		SELECT DATE_FORMAT(projectdate,'%Y-%m-%d') as date, COUNT(*) as count
-		FROM project
-		WHERE projectdate between '2018-01-01' and '2018-12-31'
-		GROUP BY DATE_FORMAT(projectdate,'%Y-%m-%d')
-		ORDER BY DATE_FORMAT(projectdate,'%Y-%m-%d')
+		select v.gen_date as date, ifnull(u.count, 0) as count from 
+		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
+		 (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+		 (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+		 (select 0 t2 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+		 (select 0 t3 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+		 (select 0 t4 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+		left join
+		 (SELECT DATE_FORMAT(projectdate,'%Y-%m-%d') as date, COUNT(*) as count
+		 FROM project
+		 GROUP BY DATE_FORMAT(projectdate,'%Y-%m-%d')
+		 ORDER BY DATE_FORMAT(projectdate,'%Y-%m-%d')) u
+		on v.gen_date = u.date
+		where gen_date between '2018-06-01' and '2018-06-30'
 	</select>
 	
 </mapper>

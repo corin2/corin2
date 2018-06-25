@@ -4,13 +4,6 @@ $(function() {
 	allUserCount();
 	// 모든 프로젝트 수
 	allProjectCount();
-	// 모든 이메일 수
-	// allEmailCount();
-	
-	// 날짜별 회원 수
-	//userCountByDate();
-	// 날짜별 프로젝트 수
-	//projectCountByDate();
 	
 	// 프로그래밍 언어 차트 표시
 	showLanguageZingChart();
@@ -112,14 +105,12 @@ function showEmailChart() {
 	    },
 	    yAxis: {
 	        type: 'category',
-	        /*data: ['Zum','Nate','Kakao','Naver','Facebook','Google']*/
 	        data: email
 	    },
 	    series: [
 	        {
 	            name: '2018년',
 	            type: 'bar',
-	            /*data: [18203, 23489, 29034, 104970, 131744, 630230]*/
 	            data: emailCount
 	        },
 	    ]
@@ -153,9 +144,6 @@ function showStatsChart() {
 	            }
 	        }
 	    },
-	    /*legend: {
-	        data:['방문자 수','회원 수','프로젝트 수','코린이 수','지너니 수']
-	    },*/
 	    toolbox: {
 	        feature: {
 	            saveAsImage: {
@@ -185,24 +173,14 @@ function showStatsChart() {
 	        {
 	            name:'회원 ',
 	            type:'line',
-	            //stack: '总量',
 	            areaStyle: {normal: {}},
 	            data: userCount
 	        },
 	        {
 	            name:'프로젝트 ',
 	            type:'line',
-	            //stack: '总量',
 	            areaStyle: {normal: {}},
 	            data: projectCount
-	        },
-	        {
-	            name:'라인3',
-	            type:'line',
-	            //stack: '总量',
-	            areaStyle: {normal: {}},
-	            //data:[150, 232, 201, 154, 190, 330, 410]
-	            data:[1, 1, 1, 1]
 	        },
 	    ],
 	};
@@ -271,14 +249,11 @@ function allEmailCount(arr1, arr2) {
 
 // 날짜별 회원 수
 function userCountByDate(arr1, arr2) {
-	console.log("안녕하세요");
 	$.ajax({
 		url: "userCountByDate",
 		datatype: "JSON",
 		async: false,
 		success: function(data) {
-			//var show = JSON.stringify(data);
-			//console.log("날짜별 회원 수: " + show);
 			$.each(data.count, function(index, obj) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
@@ -289,7 +264,6 @@ function userCountByDate(arr1, arr2) {
 
 //날짜별 프로젝트 수
 function projectCountByDate(arr1, arr2) {
-	console.log("안녕하세요2");
 	$.ajax({
 		url: "projectCountByDate",
 		datatype: "JSON",
