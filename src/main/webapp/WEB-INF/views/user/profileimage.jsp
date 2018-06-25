@@ -12,7 +12,7 @@
 			    <span class="btn btn-success fileinput-button">
 			        <i class="glyphicon glyphicon-plus"></i>
 			        <span>Add files...</span>
-			        <input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
+			        <input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" >
 			        <input id="profileimageupdate" type="file" name="files" data-url="profileimageupdate">
 			    </span>
 		</div>

@@ -275,17 +275,11 @@ public class UserService {
 	public UserDTO KakaoLogin(UserDTO userdto) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
-		String viewpage = "";
 		try {
 			userdto.setPassword("kakaologin");
 			userdto.setUserProfile(userdto.getUserProfile());
 			userdto.setEnabled(1);
 			result = userdao.oauthInsert(userdto);
-			if (result > 0) {
-				viewpage = "user.content";
-			} else {
-				viewpage = "login.html";
-			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {

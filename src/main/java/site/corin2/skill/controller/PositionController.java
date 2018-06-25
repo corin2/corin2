@@ -31,6 +31,42 @@ public class PositionController {
 	private PositionService service;
 	
 	//position
+	@RequestMapping(value="dashboardcalendar",method=RequestMethod.GET)
+	public String dashboardcalendar(@RequestParam("projectNum") String projectNum, HttpSession session) {
+		session.setAttribute("sessionProjectNum", projectNum);
+		return "position.calendar";
+	}
+	//position
+	@RequestMapping(value="dashboardtroubleshooting",method=RequestMethod.GET)
+	public String dashboardtroubleshooting(@RequestParam("projectNum") String projectNum, HttpSession session) {
+		session.setAttribute("sessionProjectNum", projectNum);
+		return "position.troubleshooting";
+	}
+	//position
+	@RequestMapping(value="dashboardchecklist",method=RequestMethod.GET)
+	public String dashboardchecklist(@RequestParam("projectNum") String projectNum, HttpSession session) {
+		session.setAttribute("sessionProjectNum", projectNum);
+		return "position.checklist";
+	}
+	//position
+	@RequestMapping(value="dashboardchart",method=RequestMethod.GET)
+	public String dashboardchart(@RequestParam("projectNum") String projectNum, HttpSession session) {
+		session.setAttribute("sessionProjectNum", projectNum);
+		return "position.chart";
+	}
+	//position
+	@RequestMapping(value="dashboardfiles",method=RequestMethod.GET)
+	public String dashboardfiles(@RequestParam("projectNum") String projectNum, HttpSession session) {
+		session.setAttribute("sessionProjectNum", projectNum);
+		return "position.files";
+	}
+	//position
+	@RequestMapping(value="dashboardkanban",method=RequestMethod.GET)
+	public String dashboardkanban(@RequestParam("projectNum") String projectNum, HttpSession session) {
+		session.setAttribute("sessionProjectNum", projectNum);
+		return "position.kanban";
+	}
+	//position
 	@RequestMapping(value="position",method=RequestMethod.GET)
 	public String content(@RequestParam("projectNum") String projectNum, HttpSession session) {
 		session.setAttribute("sessionProjectNum", projectNum);
