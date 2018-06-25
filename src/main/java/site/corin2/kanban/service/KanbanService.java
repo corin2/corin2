@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import site.corin2.calendar.dao.CalendarDAO;
+import site.corin2.calendar.dto.CalendarDTO;
 import site.corin2.kanban.dao.KanbanDAO;
 import site.corin2.kanban.dto.CardDTO;
 import site.corin2.kanban.dto.ListDTO;
@@ -81,10 +83,17 @@ public class KanbanService {
 	//카드를 삭제한다.
 	public int cardDelete(int cardNum) {
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
+		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
 		int result = 0;
 		CardDTO card = dao.cardSelect(cardNum);
-		dao.cardDeleteTaxis(card);
-		dao.cardDelete(cardNum);
+		dao.cardDeleteTaxis(card); //카드순서
+		dao.cardDelete(cardNum); //카드삭제
+		CalendarDTO calendar = new CalendarDTO();
+		calendar.setCardNum(cardNum);
+		calendar = calendarDAO.calendarSelect(calendar);
+		if(calendar != null) {
+			calendarDAO.cardCalendarDelete(calendar);
+		}
 		return result;
 	}
 	

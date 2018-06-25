@@ -4,21 +4,62 @@
 	
 	<insert id="addCalendar">
 		insert into calendar(cardNum, projectNum, calendarName, startDate, endDate, calendarColor, isDeleted)
-		values(#{cardNum}, #{projectNum}, #{calendarName}, #{startDate}, #{endDate}, #{calendarColor}, 0)
+		values(
+		<choose>
+			<when test="cardNum == 0">
+				null,
+			</when>
+			<otherwise>
+				#{cardNum}, 
+			</otherwise>
+		</choose>
+		#{projectNum}, #{calendarName}, #{startDate}, #{endDate}, #{calendarColor}, 0)
 	</insert>
+	
+	<select id="calendarSelect" resultType="site.corin2.calendar.dto.CalendarDTO">
+		select * from calendar where cardNum = #{cardNum} 	
+	</select>
 
 	<select id="calendarAllSelect" resultType="site.corin2.calendar.dto.CalendarDTO">
-		select * from calendar where projectNum = #{projectNum}
+		select * from calendar where projectNum = #{projectNum} and isDeleted = 0
 	</select>
 	
-	<update id="calendarDateUpdate">
+	<update id="cardCalendarDateUpdate">
 		update calendar
 		set startDate = #{startDate}, endDate = #{endDate}
 		where cardNum = #{cardNum}
 	</update>
 	
-	<delete id="calendarDelete">
-		delete from calendar where cardNum = #{cardNum}
-	</delete>
+	<update id="cardCalendarDelete">
+		update calendar
+		set isDeleted = 1
+		where cardNum = #{cardNum}
+	</update>
+	
+	<update id="cardCalendarReset">
+		update calendar
+		set isDeleted = 0, calendarName = #{calendarName},
+		startDate = #{startDate}, endDate = #{endDate}
+		where cardNum = #{cardNum}
+	</update>
+	
+	<update id="modCalendar">
+		update calendar
+		set calendarName = #{calendarName}, endDate = #{endDate},
+		startDate = #{startDate}, calendarColor = #{calendarColor}
+		where calendarNum = #{calendarNum}
+	</update>
+	
+	<update id="calendarDateUpdate">
+		update calendar
+		set startDate = #{startDate}, endDate = #{endDate}
+		where calendarNum = #{calendarNum}
+	</update>
+	
+	<update id="calendarDelete">
+		update calendar
+		set isDeleted = 1
+		where calendarNum = #{calendarNum}
+	</update>
 	
 </mapper>

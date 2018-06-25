@@ -20,7 +20,16 @@ public class CalendarService {
 	//캘린더 추가
 	public void addCalendar(CalendarDTO calendar) {
 		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
-		calendarDAO.addCalendar(calendar);
+		CalendarDTO calendar2 = calendarDAO.calendarSelect(calendar);
+		if(calendar.getCardNum() != 0) {
+			if(calendar2 == null) {
+				calendarDAO.addCalendar(calendar);
+			}else {
+				calendarDAO.cardCalendarReset(calendar);
+			}
+		}else {
+			calendarDAO.addCalendar(calendar);
+		}
 	}
 	
 	//모든 캘린더 조회
@@ -36,13 +45,31 @@ public class CalendarService {
 		return calendars;
 	}
 	
-	//일정 위치수정
+	//카드일정 위치수정
+	public void cardCalendarDateUpdate(CalendarDTO calendar) {
+		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
+		try {calendarDAO.cardCalendarDateUpdate(calendar);} catch (Exception e) {e.getMessage();}
+	}
+	
+	//카드일정 삭제
+	public void cardCalendarDelete(CalendarDTO calendar) {
+		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
+		try {calendarDAO.cardCalendarDelete(calendar);} catch (Exception e) {e.getMessage();}
+	}
+	
+	//일정 수정
+	public void modCalendar(CalendarDTO calendar) {
+		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
+		try {calendarDAO.modCalendar(calendar);} catch (Exception e) {e.getMessage();}
+	}
+	
+	//카드일정 위치수정
 	public void calendarDateUpdate(CalendarDTO calendar) {
 		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
 		try {calendarDAO.calendarDateUpdate(calendar);} catch (Exception e) {e.getMessage();}
 	}
 	
-	//일정 삭제
+	//카드일정 삭제
 	public void calendarDelete(CalendarDTO calendar) {
 		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
 		try {calendarDAO.calendarDelete(calendar);} catch (Exception e) {e.getMessage();}
