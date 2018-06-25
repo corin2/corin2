@@ -24,7 +24,7 @@ function dialogStart(titleName, calendarNum) {
 				var eventData = null; // 이벤트 객체 변수 선언
 				
 				if(title === "" ){
-					swal("보드명을 입력해주세요.");
+					swal("일정명을 입력해주세요.");
 					return;
 				}else {
 						eventData = { // 이벤트 객체
