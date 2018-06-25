@@ -13,8 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
+import site.corin2.user.dto.CountByDateDTO;
 import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 import site.corin2.user.service.AdminMainService;
@@ -57,6 +59,23 @@ public class AdminMainController {
 	public View allEmailCountView(Model model) {
 		List<EmailCountDTO> allEmailCountResult = service.allEmailCount();
 		model.addAttribute("count", allEmailCountResult);
+		return jsonview;
+	}
+	
+	// 날짜별 회원 수
+	@RequestMapping("userCountByDate")
+	//public View userCountByDateView(@RequestParam("startdate") String startdate, @RequestParam("enddate") String enddate, Model model) {
+	public View userCountByDateView(Model model) {
+		List<CountByDateDTO> userCountByDateResult = service.userCountByDate();
+		model.addAttribute("count", userCountByDateResult);
+		return jsonview;
+	}
+	
+	// 날짜별 프로젝트 수
+	@RequestMapping("projectCountByDate")
+	public View projectCountByDateView(Model model) {
+		List<CountByDateDTO> projectCountByDateResult = service.projectCountByDate();
+		model.addAttribute("count", projectCountByDateResult);
 		return jsonview;
 	}
 	

@@ -9,6 +9,7 @@ package site.corin2.user.dao;
 
 import java.util.List;
 
+import site.corin2.user.dto.CountByDateDTO;
 import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 
@@ -20,8 +21,10 @@ public interface AdminMainDAO {
 	public int allProjectCount();
 	
 	// 날짜별 회원 수
+	public List<CountByDateDTO> userCountByDate();
 	
 	// 날짜별 프로젝트 수
+	public List<CountByDateDTO> projectCountByDate();
 	
 	// 프로젝트 언어별 수
 	public List<LanguageCountDTO> allLanguageCount();

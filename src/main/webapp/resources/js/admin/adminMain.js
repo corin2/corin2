@@ -5,7 +5,12 @@ $(function() {
 	// 모든 프로젝트 수
 	allProjectCount();
 	// 모든 이메일 수
-	allEmailCount();
+	// allEmailCount();
+	
+	// 날짜별 회원 수
+	//userCountByDate();
+	// 날짜별 프로젝트 수
+	//projectCountByDate();
 	
 	// 프로그래밍 언어 차트 표시
 	showLanguageZingChart();
@@ -23,7 +28,7 @@ function showLanguageZingChart() {
 	var text = 'Eiffel, VHDL, Scala, Emacs Lisp, Delphi, Ada, Vim, Perl, Lua, Objective-C'
 	+ 'Rebol, Verilog, Factor, loke, Erlang, Nu, D, Shell, Assembly, Turing'
 	+ 'TypeScript, Arduino, Dart, CoffeScript, Arc, Elixir, Groovy, R, Clojure'
-	+ 'Rust, Prolog, Gosu, FORTRAN, Fancy, Haskell, Vala, Smaltalk, Scheme, Matlab';
+	+ 'Rust, Prolog, Gosu, FORTRAN, Fancy, Haskell, Vala, Smalltalk, Scheme, Matlab';
 	var lines = text.split(/[,. ]+/g);
 	
 	// 초기데이터
@@ -36,7 +41,7 @@ function showLanguageZingChart() {
 	});
 	
 	// 프로젝트 언어별 수 카운트
-	allLanguageCount(languageData)
+	allLanguageCount(languageData);
 	
 	// 차트 데이터
 	var myConfig = {
@@ -117,12 +122,6 @@ function showEmailChart() {
 	            /*data: [18203, 23489, 29034, 104970, 131744, 630230]*/
 	            data: emailCount
 	        },
-	        {
-	            name: '2017년',
-	            type: 'bar',
-	            /*data: [19325, 23438, 31000, 121594, 134141, 681807]*/
-	            data: [1, 2, 2, 1, 1, 1]
-	        }
 	    ]
 	};
 	
@@ -132,6 +131,15 @@ function showEmailChart() {
 // 통계 차트
 function showStatsChart() {
 	var chartStats = echarts.init(document.getElementById('stats'));
+	
+	var userDate = [];
+	var userCount = [];
+	var projectDate = [];
+	var projectCount = [];
+	
+	userCountByDate(userDate, userCount); // 날짜별 회원 수
+	projectCountByDate(projectDate, projectCount); // 날짜별 프로젝트 수
+	
 	var optionStats = {
 	    title: {
 	        text: '통계'
@@ -145,9 +153,9 @@ function showStatsChart() {
 	            }
 	        }
 	    },
-	    legend: {
+	    /*legend: {
 	        data:['방문자 수','회원 수','프로젝트 수','코린이 수','지너니 수']
-	    },
+	    },*/
 	    toolbox: {
 	        feature: {
 	            saveAsImage: {
@@ -165,7 +173,7 @@ function showStatsChart() {
 	        {
 	            type : 'category',
 	            boundaryGap : false,
-	            data : ['1','2','3','4','5','6','7']
+	            data : userDate
 	        }
 	    ],
 	    yAxis : [
@@ -175,46 +183,27 @@ function showStatsChart() {
 	    ],
 	    series : [
 	        {
-	            name:'라인1',
+	            name:'회원 ',
 	            type:'line',
-	            stack: '总量',
+	            //stack: '总量',
 	            areaStyle: {normal: {}},
-	            data:[120, 132, 101, 134, 90, 230, 210]
+	            data: userCount
 	        },
 	        {
-	            name:'라인2',
+	            name:'프로젝트 ',
 	            type:'line',
-	            stack: '总量',
+	            //stack: '总量',
 	            areaStyle: {normal: {}},
-	            data:[220, 182, 191, 234, 290, 330, 310]
+	            data: projectCount
 	        },
 	        {
 	            name:'라인3',
 	            type:'line',
-	            stack: '总量',
+	            //stack: '总量',
 	            areaStyle: {normal: {}},
-	            data:[150, 232, 201, 154, 190, 330, 410]
+	            //data:[150, 232, 201, 154, 190, 330, 410]
+	            data:[1, 1, 1, 1]
 	        },
-	        {
-	            name:'라인4',
-	            type:'line',
-	            stack: '总量',
-	            areaStyle: {normal: {}},
-	            data:[320, 332, 301, 334, 390, 330, 320]
-	        },
-	        {
-	            name:'라인5',
-	            type:'line',
-	            stack: '总量',
-	            label: {
-	                normal: {
-	                    show: true,
-	                    position: 'top'
-	                }
-	            },
-	            areaStyle: {normal: {}},
-	            data:[820, 932, 901, 934, 1290, 1330, 1320]
-	        }
 	    ],
 	};
 	
@@ -228,7 +217,7 @@ function showStatsChart() {
 function allUserCount() {
 	$.ajax({
 		url: "allUserCount",
-		datatype:"text",
+		datatype: "text",
 		success: function(data) {
 			$('#allUserCountResult').text(numberWithCommas(data.count));
 		}
@@ -239,7 +228,7 @@ function allUserCount() {
 function allProjectCount() {
 	$.ajax({
 		url: "allProjectCount",
-		datatype:"text",
+		datatype: "text",
 		success: function(data) {
 			$('#allProjectCountResult').text(numberWithCommas(data.count));
 		}
@@ -251,7 +240,7 @@ function allLanguageCount(arr) {
 	$.ajax({
 		url: "allLanguageCount",
 		datatype: "JSON",
-		async:false,
+		async: false,
 		success: function(data) {
 			$.each(data.count, function(index, obj) {
 				arr.push({
@@ -268,14 +257,47 @@ function allLanguageCount(arr) {
 function allEmailCount(arr1, arr2) {
 	$.ajax({
 		url: "allEmailCount",
-		datatype:"JSON",
-		async:false,
+		datatype: "JSON",
+		async: false,
 		success: function(data) {
 			$.each(data.count, function(index, obj) {
-				console.log("데이타: " + obj.email);
-				console.log("데이타: " + obj.emailCount);
 				arr1.push(obj.email);
 				arr2.push(obj.emailCount);
+			});
+		}
+	})
+}
+
+
+// 날짜별 회원 수
+function userCountByDate(arr1, arr2) {
+	console.log("안녕하세요");
+	$.ajax({
+		url: "userCountByDate",
+		datatype: "JSON",
+		async: false,
+		success: function(data) {
+			//var show = JSON.stringify(data);
+			//console.log("날짜별 회원 수: " + show);
+			$.each(data.count, function(index, obj) {
+				arr1.push(obj.date);
+				arr2.push(obj.count);
+			});
+		}
+	})
+}
+
+//날짜별 프로젝트 수
+function projectCountByDate(arr1, arr2) {
+	console.log("안녕하세요2");
+	$.ajax({
+		url: "projectCountByDate",
+		datatype: "JSON",
+		async: false,
+		success: function(data) {
+			$.each(data.count, function(index, obj) {
+				arr1.push(obj.date);
+				arr2.push(obj.count);
 			});
 		}
 	})

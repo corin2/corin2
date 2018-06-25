@@ -25,4 +25,24 @@
 		from user where isdeleted = 0
 		group by email
 	</select>
+	
+	<!-- 날짜별 회원 수 -->
+	<select id="userCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
+		SELECT DATE_FORMAT(joindate,'%Y-%m-%d') as date, COUNT(*) as count
+		FROM user
+		<!-- WHERE joindate between #{startdate} and #{enddate} -->
+		WHERE joindate between '2018-01-01' and '2018-12-31'
+		GROUP BY DATE_FORMAT(joindate,'%Y-%m-%d')
+		ORDER BY DATE_FORMAT(joindate,'%Y-%m-%d')
+	</select>
+	
+	<!-- 날짜별 프로젝트 수 -->
+	<select id="projectCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
+		SELECT DATE_FORMAT(projectdate,'%Y-%m-%d') as date, COUNT(*) as count
+		FROM project
+		WHERE projectdate between '2018-01-01' and '2018-12-31'
+		GROUP BY DATE_FORMAT(projectdate,'%Y-%m-%d')
+		ORDER BY DATE_FORMAT(projectdate,'%Y-%m-%d')
+	</select>
+	
 </mapper>

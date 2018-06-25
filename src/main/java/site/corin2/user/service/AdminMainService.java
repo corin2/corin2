@@ -8,13 +8,13 @@
 package site.corin2.user.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.corin2.user.dao.AdminMainDAO;
+import site.corin2.user.dto.CountByDateDTO;
 import site.corin2.user.dto.EmailCountDTO;
 import site.corin2.user.dto.LanguageCountDTO;
 
@@ -77,4 +77,29 @@ public class AdminMainService {
 		return allEmailCountResult;
 	}
 	
+	// 날짜별 회원 수
+	public List<CountByDateDTO> userCountByDate(){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<CountByDateDTO> userCountByDateResult = null;
+		try {
+			userCountByDateResult = adminMainDAO.userCountByDate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return userCountByDateResult;
+	}
+	
+	// 날짜별 프로젝트 수
+	public List<CountByDateDTO> projectCountByDate(){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<CountByDateDTO> projectCountByDateResult = null;
+		try {
+			projectCountByDateResult = adminMainDAO.projectCountByDate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return projectCountByDateResult;
+	}
 }
