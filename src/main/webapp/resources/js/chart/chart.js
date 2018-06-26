@@ -41,7 +41,7 @@ function projectChart(lists){
 			
 			var ctx = document.getElementById("projectChart").getContext('2d');
 			var myPieChart = new Chart(ctx,{
-			    type: 'pie',
+			    type: 'doughnut',
 			    data: {
 			    	labels : labels,
 					datasets : [{
@@ -52,6 +52,21 @@ function projectChart(lists){
 					}]
 			    }
 			});
+			
+			projectProceedChart(labels, data);
 		}
+	});
+}
+
+function projectProceedChart(labels, data) {
+	var ctx = document.getElementById("projectProceedChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data = {
+	    	datasets: [{
+	    		data: [10, 20, 30]
+	    	}],
+	    	labels: ['Red', 'Yellow', 'Blue']
+	    }
 	});
 }

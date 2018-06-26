@@ -48,22 +48,10 @@
 		<!-- 메세지 버튼 -->
 		<li role="presentation" class="dropdown" onclick="showMsg()">
 			<a href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-				<i class="fa fa-envelope-o"></i> <span class="badge bg-green">6</span>
+				<i class="fa fa-envelope-o"></i>
 			</a>
 			<ul id="inviteMsg" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
-				<li>
-					<a>
-						<span>
-							<img src="resources/images/profile/none.png" class="img-circle person" alt="Profile Image" />
-						</span>
-						<span> 
-							<span>John Smith</span> 
-							<span>3mins ago</span>
-						</span>
-						<span class="message">
-							Film festivals used to be do-or-die moments for movie makers. They were where...
-						</span>
-				</a></li>
+				<!-- 초대메시지 함 -->
 			</ul>
 		</li>
 		
