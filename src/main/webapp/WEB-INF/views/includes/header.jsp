@@ -47,8 +47,8 @@
 	<ul class="nav navbar-nav navbar-right">
 		<!-- 메세지 버튼 -->
 		<li role="presentation" class="dropdown" onclick="showMsg()">
-			<a href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-				<i class="fa fa-envelope-o"></i>
+			<a href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="padding">
+				<i class="glyphicon glyphicon-envelope" style="font-size: 30px; top: -3px; !important"></i>
 			</a>
 			<ul id="inviteMsg" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
 				<!-- 초대메시지 함 -->

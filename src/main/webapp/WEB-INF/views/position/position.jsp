@@ -4,11 +4,11 @@
 <script>
 $(function(){
 	console.log(sessionProjectNum);
-		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}").css({"width":"100%" ,"padding-bottom": "15px" ,"max-height": "830px" , "overflow" : "scroll"});
+		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}").css({"width":"100%" ,"padding-bottom": "15px" , "overflow" : "scroll"});
 		 
 		 $("#dashboardchecklist").load("dashboardchecklist?projectNum=${sessionScope.sessionProjectNum}");
 		 
-		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"width":"100%" ,"padding-bottom": "15px" ,"min-height": "815px" , "overflow" : "scroll"});
+		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"width":"100%" ,"padding-bottom": "15px" ,"min-height":"614px" , "overflow" : "scroll"});
 		 
 		 $("#dashboardfiles").load("dashboardfiles?projectNum="+sessionProjectNum).css({"min-height": "674px" ,"max-height": "648px", "overflow" : "scroll"});
 		 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum);
@@ -52,11 +52,16 @@ $(function(){
 	background-color: #ffffff;
 	border-radius: 25px;
 	padding: 50px;
+
+}
+.chartCssGO {
+	height: 100% !important;
+	width: 100% !important;
 }
 </style>
 <div>
     <div class="row">
-        <div class="col-sm-6 dashboardposition"><div id="dashboardchart" class="dashboarddivchart"></div></div>
+        <div class="col-sm-6 dashboardposition" style="min-height: 614px;"><div id="dashboardchart" class="dashboarddivchart"></div></div>
         <div class="col-sm-6 dashboardposition"><div id="dashboardcalendar" class="dashboarddiv"></div></div>
     </div>
     <div class="row kanbanrow">

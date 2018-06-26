@@ -13,9 +13,9 @@
 			<h4 class="subwhite profilemargintop">${pageContext.request.userPrincipal.name}</h4>
 		    <span class="btn btn-addfile fileinput-button">
 		        <span>Add files...</span>
+	        	<input type="hidden" id="userId-profile" name="userId" value="${pageContext.request.userPrincipal.name}" >
 		        <input id="profileimageupdate" type="file" name="files" data-url="profileimageupdate">
 		    </span>
-	        <input type="hidden" id="userId-profile" name="userId" value="${pageContext.request.userPrincipal.name}" >
 			<i id="reformbutton" class="glyphicon glyphicon-plus profile-plus"></i>
 		</form>
 </div>
