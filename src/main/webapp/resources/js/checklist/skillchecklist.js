@@ -115,9 +115,9 @@ function checkedInsert(checkNum) {
 				userId:$("#hiddenUserId").val()
 			},
 			success:function(data){
-				console.log("삽입성공");
-				checkedSelect()
-				checkedSelectAll()
+				checkedSelect();
+				checkedSelectAll();
+				sendPosition(2);
 			}
 		})
 		
@@ -131,9 +131,9 @@ function checkedInsert(checkNum) {
 				userId:$("#hiddenUserId").val()
 			},
 			success:function(data){
-				console.log("삭제성공");
-				checkedSelect()
-				checkedSelectAll()
+				checkedSelect();
+				checkedSelectAll();
+				sendPosition(2);
 			}
 		})
 	}

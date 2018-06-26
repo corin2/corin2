@@ -95,6 +95,7 @@ function sortable(){
 					success : function(data){
 						sortablecnt = 0; sortablecnt2 = 0; sortablecnt3 = 0;
 						send(1);
+						sendPosition(1);
 					}
 				})
 			}
@@ -251,6 +252,7 @@ function addCard(obj, projectNum){
 			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
 				send(1);
+				sendPosition(1);
 			}
 		});
 	}
@@ -300,6 +302,7 @@ function deleteCard(e,cardNum){
 		data:{cardNum:cardNum},
 		success:function(data){
 			send(1);
+			sendPosition(1);
 		}
 	});
 }
