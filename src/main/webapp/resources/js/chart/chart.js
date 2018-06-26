@@ -1,5 +1,6 @@
 $(function(){
 	allList();
+	checkListLength();
 });
 
 //리스트명 가져오기
@@ -52,8 +53,6 @@ function projectChart(lists){
 					}]
 			    }
 			});
-			
-			checkListLength();
 		}
 	});
 }

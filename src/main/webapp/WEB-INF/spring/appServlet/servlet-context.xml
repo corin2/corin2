@@ -43,9 +43,17 @@
 			<bean class="site.corin2.ws.HeaderHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
+	<!-- 포지션소켓 -->
+	<websocket:handlers>
+		<websocket:mapping handler="positionHandler" path="/positionWebSocket" />
+		<websocket:handshake-interceptors>
+			<bean class="site.corin2.ws.PositionHandInterceptor"></bean>
+		</websocket:handshake-interceptors>
+	</websocket:handlers>
 	<bean id="kanbanHandler" class="site.corin2.ws.KanbanHandler" />
 	<bean id="msgHandler" class="site.corin2.ws.MsgHandler" />
 	<bean id="headerHandler" class="site.corin2.ws.HeaderHandler" />
+	<bean id="positionHandler" class="site.corin2.ws.PositionHandler" />
 	<mvc:default-servlet-handler />
 	
 	<!-- 비동기 필요 -->
