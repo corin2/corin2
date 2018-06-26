@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
+<script src="resources/js/user/kakao.min.js"></script>
 <script src="resources/js/msg/inviteMsg.js"></script>
 <script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
@@ -29,7 +30,7 @@
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
-		    <se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+		    <se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
 			        <a href="boardList">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
@@ -71,7 +72,7 @@
 		    </se:authorize>
 		</c:when>
 	</c:choose>
-	<se:authorize access="hasRole('ROLE_USER')">
+	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 		<li>
 	        <a href="project">
 	            <i class="glyphicon glyphicon-th-large"></i>
@@ -127,9 +128,9 @@
 		    </li>
     	</c:when>
 	</c:choose>
-	<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 		    <li style="background-color: #333333;">
-		        <a href="logout">
+		        <a onclick="logoutpage()">
 		            <i class="glyphicon glyphicon glyphicon-log-out"></i>
 		            Logout
 		        </a>
@@ -138,6 +139,12 @@
 </ul>
 
 <script>
+	function logoutpage() {
+		Kakao.init("");
+		Kakao.Auth.logout();
+		location.href = 'logout';
+	}
+	
 	$(function() {
 		function getCurrentUserProfile() {
 			$.ajax({

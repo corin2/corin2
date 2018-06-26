@@ -48,13 +48,13 @@
 			<!-- sidebar 영역 -->
 			<tiles:insertAttribute name="sidebar" />
 		</nav>
-		<se:authorize access="hasRole('ROLE_USER')">
+		<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 			<div class="profile">
 				<!-- profile -->
 				<tiles:insertAttribute name="profile" />
 			</div>
 		</se:authorize>
-		<se:authorize access="hasRole('ROLE_USER')">
+		<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 			<div class="profileimage">
 				<!-- profile -->
 				<tiles:insertAttribute name="profileimage" />
@@ -62,7 +62,7 @@
 		</se:authorize>
 		
 		<nav class="navbar navbar-default" id="header">
-			<se:authorize access="hasRole('ROLE_USER')">
+			<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 				<!-- Header 영역 -->
 				<tiles:insertAttribute name="header" />
 			</se:authorize>
@@ -73,7 +73,7 @@
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>
-		<se:authorize access="hasRole('ROLE_USER')">
+		<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 			<div class="sidebar-chat">
 				<!-- Chatting 영역 -->
 				<tiles:insertAttribute name="chatting" />

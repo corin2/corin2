@@ -8,7 +8,7 @@
 	
 	<insert id="oauthInsert" parameterType="site.corin2.user.dto.UserDTO">
 		insert into user(userid,username,password,enabled,userprofile,joindate,gradenum,isdeleted)
-		values(#{userId},#{userName},#{password},'1',#{userProfile},NOW(),'G500','0')
+		values(#{userId},#{userName},#{password},'1','pi.png',NOW(),'G500','0')
 	</insert>
 	
 	<select id="userSelect" resultType="site.corin2.user.dto.UserDTO">

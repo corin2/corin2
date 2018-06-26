@@ -136,18 +136,19 @@ public class UserController {
 	//kakao Oauth
 	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
-	  JsonNode token = KakaoLogin.getAccessToken(code);
-	  System.out.println("kakaocontroller");
-	  JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
-	  UserDTO userdto = KakaoLogin.changeData(profile);
-	  String check = service.idCheck(userdto.getUserId());
-	  System.out.println(userdto.getUserId());
-	  System.out.println(userdto.getPassword());
-	  if(check=="false") {
-		  service.KakaoLogin(userdto);
-	  }
-	  System.out.println("kakao controller2");
-	  return "noTiles.user.kakaologin.jsp";
+		JsonNode token = KakaoLogin.getAccessToken(code);
+		System.out.println("kakaocontroller");
+		JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
+		UserDTO userdto = KakaoLogin.changeData(profile);
+		String check = service.idCheck(userdto.getUserId());
+		System.out.println(userdto.getUserId());
+		System.out.println(userdto.getPassword());
+		if(check=="false") {
+			  service.KakaoLogin(userdto);
+		}
+	  
+		System.out.println("kakao controller2");
+		return "noTiles.user.kakaologin.jsp?userId="+userdto.getUserId();
 	}
 	
 	//모든 유저 정보
