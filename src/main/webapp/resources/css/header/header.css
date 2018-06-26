@@ -1,8 +1,27 @@
 /* header css */
-#headerProjectName {
+#alramicon:hover {
+    color: #5e5e5e;
+    background-color: transparent;
+    background: #fff;
+}
+#alramicon{
+    font-size: 30px; 
+    top: -3px !important; 
+    color:#FFF;
+}
+#headerProjectName{
+	color : #FFF;
 	border-left: 20px solid;
 }
-
+#headerProjectName:hover {
+    color: #566270;
+    background: #fff;
+}
+.container-fluid-header {
+    padding-right: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
 #showChatting {
 	margin: 4px 4px;
 }

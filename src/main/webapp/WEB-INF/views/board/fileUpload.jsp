@@ -9,6 +9,8 @@ pageEncoding="UTF-8"%>
 
 
 	
+	<h2 id='filetitle'>파일함</h2>
+	<hr>
 	<!-- 검색기능 -->
  	 <form action="searchSelect" method="post">
  	 	<input type="text" placeholder="검색" />

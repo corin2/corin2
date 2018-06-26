@@ -34,7 +34,7 @@ $(function(){
 	margin-right:0px;
 }
 .dashboardfile{
- 	padding-top: 15px;
+ 	padding-top: 25px;
     padding-left: 11px;
     padding-right: 11px;
 
@@ -44,7 +44,7 @@ $(function(){
 	margin-top: 15px;
 	background-color: #ffffff;
 	border-radius: 25px;
-	padding: 50px;
+	padding: 30px;
 }
 .dashboarddivchart{
 	margin-bottom : 15px;

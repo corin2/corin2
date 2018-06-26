@@ -39,8 +39,8 @@ function fileselect(){
     	
     	 $.each(data.result, function(index , file) {
 			 html +=
-				"<div class='dropzonechild' style='border:1px solid #566270;word-wrap: break-word;float:left;background-color:lightgray;width:300px;height:200px;margin-left:60px;margin-right:20px;margin-bottom:100px;border-radius:20px;'>"
-				  +"<div style='word-wrap: break-word;margin-left:200px;margin-top:5px'>" 
+				"<div class='dropzonechild' style='border:1px solid #566270;word-wrap: break-word;float:left;background-color:lightgray;width:300px;height:200px;margin-left:-10px;margin-right:20px;margin-bottom:100px;border-radius:20px;'>"
+				  +"<div style='word-wrap: break-word;margin-left:-10px;margin-top:5px'>" 
 				  +"<img style='word-wrap: break-word;width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
 				  +"></img>"
 				  +"<img class='thumbnail' style='display:inline;width:30px;height:30px;border: 1px solid lightgray; margin: 0; padding: 0;background-color:lightgray;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
@@ -78,8 +78,8 @@ function firstFileSelect() {
     		 $(".dropzonediv").empty();
     		 $.each(data.file1, function(index , file) {
     			 html +=
-    					"<div class='dropzonechild' style='border:1px solid #566270;word-wrap: break-word;float:left;background-color:lightgray;width:300px;height:200px;margin-left:60px;margin-right:20px;margin-bottom:100px;border-radius:20px;'>"
-    					  +"<div style='word-wrap: break-word;margin-left:200px;margin-top:5px'>" 
+    					"<div class='dropzonechild' style='border:1px solid #566270;word-wrap: break-word;float:left;background-color:lightgray;width:300px;height:200px;margin-left:-10px;margin-right:20px;margin-bottom:100px;border-radius:20px;'>"
+    					  +"<div style='word-wrap: break-word;margin-left:-10px;margin-top:5px'>" 
     					  +"<img style='word-wrap: break-word;width:30px;height:30px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
     					  +"></img>"
     					  +"<img class='thumbnail' style='display:inline;width:30px;height:30px;border: 1px solid lightgray; margin: 0; padding: 0;background-color:lightgray;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"

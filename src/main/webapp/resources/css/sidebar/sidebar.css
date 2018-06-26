@@ -33,6 +33,7 @@ a, a:hover, a:focus {
 }
 
 .navbar-btn {
+	margin-top: 10px;
     box-shadow: none;
     outline: none !important;
     border: none;

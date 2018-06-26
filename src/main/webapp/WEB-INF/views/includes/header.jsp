@@ -6,13 +6,15 @@
 <script src="resources/js/header/header.js"></script>
 
 <!-- 프로젝트 정보 -->
-<div class="container-fluid">
+<div class="container-fluid-header">
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}">
 		<div class="navbar-header">
 			<!-- 프로젝트 명, 멤버 리스트 -->
 			<div class="navbar-header">
-		    	<a class="navbar-brand" id="headerProjectName" href="position?projectNum=${sessionScope.sessionProjectNum}">코린이</a>
+		    	<b>
+		    		<a class="navbar-brand" id="headerProjectName" href="position?projectNum=${sessionScope.sessionProjectNum}">코린이</a>
+		    	</b>
 		    </div>
 		    <div class="nav navbar-nav">
 		    	<label id="headerProjectMemberProfile">
@@ -48,7 +50,7 @@
 		<!-- 메세지 버튼 -->
 		<li role="presentation" class="dropdown" onclick="showMsg()">
 			<a href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="padding">
-				<i class="glyphicon glyphicon-envelope" style="font-size: 30px; top: -3px; !important"></i>
+				<i class="glyphicon glyphicon-envelope" id="alramicon"></i>			
 			</a>
 			<ul id="inviteMsg" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
 				<!-- 초대메시지 함 -->
@@ -59,7 +61,7 @@
 		<c:choose>
 			<c:when test="${sessionScope.sessionProjectNum != null}">
 		    	<li>
-			    	<div id="showChatting">
+			    	<div id="showChatting" class="language-num">
 			    		<img id="showChatting" src="resources/images/chatting/chatting-icon.png" width=35 height=35>
 			    	</div>
 			    </li>

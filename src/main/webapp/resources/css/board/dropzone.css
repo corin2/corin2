@@ -85,3 +85,12 @@
   clip:rect(0,0,0,0); 
   border: 0; }
 
+#filetitle{
+	text-align: center;
+}
+
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid #eee;
+}
