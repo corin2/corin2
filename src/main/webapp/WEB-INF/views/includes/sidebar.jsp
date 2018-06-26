@@ -140,11 +140,8 @@
 
 <script>
 	function logoutpage() {
-		Kakao.init('');
-		Kakao.Auth.logout(function(data){
-	            alert("a"+data)
-	        });
-		/* Kakao.Auth.logout(); */
+		Kakao.init("");
+		Kakao.Auth.logout();
 		location.href = 'logout';
 	}
 	
