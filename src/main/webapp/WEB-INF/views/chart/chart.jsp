@@ -13,10 +13,9 @@
 			<canvas id="projectChart"></canvas>
 		</div>
 		<div style="float: right; border: solid; 1px; margin: 5px; width: 45%;">
-			<h1>작업일 진행</h1>
+			<h1>체크리스트 현황</h1>
 			<hr>
-			<canvas id="projectProceedChart"></canvas>
-			<progress id="animationProgress" max="1" value="0" style="width: 100%"></progress>
+			<canvas id="checkListProceedChart"></canvas>
 		</div>
 	</div>
 </nav>
