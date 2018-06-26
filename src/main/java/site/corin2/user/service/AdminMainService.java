@@ -7,11 +7,17 @@
 
 package site.corin2.user.service;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import site.corin2.user.dao.AdminMainDAO;
+import site.corin2.user.dto.CountByDateDTO;
+import site.corin2.user.dto.DateParamDTO;
+import site.corin2.user.dto.EmailCountDTO;
+import site.corin2.user.dto.LanguageCountDTO;
 
 @Service
 public class AdminMainService {
@@ -33,15 +39,68 @@ public class AdminMainService {
 	}
 	
 	// isDeleted = 0인 모든 프로젝트 수
-		public int allProjectCount(){
-			AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
-			int allProjectCountResult = 0;
-			try {
-				allProjectCountResult = adminMainDAO.allProjectCount();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-			return allProjectCountResult;
+	public int allProjectCount(){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		int allProjectCountResult = 0;
+		try {
+			allProjectCountResult = adminMainDAO.allProjectCount();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		
+		return allProjectCountResult;
+	}
+	
+	// 프로젝트 언어별 수
+	public List<LanguageCountDTO> allLanguageCount(){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<LanguageCountDTO> allLanguageCountResult = null;
+		try {
+			allLanguageCountResult = adminMainDAO.allLanguageCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return allLanguageCountResult;
+	}
+	
+	
+	// isDeleted = 0인 회원의 모든 이메일 수
+	public List<EmailCountDTO> allEmailCount(){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<EmailCountDTO> allEmailCountResult = null;
+		try {
+			allEmailCountResult = adminMainDAO.allEmailCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return allEmailCountResult;
+	}
+	
+	// 날짜별 회원 수
+	public List<CountByDateDTO> userCountByDate(DateParamDTO date){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<CountByDateDTO> userCountByDateResult = null;
+		try {
+			userCountByDateResult = adminMainDAO.userCountByDate(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return userCountByDateResult;
+	}
+	
+	// 날짜별 프로젝트 수
+	public List<CountByDateDTO> projectCountByDate(DateParamDTO date){
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<CountByDateDTO> projectCountByDateResult = null;
+		try {
+			projectCountByDateResult = adminMainDAO.projectCountByDate(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return projectCountByDateResult;
+	}
 }

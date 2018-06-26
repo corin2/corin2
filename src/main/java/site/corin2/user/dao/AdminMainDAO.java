@@ -7,6 +7,13 @@
 
 package site.corin2.user.dao;
 
+import java.util.List;
+
+import site.corin2.user.dto.CountByDateDTO;
+import site.corin2.user.dto.DateParamDTO;
+import site.corin2.user.dto.EmailCountDTO;
+import site.corin2.user.dto.LanguageCountDTO;
+
 public interface AdminMainDAO {
 	// isDeleted = 0인 모든 회원 수
 	public int allUserCount();
@@ -14,13 +21,16 @@ public interface AdminMainDAO {
 	// isDeleted = 0인 모든 프로젝트 수
 	public int allProjectCount();
 	
+	// 프로젝트 언어별 수
+	public List<LanguageCountDTO> allLanguageCount();
+	
+	// isDeleted = 0인 회원의 모든 이메일 수
+	public List<EmailCountDTO> allEmailCount();
+	
 	// 날짜별 회원 수
+	public List<CountByDateDTO> userCountByDate(DateParamDTO date);
 	
 	// 날짜별 프로젝트 수
+	public List<CountByDateDTO> projectCountByDate(DateParamDTO date);
 	
-	// 프로젝트 언어별 수
-	
-	// 회원 이메일별 수
-	
-
 }
