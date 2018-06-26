@@ -62,12 +62,10 @@
 		</se:authorize>
 		
 		<nav class="navbar navbar-default" id="header">
-			<c:choose>
-				<c:when test="${sessionScope.sessionProjectNum != null}">
-					<!-- Header 영역 -->
-					<tiles:insertAttribute name="header" />
-				</c:when>
-			</c:choose>
+			<se:authorize access="hasRole('ROLE_USER')">
+				<!-- Header 영역 -->
+				<tiles:insertAttribute name="header" />
+			</se:authorize>
 		</nav>
 		
 		<!-- Page Content Holder -->

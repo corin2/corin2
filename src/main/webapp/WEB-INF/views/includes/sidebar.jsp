@@ -78,14 +78,14 @@
 	            Projects
 	        </a>
 	    </li>
-		<li>
+		<!-- <li>
 	    	<a href="#inviteMsg" data-toggle="collapse" aria-expanded="false" onclick="showMsg()">
 	            <i class="glyphicon glyphicon-envelope"></i>
 	            Alarm
 	        </a>
 	        <ul class="collapse list-unstyled" id="inviteMsg">
 	        </ul>
-	    </li>
+	    </li> -->
 	</se:authorize>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >

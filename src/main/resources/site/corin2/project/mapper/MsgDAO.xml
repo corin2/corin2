@@ -7,8 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 송신아이디가 받은 모든 초대 메시지의 projectDTO를 조회한다.  -->
 	<select id="allInviteMsgSelect" resultType="site.corin2.project.dto.ProjectDTO">
-		select p.PROJECTNUM, p.PROJECTNAME, p.LANGUAGENUM, p.PROJECTDATE, p.ISDELETED from msg m join project p on m.PROJECTNUM = p.PROJECTNUM
-		where m.RECEPTIONID = #{receptionId} order by msgdate
+		select p.PROJECTNUM, p.PROJECTNAME, m.sendId as LANGUAGENUM, u.USERPROFILE as PROJECTDATE
+		from msg m join project p on m.PROJECTNUM = p.PROJECTNUM
+		join user u on m.SENDID = u.USERID
+		where m.RECEPTIONID = #{receptionId} order by msgdate 
 	</select>
 	
 	<!-- 메시지를 삭제한다 -->
