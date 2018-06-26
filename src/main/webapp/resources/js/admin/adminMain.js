@@ -48,6 +48,8 @@ function showLanguageZingChart() {
 	        }
 	      },
 	      "words": languageData,
+	      //"maxFontSize": 50,
+	      "minFontSize": 15,
 	    "rotate":true,
 	    }
 	  }]
