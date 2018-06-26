@@ -140,8 +140,9 @@
 
 <script>
 	function logoutpage() {
+		Kakao.init('');
 		Kakao.Auth.logout();
-		location.href = '/logout';
+		location.href = 'logout';
 	}
 	
 	$(function() {
