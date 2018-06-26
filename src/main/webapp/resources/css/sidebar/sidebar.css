@@ -120,8 +120,11 @@ i, span {
 }
 
 #sidebar ul.components {
-    padding: 20px 0;
+    padding: 10px 0;
     /* border-bottom: 1px solid #404851; */
+}
+#currentUserProfile{
+	margin-bottom: 20px;
 }
 
 #sidebar ul li a {
@@ -199,7 +202,7 @@ a.article, a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    min-height: 100vh; /* 콘텐츠 height */
+    min-height: 93vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 

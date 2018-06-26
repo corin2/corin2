@@ -62,7 +62,7 @@ function projectProceedChart(labels, data) {
 	var ctx = document.getElementById("projectProceedChart").getContext('2d');
 	var myChart = new Chart(ctx, {
 	    type: 'line',
-	    data = {
+	    data : {
 	    	datasets: [{
 	    		data: [10, 20, 30]
 	    	}],

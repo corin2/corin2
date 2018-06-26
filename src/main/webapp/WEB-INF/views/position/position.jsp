@@ -4,13 +4,13 @@
 <script>
 $(function(){
 	console.log(sessionProjectNum);
-		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}").css({"width":"100%" , "max-height": "782px" , "overflow" : "scroll"});
+		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}").css({"width":"100%" ,"padding-bottom": "15px" ,"max-height": "830px" , "overflow" : "scroll"});
 		 
 		 $("#dashboardchecklist").load("dashboardchecklist?projectNum=${sessionScope.sessionProjectNum}");
 		 
-		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"max-height": "782px" , "overflow" : "scroll"});
+		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"width":"100%" ,"padding-bottom": "15px" ,"min-height": "815px" , "overflow" : "scroll"});
 		 
-		 $("#dashboardfiles").load("dashboardfiles?projectNum="+sessionProjectNum).css({"max-height": "782px" , "overflow" : "scroll"});
+		 $("#dashboardfiles").load("dashboardfiles?projectNum="+sessionProjectNum).css({"min-height": "674px" ,"max-height": "648px", "overflow" : "scroll"});
 		 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum);
 	
 });
@@ -19,17 +19,51 @@ $(function(){
 .dashboardposition ::-webkit-scrollbar {
 	display:none;
 }
+.dashboardposition{
+
+}
+.dashboarddiv{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding-bottom: 25px;
+}
+.kanbanrow{
+	margin-left:0px;
+	margin-right:0px;
+}
+.dashboardfile{
+ 	padding-top: 15px;
+    padding-left: 11px;
+    padding-right: 11px;
+
+}
+.dashboarddivcheck{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+	padding: 50px;
+}
+.dashboarddivchart{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+	padding: 50px;
+}
 </style>
 <div>
     <div class="row">
-        <div class="col-sm-4 dashboardposition"><div id="dashboardchart"></div></div>
-        <div class="col-sm-2 dashboardposition"><div id="dashboardfiles"></div></div>
-        <div class="col-sm-6 dashboardposition"><div id="dashboardcalendar"></div></div>
+        <div class="col-sm-6 dashboardposition"><div id="dashboardchart" class="dashboarddivchart"></div></div>
+        <div class="col-sm-6 dashboardposition"><div id="dashboardcalendar" class="dashboarddiv"></div></div>
+    </div>
+    <div class="row kanbanrow">
+        <div class="col-sm-10 dashboardposition dashboarddiv" style="min-height: 200px; overflow: hidden;"><div style="min-height: 650px; min-width : 100%; overflow: hidden;"id="dashboardkanban"></div></div>
+		<div class="col-sm-2 dashboardposition"><div id="dashboardfiles" class="dashboarddiv dashboardfile" style="min-height: 200px; overflow: hidden;"></div></div>
     </div>
     <div class="row">
-        <div class="col-sm-12 dashboardposition" style="min-height: 200px; overflow: hidden;"><div style="min-height: 650px; min-width : 100%; overflow: hidden;"id="dashboardkanban"></div></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 dashboardposition"><div id="dashboardchecklist"></div></div>
+        <div class="col-sm-12 dashboardposition"><div id="dashboardchecklist" class="dashboarddivcheck"></div></div>
     </div>
 </div>
