@@ -1,10 +1,13 @@
 $(function(){
 	showMsg();
+	
+	$('.dropdown-menu').click(function(e) {
+	    e.stopPropagation();
+	});
 });
 
 //메시지가 존재하는지 알람~
 function existMsg(){
-	console.log($('#inviteMsg').children('li').length)
 	if($('#inviteMsg').children('li').length > 0) {
 		var content = '<span class="badge">'+$('#inviteMsg').children('li').length+'</span>';
 		$('#inviteMsg').closest('li').children('a').append(content);
@@ -36,6 +39,7 @@ function showMsg(){
 						 + '</a></li>';
 			});
 			
+			if(data.data.length == 0) htmltext += '<span>초대메시지가 없습니다</span>';
 			$('#inviteMsg').html(htmltext);
 			existMsg();
 		}

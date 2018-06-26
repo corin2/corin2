@@ -85,3 +85,14 @@
 	justify-content: center; /* add to align horizontal */
 	align-items: center; /* add to align vertical */
 }
+
+.dropdown-menu:after {
+    border-bottom: 6px solid #999999;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    content: "";
+    display: inline-block;
+    right: 9.5%;
+    position: absolute;
+    top: -6px;
+}
