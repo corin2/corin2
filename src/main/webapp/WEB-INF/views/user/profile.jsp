@@ -21,13 +21,13 @@
 		<div class="join-form margin-large">
 				<div class="col-sm-8">
 					<h6 class="profilewhite">비밀번호</h6>
-					<input type="password"  class="form-control" name="password" id="password" required="required"/>
+					<input type="password"  class="form-control profile-name" name="password" id="password" required="required"/>
 				</div>
 				<div class="col-sm-4">
 				</div>
 				<div class="col-sm-8">
 					<h6 class="profilewhite">비밀번호 확인</h6>
-						<input type="password"  class="form-control" name="password2" id="password2" required="required"/>
+						<input type="password"  class="form-control profile-name" name="password2" id="password2" required="required"/>
 				</div>
 				<div class="col-sm-4">
 					<input class="btn btn-okay btn-profile-button" type="button" id="password-button" value="수정하기" />

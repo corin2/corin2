@@ -6,7 +6,7 @@
 				url:"userpassupdate",
 				type: "post",
 				datatype:"JSON",
-				data:{userId:$("#userId").val(), 
+				data:{userId:$("#userId-profile").val(), 
 					  password:$("#password").val(), 
 					  },
 				success:function(data){
@@ -39,7 +39,7 @@
 					url:"usernickupdate",
 					type: "post",
 					datatype:"JSON",
-					data:{userId:$("#userId").val(), 
+					data:{userId:$("#userId-profile").val(), 
 						  userName:$("#userName").val()},
 					success:function(data){
 						swal({text:"닉네임 수정하기에 성공하였습니다."});

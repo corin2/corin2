@@ -15,7 +15,7 @@
 		        <span>Add files...</span>
 		        <input id="profileimageupdate" type="file" name="files" data-url="profileimageupdate">
 		    </span>
-	        <input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" >
+	        <input type="hidden" id="userId-profile" name="userId" value="${pageContext.request.userPrincipal.name}" >
 			<i id="reformbutton" class="glyphicon glyphicon-plus profile-plus"></i>
 		</form>
 </div>
