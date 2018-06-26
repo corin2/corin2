@@ -2,21 +2,18 @@
     pageEncoding="UTF-8"%>
 <script src="resources/js/chart/chart.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
-
-<div>
-<nav class="navbar navbar-default">
-	<div>
-		<div style="float: left; border: solid; 1px; margin: 5px; width: 45%;">
+<link rel="stylesheet" href="resources/css/chart/chart.css">
+<div class="chartCssCenter">
+	<div class="chartCssGO">
+		<div>
 			<h1>프로젝트 진행상태</h1>
 			<hr>
 			<canvas id="projectChart"></canvas>
 		</div>
-		<div style="float: right; border: solid; 1px; margin: 5px; width: 45%;">
-			<h1>작업일 진행</h1>
+		<div>
+			<h1>체크리스트 현황</h1>
 			<hr>
-			<canvas id="projectProceedChart"></canvas>
-			<progress id="animationProgress" max="1" value="0" style="width: 100%"></progress>
+			<canvas id="checkListProceedChart"></canvas>
 		</div>
 	</div>
-</nav>
 </div>
