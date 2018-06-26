@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.checklist.dao.CheckListDAO">
+	
+	<!-- 체크리스트 삽입 -->
+	<insert id="insertCheckList">
+		insert into checklist (projectnum, checkcontent, isdeleted)
+		values (#{projectNum},#{checkContent}, 0)
+	</insert>
+	
+	<!-- 체크리스트 가져오기 -->
+	<select id="selectCheckListAll" resultType="site.corin2.checklist.dto.CheckListDTO">
+		select * from checklist where projectnum=#{projectNum} and isdeleted = 0
+	</select>
+	
+	<!-- 체크리스트 내용 수정 -->
+	<update id="updateCheckListContent">
+		update checklist set checkcontent=#{checkContent}
+		where checknum=#{checkNum} and projectnum=#{projectNum}
+	</update>
+	
+	<!-- 체크리스트 삭제 -->
+	<update id="deleteCheckLiset">
+		update checklist set isdeleted=1
+		where checknum=#{checkNum} and projectnum=#{projectNum}
+	</update>
+	
+	<!-- 사용자의 등급 가져오기 -->
+	<select id="userGradeProject" resultType="site.corin2.project.dto.TeamDTO">
+		select * from team where projectnum=#{projectNum} and userid=#{userId} and isdeleted = 0
+	</select>
+		
+	</mapper>

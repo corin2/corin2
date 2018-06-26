@@ -12,7 +12,7 @@
 		<div class="navbar-header">
 			<!-- 프로젝트 명, 멤버 리스트 -->
 			<div class="navbar-header">
-		    	<a class="navbar-brand" id="headerProjectName" href="#">코린이</a>
+		    	<a class="navbar-brand" id="headerProjectName" href="position?projectNum=${sessionScope.sessionProjectNum}">코린이</a>
 		    </div>
 		    <div class="nav navbar-nav">
 		    	<label id="headerProjectMemberProfile">

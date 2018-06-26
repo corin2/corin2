@@ -6,7 +6,7 @@
 				url:"userpassupdate",
 				type: "post",
 				datatype:"JSON",
-				data:{userId:$("#userId").val(), 
+				data:{userId:$("#userId-profile").val(), 
 					  password:$("#password").val(), 
 					  },
 				success:function(data){
@@ -39,7 +39,7 @@
 					url:"usernickupdate",
 					type: "post",
 					datatype:"JSON",
-					data:{userId:$("#userId").val(), 
+					data:{userId:$("#userId-profile").val(), 
 						  userName:$("#userName").val()},
 					success:function(data){
 						swal({text:"닉네임 수정하기에 성공하였습니다."});
@@ -62,21 +62,32 @@
 			}
 		});
 		
-		//user delete
+		// user delete
 		$('#delete-button').click(function(){
-			$.ajax({
-		    	type: "post",
-	 			url:  "userdelete",
-	 			data: $("#userId").val(),
-	 			contentType: "application/json; charset=utf-8",
-	 		    success:function(data){ 
-	 		    	swal({
-	 		    		text: "삭제가 완료 되었습니다."
-	 		    		}).then((willDelete) => {
-	 		    			location.href = "login.html";
-	 				});
-		        }
-		    });
+			swal({
+				type: "warning",
+				text: "정말로 탈퇴하시겠습니다?.",
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: 'delete',
+			    showCancelButton: true
+			}).then((result) => {
+				  if (result.value) {
+					  $.ajax({
+						  type: "post",
+						  url:  "userdelete",
+						  data: $("#userId").val(),
+						  contentType: "application/json; charset=utf-8",
+						  success:function(data){ 
+							  swal({
+								  text: "삭제가 완료 되었습니다."
+							  }).then((willDelete) => {
+								  location.href = "login.html";
+							  });
+						  }
+					  	});
+					  }
+					});
 		});
 	});
 	
