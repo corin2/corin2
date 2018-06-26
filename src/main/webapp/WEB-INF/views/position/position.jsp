@@ -4,27 +4,32 @@
 <script>
 $(function(){
 	console.log(sessionProjectNum);
-		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}").css({"width":"100%" , "max-height": "600px" , "overflow" : "scroll"});
+		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}").css({"width":"100%" , "max-height": "782px" , "overflow" : "scroll"});
 		 
 		 $("#dashboardchecklist").load("dashboardchecklist?projectNum=${sessionScope.sessionProjectNum}");
 		 
-		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"max-height": "600px" , "overflow" : "scroll"});
+		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"max-height": "782px" , "overflow" : "scroll"});
 		 
-		 $("#dashboardfiles").load("dashboardfiles?projectNum="+sessionProjectNum).css({"max-height": "600px" , "overflow" : "scroll"});
+		 $("#dashboardfiles").load("dashboardfiles?projectNum="+sessionProjectNum).css({"max-height": "782px" , "overflow" : "scroll"});
 		 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum);
 	
 });
 </script>
+<style>
+.dashboardposition ::-webkit-scrollbar {
+	display:none;
+}
+</style>
 <div>
     <div class="row">
-        <div class="col-sm-4"><div id="dashboardchart"></div></div>
-        <div class="col-sm-3"><div id="dashboardfiles"></div></div>
-        <div class="col-sm-5"><div id="dashboardcalendar"></div></div>
+        <div class="col-sm-4 dashboardposition"><div id="dashboardchart"></div></div>
+        <div class="col-sm-2 dashboardposition"><div id="dashboardfiles"></div></div>
+        <div class="col-sm-6 dashboardposition"><div id="dashboardcalendar"></div></div>
     </div>
     <div class="row">
-        <div class="col-sm-12" style="min-height: 200px; overflow: hidden;"><div style="min-height: 200px; overflow: hidden;"id="dashboardkanban"></div></div>
+        <div class="col-sm-12 dashboardposition" style="min-height: 200px; overflow: hidden;"><div style="min-height: 650px; min-width : 100%; overflow: hidden;"id="dashboardkanban"></div></div>
     </div>
     <div class="row">
-        <div class="col-sm-12"><div id="dashboardchecklist"></div></div>
+        <div class="col-sm-12 dashboardposition"><div id="dashboardchecklist"></div></div>
     </div>
 </div>
