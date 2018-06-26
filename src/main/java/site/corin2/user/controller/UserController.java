@@ -146,8 +146,9 @@ public class UserController {
 	  if(check=="false") {
 		  service.KakaoLogin(userdto);
 	  }
+	  
 	  System.out.println("kakao controller2");
-	  return "noTiles.user.kakaologin.jsp";
+	  return "noTiles.user.kakaologin.jsp?userId="+userdto.getUserId();
 	}
 	
 	//모든 유저 정보

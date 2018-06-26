@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
+<script src="resources/js/user/kakao.min.js"></script>
 <script src="resources/js/msg/inviteMsg.js"></script>
 <script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
@@ -129,7 +130,7 @@
 	</c:choose>
 	<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 		    <li style="background-color: #333333;">
-		        <a href="logout">
+		        <a onclick="logoutpage()">
 		            <i class="glyphicon glyphicon glyphicon-log-out"></i>
 		            Logout
 		        </a>
@@ -138,6 +139,11 @@
 </ul>
 
 <script>
+	function logoutpage() {
+		Kakao.Auth.logout();
+		location.href = '/logout';
+	}
+	
 	$(function() {
 		function getCurrentUserProfile() {
 			$.ajax({
