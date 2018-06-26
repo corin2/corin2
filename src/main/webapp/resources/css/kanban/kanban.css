@@ -2,9 +2,8 @@
 	white-space: nowrap;
 	padding: 10px 10px 5px;
 	background: #00FF0000;
-	width: 90%;
+	width: 100%;
 	position: absolute;
-	margin-top: 20px;
     margin-left: 27px;
 	height: 100%;
 	overflow-x: hidden;
@@ -156,4 +155,12 @@ p {
 
 .kanbanCheckMod {
 	margin-right: 5px;
+}
+#boardTitle{
+	text-align: center;
+}
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid #eee;
 }

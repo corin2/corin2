@@ -24,3 +24,8 @@
 	justify-content: center;
 	align-items: center;
 }
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid #eee;
+}

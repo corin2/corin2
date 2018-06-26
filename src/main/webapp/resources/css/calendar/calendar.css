@@ -30,3 +30,11 @@
 	justify-content: center; /* add to align horizontal */
 	align-items: center; /* add to align vertical */
 }
+.calendarname{
+	text-align: center;
+}
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid #eee;
+}

@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <script src="resources/js/checklist/checklist.js"></script>
 <script src="resources/js/checklist/skillchecklist.js"></script>
+<h2 id='checklisttitle'>체크리스트</h2>
+<hr>
 <div id="tabs">
   <ul>
     <li><a href="#tabs-1" onclick="userGradeCheckList()">공통체크리스트</a></li>
