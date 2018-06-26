@@ -30,7 +30,7 @@
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
-		    <se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+		    <se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
 			        <a href="boardList">
 			            <i class="glyphicon glyphicon-bullhorn"></i>
@@ -72,7 +72,7 @@
 		    </se:authorize>
 		</c:when>
 	</c:choose>
-	<se:authorize access="hasRole('ROLE_USER')">
+	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 		<li>
 	        <a href="project">
 	            <i class="glyphicon glyphicon-th-large"></i>
@@ -128,7 +128,7 @@
 		    </li>
     	</c:when>
 	</c:choose>
-	<se:authorize access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
+	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 		    <li style="background-color: #333333;">
 		        <a onclick="logoutpage()">
 		            <i class="glyphicon glyphicon glyphicon-log-out"></i>
@@ -141,7 +141,10 @@
 <script>
 	function logoutpage() {
 		Kakao.init('');
-		Kakao.Auth.logout();
+		Kakao.Auth.logout(function(data){
+	            alert("a"+data)
+	        });
+		/* Kakao.Auth.logout(); */
 		location.href = 'logout';
 	}
 	

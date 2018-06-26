@@ -10,7 +10,10 @@
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: inherit;
-	
+}
+
+#mainScreen::-webkit-scrollbar {
+	display:none;
 }
 
 #content-md{

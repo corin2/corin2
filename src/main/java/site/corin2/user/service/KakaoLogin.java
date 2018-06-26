@@ -52,9 +52,8 @@ public class KakaoLogin {
 		} finally {
 			// clear resources
 		}
-
+		
 		return returnNode;
-
 	}
 
 	public static JsonNode getKakaoUserInfo(String autorize_code) {
@@ -94,7 +93,7 @@ public class KakaoLogin {
 		UserDTO userdto = new UserDTO();
 		if (userInfo.path("kaccount_email_verified").asText().equals("true")) { // 이메일 받기 허용 한 경우
 			userdto.setUserId(userInfo.path("kaccount_email").asText()); // email -> vo 넣기
-			userdto.setEnabled('1');
+			userdto.setEnabled(1);
 		} else { // 이메일 거부 할 경우 코드 추후 개발
 
 		}
