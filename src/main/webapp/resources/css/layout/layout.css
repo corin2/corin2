@@ -59,7 +59,7 @@
 	bottom: 0;
 	display: none;
 	height: auto;
-	z-index: 200;
+	z-index: 99;
 	width: 420px;
 	height: 100%
 }

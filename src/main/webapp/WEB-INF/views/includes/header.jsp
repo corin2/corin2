@@ -16,12 +16,6 @@
 		    		<a class="navbar-brand" id="headerProjectName" href="position?projectNum=${sessionScope.sessionProjectNum}">코린이</a>
 		    	</b>
 		    </div>
-		    <div class="nav navbar-nav">
-		    	<label id="headerProjectMemberProfile">
-					<img src="resources/images/profile/none.png" class="img-circle person" width="35" height="35">
-				</label>
-		    </div>
-				
 			<!-- 드롭다운 버튼 -->
 			<button class="btn btn-default navbar-btn" id="plus" data-toggle="dropdown" style="margin-left: 10px;">
 				<span class="glyphicon glyphicon-plus"></span>
@@ -42,14 +36,19 @@
 					</div>
 				</li>
 			</ul>
-			</div>
+		</div>
+		    <div class="nav navbar-nav" id="profileimagebox">
+		    	<label id="headerProjectMemberProfile">
+					<img src="resources/images/profile/none.png" class="img-circle person" width="35" height="35">
+				</label>
+		    </div>
 		</c:when>
 	</c:choose>
 	
 	<ul class="nav navbar-nav navbar-right">
 		<!-- 메세지 버튼 -->
-		<li role="presentation" class="dropdown" onclick="showMsg()">
-			<a href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="padding">
+		<li role="presentation" class="dropdown alramdropdown" onclick="showMsg()">
+			<a id="alramicona" href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="padding">
 				<i class="glyphicon glyphicon-envelope" id="alramicon"></i>			
 			</a>
 			<ul id="inviteMsg" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
@@ -62,7 +61,8 @@
 			<c:when test="${sessionScope.sessionProjectNum != null}">
 		    	<li>
 			    	<div id="showChatting" class="language-num">
-			    		<img id="showChatting" src="resources/images/chatting/chatting-icon.png" width=35 height=35>
+			    	<i id="showChatting" class="glyphicon glyphicon-comment chat"></i>
+			    	<!-- 	<img id="showChatting" src="resources/images/chatting/chatting-icon.png" width=35 height=35> -->
 			    	</div>
 			    </li>
 		    </c:when>

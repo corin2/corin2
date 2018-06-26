@@ -1,6 +1,14 @@
 $(function(){
 	projectMemberProfile();
 	if(sessionProjectNum != 'null') projectColorView();
+	
+	$('#alramicona').hover(function(){
+		$('#alramicona').css({"color":"#566270","background-color":"transparent","background":"#fff"});
+		$('#alramicon').css({"color":"#566270","background-color":"transparent"});
+	}, function(){
+		$('#alramicona').css({"color":"#fff","background-color":"transparent","background":"#566270"});
+		$('#alramicon').css({"color":"#fff","background-color":"transparent"});
+	});
 });
 
 //프로젝트에 속한 멤버 리스트 뿌려주기
@@ -47,7 +55,7 @@ function projectMemberShow(userProfiles){
 						/*if(elt.userId == userId) {
 							$('#currentUserProfile').attr("src", "resources/images/profile/" + elt2.userProfile);
 						}*/
-						htmltext += '<div class="dropdown headerFloatLeft">';
+						htmltext += '<div class="dropdown headerFloatLeft headerprofilediv">';
 						if(elt.gradeNum == 'G300')
 							htmltext += '<span class="glyphicon glyphicon-king leader" aria-hidden="true"></span>';
 						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
