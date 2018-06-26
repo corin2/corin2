@@ -112,3 +112,13 @@
 .thCheckListStyleWidth {
 	width: 87%;
 }
+
+#checklisttitle{
+	text-align: center;
+}
+
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 3px solid #eee;
+}

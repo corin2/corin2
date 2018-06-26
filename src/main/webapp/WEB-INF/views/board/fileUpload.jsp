@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
 				<input id="fileupload" type="file" name="files[]"  multiple>
 			</div>
 		 		<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
-		 		<input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
+		 		<input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" >
 		</form>
 		<div id="dropzone" class="fade well" style='width:100%;height:100%;'>
 			 <div id ="over">

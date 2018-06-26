@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -53,6 +54,7 @@ public class UserController {
 		if (roles.contains("ROLE_ADMIN")) {
 			return new RedirectView("adminMain");
 		}
+		System.out.println("roles"+roles);
 		return new RedirectView("project.project");
 	}
 	
@@ -135,14 +137,17 @@ public class UserController {
 	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
 	  JsonNode token = KakaoLogin.getAccessToken(code);
-
+	  System.out.println("kakaocontroller");
 	  JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
 	  UserDTO userdto = KakaoLogin.changeData(profile);
 	  String check = service.idCheck(userdto.getUserId());
+	  System.out.println(userdto.getUserId());
+	  System.out.println(userdto.getPassword());
 	  if(check=="false") {
 		  service.KakaoLogin(userdto);
 	  }
-	  return "user.content";
+	  System.out.println("kakao controller2");
+	  return "noTiles.user.kakaologin.jsp";
 	}
 	
 	//모든 유저 정보

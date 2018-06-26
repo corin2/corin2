@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.corin2.user.dao.AdminMainDAO">
+	<!-- isDeleted = 0인 모든 프로젝트 수 -->
+	<select id="allUserCount" resultType="int">
+		select count(*) from user where isdeleted = 0
+	</select>
+	
+	<!-- isDeleted = 0인 모든 회원 수 -->
+	<select id="allProjectCount" resultType="int">
+		select count(*) from project where isdeleted = 0
+	</select>
+	
+	
+</mapper>

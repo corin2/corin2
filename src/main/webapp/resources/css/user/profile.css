@@ -1,5 +1,6 @@
 body {
   padding-top: 60px;
+  padding-right: 40px;
 }
 
 .fileinput-button {
@@ -8,15 +9,15 @@ body {
   display: inline-block;
 }
 .fileinput-button input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  opacity: 0;
-  -ms-filter: 'alpha(opacity=0)';
-  font-size: 200px !important;
-  direction: ltr;
-  cursor: pointer;
+    position: absolute;
+    top: -236px;
+    right: -83px;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px !important;
+    direction: ltr;
+    cursor: pointer;
 }
 
 /* Fixes for IE < 8 */
@@ -29,39 +30,110 @@ body {
 }
 
 .profilediv {
-  position: relative;
-  overflow: hidden;
-  top: 13px;
-  /* height: calc(70% - 38px); */
-  height: calc(70% - 38px); /* 추가한 내용 */
-  width: 250px; /* 추가한 내용 */
-  background-color: #f7f7f7;
-  height: 80%;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
-  left: 12px;
+    position: relative;
+    overflow: hidden;
+    top: 0px;
+    /* height: calc(70% - 38px); */
+    height: calc(70% - 38px);
+    width: 250px;
+    background-color: #f7f7f7;
+    height: 327px;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
+    left: 12px;
 }
 .profileimagediv {
-  position: relative;
-  overflow: hidden;
-  top: 5px;
-  /* height: calc(70% - 38px); */
-  height: calc(70% - 38px); /* 추가한 내용 */
-  width: 250px; /* 추가한 내용 */
-  background-color: #f7f7f7;
-  height: 40%;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
-  left: 12px;
+    position: relative;
+    overflow: hidden;
+    top: 5px;
+    /* height: calc(70% - 38px); */
+    height: calc(70% - 38px);
+    width: 250px;
+    background-color: #f7f7f7;
+    height: 292px;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
+    left: 12px;
 }
 #profileimage-content {
-    min-height: 25vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 #profile-content {
     transition: all 0.3s;
+}
+
+<!-- tem -->
+.profile {
+    height: 410px;
+}
+
+.block {
+    margin-bottom: 25px;
+    background: #566270;
+    border-radius: 5px;
+}
+
+.profileimageclass {
+    margin: 0 auto;
+    border: 5px solid #566270;
+    width: 150px;
+    height: 150px;
+}
+.profile-picture {
+    border-radius: 100%;
+    overflow: hidden;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+}
+.subwhite{
+    margin: 25px 0 16px;
+    text-align: center;
+    color: #fff;
+}
+.profilewhite{
+    margin: 25px 0 16px;
+    text-align: center;
+    color: #fff;
+}
+
+.profilemargintop{
+	margin: 20% 0 16px;
+}
+.btn-addfile {
+    color: #fff;
+    background-color: #A593E0;
+    border-color: #A593E0;
+    position: absolute; 
+    left: 31%;;
+}
+.btn-profile-button{
+	color: #fff;
+    background-color: #A593E0;
+    border-color: #A593E0;
+    margin-top: 56px;
+    margin-left: -21px;
+}
+.btn-profile-delete{
+	color: #fff;
+    background-color: #A593E0;
+    border-color: #A593E0;
+    margin-top: 17px;
+    margin-left: 0px;
+    width: 100%;
+}
+.profile-name{
+	text-align: center;
+}
+.profile-plus{
+	color: #fff;
+	position: absolute; 
+    right: 0;
+    top: unset;
+    margin-top: 25px;
+    margin-right: 19px;
 }
