@@ -9,15 +9,15 @@ body {
   display: inline-block;
 }
 .fileinput-button input {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  opacity: 0;
-  -ms-filter: 'alpha(opacity=0)';
-  font-size: 200px !important;
-  direction: ltr;
-  cursor: pointer;
+    position: absolute;
+    top: -236px;
+    right: -83px;
+    margin: 0;
+    opacity: 0;
+    -ms-filter: 'alpha(opacity=0)';
+    font-size: 200px !important;
+    direction: ltr;
+    cursor: pointer;
 }
 
 /* Fixes for IE < 8 */
@@ -30,37 +30,36 @@ body {
 }
 
 .profilediv {
-  position: relative;
-  overflow: hidden;
-  top: 62px;
-  /* height: calc(70% - 38px); */
-  height: calc(70% - 38px); /* 추가한 내용 */
-  width: 250px; /* 추가한 내용 */
-  background-color: #f7f7f7;
-  height: 45%;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
-  left: 12px;
+    position: relative;
+    overflow: hidden;
+    top: 0px;
+    /* height: calc(70% - 38px); */
+    height: calc(70% - 38px);
+    width: 250px;
+    background-color: #f7f7f7;
+    height: 327px;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
+    left: 12px;
 }
 .profileimagediv {
-  position: relative;
-  overflow: hidden;
-  top: 5px;
-  /* height: calc(70% - 38px); */
-  height: calc(70% - 38px); /* 추가한 내용 */
-  width: 250px; /* 추가한 내용 */
-  background-color: #f7f7f7;
-  height: 40%;
-  overflow: hidden;
-  margin: 0 !important;
-  padding: 0;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
-  left: 12px;
+    position: relative;
+    overflow: hidden;
+    top: 5px;
+    /* height: calc(70% - 38px); */
+    height: calc(70% - 38px);
+    width: 250px;
+    background-color: #f7f7f7;
+    height: 292px;
+    overflow: hidden;
+    margin: 0 !important;
+    padding: 0;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 0px 5px 0 rgba(0, 0, 0, .2);
+    left: 12px;
 }
 #profileimage-content {
-    min-height: 23vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 #profile-content {
@@ -103,7 +102,7 @@ body {
 }
 
 .profilemargintop{
-	margin: 50px 0 16px;
+	margin: 20% 0 16px;
 }
 .btn-addfile {
     color: #fff;
@@ -125,7 +124,7 @@ body {
     border-color: #A593E0;
     margin-top: 17px;
     margin-left: 0px;
-    width: 426%;
+    width: 100%;
 }
 .profile-name{
 	text-align: center;

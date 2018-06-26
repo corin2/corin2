@@ -41,6 +41,7 @@
 	position: relative;
 	margin-left: 80px;
 	padding-left: 20px;
+	
 }
 
 /* header 배경색 */
@@ -67,7 +68,7 @@
 .profile {
 	position: fixed;
 	margin-left : 80px;
-	top: 315px;
+	top: 376px;
 	left: 0;
 	bottom: 0;
 	display: none;
@@ -77,16 +78,16 @@
 	height: 60%
 }
 
-.profileimage{
-	position: fixed;
-	margin-top: 80px;
-	margin-left : 80px;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	display: none;
-	height: auto;
-	z-index: 200;
-	width: 265px;
-	height: 26%
+.profileimage {
+    position: fixed;
+    margin-top: 80px;
+    margin-left: 80px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    display: none;
+    height: auto;
+    z-index: 200;
+    width: 265px;
+    height: 100%;
 }

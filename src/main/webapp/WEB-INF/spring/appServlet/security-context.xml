@@ -24,7 +24,8 @@
 	  <security:intercept-url pattern="/admin" access="ROLE_ADMIN"/>
 	  <security:access-denied-handler ref="permissionEvaluator" />
 	</security:http>
-	<!-- 
+<!-- 	
+>>>>>>> feature/position
 	 <security:http auto-config="true">
 	  <security:csrf disabled="true"/>
 	  <security:form-login login-page="/"
@@ -41,7 +42,8 @@
 	  <security:intercept-url pattern="/admin" access="ROLE_ADMIN"/>
 	  <security:access-denied-handler ref="permissionEvaluator" />
 	</security:http>
-	 -->
+	-->
+
 	<security:authentication-manager>
 		<security:authentication-provider> <!-- DB연결 하는 곳이므로 bean객체 id넣는다. -->
 		<!-- 	<security:password-encoder ref="bCryptPasswordEncoder"/> -->

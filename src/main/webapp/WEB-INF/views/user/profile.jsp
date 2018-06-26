@@ -34,7 +34,7 @@
 				</div>
 		</div>
 	</form>
-	<div class="col-sm-4">
+	<div class="col-sm-12">
 		<input class="btn btn-okay btn-profile-delete" type="button" id="delete-button" value="탈퇴하기" />
 	</div>
 </div>
