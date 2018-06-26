@@ -3,20 +3,18 @@
 <script src="resources/js/chart/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
-
-<div class="container">
-<nav class="navbar navbar-default">
-	<div>
-		<div style="float: left; width: 50%;">
+<link rel="stylesheet" href="resources/css/chart/chart.css">
+<div class="chartCssCenter">
+	<div class="chartCssGO">
+		<div>
 			<h1>프로젝트 진행상태</h1>
 			<hr>
 			<canvas id="projectChart"></canvas>
 		</div>
-		<div style="float: left; width: 50%;">
+		<div>
 			<h1>체크리스트 현황</h1>
 			<hr>
 			<canvas id="checkListProceedChart"></canvas>
 		</div>
 	</div>
-</nav>
 </div>

@@ -1,0 +1,25 @@
+.chartCssGO {
+	/* position: relative; */
+	height: 80%;
+	width: 70%;
+	text-align: center;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chartCssGO div {
+	float: left;
+	width: 50%;
+}
+
+.chartCssCenter {
+	text-align: center;
+	left: 0;
+	right: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
