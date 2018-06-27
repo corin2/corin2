@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/chatting/chatting.css">
 
 <!-- content -->
-<div class="container app">
+<div class="app">
   <div class="row app-one">
     <div class="col-sm-2 side">
       <div class="side-one">
@@ -72,7 +72,7 @@
           <textarea class="form-control" rows="1" id="messageText"></textarea>
         </div>
         <div class="col-sm-1 col-xs-1 reply-send" id="sendMessageBtn">
-          <i class="fa fa-send" aria-hidden="true"></i>
+          <i class="fa fa-send 2x" aria-hidden="true"></i>
         </div>
       </div>
     </div>
