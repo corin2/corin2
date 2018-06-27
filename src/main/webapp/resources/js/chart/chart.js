@@ -11,6 +11,8 @@ function allList(){
 		url  : "showList",
 		contentType: "application/json; charset=utf-8",
 		success : function(data){
+			$('#projectChart').remove();
+			$('#pChart').append('<canvas id="projectChart"></canvas>');
 			$.each(data.data, function(index, elt) {
 				lists.push(elt);
 			});
@@ -65,6 +67,8 @@ function checkListLength() {
 		datatype:"JSON",
 		data : {projectNum:sessionProjectNum},
 		success : function(data){
+			$('#checkListProceedChart').remove();
+			$('#cChart').append('<canvas id="checkListProceedChart"></canvas>');
 			var maxData = data.list.length;
 			
 			confirmCheckListLength(maxData);
