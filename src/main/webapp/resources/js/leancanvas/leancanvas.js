@@ -51,9 +51,8 @@ function allSelectLeanCanvas(){
 				console.log(elt.teamName!="")
 				if(elt.teamName!=""){
 					$("#leanheader").empty();
-				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly value="'+elt.teamName+'" class="search"></h2>'
+				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly value="'+elt.teamName+'" class="search"><span class="glyphicon close1 kanbanCheckMod" onclick="teamNameEditClick(\''+elt.teamName+'\')" >&#xe065;</span></h2>'
 						+'<br>'
-						+'<input type="button" value="팀명수정" class="btn btn-success" onclick="teamNameEditClick(\''+elt.teamName+'\')" style="float: right; margin-right: 8%">'
 						+'<br>'
 						+'<br>';
 					$("#leanheader").append(html);
@@ -194,7 +193,6 @@ function teamNameEditClick(string) {
 	$("#leanheader").empty();
 	var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
 			+'<br>'
-			+'<input type="button" value="save" class="btn btn-success" style="float: right; margin-right: 8%">'
 			+'<br>'
 			+'<br>'
 		$("#leanheader").append(html);
