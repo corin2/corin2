@@ -17,7 +17,7 @@ import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
-public class KanbanHandInterceptor extends HttpSessionHandshakeInterceptor{
+public class MultiHandInterceptor extends HttpSessionHandshakeInterceptor{
 
 	@Override
 	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
