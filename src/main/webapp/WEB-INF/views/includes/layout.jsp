@@ -35,6 +35,19 @@
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
   	<script type="text/javascript">
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
+		$(function(){
+			contentCssEdit();
+		});
+		
+		function contentCssEdit() {
+			if(window.location.pathname.indexOf('project') > -1){
+				skill = 'project';
+			}else if(window.location.pathname.indexOf('admin') > -1){
+				skill = 'admin';
+			}
+			if(skill == 'project') $('#content').css('margin-top', '0');
+			else if(skill == 'admin') $('#content').css('margin-top', '80px');
+		}
 	</script>   
 </head>
 <body>
@@ -84,23 +97,5 @@
 
 	<!-- 페이지 로딩 -->
 	<!-- <script src="resources/js/loading/fakeLoader.js"></script> -->
-	
-	<script>
-		$(function(){
-			contentCssEdit();
-		})
-		
-		function contentCssEdit() {
-			if(window.location.pathname.indexOf('project') > -1){
-				skill = 'project';
-			}else if(window.location.pathname.indexOf('admin') > -1){
-				skill = 'admin';
-			}
-			if(skill == 'project') $('#content').css('margin-top', '0');
-			else if(skill == 'admin') $('#content').css('margin-top', '80px');
-		}
-		
-		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
-	</script>        
 </body>
 </html>
