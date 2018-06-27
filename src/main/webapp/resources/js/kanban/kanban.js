@@ -270,6 +270,7 @@ function selectCard(cardNum){
 		datatype:"JSON",
 		data:{cardNum:cardNum},
 		success:function(data){
+			$('#warningLabel').empty();
 			$('#modalHeader').attr('onclick', 'cardNameMod()');
 			$("#modalHeader").html(data.dto.cardName);
 			$("#contentDetail").val(data.dto.cardContent);
@@ -375,4 +376,9 @@ function  focusOutDisgard(obj) {
 	}, function(){
 		$(obj).closest('div').children('input').attr('onfocusout', 'send(5)');
 	});
+}
+
+//카드 디테일 내용 경고창
+function warningLabel() {
+	$('#warningLabel').html('변경된 내용이 저장되기 위해서는 저장버튼을 클릭해주세요.');
 }

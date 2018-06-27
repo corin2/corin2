@@ -167,3 +167,18 @@ hr {
     border: 0;
     border-top: 3px solid #eee;
 }
+
+#contentDetail {
+	width: 100%;
+	height: 400px;
+	resize: none;
+    word-wrap: break-word;
+    background: rgba(0,0,0,.03);
+    border-color: rgba(0,0,0,.15);
+    box-shadow: inset 0 1px 6px rgba(0,0,0,.1);
+}
+
+#warningLabel {
+	float: right;
+	color: red;
+}

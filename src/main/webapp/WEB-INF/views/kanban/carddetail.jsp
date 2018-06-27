@@ -17,12 +17,12 @@
 					<div class="form-group">
 						<label for="content">상세 내용</label>
 					</div>
-					<textarea id="contentDetail" style="width: 100%; height: 400px; resize: none;"></textarea>
+					<textarea id="contentDetail" onchange="warningLabel()"></textarea>
 					<br>
 					<div class="form-group">
 						
 						<input id="detailAddbtn" class="btn btn-success" type="button" onclick="updateCardDetail()" value="작성">
-			
+						<label id="warningLabel"></label>
 						<!-- <input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCardCheckListView()"> -->
 					</div>
 					<div class="form-group" style="margin-bottom: 20px;">
