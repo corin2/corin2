@@ -140,7 +140,6 @@
     font-size: 14px;
     text-align: left;
     list-style: none;
-    background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;
@@ -148,8 +147,11 @@
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    background-color : #566270;
 }
-
+.dropdown-menu > li > a {
+    color : #FFF;
+}
 .dropdown-menu {
     position: absolute;
     top: 110%;
@@ -171,4 +173,22 @@
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+#friend{
+	margin-bottom: 25px; 
+	background: #566270; 
+	border-radius: 5px; 
+	width: 300px; 
+	
+}
+#invitebutton{
+	color : #FFF;
+	
+}
+#emailSearch{
+	border-radius: 10px; 
+}
+.btn-invitebutton{
+	background-color : #566270;
 }

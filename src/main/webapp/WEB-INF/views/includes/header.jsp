@@ -21,7 +21,7 @@
 				<span class="glyphicon glyphicon-plus"></span>
 			</button>
 			<!-- 드롭다운 메뉴 -->
-			<ul class="dropdown-menu" id="friend" onclick="notHideAuto(event)" style="width: 300px; height:200px;">
+			<ul class="dropdown-menu" id="friend" onclick="notHideAuto(event)">
 				<li>
 					<div class="input-group">
 						<div class="form-group">
@@ -29,8 +29,8 @@
 						</div>
 						<span class="input-group-btn">
 							<input type="hidden" id="thisProjectNum">
-							<button class="btn btn-default" type="button" onclick="memberinvite()">
-								<span class="glyphicon">&#xe171;</span>
+							<button class="btn btn-invitebutton" type="button" onclick="memberinvite()">
+								<span class="glyphicon" id="invitebutton">&#xe171;</span>
 							</button>
 						</span>
 					</div>

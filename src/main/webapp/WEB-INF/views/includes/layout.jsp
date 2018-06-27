@@ -69,7 +69,7 @@
 		</nav>
 		
 		<!-- Page Content Holder -->
-		<div id="content">
+		<div id="content" class="adminpage">
 			<!-- Content 영역 -->
 			<tiles:insertAttribute name="content" />
 		</div>
