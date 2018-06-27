@@ -5,7 +5,7 @@ $(function(){
 var wsocket;
 
 function connect() {
-	wsocket = new WebSocket("ws://localhost:8090/controller/multiWebSocket?projectNum="+sessionProjectNum);
+	wsocket = new WebSocket("ws://localhost:8090/multiWebSocket?projectNum="+sessionProjectNum);
 	wsocket.onopen = onOpen;
 	wsocket.onmessage = onMessage;
 	wsocket.onclose = onClose;
