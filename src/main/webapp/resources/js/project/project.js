@@ -2,7 +2,6 @@ $(function () {
 	languageColorView();
 })
 var projectcnt = 0;
-
 //프로젝트 생성 함수
 function addProject() {
 	if($('input[name="language"]').is(':checked')&&$("#ProjectName").val()!=""){
@@ -50,6 +49,7 @@ function insertTeamProject(projectNum) {
 		
 	})
 }
+
 
 //프로젝트 뿌려주기
 function projectView(projectArray) {

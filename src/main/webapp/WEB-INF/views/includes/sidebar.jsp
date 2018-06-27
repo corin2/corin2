@@ -77,14 +77,14 @@
 	            Projects
 	        </a>
 	    </li>
-		<li>
-	    	<a href="#inviteMsg" data-toggle="collapse" aria-expanded="false" onclick="showMsg()">
-	            <i class="glyphicon glyphicon-envelope"></i>
-	            Alarm
-	        </a>
-	        <ul class="collapse list-unstyled" id="inviteMsg">
-	        </ul>
-	    </li>
+		<!-- <li>
+            <a href="#inviteMsg" data-toggle="collapse" aria-expanded="false" onclick="showMsg()">
+                <i class="glyphicon glyphicon-envelope"></i>
+                Alarm
+            </a>
+            <ul class="collapse list-unstyled" id="inviteMsg">
+            </ul>
+        </li> -->
 	</se:authorize>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
@@ -94,6 +94,12 @@
 				    Checklist
 				</a>
 		    </li>
+		    <li>
+	    	<a class="sidebaricon" href="leancanvas">
+	            <i class="glyphicon glyphicon-list-alt"></i>
+	            Lean canvas
+	        </a>
+	   	    </li>
 		    <li>
 		        <a class="sidebaricon" href="calendar" id="calendaricon">
 		             <i class="glyphicon glyphicon-calendar"></i>
