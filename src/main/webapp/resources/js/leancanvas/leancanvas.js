@@ -4,17 +4,8 @@ $(function () {
 })
 
 function problemClick(string) {
-	/*if(string=="problem" || string=="alternatives" || string=="uniquevalue" ||string=="parentconcept" ||string=="earlyadopter" ||string=="customer"){
-		console.log("1"+string);
-		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'>"
-		+ "</textarea><input type='button' value='작성' onclick='insertLean()'></div>"
-		$("#"+string).empty();
-		$("#"+string).append(html);
-		$("#"+string+"text").focus();
-	}else{*/
 		console.log("2"+string);
-		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'>"
-		+ "</textarea><input type='button' value='작성' onclick='insertLean()'></div>"
+		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'></textarea></div>"
 		$("#"+string).empty();
 		$("#"+string).append(html);
 		$("#"+string+"text").focus();

@@ -19,7 +19,7 @@
 	       		<a class="leanatag" onclick="problemClick('problem')">add...</a>
 	       	</p>
 	       </div>
-	       <div class="col-sm-2 leanheight leanh2"><h4>솔루션</h4>
+	       <div class="col-sm-2 leanheight4 leanh2"><h4>솔루션</h4>
 	       	<p class="candivsize" id="solution">
 	       		<a class="leanatag" onclick="problemClick('solution')">add...</a>
 	       	</p>
@@ -29,7 +29,7 @@
 	       		<a class="leanatag" onclick="problemClick('uniquevalue')">add...</a>
 	       	</p>
 	       </div>
-	       <div class="col-sm-2 leanheight leanh2"><h4>경쟁우위</h4>
+	       <div class="col-sm-2 leanheight4 leanh2"><h4>경쟁우위</h4>
 	       	<p class="candivsize" id="compettive">
 	       		<a class="leanatag" onclick="problemClick('compettive')">add...</a>
 	       	</p>
@@ -48,7 +48,7 @@
 	       		<a class="leanatag" onclick="problemClick('alternatives')">add...</a>
 	       	</p>
 	       </div>
-	       <div class="col-sm-2 leanheight leanh2"><h4>핵심지표</h4>
+	       <div class="col-sm-2 leanheight5 leanh2"><h4>핵심지표</h4>
 	       	<p class="candivsize" id="mainpoint">
 	       		<a class="leanatag" onclick="problemClick('mainpoint')">add...</a>
 	       	</p>
@@ -58,7 +58,7 @@
 	       		<a class="leanatag" onclick="problemClick('parentconcept')">add...</a>
 	       	</p>
 	       </div>
-	       <div class="col-sm-2 leanheight leanh2"><h4>채널</h4>
+	       <div class="col-sm-2 leanheight5 leanh2"><h4>채널</h4>
 	       	<p class="candivsize" id="channel">
 	       		<a class="leanatag" onclick="problemClick('channel')">add...</a>
 	       	</p>
@@ -72,7 +72,7 @@
 	   </div>
 	   <div class="row">
 	       <div class="col-sm-1"></div>
-	       <div class="col-sm-5 leanheight leanh2"><h4>비용구조</h4>
+	       <div class="col-sm-5 leanheight6 leanh2"><h4>비용구조</h4>
 	       	<p class="candivsize" id="coststructuer">
 	       		<a class="leanatag" onclick="problemClick('coststructuer')">add...</a>
 	       	</p>

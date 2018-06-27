@@ -10,9 +10,23 @@
 }
 .leanheight3{
 	height: 200px;
-	border-bottom: solid;1px;
 	border-left: solid;1px;
 	border-right: solid;1px;
+}
+.leanheight4{
+	height: 200px;
+	border-top: solid;1px;
+	border-bottom: solid;1px;
+}
+.leanheight5{
+	height: 200px;
+	border: none;
+}
+.leanheight6{
+	height: 200px;
+	border-bottom: solid;1px;
+	border-top: solid;1px;
+	border-left: solid;1px;
 }
 
 .leantain {
