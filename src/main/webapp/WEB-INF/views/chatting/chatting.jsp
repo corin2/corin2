@@ -57,12 +57,14 @@
       </div>
 	  
 	  <!-- 메인 대화창 -->
-      <div class="row message scrollbar" id="style-1">
 		<!-- 대화 내용 추가 -->
-		      <div class="force-overflow">
-		      </div>
-      </div>
-      <div class="row reply">
+	  <div class="scrollbar chatscroll" id="style-1">
+		  <div class="force-overflow">
+		   	  <div class="row message" id="conversation">
+		   	  </div>
+		  </div>
+	  </div>
+	  <div class="row reply">
         <div class="col-sm-1 col-xs-1 reply-emojis">
           <i class="fa fa-smile-o"></i>
         </div>

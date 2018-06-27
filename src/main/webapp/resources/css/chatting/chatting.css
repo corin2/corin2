@@ -305,13 +305,24 @@
   /*overflow-y: auto;*/
 }
 
+.chatscroll{
+    height: 3px;
+    padding: 9px !important;
+    margin: 7px !important;
+    background-size: cover;
+    overflow-y: auto;
+    height: calc(100% - 133px);
+    background-color: #FFF;
+    border-radius: 35px;
+    width: 97%;
+}
+
 .message {
     height: 3px;
     padding: 9px !important;
     margin: 7px !important;
     background-size: cover;
     overflow-y: auto;
-    border: 1px solid #f7f7f7;
     height: calc(100% - 133px);
     background-color: #FFF;
     border-radius: 35px;
