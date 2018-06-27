@@ -62,15 +62,13 @@ function projectMemberShow(userProfiles){
 				projectName = elt.projectName;
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId){
-						/*if(elt.userId == userId) {
-							$('#currentUserProfile').attr("src", "resources/images/profile/" + elt2.userProfile);
-						}*/
 						htmltext += '<div class="dropdown headerFloatLeft headerprofilediv">';
 						if(elt.gradeNum == 'G300')
 							htmltext += '<span class="glyphicon glyphicon-king leader" aria-hidden="true"></span>';
 						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
 								 + '<img class="img-circle profileimg" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
-								 + '<ul class="dropdown-menu headerCuror" id="profile-dropdown-menu">';
+								 + '<ul class="dropdown-menu headerCuror" id="profile-dropdown-menu">'
+								 + '<li><a>'+ elt2.userName+'</a></li>';
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
 							if(myGrade == 'G300'){
 								htmltext += '<li><input type="hidden" value="'+ elt.userId +'"><a onclick="memberToKickOut(this)">맴버제명</a></li>'
@@ -80,8 +78,7 @@ function projectMemberShow(userProfiles){
 							htmltext += '<li><a onclick="memberDelete()">멤버탈퇴</a></li>';
 						}
 						
-						htmltext += '<li><a>'+ elt2.userName+'</a></li>'
-						+ '</ul></div>';
+						htmltext += '</ul></div>';
 						
 						return false;
 					}
