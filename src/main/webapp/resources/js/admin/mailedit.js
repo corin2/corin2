@@ -35,7 +35,6 @@
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
 						signup = "signup";
-						console.log(signup);
 						$(".summernote").summernote("code", data.line);
 					}
     		  });
@@ -48,14 +47,12 @@
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
 						signup = "signup2";
-						console.log(signup);
 						$(".summernote").summernote("code", data.line);
 					}
     		  });
     	  });
     	  
     	  $('#save').click(function(){
-    		  console.log(signup);
     		  var savedata = $('#summernote').summernote('code');
     		  $.ajax({
     			  	type : "post",
@@ -70,7 +67,6 @@
     	  });
     	  
     	  $('#usetemplate').click(function(){
-				console.log("333"+signup);
     		  $.ajax({
     			  	type : "post",
 					url : "usetemplate",

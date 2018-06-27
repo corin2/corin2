@@ -4,7 +4,6 @@ $(function () {
 })
 
 function problemClick(string) {
-		console.log("2"+string);
 		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'></textarea></div>"
 		$("#"+string).empty();
 		$("#"+string).append(html);
@@ -33,7 +32,6 @@ function insertLean() {
 			profit:$("#profittext").val()
 		},
 		success: function (data) {
-			console.log("삽입성공")
 			allSelectLeanCanvas();
 		}
 		
@@ -46,9 +44,7 @@ function allSelectLeanCanvas(){
 		datatype:"JSON",
 		data:{projectNum:sessionProjectNum},
 		success:function(data){
-			console.log(data.list);
 			$.each(data.list, function(index, elt) {
-				console.log(elt.teamName!="")
 				if(elt.teamName!=""){
 					$("#leanheader").empty();
 				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly value="'+elt.teamName+'" class="search"></h2>'
@@ -318,7 +314,6 @@ function leanUpdate() {
 			profit:profit
 		},
 		success: function (data) {
-			console.log("수정성공")
 			allSelectLeanCanvas()
 		}
 		

@@ -39,7 +39,6 @@ function checkListTableConfirm() {
 		data:{projectNum:sessionProjectNum},
 		success: function(data) {
 			var table ="";
-			console.log(data.list)
 			
 			table = "<table class='table table-striped table-bordered table-hover'>"
 			  + "<tbody>"
@@ -74,13 +73,11 @@ $('#CheckBoxInput').focus();
 
 //체크리스트 추가
 function checkListInsert() {
-	console.log($("#CheckBoxInput").val());
 	$.ajax({
 		url:"insertCheckList",
 		dataType: "JSON",
 		data:{projectNum:sessionProjectNum, checkContent:$("#CheckBoxInput").val()},
 		success:function(data){
-			console.log("삽입성공");
 			showCheckList();
 		}
 	})
@@ -88,7 +85,6 @@ function checkListInsert() {
 
 //체크리스트 뿌리기
 function showCheckList(){
-	console.log("체크리스트뿌리기")
 	$('#CheckAddBox').empty();
 	$.ajax({
 		type : "post",
@@ -99,7 +95,6 @@ function showCheckList(){
 			var html="";
 			var i = 0;
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				if(elt.isDeleted==0){
 				html="<tr id='index"+(i+1)+"'>"
 					+"<td class='tdalignclass'>"+(i+1)+"</td>"
@@ -122,7 +117,6 @@ function showCheckList(){
 
 //Confirm 체크리스트 뿌리기
 function showCheckListConfrim(user){
-	console.log("체크리스트뿌리기")
 	$('#CheckConfrimAddBox').empty();
 	$.ajax({
 		type : "post",
@@ -133,7 +127,6 @@ function showCheckListConfrim(user){
 			var html="";
 			var i = 0;
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				if(elt.isDeleted==0){
 				html="<tr>"
 					+"<td class='tdalignclass'>"+(i+1)+"</td>"
@@ -185,7 +178,6 @@ function updateCheckListContent(checkNum) {
 				checkNum:checkNum},
 		success:function(data){
 			
-			console.log("업데이트성공"+data.result);
 			showCheckList();
 		}
 				
@@ -197,14 +189,11 @@ function updateCheckListContent(checkNum) {
 
 //체크리스트 삭제
 function deleteCheckListContent(checkNum) {
-	console.log("야야야야")
-	console.log(checkNum)
 	$.ajax({
 		url : "deleteCheckListContent",
 		datatype : "JSON",
 		data :{projectNum:sessionProjectNum,checkNum:checkNum},
 		success: function(data){
-			console.log("삭제 성공")
 			showCheckList();
 		}
 	})
@@ -219,7 +208,6 @@ function checkedSelectAll() {
 		data:{projectNum:sessionProjectNum,userId:$("#hiddenUserId").val()},
 		success:function(data){
 			$.each(data.list, function(index, elt) {
-					console.log("들어왔니??"+elt.checkNum);
 					$("#checkedBox"+elt.checkNum).attr("checked","checked");
 			})
 		}
@@ -235,9 +223,7 @@ function checkedSelectAllConfirm() {
 		datatype:"JSON",
 		data:{projectNum:sessionProjectNum},
 		success:function(data){
-			console.log(data.list)
 			$.each(data.list, function(index, elt) {
-				console.log("ggggg"+elt.checkNum+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]);
 			$("#"+elt.checkNum+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]).attr("checked","checked");
 			})
 		}
@@ -252,7 +238,6 @@ function userGradeCheckList() {
 		datatype:"JSON",
 		data:{userId:$("#hiddenUserId").val(),projectNum:sessionProjectNum},
 		success:function(data){
-			console.log(data.list);
 			$.each(data.list, function(index, elt) {
 				myGradeNum = elt.gradeNum;
 				if(elt.gradeNum == 'G300'){

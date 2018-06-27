@@ -136,7 +136,6 @@ function download(uploadAlias) {
 
 //파일삭제
 function deleteFile(boardNum) {
-	console.log(boardNum);
 	var boardnum = boardNum;
     $.ajax({
     	type: "get",
@@ -149,7 +148,6 @@ function deleteFile(boardNum) {
 		},
     	success: function(data) {
     
-    		console.log(data);
     		firstFileSelect();
     	}
     }); 

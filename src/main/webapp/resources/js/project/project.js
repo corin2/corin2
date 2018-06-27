@@ -186,7 +186,6 @@ function printProjectDetailLanguage() {
 		success:function(data){
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
@@ -292,8 +291,6 @@ function searchProject(projectArray) {
 	var userId = $("#hiddenUserId").val();
 	var projectName = $("#searchProject").val();
 	var html='';
-	console.log(projectName)
-	console.log(userId)
 	$.ajax({
 		url:"prjectSearch",
 		datatype:"JSON",
@@ -302,7 +299,6 @@ function searchProject(projectArray) {
 			if(projectName!=""){
 			$.each(data.data, function(index, elt) {
 			$.each(projectArray[0], function(index, elt2) {
-				console.log(elt.languageNum)
 				if(elt.languageNum == elt2.languageNum){
 				html +=	"<div class='projectSerchDiv'>"
 					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
@@ -315,9 +311,6 @@ function searchProject(projectArray) {
 			}
 			$("#searchBox").append(html);
 			
-			console.log(data.data.projectNum);
-			console.log(data.data.projectName);
-			
 		}
 	})
 	
@@ -325,7 +318,6 @@ function searchProject(projectArray) {
 
 //오토컴플릿
 function autoCompleteProject() {
-	console.log("진원이 미워")
 	 $.ajax({
  		url : "allProject",
  		datatype : "JSON",
