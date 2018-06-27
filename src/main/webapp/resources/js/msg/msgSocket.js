@@ -5,7 +5,7 @@ $(function(){
 var wMsgSocket;
 
 function Msgconnect() {
-	wMsgSocket = new WebSocket("ws://"+ document.domain +":8090/controller/msgWebSocket?userId=" + $("#hiddenUserId").val());
+	wMsgSocket = new WebSocket("ws://localhost:8090/msgWebSocket?userId=" + $("#hiddenUserId").val());
 	wMsgSocket.onopen = onMsgOpen;
 	wMsgSocket.onmessage = onMsgMessage;
 	wMsgSocket.onclose = onMsgClose;

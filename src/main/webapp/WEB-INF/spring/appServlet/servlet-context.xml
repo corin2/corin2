@@ -23,21 +23,21 @@
 	
 	<!-- 소켓 시작~~ -->
 	<!-- 칸반, 캘린더, 차트, 포지션 소켓 -->
-	<websocket:handlers>
+	<websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="multiHandler" path="/multiWebSocket" />
 		<websocket:handshake-interceptors>
 			<bean class="site.corin2.ws.MultiHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	<!-- 메시지소켓 -->
-	<websocket:handlers>
+	<websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="msgHandler" path="/msgWebSocket" />
 		<websocket:handshake-interceptors>
 			<bean class="site.corin2.ws.MsgHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	<!-- 헤더소켓(멤버제명, 멤버탈퇴, 팀장위임) -->
-	<websocket:handlers>
+	<websocket:handlers allowed-origins="*">
 		<websocket:mapping handler="headerHandler" path="/headerWebSocket" />
 		<websocket:handshake-interceptors>
 			<bean class="site.corin2.ws.HeaderHandInterceptor"></bean>

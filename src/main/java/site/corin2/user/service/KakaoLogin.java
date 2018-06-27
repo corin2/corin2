@@ -27,7 +27,7 @@ public class KakaoLogin {
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		postParams.add(new BasicNameValuePair("client_id", "fbe288f80d621d2eb6d941ab8e9617fd")); // REST API KEY
-		postParams.add(new BasicNameValuePair("http://localhost:8090/controller/kakaologin", "/controller/kakaologin")); // 리다이렉트 URI
+		postParams.add(new BasicNameValuePair("http://localhost:8090/kakaologin", "/kakaologin")); // 리다이렉트 URI
 		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
 
 		final HttpClient client = HttpClientBuilder.create().build();
