@@ -46,7 +46,6 @@ $(function() {
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
 		messages = db.child('messages/' + projectNum); // 전체채팅 메시지 경로
-
 		$.ajax({
 			url:"showMemberUserProfile",
 			datatype:"JSON",
