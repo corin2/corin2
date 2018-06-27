@@ -8,10 +8,19 @@ $(function(){
 
 //메시지가 존재하는지 알람~
 function existMsg(){
-	if($('#inviteMsg').children('li').length > 0) {
-		var content = '<span class="badge">'+$('#inviteMsg').children('li').length+'</span>';
-		$('#inviteMsg').closest('li').children('a').append(content);
-	}
+	var liLength = $('#inviteMsg').children('li').length;
+    if(liLength > 0) {
+        var content = '<span class="badge">'+$('#inviteMsg').children('li').length+'</span>';
+        $('#inviteMsg').closest('li').children('a').append(content);
+        $('#inviteMsg').children('li:eq(0)').css({
+            'border-top-left-radius': '5px',
+            'border-top-right-radius': '5px'
+        });
+        $('#inviteMsg').children('li:eq('+(liLength-1)+')').css({
+             'border-bottom-left-radius': '5px',
+             'border-bottom-right-radius': '5px'
+        });
+    }
 }
 
 //모든 메시지를 보여준다
@@ -24,22 +33,22 @@ function showMsg(){
 		success : function(data){
 			$('#inviteMsg').empty();
 			
-			if($('#inviteMsg').closest('li').children('a').children().is('span')) {
-				$('#inviteMsg').closest('li').children('a').children('span').remove();
+			if($('#inviteMsg').closest('li').children('label').children().is('span')) {
+				$('#inviteMsg').closest('li').children('label').children('span').remove();
 			}
 			
 			var htmltext = '';
 			$.each(data.data, function(index, elt) {
-				htmltext += '<li><a><span>'
-						 + '<img src="resources/images/profile/'+elt.projectDate+'" class="img-circle" width="50" height="50"></span>'
-						 + '<span>'+elt.languageNum+'</span>' // LANGUAGENUM = sendId , PROJECTDATE = userprofile
-						 + '<span class="btnSpan"><button class="btn-warning" onclick="msgaccept('+elt.projectNum+')">Y</button>'
-						 + '<button class="btn-success" onclick="msgreject('+elt.projectNum+')">N</button></span>'
-						 + '<span class="messageInvite"><label>'+elt.projectName+'<br> 너! 내 동료가 되라</label></span>'
-						 + '</a></li>';
+				htmltext += '<li><label><div class="col-sm-2"><span class="invitemsgprofile">'
+						 + '<img src="resources/images/profile/'+elt.projectDate+'" class="img-circle" width="50" height="50"></span></div>'
+						 + '<div class="col-sm-8"><span class="invitemsgspan">'+elt.languageNum+'님 께서<br>프로젝트'+elt.projectName+'에 초대하셨습니다.</span></div>' // LANGUAGENUM = sendId , PROJECTDATE = userprofile
+						 + '<div class="col-sm-2"><span class="btnSpan"><button class="btn-warning" onclick="msgaccept('+elt.projectNum+')">Y</button>'
+						 + '<button class="btn-success" onclick="msgreject('+elt.projectNum+')">N</button></span></div>'
+						 + '</label></li>';
+				if(index != data.data.length-1)htmltext += '<hr class="whitehr">';
 			});
 			
-			if(data.data.length == 0) htmltext += '<span>초대메시지가 없습니다</span>';
+			if(data.data.length == 0) htmltext += '<span class="notmsg">초대메시지가 없습니다</span>';
 			$('#inviteMsg').html(htmltext);
 			existMsg();
 		}
