@@ -84,17 +84,17 @@
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
-				<a class="sidebaricon" href="checklist" id="checklisticon">
-				    <i class="glyphicon glyphicon-th-list"></i>
-				    Checklist
-				</a>
-		    </li>
-		    <li>
 		    	<a class="sidebaricon" href="leancanvas">
 					<i class="glyphicon glyphicon-list-alt"></i>
 		            Lean canvas
 		        </a>
 	   	    </li>
+		    <li>
+				<a class="sidebaricon" href="checklist" id="checklisticon">
+				    <i class="glyphicon glyphicon-th-list"></i>
+				    Checklist
+				</a>
+		    </li>
 		    <li>
 		        <a class="sidebaricon" href="calendar" id="calendaricon">
 		             <i class="glyphicon glyphicon-calendar"></i>
