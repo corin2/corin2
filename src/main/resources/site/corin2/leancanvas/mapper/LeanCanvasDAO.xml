@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="site.corin2.leancanvas.dao.LeanCanvasDAO">
+		<insert id="leanInsert">
+			insert into leancanvas
+			values(#{projectNum},#{teamName},#{problem},#{alterNatives},#{solution},#{mainPoint},
+			#{uniqueValue},#{parentConcept},#{competitiveAdvantage},#{channel},#{customer},
+			#{earlyAdopter},#{costStructure},#{profit})
+		</insert>
+		
+		<select id="leanAllSelect" resultType="site.corin2.leancanvas.dto.LeanCanvasDTO">
+			select * from leancanvas where projectnum=#{projectNum}
+		</select>
+		
+		<update id="leanUpdate">
+			update leancanvas set teamname= #{teamName}, problem=#{problem},alternatives=#{alterNatives},
+			solution=#{solution},mainpoint=#{mainPoint},uniquevalue=#{uniqueValue},parentconcept=#{parentConcept},
+			competitiveadvantage=#{competitiveAdvantage},channel=#{channel},customer=#{customer},earlyadopter=#{earlyAdopter},
+			coststructure=#{costStructure},profit=#{profit} where projectNum = #{projectNum}
+		</update> 
+	
+	</mapper>
