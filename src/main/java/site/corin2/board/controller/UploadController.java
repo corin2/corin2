@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -37,11 +38,16 @@ import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.UploadDTO;
-
+import site.corin2.board.service.S3Util;
+import site.corin2.board.service.UploadFileUtils;
 import site.corin2.board.service.UploadService;
 
 @Controller
 public class UploadController {
+
+	S3Util s3 = new S3Util();
+	String bucketName = "corin2.site";
+	
 	@Autowired
 	private UploadService service;
 	
@@ -58,7 +64,7 @@ public class UploadController {
 		model.addAttribute("file1", service.uploadSelect(Integer.parseInt(projectNum)));
 		return jsonview;
 	}
-
+	
 	//파일업로드 upload
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
@@ -80,17 +86,14 @@ public class UploadController {
 
 		//경로설정
 		String savepath = "resources/upload";  
-		String downloadpath = request.getRealPath(savepath);
-		String filePath = null;
-		/* 
-		  D:\bitcamp104\FinalProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\corin2\
-		 */ 
-		String fileName =null;
-		String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
-	
+		//String downloadpath = request.getRealPath(savepath);
+		//String filePath = null;
+		 
+		//String fileName =null;
+		//String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
 		
 		//파일명 정하기
-		if(null != mpf && mpf.getSize() > 0) {
+		/*if(null != mpf && mpf.getSize() > 0) {
 			fileName = fileName1[0]+"_"+ System.currentTimeMillis()+"."+fileName1[1]; //파일_현재날짜.확장자 
 			uploadDTO.setUploadAlias(fileName);
 			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
@@ -101,14 +104,14 @@ public class UploadController {
 			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
 			filePath = downloadpath + "\\" + mpf.getOriginalFilename();
 			
-		}
+		}*/
 		 //파일 insert
 		 service.uploadInsert(uploadDTO);
 		
 		try {
-			//D:\bitcamp104\FinalProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\corin2\ 경로에 파일 업로드
-			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
-		} catch (IOException e) {
+			//FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
+			UploadFileUtils.uploadFile(savepath, mpf.getOriginalFilename(), mpf.getBytes());
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	

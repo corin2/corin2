@@ -286,6 +286,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- AWS java sdk -->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk</artifactId>
+		    <version>1.11.354</version>
+		</dependency>
+		
 	</dependencies>
 	<!-- end - Maven dependencies -->
 	
