@@ -52,23 +52,25 @@
           <span class="heading-online">Online</span>
         </div>
         <div class="col-sm-1 col-xs-1  heading-dot pull-right">
-          <i class="fa fa-remove fa-2x pull-right" id="removeChat" aria-hidden="true"></i>
+          <i class="fa fa-remove pull-right" id="removeChat" aria-hidden="true"></i>
         </div>
       </div>
 	  
 	  <!-- 메인 대화창 -->
-      <div class="row message" id="conversation">
+      <div class="row message scrollbar" id="style-1">
 		<!-- 대화 내용 추가 -->
+		      <div class="force-overflow">
+		      </div>
       </div>
       <div class="row reply">
         <div class="col-sm-1 col-xs-1 reply-emojis">
-          <i class="fa fa-smile-o fa-2x"></i>
+          <i class="fa fa-smile-o"></i>
         </div>
         <div class="col-sm-9 col-xs-9 reply-main">
           <textarea class="form-control" rows="1" id="messageText"></textarea>
         </div>
         <div class="col-sm-1 col-xs-1 reply-send" id="sendMessageBtn">
-          <i class="fa fa-send fa-2x" aria-hidden="true"></i>
+          <i class="fa fa-send" aria-hidden="true"></i>
         </div>
       </div>
     </div>
