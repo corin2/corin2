@@ -3,12 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 
-<script src="resources/js/position/positionSocket.js"></script>
+<script src="resources/js/msg/msgSocket.js"></script>
+<script src="resources/js/header/headerSocket.js"></script>
+<script src="resources/js/sidebar/multiSocket.js"></script>
 <script src="resources/js/user/kakao.min.js"></script>
 <script src="resources/js/msg/inviteMsg.js"></script>
-<script src="resources/js/msg/msgSocket.js"></script>
 <script src="resources/js/keyUp.js"></script>
-<script src="resources/js/header/headerSocket.js"></script>
 <script src="resources/js/loading/cursor.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

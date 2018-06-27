@@ -15,7 +15,7 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-public class PositionHandler extends TextWebSocketHandler {
+public class MultiHandler extends TextWebSocketHandler {
 	private Map<String, HashMap<String, WebSocketSession>> usermap = new HashMap<>();
 	
 	@Override
@@ -52,8 +52,6 @@ public class PositionHandler extends TextWebSocketHandler {
 	
 	public String getProjectNum(WebSocketSession session) {
 		Map<String, Object> map = session.getAttributes();
-		
 		return (String) map.get("projectNum");
 	}
-	
 }

@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <script src="resources/js/kanban/kanban.js"></script>
 <script src="resources/js/kanban/cardCheckList.js"></script>
-<script src="resources/js/kanban/kanbanSocket.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
 <div style="width:100%;">

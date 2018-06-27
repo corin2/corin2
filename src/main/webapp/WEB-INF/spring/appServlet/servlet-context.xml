@@ -22,11 +22,11 @@
 	<context:component-scan base-package="site.corin2.*.service" />
 	
 	<!-- 소켓 시작~~ -->
-	<!-- 칸반소켓 -->
+	<!-- 칸반, 캘린더, 차트, 포지션 소켓 -->
 	<websocket:handlers>
-		<websocket:mapping handler="kanbanHandler" path="/kanbanWebSocket" />
+		<websocket:mapping handler="multiHandler" path="/multiWebSocket" />
 		<websocket:handshake-interceptors>
-			<bean class="site.corin2.ws.KanbanHandInterceptor"></bean>
+			<bean class="site.corin2.ws.MultiHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	<!-- 메시지소켓 -->
@@ -43,17 +43,9 @@
 			<bean class="site.corin2.ws.HeaderHandInterceptor"></bean>
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
-	<!-- 포지션소켓 -->
-	<websocket:handlers>
-		<websocket:mapping handler="positionHandler" path="/positionWebSocket" />
-		<websocket:handshake-interceptors>
-			<bean class="site.corin2.ws.PositionHandInterceptor"></bean>
-		</websocket:handshake-interceptors>
-	</websocket:handlers>
-	<bean id="kanbanHandler" class="site.corin2.ws.KanbanHandler" />
+	<bean id="multiHandler" class="site.corin2.ws.MultiHandler" />
 	<bean id="msgHandler" class="site.corin2.ws.MsgHandler" />
 	<bean id="headerHandler" class="site.corin2.ws.HeaderHandler" />
-	<bean id="positionHandler" class="site.corin2.ws.PositionHandler" />
 	<mvc:default-servlet-handler />
 	
 	<!-- 비동기 필요 -->

@@ -117,7 +117,7 @@ function checkedInsert(checkNum) {
 			success:function(data){
 				checkedSelect();
 				checkedSelectAll();
-				sendPosition(2);
+				send(4);
 			}
 		})
 		
@@ -133,7 +133,7 @@ function checkedInsert(checkNum) {
 			success:function(data){
 				checkedSelect();
 				checkedSelectAll();
-				sendPosition(2);
+				send(4);
 			}
 		})
 	}

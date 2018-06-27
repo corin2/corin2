@@ -83,7 +83,7 @@ function sortable(){
 			
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
 				swal('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
-				send(1);
+				send(5);
 			}else{
 				$.ajax({
 					url : 'cardTaxisUpdate',
@@ -95,7 +95,6 @@ function sortable(){
 					success : function(data){
 						sortablecnt = 0; sortablecnt2 = 0; sortablecnt3 = 0;
 						send(1);
-						sendPosition(1);
 					}
 				})
 			}
@@ -233,7 +232,7 @@ function showCard(){
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
-			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
+			+ "onfocusout='send(5)' onkeyup='fnChkByte(this, 27)' >"
 			+ "<label id='addLabel floatRightKanban' onclick='addCard(this, "+ projectNum +")'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
@@ -252,7 +251,6 @@ function addCard(obj, projectNum){
 			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
 				send(1);
-				sendPosition(1);
 			}
 		});
 	}
@@ -302,7 +300,6 @@ function deleteCard(e,cardNum){
 		data:{cardNum:cardNum},
 		success:function(data){
 			send(1);
-			sendPosition(1);
 		}
 	});
 }
@@ -313,7 +310,7 @@ function updateCardTitle(e, cardNum) {
 	e.stopPropagation();
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
-			+ "onfocusout='send(1)' onkeyup='fnChkByte(this, 27)' >"
+			+ "onfocusout='send(5)' onkeyup='fnChkByte(this, 27)' >"
 			+ "<label id='editLabel floatRightKanban' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
@@ -376,6 +373,6 @@ function  focusOutDisgard(obj) {
 	$(obj).hover(function() {
 		$(obj).closest('div').children('input').removeAttr('onfocusout');
 	}, function(){
-		$(obj).closest('div').children('input').attr('onfocusout', 'send(1)');
+		$(obj).closest('div').children('input').attr('onfocusout', 'send(5)');
 	});
 }

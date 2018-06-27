@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="resources/css/calendar/calendar.css">
 <script src="resources/js/kanban/kanban.js"></script>
 <script src="resources/js/kanban/cardCheckList.js"></script>
-<script src="resources/js/kanban/kanbanSocket.js"></script>
 <jsp:include page="../kanban/carddetail.jsp"></jsp:include>
 <jsp:include page="addCalendar.jsp"></jsp:include>
 <div>

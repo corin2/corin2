@@ -86,11 +86,21 @@
 	<!-- <script src="resources/js/loading/fakeLoader.js"></script> -->
 	
 	<script>
+		$(function(){
+			contentCssEdit();
+		})
+		
+		function contentCssEdit() {
+			if(window.location.pathname.indexOf('project') > -1){
+				skill = 'project';
+			}else if(window.location.pathname.indexOf('admin') > -1){
+				skill = 'admin';
+			}
+			if(skill == 'project') $('#content').css('margin-top', '0');
+			else if(skill == 'admin') $('#content').css('margin-top', '80px');
+		}
+		
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
-		/* $("#fakeloader").fakeLoader({
-			zIndex: '3999',
-			bgColor:"rgba(51, 102, 153, 0.2)",
-		}); */
 	</script>        
 </body>
 </html>
