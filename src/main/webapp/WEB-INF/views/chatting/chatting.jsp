@@ -25,7 +25,7 @@
 		<!-- 유저리스트 -->
         <div class="row sideBar">
           <!-- 유저 -->
-          <div class="row sideBar-body" id="allUsers" style="background-color: #c0daff;">
+          <div class="row sideBar-body" id="allUsers" style="background-color: #FFF;">
             <div class="col-sm-3 col-xs-3 sideBar-avatar">
               <div class="avatar-icon">
                 <img src="resources/images/chatting/all.png">
@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="col-sm-8 col-xs-7 heading-name">
-          <a class="heading-name-meta" id="currentUserName" style="padding-left: 20px">
+          <a class="heading-name-meta" id="currentUserName" style="padding-left: 20px;color:#FFF;">
           </a>
           <span class="heading-online">Online</span>
         </div>

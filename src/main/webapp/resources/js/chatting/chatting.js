@@ -280,7 +280,7 @@ $(function() {
 	// 버튼 클릭시 색 변경
 	function changeColor(btnId) {
 		$('.sideBar-body').css('background-color', '');
-		$(btnId).css('background-color', '#c0daff');
+		$(btnId).css('background-color', '#FFF');
 	}
 	
     // 10미만 숫자 앞에 0 붙이기

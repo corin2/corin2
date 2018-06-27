@@ -41,7 +41,7 @@ function showMsg(){
 			$.each(data.data, function(index, elt) {
 				htmltext += '<li><label><div class="col-sm-2"><span class="invitemsgprofile">'
 						 + '<img src="resources/images/profile/'+elt.projectDate+'" class="img-circle" width="50" height="50"></span></div>'
-						 + '<div class="col-sm-8"><span class="invitemsgspan">'+elt.languageNum+'님 께서 프로젝트'+elt.projectName+'에 초대하셨습니다.</span></div>' // LANGUAGENUM = sendId , PROJECTDATE = userprofile
+						 + '<div class="col-sm-8"><span class="invitemsgspan">'+elt.languageNum+'님 께서<br>프로젝트'+elt.projectName+'에 초대하셨습니다.</span></div>' // LANGUAGENUM = sendId , PROJECTDATE = userprofile
 						 + '<div class="col-sm-2"><span class="btnSpan"><button class="btn-warning" onclick="msgaccept('+elt.projectNum+')">Y</button>'
 						 + '<button class="btn-success" onclick="msgreject('+elt.projectNum+')">N</button></span></div>'
 						 + '</label></li>';

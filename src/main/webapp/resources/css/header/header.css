@@ -17,9 +17,9 @@
 }
 .chat{
 	font-size : 30px;
-    top : 3px !important;
+    top : 0px !important;
     right : 5px !important;
-    margin-left : 14px !important;
+    margin-left : 12px !important;
     margin-right : 0px;
     color:#FFF;
 }
@@ -32,7 +32,7 @@
     margin-left: auto;
 }
 #showChatting {
-    padding: 4px 4px;
+    padding: 5px 4px;
 }
 
 .leader {
@@ -115,11 +115,14 @@
 	align-items: center; /* add to align vertical */
 }
 .invitemsgspan{
-	padding-top:;
+	display: table-cell;
+	padding-left: 10px;
+	text-align: left;
+	vertical-align: middle;
 }
 .navbar-nav>li>a {
     padding-top: 13px;
-    padding-bottom: 0px;
+    padding-bottom: 3px;
 }
 .alramdropdown > .dropdown-menu:after {
     border-bottom: 6px solid #999999;
@@ -215,6 +218,8 @@
 }
 #emailSearch{
 	border-radius: 10px; 
+    margin-left: 7px;
+    width: 250px;
 }
 .btn-invitebutton{
 	background-color : #566270;

@@ -63,7 +63,7 @@
   margin: 0;
   height: 60px;
   width: 100%;
-  background-color: #eee;
+  background-color: #566270;
   z-index: 1000;
 }
 
@@ -120,7 +120,13 @@
 .heading-dot i {
   text-align: right;
   padding: 5px;
-  color: #93918f;
+  color: #FFF;
+  cursor: pointer;
+}
+.heading-dot i:hovor {
+  text-align: right;
+  padding: 5px;
+  color: #566270;
   cursor: pointer;
 }
 
