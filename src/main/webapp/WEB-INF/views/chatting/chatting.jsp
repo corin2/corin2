@@ -17,7 +17,6 @@
         <div class="row heading">
           <div class="col-sm-3 col-xs-3 heading-avatar">
             <div class="heading-avatar-icon">
-              <img src="resources/images/chatting/chatting-icon.png">
             </div>
           </div>
         </div>
@@ -42,7 +41,7 @@
     <div class="col-sm-10 conversation">
       <div class="row heading">
         <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
-          <div class="heading-avatar-icon">
+          <div class="heading-avatar-myicon">
             <img id="currentChatUserProfile" src="resources/images/profile/none.png">
           </div>
         </div>
@@ -72,7 +71,7 @@
           <textarea class="form-control" rows="1" id="messageText"></textarea>
         </div>
         <div class="col-sm-1 col-xs-1 reply-send" id="sendMessageBtn">
-          <i class="fa fa-send 2x" aria-hidden="true"></i>
+          <i class="fa fa-send" aria-hidden="true"></i>
         </div>
       </div>
     </div>

@@ -16,8 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <div class="sidebar-header">
-    <h3>corin2</h3>
-    <strong><i class="glyphicon glyphicon-leaf"></i></strong>
+    <img src="resources/images/logo/corin2.PNG"></img>
 </div>
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">

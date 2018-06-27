@@ -254,17 +254,18 @@ $(function() {
 			$('#conversation').append(
 					'<div class="row message-body">'
 					+ '<div class="col-sm-12 message-main-receiver">'
-					+ '<div class="receiver">'
-					+ '<div class="heading-avatar-icon">'
-		            + '<img src="resources/images/profile/' + message.userprofile + '">'
-		            + '<span style="font-size: 15px; font-weight:bold;">' + message.username +'</span>'
-		            + '</div>'
+					+ '<div class="col-sm-3 heading-avatar-icon">'
+					+ '<img src="resources/images/profile/' + message.userprofile + '">'
+					+ '</div><div class="col-sm-9 heading-avatar-name">'
+					+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + message.username +'</span>'
+					+ '<div class="receiver bubble">'
 					+ '<div class="message-text">'
 					+ message.text
 					+ '</div>'
 					+ '<span class="message-time pull-right">'
 					+ convertTime(message.timestamp)
 					+ '</span>'
+					+ '</div>'
 					+ '</div>'
 					+ '</div>'
 					+ '</div>'

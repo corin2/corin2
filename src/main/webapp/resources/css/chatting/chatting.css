@@ -12,6 +12,30 @@
   font-size : 25px;
 }
 
+.bubble{
+position: relative;
+width: 350px;
+height: auto;
+padding: 5px;
+background: #FFFFFF;
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+}
+
+.bubble:after{
+content: '';
+position: absolute;
+border-style: solid;
+border-width: 5px 15px 5px 0;
+border-color: transparent #F8F4C7;
+display: block;
+width: 0;
+z-index: 1;
+left: -15px;
+top: 15px;
+}
+
 .app-one {
   background-color: #f7f7f7;
   height: 100%;
@@ -67,8 +91,25 @@
   cursor: pointer;
 
 }
-
+.heading-avatar-icon{
+	margin-top: 15px;
+	padding : 0px;
+	width : 20%;
+}
+.heading-avatar-myicon{
+	padding : 0px;
+	width : 20%;
+}
+.heading-avatar-name{
+	margin-left: 12px;
+	padding : 0px;
+}
 .heading-avatar-icon img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+.heading-avatar-myicon img {
   border-radius: 50%;
   height: 40px;
   width: 40px;
@@ -155,7 +196,6 @@
   margin: 0 !important;
   background-color: #566270;
   overflow-y: auto;
-  border-top: 1px solid #f7f7f7;
   height: calc(100% - 120px);
   
 }
@@ -302,7 +342,6 @@
   margin: 0 !important;
   height: 100%;
   /*width: 100%;*/
-  border-left: 1px solid rgba(0, 0, 0, .08);
   /*overflow-y: auto;*/
 }
 
@@ -320,8 +359,8 @@
 
 .message {
     height: 3px;
-    padding: 9px !important;
-    margin: 7px !important;
+    padding: 5px !important;
+    margin: 0px !important;
     background-size: cover;
     overflow-y: auto;
     height: calc(100% - 133px);
@@ -359,12 +398,12 @@
 }
 
 .message-main-receiver {
-  /*padding: 10px 20px;*/
-  max-width: 60%;
+  padding: 5px;
+  max-width: 80%;
 }
 
 .message-main-sender {
-  padding: 3px 20px !important;
+  padding: 0px !important;
   margin-left: 40% !important;
   max-width: 60%;
 }
@@ -390,8 +429,8 @@
 .receiver {
   width: auto !important;
   padding: 4px 10px 7px !important;
-  border-radius: 10px 10px 10px 0;
-  background: #ffffff;
+  border-radius: 10px 10px 10px 10px;
+  background: #F8F4C7;
   font-size: 12px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   word-wrap: break-word;
@@ -399,10 +438,11 @@
 }
 
 .sender {
+  margin: 3px;
   float: right;
   width: auto !important;
-  background: #dcf8c6;
-  border-radius: 10px 10px 0 10px;
+  background: #C7E2C3;
+  border-radius: 10px 10px 10px 10px;
   padding: 4px 10px 7px !important;
   font-size: 12px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
