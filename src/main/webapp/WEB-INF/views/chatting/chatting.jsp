@@ -10,14 +10,13 @@
 <link rel="stylesheet" type="text/css" href="resources/css/chatting/chatting.css">
 
 <!-- content -->
-<div class="container app">
+<div class="app">
   <div class="row app-one">
     <div class="col-sm-2 side">
       <div class="side-one">
         <div class="row heading">
           <div class="col-sm-3 col-xs-3 heading-avatar">
             <div class="heading-avatar-icon">
-              <img src="resources/images/chatting/chatting-icon.png">
             </div>
           </div>
         </div>
@@ -42,7 +41,7 @@
     <div class="col-sm-10 conversation">
       <div class="row heading">
         <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
-          <div class="heading-avatar-icon">
+          <div class="heading-avatar-myicon">
             <img id="currentChatUserProfile" src="resources/images/profile/none.png">
           </div>
         </div>

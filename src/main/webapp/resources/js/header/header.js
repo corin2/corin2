@@ -1,6 +1,8 @@
 $(function(){
-	projectMemberProfile();
-	if(sessionProjectNum != 'null') projectColorView();
+	if(sessionProjectNum != 'null') {
+		projectMemberProfile();
+		projectColorView();
+	}
 	
 	//alramicon hover
 	$('#alramicona').hover(function(){

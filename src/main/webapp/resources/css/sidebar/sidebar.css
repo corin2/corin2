@@ -2,7 +2,12 @@
     DEMO STYLE
 */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
+.sidebar-header > img{
+    width: 70px;
+    margin-left: -3px;
+    margin-top: 27px;
+    margin-bottom: 18px;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
@@ -111,7 +116,6 @@ i, span {
 }
 
 #sidebar .sidebar-header {
-    padding: 20px;
     background: #566270;
 }
 
@@ -263,4 +267,5 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+    
 }

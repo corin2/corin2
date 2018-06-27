@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.corin2.user.dao.UserDAO">
+
+	<select id="todayVisit" resultType="site.corin2.statistics.dto.StatisticsDTO">
+		select * from statistics
+		where DATE_FORMAT(statisticsdate, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d") 
+	</select>
+	
+	<select id="firstVisit" resultType="int">
+		select IFNULL(count(*), 0) from statistics
+		where DATE_FORMAT(statisticsdate, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")
+	</select>
+	
+	<insert id="statisticsInsert">
+		insert into statistics values(now(), 1)
+	</insert>
+	
+	<update id="statisticsCntUpdate">
+		update statistics set visit = visit + 1
+		where DATE_FORMAT(statisticsdate, "%Y-%m-%d") = DATE_FORMAT(now(), "%Y-%m-%d")
+	</update>
+	
+</mapper>
