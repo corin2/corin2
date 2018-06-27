@@ -1,21 +1,14 @@
-/* #conversation {
-  height: calc(70% + 38px);
-} */
-
-.fa-2x {
-  font-size: 1.5em;
-}
-
 .app {
   position: relative;
   overflow: hidden;
   top: 19px;
   /* height: calc(70% - 38px); */
   height: calc(70% - 38px); /* 추가한 내용 */
-  width: 400px; /* 추가한 내용 */
+  width: 450px; /* 추가한 내용 */
   margin: auto;
   padding: 0;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
+  border-radius: 13px;
 }
 
 .app-one {
@@ -41,6 +34,7 @@
   position: relative;
   display: block;
   top: 0;
+  background-color : #FFF;
 }
 
 .side-two {
@@ -63,7 +57,7 @@
   margin: 0;
   height: 60px;
   width: 100%;
-  background-color: #eee;
+  background-color: #566270;
   z-index: 1000;
 }
 
@@ -120,7 +114,13 @@
 .heading-dot i {
   text-align: right;
   padding: 5px;
-  color: #93918f;
+  color: #FFF;
+  cursor: pointer;
+}
+.heading-dot i:hovor {
+  text-align: right;
+  padding: 5px;
+  color: #566270;
   cursor: pointer;
 }
 
@@ -152,9 +152,9 @@
 .sideBar {
   padding: 0 !important;
   margin: 0 !important;
-  background-color: #fff;
+  background-color: #566270;
   overflow-y: auto;
-  border: 1px solid #f7f7f7;
+  border-top: 1px solid #f7f7f7;
   height: calc(100% - 120px);
   
 }
@@ -167,7 +167,6 @@
 .sideBar-body {
   position: relative;
   padding: 10px !important;
-  border-bottom: 1px solid #f7f7f7;
   height: 72px;
   margin: 0 !important;
   cursor: pointer;
@@ -306,14 +305,33 @@
   /*overflow-y: auto;*/
 }
 
-.message {
-  padding: 0 !important;
-  margin: 0 !important;
-  background-size: cover;
-  overflow-y: auto;
-  border: 1px solid #f7f7f7;
-  height: calc(100% - 120px);
+.chatscroll{
+    height: 3px;
+    padding: 9px !important;
+    margin: 7px !important;
+    background-size: cover;
+    overflow-y: auto;
+    height: calc(100% - 133px);
+    background-color: #FFF;
+    border-radius: 35px;
+    width: 97%;
 }
+
+.message {
+    height: 3px;
+    padding: 9px !important;
+    margin: 7px !important;
+    background-size: cover;
+    overflow-y: auto;
+    height: calc(100% - 133px);
+    background-color: #FFF;
+    border-radius: 35px;
+}
+
+.message ::-webkit-scrollbar{
+	display:none;
+}
+
 .message-previous {
   margin : 0 !important;
   padding: 0 !important;
