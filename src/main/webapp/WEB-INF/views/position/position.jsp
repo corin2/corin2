@@ -33,19 +33,6 @@ $(function(){
 	margin-left:0px;
 	margin-right:0px;
 }
-.dashboardfile{
- 	padding-top: 25px;
-    padding-left: 11px;
-    padding-right: 11px;
-
-}
-.dashboarddivcheck{
-	margin-bottom : 15px;
-	margin-top: 15px;
-	background-color: #ffffff;
-	border-radius: 25px;
-	padding: 30px;
-}
 .dashboarddivchart{
 	margin-bottom : 15px;
 	margin-top: 15px;
@@ -65,10 +52,6 @@ $(function(){
         <div class="col-sm-6 dashboardposition" style="min-height:770px;"><div id="dashboardcalendar" class="dashboarddiv"></div></div>
     </div>
     <div class="row kanbanrow">
-        <div class="col-sm-10 dashboardposition dashboarddiv" style="min-height: 200px; overflow: hidden;"><div style="min-height: 650px; min-width : 100%; overflow: hidden;"id="dashboardkanban"></div></div>
-		<div class="col-sm-2 dashboardposition"><div id="dashboardfiles" class="dashboarddiv dashboardfile" style="min-height: 200px; overflow: hidden;"></div></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12 dashboardposition"><div id="dashboardchecklist" class="dashboarddivcheck"></div></div>
+        <div class="col-sm-12 dashboardposition dashboarddiv" style="min-height: 200px; overflow: hidden;"><div style="min-height: 650px; min-width : 100%; overflow: hidden;"id="dashboardkanban"></div></div>
     </div>
 </div>
