@@ -10,7 +10,6 @@ package site.corin2.board.service;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,58 +17,57 @@ import org.slf4j.LoggerFactory;
 public class UploadFileUtils {
 	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 	
-	public static String uploadFile(String uploadPath, String originalName, byte[] byteData) throws Exception {
+	public static String uploadFile(String uploadPath, String projectNum, String originalName, byte[] byteData) throws Exception {
 		S3Util s3 = new S3Util();
 		String bucketName = "corin2.site";
 		
-		// 랜덤의 uid를 생성
-		UUID uid = UUID.randomUUID();
-		
-		// savedName : 570d570a-7af1-4afe-8ed5-391d660084b7_g.JPG 같은 형식으로 만들어준다.
-		String savedName = "/" + uid.toString() + "_" + originalName;
+		// savedName : 1529888132496_image.jpg 같은 형식으로 만들어준다.
+		String savedName = "/" + System.currentTimeMillis() + "_" + originalName; //현재날짜_파일명.확장자
 		
 		logger.info("업로드 경로: " + uploadPath);
 		
-		// \2018\06\27 같은 형태로 저장
-		String savedPath = calcPath(uploadPath);
-		
-		String uploadedFileName = null;
-		
-		uploadedFileName = (savedPath + savedName).replace(File.separatorChar, '/');
+		// '/project11/20180628'
+		String savedPath = calcPath(uploadPath, projectNum);
+		// '/project11/20180628/1529888132496_image.jpg'
+		String uploadedFileName = (savedPath + savedName).replace(File.separatorChar, '/');
+		// '/resources/upload/project11/20180628/1529888132496_image.jpg'
+		String finalFilePath = (uploadPath + uploadedFileName).replace(File.separatorChar, '/');
 		
 		// S3Util의 fileUpload 메서드로 파일을 업로드한다.
-		s3.fileUpload(bucketName, uploadPath+uploadedFileName, byteData);
+		s3.fileUpload(bucketName, finalFilePath, byteData);
 		
 		logger.info(uploadedFileName);
 		
-		return uploadedFileName;
+		return savedName;
 	}
 	
-	private static String calcPath(String uploadPath) {
+	private static String calcPath(String uploadPath, String projectNum) {
 		Calendar cal = Calendar.getInstance();
 
-		String yearPath = File.separator + cal.get(Calendar.YEAR);
+		/*String yearPath = File.separator + cal.get(Calendar.YEAR);
 		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));*/
 
-		makeDir(uploadPath, yearPath, monthPath, datePath);
+		int yearPath = cal.get(Calendar.YEAR);
+		String monthPath = yearPath + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		String datePath = monthPath + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+		
+		// '/project11/20180628' 식으로 경로 설정 
+		String sortedPath = "/project" + projectNum + "/" + datePath;
+		makeDir(uploadPath, projectNum, sortedPath);
 
-		logger.info(datePath);
-
-		return datePath;
+		return sortedPath;
 	}
 	
-	private static void makeDir(String uploadPath, String... paths) {
-		if (new File(paths[paths.length - 1]).exists()) {
+	private static void makeDir(String uploadPath, String projectNum, String sortedPath) {
+		if (new File(sortedPath).exists()) {
 			return;
 		}
 
-		for (String path : paths) {
-			File dirPath = new File(uploadPath + path);
+		File dirPath = new File(uploadPath + sortedPath);
 
-			if (!dirPath.exists()) {
-				dirPath.mkdir();
-			}
+		if (!dirPath.exists()) {
+			dirPath.mkdir();
 		}
 	}
 }

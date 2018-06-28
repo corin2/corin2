@@ -8,11 +8,12 @@ package site.corin2.board.controller;
 
 
 
+import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -22,11 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,49 +67,34 @@ public class UploadController {
 	//파일업로드 upload
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
-			
-		System.out.println("파일 업로드 커늩롤러"+projectNum);
-	
 		Iterator<String> itr = request.getFileNames();
-		
 		MultipartFile mpf =  request.getFile(itr.next()); 
-		 	
-		while(itr.hasNext()){}
-		System.out.println("uploadDTO" + uploadDTO.getProjectNum() +"/"+uploadDTO.getBoardNum() + "/");
-			
-		System.out.println(mpf.getOriginalFilename() +" uploaded! ");
-			 						//000.jpg            
-		//게시판 insert
+		
+		// 파일 정보가 없을 경우
+        if(mpf == null || mpf.getSize() <= 0) {
+        	return null;
+        }
+		
+		//System.out.println("uploadDTO" + uploadDTO.getProjectNum() +"/"+uploadDTO.getBoardNum() + "/");
+		//System.out.println(mpf.getOriginalFilename() +" uploaded! ");
+		
+		// 게시판에 파일함 정보 insert
 		boardDTO.setUserId(boardDTO.getUserId());
 		service.boardInsert(boardDTO);
 
 		//경로설정
-		String savepath = "resources/upload";  
-		//String downloadpath = request.getRealPath(savepath);
-		//String filePath = null;
-		 
-		//String fileName =null;
-		//String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
-		
-		//파일명 정하기
-		/*if(null != mpf && mpf.getSize() > 0) {
-			fileName = fileName1[0]+"_"+ System.currentTimeMillis()+"."+fileName1[1]; //파일_현재날짜.확장자 
-			uploadDTO.setUploadAlias(fileName);
-			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
-			filePath = downloadpath + "\\" + fileName;
-			
-		}else {
-			uploadDTO.setUploadAlias(mpf.getOriginalFilename());//파일명.확장자 
-			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
-			filePath = downloadpath + "\\" + mpf.getOriginalFilename();
-			
-		}*/
-		 //파일 insert
-		 service.uploadInsert(uploadDTO);
+		String savepath = "resources/upload";
+		String fileName = null;
+		String originalName = mpf.getOriginalFilename();;
 		
 		try {
-			//FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
-			UploadFileUtils.uploadFile(savepath, mpf.getOriginalFilename(), mpf.getBytes());
+			// AWS S3에 파일 업로드
+			fileName = UploadFileUtils.uploadFile(savepath, projectNum, originalName, mpf.getBytes());
+			
+			// DB에 파일 업로드 정보 insert
+			uploadDTO.setUploadAlias(fileName);
+			uploadDTO.setUploadOrigin(originalName);
+			service.uploadInsert(uploadDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -127,17 +111,30 @@ public class UploadController {
 	//다운로드 함수
 	@RequestMapping(value = "download", method = RequestMethod.GET)
 	public void download(HttpServletRequest request, HttpServletResponse response){
+        String filename = request.getParameter("fileName");
+		String savepath = "resources/upload";
 
-		String filename = request.getParameter("fileName");
-		String savepath = "resources/upload";  
-		String downloadpath = request.getRealPath(savepath);
-		String filePath = downloadpath + "\\" + filename;
+		//byte[] b = new byte[4096];
+		//InputStream in = null;
+		//HttpURLConnection uCon = null;
 		
-
-		byte[] b = new byte[4096];
-		try {
+		s3.fileDownload(bucketName, savepath+filename);
+		
+		/*try {
+			
 			//파일 다운로드
-			FileInputStream in = new FileInputStream(filePath);		
+			URL url;
+			
+			try {
+				url = new URL(s3.getFileURL(bucketName, savepath+filename));
+				uCon = (HttpURLConnection) url.openConnection();
+				in = uCon.getInputStream();
+			} catch (Exception e) {
+				System.out.println("다운로드에 실패했습니다.");
+			}
+			
+			
+			/*FileInputStream in = new FileInputStream(filePath);		
 		    response.setHeader("Content-Disposition", 
 		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
 		    ServletOutputStream out2 = response.getOutputStream();
@@ -150,10 +147,14 @@ public class UploadController {
 		    out2.close();
 		    in.close(); 
 		} catch (Exception e) {
-			
 			e.printStackTrace();
-		}
-		
+		} finally {
+			try {
+				in.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}*/
 		
 	}
 /*	//검색기능

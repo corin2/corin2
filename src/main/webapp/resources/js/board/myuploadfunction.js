@@ -129,7 +129,6 @@ function preview(uploadAlias){
 
 //파일 다운로드
 function download(uploadAlias) {
-
 	 location.href='download?fileName='+uploadAlias;
 }
 
