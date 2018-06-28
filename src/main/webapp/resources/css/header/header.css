@@ -233,3 +233,26 @@
 .btnSpan{
 	padding-top: 15px;
 }
+
+.ui-autocomplete {
+	min-width: 291px;
+    max-height: 150px;
+    overflow-y: auto; /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+	border-radius: 5px;
+}
+
+.ui-autocomplete::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+.ui-autocomplete::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #566270;
+}

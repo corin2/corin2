@@ -20,6 +20,8 @@ function existMsg(){
              'border-bottom-left-radius': '5px',
              'border-bottom-right-radius': '5px'
         });
+    }else {
+    	 $('#inviteMsg').closest('li').children('a').children('span').remove();
     }
 }
 
