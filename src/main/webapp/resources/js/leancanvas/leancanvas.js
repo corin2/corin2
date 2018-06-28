@@ -3,6 +3,7 @@ $(function () {
 	allSelectLeanCanvas();
 })
 
+//각 칸마다 textarea 생성
 function problemClick(string) {
 		console.log("2"+string);
 		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'></textarea></div>"
@@ -11,7 +12,7 @@ function problemClick(string) {
 		$("#"+string+"text").focus();
 	
 }
-
+//각칸의 내용 DB에 삽입
 function insertLean() {
 	$.ajax({
 		url:"leanInsert",
@@ -40,6 +41,7 @@ function insertLean() {
 	})
 }
 
+//leancanvas에 해당하는 내용 뿌려주기
 function allSelectLeanCanvas(){
 	$.ajax({
 		url:"leanCanvasAllSelect",
@@ -188,6 +190,8 @@ function allSelectLeanCanvas(){
 		}
 	})
 }
+
+//팀명 수정하는 input태그 생성
 function teamNameEditClick(string) {
 	if(string != ""){
 		$("#leanheader").empty();
@@ -205,6 +209,8 @@ function teamNameEditClick(string) {
 		$("#leanheader").append(html);
 	}
 }
+
+//해당 칸 수정하는 textarea생성
 function problemEditClick(string) {
 	if($("#"+string+">div").html()!=undefined){
 		var enter = $("#"+string+">div").html().replace(/<br\s?\/?>/gi,'\n');
@@ -222,7 +228,7 @@ function problemEditClick(string) {
 	
 }
 
-
+//해당칸의 내용 수정
 function leanUpdate() {
 	var teamName ="";
 	var problem ="";

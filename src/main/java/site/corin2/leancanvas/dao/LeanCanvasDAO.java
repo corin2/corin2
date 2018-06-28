@@ -12,9 +12,12 @@ import site.corin2.leancanvas.dto.LeanCanvasDTO;
 
 public interface LeanCanvasDAO {
 	
+	//린캔버스 삽입
 	public int leanInsert(LeanCanvasDTO lean);
 	
+	//린캔버스 내용 뿌려주기
 	public List<LeanCanvasDTO> leanAllSelect (LeanCanvasDTO lean);
 	
+	//린캔버스 수정
 	public int leanUpdate (LeanCanvasDTO lean);
 }
