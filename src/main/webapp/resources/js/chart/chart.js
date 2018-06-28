@@ -128,7 +128,7 @@ function checkedConfirmLength(maxData, chartData) {
 //confirm 팀장이 만든 체크리스트를 인원수마다 체크한 개수 + 차트
 function checkListProceedChart(maxData, chartData) {
 	$.ajax({
-		url:"selectCheckedConfirm",
+		url:"CheckListSelectAll",
 		datatype:"JSON",
 		data:{projectNum:sessionProjectNum},
 		success:function(data){
