@@ -18,7 +18,9 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
@@ -41,6 +43,14 @@ public class S3Util {
 		clientConfig.setProtocol(Protocol.HTTP);
 		this.conn = new AmazonS3Client(credentials, clientConfig);
 		conn.setEndpoint("s3.ap-northeast-2.amazonaws.com"); // '아시아 태평양 서울' 리전 엔드포인트
+		//추가
+		/*conn = AmazonS3ClientBuilder
+				.standard()
+				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8090", "s3.ap-northeast-2.amazonaws.com"))
+				.withPathStyleAccessEnabled(true)
+                .withClientConfiguration(clientConfig)
+                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+                .build();*/
 	}
 	
 	// 버킷 리스트
@@ -69,12 +79,15 @@ public class S3Util {
 		conn.putObject(bucketName, filePath, byteArrayInputStream, metaData);
 	}
 	
+	// 파일 다운로드
 	public void fileDownload(String bucketName, String fileName) {
-		conn = AmazonS3ClientBuilder.defaultClient();
+		//conn = AmazonS3ClientBuilder.defaultClient();
 		
 		try {
-		    S3Object o = conn.getObject(bucketName, fileName);
+			S3Object o = conn.getObject(bucketName, fileName);
 		    S3ObjectInputStream s3is = o.getObjectContent();
+		    System.out.println("파일경로: " + s3is.toString());
+		    System.out.format("Downloading %s from S3 bucket %s...\n", fileName, bucketName);
 		    FileOutputStream fos = new FileOutputStream(new File(fileName));
 		    byte[] read_buf = new byte[1024];
 		    int read_len = 0;

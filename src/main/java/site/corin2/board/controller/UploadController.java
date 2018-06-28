@@ -118,7 +118,8 @@ public class UploadController {
 		//InputStream in = null;
 		//HttpURLConnection uCon = null;
 		
-		s3.fileDownload(bucketName, savepath+filename);
+		// '/resources/upload/1529888132496_image.jpg'
+		s3.fileDownload(bucketName, savepath+ "/" + filename);
 		
 		/*try {
 			

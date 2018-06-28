@@ -22,20 +22,21 @@ public class UploadFileUtils {
 		String bucketName = "corin2.site";
 		
 		// savedName : 1529888132496_image.jpg 같은 형식으로 만들어준다.
-		String savedName = "/" + System.currentTimeMillis() + "_" + originalName; //현재날짜_파일명.확장자
+		String savedName = System.currentTimeMillis() + "_" + originalName; //현재날짜_파일명.확장자
 		
 		logger.info("업로드 경로: " + uploadPath);
 		
 		// '/project11/20180628'
-		String savedPath = calcPath(uploadPath, projectNum);
+		String savedPath = calcPath(uploadPath, projectNum) + "/";
 		// '/project11/20180628/1529888132496_image.jpg'
 		String uploadedFileName = (savedPath + savedName).replace(File.separatorChar, '/');
 		// '/resources/upload/project11/20180628/1529888132496_image.jpg'
 		String finalFilePath = (uploadPath + uploadedFileName).replace(File.separatorChar, '/');
 		
 		// S3Util의 fileUpload 메서드로 파일을 업로드한다.
-		s3.fileUpload(bucketName, finalFilePath, byteData);
-		
+		//s3.fileUpload(bucketName, finalFilePath, byteData);
+		// '/resources/upload/1529888132496_image.jpg'
+		s3.fileUpload(bucketName, uploadPath + "/" + savedName, byteData);
 		logger.info(uploadedFileName);
 		
 		return savedName;
