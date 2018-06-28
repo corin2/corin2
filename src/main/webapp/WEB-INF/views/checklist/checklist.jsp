@@ -19,9 +19,9 @@
   <div id="tabs-2">
   
   </div>
-  <div id="tabs-3">
+  <div id="tabs-3" class="checklistFlow">
   </div>
-  <div id="tabs-4">
+  <div id="tabs-4" class="checklistFlow">
   </div>
 
 </div>
