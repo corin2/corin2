@@ -9,37 +9,28 @@
 
 package site.corin2.statistics.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import site.corin2.statistics.service.StatisticsService;
 
-@Controller
 public class StatisticsController implements HttpSessionListener {
 
-	@Autowired
-	private StatisticsService service;
-	
 	@Override
 	public void sessionCreated(HttpSessionEvent sessionEve) {
-		//세션이 새로 생성되면 execute() 를 실행한다.
-		System.out.println("111111111aa");
-		if(sessionEve.getSession().isNew()){
-			System.out.println("22222222222ss");
-			execute();
-		}
+		HttpSession session = sessionEve.getSession();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
+		StatisticsService statisticsService = (StatisticsService)context.getBean("statisticsService");
+		/*ApplicationContext context =
+				new GenericXmlApplicationContext("classpath:main/webapp/WEB-INF/spring/appServlet/servlet-context.xml");
+		StatisticsService statisticsService = context.getBean("statisticsService", StatisticsService.class);*/
+		statisticsService.statisticsCntUpdate(context);
 	}
 	
-	//방문자수 플러스
-    public void execute() {
-    	System.out.println("333333333qq");
-    	System.out.println("000"+service);
-    	service.statisticsCntUpdate();
-    }
-
 	@Override
 	public void sessionDestroyed(HttpSessionEvent se) {}
 	

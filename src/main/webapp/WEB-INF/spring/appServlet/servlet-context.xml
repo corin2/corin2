@@ -14,6 +14,7 @@
        http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+	<bean id="statisticsService" class="site.corin2.statistics.service.StatisticsService" />
 	
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 

@@ -17,9 +17,9 @@
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	<!-- <listener>
+	<listener>
 		<listener-class>site.corin2.statistics.controller.StatisticsController</listener-class>
-	</listener> -->
+	</listener>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>

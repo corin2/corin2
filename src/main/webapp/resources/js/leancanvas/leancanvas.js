@@ -189,13 +189,21 @@ function allSelectLeanCanvas(){
 	})
 }
 function teamNameEditClick(string) {
-	$("#leanheader").empty();
-	var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
-			+'<br>'
-			+'<br>'
-			+'<br>'
+	if(string != ""){
+		$("#leanheader").empty();
+		var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onfocusout="allSelectLeanCanvas()" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
+		+'<br>'
+		+'<br>'
+		+'<br>'
 		$("#leanheader").append(html);
-	
+	}else{
+		$("#leanheader").empty();
+		var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을입력해주세요" class="search" onfocusout="allSelectLeanCanvas()" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
+		+'<br>'
+		+'<br>'
+		+'<br>'
+		$("#leanheader").append(html);
+	}
 }
 function problemEditClick(string) {
 	if($("#"+string+">div").html()!=undefined){

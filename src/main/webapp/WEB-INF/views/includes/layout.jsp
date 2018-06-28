@@ -40,6 +40,7 @@
 		});
 		
 		function contentCssEdit() {
+			var skill = '';
 			if(window.location.pathname.indexOf('project') > -1){
 				skill = 'project';
 			}else if(window.location.pathname.indexOf('admin') > -1){
