@@ -31,6 +31,7 @@ public class LeanCanvasController {
 		return "leancanvas.leancanvas";
 	}
 	
+	//린캔버스 삽입
 	@RequestMapping("/leanInsert")
 	public View leanCanvasInsertView(LeanCanvasDTO lean) {
 		int result = service.leanInsert(lean);
@@ -38,6 +39,7 @@ public class LeanCanvasController {
 		
 	}
 	
+	//린캔버스 내용 뿌리기
 	@RequestMapping("/leanCanvasAllSelect")
 	public View leanAllSelectView(LeanCanvasDTO lean, Model model) {
 		List<LeanCanvasDTO> list = null;
@@ -47,6 +49,7 @@ public class LeanCanvasController {
 		
 	}
 	
+	//린캔버스 수정
 	@RequestMapping("/leanUpdate")
 	public View leanUpdateView(LeanCanvasDTO lean) {
 		int result = service.leanUpdate(lean);
