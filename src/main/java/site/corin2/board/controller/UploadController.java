@@ -75,9 +75,6 @@ public class UploadController {
         	return null;
         }
 		
-		//System.out.println("uploadDTO" + uploadDTO.getProjectNum() +"/"+uploadDTO.getBoardNum() + "/");
-		//System.out.println(mpf.getOriginalFilename() +" uploaded! ");
-		
 		// 게시판에 파일함 정보 insert
 		boardDTO.setUserId(boardDTO.getUserId());
 		service.boardInsert(boardDTO);
@@ -109,56 +106,8 @@ public class UploadController {
 	}
 
 	//다운로드 함수
-	@RequestMapping(value = "download", method = RequestMethod.GET)
-	public void download(HttpServletRequest request, HttpServletResponse response){
-        String filename = request.getParameter("fileName");
-		String savepath = "resources/upload";
-
-		//byte[] b = new byte[4096];
-		//InputStream in = null;
-		//HttpURLConnection uCon = null;
-		
-		// '/resources/upload/1529888132496_image.jpg'
-		//살릴것 s3.fileDownload(bucketName, savepath+ "/" + filename);
-		s3.fileDownload(bucketName, filename);
-		
-		/*try {
-			
-			//파일 다운로드
-			URL url;
-			
-			try {
-				url = new URL(s3.getFileURL(bucketName, savepath+filename));
-				uCon = (HttpURLConnection) url.openConnection();
-				in = uCon.getInputStream();
-			} catch (Exception e) {
-				System.out.println("다운로드에 실패했습니다.");
-			}
-			
-			
-			/*FileInputStream in = new FileInputStream(filePath);		
-		    response.setHeader("Content-Disposition", 
-		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
-		    ServletOutputStream out2 = response.getOutputStream();
-		    int numread;
-		    while((numread = in.read(b,0,b.length)) != -1){
-		       out2.write(b,0,numread);
-		    }
-		    
-		    out2.flush();
-		    out2.close();
-		    in.close(); 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				in.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}*/
-		
-	}
+	// AWS S3 URL로 다운로드 기능 구현
+	
 /*	//검색기능
 	@RequestMapping(value="searchSelect" , method = RequestMethod.GET)
 	public void searcherSelect() {

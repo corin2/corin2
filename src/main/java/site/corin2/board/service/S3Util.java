@@ -44,14 +44,6 @@ public class S3Util {
 		clientConfig.setProtocol(Protocol.HTTP);
 		this.conn = new AmazonS3Client(credentials, clientConfig);
 		conn.setEndpoint("s3.ap-northeast-2.amazonaws.com"); // '아시아 태평양 서울' 리전 엔드포인트
-		//추가
-		/*conn = AmazonS3ClientBuilder
-				.standard()
-				.withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration("http://localhost:8090", "s3.ap-northeast-2.amazonaws.com"))
-				.withPathStyleAccessEnabled(true)
-                .withClientConfiguration(clientConfig)
-                .withCredentials(new AWSStaticCredentialsProvider(credentials))
-                .build();*/
 	}
 	
 	// 버킷 리스트
@@ -80,47 +72,14 @@ public class S3Util {
 		conn.putObject(bucketName, filePath, byteArrayInputStream, metaData);
 	}
 	
-	// 파일 다운로드
-	public void fileDownload(String bucketName, String fileName) {
-		//conn = AmazonS3ClientBuilder.defaultClient();
-		
-		try {
-			//S3Object o = conn.getObject(bucketName, fileName);
-			S3Object o = conn.getObject(new GetObjectRequest(bucketName, fileName));
-		    S3ObjectInputStream s3is = o.getObjectContent();
-		    System.out.println("파일경로: " + s3is.toString());
-		    System.out.format("Downloading %s from S3 bucket %s...\n", fileName, bucketName);
-		    FileOutputStream fos = new FileOutputStream(new File(fileName));
-		    byte[] read_buf = new byte[1024];
-		    int read_len = 0;
-		    while ((read_len = s3is.read(read_buf)) > 0) {
-		        fos.write(read_buf, 0, read_len);
-		    }
-		    System.out.println("완료했다");
-		    s3is.close();
-		    fos.close();
-		} catch (AmazonServiceException e) {
-		    System.err.println(e.getErrorMessage());
-		    System.exit(1);
-		} catch (FileNotFoundException e) {
-		    System.err.println(e.getMessage());
-		    System.exit(1);
-		} catch (IOException e) {
-		    System.err.println(e.getMessage());
-		    System.exit(1);
-		}
-	}
-	
 	// 파일 삭제
 	public void fileDelete(String bucketName, String fileName) {
 		String imgName = (fileName).replace(File.separatorChar, '/');
 		conn.deleteObject(bucketName, imgName);
-		System.out.println("삭제 성공");
 	}
 	
 	// 파일 URL
 	public String getFileURL(String bucketName, String fileName) {
-		System.out.println("받는 파일명: " + fileName);
 		String imgName = (fileName).replace(File.separatorChar, '/');
 		return conn.generatePresignedUrl(new GeneratePresignedUrlRequest(bucketName, imgName)).toString();
 	}

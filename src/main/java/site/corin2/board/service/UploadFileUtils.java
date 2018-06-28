@@ -15,7 +15,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class UploadFileUtils {
-	private static final Logger logger = LoggerFactory.getLogger(UploadFileUtils.class);
 	
 	public static String uploadFile(String uploadPath, String projectNum, String originalName, byte[] byteData) throws Exception {
 		S3Util s3 = new S3Util();
@@ -23,8 +22,6 @@ public class UploadFileUtils {
 		
 		// savedName : 1529888132496_image.jpg 같은 형식으로 만들어준다.
 		String savedName = System.currentTimeMillis() + "_" + originalName; //현재날짜_파일명.확장자
-		
-		logger.info("업로드 경로: " + uploadPath);
 		
 		// '/project11/20180628'
 		String savedPath = calcPath(uploadPath, projectNum) + "/";
@@ -34,21 +31,13 @@ public class UploadFileUtils {
 		String finalFilePath = (uploadPath + uploadedFileName).replace(File.separatorChar, '/');
 		
 		// S3Util의 fileUpload 메서드로 파일을 업로드한다.
-		//s3.fileUpload(bucketName, finalFilePath, byteData);
-		// '/resources/upload/1529888132496_image.jpg'
-		//s3.fileUpload(bucketName, uploadPath + "/" + savedName, byteData);
-		s3.fileUpload(bucketName, savedName, byteData);
-		logger.info(uploadedFileName);
+		s3.fileUpload(bucketName, finalFilePath, byteData);
 		
-		return savedName;
+		return finalFilePath;
 	}
 	
 	private static String calcPath(String uploadPath, String projectNum) {
 		Calendar cal = Calendar.getInstance();
-
-		/*String yearPath = File.separator + cal.get(Calendar.YEAR);
-		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));*/
 
 		int yearPath = cal.get(Calendar.YEAR);
 		String monthPath = yearPath + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
