@@ -58,9 +58,8 @@ function allSelectLeanCanvas(){
 					$("#leanheader").append(html);
 				}else{
 					$("#leanheader").empty();
-				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search"></h2>'
+				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search"><span class="glyphicon close1 kanbanCheckMod" onclick="teamNameEditClick(\''+elt.teamName+'\')" >&#xe065;</span></h2>'
 						+'<br>'
-						+'<input type="button" value="팀명수정" class="btn btn-success" onclick="teamNameEditClick(\''+elt.teamName+'\')" style="float: right; margin-right: 8%">'
 						+'<br>'
 						+'<br>';
 					$("#leanheader").append(html);
@@ -190,13 +189,21 @@ function allSelectLeanCanvas(){
 	})
 }
 function teamNameEditClick(string) {
-	$("#leanheader").empty();
-	var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
-			+'<br>'
-			+'<br>'
-			+'<br>'
+	if(string != ""){
+		$("#leanheader").empty();
+		var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onfocusout="allSelectLeanCanvas()" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
+		+'<br>'
+		+'<br>'
+		+'<br>'
 		$("#leanheader").append(html);
-	
+	}else{
+		$("#leanheader").empty();
+		var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을입력해주세요" class="search" onfocusout="allSelectLeanCanvas()" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
+		+'<br>'
+		+'<br>'
+		+'<br>'
+		$("#leanheader").append(html);
+	}
 }
 function problemEditClick(string) {
 	if($("#"+string+">div").html()!=undefined){
