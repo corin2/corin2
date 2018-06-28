@@ -36,7 +36,8 @@ public class UploadFileUtils {
 		// S3Util의 fileUpload 메서드로 파일을 업로드한다.
 		//s3.fileUpload(bucketName, finalFilePath, byteData);
 		// '/resources/upload/1529888132496_image.jpg'
-		s3.fileUpload(bucketName, uploadPath + "/" + savedName, byteData);
+		//s3.fileUpload(bucketName, uploadPath + "/" + savedName, byteData);
+		s3.fileUpload(bucketName, savedName, byteData);
 		logger.info(uploadedFileName);
 		
 		return savedName;

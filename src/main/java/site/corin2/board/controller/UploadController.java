@@ -119,7 +119,8 @@ public class UploadController {
 		//HttpURLConnection uCon = null;
 		
 		// '/resources/upload/1529888132496_image.jpg'
-		s3.fileDownload(bucketName, savepath+ "/" + filename);
+		//살릴것 s3.fileDownload(bucketName, savepath+ "/" + filename);
+		s3.fileDownload(bucketName, filename);
 		
 		/*try {
 			

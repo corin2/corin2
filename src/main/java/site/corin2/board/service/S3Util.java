@@ -26,6 +26,7 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
+import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
@@ -84,7 +85,8 @@ public class S3Util {
 		//conn = AmazonS3ClientBuilder.defaultClient();
 		
 		try {
-			S3Object o = conn.getObject(bucketName, fileName);
+			//S3Object o = conn.getObject(bucketName, fileName);
+			S3Object o = conn.getObject(new GetObjectRequest(bucketName, fileName));
 		    S3ObjectInputStream s3is = o.getObjectContent();
 		    System.out.println("파일경로: " + s3is.toString());
 		    System.out.format("Downloading %s from S3 bucket %s...\n", fileName, bucketName);
@@ -94,6 +96,7 @@ public class S3Util {
 		    while ((read_len = s3is.read(read_buf)) > 0) {
 		        fos.write(read_buf, 0, read_len);
 		    }
+		    System.out.println("완료했다");
 		    s3is.close();
 		    fos.close();
 		} catch (AmazonServiceException e) {
