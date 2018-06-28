@@ -11,10 +11,10 @@
 		<div id="join-form" class="join-form margin-large">
 			<div class="col-sm-8">
 				<h6 class="profilewhite">이름</h6>
-				<input type="text"  class="form-control profile-name" name="userName" id="userName" value="${userdto.userName}"/>
+				<input type="text"  class="form-control profile-name" name="userName" id="userName" onkeyup="fnChkLength(this, 10)" value="${userdto.userName}"/>
 			</div>
 			<div class="col-sm-4">
-				<input class="btn btn-okay btn-profile-button" type="button" id="nickname-button" value="수정하기" />
+				<input class="btn btn-okay btn-profile-button" type="button" id="nickname-button" value="수정하기"/>
 			</div>
 		</div>
 	</form>
