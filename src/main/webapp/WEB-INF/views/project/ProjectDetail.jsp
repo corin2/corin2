@@ -10,7 +10,7 @@
 			
 			<div class="modal-body">
 				<div id="detailButton" class="flex2">
-					<div id="projectDetail" class="form-group">
+					<div  id="projectDetail" class="form-group">
 					<h3>프로젝트제목입력:</h3>
 					<input id ="ProjectName" type="text">
 					</div>
