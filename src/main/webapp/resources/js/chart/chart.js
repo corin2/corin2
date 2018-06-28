@@ -128,7 +128,7 @@ function checkedConfirmLength(maxData, chartData) {
 //confirm 팀장이 만든 체크리스트를 인원수마다 체크한 개수 + 차트
 function checkListProceedChart(maxData, chartData) {
 	$.ajax({
-		url:"selectCheckedConfirm",
+		url:"CheckListSelectAll",
 		datatype:"JSON",
 		data:{projectNum:sessionProjectNum},
 		success:function(data){
@@ -146,6 +146,7 @@ function checkListProceedChart(maxData, chartData) {
 			$.each(chartData, function(i, elt) {
 				labels.push(elt.name); datas.push(elt.length);
 			});
+			console.log("datas.length"+datas.length)
 			var ctx = document.getElementById("checkListProceedChart").getContext('2d');
 			let chart = new Chart(ctx, {
 				type: 'polarArea',
@@ -158,7 +159,12 @@ function checkListProceedChart(maxData, chartData) {
 					}],
 					labels: labels
 				},
+				animation: {
+					animateRotate: false,
+					animateScale: true
+				},
 				options: {
+					responsive: true,
 					scale: {
 						ticks: {
 							max: maxData,

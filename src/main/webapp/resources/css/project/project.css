@@ -164,3 +164,12 @@
   margin-bottom: 20px;
   float: left;
 }
+
+.proinputclass{
+	text-align: center;
+}
+
+.proradioclass{
+	margin-left: 10%;
+	margin-bottom: 10%;
+}
