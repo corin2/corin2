@@ -17,9 +17,7 @@ public class StatisticsService {
 	//방문자 카운터 수 증가
 	public void statisticsCntUpdate(ApplicationContext context) {
 		SqlSession sqlsession = (SqlSession)context.getBean("sqlSession");
-		System.out.println(sqlsession);
 		StatisticsDAO statisticsdao = sqlsession.getMapper(StatisticsDAO.class);
-		System.out.println(statisticsdao);
 		try {
 			int result = statisticsdao.firstVisit();
 			if(result == 0) {
