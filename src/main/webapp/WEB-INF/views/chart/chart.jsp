@@ -16,4 +16,6 @@
 			<canvas id="checkListProceedChart"></canvas>
 		</div>
 	</div>
+<div style="height: auto;">
+</div>
 </div>

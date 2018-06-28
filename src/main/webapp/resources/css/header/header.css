@@ -87,12 +87,6 @@
 	padding:10px 0px 10px 0px;
 }
 
-#inviteMsg label {
-	text-align: center;
-	width:460px;
-	background-color: #566270;
-	margin-bottom : 0px;
-}
 .whitehr{
 	color : #FFF;
 	margin : 0px;
@@ -181,11 +175,12 @@
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 #inviteMsg{
+	font-weight : bold;
 	position: absolute;
     top: 110%;
     z-index: 1000;
     float: left;
-    min-height: 60px;
+    min-height: 78px;
     min-width: 460px;
     padding: 0px 0;
     margin: 0px 0 0;
@@ -231,7 +226,7 @@
 	padding-top : 4px;
 }
 .btnSpan{
-	padding-top: 15px;
+	padding-top: 12px;
 }
 
 .ui-autocomplete {
@@ -255,4 +250,56 @@
     border-bottom-left-radius: 10px;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #566270;
+}
+.btn-2a{
+	margin-right: 10px;
+	background-color : #2ECC71;
+	border: 3px solid #fff;
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-2b{
+	background-color : #F06060;
+	border: 3px solid #fff;
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.btn-2a:hover, .btn-2a:active {
+    color: #2ECC71;
+    background: #fff;
+}
+.btn-2b:hover, .btn-2b:active {
+	color: #F06060;
+    background: #fff;
+}
+
+.invitemsgcontent{
+	width: 58.666667%;
+	padding-right: 0px;
 }
