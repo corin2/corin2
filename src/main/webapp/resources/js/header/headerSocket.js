@@ -1,5 +1,5 @@
 $(function(){
-	headerconnect();
+	if(sessionProjectNum != 'null') headerconnect();
 });
 
 var wHeaderSocket;
