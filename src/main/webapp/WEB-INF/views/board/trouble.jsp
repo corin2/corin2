@@ -60,10 +60,14 @@ function fncTegSplit(str){
 		<!-- <button type="button" class="btn btn-success btn-wide">
 			<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
 		</button> -->
-		
+		report
 		<a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
 				class="btn btn-success btn-wide">
 				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
+		</button></a>
+		<a href="report"><button type="button"
+				class="btn btn-danger btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 출력
 		</button></a>
 		<a href="troubleins"><button type="button"
 				class="btn btn-primary btn-wide">

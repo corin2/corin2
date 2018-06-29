@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl"><name>Corin2 Data Adapter </name><driver>org.mariadb.jdbc.Driver</driver><username>corin2</username><password>1004</password><savePassword>true</savePassword><url>jdbc:mariadb://192.168.0.28:3306/corin2</url><database></database><serverAddress></serverAddress></jdbcDataAdapter>

@@ -17,21 +17,29 @@
 			  onblur : function(e) {
 		            $('#summercontent').html($('#summernote').code());
 		        },
-		    height : 100, // set editor height
-		    width : 900 // set editor width
+		    height : 200, // set editor height
+		    width : 900, // set editor width
+		    
+		    airMode:true
 		  });
 		  $('#summernote2').summernote({
 			  onblur : function(e) {
 		            $('#summercontent').html($('#summernote').code());
 		        },
-		    height : 150, // set editor height
-		    width : 900 // set editor width
+		    height : 200, // set editor height
+		    width : 900, // set editor width
+		    
+		    airMode:true
 		  });
 			
 		  //최초커서위치를 hashtag로 이동. 안됨 ㅠㅠ 다시알아볼것
 		  //document.insfrm.hashtag.focus();
 	});
-	
+	function editts(){
+			//$('#summernote').summernote({ airMode:false; });
+			//$('#summernote2').summernote({ airMode:false; });
+			alert("2");
+		}
 </script>
 
 
@@ -46,6 +54,7 @@
 		<h3>해결/조치 방법</h3>
 		<textarea id="summernote2" name="solution">${data.solution}</textarea>
 		<div>
+			<button id="edit" class="btn btn-primary" onclick="editts()" type="button">수정</button>
 			<input type="submit" class="btn btn-primary" value="작성" style="margin-right: 15px">
 			<a href="delete?boardNum=${data.boardNum}" class="btn btn-danger" type="button ">삭제</a>
 			&nbsp;&nbsp;&nbsp;&nbsp;
