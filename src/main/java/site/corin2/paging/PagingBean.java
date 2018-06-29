@@ -15,27 +15,6 @@ public class PagingBean {
 	private int countPerPage; //1 페이지당 보여줄 리스트 갯수
 	private int blockCount; //paging page 숫자의 블록 카운트
 	
-	private String searchColumn; //검색 컬럼
-	private int startseq; //검색어
-	private int endseq; //시작
-	private String searchWord; //종료
-	
-	public int getStartseq() {
-		return startseq;
-	}
-	
-	public void setStartseq(int i) {
-		this.startseq = i;
-	}
-	
-	public int getEndseq() {
-		return endseq;
-	}
-	
-	public void setEndseq(int i) {
-		this.endseq = i;
-	}
-	
 	public int getNowPage() {
 		return nowPage;
 	}
@@ -66,22 +45,6 @@ public class PagingBean {
 	
 	public void setBlockCount(int blockCount) {
 		this.blockCount = blockCount;
-	}
-	
-	public String getSearchColumn() {
-		return searchColumn;
-	}
-	
-	public void setSearchColumn(String searchColumn) {
-		this.searchColumn = searchColumn;
-	}
-	
-	public String getSearchWord() {
-		return searchWord;
-	}
-	
-	public void setSearchWord(String searchWord) {
-		this.searchWord = searchWord;
 	}
 	
 	public int getStartNum() {
