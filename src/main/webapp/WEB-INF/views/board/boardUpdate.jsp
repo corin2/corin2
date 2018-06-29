@@ -9,6 +9,9 @@
 		<h2 id='boardUpdateTitle'>공지사항 수정하기</h2>
 		<hr>
 		<form action="boardUpdate?boardnum=${detail.boardNum}" method="post">
+			<input type="hidden" name="countPerPage" value="${page.countPerPage}">
+			<input type="hidden" name="blockCount" value="${page.blockCount}">
+			<input type="hidden" name="nowPage" value="${page.nowPage}">
 			<table class="table table-update">
 				<tbody>
 					<tr>

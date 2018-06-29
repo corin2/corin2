@@ -44,16 +44,17 @@ public class BoardController {
 
 	//글쓰기 get
 	@RequestMapping(value="boardInsert" ,method = RequestMethod.GET)
-	public String boardInsert() {
+	public String boardInsert(PagingBean page, Model model) {
+		model.addAttribute("page", page);
 		return "board.boardInsert";
 	}
 
 	//글쓰기 post
 	@RequestMapping(value= "boardInsert" ,method = RequestMethod.POST)
-	public String boardanInsert(BoardDTO boardDTO,AnnounceDTO announceDTO) {//글쓰기 처리	
+	public String boardanInsert(BoardDTO boardDTO, PagingBean page, AnnounceDTO announceDTO) {//글쓰기 처리	
 		service.boardInsert(boardDTO); //board insert
 		service.announceInsert(announceDTO); //announce insert
-		return "redirect:boardList";
+		return "redirect:boardList?countPerPage="+page.getCountPerPage()+"&blockCount="+page.getBlockCount()+"&nowPage="+page.getNowPage();
 	}
 	
 	//상세보기
@@ -67,28 +68,26 @@ public class BoardController {
 	
 	//수정 get
 	@RequestMapping(value="boardUpdate",method=RequestMethod.GET)
-	public String boardUpdate(int boardnum,Model model) {
+	public String boardUpdate(int boardnum, PagingBean page, Model model) {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
 		model.addAttribute("detail",boardDTO);
+		model.addAttribute("page", page);
 		return "board.boardUpdate";
 	}
 	
 	//수정 post
 	@RequestMapping(value="boardUpdate",method=RequestMethod.POST)
-	public String boardUpdate(BoardDTO boardDTO,AnnounceDTO announceDTO ) {
-
+	public String boardUpdate(BoardDTO boardDTO, PagingBean page, AnnounceDTO announceDTO, Model model) {
 		service.boardUpdate(boardDTO);
 		service.announceUpdate(announceDTO);
-		return "redirect:boardDetail?boardnum="+boardDTO.getBoardNum();
+		return "redirect:boardDetail?boardnum="+boardDTO.getBoardNum()+"&countPerPage="+page.getCountPerPage()+"&blockCount="+page.getBlockCount()+"&nowPage="+page.getNowPage();
 	}
 	
 	//보드 삭제
 	@RequestMapping("boardDelete")
-	public String boardDelete(int boardnum) {
-		
+	public String boardDelete(int boardnum, PagingBean page) {
 		service.boardDelete(boardnum);
-		
-		return "redirect:boardList";
+		return "redirect:boardList?countPerPage="+page.getCountPerPage()+"&blockCount="+page.getBlockCount()+"&nowPage="+page.getNowPage();
 	}
 	
 

@@ -42,6 +42,9 @@
 
 		<se:authorize access="hasRole('ROLE_ADMIN')">
 			<form action="boardInsert" method="get">
+				<input type="hidden" name="countPerPage" value="${page.countPerPage}">
+				<input type="hidden" name="blockCount" value="${page.blockCount}">
+				<input type="hidden" name="nowPage" value="${page.nowPage}">
 				<input type="submit" value="글쓰기" class="btn btn-default btn-write">
 			</form>
 
