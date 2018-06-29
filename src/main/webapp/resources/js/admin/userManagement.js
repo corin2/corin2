@@ -33,7 +33,7 @@ function allUser(enabled, isDelete, pageNum){
 							 + '<input type="button" value="수정" class="btn btn-info" onclick="userEdit(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
 					if(elt.isDeleted == '0')	texthtml += '<input type="button" value="제명" class="btn btn-danger" onclick="userDel(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
 					if(elt.isDeleted == '1')	texthtml += '<input type="button" value="복구" class="btn btn-success" onclick="userReset(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
-					texthtml += '</tr></tbody>';
+					texthtml += '</td></tr></tbody>';
 				}
 			});
 			texthtml += '</table>';
