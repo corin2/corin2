@@ -77,18 +77,11 @@ function showEmailChart() {
 	allEmailCount(email, emailCount);
 	
 	var option = {
-	    title: {
-	        text: '회원 이메일 순위',
-	        subtext: 'Rank of email domain'
-	    },
 	    tooltip: {
 	        trigger: 'axis',
 	        axisPointer: {
 	            type: 'shadow'
 	        }
-	    },
-	    legend: {
-	        data: ['2017년', '2018년']
 	    },
 		toolbox: {
 	        feature: {
@@ -113,7 +106,7 @@ function showEmailChart() {
 	    },
 	    series: [
 	        {
-	            name: '2018년',
+	            name: 'count',
 	            type: 'bar',
 	            data: emailCount
 	        },
@@ -139,9 +132,6 @@ function showStatsChart() {
 	projectCountByDate(projectDate, projectCount, beforeDate, nowDate); // 날짜별 프로젝트 수
 	
 	var optionStats = {
-	    title: {
-	        text: ''
-	    },
 	    tooltip : {
 	        trigger: 'axis',
 	        axisPointer: {
@@ -151,11 +141,20 @@ function showStatsChart() {
 	            }
 	        }
 	    },
+	    legend: {},
 	    toolbox: {
 	        feature: {
-	            saveAsImage: {
-	            	title : 'Save',
-	            }
+	            magicType : {
+	            	type: ['line', 'bar', 'stack', 'tiled'],
+	            	title: {
+	            		'line': 'Line',
+	            		'bar': 'Bar',
+	            		'stack': 'Stack',
+	            		'tiled': 'Tiled'
+	            	}
+	            },
+	            restore : {title: 'Restore'},
+	            saveAsImage: {title : 'Save'}
 	        },
 	    },
 	    grid: {
@@ -180,6 +179,8 @@ function showStatsChart() {
 	        {
 	            name:'회원',
 	            type:'line',
+	            stack: '总量',
+	            itemStyle: {normal: {areaStyle: {type: 'default'}}},
 	            areaStyle: {normal: {}},
 	            data: userCount
 	        },
