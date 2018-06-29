@@ -15,17 +15,77 @@
 .adminmanagement {
    background-color: #FFF;
    margin-top: 110px;
-   margin-right: 200px;
-   margin-left: 200px;
+   margin-right: 100px;
+   margin-left: 100px;
    border-radius: 20px;
 }
-
-.adminmanagementundo{
-font-weight : bold;
-   font-size: 20px;
-   padding-top: 60px;
-   padding-bottom: 60px;
-   margin-right: 18%;
-   margin-left: 22%;
-   width: 55%;
+.adminmanagementundo {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    margin-left: 12%;
+    margin-right: 9% !important;
+    width: 75%;
 }
+
+	.table-admin > tbody > tr > td {
+	font-size: 15px;
+    padding-top: 37px;
+    padding-bottom: 0px !important;
+	}
+	.table-admin > tbody > tr :nth-child(1){
+	padding-top: 0px !important;
+    color: #c6c4c4;
+    margin: 10px;
+	}
+	.table-admin > tbody > tr > td:last-child > input {
+    margin: 3px !important;
+    margin-top: 4px !important;
+    padding: 4px;
+    font-size: 20px;
+    color : #FFF !important;
+	}
+	.table-admin > tbody > tr :nth-child(7){
+	padding-top: 21px !important;
+    color: #c6c4c4;
+    margin: 10px;
+	}
+	.table-admin > tbody > tr > td > input {
+	color: #000 !important;
+	border-bottom-color: #c6c4c4; 
+	}
+	.table-admin > tbody :nth-child(5) td {
+	border-bottom : solid 1px #c6c4c4 !important;
+	}
+	.table-admin > tbody :nth-child(5) > :last-child * {
+	color: #000 !important;
+	}
+	.adminpaging{
+	margin-left: 43%;
+	}
+	
+	.table-admin-menu > tbody > tr > td:last-child > input {
+    margin: 3px !important;
+    margin-top: 4px !important;
+    font-size: 20px;
+    color : #FFF !important;
+	}
+	.table-admin-menu > tbody > tr :nth-child(7){
+	padding-top: 21px !important;
+    color: #c6c4c4;
+    margin: 10px;
+	}
+	.adminbtndan{
+	color : #FFF !important;
+	}
+	.table-admin-menu > tbody > tr > td > input {
+	color: #000;
+	border-bottom-color: #c6c4c4; 
+	}
+	.table-admin-menu > tbody :nth-child(5) td {
+	border-bottom : solid 1px #c6c4c4 !important;
+	}
+	.table-admin-menu > tbody :nth-child(5) > :last-child * {
+	color: #000 !important;
+	}

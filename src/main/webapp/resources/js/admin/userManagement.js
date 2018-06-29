@@ -15,7 +15,7 @@ function allUser(enabled, isDelete, pageNum){
 			else 
 				$.each(data.data, function(i, elt) {if(elt.userId.indexOf(isDelete) > -1) viewData.push(elt);});
 			
-			var texthtml = '<table class="table table-bordered">'
+			var texthtml = '<table class="table table-admin">'
 				 		 + '<thead><tr><th>프로필사진</th><th>아이디</th><th>닉네임</th>'
 				 		 + '<th>사용여부</th><th>가입일</th><th>등급</th><th>기능</th></tr></thead>';
 			
@@ -30,10 +30,11 @@ function allUser(enabled, isDelete, pageNum){
 					if(elt.gradeNum == 'G100') texthtml += '관리자';
 					else texthtml += '회원';
 					texthtml += '</td><td>'
+							 + '<input type="hidden">'
 							 + '<input type="button" value="수정" class="btn btn-info" onclick="userEdit(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
 					if(elt.isDeleted == '0')	texthtml += '<input type="button" value="제명" class="btn btn-danger" onclick="userDel(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
 					if(elt.isDeleted == '1')	texthtml += '<input type="button" value="복구" class="btn btn-success" onclick="userReset(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
-					texthtml += '</tr></tbody>';
+					texthtml += '</td></tr></tbody>';
 				}
 			});
 			texthtml += '</table>';

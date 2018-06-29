@@ -6,6 +6,12 @@
     <script src="resources/js/admin/mailedit.js"></script>
     <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.css" rel="stylesheet">
 	<link rel="stylesheet" href="resources/css/admin/admin.css">
+	<style>
+		.btn-warning{
+			background-color : #566270;
+			border : #566270;
+		}
+	</style>
 	<div class="adminmanagement">
 			<div class="adminmanagementundo">
 			<h1>MailTemplateManagement</h1>
