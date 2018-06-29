@@ -6,19 +6,10 @@
 */
 package site.corin2.board.controller;
 
-
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -54,7 +45,7 @@ public class UploadController {
 	private View jsonview;
 	//초기화면 ui
 	@RequestMapping(value="fileUpload", method =RequestMethod.GET )
-	public String fileUpload(@RequestParam("projectNum") String projectNum,Model model) {
+	public String fileUpload() {
 		return "board.fileUpload";
 	}
 	//초기화면 전체조회
@@ -107,12 +98,36 @@ public class UploadController {
 
 	//다운로드 함수
 	// AWS S3 URL로 다운로드 기능 구현
-	
-/*	//검색기능
-	@RequestMapping(value="searchSelect" , method = RequestMethod.GET)
-	public void searcherSelect() {
 		
-		service.searcherSelect();
-	}*/
+	//검색기능
+	@RequestMapping(value="searcherFileSelect" , method = RequestMethod.GET)
+	public @ResponseBody LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO) {
 
+		return service.searcherFileSelect(uploadDTO);
+	}
+	
+	//일자별 검색
+	@RequestMapping(value="dateClick" , method=RequestMethod.GET)
+	public View dateClick(@RequestParam("projectNum")String projectNum,@RequestParam("date")String date,@RequestParam("extension")String extension ,Model model) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		System.out.println("일자별"+ extension);
+		System.out.println("일자별"+ date);
+		map.put("projectNum", projectNum);
+		map.put("date", date);
+		map.put("extension", extension);
+		model.addAttribute("date", service.dateClick(map));
+		return jsonview;
+	}
+	
+	//확장자 검색
+	@RequestMapping(value="exClick" , method=RequestMethod.GET)
+	public View exClick(@RequestParam("projectNum")String projectNum,@RequestParam("extension")String extension,Model model) {
+		HashMap map = new HashMap<String, Object>();
+		System.out.println("확장자별"+ extension);
+		map.put("projectNum", projectNum);
+		map.put("extension", extension);
+		model.addAttribute("extension", service.exClick(map));
+		return jsonview;
+	}
+	
 }

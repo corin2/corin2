@@ -32,7 +32,7 @@ public class UploadFileUtils {
 		String fileUploadPath = (uploadPath + uploadedFileName).replace(File.separatorChar, '/');
 		// '/resources/images/profile/1529888132496_image.jpg'
 		String profileUploadPath = (uploadPath + "/" + savedName).replace(File.separatorChar, '/');
-				
+		
 		if(projectNum == null) {
 			returnValue = fileUploadPath;
 		}else {
