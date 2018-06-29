@@ -253,7 +253,7 @@
 }
 .btn-2a{
 	margin-right: 10px;
-	background-color : #2ECC71;
+	background-color : #46b29d;
 	border: 3px solid #fff;
     color: #fff;
     border: none;
@@ -272,7 +272,7 @@
 }
 
 .btn-2b{
-	background-color : #F06060;
+	background-color : #de5b49;
 	border: 3px solid #fff;
     color: #fff;
     border: none;
@@ -291,11 +291,11 @@
 }
 
 .btn-2a:hover, .btn-2a:active {
-    color: #2ECC71;
+    color: #46b29d;
     background: #fff;
 }
 .btn-2b:hover, .btn-2b:active {
-	color: #F06060;
+	color: #de5b49;
     background: #fff;
 }
 
