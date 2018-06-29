@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default">
 	<div class="adminmanagement">
 		<div class="adminmanagementundo">
-			<h1>MenuManagement</h1>
+			<h1>Menu Management</h1>
 			<hr>
 			<div class="dropdown">
 				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">관리할 메뉴를 선택해주세요
