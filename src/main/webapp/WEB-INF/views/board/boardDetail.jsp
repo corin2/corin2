@@ -30,9 +30,10 @@
 					<td>${detail.announceContent}</td>
 				</tr>
 				<tr>
-					<td></td>
-					<td><input class="btn btn-default updateupdatebutton" type="button" value="목록가기"
-						onclick="location.href='boardList'"> <se:authorize
+					<td>
+					</td>
+					<td><input type="button" value="목록가기" class="btn btn-default updateupdatebutton"
+						onclick="location.href='boardList?countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}'"> <se:authorize
 							access="hasRole('ROLE_ADMIN')">
 							<input type="button" class="btn btn-default updatecancelbutton" value="삭제"
 								onclick="location.href='boardDelete?boardnum=${detail.boardNum}'">
