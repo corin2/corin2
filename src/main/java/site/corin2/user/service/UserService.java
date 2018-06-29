@@ -411,6 +411,7 @@ public class UserService {
 			*/
 
 		}
-		return files;
+		//return files;
+		return null;
 	}
 }
