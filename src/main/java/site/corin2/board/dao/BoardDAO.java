@@ -31,7 +31,8 @@ public interface BoardDAO {
 
 	public void boardDelete(int boardnum);
 
-
+	//조회한 게시물 개수 (페이징처리)
+	public int totalSelect();
 
 	
 }

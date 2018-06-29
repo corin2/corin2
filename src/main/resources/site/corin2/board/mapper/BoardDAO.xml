@@ -13,11 +13,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<select id="boardSelect" resultType="site.corin2.board.dto.BoardDTO">
 			select * from board b join announce a on a.boardnum = b.boardnum
 			where b.boardnum = #{boardNum} and b.isdeleted = 0
-		
 		</select>
 		
-
-
 		<select id="boardCount" resultType="int">
 			select count(*) from board b join announce a on a.boardnum = b.boardnum 
 			where b.SKILLNUM ='S100' and b.isdeleted = 0 ; 
@@ -50,5 +47,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			UPDATE board SET ISDELETED = 1 where skillnum ='s100' and boardnum = #{boardNum}
 		</update>
 		
+		<select id="totalSelect" resultType="int">
+			select count(*) from board b join announce a on a.boardnum = b.boardnum
+			where b.SKILLNUM ='S100' and b.isdeleted = 0  
+		</select>
 		
 	</mapper>

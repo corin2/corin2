@@ -6,23 +6,19 @@
 */
 package site.corin2.board.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.AnnounceDTO;
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.service.BoardService;
-import site.corin2.project.service.TeamService;
+import site.corin2.paging.PagingBean;
 
 @Controller
 public class BoardController {
@@ -36,9 +32,12 @@ public class BoardController {
 
 	//모든 게시물 조회
 	@RequestMapping(value="boardList" ,method = RequestMethod.GET)
-	public String boardList(Model model) { //리스트화면에서
+	public String boardList(PagingBean page, Model model) { //리스트화면에서
 		 List<BoardDTO> list = service.boardAllSelect();
-		 model.addAttribute("list", list);		 
+		 int totalCount = service.totalSelect();
+		 page.setTotalCount(totalCount);
+		 model.addAttribute("list", list);	
+		 model.addAttribute("page", page);
 		return "board.boardList";  //리스트화면으로 이동
 	}
 	

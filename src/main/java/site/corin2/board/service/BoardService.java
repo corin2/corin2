@@ -69,7 +69,12 @@ public class BoardService {
 		dao.boardDelete(boardnum);
 	}
 
-
+	//조회한 게시물 개수
+	public int totalSelect() {
+		BoardDAO dao = sqlSession.getMapper(BoardDAO.class);
+		int totalCount = dao.totalSelect();
+		return totalCount;
+	}
 
 
 }
