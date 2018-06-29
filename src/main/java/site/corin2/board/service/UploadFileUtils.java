@@ -34,9 +34,9 @@ public class UploadFileUtils {
 		String profileUploadPath = (uploadPath + "/" + savedName).replace(File.separatorChar, '/');
 		
 		if(projectNum == null) {
-			returnValue = fileUploadPath;
-		}else {
 			returnValue = profileUploadPath;
+		}else {
+			returnValue = fileUploadPath;
 		}
 		
 		// S3Util의 fileUpload 메서드로 파일을 업로드한다.

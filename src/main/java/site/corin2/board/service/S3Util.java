@@ -32,8 +32,8 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectInputStream;
 
 public class S3Util {
-	private String accessKey = "AKIAIDJ7T637AY24JY3A";
-	private String secretKey = "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";
+	private String accessKey = "AKIAJOBQ4UTKGYRSSBIQ";
+	private String secretKey = "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";
 	
 	private AmazonS3 conn;
 	
