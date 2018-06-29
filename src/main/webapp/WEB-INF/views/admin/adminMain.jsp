@@ -18,74 +18,59 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 	<!-- [1번째 단] -->
 	<div class="row">
 		<!-- 방문자 수 -->
-		<div class="admin-chart-box col-md-4">
-			<div class="row">
-				<div class="col-md-8" style="height:200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<h2>방문자</h2>
-							<hr class="hr-style">
+			<div class="admin-chart-box col-md-3 adminmainpage width27">
+				<div class="row adminmainpageundo">
+					<div class="admin-icon col-md-4 eye-open" style="height:100px;">
+						<i class="glyphicon glyphicon-eye-open adminmainglyphi"></i>
+					</div>
+					<div class="col-md-7 adminmainfirstrow">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>방문자</h2>
+								<h1 id="allVisitCountResult"></h1>
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<h1 id="allVisitCountResult"></h1>
-						</div>
-					</div>
-				</div>
-				<div class="admin-icon col-md-4" style="height:200px;">
-					<i class="glyphicon glyphicon-eye-open"></i>
 				</div>
 			</div>
-		</div>
 		<!-- 회원 수 -->
-		<div class="admin-chart-box col-md-4">
-			<div class="row">
-				<div class="col-md-8" style="height:200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<h2>회원</h2>
-							<hr class="hr-style">
+			<div class="admin-chart-box col-md-3 adminmainpage width27">
+				<div class="row adminmainpageundo">
+					<div class="admin-icon col-md-4 usercount" style="height:100px;">
+						<i class="glyphicon glyphicon-user adminmainglyphi"></i>
+					</div>
+					<div class="col-md-7 adminmainfirstrow">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>회원</h2>
+								<h1 id="allUserCountResult"></h1>
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<h1 id="allUserCountResult"></h1>
-						</div>
-					</div>
-				</div>
-				<div class="admin-icon col-md-4" style="height:200px;">
-					<i class="glyphicon glyphicon-user"></i>
 				</div>
 			</div>
-		</div>
 		<!-- 프로젝트 수 -->
-		<div class="admin-chart-box col-md-4">
-			<div class="row">
-				<div class="col-md-8" style="height:200px;">
-					<div class="row">
-						<div class="col-md-12">
-							<h2>프로젝트</h2>
-							<hr class="hr-style">
+			<div class="admin-chart-box col-md-3 adminmainpage width27">
+				<div class="row adminmainpageundo">
+					<div class="admin-icon col-md-4 th-large" style="height:100px;">
+						<i class="glyphicon glyphicon-th-large adminmainglyphi"></i>
+					</div>
+					<div class="col-md-7 adminmainfirstrow">
+						<div class="row">
+							<div class="col-md-12">
+								<h2>프로젝트</h2>
+								<h1 id="allProjectCountResult"></h1>
+							</div>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<h1 id="allProjectCountResult"></h1>
-						</div>
-					</div>
-				</div>
-				<div class="admin-icon col-md-4" style="height:200px;">
-					<i class="glyphicon glyphicon-th-large"></i>
 				</div>
 			</div>
 		</div>
-	</div>
 	<!-- [2번째 단] -->
 	<div class="row">
 		<!-- 프로그래밍 언어-->
-		<div class="admin-chart-box col-md-6">
-			<div class="row">
+		<div class="admin-chart-box col-md-5 adminmainpage">
+			<div class="row adminmainpageundo">
 				<h2>프로그래밍 언어</h2>
 				<hr class="hr-style">
 			</div>
@@ -94,8 +79,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 			</div>
 		</div>
 		<!-- 회원 이메일 순위 -->
-		<div class="admin-chart-box col-md-6">
-			<div class="row">
+		<div class="admin-chart-box col-md-5 adminmainpage">
+			<div class="row adminmainpageundo">
 				<h2>회원 이메일 순위</h2>
 				<hr class="hr-style">
 			</div>
@@ -107,8 +92,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 	<!-- [3번째 단] -->
 	<div class="row">
 		<!-- 통계 -->
-		<div class="admin-chart-box col-md-12">
-			<div class="row">
+		<div class="admin-chart-box col-md-10 adminmainpage width87">
+			<div class="row adminmainpageundo">
 				<h2>통계</h2>
 				<hr class="hr-style">
 			</div>
