@@ -19,6 +19,7 @@ public class UploadFileUtils {
 	public static String uploadFile(String uploadPath, String projectNum, String originalName, byte[] byteData) throws Exception {
 		S3Util s3 = new S3Util();
 		String bucketName = "corin2.site";
+		String returnValue = null;
 		
 		// savedName : 1529888132496_image.jpg 같은 형식으로 만들어준다.
 		String savedName = System.currentTimeMillis() + "_" + originalName; //현재날짜_파일명.확장자
@@ -28,12 +29,20 @@ public class UploadFileUtils {
 		// '/project11/20180628/1529888132496_image.jpg'
 		String uploadedFileName = (savedPath + savedName).replace(File.separatorChar, '/');
 		// '/resources/upload/project11/20180628/1529888132496_image.jpg'
-		String finalFilePath = (uploadPath + uploadedFileName).replace(File.separatorChar, '/');
+		String fileUploadPath = (uploadPath + uploadedFileName).replace(File.separatorChar, '/');
+		// '/resources/images/profile/1529888132496_image.jpg'
+		String profileUploadPath = (uploadPath + "/" + savedName).replace(File.separatorChar, '/');
+				
+		if(projectNum == null) {
+			returnValue = fileUploadPath;
+		}else {
+			returnValue = profileUploadPath;
+		}
 		
 		// S3Util의 fileUpload 메서드로 파일을 업로드한다.
-		s3.fileUpload(bucketName, finalFilePath, byteData);
+		s3.fileUpload(bucketName, returnValue, byteData);
 		
-		return finalFilePath;
+		return returnValue;
 	}
 	
 	private static String calcPath(String uploadPath, String projectNum) {
