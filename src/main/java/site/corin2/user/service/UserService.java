@@ -38,6 +38,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.FileMeta;
+import site.corin2.board.service.UploadFileUtils;
 import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.AdminDTO;
@@ -342,15 +343,41 @@ public class UserService {
 		
 	//프로필 수정하기
 	public LinkedList<FileMeta> profileupdate(String userid , MultipartHttpServletRequest request) {
-		String savepath = "resources/images/profile";  
-        String downloadpath = request.getRealPath(savepath);
-		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+		String savepath = "resources/images/profile";
+        //String downloadpath = request.getRealPath(savepath);
+		//LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 		FileMeta fileMeta = null;
 		Iterator<String> itr = request.getFileNames();
-		System.out.println(request.getFileNames());
+		//System.out.println(request.getFileNames());
 		MultipartFile mpf = null;
 		while (itr.hasNext()) {
 			mpf = request.getFile(itr.next());
+			
+			// 파일 정보가 없을 경우
+	        if(mpf == null || mpf.getSize() <= 0) {
+	        	return null;
+	        }
+	        
+	        // 경로 설정
+	        String fileName = null;
+			String originalName = mpf.getOriginalFilename();
+	        
+	        // SQL Mapper
+	        UserDAO userdao = sqlsession.getMapper(UserDAO.class);
+	        UserDTO updateuser;
+	        try {
+	        	// AWS S3에 파일 업로드
+				fileName = UploadFileUtils.uploadFile(savepath, null, originalName, mpf.getBytes());
+	        	
+				// DB에 파일정보 insert
+	        	updateuser = userdao.userSelect(userid);
+				updateuser.setUserProfile(fileName);
+				userdao.profileUpdate(updateuser);
+	        } catch (Exception e) {
+	        	e.printStackTrace();
+	        }
+	        
+			/*
 			if (files.size() >= 10)
 				files.pop();
 			fileMeta = new FileMeta();
@@ -381,8 +408,10 @@ public class UserService {
 				e.printStackTrace();
 			}
 			files.add(fileMeta);
+			*/
 
 		}
-		return files;
+		//return files;
+		return null;
 	}
 }
