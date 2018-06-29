@@ -66,62 +66,6 @@
 
 .buttonProject:hover {opacity: 0.6}
 
-.btn-success-project  {
-	background-color: #fff;
-	color:#000;
-	border : 1px solid #30A9DE;
-	float: right;
-
-}
-.btn-success-project:hover{
-	background-color: #30A9DE;
-	color:#fff;
-	border: 1px solid #fff;
-	float: right;
-}
-
-.btn-info-project  {
-	background-color: #fff;
-	color:#000;
-	border : 1px solid #EFDC05;
-	float: right;
-
-}
-.btn-info-project:hover{
-	background-color: #EFDC05;
-	color:#fff;
-	border: 1px solid #fff;
-	float: right;
-}
-
-.btn-danger-project  {
-	background-color: #fff;
-	color:#000;
-	border : 1px solid #E53A40;
-	float: right;
-
-}
-.btn-danger-project:hover{
-	background-color: #E53A40;
-	color:#fff;
-	border: 1px solid #fff;
-	float: right;
-}
-
-.btn-create  {
-	background-color: #fff;
-	color:#000;
-	border : 1px solid #2EC4B6;
-	float: right;
-
-}
-.btn-create:hover{
-	background-color: #2EC4B6;
-	color:#fff;
-	border: 1px solid #fff;
-	float: right;
-}
-
 .buttonproject {
   background-color: #fff;
   border: 5px solid #a3a1a1;
@@ -175,6 +119,7 @@
 }
 
 .btn-3a{
+	float : right;
 	margin-top : 10px;
 	margin-right: 10px;
 	background-color : #46b29d;
@@ -196,10 +141,33 @@
 }
 
 .btn-3b{
+	float : right;
 	margin-top : 10px;
+	margin-right: 10px;
 	background-color : #de5b49;
 	border: 3px solid #fff;
     color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.btn-3c{
+	float : right;
+	margin-top : 10px;
+	margin-right: 10px;
+	background-color : #FFF;
+	border: 3px solid #de5b49;
+    color: #de5b49;
     border: none;
     font-family: inherit;
     font-size: inherit;
@@ -223,6 +191,10 @@
 	color: #de5b49;
     background: #fff;
 }
+.btn-3c:hover, .btn-3c:active {
+	color: #FFF;
+    background: #de5b49;
+}
 .projectcreatetitle{
 	border-top-right-radius : 5px;
 	border-top-left-radius : 5px;
@@ -236,9 +208,6 @@
 	height: 50px;
 	background-color : #566270;
 	color : #FFF;
-}
-.createbottom{
-	margin-left:285px;
 }
 .projectcreatetitle > h3{
 	margin-top: 0px;

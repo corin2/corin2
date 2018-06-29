@@ -130,26 +130,6 @@ function projectBookView(projectArray) {
 		}
 	})
 }
-//프로젝트 생성 모달창 띄워주기
-function projectDetailView() {
-	$("#detailButton").empty();
-	var html="";
-		html = "<div class='form-group proinputclass'>"
-			 + "<div class='projectcreatetitle'></div>"
-			 + "<h3>프로젝트제목입력</h3>"
-			 + "<input id ='ProjectName' type='text' class='search1' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
-			 + "<br>"
-			 + "<br>"
-		 	 + "</div>"
-		 	 +	"<div id='projectDetail' class='proradioclass'>"
-		 	 +	"</div>"
-		 	 +"<div class='projectcreatebottom'><div class='createbottom'><input id='addProject' class='btn btn-3a' type='button' onclick='addProject()' value='생성'>"
-		 	 +"<input id='cancleProject' class='btn btn-3b' data-dismiss='modal' type='button' value='취소'><div></div>"
-			 $("#detailButton").html(html);
-			 printProjectDetailLanguage();
-			 $('#ProjectName').focus();
-	
-}
 
 
 //프로젝트칼라 지정해주기
@@ -228,11 +208,32 @@ function updateLanguage(projectNum) {
 		swal("프로젝트명을 입력하세요");
 	}
 }
+//프로젝트 생성 모달창 띄워주기
+function projectDetailView() {
+	$("#detailButton").empty();
+	var html="";
+	html = "<div class='form-group proinputclass'>"
+		+ "<div class='projectcreatetitle'></div>"
+		+ "<h3>프로젝트제목입력</h3>"
+		+ "<input id ='ProjectName' type='text' class='search1' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
+		+ "<br>"
+		+ "<br>"
+		+ "</div>"
+		+	"<div id='projectDetail' class='proradioclass'>"
+		+	"</div>"
+		+"<div class='projectcreatebottom'><div class='createbottom'><input id='cancleProject' class='btn btn-3b' data-dismiss='modal' type='button' value='취소'>"
+		+"<input id='addProject' class='btn btn-3a' type='button' onclick='addProject()' value='생성'></div></div>"
+		$("#detailButton").html(html);
+	printProjectDetailLanguage();
+	$('#ProjectName').focus();
+	
+}
 //프로젝트 업데이트 모달창 내용 뿌리기
 function projectUpdateView(projectNum) {
 	$("#detailButton").empty();
 	var html="";
 		html ="<div class='form-group proinputclass'>" 
+			 + "<div class='projectcreatetitle'></div>"
 			 +"<h3>프로젝트제목입력</h3>"
 			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
 			 + "<br>"
@@ -241,9 +242,9 @@ function projectUpdateView(projectNum) {
 			 +	"<div id='projectDetail' class='proradioclass'>"
 		 	 +	"</div>"
 			 + "<div>"
-			 + "<input id='cancleProject' class='btn btn-info-project' data-dismiss='modal' type='button' value='취소'>"
-			 + "<input id='deleteProject' class='btn btn-danger-project' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
-			 + "<input id='addProject' class='btn btn-success-project' type='button' onclick='updateLanguage("+projectNum+")' value='수정'>"
+			 + "<div class='projectcreatebottom'><div class='createbottom'><input id='cancleProject' class='btn btn-3c' data-dismiss='modal' type='button' value='취소'>"
+			 + "<input id='deleteProject' class='btn btn-3b' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
+			 + "<input id='addProject' class='btn btn-3a' type='button' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
 			 + "</div>"
 			 + "<br>"
 			 + "<br>"

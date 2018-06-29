@@ -44,7 +44,7 @@ if( nowBlock < totalBlock ) {
 	lastPage = totalPage;
 }
 %>
-<div>
+<div class="pagingdiv">
 	<ul class="pagination pagination-lg">
 		<%if (firstPage > 0) { %>
 		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=firstPage%>">처음</a></li>
