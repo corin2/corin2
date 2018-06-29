@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" href="resources/css/board/announceboard.css">
     <style>
 	.announceboard {
     background-color: #FFF;
@@ -17,6 +18,7 @@
     margin-right: 250px;
     margin-left: 250px;
 	}
+	
 	</style>
 <!-- ckedior -->
 <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
