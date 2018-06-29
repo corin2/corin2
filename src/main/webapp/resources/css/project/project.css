@@ -165,9 +165,9 @@
 	float : right;
 	margin-top : 10px;
 	margin-right: 10px;
-	background-color : #FFF;
-	border: 3px solid #de5b49;
-    color: #de5b49;
+	background-color : #ffa400;;
+	border: 3px solid #ffa400;;
+    color: #fff;
     border: none;
     font-family: inherit;
     font-size: inherit;
@@ -192,8 +192,8 @@
     background: #fff;
 }
 .btn-3c:hover, .btn-3c:active {
-	color: #FFF;
-    background: #de5b49;
+	color: #ffa400;;
+    background: #fff;
 }
 .projectcreatetitle{
 	border-top-right-radius : 5px;
