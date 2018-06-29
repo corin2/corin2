@@ -12,6 +12,8 @@
 		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<!-- .settings/org.eclipse.wst.common.component에서 <property name="context-root" value="/"/> 설정 -->
+		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
 	</properties>
 	<!-- Maven dependencies -->
 	<dependencies>
