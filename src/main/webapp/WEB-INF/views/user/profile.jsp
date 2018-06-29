@@ -11,10 +11,10 @@
 		<div id="join-form" class="join-form margin-large">
 			<div class="col-sm-8">
 				<h6 class="profilewhite">이름</h6>
-				<input type="text"  class="form-control profile-name" name="userName" id="userName" value="${userdto.userName}"/>
+				<input type="text"  class="form-control profile-name" name="userName" id="userName" onkeyup="fnChkLength(this, 10)" value="${userdto.userName}"/>
 			</div>
 			<div class="col-sm-4">
-				<input class="btn btn-okay btn-profile-button" type="button" id="nickname-button" value="수정하기" />
+				<input class="btn btn-1a btn-okay btn-profile-button" type="button" id="nickname-button" value="수정하기"/>
 			</div>
 		</div>
 	</form>
@@ -32,12 +32,12 @@
 							<input type="password"  class="form-control profile-name" name="password2" id="password2" required="required"/>
 					</div>
 					<div class="col-sm-4">
-						<input class="btn btn-okay btn-profile-button" type="button" id="password-button" value="수정하기" />
+						<input class="btn btn-1a btn-okay btn-profile-button" type="button" id="password-button" value="수정하기" />
 					</div>
 			</div>
 		</form>
 	</se:authorize>
 	<div class="col-sm-12">
-		<input class="btn btn-okay btn-profile-delete" type="button" id="delete-button" value="탈퇴하기" />
+		<input class="btn btn-1a btn-okay btn-profile-delete" type="button" id="delete-button" value="탈퇴하기" />
 	</div>
 </div>

@@ -25,8 +25,8 @@
     	<property name="transactionFactory">
 			<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
 		</property>
-	</bean> 
-
+	</bean>
+	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
   		<constructor-arg index="0" ref="sqlSessionFactoryBean"/>
 	</bean>

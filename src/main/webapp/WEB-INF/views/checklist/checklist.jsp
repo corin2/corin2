@@ -4,6 +4,8 @@
 <link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <script src="resources/js/checklist/checklist.js"></script>
 <script src="resources/js/checklist/skillchecklist.js"></script>
+<link rel="stylesheet" href="resources/css/checklist/main.css">
+<link rel="stylesheet" href="resources/css/checklist/util.css">
 <h2 id='checklisttitle'>체크리스트</h2>
 <hr>
 <div id="tabs">
@@ -19,9 +21,9 @@
   <div id="tabs-2">
   
   </div>
-  <div id="tabs-3">
+  <div id="tabs-3" class="checklistFlow">
   </div>
-  <div id="tabs-4">
+  <div id="tabs-4" class="checklistFlow">
   </div>
 
 </div>

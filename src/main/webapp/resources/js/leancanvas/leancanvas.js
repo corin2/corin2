@@ -3,6 +3,7 @@ $(function () {
 	allSelectLeanCanvas();
 })
 
+//각 칸마다 textarea 생성
 function problemClick(string) {
 		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'></textarea></div>"
 		$("#"+string).empty();
@@ -10,7 +11,7 @@ function problemClick(string) {
 		$("#"+string+"text").focus();
 	
 }
-
+//각칸의 내용 DB에 삽입
 function insertLean() {
 	$.ajax({
 		url:"leanInsert",
@@ -38,6 +39,7 @@ function insertLean() {
 	})
 }
 
+//leancanvas에 해당하는 내용 뿌려주기
 function allSelectLeanCanvas(){
 	$.ajax({
 		url:"leanCanvasAllSelect",
@@ -47,17 +49,15 @@ function allSelectLeanCanvas(){
 			$.each(data.list, function(index, elt) {
 				if(elt.teamName!=""){
 					$("#leanheader").empty();
-				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly value="'+elt.teamName+'" class="search"></h2>'
+				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly value="'+elt.teamName+'" class="search"><span class="glyphicon close1 kanbanCheckMod" onclick="teamNameEditClick(\''+elt.teamName+'\')" >&#xe065;</span></h2>'
 						+'<br>'
-						+'<input type="button" value="팀명수정" class="btn btn-success" onclick="teamNameEditClick(\''+elt.teamName+'\')" style="float: right; margin-right: 8%">'
 						+'<br>'
 						+'<br>';
 					$("#leanheader").append(html);
 				}else{
 					$("#leanheader").empty();
-				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search"></h2>'
+				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search"><span class="glyphicon close1 kanbanCheckMod" onclick="teamNameEditClick(\''+elt.teamName+'\')" >&#xe065;</span></h2>'
 						+'<br>'
-						+'<input type="button" value="팀명수정" class="btn btn-success" onclick="teamNameEditClick(\''+elt.teamName+'\')" style="float: right; margin-right: 8%">'
 						+'<br>'
 						+'<br>';
 					$("#leanheader").append(html);
@@ -186,16 +186,27 @@ function allSelectLeanCanvas(){
 		}
 	})
 }
+
+//팀명 수정하는 input태그 생성
 function teamNameEditClick(string) {
-	$("#leanheader").empty();
-	var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
-			+'<br>'
-			+'<input type="button" value="save" class="btn btn-success" style="float: right; margin-right: 8%">'
-			+'<br>'
-			+'<br>'
+	if(string != ""){
+		$("#leanheader").empty();
+		var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="'+string.split('/')+'" class="search" onfocusout="allSelectLeanCanvas()" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
+		+'<br>'
+		+'<br>'
+		+'<br>'
 		$("#leanheader").append(html);
-	
+	}else{
+		$("#leanheader").empty();
+		var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을입력해주세요" class="search" onfocusout="allSelectLeanCanvas()" onkeypress="if(event.keyCode==13) {leanUpdate();}"></h2>'
+		+'<br>'
+		+'<br>'
+		+'<br>'
+		$("#leanheader").append(html);
+	}
 }
+
+//해당 칸 수정하는 textarea생성
 function problemEditClick(string) {
 	if($("#"+string+">div").html()!=undefined){
 		var enter = $("#"+string+">div").html().replace(/<br\s?\/?>/gi,'\n');
@@ -213,7 +224,7 @@ function problemEditClick(string) {
 	
 }
 
-
+//해당칸의 내용 수정
 function leanUpdate() {
 	var teamName ="";
 	var problem ="";

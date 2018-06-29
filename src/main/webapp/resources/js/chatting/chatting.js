@@ -44,7 +44,6 @@ $(function() {
 	// 프로젝트 내 멤버 정보 가져오기
 	function getUsers(projectNum) {
 		messages = db.child('messages/' + projectNum); // 전체채팅 메시지 경로
-
 		$.ajax({
 			url:"showMemberUserProfile",
 			datatype:"JSON",
@@ -250,17 +249,18 @@ $(function() {
 			$('#conversation').append(
 					'<div class="row message-body">'
 					+ '<div class="col-sm-12 message-main-receiver">'
-					+ '<div class="receiver">'
-					+ '<div class="heading-avatar-icon">'
-		            + '<img src="resources/images/profile/' + message.userprofile + '">'
-		            + '<span style="font-size: 15px; font-weight:bold;">' + message.username +'</span>'
-		            + '</div>'
+					+ '<div class="col-sm-3 heading-avatar-icon">'
+					+ '<img src="resources/images/profile/' + message.userprofile + '">'
+					+ '</div><div class="col-sm-9 heading-avatar-name">'
+					+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + message.username +'</span>'
+					+ '<div class="receiver bubble">'
 					+ '<div class="message-text">'
 					+ message.text
 					+ '</div>'
 					+ '<span class="message-time pull-right">'
 					+ convertTime(message.timestamp)
 					+ '</span>'
+					+ '</div>'
 					+ '</div>'
 					+ '</div>'
 					+ '</div>'

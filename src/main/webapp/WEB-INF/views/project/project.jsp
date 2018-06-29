@@ -10,7 +10,7 @@
 <div class="container">
 <div class="navbar navbar-default">
 	<div id="search">
-	<input type="text" id="searchProject" class="search" placeholder="프로젝트명을입력하세요" onclick="autoCompleteProject()" onkeypress="if(event.keyCode==13) {searchColorView();}">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span>
+	<h2><input type="text" id="searchProject" class="search" placeholder="프로젝트명을입력하세요" onclick="autoCompleteProject()" onkeypress="if(event.keyCode==13) {searchColorView();}">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span></h2>
 	<hr>
 	<div id="searchBox">
 	</div>

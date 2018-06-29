@@ -105,23 +105,14 @@ body {
 	margin: 20% 0 16px;
 }
 .btn-addfile {
-    color: #fff;
-    background-color: #A593E0;
-    border-color: #A593E0;
     position: absolute; 
-    left: 31%;;
+    left: 28%;
 }
 .btn-profile-button{
-	color: #fff;
-    background-color: #A593E0;
-    border-color: #A593E0;
     margin-top: 56px;
     margin-left: -21px;
 }
 .btn-profile-delete{
-	color: #fff;
-    background-color: #A593E0;
-    border-color: #A593E0;
     margin-top: 17px;
     margin-left: 0px;
     width: 100%;
@@ -136,4 +127,27 @@ body {
     top: unset;
     margin-top: 25px;
     margin-right: 19px;
+}
+
+.btn-1a:hover, .btn-1a:active {
+    color: #ffa400;
+    background: #fff;
+}
+.btn-1a {
+	background-color : #ffa400;
+	border: 3px solid #fff;
+    color: #fff;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
 }

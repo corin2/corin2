@@ -55,7 +55,7 @@ public class UserController {
 			return new RedirectView("adminMain");
 		}
 		System.out.println("roles"+roles);
-		return new RedirectView("project.project");
+		return new RedirectView("project");
 	}
 	
 	//회원가입 기능 실행

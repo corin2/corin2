@@ -1,5 +1,5 @@
 $(function(){
-	connect();
+	if(sessionProjectNum != 'null') connect();
 });
 
 var wsocket;
