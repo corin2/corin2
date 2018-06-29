@@ -8,7 +8,7 @@
 <style>
 @import url(https://fonts.googleapis.com/css?family=opensans:500);
 body{
-                background: #33cc99;
+                background: #566270;
                 color:#fff;
                 font-family: 'Open Sans', sans-serif;
                 max-height:700px;
@@ -65,7 +65,7 @@ body{
                 z-index: 5;
                 font-size: 25px;
                 margin:0 auto;
-                color:#33cc99;
+                color:#566270;
                 text-decoration: none;
                 margin-right: 10px
             }
@@ -93,7 +93,7 @@ body{
                 top: -0.75em;
                 font-size: 2em;
                 padding: 0 0.2em;
-                background: #33cc99;
+                background: #566270;
             }
             
             .cloud {
