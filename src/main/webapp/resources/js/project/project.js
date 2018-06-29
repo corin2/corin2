@@ -245,11 +245,9 @@ function projectUpdateView(projectNum) {
 			 + "<div class='projectcreatebottom'><div class='createbottom'><input id='cancleProject' class='btn btn-3c' data-dismiss='modal' type='button' value='취소'>"
 			 + "<input id='deleteProject' class='btn btn-3b' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
 			 + "<input id='addProject' class='btn btn-3a' type='button' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
-			 + "</div>"
-			 + "<br>"
-			 + "<br>"
-			 $("#detailButton").html(html)
-			 printProjectDetailLanguageChecked(projectNum)
+			 + "</div>";
+			 $("#detailButton").html(html);
+			 printProjectDetailLanguageChecked(projectNum);
 			 $("#ProjectName").focus();
 	}
 
