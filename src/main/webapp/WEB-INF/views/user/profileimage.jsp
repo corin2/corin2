@@ -11,7 +11,7 @@
 			<img class="img-circle" id="recentUserProfile" width="100" height="100">
 			</div>
 			<h4 class="subwhite profilemargintop">${pageContext.request.userPrincipal.name}</h4>
-		    <span class="btn btn-addfile fileinput-button">
+		    <span class="btn btn-1a btn-addfile fileinput-button">
 		        <span>Add files...</span>
 	        	<input type="hidden" id="userId-profile" name="userId" value="${pageContext.request.userPrincipal.name}" >
 		        <input id="profileimageupdate" type="file" name="files" data-url="profileimageupdate">
