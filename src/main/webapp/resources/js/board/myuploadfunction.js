@@ -129,8 +129,8 @@ function preview(uploadAlias){
 
 //파일 다운로드
 function download(uploadAlias) {
-
-	 location.href='download?fileName='+uploadAlias;
+	location.href = 'https://s3.ap-northeast-2.amazonaws.com/corin2.site/' + uploadAlias;
+	//location.href='download?fileName='+uploadAlias;
 }
 
 
