@@ -328,7 +328,6 @@ function searchProject(projectArray) {
 
 //오토컴플릿
 function autoCompleteProject() {
-	console.log("진원이 미워")
 	 $.ajax({
  		url : "allProject",
  		datatype : "JSON",

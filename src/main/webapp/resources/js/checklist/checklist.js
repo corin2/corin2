@@ -197,14 +197,13 @@ function updateCheckListContent(checkNum) {
 
 //체크리스트 삭제
 function deleteCheckListContent(checkNum) {
-	console.log("야야야야")
 	console.log(checkNum)
 	$.ajax({
 		url : "deleteCheckListContent",
 		datatype : "JSON",
 		data :{projectNum:sessionProjectNum,checkNum:checkNum},
 		success: function(data){
-			console.log("삭제 성공")
+			swal("체크리스트가 삭제되었습니다.");
 			showCheckList();
 		}
 	})
@@ -219,7 +218,6 @@ function checkedSelectAll() {
 		data:{projectNum:sessionProjectNum,userId:$("#hiddenUserId").val()},
 		success:function(data){
 			$.each(data.list, function(index, elt) {
-					console.log("들어왔니??"+elt.checkNum);
 					$("#checkedBox"+elt.checkNum).attr("checked","checked");
 			})
 		}
