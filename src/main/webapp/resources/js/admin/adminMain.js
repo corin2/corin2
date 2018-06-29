@@ -1,5 +1,7 @@
 //////////// $(document).ready() ////////////
 $(function() {
+	// 총 방문자 수
+	allVisitCount();
 	// 모든 회원 수
 	allUserCount();
 	// 모든 프로젝트 수
@@ -126,19 +128,19 @@ function showStatsChart() {
 	var chartStats = echarts.init(document.getElementById('stats'));
 	
 	var nowDate = formatDate(Date.now(), 0); // 오늘 날짜
-	var twoWeeksAgoDate = formatDate(Date.now(), -14); // 2주 전 날짜
+	var beforeDate = formatDate(Date.now(), -14); // 2주 전 날짜
 	
-	var userDate = [],
-		userCount = [],
-		projectDate = [],
-		projectCount = [];
+	var visitDate = [], visitCount = [],
+		userDate = [], userCount = [],
+		projectDate = [], projectCount = [];
 	
-	userCountByDate(userDate, userCount, twoWeeksAgoDate, nowDate); // 날짜별 회원 수
-	projectCountByDate(projectDate, projectCount, twoWeeksAgoDate, nowDate); // 날짜별 프로젝트 수
+	visitCountByDate(visitDate, visitCount, beforeDate, nowDate); // 날짜별 방문자 수
+	userCountByDate(userDate, userCount, beforeDate, nowDate); // 날짜별 회원 수
+	projectCountByDate(projectDate, projectCount, beforeDate, nowDate); // 날짜별 프로젝트 수
 	
 	var optionStats = {
 	    title: {
-	        text: '통계'
+	        text: ''
 	    },
 	    tooltip : {
 	        trigger: 'axis',
@@ -176,17 +178,23 @@ function showStatsChart() {
 	    ],
 	    series : [
 	        {
-	            name:'회원 ',
+	            name:'회원',
 	            type:'line',
 	            areaStyle: {normal: {}},
 	            data: userCount
 	        },
 	        {
-	            name:'프로젝트 ',
+	            name:'프로젝트',
 	            type:'line',
 	            areaStyle: {normal: {}},
 	            data: projectCount
 	        },
+	        /*{
+	            name:'방문자',
+	            type:'line',
+	            areaStyle: {normal: {}},
+	            data: visitCount
+	        },*/
 	    ],
 	};
 	
@@ -195,7 +203,17 @@ function showStatsChart() {
 
 
 //////////// 기능 ////////////
-	
+// 총 방문자 수
+function allVisitCount() {
+	$.ajax({
+		url: "allVisitCount",
+		datatype: "text",
+		success: function(data) {
+			$('#allVisitCountResult').text(numberWithCommas(data.count));
+		}
+	})
+} 
+
 // isDeleted = 0인 모든 회원 수
 function allUserCount() {
 	$.ajax({
@@ -251,6 +269,21 @@ function allEmailCount(arr1, arr2) {
 	})
 }
 
+// 날짜별 방문자 수
+function visitCountByDate(arr1, arr2, start, end) {
+	$.ajax({
+		url: "visitCountByDate",
+		datatype: "JSON",
+		data: {startdate: start, enddate: end},
+		async: false,
+		success: function(data) {
+			$.each(data.count, function(index, obj) {
+				arr1.push(obj.date);
+				arr2.push(obj.count);
+			});
+		}
+	})
+}
 
 // 날짜별 회원 수
 function userCountByDate(arr1, arr2, start, end) {
@@ -304,9 +337,3 @@ function formatDate(date, days) {
 	
 	return [year, month, day].join('-');
 }
-
-/*function formatDateCalc(date, days) {
-	var myDate = new Date(date)
-	myDate.setDate(myDate.getDate() + days);
-	return myDate;
-}*/

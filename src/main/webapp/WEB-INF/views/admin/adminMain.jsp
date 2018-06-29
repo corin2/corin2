@@ -28,7 +28,7 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<h1>3,854</h1>
+							<h1 id="allVisitCountResult"></h1>
 						</div>
 					</div>
 				</div>
