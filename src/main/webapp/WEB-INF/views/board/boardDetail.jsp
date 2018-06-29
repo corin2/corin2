@@ -52,7 +52,7 @@
 				<tr>
 					<td></td>
 					<td><input type="button" value="목록가기"
-						onclick="location.href='boardList'"> <se:authorize
+						onclick="location.href='boardList?countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}'"> <se:authorize
 							access="hasRole('ROLE_ADMIN')">
 							<input type="button" value="수정"
 								onclick="location.href='boardUpdate?boardnum=${detail.boardNum}'">

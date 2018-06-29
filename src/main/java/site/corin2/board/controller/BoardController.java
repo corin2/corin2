@@ -58,9 +58,10 @@ public class BoardController {
 	
 	//상세보기
 	@RequestMapping(value="boardDetail")
-	public String boardDetail(int boardnum , Model model) {
+	public String boardDetail(int boardnum, PagingBean page, Model model) {
 		BoardDTO boardDTO= service.boardSelect(boardnum);
 		model.addAttribute("detail",boardDTO);
+		model.addAttribute("page", page);
 		return "board.boardDetail";
 	}
 	
