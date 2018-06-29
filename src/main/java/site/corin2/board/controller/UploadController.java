@@ -82,7 +82,7 @@ public class UploadController {
 		//경로설정
 		String savepath = "resources/upload";
 		String fileName = null;
-		String originalName = mpf.getOriginalFilename();;
+		String originalName = mpf.getOriginalFilename();
 		
 		try {
 			// AWS S3에 파일 업로드

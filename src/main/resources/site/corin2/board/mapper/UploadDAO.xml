@@ -8,7 +8,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<insert id="boardInsert" parameterType="site.corin2.board.dto.BoardDTO">
 			insert into board(skillnum , userid, boarddate,isdeleted) 
 			values('S700',#{userId},now(),0)
-			
 		</insert>
 				
 		<insert id="uploadInsert" parameterType="site.corin2.board.dto.UploadDTO">
