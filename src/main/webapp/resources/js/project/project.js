@@ -244,7 +244,7 @@ function projectUpdateView(projectNum) {
 			 + "<div>"
 			 + "<div class='projectcreatebottom'><div class='createbottom'><input id='cancleProject' class='btn btn-3c' data-dismiss='modal' type='button' value='취소'>"
 			 + "<input id='deleteProject' class='btn btn-3b' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
-			 + "<input id='addProject' class='btn btn-3a' type='button' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
+			 + "<input id='addProject' class='btn btn-3a' type='button' data-dismiss='modal' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
 			 + "</div>";
 			 $("#detailButton").html(html);
 			 printProjectDetailLanguageChecked(projectNum);
@@ -258,6 +258,7 @@ function deleteProject(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum},
 		success:function(data){
+			swal("프로젝트 삭제완료");
 			languageColorView();
 		}
 		
