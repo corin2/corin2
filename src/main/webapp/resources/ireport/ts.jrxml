@@ -30,7 +30,7 @@
 			<textField>
 				<reportElement style="Arial" mode="Opaque" x="0" y="5" width="490" height="15" forecolor="#FFFFFF" backcolor="#777765" uuid="8fb8ff02-9408-46b0-8762-7c05a9dc0cef"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA["Employees  who are working more than  " + String.valueOf($P{noy})+" Years"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["team: " + String.valueOf($P{noy})+" troubles"]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
