@@ -23,8 +23,10 @@
 			</div>
 			<hr>
 			<div id="userManagement"></div>
+			<div class="adminpaging">
 			<ul id="pageChange" class="pagination pagination-lg">
 			</ul>
+			</div>
 		</div>
 	</div>
 </nav>
