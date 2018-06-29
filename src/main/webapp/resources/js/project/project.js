@@ -167,7 +167,6 @@ function printProjectDetailLanguage() {
 		success:function(data){
 			var html = '';
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
@@ -244,7 +243,7 @@ function projectUpdateView(projectNum) {
 			 + "<div>"
 			 + "<div class='projectcreatebottom'><div class='createbottom'><input id='cancleProject' class='btn btn-3c' data-dismiss='modal' type='button' value='취소'>"
 			 + "<input id='deleteProject' class='btn btn-3b' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
-			 + "<input id='addProject' class='btn btn-3a' type='button' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
+			 + "<input id='addProject' class='btn btn-3a' type='button' data-dismiss='modal' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
 			 + "</div>";
 			 $("#detailButton").html(html);
 			 printProjectDetailLanguageChecked(projectNum);
@@ -258,6 +257,7 @@ function deleteProject(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum},
 		success:function(data){
+			swal("프로젝트 삭제완료");
 			languageColorView();
 		}
 		
@@ -294,8 +294,6 @@ function searchProject(projectArray) {
 	var userId = $("#hiddenUserId").val();
 	var projectName = $("#searchProject").val();
 	var html='';
-	console.log(projectName)
-	console.log(userId)
 	$.ajax({
 		url:"prjectSearch",
 		datatype:"JSON",
@@ -304,7 +302,6 @@ function searchProject(projectArray) {
 			if(projectName!=""){
 			$.each(data.data, function(index, elt) {
 			$.each(projectArray[0], function(index, elt2) {
-				console.log(elt.languageNum)
 				if(elt.languageNum == elt2.languageNum){
 				html +=	"<div class='projectSerchDiv'>"
 					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
@@ -316,9 +313,6 @@ function searchProject(projectArray) {
 			})
 			}
 			$("#searchBox").append(html);
-			
-			console.log(data.data.projectNum);
-			console.log(data.data.projectName);
 			
 		}
 	})

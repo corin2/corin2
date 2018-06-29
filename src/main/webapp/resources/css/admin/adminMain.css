@@ -3,7 +3,7 @@
 }
 .admin-chart-box {
 	text-align: center;
-	border: 1px solid #E6E9ED;
+	/* border: 1px solid #E6E9ED; */
 }
 .admin-top {
 	text-align: center;
@@ -29,4 +29,8 @@
 }
 .zc-img {
 	text-align: center;
+}
+.hr-style {
+	border-top: 3px solid #566270;
+	margin: 0;
 }

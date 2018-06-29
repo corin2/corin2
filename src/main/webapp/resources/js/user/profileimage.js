@@ -1,5 +1,4 @@
 $(function(){
-	console.log($('#hiddenUserId').val());
 		$.ajax({
 			type : "post",
 			url  : "showUser",
@@ -26,7 +25,6 @@ $(function(){
                 }
 	        },
 	        done: function (e, data) {
-	        	console.log(data.result);
 	        	$.ajax({
 					type : "post",
 					url  : "showUser",

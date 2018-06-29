@@ -31,7 +31,6 @@ function skillCheckListTableConfirm() {
 		data:{projectNum:sessionProjectNum},
 		success: function(data) {
 			var table ="";
-			console.log(data.list)
 			
 			table = "<table class='table table-striped table-bordered table-hover'>"
 				+ "<tbody>"
@@ -81,7 +80,6 @@ function showSkillCheckListConfirm(user){
 
 //기본 체크리스트 내용 뿌리기
 function showSkillCheckList(){
-	console.log(sessionProjectNum)
 	$('#skillCheckAddBox').empty();
 	$.ajax({
 		type : "post",
@@ -163,9 +161,7 @@ function checkedSelectConfirm() {
 		datatype:"JSON",
 		data:{projectNum:sessionProjectNum},
 		success:function(data){
-			console.log(data.list)
 			$.each(data.list, function(index, elt) {
-				console.log("ggggg"+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+elt.checkNum);
 			$("#"+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+elt.checkNum).attr("checked","checked");
 			})
 		}

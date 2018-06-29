@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.corin2.user.dao.AdminMainDAO">
+	<!-- 총 방문자 수 -->
+	<select id="allVisitCount" resultType="int">
+		select sum(visit) from statistics
+	</select>
+
 	<!-- isDeleted = 0인 모든 프로젝트 수 -->
 	<select id="allUserCount" resultType="int">
 		select count(*) from user where isdeleted = 0
@@ -26,6 +31,24 @@
 		group by email
 	</select>
 	
+	<!-- 날짜별 방문자 수 -->
+	<select id="visitCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
+		select v.gen_date as date, ifnull(s.count, 0) as count from 
+		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
+		 (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
+		 (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
+		 (select 0 t2 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t2,
+		 (select 0 t3 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t3,
+		 (select 0 t4 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t4) v
+		left join
+		 (SELECT DATE_FORMAT(statisticsdate,'%Y-%m-%d') as date, visit as count
+		 FROM statistics
+		 GROUP BY DATE_FORMAT(statisticsdate,'%Y-%m-%d')
+		 ORDER BY DATE_FORMAT(statisticsdate,'%Y-%m-%d')) s
+		on v.gen_date = s.date
+		where gen_date between #{startdate} and #{enddate}
+	</select>
+	
 	<!-- 날짜별 회원 수 -->
 	<select id="userCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
 		select v.gen_date as date, ifnull(u.count, 0) as count from 
@@ -46,7 +69,7 @@
 	
 	<!-- 날짜별 프로젝트 수 -->
 	<select id="projectCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
-		select v.gen_date as date, ifnull(u.count, 0) as count from 
+		select v.gen_date as date, ifnull(p.count, 0) as count from 
 		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
 		 (select 0 t0 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t0,
 		 (select 0 t1 union select 1 union select 2 union select 3 union select 4 union select 5 union select 6 union select 7 union select 8 union select 9) t1,
@@ -57,8 +80,8 @@
 		 (SELECT DATE_FORMAT(projectdate,'%Y-%m-%d') as date, COUNT(*) as count
 		 FROM project
 		 GROUP BY DATE_FORMAT(projectdate,'%Y-%m-%d')
-		 ORDER BY DATE_FORMAT(projectdate,'%Y-%m-%d')) u
-		on v.gen_date = u.date
+		 ORDER BY DATE_FORMAT(projectdate,'%Y-%m-%d')) p
+		on v.gen_date = p.date
 		where gen_date between #{startdate} and #{enddate}
 	</select>
 	
