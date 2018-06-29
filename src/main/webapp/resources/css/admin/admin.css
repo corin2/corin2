@@ -11,3 +11,21 @@
 	background-color: black;
 	color: white;
 }
+	
+.adminmanagement {
+   background-color: #FFF;
+   margin-top: 110px;
+   margin-right: 200px;
+   margin-left: 200px;
+   border-radius: 20px;
+}
+
+.adminmanagementundo{
+font-weight : bold;
+   font-size: 20px;
+   padding-top: 60px;
+   padding-bottom: 60px;
+   margin-right: 18%;
+   margin-left: 22%;
+   width: 55%;
+}
