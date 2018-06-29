@@ -23,12 +23,13 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 				<div class="col-md-8" style="height:200px;">
 					<div class="row">
 						<div class="col-md-12">
-							<h1>방문자</h1>
+							<h2>방문자</h2>
+							<hr class="hr-style">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-12">
-							<h1>3,854</h1>
+							<h1 id="allVisitCountResult"></h1>
 						</div>
 					</div>
 				</div>
@@ -43,7 +44,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 				<div class="col-md-8" style="height:200px;">
 					<div class="row">
 						<div class="col-md-12">
-							<h1>회원</h1>
+							<h2>회원</h2>
+							<hr class="hr-style">
 						</div>
 					</div>
 					<div class="row">
@@ -63,7 +65,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 				<div class="col-md-8" style="height:200px;">
 					<div class="row">
 						<div class="col-md-12">
-							<h1>프로젝트</h1>
+							<h2>프로젝트</h2>
+							<hr class="hr-style">
 						</div>
 					</div>
 					<div class="row">
@@ -83,7 +86,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 		<!-- 프로그래밍 언어-->
 		<div class="admin-chart-box col-md-6">
 			<div class="row">
-				<h1>프로그래밍 언어</h1>
+				<h2>프로그래밍 언어</h2>
+				<hr class="hr-style">
 			</div>
 			<div class="row">
 				<div id="languageRank"></div>
@@ -92,7 +96,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 		<!-- 회원 이메일 순위 -->
 		<div class="admin-chart-box col-md-6">
 			<div class="row">
-				<h1>회원 이메일 순위</h1>
+				<h2>회원 이메일 순위</h2>
+				<hr class="hr-style">
 			</div>
 			<div class="row">
 				<div id="emailRank" style="width: 100%;height:400px;"></div>
@@ -104,7 +109,8 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 		<!-- 통계 -->
 		<div class="admin-chart-box col-md-12">
 			<div class="row">
-				<h1>통계</h1>
+				<h2>통계</h2>
+				<hr class="hr-style">
 			</div>
 			<div class="row">
 				<div id="stats" style="width: 100%;height:400px;"></div>

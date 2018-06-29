@@ -25,6 +25,9 @@
 	<div class="announceboard">
 		<div class="announceboardundo">
 			<form action="boardInsert"  method="post" >
+				<input type="hidden" name="countPerPage" value="${page.countPerPage}">
+				<input type="hidden" name="blockCount" value="${page.blockCount}">
+				<input type="hidden" name="nowPage" value="${page.nowPage}">
 				<table  class="table table-bordered">
 					<tr>
 				 		<td>제목</td>

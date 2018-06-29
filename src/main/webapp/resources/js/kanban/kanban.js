@@ -56,7 +56,6 @@ function sortable(){
 		zIndex: 9999,
 		containment: "#content",
 		start: function(event, ui) {
-			console.log(ui.item[0].id)
 			/*$('.listbox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');
 			$('.donebox:not(#'+ui.item[0].id+')').css('overflow-y', 'auto');*/
 		},

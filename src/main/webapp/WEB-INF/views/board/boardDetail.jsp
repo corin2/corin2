@@ -36,9 +36,9 @@
 						onclick="location.href='boardList?countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}'"> <se:authorize
 							access="hasRole('ROLE_ADMIN')">
 							<input type="button" class="btn btn-default updatecancelbutton" value="삭제"
-								onclick="location.href='boardDelete?boardnum=${detail.boardNum}'">
+								onclick="location.href='boardDelete?boardnum=${detail.boardNum}&countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}'">
 							<input type="button" class="btn btn-default updateupdatebutton" value="수정"
-								onclick="location.href='boardUpdate?boardnum=${detail.boardNum}'">
+								onclick="location.href='boardUpdate?boardnum=${detail.boardNum}&countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}'">
 						</se:authorize></td>
 				</tr>
 			</table>

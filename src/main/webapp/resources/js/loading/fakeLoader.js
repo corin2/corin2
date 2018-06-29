@@ -50,7 +50,6 @@
         //Each 
         el.each(function() {
             var a = settings.spinner;
-            //console.log(a)
                 switch (a) {
                     case 'spinner1':
                             el.html(spinner01);

@@ -31,6 +31,14 @@ public class AdminMainController {
 	@Autowired
 	private AdminMainService service;
 	
+	// 총 방문자 수
+	@RequestMapping("allVisitCount")
+	public View allVisitCountView(Model model) {
+		int allVisitCountResult = service.allVisitCount();
+		model.addAttribute("count", allVisitCountResult);
+		return jsonview;
+	}
+	
 	// isDeleted = 0인 모든 회원 수
 	@RequestMapping("allUserCount")
 	public View allUserCountView(Model model) {
@@ -63,10 +71,17 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
+	// 날짜별 방문자 수
+	@RequestMapping("visitCountByDate")
+	public View visitCountByDateView(DateParamDTO date, Model model) {
+		List<CountByDateDTO> visitCountByDateResult = service.visitCountByDate(date);
+		model.addAttribute("count", visitCountByDateResult);
+		return jsonview;
+	}
+	
 	// 날짜별 회원 수
 	@RequestMapping("userCountByDate")
 	public View userCountByDateView(DateParamDTO date, Model model) {
-	//public View userCountByDateView(Model model) {
 		List<CountByDateDTO> userCountByDateResult = service.userCountByDate(date);
 		model.addAttribute("count", userCountByDateResult);
 		return jsonview;
