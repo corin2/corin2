@@ -272,5 +272,3 @@ function userGradeCheckList() {
 		}
 	})
 }
-
-

@@ -747,5 +747,4 @@ function hashTagText() {
 		if($('div[class=bootstrap-tagsinput]').children('span').length != index+1) hashTag += ',';
 	});
 	
-	console.log(hashTag)
 }

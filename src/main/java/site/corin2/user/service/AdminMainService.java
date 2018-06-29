@@ -25,8 +25,21 @@ public class AdminMainService {
 	@Autowired
 	private SqlSession sqlsession;
 	
+	// 총 방문자 수
+	public int allVisitCount() {
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		int allVisitCountResult = 0;
+		try {
+			allVisitCountResult = adminMainDAO.allVisitCount();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return allVisitCountResult;
+	}
+	
 	// isDeleted = 0인 모든 회원 수
-	public int allUserCount(){
+	public int allUserCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		int allUserCountResult = 0;
 		try {
@@ -39,7 +52,7 @@ public class AdminMainService {
 	}
 	
 	// isDeleted = 0인 모든 프로젝트 수
-	public int allProjectCount(){
+	public int allProjectCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		int allProjectCountResult = 0;
 		try {
@@ -52,7 +65,7 @@ public class AdminMainService {
 	}
 	
 	// 프로젝트 언어별 수
-	public List<LanguageCountDTO> allLanguageCount(){
+	public List<LanguageCountDTO> allLanguageCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<LanguageCountDTO> allLanguageCountResult = null;
 		try {
@@ -66,7 +79,7 @@ public class AdminMainService {
 	
 	
 	// isDeleted = 0인 회원의 모든 이메일 수
-	public List<EmailCountDTO> allEmailCount(){
+	public List<EmailCountDTO> allEmailCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<EmailCountDTO> allEmailCountResult = null;
 		try {
@@ -78,8 +91,21 @@ public class AdminMainService {
 		return allEmailCountResult;
 	}
 	
+	// 날짜별 방문자 수
+	public List<CountByDateDTO> visitCountByDate(DateParamDTO date) {
+		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
+		List<CountByDateDTO> visitCountByDateResult = null;
+		try {
+			visitCountByDateResult = adminMainDAO.visitCountByDate(date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return visitCountByDateResult;
+	}
+	
 	// 날짜별 회원 수
-	public List<CountByDateDTO> userCountByDate(DateParamDTO date){
+	public List<CountByDateDTO> userCountByDate(DateParamDTO date) {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> userCountByDateResult = null;
 		try {
@@ -92,7 +118,7 @@ public class AdminMainService {
 	}
 	
 	// 날짜별 프로젝트 수
-	public List<CountByDateDTO> projectCountByDate(DateParamDTO date){
+	public List<CountByDateDTO> projectCountByDate(DateParamDTO date) {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> projectCountByDateResult = null;
 		try {

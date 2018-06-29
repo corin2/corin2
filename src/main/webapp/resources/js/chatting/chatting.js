@@ -27,8 +27,6 @@ $(function() {
 	const PROJECT_NUM = "@project@";
 	const PRIVATE_STR = "@private@";
 	
-	console.log("현재 유저: " + currentUser);
-	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
 	if(sessionProjectNum != 'null') getUsers(currentProject); // 멤버 가져오기 함수
@@ -72,8 +70,6 @@ $(function() {
 		if(userUid === currentUserUid) {
 			currentUserName = obj.userName; // 현재 사용자의 이름
 			currentChatUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
-			
-			console.log("현재 사용자의 프로필: " + currentChatUserProfile);
 			
 			// 현재 사용자의 이름 표시
 			$('#currentUserName').html(currentUserName);
