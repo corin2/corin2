@@ -20,8 +20,6 @@
 	  					   authentication-failure-handler-ref="loginFailureHandler"
 	  					   />
 	  <security:logout logout-success-url="/login.html" />
-	  <security:intercept-url pattern="/user.*" access="ROLE_USER or ROLE_AUTH"/>
-	  <security:intercept-url pattern="/admin" access="ROLE_ADMIN"/>
 	  <security:access-denied-handler ref="permissionEvaluator" />
 	</security:http>
 <!-- 	

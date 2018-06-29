@@ -130,11 +130,11 @@ body {
 }
 
 .btn-1a:hover, .btn-1a:active {
-    color: #A593E0;
+    color: #ffa400;
     background: #fff;
 }
 .btn-1a {
-	background-color : #A593E0;
+	background-color : #ffa400;
 	border: 3px solid #fff;
     color: #fff;
     border: none;

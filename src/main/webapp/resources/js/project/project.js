@@ -135,6 +135,7 @@ function projectDetailView() {
 	$("#detailButton").empty();
 	var html="";
 		html = "<div class='form-group proinputclass'>"
+			 + "<div class='projectcreatetitle'></div>"
 			 + "<h3>프로젝트제목입력</h3>"
 			 + "<input id ='ProjectName' type='text' class='search1' onkeypress='if(event.keyCode==13) {addProject()}' onkeyup='fnChkByte(this, 27)'>"
 			 + "<br>"
@@ -142,10 +143,8 @@ function projectDetailView() {
 		 	 + "</div>"
 		 	 +	"<div id='projectDetail' class='proradioclass'>"
 		 	 +	"</div>"
-		 	 +"<input id='cancleProject' class='btn btn-danger-project' data-dismiss='modal' type='button' value='취소'>"
-		 	 +"<input id='addProject' class='btn btn-create' type='button' onclick='addProject()' value='생성'>"
-		 	 + "<br>"
-		 	 + "<br>"
+		 	 +"<div class='projectcreatebottom'><div class='createbottom'><input id='addProject' class='btn btn-3a' type='button' onclick='addProject()' value='생성'>"
+		 	 +"<input id='cancleProject' class='btn btn-3b' data-dismiss='modal' type='button' value='취소'><div></div>"
 			 $("#detailButton").html(html);
 			 printProjectDetailLanguage();
 			 $('#ProjectName').focus();

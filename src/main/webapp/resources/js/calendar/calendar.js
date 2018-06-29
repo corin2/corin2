@@ -116,7 +116,7 @@ function showCalendar() {
 					calendarName : calendarName,
 					startDate : start,
 					endDate : start,
-					calendarColor : '#3A87AD'
+					calendarColor : '#5886BC'
 				},
 				success : function(data){
 					send(2);
@@ -279,7 +279,7 @@ function dragCardCalendar() {
 				else if($('#external-events').attr('class') == 'chevron-down')
 					htmlText += '<div class="middleCalendar" onclick="cardNowResult(1)"><span class="glyphicon glyphicon-chevron-up"></span></div>';
 			}else if(data.data.length < 1) {
-				htmlText += '<div>사용하지 않은 카드가 없습니다</div>'
+				htmlText += '<div class="boxnottext">사용하실 카드가 존재하지 않습니다</div>'
 			}
 			
 			$('#external-events').html(htmlText);

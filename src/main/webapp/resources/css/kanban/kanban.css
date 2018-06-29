@@ -94,6 +94,8 @@
 }
 
 .card {
+	margin-left: 1px;
+    margin-right: 1px;
 	margin-top:15px;
 	border : 1px solid black;
     border-radius: 8px;
