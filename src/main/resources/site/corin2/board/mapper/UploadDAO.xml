@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</insert>
 		
 		<select id="uploadSelect" resultType="site.corin2.board.dto.UploadDTO">
-			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,b.boarddate,u.boardnum  from board b ,upload u,user m 
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias , DATE_FORMAT(b.boarddate,'%Y-%m-%d %h:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
 			WHERE b.boardnum = u.boardnum and b.userid= m.userid 
 			and b.SKILLNUM ='S700' and b.isdeleted = 0 and u.projectnum =  #{projectNum} order by b.boarddate DESC
 		</select>
@@ -30,10 +30,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</delete>
  	
 		<select id="searcherFileSelect" resultType="site.corin2.board.dto.UploadDTO">
-			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,b.boarddate,u.boardnum  from board b ,upload u,user m 
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,DATE_FORMAT(b.boarddate,'%Y-%m-%d %h:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
 			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
-			and (u.uploadorigin LIKE '%${uploadOrigin}%' or  m.username LIKE '%${uploadOrigin}%')
+			and (u.uploadorigin LIKE '%${uploadOrigin}%' or  m.username LIKE '%${uploadOrigin}%')order by b.boarddate DESC
 			
 		</select> 
+		<select id="dateClick" resultType="site.corin2.board.dto.UploadDTO" parameterType="java.util.HashMap">
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,DATE_FORMAT(b.boarddate,'%Y-%m-%d %h:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
+			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
+			and (b.boarddate LIKE '%${date}%' and u.uploadorigin LIKE '%${extension}%')order by b.boarddate DESC 
+		</select>
+		
+		<select id="exClick" resultType="site.corin2.board.dto.UploadDTO" parameterType="java.util.HashMap">
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,DATE_FORMAT(b.boarddate,'%Y-%m-%d %h:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
+			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
+			and u.uploadorigin LIKE '%${extension}%' order by b.boarddate DESC
+		</select>
 		
 	</mapper>

@@ -49,7 +49,7 @@ public class UploadController {
 	private View jsonview;
 	//초기화면 ui
 	@RequestMapping(value="fileUpload", method =RequestMethod.GET )
-	public String fileUpload(@RequestParam("projectNum") String projectNum,Model model) {
+	public String fileUpload() {
 		return "board.fileUpload";
 	}
 	//초기화면 전체조회
@@ -134,7 +134,9 @@ public class UploadController {
 		byte[] b = new byte[4096];
 		try {
 			//파일 다운로드
+			System.out.println("패치"+filePath);
 			FileInputStream in = new FileInputStream(filePath);		
+	
 		    response.setHeader("Content-Disposition", 
 		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
 		    ServletOutputStream out2 = response.getOutputStream();
@@ -154,12 +156,34 @@ public class UploadController {
 	//검색기능
 	@RequestMapping(value="searcherFileSelect" , method = RequestMethod.GET)
 	public @ResponseBody LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO) {
-/*			
- 	fileName : keyup,
-	projectNum : $('#hiddenProjectNum').val()
-	
-*/
+
 		return service.searcherFileSelect(uploadDTO);
 	}
+	
+	//일자별 검색
+	@RequestMapping(value="dateClick" , method=RequestMethod.GET)
+	public View dateClick(@RequestParam("projectNum")String projectNum,@RequestParam("date")String date,@RequestParam("extension")String extension ,Model model) {
+		HashMap map = new HashMap<String, Object>();
+		System.out.println("일자별"+ extension);
+		System.out.println("일자별"+ date);
+		map.put("projectNum", projectNum);
+		map.put("date", date);
+		map.put("extension", extension);
+		model.addAttribute("date", service.dateClick(map));
+		return jsonview;
+	}
+	
+	//확장자 검색
+	@RequestMapping(value="exClick" , method=RequestMethod.GET)
+	public View exClick(@RequestParam("projectNum")String projectNum,@RequestParam("extension")String extension,Model model) {
+		HashMap map = new HashMap<String, Object>();
+		System.out.println("확장자별"+ extension);
+		map.put("projectNum", projectNum);
+		map.put("extension", extension);
+		
+		model.addAttribute("extension", service.exClick(map));
+		return jsonview;
+	}
+	
 
 }

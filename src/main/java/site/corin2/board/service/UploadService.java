@@ -6,6 +6,7 @@
 */
 package site.corin2.board.service;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,7 +24,6 @@ public class UploadService {
 	public LinkedList<UploadDTO> uploadSelect(int projectNum) {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		return dao.uploadSelect(projectNum);
-	
 		
 	}
 	//파일 insert
@@ -43,12 +43,21 @@ public class UploadService {
 		dao.fileDelete(uploadDTO);
 		
 	}
-
+	//파일명, 작성자명 검색
 	public LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO) {
 		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);
 		return  dao.searcherFileSelect(uploadDTO);
 	}
-
+	//폴더 : 일자별 검색
+	public LinkedList<UploadDTO>  dateClick(HashMap<String, Object> map) {
+		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);	
+		return dao.dateClick(map);
+	}
+	//폴더 : 확장자명검색
+	public LinkedList<UploadDTO> exClick(HashMap<String, Object> map) {
+		UploadDAO dao = sqlSession.getMapper(UploadDAO.class);		
+		return dao.exClick(map);
+	}
 
 
 }

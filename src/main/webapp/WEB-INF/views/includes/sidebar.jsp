@@ -119,7 +119,7 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		        <a class="sidebaricon" id="filesicon" href="fileUpload">
 		            <i class="glyphicon glyphicon-file" ></i>
 		            Files
 		        </a>

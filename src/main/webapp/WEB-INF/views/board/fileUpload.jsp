@@ -6,30 +6,36 @@ pageEncoding="UTF-8"%>
 <script src="resources/js/board/jquery.iframe-transport.js"></script>
 <script src="resources/js/board/myuploadfunction.js"></script>  
 <link href="resources/css/board/dropzone.css" type="text/css" rel="stylesheet" />
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
 	
-	<!-- 검색기능 -->
- 	 <form action="searcherFileSelect" method="get"  onsubmit="return false">
- 	 	<input id="uploadOriginInput" type="text" name ="uploadOrigin"  onkeypress="if( event.keyCode==13 ){searcherFileSelect();}" placeholder="파일명 or 작성자를 입력하세요" style="width:200px;" />
- 	 	
- 	 	<input type="submit"  value="검색" onclick="searcherFileSelect()"/>
-	 </form>
-
-	<br>
-	<br>
+	<!-- input 검색기능 -->
+	<div class ="folder" style="width:18%;overflow:hidden;height:600px;float:left;margin-top:55px;">
+		<form action="searcherFileSelect" method="get"  onsubmit="return false" >
+	 	 	<input id="uploadOriginInput" type="text" name ="uploadOrigin" class="search"style="width:250px;margin-right:5px; " onkeypress="if( event.keyCode==13 ){searcherFileSelect();}" placeholder="파일명  or 작성자를 입력하세요"  />
+	 	 	<button class="btn btn-default" onclick="searcherFileSelect()">검색</button>
+		 </form> 
+		<hr>
+	
+	<!-- jstree 검색 -->
+		<div class ="jstree" style="overflow:scroll;overflow:hidden;height:600px;"> 
+			
+		</div>
+	</div>
 	
 	<!-- 파일함 기능  -->
-	<div id ="wrap" >
+	<div id ="wrap" style="float:right;margin-top:30px;" >
 		<form action="upload" method="post" enctype="multipart/form-data"> 
 			<div class="filebox"> 
-				<label for="fileupload">파일함</label> 
+				<label for="fileupload">fileupload</label> 
 				<input id="fileupload" type="file" name="files[]"  multiple>
 			</div>
 		 		<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
-		 		<input type="hidden" name="userId"id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
+		 		<input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" >
 		</form>
-		<div id="dropzone" class="fade well" style='width:100%;height:100%;'>
+		
+	<!-- dropzone 파일이 drop공간  -->
+		<div id="dropzone" >
 			 <div id ="over">
 				<img class="dropzoneimg" ></img>
 				<div class="dropzonediv"></div>
@@ -37,4 +43,5 @@ pageEncoding="UTF-8"%>
 		</div>
 	</div>
 	
-			
+	
+	
