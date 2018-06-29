@@ -18,13 +18,15 @@
 	border: 1px solid #E6E9ED;
 }
 .admin-icon {
-	font-size: 5em;
-	padding: 50px 0;
+	font-size: 3em;
     text-align: center;
+    margin-top: 46px;
+    margin-left: 26px;
 }
 #languageRank {
 	height: 400px;
 	/* width: 400px; */
+	border-radius: 25px;
 	text-align: center;
 }
 .zc-img {
@@ -34,3 +36,42 @@
 	border-top: 3px solid #566270;
 	margin: 0;
 }
+.adminmainpage {
+   background-color: #FFF;
+   border-radius: 20px;
+   margin: 15px;
+}
+.adminmainpageundo {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.width87{
+	width : 86% !important;
+}
+.width27{
+	width : 27% !important;
+}
+.th-large{
+	background-color: #22ad89;
+	color : #FFF;
+	border-radius: 50%;
+}
+.usercount{
+	background-color: #D3AA37;
+	color : #FFF;
+	border-radius: 50%;
+}
+.eye-open{
+	background-color: #AD2424;
+	color : #FFF;
+	border-radius: 50%;
+}
+.adminmainglyphi{
+margin-top:18px;
+}
+.adminmainfirstrow{
+	height:200px; 
+	padding-top: 33px;
+}
+	
