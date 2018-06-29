@@ -22,7 +22,7 @@
 					<c:if test="${status.index >= (page.countPerPage*page.nowPage)-5}">
 						<c:if test="${status.index < page.countPerPage*page.nowPage}">
 							<tr>
-								<td>${list.boardNum}</td>
+								<td>${status.index+1}</td>
 								<td><a href="boardDetail?boardnum=${list.boardNum}&countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}">${list.announceTitle}</a></td>
 								<td>${list.userId}</td>
 								<td>${list.boardDate}</td>
