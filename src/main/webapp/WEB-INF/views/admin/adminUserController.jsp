@@ -5,7 +5,7 @@
 <nav class="navbar navbar-default">
 	<div class="adminmanagement">
 		<div class="adminmanagementundo">
-			<h1>UserManager</h1>
+			<h1>User Manager</h1>
 			<hr>
 			<div class="dropdown">
 				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">회원 관리
@@ -16,7 +16,7 @@
 					<li><a onclick="allUser(0, 1, 1)">탈퇴회원</a></li>
 				</ul>
 			</div>
-			<hr>
+			<br>
 			<div>
 				<input type="text" id="searchUser" class="search">&nbsp;
 				<span class="glyphicon glyphicon-search" onclick="allUser(3, $(this).parent().children('input').val(), 1)"></span>

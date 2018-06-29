@@ -76,6 +76,9 @@
     color: #c6c4c4;
     margin: 10px;
 	}
+	hr{
+	border : 1px solid #c6c4c4 !important;	
+	}
 	.adminbtndan{
 	color : #FFF !important;
 	}

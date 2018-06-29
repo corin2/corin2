@@ -5,8 +5,8 @@
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
 <div class="announceboard">
 	<div class="announceboardundo">
-		<h3>공지사항</h3>
-
+		<h1>Notice</h1>
+		<hr>
 		<table class="table table-hover tableannounce">
 			<thead>
 				<tr>

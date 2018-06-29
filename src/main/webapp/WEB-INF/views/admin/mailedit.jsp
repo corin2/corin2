@@ -14,7 +14,7 @@
 	</style>
 	<div class="adminmanagement">
 			<div class="adminmanagementundo">
-			<h1>MailTemplateManagement</h1>
+			<h1>Mail Template Management</h1>
 			<hr>
 			<form action=""
 				method="post">
