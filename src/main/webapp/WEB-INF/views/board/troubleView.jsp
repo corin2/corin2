@@ -31,14 +31,10 @@
 		    
 		    airMode:true
 		  });
-			
-		  //최초커서위치를 hashtag로 이동. 안됨 ㅠㅠ 다시알아볼것
-		  //document.insfrm.hashtag.focus();
 	});
 	function editts(){
-			//$('#summernote').summernote({ airMode:false; });
-			//$('#summernote2').summernote({ airMode:false; });
-			alert("2");
+			//todo: 수정시 처리
+			
 		}
 </script>
 

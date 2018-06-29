@@ -259,19 +259,6 @@
 		  <version>4.5.2</version>
 		</dependency>
 		
-		<!-- jasper report 
-		<dependency> 
-    		<groupId>net.sf.jasperreports</groupId> 
-    		<artifactId>jasperreports</artifactId> 
-    		<version>6.4.3</version> 
-		</dependency> 
-		https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all
-		<dependency>
-    		<groupId>org.codehaus.groovy</groupId>
-    		<artifactId>groovy-all</artifactId>
-    		<version>2.4.15</version>
-		</dependency> -->
-		
 		<!-- (Excel) POI -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -279,19 +266,17 @@
 			<version>3.9</version>
 		</dependency>
 		
-		<!-- jasper report -->
-		<!-- https://mvnrepository.com/artifact/net.sf.jasperreports/jasperreports -->
+		<!-- Jasper Report Tool : PDF output -->
 		<dependency>
-		    <groupId>net.sf.jasperreports</groupId>
-		    <artifactId>jasperreports</artifactId>
-		    <version>6.6.0</version>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.0.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
+
 		<dependency>
-    		<groupId>org.codehaus.groovy</groupId>
-    		<artifactId>groovy-all</artifactId>
-    		<version>2.5.0</version>
-    		<type>pom</type>
+			<groupId>tomcat</groupId>
+			<artifactId>jasper-compiler-jdt</artifactId>
+			<version>5.5.23</version>
 		</dependency>
 		
 		<!-- (Pdf) iText -->
