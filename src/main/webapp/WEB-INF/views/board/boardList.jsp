@@ -3,11 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
-<style>
-.pagingdiv{
-float : inherit;
-}
-</style>
 <div class="announceboard">
 	<div class="announceboardundo">
 		<h3>공지사항</h3>

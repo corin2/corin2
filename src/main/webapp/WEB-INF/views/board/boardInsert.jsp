@@ -2,30 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
-    <style>
-	.announceboard {
-    background-color: #FFF;
-    margin-top: 110px;
-    margin-right: 200px;
-    margin-left: 200px;
-    border-radius: 20px;
-	}
-	.announceboardundo{
-	font-weight : bold;
-    font-size: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    margin-right: 250px;
-    margin-left: 250px;
-	}
-	
-	</style>
 <!-- ckedior -->
 <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
-	<div class="announceboard">
-		<div class="announceboardundo">
+	<div class="announceboardupdate">
+		<div class="announceboardundoupdate">
+			<h2 id='boardUpdateTitle'>공지사항 작성하기</h2>
+			<hr>
 			<form action="boardInsert"  method="post" >
-				<table  class="table table-bordered">
+				<table  class="table table-update">
 					<tr>
 				 		<td>제목</td>
 				 		<td><input type="text" name ="announceTitle"></td>
@@ -39,14 +23,15 @@
 					<tr>
 						<td></td>
 						<td >
-							<input type="submit" value="작성" style="margin-right: 15px">
-							<input type="button" value="취소" OnClick="history.back()">
+							<input class="btn btn-default updatecancelbutton" type="button" value="취소" OnClick="history.back()">
+							<input class="btn btn-default updateupdatebutton" type="submit" value="작성" style="margin-right: 15px">
 						</td>
 					</tr>		
 				</table>
 			</form>	
 		</div>
 	</div>
+	
 	<script type="text/javascript">			    
 		CKEDITOR.replace( 'announceContent',{
 				width:'100%',
