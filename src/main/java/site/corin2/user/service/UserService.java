@@ -38,11 +38,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.FileMeta;
-import site.corin2.board.service.UploadFileUtils;
 import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.AdminDTO;
 import site.corin2.user.dto.UserDTO;
+import site.corin2.util.UploadFileUtils;
 
 @Service
 public class UserService {

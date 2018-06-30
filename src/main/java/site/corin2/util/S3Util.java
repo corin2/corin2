@@ -5,35 +5,35 @@
     작성자: 강 성 훈
 */
 
-package site.corin2.board.service;
+package site.corin2.util;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
-import com.amazonaws.AmazonServiceException;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+
 import com.amazonaws.ClientConfiguration;
 import com.amazonaws.Protocol;
 import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.S3Object;
-import com.amazonaws.services.s3.model.S3ObjectInputStream;
 
+@Controller
 public class S3Util {
-	private String accessKey = "AKIAJOBQ4UTKGYRSSBIQ";
-	private String secretKey = "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";
+	// (S3 권한부여를 위한 key값) src/main/resources/s3Key.properties
+	// -> 보안을 위해 .gitignore에 작성한 후 git으로 관리하지 않아야 함
+	private Properties s3Key = PropertiesUtils.fetchProperties("s3Key");
+	
+	private String accessKey = s3Key.getProperty("s3.accessKey"); // S3의 accessKey
+	private String secretKey = s3Key.getProperty("s3.secretKey"); // S3의 secretKey
 	
 	private AmazonS3 conn;
 	
