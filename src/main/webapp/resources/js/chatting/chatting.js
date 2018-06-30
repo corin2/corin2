@@ -4,6 +4,8 @@ $(function() {
 		
 	// Firebase 초기화
 	// [초기화 시작]
+	
+	// 아래 키는 Firebase 콘솔에서 권한 정책 변경을 통해 보안 설정이 가능하므로 별도 관리하지 않음
 	var config = {
 		apiKey: "AIzaSyDmfyvIHlY8QYVXO6shi6r85k3ocZWJAw4",
 		authDomain: "testcorin2.firebaseapp.com",

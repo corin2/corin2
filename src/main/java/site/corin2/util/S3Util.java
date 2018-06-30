@@ -39,8 +39,6 @@ public class S3Util {
 	
 	// S3 생성자 함수
 	public S3Util() {
-		System.out.println("액세스키: " + accessKey);
-		System.out.println("보안키: " + secretKey);
 		AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
 		ClientConfiguration clientConfig = new ClientConfiguration();
 		clientConfig.setProtocol(Protocol.HTTP);
