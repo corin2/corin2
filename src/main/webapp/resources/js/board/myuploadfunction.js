@@ -288,7 +288,7 @@ function preview(uploadAlias){
     $(document).on("mouseover",".thumbnail",function(e){ //마우스 오버시
      
         $(".preview").remove();
-        $("body").append("<span class ='preview'><img src='https://s3.ap-northeast-2.amazonaws.com/corin2.site/"+ uploadAlias +"' width='350px' alt='사진없음'/></span>"); //보여줄 이미지를 선언                       
+        $("body").append("<span class ='preview'><img src='" + s3StorageURL + uploadAlias +"' width='350px' alt='사진없음'/></span>"); //보여줄 이미지를 선언                       
         $(".preview")
             .css("top",(e.pageY - xOffset) + "px")
             .css("left",(e.pageX + yOffset) + "px")
@@ -309,7 +309,7 @@ function preview(uploadAlias){
 
 //파일 다운로드
 function download(uploadAlias) {
-	location.href = 'https://s3.ap-northeast-2.amazonaws.com/corin2.site/' + uploadAlias;
+	location.href = s3StorageURL + uploadAlias;
 }
 
 //파일삭제

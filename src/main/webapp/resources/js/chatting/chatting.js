@@ -21,13 +21,15 @@ $(function() {
 	// [초기화 끝]
 	
 	// 변수, 상수 설정
-	var currentProject = sessionProjectNum;
-	var currentUser = $('#hiddenUserId').val();
-	var currentUserName;
-	var currentChatUserProfile;
-	var messages;
-	const PROJECT_NUM = "@project@";
-	const PRIVATE_STR = "@private@";
+	var currentProject = sessionProjectNum; // 현재 프로젝트
+	var currentUser = $('#hiddenUserId').val(); // 현재 사용자
+	var currentUserName; // 현재 사용자 이름
+	var currentChatUserProfile; // 현재 사용자 프로필
+	var currentMessages; // 현재 메시지
+	var messages; // 새로운 메시지
+	
+	const PROJECT_NUM = "@project@"; // 프로젝트 구분 문자
+	const PRIVATE_STR = "@private@"; // 1:1채팅 구분 문자
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
@@ -97,7 +99,7 @@ $(function() {
 				'<div class="row sideBar-body" id=' + userUid + ' data-toggle="tooltip" title="' + obj.userName + '">'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
 				+ '<div class="avatar-icon">'
-				+ '<img src="resources/images/profile/' + obj.userProfile +'">'
+				+ '<img src="' + profileStorageURL + obj.userProfile +'">'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
@@ -215,7 +217,6 @@ $(function() {
 	})
 	
 	// DB변동 시 메시지 출력 함수
-	var currentMessages;
 	function showMessage() {
 		$('#conversation').empty(); // 대화창 초기화
 		
@@ -252,7 +253,7 @@ $(function() {
 					'<div class="row message-body">'
 					+ '<div class="col-sm-12 message-main-receiver">'
 					+ '<div class="col-sm-3 heading-avatar-icon">'
-					+ '<img src="resources/images/profile/' + message.userprofile + '">'
+					+ '<img src="' + profileStorageURL + message.userprofile + '">'
 					+ '</div><div class="col-sm-9 heading-avatar-name">'
 					+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + message.username +'</span>'
 					+ '<div class="receiver bubble">'
@@ -312,7 +313,8 @@ $(function() {
 
 }); // end - jQuery
 
-$(function() {
+// 이모티콘
+/*$(function() {
   // Initializes and creates emoji set from sprite sheet
   window.emojiPicker = new EmojiPicker({
     emojiable_selector: '[data-emojiable=true]',
@@ -323,4 +325,4 @@ $(function() {
   // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
   // It can be called as many times as necessary; previously converted input fields will not be converted again
   window.emojiPicker.discover();
-});
+});*/

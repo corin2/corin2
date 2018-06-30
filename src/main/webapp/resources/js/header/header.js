@@ -74,7 +74,7 @@ function projectMemberShow(userProfiles){
 						if(elt.gradeNum == 'G300')
 							htmltext += '<span class="glyphicon glyphicon-king leader" aria-hidden="true"></span>';
 						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
-								 + '<img class="img-circle profileimg" src = "https://s3.ap-northeast-2.amazonaws.com/corin2.site/'+elt2.userProfile+'" /></a>'
+								 + '<img class="img-circle profileimg" src = "' + profileStorageURL + elt2.userProfile + '" /></a>'
 								 + '<ul class="dropdown-menu headerCuror" id="profile-dropdown-menu">'
 								 + '<li><a>'+ elt2.userName+'</a></li>';
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
