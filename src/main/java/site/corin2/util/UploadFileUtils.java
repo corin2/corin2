@@ -5,7 +5,7 @@
     작성자: 강 성 훈
 */
 
-package site.corin2.board.service;
+package site.corin2.util;
 
 import java.io.File;
 import java.text.DecimalFormat;
