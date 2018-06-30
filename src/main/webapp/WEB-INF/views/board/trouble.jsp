@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <script>
 //태그 값을 불러와 ',' 단위로 잘라서 tag버튼들을 생성하는 스크립트.
 function fncTegSplit(str){
@@ -38,6 +39,7 @@ function fncTegSplit(str){
 
 </script>
 
+<!--jasper test --> 
 <div id="troubleContent">
 	<h2 id='boardTitle'>팀 트러블슈팅</h2>
 
@@ -57,13 +59,14 @@ function fncTegSplit(str){
 			검색
 		</button>
 		
-		<!-- <button type="button" class="btn btn-success btn-wide">
-			<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
-		</button> -->
 		
 		<a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
 				class="btn btn-success btn-wide">
 				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
+		</button></a>
+		<a href="generateReport"><button type="button"
+				class="btn btn-danger btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> PDF 저장
 		</button></a>
 		<a href="troubleins"><button type="button"
 				class="btn btn-primary btn-wide">
@@ -75,6 +78,8 @@ function fncTegSplit(str){
 </div>
 
 <br>
+
+	
 <form action="update" method="post">
 	<table class="table  table-striped table-bordered table-hover">
 		<br>

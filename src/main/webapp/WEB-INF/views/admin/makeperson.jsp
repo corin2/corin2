@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="resources/css/makeperson/makeperson.css">
-<link rel="stylesheet" href="resources/css/makeperson/animate.min.css">
 <jsp:include page="makepersondetail.jsp"></jsp:include>
 
 	<div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown backdiv">

@@ -109,8 +109,27 @@ input {
 a{
 	margin-top : 10px;
 }
-.sns-icon{
- width:40px;
+.sns-icon-fac{
+    margin-right: 21px;
+    margin-left: -27px;
+    width: 35px;
+}
+.sns-icon-goo{
+    margin-left: -46px;
+    margin-right: 20px;
+    width: 40px;
+}
+.sns-icon-kak{
+    margin-bottom: -4px;
+    margin-right: 16px;
+    margin-left: -53px;
+    width: 43px;
+}
+.sns-icon-nav{
+    margin-right: 18px;
+    margin-left: -50px;
+    width: 39px;
+    margin-bottom: -1px;
 }
 .btn{
 margin-top : 8px;
@@ -304,3 +323,4 @@ footer .glyphicon {
       font-size: 150px;
   }
 }
+

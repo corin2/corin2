@@ -153,7 +153,7 @@
 				data : {userId : $('#hiddenUserId').val()},
 				success : function(data){
 					$.each(data, function(index, obj) {
-						$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
+						$('#currentUserProfile').attr("src", "https://s3.ap-northeast-2.amazonaws.com/corin2.site/" + obj.userProfile);
 					});
 				}
 			});

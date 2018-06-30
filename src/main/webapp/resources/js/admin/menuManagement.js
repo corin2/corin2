@@ -32,7 +32,7 @@ function checkListMenu(languageNumber){
 		datatype:"JSON",
 		success : function(data){
 			$('#'+languageNumber+'Tab').empty();
-			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
+			var texthtml = '<table class="table table-hover table-admin-menu">'
 						 + '<thead><tr><th>체크넘버</th><th>카테고리</th><th>내용</th><th>사용여부</th>'
 						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="checkListAdd(this)"></th></tr></thead>';
 			$.each(data.data, function(index, elt) {
@@ -43,7 +43,7 @@ function checkListMenu(languageNumber){
 							 + '<td>'+elt.checkNum+'</td>'
 							 + '<td>'+elt.category+'</td>'
 							 + '<td>'+elt.checkContent+'</td>';
-					if(elt.isDeleted == '0') texthtml += '<td><input type="button" value="삭제" class="btn btn-danger" onclick="checkListDel(this)" ></td>';
+					if(elt.isDeleted == '0') texthtml += '<td><input type="button" value="삭제" class="btn btn-danger adminbtndan" onclick="checkListDel(this)" ></td>';
 					else if(elt.isDeleted == '1') texthtml += '<td><input type="button" value="복구" class="btn btn-info" onclick="checkListReset(this)" ></td>';
 					texthtml += '<td><input type="button" value="수정" class="btn btn-info" onclick="checkListEdit(this)" ></td>'
 							 + '</tr></tbody>';
@@ -163,7 +163,7 @@ function skillMenu(){
 		success : function(data){
 			$('#menuManagement').empty();
 			
-			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
+			var texthtml = '<table class="table table-hover table-admin-menu">'
 						 + '<thead><tr><th>기능넘버</th><th>기능명</th><th>사용여부</th>'
 						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="skillAdd(this)"></th></tr></thead>';
 			$.each(data.data, function(index, elt) {
@@ -273,7 +273,7 @@ function listMenu(){
 		success : function(data){
 			$('#menuManagement').empty();
 			
-			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
+			var texthtml = '<table class="table table-hover table-admin-menu">'
 						 + '<thead><th>리스트넘버</th><th>리스트명</th>'
 						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="listAdd(this)"></th></thead>';
 			$.each(data.data, function(index, elt) {
@@ -374,7 +374,7 @@ function languageMenu(){
 		success : function(data){
 			$('#menuManagement').empty();
 			
-			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
+			var texthtml = '<table class="table table-hover table-admin-menu">'
 						 + '<thead><th>언어넘버</th><th>주언어</th><th>언어색상</th>'
 						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="languageAdd(this)" ></th></thead>';
 			$.each(data.list, function(index, elt) {
@@ -485,7 +485,7 @@ function userGradeMenu(){
 		success : function(data){
 			$('#menuManagement').empty();
 			
-			var texthtml = '<table class="table  table-striped table-bordered table-hover">'
+			var texthtml = '<table class="table table-hover table-admin-menu">'
 						 + '<thead><th>등급넘버</th><th>등급명</th>'
 						 + '<th><input class="btn btn-primary" type="button" value="추가" onclick="userGradeAdd(this)" ></th></thead>';
 			$.each(data.data, function(index, elt) {

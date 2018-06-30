@@ -12,6 +12,8 @@
 		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
+		<!-- .settings/org.eclipse.wst.common.component에서 <property name="context-root" value="/"/> 설정 -->
+		<m2eclipse.wtp.contextRoot>/</m2eclipse.wtp.contextRoot>
 	</properties>
 	<!-- Maven dependencies -->
 	<dependencies>
@@ -265,7 +267,20 @@
 			<artifactId>poi</artifactId>
 			<version>3.9</version>
 		</dependency>
+		
+		<!-- Jasper Report Tool : PDF output -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.0.0</version>
+		</dependency>
 
+		<dependency>
+			<groupId>tomcat</groupId>
+			<artifactId>jasper-compiler-jdt</artifactId>
+			<version>5.5.23</version>
+		</dependency>
+		
 		<!-- (Pdf) iText -->
 		<dependency>
 			<groupId>com.lowagie</groupId>
@@ -286,6 +301,14 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- AWS java sdk -->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk</artifactId>
+		    <version>1.11.354</version>
+		</dependency>
+		
 	</dependencies>
 	<!-- end - Maven dependencies -->
 	

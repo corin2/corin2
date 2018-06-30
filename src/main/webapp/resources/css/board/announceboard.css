@@ -64,6 +64,7 @@
 	}
 
 	.announceboard {
+    padding-bottom: 80px;
     background-color: #FFF;
     margin-top: 110px;
     margin-right: 200px;
@@ -116,10 +117,28 @@
     margin-bottom: 60px;
     }
     .btn-write {
+    margin-top: 25px;
     float: right;
     border-radius: 20px;
     border: solid 1px;
     height: 40px;
     width: 100px;
+	}
+    
+    .pagingdiv{
+	padding-left: 40%;
+	float: left;
+	}
+	.pagingdiv li a{
+	color : #000;
+	border-color: #000;
+	}
+	.pagingdiv ul :first-child > a{
+	border-top-left-radius : 20px;
+	border-bottom-left-radius : 20px;
+	}
+	.pagingdiv ul :last-child > a{
+	border-top-right-radius : 20px;
+	border-bottom-right-radius : 20px;
 	}
     

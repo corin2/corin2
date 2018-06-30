@@ -6,13 +6,32 @@
 */
 package site.corin2.board.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 import site.corin2.board.dto.TroubleShootingDTO;
 import site.corin2.board.service.TroubleService;
 
@@ -136,6 +155,65 @@ public class TroubleController {
 			
 		model.addAttribute("data",troubleDTO);
 		return "troubleExcel";
+	}
+	
+	
+	//Report Test
+	@RequestMapping("/report")
+    public void report() {
+		List<Map<String, ?>> listTruble = new ArrayList<Map<String,?>>();
+		TroubleShootingDTO tsDTO = new TroubleShootingDTO();
+		tsDTO.setBoardNum(1);
+		tsDTO.setProblem("new problem");
+		tsDTO.setSolution("new Solution");
+		
+		Map<String,Object> m = new HashMap<String,Object>();
+		m.put("boardNum", tsDTO.getBoardNum());
+		m.put("problem", tsDTO.getProblem());
+		m.put("boardNum", tsDTO.getSolution());
+		listTruble.add(m);
+		
+		//new JRBeanCollectionDataSource(beanCollection)
+	}
+	
+    @RequestMapping("/report2")
+    public ModelAndView report2() {
+
+        JasperReportsPdfView view = new JasperReportsPdfView();
+        view.setUrl("classpath:/resources/ireport/troubleshooting.jrxml");
+        
+        
+        //view.setApplicationContext(appContext);
+        
+        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+        view.setJdbcDataSource(driverManagerDataSource);
+
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("USR_ID", "1");
+
+        return new ModelAndView(view, params);
+    }
+	
+	@RequestMapping(value="/report3")
+	public ModelAndView report3(Map<String,Object> map, HttpServletRequest request, HttpServletResponse response){
+				
+		//List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		JasperReportsPdfView view = new JasperReportsPdfView();
+		
+		//추가
+		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
+		
+		view.setJdbcDataSource(driverManagerDataSource);
+		view.setUrl("/WEB-INF/reports/sample.jrxml");
+		Map<String, Object> params = new HashMap<>();
+		params.put("param1", "param1 value");
+		
+		view.setApplicationContext(null);
+		
+		return new ModelAndView(view, params);
+		
+		//return JasperReportsUtils.render("multiformat-view", list, "");
+		//("multiformat-view", list, "pdf");
 	}
 }
 

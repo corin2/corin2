@@ -268,7 +268,8 @@ $(function() {
 		}
 		
 		// 대화창 스크롤을 항상 아래로
-		$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
+		//$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
+		$("#style-1").scrollTop($("#style-1")[0].scrollHeight);
 	}
 	
 	//////////// [유틸 함수] ////////////

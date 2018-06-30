@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
-<div class="announceboardupdate">
+
 	<div class="announceboardundoupdate">
 		<h2 id='boardUpdateTitle'>공지사항 상세보기</h2>
 		<hr>
@@ -42,6 +42,6 @@
 						</se:authorize></td>
 				</tr>
 			</table>
-		</form>
+		</form>	
+
 	</div>
-</div>
