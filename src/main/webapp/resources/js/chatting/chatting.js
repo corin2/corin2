@@ -21,10 +21,8 @@ $(function() {
 	// [초기화 끝]
 	
 	// 변수, 상수 설정
-	var currentProject = sessionProjectNum; // 현재 프로젝트
 	var currentUser = $('#hiddenUserId').val(); // 현재 사용자
 	var currentUserName; // 현재 사용자 이름
-	var currentChatUserProfile; // 현재 사용자 프로필
 	var currentMessages; // 현재 메시지
 	var messages; // 새로운 메시지
 	var chatUserList; // 유저리스트
@@ -35,8 +33,8 @@ $(function() {
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
 	if(sessionProjectNum != 'null') {
-		getChatUsers(currentProject); // 멤버 가져오기 함수
-		messages = db.child('messages/' + currentProject); // 전체채팅 메시지 경로
+		getChatUsers(); // 멤버 가져오기 함수
+		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
 		showMessage();
 	}
 	
@@ -46,20 +44,24 @@ $(function() {
 	// All 버튼 클릭 시
 	$('#allUsers').click(function() {
 		changeColor('#allUsers'); // 클릭 시 색상변경
-		messages = db.child('messages/' + currentProject); // 전체채팅 메시지 경로
+		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
 		showMessage(); // 메시지 출력
 	});
 	
+	// getChatUsers함수를 $(function() {...}) 함수 범위 밖에서 사용 선언
 	window.getChatUsers = getChatUsers;
 	
 	// 프로젝트 내 멤버 정보 가져오기
-	function getChatUsers(projectNum) {
-		chatUserList = [];
+	function getChatUsers() {
+		$('.sideBar').empty(); // 채팅 유저리스트 초기화
+		getChatAllIcon(); // 전체채팅 아이콘 불러오기
+		
+		chatUserList = []; // 채팅 유저리스트 배열
 		
 		$.ajax({
 			url:"showMemberUserProfile",
 			datatype:"JSON",
-			data:{projectNum:projectNum},
+			data:{projectNum:sessionProjectNum},
 			async: false,
 			success:function(data){
 				$.each(data.data, function(index, obj) {
@@ -69,7 +71,7 @@ $(function() {
 					showCurrentChatUserProfile(obj); // 프로필 이미지 표시
 					initialData(userUid, obj); // 초기 데이터 생성
 					getChatUserList(userUid, obj); // 채팅 사용자 목록 불러오기
-					updateInfo(userUid, projectNum); // DB 정보 수정
+					updateInfo(userUid); // DB 정보 수정
 					
 					chatUserList.push(obj);
 				});
@@ -81,7 +83,6 @@ $(function() {
 	function showCurrentChatUserProfile(obj) {
 		if(currentUser == obj.userId) {
             currentUserName = obj.userName; // 현재 사용자의 이름
-            currentChatUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
 			
 			// 현재 사용자의 이름 표시
 			$('#currentUserName').html(obj.userName);
@@ -99,6 +100,19 @@ $(function() {
 		});
 	}
 	
+	// 프로젝트 전체 채팅 아이콘 불러오기
+	function getChatAllIcon() {
+		$('.sideBar').append(
+				'<div class="row sideBar-body" id="allUsers" style="background-color: #FFF;">'
+	            + '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
+	            + '<div class="avatar-icon">'
+	            + '<img src="resources/images/chatting/all.png">'
+	            + '</div>'
+	            + '</div>'
+	            + '</div>'
+		);
+	}
+	
 	// 채팅 사용자 목록 불러오기
 	function getChatUserList(userUid, obj) {
 		$('.sideBar').append(
@@ -113,16 +127,16 @@ $(function() {
 	}
 	
 	// DB 정보 수정
-	function updateInfo(userUid, projectNum) {
+	function updateInfo(userUid) {
 		// 유저DB 내 프로젝트 정보 수정
 		var updateProject = {};
-		updateProject[projectNum] = true;
+		updateProject[sessionProjectNum] = true;
 		db.child('users/' + userUid + '/projects').update(updateProject);
 		
 		// 프로젝트DB 내 유저 정보 수정
 		var updateUser = {};
 		updateUser[userUid] = true;
-		db.child('projects/' + projectNum + '/users').update(updateUser);
+		db.child('projects/' + sessionProjectNum + '/users').update(updateUser);
 	}
 		
 	// 사용자 검색
@@ -144,7 +158,7 @@ $(function() {
 				
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
 		var userSort = [user.key, currentUid].sort().join('@sort@');
-		var roomPath = PROJECT_NUM + currentProject + PRIVATE_STR + userSort;
+		var roomPath = PROJECT_NUM + sessionProjectNum + PRIVATE_STR + userSort;
 		
 		// FirebaseDB 검색
 		db.child('privateChats/').once('value',function(snapshot) {
@@ -202,7 +216,6 @@ $(function() {
 		messages.push({
 			'userid': currentUser,
 			'username': currentUserName,
-			'userprofile': currentChatUserProfile,
 			'text': text.val(),
 			'timestamp': Date.now()
 		});
