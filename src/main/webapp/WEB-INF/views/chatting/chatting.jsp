@@ -64,7 +64,7 @@
 	  
 	  <!-- 메인 대화창 -->
 		<!-- 대화 내용 추가 -->
-	  <div class="scrollbar chatscroll" id="style-1">
+	  <div class="scrollbar chatscroll chatWindow" id="style-1">
 		  <div class="force-overflow">
 		   	  <div class="row message" id="conversation">
 		   	  </div>

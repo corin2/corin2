@@ -34,7 +34,11 @@ $(function() {
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
-	if(sessionProjectNum != 'null') getUsers(currentProject); // 멤버 가져오기 함수
+	if(sessionProjectNum != 'null') {
+		getChatUsers(currentProject); // 멤버 가져오기 함수
+		messages = db.child('messages/' + currentProject); // 전체채팅 메시지 경로
+		showMessage();
+	}
 	
 	// 사용자명 툴팁
 	$('[data-toggle="tooltip"]').tooltip(); //TODO 수정할 것
@@ -46,10 +50,11 @@ $(function() {
 		showMessage(); // 메시지 출력
 	});
 	
+	window.getChatUsers = getChatUsers;
+	
 	// 프로젝트 내 멤버 정보 가져오기
-	function getUsers(projectNum) {
+	function getChatUsers(projectNum) {
 		chatUserList = [];
-		messages = db.child('messages/' + projectNum); // 전체채팅 메시지 경로
 		
 		$.ajax({
 			url:"showMemberUserProfile",
@@ -70,8 +75,6 @@ $(function() {
 				});
 			}
 		});
-		
-		showMessage(); // 메시지 출력
 	}
 	
 	// 현재 사용자의 프로필 이미지 표시 함수
@@ -286,7 +289,7 @@ $(function() {
 		}
 		
 		// 대화창 스크롤을 항상 아래로
-		$("#style-1").scrollTop($("#style-1")[0].scrollHeight);
+		$(".chatWindow").scrollTop($(".chatWindow")[0].scrollHeight);
 	}
 	
 	//////////// [유틸 함수] ////////////

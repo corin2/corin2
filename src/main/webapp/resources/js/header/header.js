@@ -7,7 +7,7 @@ $(function(){
 	// 채팅 아이콘 클릭 시
 	$('#showChatting').click(function() {
 		$('.sidebar-chat').animate({width: 'toggle'}); // 채팅창 애니메이션 효과 적용되면서 열림
-		$("#style-1").scrollTop($("#style-1")[0].scrollHeight); // 대화창 스크롤을 항상 아래로
+		$(".chatWindow").scrollTop($(".chatWindow")[0].scrollHeight); // 대화창 스크롤을 항상 아래로
 	});
 	
 	//alramicon hover
