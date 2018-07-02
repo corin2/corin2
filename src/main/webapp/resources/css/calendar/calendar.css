@@ -12,8 +12,8 @@
     padding: 0 10px;
     border: #F5F5F5;
     background: #F5F5F5;
-    margin-right: 10px;
-    min-height: 136px;
+    margin-right: 4px;
+    min-height: 17px;
 }
 
 #external-events .fc-event {
@@ -106,6 +106,6 @@ element.style {
 	margin-top: 15px;
 	background-color: #ffffff;
 	border-radius: 25px;
-    padding : 15px;
+    padding: 40px 100px;
 }
 	

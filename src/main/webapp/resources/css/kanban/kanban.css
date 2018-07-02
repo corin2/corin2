@@ -2,7 +2,7 @@
 	white-space: nowrap;
 	padding: 10px 10px 5px;
 	background: #00FF0000;
-	width: 100%;
+	width: 100% !important;
 	position: absolute;
     margin-left: 27px;
 	height: 100%;
@@ -188,3 +188,11 @@ hr {
 	float: right;
 	color: red;
 }
+.kanbanbackdiv{
+	background-color: #FFF;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 15px;
+    margin: 15px 60px;
+    }

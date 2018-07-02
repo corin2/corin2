@@ -7,8 +7,8 @@
 
 <link rel="stylesheet" href="resources/css/checklist/icheck/flat/green.css">
 <jsp:include page="ProjectDetail.jsp"></jsp:include>
-<div class="container">
-<div class="navbar navbar-default">
+<div class="container-fluid">
+<div class="navbar navbar-default project-header">
 	<div id="search">
 	<h2><input type="text" id="searchProject" class="search" placeholder="프로젝트명을입력하세요" onclick="autoCompleteProject()" onkeypress="if(event.keyCode==13) {searchColorView();}">&nbsp;<span class="glyphicon glyphicon-search" onclick="searchColorView()"></span></h2>
 	<hr>
@@ -16,7 +16,7 @@
 	</div>
 	</div>
 </div>
-<div class="navbar navbar-default">
+<div class="navbar navbar-default project-content">
 	<div id="bookmark">
 	<h1>즐겨찾기</h1>
 	<hr>
@@ -25,7 +25,7 @@
 	</div>
 </div>
 
-<div class="navbar navbar-default">
+<div class="navbar navbar-default project-tail">
 	<div id="project">
 		<h1>프로젝트</h1>
 		<hr>

@@ -15,9 +15,6 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
-<div class="sidebar-header">
-    <img src="resources/images/logo/corin2.PNG"></img>
-</div>
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
 	    <script>

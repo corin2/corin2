@@ -44,7 +44,9 @@
 		    </div>
 		</c:when>
 	</c:choose>
-	
+	<div class="sidebar-header">
+    	<img src="resources/images/logo/corin2.PNG" style=""></img>
+	</div>
 	<ul class="nav navbar-nav navbar-right">
 		<!-- 메세지 버튼 -->
 		<li role="presentation" class="dropdown alramdropdown" onclick="showMsg()">
