@@ -129,16 +129,4 @@
 	padding-left: 40%;
 	float: left;
 	}
-	.pagingdiv li a{
-	color : #000;
-	border-color: #000;
-	}
-	.pagingdiv ul :first-child > a{
-	border-top-left-radius : 20px;
-	border-bottom-left-radius : 20px;
-	}
-	.pagingdiv ul :last-child > a{
-	border-top-right-radius : 20px;
-	border-bottom-right-radius : 20px;
-	}
     

@@ -34,7 +34,7 @@
 		    <se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
 			        <a href="boardList?countPerPage=5&blockCount=5&nowPage=1">
-			            <i class="glyphicon glyphicon-bullhorn"></i>
+			            <img src="/resources/images/icons/announce.png" style = "width : 28px;"><br>
 			            Notices
 			        </a>
 			    </li>
@@ -42,31 +42,31 @@
 		    <se:authorize access="hasRole('ROLE_ADMIN')">
 		    	<li>
 			        <a href="adminMain">
-			            <i class="glyphicon glyphicon-stats"></i>
+			            <img src="/resources/images/icons/statistics.png" style = "width : 28px;"><br>
 			            Statistics
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminUserController">
-			            <i class="glyphicon glyphicon-user"></i>
+			            <img src="/resources/images/icons/usermanager.png" style = "width : 28px;"><br>
 						User Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMenu">
-			            <i class="glyphicon glyphicon-list"></i>
+			            <img src="/resources/images/icons/manumanager.png" style = "width : 28px;"><br>
 						Menu Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminMail">
-			            <i class="glyphicon glyphicon-envelope"></i>
+			            <img src="/resources/images/icons/mailmanager.png" style = "width : 28px;"><br>
 						Mail Manager
 			        </a>
 			    </li>
 			    <li>
 			        <a href="adminPeaples">
-			            <i class="glyphicon glyphicon-heart"></i>
+			            <img src="/resources/images/icons/credits.png" style = "width : 28px;"><br>
 						Credits
 			        </a>
 			    </li>
@@ -76,7 +76,7 @@
 	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 		<li>
 	        <a href="project">
-	            <i class="glyphicon glyphicon-th-large"></i>
+	            <img src="/resources/images/icons/project.png" style = "width : 28px;"><br>
 	            Projects
 	        </a>
 	    </li>
@@ -85,43 +85,43 @@
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
 		    	<a class="sidebaricon" href="leancanvas">
-					<i class="glyphicon glyphicon-list-alt"></i>
+					<img src="/resources/images/icons/leancanvas.png" style = "width : 28px;"><br>
 		            Lean canvas
 		        </a>
 	   	    </li>
 		    <li>
 				<a class="sidebaricon" href="checklist" id="checklisticon">
-				    <i class="glyphicon glyphicon-th-list"></i>
+				    <img src="/resources/images/icons/checklist.png" style = "width : 28px;"><br>
 				    Checklist
 				</a>
 		    </li>
 		    <li>
 		        <a class="sidebaricon" href="calendar" id="calendaricon">
-		             <i class="glyphicon glyphicon-calendar"></i>
+		               <img src="/resources/images/icons/calendar.png" style = "width : 28px;"><br>
 		            Calendar
 		        </a>
 		    </li>
 		    <li>
 		        <a class="sidebaricon" href="kanban?projectNum=${sessionScope.sessionProjectNum}" id="kanbanicon">
-		            <i class="glyphicon glyphicon-tasks"></i>
+		            <img src="/resources/images/icons/kanban.png" style = "width : 28px;"><br>
 		            Kanban
 		        </a>
 		    </li>
 		    <li>
 		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="troubleshootingicon">
-					<i class="glyphicon glyphicon-exclamation-sign"></i>
+					<img src="/resources/images/icons/troubleshooting.png" style = "width : 28px;"><br>
 		            Trouble Shooting
 		        </a>
 		    </li>
 		    <li>
 		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
-		            <i class="glyphicon glyphicon-file" ></i>
+		            <img src="/resources/images/icons/files.png" style = "width : 28px;"><br>
 		            Files
 		        </a>
 		    </li>
 		    <li>
 		        <a class="sidebaricon" href="chart" id="charticon">
-		            <i class="glyphicon glyphicon-stats"></i>
+		            <img src="/resources/images/icons/chart.png" style = "width : 28px;"><br>
 		            Chart
 		        </a>
 		    </li>
@@ -130,7 +130,7 @@
 	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 		    <li style="background-color: #333333;">
 		        <a onclick="logoutpage()">
-		            <i class="glyphicon glyphicon glyphicon-log-out"></i>
+		            <img src="/resources/images/icons/exit.png" style = "width : 28px;"><br>
 		            Logout
 		        </a>
 		    </li>

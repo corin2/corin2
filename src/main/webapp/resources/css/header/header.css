@@ -115,8 +115,8 @@
 	vertical-align: middle;
 }
 .navbar-nav>li>a {
-    padding-top: 12px;
-    padding-bottom: 3px;
+    padding-top: 10px;
+    padding-bottom: 12px;
 }
 .alramdropdown > .dropdown-menu:after {
     border-bottom: 6px solid #999999;

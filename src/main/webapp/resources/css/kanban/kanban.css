@@ -8,7 +8,11 @@
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: inherit;
+	background-color: #FFF;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding : 15px;
 }
 
 #mainScreen::-webkit-scrollbar {

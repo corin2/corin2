@@ -12,7 +12,7 @@
 <script src="resources/js/kanban/cardCheckList.js"></script>
 <jsp:include page="../kanban/carddetail.jsp"></jsp:include>
 <jsp:include page="addCalendar.jsp"></jsp:include>
-<div>
+<div class="calenbackdiv">
 	<div id="calendar-md" class="container-fluid">
 		<h1 class="calendarname">일정관리</h1>
 		<hr>

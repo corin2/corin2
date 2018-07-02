@@ -8,8 +8,8 @@
 <script src="resources/js/kanban/cardCheckList.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
-<div style="width:100%;">
-	<div id="mainScreen" class="container-fluid" scrollTop="5px">
+<div>
+	<div id="mainScreen" scrollTop="5px">
 		<h2 id='boardTitle'>칸반보드</h2>
 		<hr>
 		<div id="content-md">
