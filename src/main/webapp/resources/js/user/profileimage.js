@@ -7,7 +7,7 @@ $(function(){
 			success : function(data){
 				$.each(data, function(index, obj) {
 					//$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-					$('#recentUserProfile').attr("src", "https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/" + obj.userProfile);
+					$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 				});
 			}
 		});
@@ -35,8 +35,8 @@ $(function(){
 						$.each(data, function(index, obj) {
 							//$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 							//$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-							$('#recentUserProfile').attr("src", "https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/" + obj.userProfile);
-							$('#currentUserProfile').attr("src", "https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/" + obj.userProfile);
+							$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
+							$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 						});
 					}
 				});

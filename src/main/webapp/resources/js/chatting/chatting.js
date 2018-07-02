@@ -4,6 +4,8 @@ $(function() {
 		
 	// Firebase 초기화
 	// [초기화 시작]
+	
+	// 아래 키는 Firebase 콘솔에서 권한 정책 변경을 통해 보안 설정이 가능하므로 별도 관리하지 않음
 	var config = {
 		apiKey: "AIzaSyDmfyvIHlY8QYVXO6shi6r85k3ocZWJAw4",
 		authDomain: "testcorin2.firebaseapp.com",
@@ -19,17 +21,22 @@ $(function() {
 	// [초기화 끝]
 	
 	// 변수, 상수 설정
-	var currentProject = sessionProjectNum;
-	var currentUser = $('#hiddenUserId').val();
-	var currentUserName;
-	var currentChatUserProfile;
-	var messages;
-	const PROJECT_NUM = "@project@";
-	const PRIVATE_STR = "@private@";
+	var currentUser = $('#hiddenUserId').val(); // 현재 사용자
+	var currentUserName; // 현재 사용자 이름
+	var currentMessages; // 현재 메시지
+	var messages; // 새로운 메시지
+	var chatUserList; // 유저리스트
+	
+	const PROJECT_NUM = "@project@"; // 프로젝트 구분 문자
+	const PRIVATE_STR = "@private@"; // 1:1채팅 구분 문자
 	
 	// 채팅 페이지 시작 시, 함수 콜
 	$('#conversation').empty(); // 대화창 초기화
-	if(sessionProjectNum != 'null') getUsers(currentProject); // 멤버 가져오기 함수
+	if(sessionProjectNum != 'null') {
+		getChatUsers(); // 멤버 가져오기 함수
+		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
+		showMessage();
+	}
 	
 	// 사용자명 툴팁
 	$('[data-toggle="tooltip"]').tooltip(); //TODO 수정할 것
@@ -37,45 +44,50 @@ $(function() {
 	// All 버튼 클릭 시
 	$('#allUsers').click(function() {
 		changeColor('#allUsers'); // 클릭 시 색상변경
-		messages = db.child('messages/' + currentProject); // 전체채팅 메시지 경로
+		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
 		showMessage(); // 메시지 출력
 	});
 	
+	// getChatUsers함수를 $(function() {...}) 함수 범위 밖에서 사용 선언
+	window.getChatUsers = getChatUsers;
+	
 	// 프로젝트 내 멤버 정보 가져오기
-	function getUsers(projectNum) {
-		messages = db.child('messages/' + projectNum); // 전체채팅 메시지 경로
+	function getChatUsers() {
+		$('.sideBar').empty(); // 채팅 유저리스트 초기화
+		getChatAllIcon(); // 전체채팅 아이콘 불러오기
+		
+		chatUserList = []; // 채팅 유저리스트 배열
+		
 		$.ajax({
 			url:"showMemberUserProfile",
 			datatype:"JSON",
-			data:{projectNum:projectNum},
+			data:{projectNum:sessionProjectNum},
+			async: false,
 			success:function(data){
 				$.each(data.data, function(index, obj) {
 					// 현재 프로젝트의 사용자들의 FirebaseDB용 Uid를 md5형식으로 변환
 					var userUid = md5(obj.userId);
 					
-					showcurrentChatUserProfile(userUid, obj); // 프로필 이미지 표시
+					showCurrentChatUserProfile(obj); // 프로필 이미지 표시
 					initialData(userUid, obj); // 초기 데이터 생성
-					updateUserList(userUid, obj); // 팀원 추가
-					updateInfo(userUid, projectNum); // DB 정보 수정
+					getChatUserList(userUid, obj); // 채팅 사용자 목록 불러오기
+					updateInfo(userUid); // DB 정보 수정
+					
+					chatUserList.push(obj);
 				});
 			}
 		});
-		
-		showMessage(); // 메시지 출력
 	}
 	
 	// 현재 사용자의 프로필 이미지 표시 함수
-	function showcurrentChatUserProfile(userUid, obj) {
-		var currentUserUid = md5(currentUser);
-		if(userUid === currentUserUid) {
-			currentUserName = obj.userName; // 현재 사용자의 이름
-			currentChatUserProfile = obj.userProfile; // 현재 사용자의 프로필 이미지
+	function showCurrentChatUserProfile(obj) {
+		if(currentUser == obj.userId) {
+            currentUserName = obj.userName; // 현재 사용자의 이름
 			
 			// 현재 사용자의 이름 표시
-			$('#currentUserName').html(currentUserName);
-			
+			$('#currentUserName').html(obj.userName);
 			// 현재 사용자의 프로필 이미지 표시
-			$('#currentChatUserProfile').attr("src","resources/images/profile/" + currentChatUserProfile);
+			$('#currentChatUserProfile').attr("src", profileStorageURL + obj.userProfile);
 		}
 	}
 	
@@ -88,14 +100,26 @@ $(function() {
 		});
 	}
 	
-	// 팀원 추가
-	function updateUserList(userUid, obj) {
+	// 프로젝트 전체 채팅 아이콘 불러오기
+	function getChatAllIcon() {
 		$('.sideBar').append(
-				//TODO 수정할 것
+				'<div class="row sideBar-body" id="allUsers" style="background-color: #FFF;">'
+	            + '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
+	            + '<div class="avatar-icon">'
+	            + '<img src="resources/images/chatting/all.png">'
+	            + '</div>'
+	            + '</div>'
+	            + '</div>'
+		);
+	}
+	
+	// 채팅 사용자 목록 불러오기
+	function getChatUserList(userUid, obj) {
+		$('.sideBar').append(
 				'<div class="row sideBar-body" id=' + userUid + ' data-toggle="tooltip" title="' + obj.userName + '">'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
 				+ '<div class="avatar-icon">'
-				+ '<img src="resources/images/profile/' + obj.userProfile +'">'
+				+ '<img src="' + profileStorageURL + obj.userProfile +'">'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
@@ -103,16 +127,16 @@ $(function() {
 	}
 	
 	// DB 정보 수정
-	function updateInfo(userUid, projectNum) {
+	function updateInfo(userUid) {
 		// 유저DB 내 프로젝트 정보 수정
 		var updateProject = {};
-		updateProject[projectNum] = true;
+		updateProject[sessionProjectNum] = true;
 		db.child('users/' + userUid + '/projects').update(updateProject);
 		
 		// 프로젝트DB 내 유저 정보 수정
 		var updateUser = {};
 		updateUser[userUid] = true;
-		db.child('projects/' + projectNum + '/users').update(updateUser);
+		db.child('projects/' + sessionProjectNum + '/users').update(updateUser);
 	}
 		
 	// 사용자 검색
@@ -134,7 +158,7 @@ $(function() {
 				
 		// FirebaseDB 내 저장될 1:1대화방 Uid 명
 		var userSort = [user.key, currentUid].sort().join('@sort@');
-		var roomPath = PROJECT_NUM + currentProject + PRIVATE_STR + userSort;
+		var roomPath = PROJECT_NUM + sessionProjectNum + PRIVATE_STR + userSort;
 		
 		// FirebaseDB 검색
 		db.child('privateChats/').once('value',function(snapshot) {
@@ -192,7 +216,6 @@ $(function() {
 		messages.push({
 			'userid': currentUser,
 			'username': currentUserName,
-			'userprofile': currentChatUserProfile,
 			'text': text.val(),
 			'timestamp': Date.now()
 		});
@@ -213,7 +236,6 @@ $(function() {
 	})
 	
 	// DB변동 시 메시지 출력 함수
-	var currentMessages;
 	function showMessage() {
 		$('#conversation').empty(); // 대화창 초기화
 		
@@ -224,52 +246,63 @@ $(function() {
 		currentMessages = messages;
 	}
 	
+	// 보낸메시지 출력
+	function showTxMessage(message) {
+		$('#conversation').append(
+				'<div class="row message-body">'
+				+ '<div class="col-sm-12 message-main-sender">'
+				+ '<div class="sender">'
+				+ '<div class="message-text">'
+				+ message.text
+				+ '</div>'
+				+ '<span class="message-time pull-right">'
+				+ convertTime(message.timestamp)
+				+ '</span>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+		);
+	}
+	
+	// 받은메시지 출력
+	function showRxMessage(message, obj) {
+		$('#conversation').append(
+				'<div class="row message-body">'
+				+ '<div class="col-sm-12 message-main-receiver">'
+				+ '<div class="col-sm-3 heading-avatar-icon">'
+				+ '<img src="' + profileStorageURL + obj.userProfile + '">'
+				+ '</div><div class="col-sm-9 heading-avatar-name">'
+				+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + obj.userName +'</span>'
+				+ '<div class="receiver bubble">'
+				+ '<div class="message-text">'
+				+ message.text
+				+ '</div>'
+				+ '<span class="message-time pull-right">'
+				+ convertTime(message.timestamp)
+				+ '</span>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+				+ '</div>'
+		);
+	}
+	
 	// 메시지 생성 함수
 	function makeMessage(snapshot) {
 		var message = snapshot.val();
 		
-		if(currentUser == message.userid) {
-			// 보낸 메시지
-			$('#conversation').append(
-					'<div class="row message-body">'
-					+ '<div class="col-sm-12 message-main-sender">'
-					+ '<div class="sender">'
-					+ '<div class="message-text">'
-					+ message.text
-					+ '</div>'
-					+ '<span class="message-time pull-right">'
-					+ convertTime(message.timestamp)
-					+ '</span>'
-					+ '</div>'
-					+ '</div>'
-					+ '</div>'
-			);
+		if(message.userid == currentUser) {
+			showTxMessage(message); // 보낸 메시지
 		}else {
-			// 받은 메시지
-			$('#conversation').append(
-					'<div class="row message-body">'
-					+ '<div class="col-sm-12 message-main-receiver">'
-					+ '<div class="col-sm-3 heading-avatar-icon">'
-					+ '<img src="resources/images/profile/' + message.userprofile + '">'
-					+ '</div><div class="col-sm-9 heading-avatar-name">'
-					+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + message.username +'</span>'
-					+ '<div class="receiver bubble">'
-					+ '<div class="message-text">'
-					+ message.text
-					+ '</div>'
-					+ '<span class="message-time pull-right">'
-					+ convertTime(message.timestamp)
-					+ '</span>'
-					+ '</div>'
-					+ '</div>'
-					+ '</div>'
-					+ '</div>'
-			);
+			$.each(chatUserList, function(index, obj) {
+				if(obj.userId != currentUser && obj.userId == message.userid) {
+					showRxMessage(message, obj); // 받은 메시지
+				}
+			});
 		}
 		
 		// 대화창 스크롤을 항상 아래로
-		//$("#conversation").scrollTop($("#conversation")[0].scrollHeight);
-		$("#style-1").scrollTop($("#style-1")[0].scrollHeight);
+		$(".chatWindow").scrollTop($(".chatWindow")[0].scrollHeight);
 	}
 	
 	//////////// [유틸 함수] ////////////
@@ -309,3 +342,17 @@ $(function() {
     }
 
 }); // end - jQuery
+
+// 이모티콘
+/*$(function() {
+  // Initializes and creates emoji set from sprite sheet
+  window.emojiPicker = new EmojiPicker({
+    emojiable_selector: '[data-emojiable=true]',
+    assetsPath: 'resources/js/chatting/lib/img/',
+    popupButtonClasses: 'fa fa-smile-o'
+  });
+  // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
+  // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
+  // It can be called as many times as necessary; previously converted input fields will not be converted again
+  window.emojiPicker.discover();
+});*/

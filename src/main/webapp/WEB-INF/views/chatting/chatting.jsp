@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<!-- Firebase js -->
-<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-
 <!-- font-awesome css -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- chatting css -->
 <link rel="stylesheet" type="text/css" href="resources/css/chatting/chatting.css">
+<!-- Emoji Picker css -->
+<link rel="stylesheet" type="text/css" href="resources/js/chatting/lib/css/emoji.css">
+
+<!-- Firebase js -->
+<script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+<!-- Emoji Picker js -->
+<script src="resources/js/chatting/lib/js/config.js"></script>
+<script src="resources/js/chatting/lib/js/util.js"></script>
+<script src="resources/js/chatting/lib/js/jquery.emojiarea.js"></script>
+<script src="resources/js/chatting/lib/js/emoji-picker.js"></script>
 
 <!-- content -->
 <div class="app">
@@ -57,7 +64,7 @@
 	  
 	  <!-- 메인 대화창 -->
 		<!-- 대화 내용 추가 -->
-	  <div class="scrollbar chatscroll" id="style-1">
+	  <div class="scrollbar chatscroll chatWindow" id="style-1">
 		  <div class="force-overflow">
 		   	  <div class="row message" id="conversation">
 		   	  </div>
@@ -68,7 +75,7 @@
           <i class="fa fa-smile-o"></i>
         </div>
         <div class="col-sm-9 col-xs-9 reply-main">
-          <textarea class="form-control" rows="1" id="messageText"></textarea>
+          <textarea class="form-control" rows="1" id="messageText" data-emojiable="true"></textarea>
         </div>
         <div class="col-sm-1 col-xs-1 reply-send" id="sendMessageBtn">
           <i class="fa fa-send" aria-hidden="true"></i>

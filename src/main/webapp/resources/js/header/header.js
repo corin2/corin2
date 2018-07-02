@@ -7,7 +7,7 @@ $(function(){
 	// 채팅 아이콘 클릭 시
 	$('#showChatting').click(function() {
 		$('.sidebar-chat').animate({width: 'toggle'}); // 채팅창 애니메이션 효과 적용되면서 열림
-		$("#style-1").scrollTop($("#style-1")[0].scrollHeight); // 대화창 스크롤을 항상 아래로
+		$(".chatWindow").scrollTop($(".chatWindow")[0].scrollHeight); // 대화창 스크롤을 항상 아래로
 	});
 	
 	//alramicon hover
@@ -74,7 +74,7 @@ function projectMemberShow(userProfiles){
 						if(elt.gradeNum == 'G300')
 							htmltext += '<span class="glyphicon glyphicon-king leader" aria-hidden="true"></span>';
 						htmltext += '<a data-toggle="dropdown" class="profileDropdown">'
-								 + '<img class="img-circle profileimg" src = "resources/images/profile/'+elt2.userProfile+'" /></a>'
+								 + '<img class="img-circle profileimg" src = "' + profileStorageURL + elt2.userProfile + '" /></a>'
 								 + '<ul class="dropdown-menu headerCuror" id="profile-dropdown-menu">'
 								 + '<li><a>'+ elt2.userName+'</a></li>';
 						if(elt.gradeNum == 'G400' && elt.userId != userId){
