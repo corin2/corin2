@@ -35,6 +35,9 @@
   <%-- <script src="${pageContext.request.contextPath}/js/index.js"></script> --%>
   	<script type="text/javascript">
 		var sessionProjectNum = "<%=(String)session.getAttribute("sessionProjectNum")%>";
+		var s3StorageURL = "https://s3.ap-northeast-2.amazonaws.com/corin2.site/";
+		var profileStorageURL = s3StorageURL + "resources/images/profile/";
+		
 		$(function(){
 			contentCssEdit();
 		});

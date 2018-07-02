@@ -68,10 +68,10 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 		</div>
 	<!-- [2번째 단] -->
 	<div class="row">
-		<!-- 프로그래밍 언어-->
+		<!-- 프로그래밍별 언어 순위-->
 		<div class="admin-chart-box col-md-5 adminmainpage">
 			<div class="row adminmainpageundo">
-				<h2>프로그래밍 언어</h2>
+				<h2>프로젝트별  언어 순위</h2>
 				<hr class="hr-style">
 			</div>
 			<div class="row">

@@ -70,13 +70,3 @@
 		</c:choose>
 	</ul>
 </div>
-		
-	
-<script>
-	$(function() {
-		$('#showChatting').click(function() {
-			// $('.sidebar-chat').toggle();
-			$('.sidebar-chat').animate({width: 'toggle'});
-		});
-	});
-</script>

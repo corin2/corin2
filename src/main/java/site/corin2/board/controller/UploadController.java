@@ -6,18 +6,10 @@
 */
 package site.corin2.board.controller;
 
-
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -25,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,11 +28,16 @@ import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.UploadDTO;
-
 import site.corin2.board.service.UploadService;
+import site.corin2.util.S3Util;
+import site.corin2.util.UploadFileUtils;
 
 @Controller
 public class UploadController {
+
+	S3Util s3 = new S3Util();
+	String bucketName = "corin2.site";
+	
 	@Autowired
 	private UploadService service;
 	
@@ -49,7 +45,7 @@ public class UploadController {
 	private View jsonview;
 	//초기화면 ui
 	@RequestMapping(value="fileUpload", method =RequestMethod.GET )
-	public String fileUpload(@RequestParam("projectNum") String projectNum,Model model) {
+	public String fileUpload() {
 		return "board.fileUpload";
 	}
 	//초기화면 전체조회
@@ -58,57 +54,36 @@ public class UploadController {
 		model.addAttribute("file1", service.uploadSelect(Integer.parseInt(projectNum)));
 		return jsonview;
 	}
-
+	
 	//파일업로드 upload
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
-			
-		System.out.println("파일 업로드 커늩롤러"+projectNum);
-	
 		Iterator<String> itr = request.getFileNames();
-		
 		MultipartFile mpf =  request.getFile(itr.next()); 
-		 	
-		while(itr.hasNext()){}
-		System.out.println("uploadDTO" + uploadDTO.getProjectNum() +"/"+uploadDTO.getBoardNum() + "/");
-			
-		System.out.println(mpf.getOriginalFilename() +" uploaded! ");
-			 						//000.jpg            
-		//게시판 insert
+		
+		// 파일 정보가 없을 경우
+        if(mpf == null || mpf.getSize() <= 0) {
+        	return null;
+        }
+		
+		// 게시판에 파일함 정보 insert
 		boardDTO.setUserId(boardDTO.getUserId());
 		service.boardInsert(boardDTO);
 
 		//경로설정
-		String savepath = "resources/upload";  
-		String downloadpath = request.getRealPath(savepath);
-		String filePath = null;
-		/* 
-		  D:\bitcamp104\FinalProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\corin2\
-		 */ 
-		String fileName =null;
-		String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
-	
-		
-		//파일명 정하기
-		if(null != mpf && mpf.getSize() > 0) {
-			fileName = fileName1[0]+"_"+ System.currentTimeMillis()+"."+fileName1[1]; //파일_현재날짜.확장자 
-			uploadDTO.setUploadAlias(fileName);
-			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
-			filePath = downloadpath + "\\" + fileName;
-			
-		}else {
-			uploadDTO.setUploadAlias(mpf.getOriginalFilename());//파일명.확장자 
-			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
-			filePath = downloadpath + "\\" + mpf.getOriginalFilename();
-			
-		}
-		 //파일 insert
-		 service.uploadInsert(uploadDTO);
+		String savepath = "resources/upload";
+		String fileName = null;
+		String originalName = mpf.getOriginalFilename();
 		
 		try {
-			//D:\bitcamp104\FinalProject\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\corin2\ 경로에 파일 업로드
-			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
-		} catch (IOException e) {
+			// AWS S3에 파일 업로드
+			fileName = UploadFileUtils.uploadFile(savepath, projectNum, originalName, mpf.getBytes());
+			
+			// DB에 파일 업로드 정보 insert
+			uploadDTO.setUploadAlias(fileName);
+			uploadDTO.setUploadOrigin(originalName);
+			service.uploadInsert(uploadDTO);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	
@@ -122,42 +97,37 @@ public class UploadController {
 	}
 
 	//다운로드 함수
-	@RequestMapping(value = "download", method = RequestMethod.GET)
-	public void download(HttpServletRequest request, HttpServletResponse response){
+	// AWS S3 URL로 다운로드 기능 구현
+		
+	//검색기능
+	@RequestMapping(value="searcherFileSelect" , method = RequestMethod.GET)
+	public @ResponseBody LinkedList<UploadDTO> searcherFileSelect(UploadDTO uploadDTO) {
 
-		String filename = request.getParameter("fileName");
-		String savepath = "resources/upload";  
-		String downloadpath = request.getRealPath(savepath);
-		String filePath = downloadpath + "\\" + filename;
-		
-
-		byte[] b = new byte[4096];
-		try {
-			//파일 다운로드
-			FileInputStream in = new FileInputStream(filePath);		
-		    response.setHeader("Content-Disposition", 
-		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
-		    ServletOutputStream out2 = response.getOutputStream();
-		    int numread;
-		    while((numread = in.read(b,0,b.length)) != -1){
-		       out2.write(b,0,numread);
-		    }
-		    
-		    out2.flush();
-		    out2.close();
-		    in.close(); 
-		} catch (Exception e) {
-			
-			e.printStackTrace();
-		}
-		
-		
+		return service.searcherFileSelect(uploadDTO);
 	}
-/*	//검색기능
-	@RequestMapping(value="searchSelect" , method = RequestMethod.GET)
-	public void searcherSelect() {
-		
-		service.searcherSelect();
-	}*/
-
+	
+	//일자별 검색
+	@RequestMapping(value="dateClick" , method=RequestMethod.GET)
+	public View dateClick(@RequestParam("projectNum")String projectNum,@RequestParam("date")String date,@RequestParam("extension")String extension ,Model model) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		System.out.println("일자별"+ extension);
+		System.out.println("일자별"+ date);
+		map.put("projectNum", projectNum);
+		map.put("date", date);
+		map.put("extension", extension);
+		model.addAttribute("date", service.dateClick(map));
+		return jsonview;
+	}
+	
+	//확장자 검색
+	@RequestMapping(value="exClick" , method=RequestMethod.GET)
+	public View exClick(@RequestParam("projectNum")String projectNum,@RequestParam("extension")String extension,Model model) {
+		HashMap map = new HashMap<String, Object>();
+		System.out.println("확장자별"+ extension);
+		map.put("projectNum", projectNum);
+		map.put("extension", extension);
+		model.addAttribute("extension", service.exClick(map));
+		return jsonview;
+	}
+	
 }

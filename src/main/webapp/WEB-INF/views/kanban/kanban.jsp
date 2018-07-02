@@ -11,9 +11,8 @@
 <div class="kanbanbackdiv">
 	<h2 id='boardTitle'>칸반보드</h2>
 	<hr class="kanbanhr">
-	<div id="mainScreen" scrollTop="5px">
+	<div id="mainScreen" class="container-fluid" scrollTop="5px">
 		<div id="content-md">
-		
 		</div>
 	</div>
 </div>
