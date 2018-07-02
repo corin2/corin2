@@ -224,6 +224,7 @@ function firstFileSelect() {
   		        //exdata(json)에 있는 모든 키값을 exdataKey 배열에 담아준다.
 				for( var key in exdata ) {
 					exdataKey.push(key);
+				
 				}
 				console.log(exdataKey);
 				//exdataKey(ex->JPG, PNG ...) 담겨있는 값과 data.file1의 확장자명과 비교
@@ -272,7 +273,6 @@ function firstFileSelect() {
 	 	    		  +"</div>"
 	 	    		 
     		 })
-    	 
     		 foldermake(exdata); //가공된 데이터 보냄
 			$(".dropzonediv").html(html);  
     	}
