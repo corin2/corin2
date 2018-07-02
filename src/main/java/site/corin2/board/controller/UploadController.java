@@ -28,9 +28,9 @@ import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.UploadDTO;
-import site.corin2.board.service.S3Util;
-import site.corin2.board.service.UploadFileUtils;
 import site.corin2.board.service.UploadService;
+import site.corin2.util.S3Util;
+import site.corin2.util.UploadFileUtils;
 
 @Controller
 public class UploadController {

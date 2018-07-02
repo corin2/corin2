@@ -38,11 +38,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.FileMeta;
-import site.corin2.board.service.UploadFileUtils;
 import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dao.UserDAO;
 import site.corin2.user.dto.AdminDTO;
 import site.corin2.user.dto.UserDTO;
+import site.corin2.util.UploadFileUtils;
 
 @Service
 public class UserService {
@@ -344,12 +344,12 @@ public class UserService {
 	//프로필 수정하기
 	public LinkedList<FileMeta> profileupdate(String userid , MultipartHttpServletRequest request) {
 		String savepath = "resources/images/profile";
-        //String downloadpath = request.getRealPath(savepath);
-		//LinkedList<FileMeta> files = new LinkedList<FileMeta>();
+		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 		FileMeta fileMeta = null;
+		
 		Iterator<String> itr = request.getFileNames();
-		//System.out.println(request.getFileNames());
 		MultipartFile mpf = null;
+		
 		while (itr.hasNext()) {
 			mpf = request.getFile(itr.next());
 			
@@ -357,6 +357,12 @@ public class UserService {
 	        if(mpf == null || mpf.getSize() <= 0) {
 	        	return null;
 	        }
+	        
+	        // fileMetaDTO에 파일정보 입력
+	        fileMeta = new FileMeta();
+			fileMeta.setFileName(mpf.getOriginalFilename());
+			fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
+			fileMeta.setFileType(mpf.getContentType());
 	        
 	        // 경로 설정
 	        String fileName = null;
@@ -366,9 +372,12 @@ public class UserService {
 	        UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 	        UserDTO updateuser;
 	        try {
+	        	// fileMetaDTO에 바이트 정보 입력
+	        	fileMeta.setBytes(mpf.getBytes());
+	        	
 	        	// AWS S3에 파일 업로드
 				fileName = UploadFileUtils.uploadFile(savepath, null, originalName, mpf.getBytes());
-	        	
+				
 				// DB에 파일정보 insert
 	        	updateuser = userdao.userSelect(userid);
 				updateuser.setUserProfile(fileName);
@@ -376,42 +385,14 @@ public class UserService {
 	        } catch (Exception e) {
 	        	e.printStackTrace();
 	        }
-	        
-			/*
-			if (files.size() >= 10)
-				files.pop();
-			fileMeta = new FileMeta();
-			fileMeta.setFileName(mpf.getOriginalFilename());
-			fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
-			fileMeta.setFileType(mpf.getContentType());
-			String fileName = System.currentTimeMillis()+mpf.getOriginalFilename();
-			System.out.println(mpf.getOriginalFilename());
-			System.out.println(mpf.getContentType());
-			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-			UserDTO updateuser;
-			try {
-				updateuser = userdao.userSelect(userid);
-				updateuser.setUserProfile(fileName);
-				userdao.profileUpdate(updateuser);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-			try {
-				fileMeta.setBytes(mpf.getBytes());
-				FileCopyUtils.copy(mpf.getBytes(),
-						new FileOutputStream(
-								downloadpath+"\\"
-											+ fileName));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+			
+	        // files 갯수가 10개 이상이면 files 하나 제거
+			if (files.size() >= 10) files.pop();
+			
+			// files 리스트에 추가
 			files.add(fileMeta);
-			*/
-
 		}
-		//return files;
-		return null;
+		
+		return files;
 	}
 }

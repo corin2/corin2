@@ -26,14 +26,16 @@ function onHeaderMessage(evt) {
 			location.href=getContextPath()+'/project';
 			swal('해당 프로젝트에서 제명 되었습니다.');
 		}else{
-			projectMemberProfile();
+			projectMemberProfile(); // 프로젝트 팀원 불러오기
+			getChatUsers(); // 채팅 유저 리스트 불러오기
 		}
 	}else if(data.split(':')[0] == '3'){
 		if(data.split(':')[2] == $('#hiddenUserId').val()){
 			location.href=getContextPath()+'/project';
 			swal('프로젝트에서 탈퇴 하였습니다.');
 		}else{
-			projectMemberProfile();
+			projectMemberProfile(); // 프로젝트 팀원 불러오기
+			getChatUsers(); // 채팅 유저 리스트 불러오기
 		}
 	}
 }
