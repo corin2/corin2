@@ -9,15 +9,18 @@ var myGradeNum = '';
 function checkListTable() {
 	 $('#tabs-2').empty();
  	 var table = '';
-	 if(myGradeNum=='G300'){
-		 table += "<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
-		 }
+ 	 var div='';
 		 table += "<table class='table table-striped table-bordered table-hover'>"
 			   + "<tbody>"
 			   + "<tr>"
 			   + "<th class='tdalignclass'>NO</th>"
-			   + "<th class='tdalignclass tdCheckListContent'>CHECKLIST</th>"
-			   + "<th class='tdalignclass'>CHECK</th>"
+	if(myGradeNum=='G300'){
+		  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'></th>"
+	}else{
+	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST</th>"
+	}	   
+		  table += "<th class='tdalignclass'>CHECK</th>"
+	 
 	  if(myGradeNum=='G300'){
 		  table+= "<th class='tdpositionclass'>EDIT</th>"
 		  }
@@ -27,6 +30,7 @@ function checkListTable() {
 			   + "</tbody>"
 			   + "</table>"
 		$('#tabs-2').append(table)
+		$('#checklisttitle').append(div)
 		showCheckList();
 }
 
@@ -75,7 +79,7 @@ function addCardCheckListView() {
 			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
 			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button></td></tr>";
 
-$('#CheckAddBox').append(div)
+$('#CheckAddBox').html(div)
 $('#CheckBoxInput').focus();
 }
 
