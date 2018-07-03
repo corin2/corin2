@@ -34,7 +34,10 @@ function insertLean() {
 		},
 		success: function (data) {
 			allSelectLeanCanvas();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 		
 	})
 }
@@ -183,7 +186,10 @@ function allSelectLeanCanvas(){
 					$("#profit").append(profit);
 					}
 			})
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -326,7 +332,10 @@ function leanUpdate() {
 		},
 		success: function (data) {
 			allSelectLeanCanvas()
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 		
 	})
 }
