@@ -52,7 +52,6 @@ public class TroubleService {
 	public List<TroubleShootingDTO> troubleSearch(String searchWord){
 		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
 		List<TroubleShootingDTO> troubles = null;
-			System.out.println("service:"+searchWord);
 		try {
 			troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearch(searchWord);
 					
@@ -67,7 +66,6 @@ public class TroubleService {
 	public List<TroubleShootingDTO> troubleSearchTag(String searchTag){
 		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
 		List<TroubleShootingDTO> troubles = null;
-			System.out.println("service:"+searchTag);
 		try {
 			troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearchTag(searchTag);
 							

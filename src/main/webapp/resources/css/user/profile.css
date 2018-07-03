@@ -36,7 +36,7 @@ body {
     /* height: calc(70% - 38px); */
     height: calc(70% - 38px);
     width: 250px;
-    background-color: #f7f7f7;
+    background-color: #78acc2;
     height: 327px;
     overflow: hidden;
     margin: 0 !important;
@@ -51,7 +51,7 @@ body {
     /* height: calc(70% - 38px); */
     height: calc(70% - 38px);
     width: 250px;
-    background-color: #f7f7f7;
+    background-color: #78acc2;
     height: 292px;
     overflow: hidden;
     margin: 0 !important;
@@ -73,13 +73,13 @@ body {
 
 .block {
     margin-bottom: 25px;
-    background: #566270;
+    background: #78acc2;
     border-radius: 5px;
 }
 
 .profileimageclass {
     margin: 0 auto;
-    border: 5px solid #566270;
+    border: 5px solid #78acc2;
     width: 150px;
     height: 150px;
 }
@@ -130,11 +130,11 @@ body {
 }
 
 .btn-1a:hover, .btn-1a:active {
-    color: #ffa400;
+    color: #c65151;
     background: #fff;
 }
 .btn-1a {
-	background-color : #ffa400;
+	background-color : #c65151;
 	border: 3px solid #fff;
     color: #fff;
     border: none;

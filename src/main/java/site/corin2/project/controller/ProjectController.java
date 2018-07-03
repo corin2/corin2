@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
-import site.corin2.kanban.service.KanbanService;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.project.dto.ProjectDTO;
 import site.corin2.project.dto.TeamDTO;
@@ -113,17 +112,17 @@ public class ProjectController {
 	
 	//프로젝트 즐겨찾기 추가
 	@RequestMapping("/projectBookmarkUpdate")
-	public View updateBookmarkProjectView(ProjectDTO project, Model model) {
+	public View updateBookmarkProjectView(TeamDTO team, Model model) {
 		int result = 0;
-		result = service.projectBookmarkUpdate(project);
+		result = service.projectBookmarkUpdate(team);
 		return jsonview;
 	}
 	
 	//프로젝트 즐겨찾기 해제
 	@RequestMapping("/projectNoneBookmarkUpdate")
-	public View projectNoneBookmarkUpdateView(ProjectDTO project, Model model) {
+	public View projectNoneBookmarkUpdateView(TeamDTO team, Model model) {
 		int result = 0;
-		result = service.projectNoneBookmarkUpdate(project);
+		result = service.projectNoneBookmarkUpdate(team);
 		return jsonview;
 	}
 	

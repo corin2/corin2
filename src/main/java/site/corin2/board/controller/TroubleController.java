@@ -6,17 +6,11 @@
 */
 package site.corin2.board.controller;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -29,9 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperRunManager;
 import site.corin2.board.dto.TroubleShootingDTO;
 import site.corin2.board.service.TroubleService;
 
@@ -133,7 +124,6 @@ public class TroubleController {
 	@RequestMapping("/delete")
 	public String troubleDelete(TroubleShootingDTO dto, Model model) {
 		int result = 0;
-		System.out.println(dto.getBoardNum());
 		result = service.troubleDelete(dto);
 		model.addAttribute("result",result);
 		

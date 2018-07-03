@@ -11,9 +11,6 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class UploadFileUtils {
 	
 	public static String uploadFile(String uploadPath, String projectNum, String originalName, byte[] byteData) throws Exception {

@@ -54,7 +54,7 @@
 		}
 	</script>   
 </head>
-<body>
+<body style="background-color : #566270;"> 
 	<!-- 페이지 로딩 -->
 	<div id="fakeloader"></div>
 	

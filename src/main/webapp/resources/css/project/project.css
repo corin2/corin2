@@ -220,3 +220,16 @@
     position: relative;
     padding: 6px;
 }
+.project-header{
+    border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
+	padding : 50px 100px 0px 100px;
+}
+.project-content{
+	padding : 50px 100px 0px 100px;
+}
+.project-tail{
+	border-bottom-left-radius: 25px;
+	border-bottom-right-radius: 25px;
+	padding : 50px 100px 50px 100px;
+}

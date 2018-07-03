@@ -3,7 +3,7 @@
 <script src="resources/js/chart/chart.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
 <link rel="stylesheet" href="resources/css/chart/chart.css">
-<div class="chartCssCenter">
+<div class="chartCssCenter chartbackdiv">
 	<div class="chartCssGO">
 		<div id="pChart">
 			<h1>프로젝트 진행상태</h1>

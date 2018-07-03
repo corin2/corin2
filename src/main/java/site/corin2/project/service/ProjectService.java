@@ -92,18 +92,18 @@ public class ProjectService {
 	}
 	
 	//프로젝트 즐겨찾기 추가
-	public int projectBookmarkUpdate(ProjectDTO project) {
+	public int projectBookmarkUpdate(TeamDTO team) {
 		int result = 0;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
-		result = dao.projectBookmarkUpdate(project);
+		result = dao.projectBookmarkUpdate(team);
 		return result;
 	}
 	
 	//프로젝트 즐겨찾기 삭제
-	public int projectNoneBookmarkUpdate(ProjectDTO project) {
+	public int projectNoneBookmarkUpdate(TeamDTO team) {
 		int result = 0;
 		ProjectDAO dao = sqlSession.getMapper(ProjectDAO.class);
-		result = dao.projectNoneBookmarkUpdate(project);
+		result = dao.projectNoneBookmarkUpdate(team);
 		
 		return result;
 	}

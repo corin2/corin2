@@ -11,8 +11,6 @@ import java.util.List;
 
 import site.corin2.kanban.dto.CardCheckListDTO;
 
-
-
 public interface CardCheckListDAO {
 	
 	//카드체크리스트 추가 

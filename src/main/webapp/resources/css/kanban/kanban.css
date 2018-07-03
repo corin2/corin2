@@ -2,13 +2,17 @@
 	white-space: nowrap;
 	padding: 10px 10px 5px;
 	background: #00FF0000;
-	width: 100%;
+	width: 100% !important;
 	position: absolute;
-    margin-left: 27px;
+    margin-left: -14px;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: inherit;
+	background-color: #FFF;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding : 15px;
 }
 
 #mainScreen::-webkit-scrollbar {
@@ -183,4 +187,17 @@ hr {
 #warningLabel {
 	float: right;
 	color: red;
+}
+.kanbanbackdiv{
+	background-color: #FFF;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 15px;
+    }
+.kanbanfrontdiv{
+	margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+	width:1000px;
 }
