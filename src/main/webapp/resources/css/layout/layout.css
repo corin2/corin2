@@ -1,4 +1,8 @@
 /* 사이드바 */
+body {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:'15px';
+}
 #sidebar {
     position: fixed;
     top: 50px;
