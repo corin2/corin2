@@ -77,6 +77,22 @@ public class TroubleService {
 		}
 		return troubles;
 	}
+	
+	//트러블 슈팅게시물 동적쿼리 조회
+		public List<TroubleShootingDTO> troubleSearchAct(String search,String type){
+			TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+			List<TroubleShootingDTO> troubles = null;
+				System.out.println("keyward:"+search);
+				System.out.println("type value:"+type);
+			try {
+				troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearchAct(search,type);
+								
+								
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return troubles;
+		}
 		
 	//트러블 슈팅 게시글 상세보기 및 편집화면 진입
 	public TroubleShootingDTO troubleView(int boardNum) {

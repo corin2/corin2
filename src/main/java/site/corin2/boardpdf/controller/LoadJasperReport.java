@@ -20,11 +20,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoadJasperReport {
 
 	@RequestMapping(value = "/generateReport")
-	public String generateReport( Model model, HttpServletRequest request,
+	public String generateReport(String file, int projectNum, Model model, HttpServletRequest request,
 			HttpServletResponse response, HttpSession httpSession) throws JRException, IOException,
 			NamingException {
-
-		String reportFileName = "ts";
+		
+		
+		//파일명에 따라 매핑하는 jsxml(리포트 디자인파일)을 다르게 적용한다.
+		
+		String reportFileName = ""; //초기화
+		//String reportFileName = "ts";
+		if(file.equals("leanCanvas")) {
+			reportFileName = "leanCanvas";
+		}else if(file.equals("ts")) {
+			reportFileName = "ts";
+		}else if(file.equals("checkList")) {
+			reportFileName = "checkList";
+		}
+		//String reportFileName = "leanCanvas";
 		JasperReportDAO jrdao = new JasperReportDAO();
 		
 		Connection conn = null;
@@ -33,13 +45,16 @@ public class LoadJasperReport {
 						
 			conn = jrdao.getConnection(httpSession);
 
-			String noy = "16";
+			//String noy = "16";
 			//System.out.println("projectNum: " + noy);
+			System.out.println("projectNum: " + projectNum);
+			
 
 			HashMap<String, Object> hmParams = new HashMap<String, Object>();
 
-			hmParams.put("noy", new Integer(noy));
-			hmParams.put("Title", "트러블슈팅" + noy );
+			//hmParams.put("noy", new Integer(noy));
+			//hmParams.put("Title", "트러블슈팅" + noy );
+			hmParams.put("projectNum", projectNum);
 
 			JasperReport jasperReport = jrdao.getCompiledFile(reportFileName,request);
 
