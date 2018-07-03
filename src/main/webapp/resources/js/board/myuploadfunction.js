@@ -8,11 +8,8 @@ $(function () {
 		"core" : {
 			"check_callback" : true,
 	    	'data' : datajsonarr,
-	    	 "types" : {
-	    	        "default" : { "icon" : "glyphicon glyphicon-cloud" }
-	    	    }
-				,
-	            "plugins" :["types"]
+	  
+	        "plugins" :["types"]
 		
 		}
 
@@ -56,7 +53,7 @@ $(function () {
 			  	 	    		  else html+="moo.svg"; 
 			  	 	    		  
 			  	 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
-			  	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='resources/images/profile/"+file.userProfile+"'>" 
+			  	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
 			  				  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
 			  				  +"</img>" 
 			  				  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
@@ -115,7 +112,7 @@ $(function () {
 		  	 	    		  else html+="moo.svg"; 
 		  	 	    		  
 		  	 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
-		  	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='resources/images/profile/"+file.userProfile+"'>" 
+		  	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
 		  				  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
 		  				  +"</img>" 
 		  				  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
@@ -146,11 +143,11 @@ function foldermake(exdata) {
 		var datas = [];
 		
 		//폴더 : 전체조회
-		datas.push({"id":"-1" , "parent":"#" ,"text":"All Files" });	
+		datas.push({"id":"-1" , "parent":"#" ,"text":"All Files"});	
 
 		//폴더 : 확장자 조회
 		for( var key in exdata ) {
-			datas.push({'id': key,'parent': "-1", 'text': key ,"type" : "default"})
+			datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"glyphicon glyphicon-leaf" })
 		
 		}
 	
@@ -279,7 +276,7 @@ function firstFileSelect() {
 	 	    		  else html+="moo.svg"; 
 	 	    		  
 	 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
-	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='resources/images/profile/"+file.userProfile+"'>" 
+	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
 				  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
 				  +"</img>" 
 				  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
@@ -402,7 +399,7 @@ function searcherFileSelect(){
 			 	    		  else html+="moo.svg"; 
 			 	    		  
 			 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
-			    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='resources/images/profile/"+file.userProfile+"'>" 
+			    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
 						  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
 						  +"</img>" 
 						  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
