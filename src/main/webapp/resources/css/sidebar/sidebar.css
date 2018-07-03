@@ -1,6 +1,10 @@
 /*
     DEMO STYLE
 */
+body {
+	background: #fafafa;
+}
+
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 .sidebar-header > img {
     width: 176px;
@@ -8,11 +12,6 @@
     margin-bottom: 18px;
     position: absolute;
     left: 47%;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
 }
 
 p {
@@ -268,3 +267,6 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+
+    
+    

@@ -1,5 +1,5 @@
-.troublebackdiv{
-	background-color: #FFF;
+.troublebackdiv {
+    background-color: #FFF;
     margin-top: 15px;
     background-color: #ffffff;
     border-radius: 25px;
@@ -7,6 +7,7 @@
     min-height: 850px;
     padding-left: 150px;
     padding-right: 150px;
+    width: 100%;
 }
 
 #boardTitle{
