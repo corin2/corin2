@@ -131,8 +131,21 @@ function foldermake(exdata) {
 
 		//폴더 : 확장자 조회
 		for( var key in exdata ) {
-			datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"glyphicon glyphicon-leaf" })
-		
+			   if(key == "CSS")	datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/css.svg" });
+			   else if(key == "GIF")	datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/gif.svg" });
+			   else if(key == "JPG")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/jpg.svg" })
+			   else if(key == "JS")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/js.svg" })
+			   else if(key == "PDF")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/pdf.svg" }) 
+			   else if(key == "PNG")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/png.svg" }) 
+			   else if(key == "PPT")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/ppt.svg" })
+			   else if(key == "TXT")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/txt.svg" })
+	    	   else if(key == "XLS")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/xls.svg" })
+	    	   else if(key == "XML")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/xml.svg" })
+	    	   else if(key == "ZIP")datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/zip.svg" })
+	    	   else{
+	    		   datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"resources/images/board/moo.svg" })
+	    	   }
+			
 		}
 	
 		//jsonArray 만들어서 data쪽으로 보냄
