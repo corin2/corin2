@@ -28,42 +28,36 @@
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
 				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
 				    	 }
 				    	});
 				    $("#checklisticon").draggable({
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
 				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
 				    	 }
 				    	});
 				    $("#charticon").draggable({
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
 				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
 				    	 }
 				    	});
 				    $("#filesicon").draggable({
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
 				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
 				    	 }
 				    	});
 				    $("#troubleshootingicon").draggable({
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
 				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
 				    	 }
 				    });
 				    $("#kanbanicon").draggable({
 				    	 revert : true,
 				    	 drag: function( event, ui ) {
 				    		 dragID = $(this).attr("id");
-				    		 console.log(dragID);
 				    	 }
 				    });
 				    
@@ -110,13 +104,9 @@
 						       }, this);
 						
 						       /* $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
-								console.log(this.serializedData);
 						       var items = GridStackUI.Utils.sort(this.serializedData);
 						       localStorage.setItem("items", JSON.stringify(items));
 								 */
-								console.log(this.serializedData);
-								 console.log(this.serializedData[0].x);
-						       console.log('grid is saved');
 				    		$.ajax({
 							    	type: "post",
 						 			url:  "positioninsert",
@@ -128,11 +118,8 @@
 						 					"height" :  this.serializedData[0].height},
 						 			contentType: "application/json; charset=utf-8",
 						 		    success:function(data){
-						 		    	console.log(date);
-						 		    	console.log("1111")
 						 		    },
 						 		    error:function(){
-						 		    	console.log("2222")
 						 		    }
 					    		}); 
 				    	}.bind(this)
@@ -154,13 +141,9 @@
 			       }, this);
 			
 			       /* $('#saved-data').val(JSON.stringify(this.serializedData, null, '    '));
-					console.log(this.serializedData);
 			       var items = GridStackUI.Utils.sort(this.serializedData);
 			       localStorage.setItem("items", JSON.stringify(items));
 					 */
-				   console.log(this.serializedData);
-				   console.log(this.serializedData[0].x);
-			       console.log('grid is saved');
 			       return this.serializedData;
 			   }.bind(this);
 			   $('#save-grid').click(this.saveGrid);
@@ -217,12 +200,9 @@
 			   <!--Load-->
 			   loadGrid = function () {
 			       grid.removeAll();
-			       console.log("gg");   
 			       var jsonData = JSON.parse(localStorage.getItem("items"));
 			       var items = GridStackUI.Utils.sort(jsonData);
-			       console.log(items);
 			       _.each(items, function (node) {
-			    	   console.log(node.content.trim());
 			           grid.addWidget($('<div><div class="grid-stack-item-content">'+node.content.trim()+'</div></div>'),
 			           node.x, node.y, node.width, node.height);
 			       }.bind(this));
@@ -233,7 +213,6 @@
 			   <!--resize-->
 			   $('body').on('click', '.fa-heart', function (e) {
 				 
-					   console.log("1");
 					    var grid = $('.grid-stack').data('gridstack');
 					    grid.batch_update();
 					    el = $(this).closest('.grid-stack-item');

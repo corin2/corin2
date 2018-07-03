@@ -242,14 +242,12 @@
 			    var repass = 0;
 				function repasswordcheckid() {
 				    var repassid = $('#reuserid').val();
-				    console.log(repassid);
 				    $.ajax({
 				    	type: "post",
 			 			url:  "repass",
 			 			data: $('#reuserid').val().trim(),
 			 			contentType: "application/json; charset=utf-8",
 			 		    success:function(data){ 
-				        	console.log(data);
 				            if(repassid==""){
 				                $("#repassword").prop("disabled", true);
 				                $("#repassword").css("background-color", "#aaaaaa");
@@ -329,9 +327,6 @@
 				    $(function(){
 		
 				    	$('#sign_up_button').click(function(){
-							console.log($('#modalid').val().trim());
-							console.log($('#modalnick').val().trim());
-							console.log($('#modalpass').val().trim());
 								$.ajax({
 									type : "post",
 									url : 'signup',
@@ -357,14 +352,12 @@
 					//아이디와 비밀번호가 맞지 않을 경우 가입버튼 비활성화를 위한 변수설정
 					function checkId() {
 					    var inputed = $('#modalid').val();
-					    console.log(inputed);
 					    $.ajax({
 					    	type: "post",
 				 			url:  "idcheck",
 				 			data: $('#modalid').val().trim(),
 				 			contentType: "application/json; charset=utf-8",
 				 		    success:function(data){ 
-					        	console.log(data);
 					            if(inputed=="" && data=='true'){
 					                $(".signupbtn").prop("disabled", true);
 					                $(".signupbtn").css("background-color", "#aaaaaa");
@@ -391,8 +384,6 @@
 					function checkPwd() {
 						var inputed = $('#modalpass').val();
 						var reinputed = $('#modalpass2').val();
-						console.log(inputed);
-						console.log(reinputed);
 						$.ajax({
 							type : "post",
 							url : "passwordcheck",
@@ -456,7 +447,6 @@
 				
 					function checkNick() {
 						var nickname = $("#modalnick").val();
-						console.log(nickname);
 						$.ajax({
 							type : "post",
 							url : "nickcheck",

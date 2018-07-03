@@ -1,4 +1,5 @@
 package site.corin2.board.controller;
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,9 +15,6 @@ import org.springframework.web.servlet.view.document.AbstractExcelView;
 
 
 import site.corin2.board.dto.TroubleShootingDTO;
-
-
-
 
 @SuppressWarnings("deprecation")
 public class TroubleExcel extends AbstractExcelView {

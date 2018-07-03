@@ -5,11 +5,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 
 import site.corin2.calendar.dao.CalendarDAO;
 import site.corin2.calendar.dto.CalendarDTO;
-import site.corin2.kanban.dao.KanbanDAO;
 import site.corin2.kanban.dto.CardDTO;
 
 @Service

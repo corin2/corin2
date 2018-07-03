@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.View;
 
-import site.corin2.kanban.service.KanbanService;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.project.dto.ProjectDTO;
 import site.corin2.project.dto.TeamDTO;

@@ -12,7 +12,6 @@ import java.util.List;
 import site.corin2.kanban.dto.CardDTO;
 import site.corin2.kanban.dto.ListDTO;
 
-
 public interface KanbanDAO {
 	
 	//카드추가

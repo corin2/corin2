@@ -6,8 +6,6 @@
 */
 package site.corin2.user.service;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -18,10 +16,8 @@ import java.util.regex.Pattern;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.velocity.Template;
@@ -42,13 +38,8 @@ import org.springframework.social.oauth2.GrantType;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.View;
 
 import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dao.AdminDAO;
@@ -74,7 +65,6 @@ public class UserService {
 	
 	//회원가입 기능 실행
 	public void userInsert(UserDTO userdto) {
-		System.out.println("service탔니");
 		int result = 0;
 		String viewpage = "";
 		try {
@@ -94,7 +84,6 @@ public class UserService {
 				velocityEngine.init();
 				VelocityContext velocityContext = new VelocityContext(); 
 				velocityContext.put("userId",userdto.getUserId());
-				System.out.println(userdto.getUserId());
 				AdminDAO admindao = sqlsession.getMapper(AdminDAO.class);
 				AdminDTO admindto = admindao.templateFileNameSelect();
 				String templatename = admindto.getTemplatefilename();
@@ -181,7 +170,6 @@ public class UserService {
 			velocityEngine.init();
 			VelocityContext velocityContext = new VelocityContext(); 
 			velocityContext.put("userId",userdto.getUserId());
-			System.out.println(userdto.getUserId());
 			Template template = velocityEngine.getTemplate("repassword.vm"); 
 			StringWriter stringWriter = new StringWriter(); 
 			template.merge(velocityContext, stringWriter); 

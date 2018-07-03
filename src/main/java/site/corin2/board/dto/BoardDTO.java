@@ -6,9 +6,6 @@
 */
 package site.corin2.board.dto;
 
-import java.util.List;
-import java.util.Map;
-
 public class BoardDTO {
 
 	private int boardNum;

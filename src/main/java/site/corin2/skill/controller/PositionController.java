@@ -19,7 +19,6 @@ import org.springframework.web.servlet.View;
 
 import site.corin2.skill.dto.PositionDTO;
 import site.corin2.skill.service.PositionService;
-import site.corin2.user.service.UserService;
 
 @Controller
 public class PositionController {
@@ -76,8 +75,6 @@ public class PositionController {
 	//insert position
 	@RequestMapping(value="positioninsert",method= {RequestMethod.POST,RequestMethod.GET})
 	public View positionInsert(PositionDTO positiondto , Model model) {
-		System.out.println("position controller");
-		System.out.println(positiondto);
 		int result = service.positionInsert(positiondto);
 		return jsonview;
 	}
