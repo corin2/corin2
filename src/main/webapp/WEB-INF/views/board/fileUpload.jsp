@@ -8,7 +8,7 @@ pageEncoding="UTF-8"%>
 <link href="resources/css/board/dropzone.css" type="text/css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-<div class="fileuploadbackdiv">
+<div class="fileuploadbackdiv" style="overflow: scroll;">
 	<!-- input 검색기능 -->
 	<div class ="folder" style="width:18%;overflow:hidden;float:left;margin-top:55px;margin-left:80px;">
 		<form action="searcherFileSelect" method="get"  onsubmit="return false" >
