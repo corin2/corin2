@@ -115,7 +115,16 @@
 		    </form>  
 		    <script type="text/javascript">
 		    (function(){
-		
+		    	/* var loading = $('<div id="loading" class="loading"></div><img id="loading_img" alt="loading" src="/resources/images/loading/loding.gif" />')
+		    			      .appendTo(document.body).hide();
+		    			  
+		    			  $(window) 
+		    			  .ajaxStart(function(){
+		    			   loading.show();
+		    			  })
+		    			  .ajaxStop(function(){
+		    			   loading.hide();
+		    			  }); */
 				const ryan = document.querySelector('#ryan');
 				const face = document.querySelectorAll('.ears, .eyes, .muzzle');
 				const email = document.querySelector('input[type="text"]');
@@ -270,6 +279,7 @@
 				        }
 				    });
 				    $('#repassword').click(function(){
+				    	 var loading = $('<div id="loading" class="loading"></div><img id="loading_img" alt="loading" src="/resources/images/loading/loding.gif" />').appendTo(document.body).hide();
 					    $.ajax({
 					    	type: "post",
 				 			url:  "repassword",
@@ -279,7 +289,13 @@
 				 		    		text : "비밀번호 재설정 이메일이 발송되었습니다.",
 				 		    		type: 'success',
 				 		    		});
-				 		    }
+				 		    },
+					        beforeSend: function () {
+								loading.show();
+							},
+							complete: function () {
+								loading.hide();
+							}
 					    });
 				    });
 				};
@@ -328,6 +344,7 @@
 				    $(function(){
 		
 				    	$('#sign_up_button').click(function(){
+				    		var loading = $('<div id="loading" class="loading"></div><img id="loading_img" alt="loading" src="/resources/images/loading/loding.gif" />').appendTo(document.body).hide();
 								$.ajax({
 									type : "post",
 									url : 'signup',
@@ -340,6 +357,12 @@
 											text : "회원가입에 성공하였습니다. 이메일 인증을 해주세요",
 											type: 'success',
 											});
+									},
+							        beforeSend: function () {
+										loading.show();
+									},
+									complete: function () {
+										loading.hide();
 									}
 								});
 		
