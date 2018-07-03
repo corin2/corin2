@@ -61,7 +61,14 @@ function projectChart(lists){
 					        return '#' + hex;
 					    })
 					}]
-			    }
+			    },
+				options : {
+					title: {
+						display: true,
+						text: '프로젝트 진행상태',
+						fontSize: 40
+					}
+				}
 			});
 		},
 		error: function() {
@@ -218,6 +225,11 @@ function checkListProceedChart(maxData, chartData) {
 							min: 0,
 							stepSize: 5
 						}
+					},
+					title: {
+						display: true,
+						text: '체크리스트 현황',
+						fontSize: 40
 					}
 				}
 			});

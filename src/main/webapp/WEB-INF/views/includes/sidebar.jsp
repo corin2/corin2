@@ -136,9 +136,14 @@
 
 <script>
 	function logoutpage() {
+		//구글 로그아웃
+		location.href = 'https://accounts.google.com/logout';
+		
+		//카카오톡 로그아웃
 		Kakao.init("");
 		Kakao.Auth.logout();
-		location.href = 'https://accounts.google.com/logout';
+		
+		//기본로그아웃 + 모든것
 		location.href = 'logout';
 	}
 	
@@ -218,7 +223,6 @@
 		}else {
 			url = window.location.pathname.substr(1);
 		}
-		console.log(url)
 		$('#'+url).css({'color':'#566270', 'background':'#fff'})
 	}
 </script>
