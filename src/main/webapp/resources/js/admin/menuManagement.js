@@ -20,6 +20,14 @@ function checkListMenuView() {
 			$('#menuManagement').html(texthtml);
 			$('#adminTabs').tabs();
 			$('#adminTabs').children('ul').children('li:eq(0)').children('a:eq(0)').trigger('click');
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -51,6 +59,14 @@ function checkListMenu(languageNumber){
 			});
 			texthtml += '</table>';
 			$('#'+languageNumber+'Tab').html(texthtml);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -67,6 +83,14 @@ function checkListDel(obj){
 		data : {checkNum:checkNum},
 		success : function(data){
 			$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -83,6 +107,14 @@ function checkListReset(obj){
 		data : {checkNum:checkNum},
 		success : function(data){
 			$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -111,6 +143,14 @@ function checkListAddOk(obj){
 			data : {languageNum:languageNum, category:category.trim(), checkContent:checkContent.trim()},
 			success : function(data){
 				$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -147,6 +187,14 @@ function checkListEditOk(obj){
 			data : {checkNum:checkNum, category:category.trim(), checkContent:checkContent.trim()},
 			success : function(data){
 				$('a[href=\'#'+languageNum+'Tab\']').trigger('click');
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -177,6 +225,14 @@ function skillMenu(){
 			texthtml += '</table>';
 			
 			$('#menuManagement').html(texthtml);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -192,6 +248,14 @@ function skillDel(obj){
 		data : {skillNum:skillNum},
 		success : function(data){
 			skillMenu();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -221,6 +285,14 @@ function skillAddOk(obj){
 			data : {skillNum:skillNum, skillName:skillName.trim(), skillUse:skillUse.trim()},
 			success : function(data){
 				skillMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -257,6 +329,14 @@ function skillEditOk(obj){
 			data : {skillNum:skillNum, skillName:skillName.trim(), skillUse:skillUse.trim()},
 			success : function(data){
 				skillMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -286,6 +366,14 @@ function listMenu(){
 			texthtml += '</table>';
 			
 			$('#menuManagement').html(texthtml);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -301,6 +389,14 @@ function listDel(obj){
 		data : {listNum:listNum},
 		success : function(data){
 			listMenu();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -328,6 +424,14 @@ function listAddOk(obj){
 			data : {listNum:listNum, listName:listName.trim()},
 			success : function(data){
 				listMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -358,6 +462,14 @@ function listEditOk(obj){
 			data : {listNum:listNum, listName:listName.trim()},
 			success : function(data){
 				listMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -387,6 +499,14 @@ function languageMenu(){
 			texthtml += '</table>';
 			
 			$('#menuManagement').html(texthtml);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -402,6 +522,14 @@ function languageDel(obj){
 		data : {languageNum:languageNum},
 		success : function(data){
 			languageMenu();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -435,6 +563,14 @@ function languageAddOk(obj){
 			data : {languageNum:languageNum, languageMain:languageMain.trim(), languageColor:languageColor.trim()},
 			success : function(data){
 				languageMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -469,6 +605,14 @@ function languageEditOk(obj){
 			data : {languageNum:languageNum, languageMain:languageMain.trim(), languageColor:languageColor.trim()},
 			success : function(data){
 				languageMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -498,6 +642,14 @@ function userGradeMenu(){
 			texthtml += '</table>';
 			
 			$('#menuManagement').html(texthtml);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -513,6 +665,14 @@ function userGradeDel(obj){
 		data : {gradeNum:gradeNum},
 		success : function(data){
 			userGradeMenu();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -540,6 +700,14 @@ function userGradeAddOk(obj){
 			data : {gradeNum:gradeNum, gradeName:gradeName.trim()},
 			success : function(data){
 				userGradeMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -570,6 +738,14 @@ function userGradeEditOk(obj){
 			data : {gradeNum:gradeNum, gradeName:gradeName.trim()},
 			success : function(data){
 				userGradeMenu();
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{

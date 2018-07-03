@@ -40,6 +40,14 @@ function allUser(enabled, isDelete, pageNum){
 			texthtml += '</table>';
 			$('#userManagement').html(texthtml);
 			userPaging(enabled, isDelete, pageNum, viewData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -57,6 +65,14 @@ function userDel(obj, enabled, isDelete, pageNum) {
 			data : {userId:userId},
 			success : function(data) {
 				allUser(enabled, isDelete, pageNum);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		})
 	}
@@ -75,6 +91,14 @@ function userReset(obj, enabled, isDelete, pageNum) {
 			data : {userId:userId},
 			success : function(data) {
 				allUser(enabled, isDelete, pageNum);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		})
 	}
@@ -115,6 +139,14 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 			data : {userId:userId, userName:userName.trim(), enabled:enableddata, gradeNum:gradeNum},
 			success : function(data){
 				allUser(enabled, isDelete, pageNum);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{

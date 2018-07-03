@@ -50,6 +50,14 @@ function dialogStart(titleName, calendarNum) {
 								data: inputParam,
 								success: function(data){
 									send(2);
+								},
+								error: function() {
+									swal({
+										 type: 'error',
+										 title: 'Oops...',
+										 text: 'Something went wrong!',
+										 footer: '<a href>Why do I have this issue?</a>'
+										})
 								}
 							});
 						}else if(titleName == '수정') {
@@ -59,6 +67,14 @@ function dialogStart(titleName, calendarNum) {
 								data: inputParam,
 								success: function(data){
 									send(2);
+								},
+								error: function() {
+									swal({
+										 type: 'error',
+										 title: 'Oops...',
+										 text: 'Something went wrong!',
+										 footer: '<a href>Why do I have this issue?</a>'
+										})
 								}
 							});
 						}
@@ -120,6 +136,14 @@ function showCalendar() {
 				},
 				success : function(data){
 					send(2);
+				},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
 				}
 			});
 		},
@@ -193,6 +217,14 @@ function showCalendar() {
 			    		data : {cardNum : event.id.substr(10)},
 			    		success : function(data){
 			    			send(3);
+			    		},
+			    		error: function() {
+			    			swal({
+			    				 type: 'error',
+			    				 title: 'Oops...',
+			    				 text: 'Something went wrong!',
+			    				 footer: '<a href>Why do I have this issue?</a>'
+			    				})
 			    		}
 			    	});
 			    }
@@ -207,6 +239,14 @@ function showCalendar() {
 			    		data : {calendarNum : event.id.substr(11)},
 			    		success : function(data){
 			    			send(2);
+			    		},
+			    		error: function() {
+			    			swal({
+			    				 type: 'error',
+			    				 title: 'Oops...',
+			    				 text: 'Something went wrong!',
+			    				 footer: '<a href>Why do I have this issue?</a>'
+			    				})
 			    		}
 			    	});
 		    	}
@@ -237,6 +277,14 @@ function calendarDateUpdate(calendarData, id){
 			data : calendarData,
 			success : function(data){
 				send(2);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else if(id.indexOf('calendar') > -1){
@@ -247,6 +295,14 @@ function calendarDateUpdate(calendarData, id){
 			data : calendarData,
 			success : function(data){
 				send(2);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}
@@ -284,6 +340,14 @@ function dragCardCalendar() {
 			
 			$('#external-events').html(htmlText);
 			canDragCard();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -341,6 +405,14 @@ function calendarCardView() {
 				}
 			});
 			calendarRenderEvent(calendarArr);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }

@@ -65,7 +65,15 @@ $(function () {
 			    		 })
 			    		
 						$(".dropzonediv").html(html);  
-			    	}
+			    	},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
+					}
 			 	   
 			    }); 
 		} 
@@ -116,7 +124,15 @@ $(function () {
 			 	    		  
 		    		 })
 					$(".dropzonediv").html(html);  
-		    	}
+		    	},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
+				}
 		  })
 		}
 	})
@@ -274,7 +290,15 @@ function firstFileSelect() {
     		 })
     		 foldermake(exdata); //가공된 데이터 보냄
 			$(".dropzonediv").html(html);  
-    	}
+    	},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
+		}
  	   
     }); 
 }
@@ -324,7 +348,15 @@ function deleteFile(boardNum) {
 		},
     	success: function(data) {
     		firstFileSelect();
-    	}
+    	},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
+		}
     }); 
 }
 
@@ -379,6 +411,14 @@ function searcherFileSelect(){
 			    			  
 					})
 					$(".dropzonediv").html(html)
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 	})
 	
