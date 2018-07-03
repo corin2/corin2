@@ -40,7 +40,7 @@ function fncTegSplit(str){
 <div class="troublebackdiv">
 	<div id="troubleContent">
 		<h2 id='boardTitle'>전체 트러블슈팅</h2>
-	
+		<hr>
 		<ul class="nav nav-tabs ">
 			<li><a id="memberts"
 				href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀
