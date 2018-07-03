@@ -269,7 +269,6 @@ function firstFileSelect() {
 		           }
 		   
   		       }
-  			 console.log(file.userId +"안타나요?"+$("#hiddenUserId").val());
   			html +=
 				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
 				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
