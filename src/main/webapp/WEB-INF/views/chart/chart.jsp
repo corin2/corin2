@@ -6,12 +6,12 @@
 <div class="chartCssCenter chartbackdiv">
 	<div class="chartCssGO">
 		<div id="pChart">
-			<h1>프로젝트 진행상태</h1>
+			<h1 class="charttitle">프로젝트 진행상태</h1>
 			<hr>
 			<canvas id="projectChart"></canvas>
 		</div>
 		<div id="cChart">
-			<h1>체크리스트 현황</h1>
+			<h1 class="charttitle">체크리스트 현황</h1>
 			<hr>
 			<canvas id="checkListProceedChart"></canvas>
 		</div>
