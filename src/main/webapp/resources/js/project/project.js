@@ -14,8 +14,10 @@ function addProject() {
 		success:function(data){
 			swal("프로젝트생성성공");
 			projectProjectNum(projectName)
-		}
-		
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 	}else if($("#ProjectName").val()==""){
 		swal("프로젝트명을 입력하세요");
@@ -32,7 +34,10 @@ function projectProjectNum(projectName) {
 		data:{projectName:projectName},
 		success:function(data){
 			insertTeamProject(data.projectNum);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 //팀 생성함수
@@ -45,8 +50,10 @@ function insertTeamProject(projectNum) {
 			$('#ProjectName').val('');
 			languageColorView();
 			$("#myModal2").modal("hide");
-		}
-		
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -79,16 +86,15 @@ function projectView(projectArray) {
 					}
 				});
 				projectcnt++;
-			/*	if(projectcnt == 6){
-					html += '<br>';
-					projectcnt = 0;
-				}*/
 			});
 			html += "<div class='projectListDiv'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='buttonproject' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
 			projectcnt=0;
 			$("#projectbox").html(html);
 			
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -127,7 +133,10 @@ function projectBookView(projectArray) {
 			});
 			projectcnt=0;
 			$("#bookmarkbox").html(html);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -142,7 +151,10 @@ function languageColorView() {
 			projectArray.push(data.list);
 			projectView(projectArray);
 			projectBookView(projectArray);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -156,7 +168,10 @@ function searchColorView() {
 			projectArray.push(data.list);
 			searchProject(projectArray)
 			
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 //프로젝트모달창 주언어 뿌려주기
@@ -170,7 +185,10 @@ function printProjectDetailLanguage() {
 				html += "<input type='radio' class='iradio_flat-green' name='language' value='"+elt.languageNum+"'>"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>"
 			})
 			$("#projectDetail").append(html)
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -187,7 +205,10 @@ function printProjectDetailLanguageChecked(projectNum) {
 				html += ">"+elt.languageMain+"<span class='glyphicon glyphicon-stop' style='color:"+elt.languageColor+"'></span><br>";
 			})
 			$("#projectDetail").append(html)
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 //주언어 업데이트하기
@@ -200,7 +221,15 @@ function updateLanguage(projectNum) {
 		success:function(data){
 			swal("프로젝트 수정 성공");
 			languageColorView();
-		}
+		},
+		error: function() {
+            swal({
+                 type: 'error',
+                 title: 'Oops...',
+                 text: 'Something went wrong!',
+                 footer: '<a href>Why do I have this issue?</a>'
+                })
+        }
 	})
 	}else
 	{
@@ -259,7 +288,15 @@ function deleteProject(projectNum) {
 		success:function(data){
 			swal("프로젝트 삭제완료");
 			languageColorView();
-		}
+		},
+		error: function() {
+            swal({
+                 type: 'error',
+                 title: 'Oops...',
+                 text: 'Something went wrong!',
+                 footer: '<a href>Why do I have this issue?</a>'
+                })
+        }
 		
 	})
 }
@@ -272,7 +309,15 @@ function updateProjectBookmark(projectNum) {
 		data:{projectNum:projectNum, userId:$('#hiddenUserId').val()},
 		success:function(data){
 			languageColorView();
-		}
+		},
+		error: function() {
+            swal({
+                 type: 'error',
+                 title: 'Oops...',
+                 text: 'Something went wrong!',
+                 footer: '<a href>Why do I have this issue?</a>'
+                })
+        }
 	})
 }
 
@@ -284,7 +329,15 @@ function updateProjectNoneBookmark(projectNum) {
 		data:{projectNum:projectNum, userId:$('#hiddenUserId').val()},
 		success:function(data){
 			languageColorView();
-		}
+		},
+		error: function() {
+            swal({
+                 type: 'error',
+                 title: 'Oops...',
+                 text: 'Something went wrong!',
+                 footer: '<a href>Why do I have this issue?</a>'
+                })
+        }
 	})
 }
 
@@ -314,7 +367,15 @@ function searchProject(projectArray) {
 			}
 			$("#searchBox").append(html);
 			
-		}
+		},
+		error: function() {
+            swal({
+                 type: 'error',
+                 title: 'Oops...',
+                 text: 'Something went wrong!',
+                 footer: '<a href>Why do I have this issue?</a>'
+                })
+        }
 	})
 	
 }
@@ -334,6 +395,14 @@ function autoCompleteProject() {
 				 source: name,
 				 minLength: 2
 			});
-		}
+		},
+		error: function() {
+            swal({
+                 type: 'error',
+                 title: 'Oops...',
+                 text: 'Something went wrong!',
+                 footer: '<a href>Why do I have this issue?</a>'
+                })
+        }
 	})
 }

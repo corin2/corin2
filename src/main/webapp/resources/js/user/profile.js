@@ -21,9 +21,25 @@
 								$('#password').val("");
 								$('#password2').val("");
 							});
-						}
+						},
+						error: function() {
+				            swal({
+				                 type: 'error',
+				                 title: 'Oops...',
+				                 text: 'Something went wrong!',
+				                 footer: '<a href>Why do I have this issue?</a>'
+				                })
+				        }
 					});
-				}
+				},
+				error: function() {
+		            swal({
+		                 type: 'error',
+		                 title: 'Oops...',
+		                 text: 'Something went wrong!',
+		                 footer: '<a href>Why do I have this issue?</a>'
+		                })
+		        }
 			});
 			}else if($('#password').val() == ""){
 				swal("비밀번호를 입력해주세요.");
@@ -53,9 +69,25 @@
 									$('#userId').attr("value", obj.userId);
 									$('#userName').attr("value", obj.userName);
 								});
-							}
+							},
+							error: function() {
+					            swal({
+					                 type: 'error',
+					                 title: 'Oops...',
+					                 text: 'Something went wrong!',
+					                 footer: '<a href>Why do I have this issue?</a>'
+					                })
+					        }
 						});
-					}
+					},
+					error: function() {
+			            swal({
+			                 type: 'error',
+			                 title: 'Oops...',
+			                 text: 'Something went wrong!',
+			                 footer: '<a href>Why do I have this issue?</a>'
+			                })
+			        }
 				});
 			}else if($('#userName').val() == ""){
 				swal("닉네임을 입력해주세요.");
@@ -84,7 +116,15 @@
 							  }).then((willDelete) => {
 								  location.href = "login.html";
 							  });
-						  }
+						  },
+						  error: function() {
+							  swal({
+				                 type: 'error',
+				                 title: 'Oops...',
+				                 text: 'Something went wrong!',
+				                 footer: '<a href>Why do I have this issue?</a>'
+				              })
+					      }
 					  	});
 					  }
 					});

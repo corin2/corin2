@@ -43,7 +43,10 @@ function projectMemberProfile(){
 			});
 			
 			projectMemberShow(userProfiles);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -94,7 +97,10 @@ function projectMemberShow(userProfiles){
 			});
 			$('#headerProjectMemberProfile').html(htmltext);
 			projectNameView();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -109,7 +115,10 @@ function projectNameView(){
 			$('#headerProjectName').empty();
 			
 			$('#headerProjectName').html(data.data.projectName);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -122,7 +131,10 @@ function projectColorView() {
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
 			$('#headerProjectName').css('border-color', data.list.languageColor); //프로젝트 언어 색상
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -138,7 +150,10 @@ function ownerChange(obj) {
 			},
 			success: function (data){
 				sendHeader('1:'+sessionProjectNum);
-			}
+			},
+			error: function() {
+	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+	        }
 	});
 }
 
@@ -153,7 +168,10 @@ function memberToKickOut(obj) {
 		},
 		success: function (data){
 			sendHeader('2:'+sessionProjectNum+':'+$(obj).parent().children("input").val());
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -168,7 +186,10 @@ function memberDelete() {
 		},
 		success: function (data){
 			sendHeader('3:'+sessionProjectNum+':'+$('#hiddenUserId').val());
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 

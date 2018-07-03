@@ -299,7 +299,7 @@ function listDel(obj){
 		url  : "listDel",
 		datatype:"JSON",
 		data : {listNum:listNum},
-		success : function(data){
+		success : function(data) {
 			listMenu();
 		}
 	});

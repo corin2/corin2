@@ -53,35 +53,56 @@ function showMsg(){
 			if(data.data.length == 0) htmltext += '<span class="notmsg">초대메시지가 없습니다</span>';
 			$('#inviteMsg').html(htmltext);
 			existMsg();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
-//초대승락
-function msgaccept(projectNum){
-	var param = {userId : $('#hiddenUserId').val(), projectNum : projectNum}
+// 초대승락
+function msgaccept(projectNum) {
+	var param = {
+		userId : $('#hiddenUserId').val(),
+		projectNum : projectNum
+	}
 	$.ajax({
-          url:"msgagree",
-          datatype:"JSON",
-          data:param,
-          success:function(data){
-        	  showMsg();
-        	  if(sessionProjectNum == 'null') languageColorView();
-        	  sendHeader('1:'+projectNum);
-          }
+		url : "msgagree",
+		datatype : "JSON",
+		data : param,
+		success : function(data) {
+			showMsg();
+			if (sessionProjectNum == 'null')
+				languageColorView();
+			sendHeader('1:' + projectNum);
+		},
+		error : function() {
+			swal({
+				type : 'error',
+				title : 'Oops...',
+				text : 'Something went wrong!',
+				footer : '<a href>Why do I have this issue?</a>'
+			})
+		}
 	})
 }
 
-//초대거절
-function msgreject(projectNum){
-	var param = {receptionId : $('#hiddenUserId').val(), projectNum : projectNum}
+// 초대거절
+function msgreject(projectNum) {
+	var param = {
+		receptionId : $('#hiddenUserId').val(),
+		projectNum : projectNum
+	}
 	$.ajax({
-          url:"msgdel",
-          datatype:"JSON",
-          data:param,
-          success:function(data){
-        	  showMsg();
-          }
+		url : "msgdel",
+		datatype : "JSON",
+		data : param,
+		success : function(data) {
+			showMsg();
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -100,7 +121,10 @@ function autoComplete() {
 				 appendTo: "#friend",
 				 minLength: 2
 			});
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -114,7 +138,10 @@ function memberinvite() {
 		success : function (data) {
 			if(data.trim() === 'true') isInviteMsg();
 			else swal('없는 회원입니다');
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -129,7 +156,10 @@ function isInviteMsg(){
 		success : function(data) {
 			if(data.data == '0') inviteMsg();
 			else swal('이미 프로젝트에 참여하고 있거나 \n해당프로젝트의 메시지가 이미 회원에게 있습니다.');
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -145,7 +175,10 @@ function inviteMsg(){
 		success : function(datas) {
 			swal('초대메시지 발송이 완료되었습니다');
 			sendMsg($("#emailSearch").val().trim());
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 

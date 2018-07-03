@@ -9,7 +9,15 @@ $(function(){
 					//$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 					$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 				});
-			}
+			},
+			error: function() {
+	            swal({
+	                 type: 'error',
+	                 title: 'Oops...',
+	                 text: 'Something went wrong!',
+	                 footer: '<a href>Why do I have this issue?</a>'
+	                })
+	        }
 		});
 		
 	    $('#profileimageupdate').fileupload({
@@ -38,7 +46,15 @@ $(function(){
 							$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 							$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 						});
-					}
+					},
+					error: function() {
+			            swal({
+			                 type: 'error',
+			                 title: 'Oops...',
+			                 text: 'Something went wrong!',
+			                 footer: '<a href>Why do I have this issue?</a>'
+			                })
+			        }
 				});
 	        },
 	    }).on('fileuploadfail', function (e, data) {
