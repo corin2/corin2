@@ -79,7 +79,6 @@ function sortable(){
 				}
 			}
 			sortablecnt = 1;
-			
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
 				swal('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
 				send(5);
@@ -89,7 +88,8 @@ function sortable(){
 					data : { 
 						listNum : listNum,
 						userId : children[0].className,
-						cardTaxis : productOrder
+						cardTaxis : productOrder,
+						cardNum : ui.item[0].id.substr(7)
 					},
 					success : function(data){
 						sortablecnt = 0; sortablecnt2 = 0; sortablecnt3 = 0;

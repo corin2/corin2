@@ -49,7 +49,6 @@ function projectChart(lists){
 				if(elt.listNum > 1)	data[(Number(elt.listNum)-2)] = data[(Number(elt.listNum)-2)]+1;
 				else data[(Number(elt.listNum)-1)] = data[(Number(elt.listNum)-1)]+1;
 			});
-			
 			var ctx = document.getElementById("projectChart").getContext('2d');
 			var myPieChart = new Chart(ctx,{
 			    type: 'doughnut',
@@ -57,9 +56,7 @@ function projectChart(lists){
 			    	labels : labels,
 					datasets : [{
 						data: data,
-						backgroundColor: palette('tol', data.length).map(function(hex) {
-					        return '#' + hex;
-					    })
+						backgroundColor: listColorData
 					}]
 			    },
 				options : {

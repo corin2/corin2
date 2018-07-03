@@ -19,8 +19,6 @@
 #external-events .fc-event {
 	margin: 1em 0;
 	cursor: move;
-	background-color: #5886BC;
-	border : 1px solid #5886BC;
 }
 
 .middleCalendar {

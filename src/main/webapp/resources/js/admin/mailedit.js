@@ -32,6 +32,7 @@
     		  $.ajax({
 					type : "post",
 					url : "vmload",
+					async:false,
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
 						signup = "signup";
@@ -52,6 +53,7 @@
     		  $.ajax({
 					type : "post",
 					url : "vmload2",
+					async:false,
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
 						signup = "signup2";
@@ -73,6 +75,7 @@
     		  $.ajax({
     			  	type : "post",
 					url : "vmsave",
+					async:false,
 					data : {savedata : $('#summernote').summernote('code') , signup : signup},
 					success : function(data) {
 						swal({type: "success",
@@ -95,6 +98,7 @@
     			  	type : "post",
 					url : "usetemplate",
 					data : {signup : signup},
+					async:false,
 					success : function(data) {
 						swal({type: "success",text:"저장이 완료되었습니다."});
 					},
