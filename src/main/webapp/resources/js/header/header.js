@@ -112,9 +112,9 @@ function projectNameView(){
 		datatype:"JSON",
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
-			$('#headerProjectName').empty();
+			$('#position').empty();
 			
-			$('#headerProjectName').html(data.data.projectName);
+			$('#position').html(data.data.projectName);
 		},
 		error: function() {
             swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
@@ -130,7 +130,7 @@ function projectColorView() {
 		datatype:"JSON",
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
-			$('#headerProjectName').css('border-color', data.list.languageColor); //프로젝트 언어 색상
+			$('#position').css('border-color', data.list.languageColor); //프로젝트 언어 색상
 		},
 		error: function() {
             swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
