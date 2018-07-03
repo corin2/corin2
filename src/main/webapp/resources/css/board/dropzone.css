@@ -74,7 +74,8 @@
 
 .jstree-anchor{
 	background-color: white;	
-	opacity: 0.8;
+	opacity: 10;
+	margin-bottom:50px;
 }
 
 #filetitle{
@@ -97,7 +98,7 @@ hr {
 }
 
   .jstree li > a > .jstree-icon { 
-    
+    margin-bottom: 10px;
   }  
 
 .fileuploadbackdiv {
