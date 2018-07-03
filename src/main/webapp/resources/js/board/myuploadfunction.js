@@ -8,11 +8,8 @@ $(function () {
 		"core" : {
 			"check_callback" : true,
 	    	'data' : datajsonarr,
-	    	 "types" : {
-	    	        "default" : { "icon" : "glyphicon glyphicon-cloud" }
-	    	    }
-				,
-	            "plugins" :["types"]
+	  
+	        "plugins" :["types"]
 		
 		}
 
@@ -132,11 +129,11 @@ function foldermake(exdata) {
 		var datas = [];
 		
 		//폴더 : 전체조회
-		datas.push({"id":"-1" , "parent":"#" ,"text":"All Files" });	
+		datas.push({"id":"-1" , "parent":"#" ,"text":"All Files"});	
 
 		//폴더 : 확장자 조회
 		for( var key in exdata ) {
-			datas.push({'id': key,'parent': "-1", 'text': key ,"type" : "default"})
+			datas.push({'id': key,'parent': "-1", 'text': key ,"icon":"glyphicon glyphicon-leaf" })
 		
 		}
 	
