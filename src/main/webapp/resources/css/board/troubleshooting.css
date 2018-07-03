@@ -11,7 +11,11 @@
 	text-align: center;
 }
 hr {
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     border: 0;
     border-top: 3px solid #eee;
+}
+
+.navbar-form {
+    margin-left: -45px;
 }

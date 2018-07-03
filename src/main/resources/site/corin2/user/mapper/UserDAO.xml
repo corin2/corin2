@@ -3,12 +3,12 @@
 <mapper namespace="site.corin2.user.dao.UserDAO">
 	<insert id="userInsert" parameterType="site.corin2.user.dto.UserDTO">
 		insert into user(userid,username,password,enabled,userprofile,joindate,gradenum,isdeleted)
-		values(#{userId},#{userName},#{password},'0','pi.png',NOW(),'G200','0')
+		values(#{userId},#{userName},#{password},'0','boy.png',NOW(),'G200','0')
 	</insert>
 	
 	<insert id="oauthInsert" parameterType="site.corin2.user.dto.UserDTO">
 		insert into user(userid,username,password,enabled,userprofile,joindate,gradenum,isdeleted)
-		values(#{userId},#{userName},#{password},'1','pi.png',NOW(),'G500','0')
+		values(#{userId},#{userName},#{password},'1','boy.png',NOW(),'G500','0')
 	</insert>
 	
 	<select id="userSelect" resultType="site.corin2.user.dto.UserDTO">
