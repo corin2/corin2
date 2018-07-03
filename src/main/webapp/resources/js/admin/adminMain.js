@@ -211,6 +211,14 @@ function allVisitCount() {
 		datatype: "text",
 		success: function(data) {
 			$('#allVisitCountResult').text(numberWithCommas(data.count));
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 } 
@@ -222,6 +230,14 @@ function allUserCount() {
 		datatype: "text",
 		success: function(data) {
 			$('#allUserCountResult').text(numberWithCommas(data.count));
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -233,6 +249,14 @@ function allProjectCount() {
 		datatype: "text",
 		success: function(data) {
 			$('#allProjectCountResult').text(numberWithCommas(data.count));
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -251,6 +275,14 @@ function allLanguageCount(arr) {
 					"color": obj.languageColor
 				});
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});	
 }
@@ -266,6 +298,14 @@ function allEmailCount(arr1, arr2) {
 				arr1.push(obj.email);
 				arr2.push(obj.emailCount);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -282,6 +322,14 @@ function visitCountByDate(arr1, arr2, start, end) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -298,6 +346,14 @@ function userCountByDate(arr1, arr2, start, end) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -314,6 +370,14 @@ function projectCountByDate(arr1, arr2, start, end) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }

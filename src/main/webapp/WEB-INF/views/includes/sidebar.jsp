@@ -30,7 +30,7 @@
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
 		    <se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
-			        <a href="boardList?countPerPage=5&blockCount=5&nowPage=1">
+			        <a href="boardList?countPerPage=10&blockCount=5&nowPage=1">
 			            <img src="/resources/images/icons/announce.png" style = "width : 28px;"><br>
 			            Notices
 			        </a>
@@ -153,6 +153,14 @@
 					$.each(data, function(index, obj) {
 						$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 					});
+				},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
 				}
 			});
 		}
@@ -170,6 +178,14 @@
 						$('#userId').attr("value", obj.userId);
 						$('#userName').attr("value", obj.userName);
 					});
+				},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
 				}
 			});
 		}

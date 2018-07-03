@@ -48,6 +48,14 @@ function skillCheckListTableConfirm() {
 			$('#tabs-3').append(table)
 			showSkillCheckListConfirm(data.list);
 				
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 	
@@ -74,6 +82,14 @@ function showSkillCheckListConfirm(user){
 				$('#skillCheckConfrimAddBox').append(html);
 			});
 			checkedSelectConfirm();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -97,6 +113,14 @@ function showSkillCheckList(){
 					$('#skillCheckAddBox').append(html);
 			});
 			checkedSelect();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -116,6 +140,14 @@ function checkedInsert(checkNum) {
 				checkedSelect();
 				checkedSelectAll();
 				send(4);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		})
 		
@@ -132,6 +164,14 @@ function checkedInsert(checkNum) {
 				checkedSelect();
 				checkedSelectAll();
 				send(4);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		})
 	}
@@ -149,6 +189,14 @@ function checkedSelect() {
 			$.each(data.list, function(index, elt) {
 					$("#skillCheckedBox"+elt.checkNum).attr("checked","checked");
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	
 	})
@@ -164,6 +212,14 @@ function checkedSelectConfirm() {
 			$.each(data.list, function(index, elt) {
 			$("#"+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+elt.checkNum).attr("checked","checked");
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	
 	})
