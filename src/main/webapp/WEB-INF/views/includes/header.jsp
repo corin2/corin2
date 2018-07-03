@@ -13,7 +13,7 @@
 			<!-- 프로젝트 명, 멤버 리스트 -->
 			<div class="navbar-header">
 		    	<b>
-		    		<a class="navbar-brand" id="headerProjectName" href="position?projectNum=${sessionScope.sessionProjectNum}"></a>
+		    		<a class="navbar-brand" id="position" href="position?projectNum=${sessionScope.sessionProjectNum}"></a>
 		    	</b>
 		    </div>
 			<!-- 드롭다운 버튼 -->

@@ -233,3 +233,9 @@
 	border-bottom-right-radius: 25px;
 	padding : 50px 100px 50px 100px;
 }
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}

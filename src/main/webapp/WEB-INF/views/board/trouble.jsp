@@ -41,7 +41,7 @@ function fncTegSplit(str){
 	<!--jasper test --> 
 	<div id="troubleContent">
 		<h2 id='boardTitle'>팀 트러블슈팅</h2>
-	
+		<hr>
 		<ul class="nav nav-tabs ">
 			<li><a id="memberts" href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
 			<li><a id="allts" href="troubleAll">전체 트러블슈팅</a></li>

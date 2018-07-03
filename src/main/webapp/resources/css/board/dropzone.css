@@ -53,16 +53,15 @@
   }
   /* input 버튼  숨긴후 label로 버튼 형태 만들기 */ 
  .filebox label { 
-  width:85%;
+  width: 15%;
   height:50 px;
   color: #999; 
   font-size: 30px; 
   background-color: #566270; 
   color:white;
   margin-right: 1600px;
-  margin-top: 30px;
-	
-
+  margin-top: 20px;
+  border-radius: 25px;
   } 
   /* input 버튼  숨기기 */ 
   .filebox input[type="file"] { 
@@ -74,11 +73,18 @@
 
 .jstree-anchor{
 	background-color: white;	
-	opacity: 0.8;
+	opacity: 10;
+	margin-bottom:50px;
 }
 
 #filetitle{
 	text-align: center;
+}
+
+.jstree-default .jstree-node {
+    background-position: -292px -4px;
+    background-repeat: repeat-y;
+    height: 30px;
 }
 
 hr {
@@ -92,12 +98,12 @@ hr {
 		border-top : none;
 		border-left : none;
 		border-right : none;
-   	    border-color: lightgray;
+   	    border-color: #566270;
 		width: 50%;
 }
 
   .jstree li > a > .jstree-icon { 
-    
+    margin-bottom: 10px;
   }  
 
 .fileuploadbackdiv {
@@ -106,11 +112,28 @@ hr {
     background-color: #ffffff;
     border-radius: 25px;
     padding: 15px;
-    margin: 15px 60px;
     width: 95%;
     min-height: 1000px;
     
 }
 .fileuploadbackdiv::-webkit-scrollbar {
  display:none;
+}
+
+hr {
+    margin-bottom: 0px;
+    border: 0;
+    border-top: 3px solid #eee;
+    width: 90%;
+}
+#fileTitle{
+	text-align: center;
+}
+#fileicon{
+	font-size: 25px;
+	margin-left: 8px;
+    margin-top: 5px;
+}
+.jstree{
+	margin-top: 10px;
 }

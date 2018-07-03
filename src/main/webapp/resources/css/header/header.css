@@ -7,11 +7,11 @@
 #alramicona{
 	color:#FFF;
 }
-#headerProjectName{
+#position{
 	color : #FFF;
 	border-left: 20px solid;
 }
-#headerProjectName:hover {
+#position:hover {
     color: #566270;
     background: #fff;
 }
@@ -187,7 +187,7 @@
     font-size: 14px;
     text-align: left;
     list-style: none;
-    background-color: #566270;
+    background-color: #78ACC2;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
     border: 1px solid #ccc;

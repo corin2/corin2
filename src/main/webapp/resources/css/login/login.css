@@ -386,3 +386,8 @@ footer .glyphicon {
   z-index: 200;
  }
 
+.modal-dialog {
+	margin-top : 80px;
+}
+
+
