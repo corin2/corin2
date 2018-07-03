@@ -87,7 +87,7 @@ function projectView(projectArray) {
 					
 				});
 			});
-			html += "<div class='projectListDiv'><h4 class='h4margin createmargin'>&nbsp;&nbsp;생성</h4><button class='buttonproject' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
+			html += "<div class='projectListDiv'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='buttonproject createmargin' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
 			$("#projectbox").html(html);
 			
 		},
