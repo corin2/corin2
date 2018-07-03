@@ -8,12 +8,13 @@
 <script src="resources/js/kanban/cardCheckList.js"></script>
 <jsp:include page="carddetail.jsp"></jsp:include>
 
-<div style="width:100%;">
+<div class="kanbanbackdiv">
 	<h2 id='boardTitle'>칸반보드</h2>
-	<div id="mainScreen" class="container-fluid" scrollTop="5px">
-		<hr>
-		<div id="content-md">
-		
+	<hr class="kanbanhr">
+	<div class="kanbanfrontdiv">
+		<div id="mainScreen" class="container-fluid" scrollTop="5px">
+			<div id="content-md">
+			</div>
 		</div>
 	</div>
 </div>

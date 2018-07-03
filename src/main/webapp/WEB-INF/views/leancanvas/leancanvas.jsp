@@ -4,7 +4,7 @@
 	<script src="resources/js/leancanvas/leancanvas.js"></script>
 
 
-<div class="container-fluid leantain">
+<div class="container-fluid leantain leanbackdiv">
 	<div id="leanheader">
 	<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search"></h2>
 	<br>

@@ -44,12 +44,14 @@
 		    </div>
 		</c:when>
 	</c:choose>
-	
+	<div class="sidebar-header">
+    	<img src="resources/images/logo/corin2.PNG" style=""></img>
+	</div>
 	<ul class="nav navbar-nav navbar-right">
 		<!-- 메세지 버튼 -->
 		<li role="presentation" class="dropdown alramdropdown" onclick="showMsg()">
 			<a id="alramicona" href="javascript:;"	class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false" style="padding">
-				<i class="glyphicon glyphicon-envelope" id="alramicon"></i>			
+				<img src="/resources/images/icons/alram.png" style = "width : 28px;" id="alramicon">	
 			</a>
 			<ul id="inviteMsg" class="dropdown-menu list-unstyled msg_list animated fadeInDown" role="menu">
 				<!-- 초대메시지 함 -->
@@ -61,8 +63,7 @@
 			<c:when test="${sessionScope.sessionProjectNum != null}">
 		    	<li>
 			    	<div id="showChatting" class="language-num">
-			    	<i id="showChatting" class="glyphicon glyphicon-comment chat"></i>
-			    	<!-- 	<img id="showChatting" src="resources/images/chatting/chatting-icon.png" width=35 height=35> -->
+			    	<img src="/resources/images/icons/chatting.png" style = "width : 39px;" id="showChatting">	
 			    	</div>
 			    </li>
 		    </c:when>
