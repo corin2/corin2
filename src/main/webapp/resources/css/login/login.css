@@ -30,6 +30,42 @@ input {
     color: black;
 }
 
+/* 추가한 것 시작*/
+#pricing {
+	background-color: #FFF;
+}
+
+.custom-white {
+	color: #FFF;
+}
+
+.custom-footer {
+	padding: 0px 0px !important;
+	height: 10px;
+}
+
+.custom-navbar-brand {
+	padding: 0px 0px !important;
+}
+
+.custom-logo-image {
+	width: 80%;
+}
+
+.custom-carousel-size {
+	width: 60%;
+}
+
+.custom-icons-size {
+	width: 80px;
+	height: 80px;
+}
+
+.custom-panel-size {
+	width: 30%;
+}
+/* 추가한 것 끝*/
+
 @keyframes lookaway-up {
     from {
         transform: rotate3d(.2, 0, -.01, 20deg);

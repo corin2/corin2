@@ -269,7 +269,7 @@ function updateProjectBookmark(projectNum) {
 	$.ajax({
 		url:"projectBookmarkUpdate",
 		datatype: "JSON",
-		data:{projectNum:projectNum},
+		data:{projectNum:projectNum, userId:$('#hiddenUserId').val()},
 		success:function(data){
 			languageColorView();
 		}
@@ -281,7 +281,7 @@ function updateProjectNoneBookmark(projectNum) {
 	$.ajax({
 		url:"projectNoneBookmarkUpdate",
 		datatype: "JSON",
-		data:{projectNum:projectNum},
+		data:{projectNum:projectNum, userId:$('#hiddenUserId').val()},
 		success:function(data){
 			languageColorView();
 		}

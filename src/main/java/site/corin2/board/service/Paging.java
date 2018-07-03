@@ -1,7 +1,5 @@
 package site.corin2.board.service;
 
-import java.util.ArrayList;
-
 public class Paging {
 	int maxPost;			// 페이지당 표시될 게시물  최대 갯수 및 현재 게시물 갯수
 	int firstPageNo;		// 첫번째 페이지 번호

@@ -95,6 +95,11 @@ hr {
    	    border-color: lightgray;
 		width: 50%;
 }
+
+  .jstree li > a > .jstree-icon { 
+    
+  }  
+
 .fileuploadbackdiv {
     background-color: #FFF;
     margin-top: 15px;
@@ -103,4 +108,8 @@ hr {
     padding: 15px;
     width: 95%;
     min-height: 1000px;
+    
+}
+.fileuploadbackdiv::-webkit-scrollbar {
+ display:none;
 }

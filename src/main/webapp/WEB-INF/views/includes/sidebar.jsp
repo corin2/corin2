@@ -138,6 +138,7 @@
 	function logoutpage() {
 		Kakao.init("");
 		Kakao.Auth.logout();
+		location.href = 'https://accounts.google.com/logout';
 		location.href = 'logout';
 	}
 	

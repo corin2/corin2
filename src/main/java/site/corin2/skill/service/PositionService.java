@@ -13,7 +13,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import site.corin2.kanban.dao.KanbanDAO;
 import site.corin2.skill.dao.PositionDAO;
 import site.corin2.skill.dto.PositionDTO;
 
@@ -25,7 +24,6 @@ public class PositionService {
 	
 	//insert position
 	public int positionInsert(PositionDTO positiondto) {
-		System.out.println("positioninsert service");
 		int result =0;
 		PositionDAO positiondao = sqlsession.getMapper(PositionDAO.class);
 		try {

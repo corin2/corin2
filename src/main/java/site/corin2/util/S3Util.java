@@ -13,7 +13,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Properties;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import com.amazonaws.ClientConfiguration;

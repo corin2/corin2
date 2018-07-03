@@ -6,14 +6,10 @@
 */
 package site.corin2.board.dao;
 
-
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import site.corin2.board.dto.AnnounceDTO;
 import site.corin2.board.dto.BoardDTO;
-
 
 public interface BoardDAO {
 	
