@@ -20,6 +20,16 @@ import org.apache.catalina.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.social.connect.Connection;
+import org.springframework.social.google.api.Google;
+import org.springframework.social.google.api.impl.GoogleTemplate;
+import org.springframework.social.google.api.plus.Person;
+import org.springframework.social.google.api.plus.PlusOperations;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.AccessGrant;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -135,7 +145,7 @@ public class UserController {
 	
 	//kakao Oauth
 	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
-	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session) throws Exception{
+	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws Exception{
 		JsonNode token = KakaoLogin.getAccessToken(code);
 		System.out.println("kakaocontroller");
 		JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
@@ -146,9 +156,9 @@ public class UserController {
 		if(check=="false") {
 			  service.KakaoLogin(userdto);
 		}
-	  
-		System.out.println("kakao controller2");
-		return "noTiles.user.kakaologin.jsp?userId="+userdto.getUserId();
+		userdto.setPassword("kakaologin");
+		model.addAttribute("user", userdto);
+		return "noTiles.user.oauthlogin.jsp";
 	}
 	
 	//모든 유저 정보
@@ -220,5 +230,21 @@ public class UserController {
 		service.userDelete(userdto.getUserId());
 		return "login.html";
 	}
-		
+
+	@RequestMapping("googleLogin")
+	public String doGoogleSignInActionPage(HttpServletResponse response, Model model) throws Exception {
+		String url = service.doGoogleSignInActionPage(response);
+		model.addAttribute("url", url);
+		return "noTiles.user.googlelogin.jsp";
+
+	}
+
+	@RequestMapping("googleSignInCallback")
+	public String doSessionAssignActionPage(HttpServletRequest request) throws Exception {
+		System.out.println("1111111111");
+		UserDTO user = service.googleLogin(request);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", user);
+		return "noTiles.user.oauthlogin.jsp";
+	}
 }
