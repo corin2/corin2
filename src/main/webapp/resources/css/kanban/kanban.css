@@ -2,14 +2,13 @@
 	white-space: nowrap;
 	padding: 10px 10px 5px;
 	background: #00FF0000;
-	width: 100% !important;
+	width: 99% !important;
 	position: absolute;
-    margin-left: -14px;
+    margin-left: 0px;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	background-color: #FFF;
-	margin-top: 15px;
 	background-color: #ffffff;
 	border-radius: 25px;
     padding : 15px;
@@ -20,6 +19,7 @@
 }
 
 #content-md{
+	width:100%;
 	height: 85%;
 }
 
@@ -188,13 +188,7 @@ hr {
 	float: right;
 	color: red;
 }
-.kanbanbackdiv{
-	background-color: #FFF;
-    margin-top: 15px;
-    background-color: #ffffff;
-    border-radius: 25px;
-    padding: 15px;
-    }
+
 .kanbanfrontdiv{
 	margin-top: 15px;
     background-color: #ffffff;
