@@ -636,7 +636,7 @@ function userGradeMenu(){
 				texthtml += '<tbody><tr><td>'+elt.gradeNum+'</td>'
 						 + '<td>'+elt.gradeName+'</td>'
 						 + '<td><input type="button" value="수정" class="btn btn-info" onclick="userGradeEdit(this)" >';
-				if(index >= 4) texthtml += '<input type="button" value="삭제" class="btn btn-danger" onclick="userGradeDel(this)" >';
+				if(index >= 5) texthtml += '<input type="button" value="삭제" class="btn btn-danger" onclick="userGradeDel(this)" >';
 				texthtml += '</td></tr></tbody>';
 			});
 			texthtml += '</table>';
