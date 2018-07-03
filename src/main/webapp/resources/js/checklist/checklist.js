@@ -55,6 +55,14 @@ function checkListTableConfirm() {
 				  + "</table>";
 			$('#tabs-4').append(table);
 			showCheckListConfrim(data.list)
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -79,6 +87,14 @@ function checkListInsert() {
 		data:{projectNum:sessionProjectNum, checkContent:$("#CheckBoxInput").val()},
 		success:function(data){
 			showCheckList();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -111,6 +127,14 @@ function showCheckList(){
 				}
 			});
 			checkedSelectAll();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -141,6 +165,14 @@ function showCheckListConfrim(user){
 				}
 			});
 			checkedSelectAllConfirm();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -178,6 +210,14 @@ function updateCheckListContent(checkNum) {
 				checkNum:checkNum},
 		success:function(data){
 			showCheckList();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 				
 	})
@@ -195,6 +235,14 @@ function deleteCheckListContent(checkNum) {
 		success: function(data){
 			swal("체크리스트가 삭제되었습니다.");
 			showCheckList();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 	
@@ -210,6 +258,14 @@ function checkedSelectAll() {
 			$.each(data.list, function(index, elt) {
 					$("#checkedBox"+elt.checkNum).attr("checked","checked");
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	
 	})
@@ -226,6 +282,14 @@ function checkedSelectAllConfirm() {
 			$.each(data.list, function(index, elt) {
 				$("#"+elt.checkNum+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]).attr("checked","checked");
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	
 	})
@@ -256,6 +320,14 @@ function userGradeCheckList() {
 				   
 				}
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }

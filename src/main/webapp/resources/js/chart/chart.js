@@ -17,6 +17,14 @@ function allList(){
 				lists.push(elt);
 			});
 			projectChart(lists);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -55,6 +63,14 @@ function projectChart(lists){
 					}]
 			    }
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -72,6 +88,14 @@ function checkListLength() {
 			var maxData = data.list.length;
 			
 			confirmCheckListLength(maxData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -86,6 +110,14 @@ function confirmCheckListLength(maxData) {
 		success : function(data){
 			maxData += data.list.length;
 			teamMemberUserIdSelect(maxData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -101,6 +133,14 @@ function teamMemberUserIdSelect(maxData) {
 				chartData.push({name:elt.userId, length:0});
 			});
 			checkedConfirmLength(maxData, chartData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -121,6 +161,14 @@ function checkedConfirmLength(maxData, chartData) {
 				});
 			});
 			checkListProceedChart(maxData, chartData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -173,6 +221,14 @@ function checkListProceedChart(maxData, chartData) {
 					}
 				}
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }

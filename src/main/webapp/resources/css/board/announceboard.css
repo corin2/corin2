@@ -3,11 +3,12 @@
 	}
 	
 	.announceboardupdate {
-    background-color: #FFF;
-    margin-top: 110px;
-    margin-right: 200px;
-    margin-left: 200px;
-    border-radius: 20px;
+   	background-color: #FFF;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 15px;
+    min-height: 850px;
 	}
 	
 	.announceboardundoupdate{
@@ -15,9 +16,8 @@
     font-size: 20px;
     padding-top: 60px;
     padding-bottom: 60px;
-    margin-right: 18%;
-    margin-left: 22%;
-    width: 55%;
+    margin-right: 150px;
+    margin-left: 150px;
 	}
 	.announceboardundoupdate hr{
 	border: solid 1px !important;
@@ -64,19 +64,19 @@
 	}
 
 	.announceboard {
-    padding-bottom: 80px;
-    background-color: #FFF;
-    margin-top: 110px;
-    margin-right: 200px;
-    margin-left: 200px;
-    border-radius: 20px;
+	background-color: #FFF;
+    margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    padding: 15px;
+    min-height: 850px;
 	}
 	.announceboardundo{
     font-size: 15px;
     padding-top: 60px;
     padding-bottom: 60px;
-    margin-right: 250px;
-    margin-left: 250px;
+    margin-right: 150px;
+    margin-left: 150px;
 	}
 	.tableannounce{
 	height: 50px;

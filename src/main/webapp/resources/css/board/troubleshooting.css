@@ -4,4 +4,20 @@
     background-color: #ffffff;
     border-radius: 25px;
     padding: 15px;
+    min-height: 850px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+#boardTitle{
+	text-align: center;
+}
+hr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 0px;
+}
+
+.navbar-form {
+    margin-left: -45px;
 }

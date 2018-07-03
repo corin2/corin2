@@ -39,7 +39,8 @@
 </script>
 
 <div class="troublebackdiv">
-	<h2 id='boardTitle'>트러블슈팅 등록</h2>
+	<h2 id='boardTitle'>트러블슈팅</h2>
+	<hr>
 		<div class="container-ts" style="margin-top: 20px;">
 		<form action="update?boardNum=${data.boardNum}"
 			method="post" name="insfrm">

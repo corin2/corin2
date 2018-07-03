@@ -9,13 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				select b.boardnum , b.skillnum , b.userid ,DATE_FORMAT(b.boarddate,'%Y-%m-%d %h:%i')as boarddate ,
 				b.isdeleted , a.announcetitle , a.announcecontent
 				from board b join announce a on a.boardnum = b.boardnum
-				where b.SKILLNUM ='s100' and b.isdeleted = 0  
+				where b.SKILLNUM ='s100' and b.isdeleted = 0 order by b.boarddate desc
 		</select>
 
 		<select id="boardSelect" resultType="site.corin2.board.dto.BoardDTO">
 			select b.boardnum , b.skillnum ,b.userid ,DATE_FORMAT(b.boarddate,'%Y-%m-%d %h:%i')as boarddate ,
 			b.isdeleted , a.announcetitle , a.announcecontent from board b join announce a on a.boardnum = b.boardnum
-			where b.boardnum = #{boardNum} and b.isdeleted = 0
+			where b.boardnum = #{boardNum} and b.isdeleted = 0 order by b.boarddate desc
 		</select>
 
 		<select id="boardCount" resultType="int">

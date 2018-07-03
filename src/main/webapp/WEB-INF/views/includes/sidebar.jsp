@@ -30,7 +30,7 @@
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
 		    <se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')">
 			    <li>
-			        <a href="boardList?countPerPage=5&blockCount=5&nowPage=1">
+			        <a href="boardList?countPerPage=10&blockCount=5&nowPage=1" id="board">
 			            <img src="/resources/images/icons/announce.png" style = "width : 28px;"><br>
 			            Notices
 			        </a>
@@ -38,31 +38,31 @@
 		    </se:authorize>
 		    <se:authorize access="hasRole('ROLE_ADMIN')">
 		    	<li>
-			        <a href="adminMain">
+			        <a href="adminMain" id="adminMain">
 			            <img src="/resources/images/icons/statistics.png" style = "width : 28px;"><br>
 			            Statistics
 			        </a>
 			    </li>
 			    <li>
-			        <a href="adminUserController">
+			        <a href="adminUserController" id="adminUserController">
 			            <img src="/resources/images/icons/usermanager.png" style = "width : 28px;"><br>
 						User Manager
 			        </a>
 			    </li>
 			    <li>
-			        <a href="adminMenu">
+			        <a href="adminMenu" id="adminMenu">
 			            <img src="/resources/images/icons/manumanager.png" style = "width : 28px;"><br>
 						Menu Manager
 			        </a>
 			    </li>
 			    <li>
-			        <a href="adminMail">
+			        <a href="adminMail" id="adminMail">
 			            <img src="/resources/images/icons/mailmanager.png" style = "width : 28px;"><br>
 						Mail Manager
 			        </a>
 			    </li>
 			    <li>
-			        <a href="adminPeaples">
+			        <a href="adminPeaples" id="adminPeaples">
 			            <img src="/resources/images/icons/credits.png" style = "width : 28px;"><br>
 						Credits
 			        </a>
@@ -72,7 +72,7 @@
 	</c:choose>
 	<se:authorize access="hasRole('ROLE_AUTH') or hasRole('ROLE_USER')">
 		<li>
-	        <a href="project">
+	        <a href="project" id="project">
 	            <img src="/resources/images/icons/project.png" style = "width : 28px;"><br>
 	            Projects
 	        </a>
@@ -81,43 +81,43 @@
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum != null}" >
 		    <li>
-		    	<a class="sidebaricon" href="leancanvas">
+		    	<a class="sidebaricon" href="leancanvas" id="leancanvas">
 					<img src="/resources/images/icons/leancanvas.png" style = "width : 28px;"><br>
 		            Lean canvas
 		        </a>
 	   	    </li>
 		    <li>
-				<a class="sidebaricon" href="checklist" id="checklisticon">
+				<a class="sidebaricon" href="checklist" id="checklist">
 				    <img src="/resources/images/icons/checklist.png" style = "width : 28px;"><br>
 				    Checklist
 				</a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="calendar" id="calendaricon">
+		        <a class="sidebaricon" href="calendar" id="calendarView">
 		               <img src="/resources/images/icons/calendar.png" style = "width : 28px;"><br>
 		            Calendar
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="kanban?projectNum=${sessionScope.sessionProjectNum}" id="kanbanicon">
+		        <a class="sidebaricon" href="kanban?projectNum=${sessionScope.sessionProjectNum}" id="kanban">
 		            <img src="/resources/images/icons/kanban.png" style = "width : 28px;"><br>
 		            Kanban
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="troubleshootingicon">
+		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="trouble">
 					<img src="/resources/images/icons/troubleshooting.png" style = "width : 28px;"><br>
 		            Trouble Shooting
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" id="filesicon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}">
+		        <a class="sidebaricon" href="fileUpload?projectNum=${sessionScope.sessionProjectNum}" id="fileUpload">
 		            <img src="/resources/images/icons/files.png" style = "width : 28px;"><br>
 		            Files
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="chart" id="charticon">
+		        <a class="sidebaricon" href="chart" id="chart">
 		            <img src="/resources/images/icons/chart.png" style = "width : 28px;"><br>
 		            Chart
 		        </a>
@@ -153,6 +153,14 @@
 					$.each(data, function(index, obj) {
 						$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 					});
+				},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
 				}
 			});
 		}
@@ -170,6 +178,14 @@
 						$('#userId').attr("value", obj.userId);
 						$('#userName').attr("value", obj.userName);
 					});
+				},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
 				}
 			});
 		}
@@ -187,6 +203,22 @@
 		$("#reformbutton").click(function(){
 			$('.profile').slideToggle();
 		});
+		
+		sidebarCss();
 	});
 	
+	function sidebarCss(){
+		var url =''
+		if(window.location.pathname.indexOf('board') > -1){
+			url = 'board';
+		}else if(window.location.pathname.indexOf('trouble') > -1){
+			url = 'trouble';
+		}else if(window.location.pathname.indexOf('calendar') > -1){
+			url = 'calendarView';
+		}else {
+			url = window.location.pathname.substr(1);
+		}
+		console.log(url)
+		$('#'+url).css({'color':'#566270', 'background':'#fff'})
+	}
 </script>

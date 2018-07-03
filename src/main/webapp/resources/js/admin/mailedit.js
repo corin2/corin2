@@ -36,6 +36,14 @@
 					success : function(data) {
 						signup = "signup";
 						$(".summernote").summernote("code", data.line);
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
     		  });
     	  });
@@ -48,6 +56,14 @@
 					success : function(data) {
 						signup = "signup2";
 						$(".summernote").summernote("code", data.line);
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
     		  });
     	  });
@@ -62,6 +78,14 @@
 						swal({type: "success",
 							text:"변경이 완료되었습니다."
 								});
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
 		 	 });
     	  });
@@ -73,6 +97,14 @@
 					data : {signup : signup},
 					success : function(data) {
 						swal({type: "success",text:"저장이 완료되었습니다."});
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
 		 	 });
     	  });
