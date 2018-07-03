@@ -16,20 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.security.SecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.social.connect.Connection;
-import org.springframework.social.google.api.Google;
-import org.springframework.social.google.api.impl.GoogleTemplate;
-import org.springframework.social.google.api.plus.Person;
-import org.springframework.social.google.api.plus.PlusOperations;
-import org.springframework.social.google.connect.GoogleConnectionFactory;
-import org.springframework.social.oauth2.AccessGrant;
-import org.springframework.social.oauth2.GrantType;
-import org.springframework.social.oauth2.OAuth2Operations;
-import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -64,7 +53,6 @@ public class UserController {
 		if (roles.contains("ROLE_ADMIN")) {
 			return new RedirectView("adminMain");
 		}
-		System.out.println("roles"+roles);
 		return new RedirectView("project");
 	}
 	
@@ -72,8 +60,6 @@ public class UserController {
 	@RequestMapping("signup")
 	public View userInsert(UserDTO userdto) {
 		//회원가입 처리 ... NewMemberDao
-		System.out.println(userdto.toString());
-		
 		service.userInsert(userdto);
 		return jsonview;
 	}
@@ -81,7 +67,6 @@ public class UserController {
 	//email 인증 페이지
 	@RequestMapping(value = "emailConfirm", method = RequestMethod.GET)
 	public String emailConfirm(UserDTO userdto, String userid){ // 이메일인증
-		System.out.println("controller" + userid);
 		service.emailConfirm(userdto, userid);
 		return "noTiles.user.emailconfirm.jsp";
 	}
@@ -96,7 +81,6 @@ public class UserController {
 	//비밀번호 재설정 email에서 modal 실행
 	@RequestMapping(value="repassemail",method = RequestMethod.GET)
 	public String repassemail(String userid) {
-		System.out.println("111"+userid);
 		return "noTiles.user.repassword.jsp";
 	}	
 	
@@ -147,12 +131,9 @@ public class UserController {
 	@RequestMapping(value = "kakaologin" , produces = "application/json", method = {RequestMethod.GET, RequestMethod.POST})
 	public String kakaoLogin(@RequestParam("code") String code , HttpServletRequest request, HttpServletResponse response, HttpSession session, Model model) throws Exception{
 		JsonNode token = KakaoLogin.getAccessToken(code);
-		System.out.println("kakaocontroller");
 		JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
 		UserDTO userdto = KakaoLogin.changeData(profile);
 		String check = service.idCheck(userdto.getUserId());
-		System.out.println(userdto.getUserId());
-		System.out.println(userdto.getPassword());
 		if(check=="false") {
 			  service.KakaoLogin(userdto);
 		}
@@ -180,7 +161,6 @@ public class UserController {
 	//사용자 수정하기 비밀번호 변경
 	@RequestMapping(value="userpassupdate", method=RequestMethod.POST)
 	public View userpassUpdate(UserDTO userdto) {
-		System.out.println(userdto.getPassword());
 		service.userpassUpdate(userdto);
 		return jsonview;
 	}
@@ -189,7 +169,6 @@ public class UserController {
 	//사용자 수정하기 닉네임 변경
 	@RequestMapping(value="usernickupdate", method=RequestMethod.POST)
 	public View usernickUpdate(UserDTO userdto) {
-		System.out.println(userdto.getPassword());
 		service.usernickUpdate(userdto);
 		return jsonview;
 	}
@@ -197,7 +176,6 @@ public class UserController {
 	//프로필 수정하기
 	@RequestMapping("profileimageupdate")
 	public View profileupdate(@RequestParam("userId") String userid , MultipartHttpServletRequest request, Model model) {
-		System.out.println("controller"+userid);
 		LinkedList<FileMeta> files = service.profileupdate(userid,request);
 		model.addAttribute("data", files);
 		return jsonview;
@@ -241,7 +219,6 @@ public class UserController {
 
 	@RequestMapping("googleSignInCallback")
 	public String doSessionAssignActionPage(HttpServletRequest request) throws Exception {
-		System.out.println("1111111111");
 		UserDTO user = service.googleLogin(request);
 		HttpSession session = request.getSession();
 		session.setAttribute("user", user);

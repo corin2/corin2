@@ -72,7 +72,6 @@ $(function () {
 		//확장자 검색 
 		if(data.instance.get_node(data.selected).text == data.instance.get_node(data.selected).id){ 
 		
-			console.log((data.instance.get_node(data.selected).text )+"확장자입장"+(data.instance.get_node(data.selected).id));
 			$.ajax({
 		    	type: "get",
 		    	url: "exClick",
@@ -120,7 +119,6 @@ $(function () {
 		    	}
 		  })
 		}
-
 	})
 });	
 	 
@@ -142,7 +140,6 @@ function foldermake(exdata) {
 	
 		//jsonArray 만들어서 data쪽으로 보냄
 		var datajsonarr = JSON.stringify(datas);
-		console.log(datajsonarr+" 으아");
         $(".jstree").jstree(true).settings.core.data = datas;
         $(".jstree").jstree(true).refresh();
 
@@ -211,7 +208,6 @@ function firstFileSelect() {
 					exdataKey.push(key);
 				
 				}
-				console.log(exdataKey);
 				//exdataKey(ex->JPG, PNG ...) 담겨있는 값과 data.file1의 확장자명과 비교
   		       $.each(exdataKey, function(i, elt){
   		          if(extension[extension.length-1].toUpperCase() == elt){

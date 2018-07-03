@@ -6,10 +6,8 @@
 */
 package site.corin2.board.service;
 
-import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +15,6 @@ import org.springframework.stereotype.Service;
 import site.corin2.board.dao.BoardDAO;
 import site.corin2.board.dto.AnnounceDTO;
 import site.corin2.board.dto.BoardDTO;
-
-
-
 
 @Service
 public class BoardService {
