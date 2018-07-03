@@ -35,7 +35,7 @@ input {
 	background-color: #FFF;
 }
 
-.custom-icon-white::before {
+.custom-white {
 	color: #FFF;
 }
 
@@ -44,6 +44,26 @@ input {
 	height: 10px;
 }
 
+.custom-navbar-brand {
+	padding: 0px 0px !important;
+}
+
+.custom-logo-image {
+	width: 80%;
+}
+
+.custom-carousel-size {
+	width: 60%;
+}
+
+.custom-icons-size {
+	width: 80px;
+	height: 80px;
+}
+
+.custom-panel-size {
+	width: 30%;
+}
 /* 추가한 것 끝*/
 
 @keyframes lookaway-up {
