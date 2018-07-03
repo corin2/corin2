@@ -39,7 +39,13 @@
 	<update id="cardCalendarReset">
 		update calendar
 		set isDeleted = 0, calendarName = #{calendarName},
-		startDate = #{startDate}, endDate = #{endDate}
+		startDate = #{startDate}, endDate = #{endDate}, calendarColor = #{calendarColor}
+		where cardNum = #{cardNum}
+	</update>
+	
+	<update id="cardCalendarResetColor">
+		update calendar
+		set calendarName = #{calendarName}, calendarColor = #{calendarColor}
 		where cardNum = #{cardNum}
 	</update>
 	

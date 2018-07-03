@@ -14,6 +14,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://codepen.io/anon/pen/aWapBE.js"></script>
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
@@ -135,6 +136,7 @@
 </ul>
 
 <script>
+	
 	function logoutpage() {
 		//구글 로그아웃
 		location.href = 'https://accounts.google.com/logout';
@@ -146,6 +148,8 @@
 		//기본로그아웃 + 모든것
 		location.href = 'logout';
 	}
+	
+	var listColorData = ['#4477AA', '#117733', '#DDCC77', '#CC6677', '#A593E0', '#CBE86B', '#FEC9C9', '#1EC0FF', '#C9D5DE']; //컬러배열
 	
 	$(function() {
 		function getCurrentUserProfile() {

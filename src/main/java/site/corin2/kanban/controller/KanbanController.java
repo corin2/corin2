@@ -106,8 +106,8 @@ public class KanbanController {
 	
 	//카드의 순서를 변경한다.
 	@RequestMapping("/cardTaxisUpdate")
-	public View cardTaxisUpdate(String listNum, String userId, String cardTaxis) {
-		service.cardTaxisUpdate(listNum.split("listnum")[1], userId, cardTaxis);
+	public View cardTaxisUpdate(String listNum, String userId, String cardTaxis, String cardNum) {
+		service.cardTaxisUpdate(listNum.split("listnum")[1], userId, cardTaxis, cardNum);
 		return jsonview;
 	}
 }

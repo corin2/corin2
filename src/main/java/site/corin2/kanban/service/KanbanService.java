@@ -30,7 +30,6 @@ public class KanbanService {
 		int result =0;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
 		result = dao.cardInsert(card);
-		
 		return result;
 	}
 	
@@ -48,6 +47,16 @@ public class KanbanService {
 		int result = 0;
 		KanbanDAO dao = sqlSession.getMapper(KanbanDAO.class);
 		result = dao.cardUpdate(card);
+		CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
+		CalendarDTO calendar = new CalendarDTO();
+		calendar.setCardNum(card.getCardNum());
+		calendar = calendarDAO.calendarSelect(calendar);
+		if(calendar != null) {
+			if(calendar.getIsDeleted() == 0) {
+				calendar.setCalendarName(card.getCardName());
+				calendarDAO.cardCalendarResetColor(calendar);
+			}
+		}
 		
 		return result;
 	}
@@ -96,7 +105,7 @@ public class KanbanService {
 	}
 	
 	//카드의 순서를 변경한다.
-	public int cardTaxisUpdate(String listNum, String userId, String cardTaxis) {
+	public int cardTaxisUpdate(String listNum, String userId, String cardTaxis, String cardNum) {
 		KanbanDAO kanbanDAO = sqlSession.getMapper(KanbanDAO.class);
 		int result = 0;
 		if(userId.equals("null")) userId = null;
@@ -116,8 +125,32 @@ public class KanbanService {
 				card.setCardNum(Integer.parseInt(taxis[i].split("cardNum")[1]));
 				card.setUserId(userId);
 				card.setCardTaxis(y++);
-				
 				result = kanbanDAO.cardTaxisUpdate(card);
+				if(card.getCardNum() == Integer.parseInt(cardNum)) {
+					int list = Integer.parseInt(listNum);
+					String color = "";
+					switch (list) {
+					case 1:  color = "#4477AA"; break;
+					case 3:  color = "#117733"; break;
+					case 4:  color = "#DDCC77"; break;
+					case 5:  color = "#CC6677"; break;
+					case 6:  color = "#A593E0"; break;
+					case 7:  color = "#CBE86B"; break;
+					case 8:  color = "#FEC9C9"; break;
+					case 9:  color = "#1EC0FF"; break;
+					default: color = "#C9D5DE"; break;
+					}
+					CalendarDAO calendarDAO = sqlSession.getMapper(CalendarDAO.class);
+					CalendarDTO calendar = new CalendarDTO();
+					calendar.setCardNum(Integer.parseInt(cardNum));
+					calendar = calendarDAO.calendarSelect(calendar);
+					if(calendar != null) {
+						if(calendar.getIsDeleted() == 0) {
+							calendar.setCalendarColor(color);
+							calendarDAO.cardCalendarResetColor(calendar);
+						}
+					}
+				}
 			}
 		}
 		

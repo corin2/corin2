@@ -43,4 +43,7 @@ public interface CalendarDAO {
 	
 	//캘린더 isdeleted 가 0인 것을 뺀 모든 카드 조회
 	public List<CardDTO> allCardNoCallendar(int projectNum);
+	
+	//카드의 순서나 이름이 바뀔시에 저장된 캘린더도 바뀌여야합니다.
+	public void cardCalendarResetColor(CalendarDTO calendar);
 }
