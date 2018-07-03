@@ -9,7 +9,7 @@ $(function () {
 			"check_callback" : true,
 	    	'data' : datajsonarr,
 	  
-	        "plugins" :["types"]
+	        "plugins" :["types,wholerow"]
 		
 		}
 
@@ -29,16 +29,20 @@ $(function () {
 			    		var exdata = [];
 			    		 $.each(data.file1, function(index , file) {
 			    			var extension = file.uploadOrigin.split('.');
+			    
 			    			html +=
-			      				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
-			      				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
-			  	 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
-			  	 				  +"></img>"
-			  	 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
-			  	 	    		  +"<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
-			  	 	    		  +"</div>"
-			  	 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
-			  	 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
+			    				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
+			    				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
+				 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
+				 				  +"></img>"
+				 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
+				 				 
+				 	    		 if(file.userId == $("#hiddenUserId").val() ){
+				  	 				  html+= "<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
+				  	 				 }
+				 	    		  html+="</div>"
+				 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
+				 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
 			  	 	    		  if(extension[extension.length-1].toUpperCase() == "CSS")html+="css.svg";
 			  	 	    		  else if(extension[extension.length-1].toUpperCase() == "GIF")html+="gif.svg";
 			  	 	    		  else if(extension[extension.length-1].toUpperCase() == "JPG")html+="jpg.svg";
@@ -89,15 +93,18 @@ $(function () {
 		    		 $.each(data.extension, function(index , file) {
 		    			 var extension = file.uploadOrigin.split('.');
 		    			 html +=
-		      				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
-		      				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
-		  	 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
-		  	 				  +"></img>"
-		  	 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
-		  	 	    		  +"<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
-		  	 	    		  +"</div>"
-		  	 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
-		  	 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
+		    				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
+		    				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
+			 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
+			 				  +"></img>"
+			 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
+			 				 
+			 	    		 if(file.userId == $("#hiddenUserId").val() ){
+			  	 				  html+= "<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
+			  	 				 }
+			 	    		  html+="</div>"
+			 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
+			 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
 		  	 	    		  if(extension[extension.length-1].toUpperCase() == "CSS")html+="css.svg";
 		  	 	    		  else if(extension[extension.length-1].toUpperCase() == "GIF")html+="gif.svg";
 		  	 	    		  else if(extension[extension.length-1].toUpperCase() == "JPG")html+="jpg.svg";
@@ -118,7 +125,6 @@ $(function () {
 		  				  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
 		   	    		  +"</div>"
 		   	    		  +"</div>";
-			 	    		  
 		    		 })
 					$(".dropzonediv").html(html);  
 		    	},
@@ -263,40 +269,40 @@ function firstFileSelect() {
 		           }
 		   
   		       }
-    			
-    			html +=
-    				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
-    				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
-	 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
-	 				  +"></img>"
-	 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
-	 	    		  +"<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
-	 	    		  +"</div>"
-	 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
-	 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
-	 	    		  
-	 	    		  if(extension[extension.length-1].toUpperCase() == "CSS")html+="css.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "GIF")html+="gif.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "JPG")html+="jpg.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "JS")html+="js.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "PDF")html+="pdf.svg"; 
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "PNG")html+="png.svg";  
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "PPT")html+="ppt.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "TXT")html+="txt.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "XLS")html+="xls.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "XML")html+="xml.svg";
-	 	    		  else if(extension[extension.length-1].toUpperCase() == "ZIP")html+="zip.svg";
-	 	    		  else html+="moo.svg"; 
-	 	    		  
-	 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
-	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
-				  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
-				  +"</img>" 
-				  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
- 	    		  +"</div>"
- 	    		  +"</div>";
-	 	    		  
-	 	    		 
+  			 console.log(file.userId +"안타나요?"+$("#hiddenUserId").val());
+  			html +=
+				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
+				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
+				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
+				  +"></img>"
+				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
+				 
+	    		 if(file.userId == $("#hiddenUserId").val() ){
+	 				  html+= "<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
+	 				 }
+	    		  html+="</div>"
+	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
+	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
+ 	    		  if(extension[extension.length-1].toUpperCase() == "CSS")html+="css.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "GIF")html+="gif.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "JPG")html+="jpg.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "JS")html+="js.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "PDF")html+="pdf.svg"; 
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "PNG")html+="png.svg";  
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "PPT")html+="ppt.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "TXT")html+="txt.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "XLS")html+="xls.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "XML")html+="xml.svg";
+ 	    		  else if(extension[extension.length-1].toUpperCase() == "ZIP")html+="zip.svg";
+ 	    		  else html+="moo.svg"; 
+ 	    		  
+ 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
+    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
+			  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
+			  +"</img>" 
+			  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
+	    		  +"</div>"
+	    		  +"</div>";
     		 })
     		 foldermake(exdata); //가공된 데이터 보냄
 			$(".dropzonediv").html(html);  
@@ -348,26 +354,37 @@ function download(uploadAlias) {
 //파일삭제
 function deleteFile(boardNum) {
 	var boardnum = boardNum;
-    $.ajax({
-    	type: "get",
-    	url: "deleteFile",
-    	datatype:"JSON",
-		data : {
-			boardNum: boardnum,
-			projectNum : $('#hiddenProjectNum').val()
-		},
-    	success: function(data) {
-    		firstFileSelect();
-    	},
-		error: function() {
-			swal({
-				 type: 'error',
-				 title: 'Oops...',
-				 text: 'Something went wrong!',
-				 footer: '<a href>Why do I have this issue?</a>'
-				})
-		}
-    }); 
+	swal({
+		type: "warning",
+		text: "정말로 삭제하시겠습니까?",
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'delete',
+	    showCancelButton: true
+	}).then((result) => {
+		  if (result.value) { 
+			  $.ajax({
+			    	type: "get",
+			    	url: "deleteFile",
+			    	datatype:"JSON",
+					data : {
+						boardNum: boardnum,
+						projectNum : $('#hiddenProjectNum').val()
+					},
+			    	success: function(data) {
+			    		firstFileSelect();
+			    	},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
+					}
+			    });   
+		  }
+	});
 }
 
 
@@ -388,37 +405,39 @@ function searcherFileSelect(){
 			    	 $.each(data, function(index , file) {
 			    		$(".dropzonediv").empty();
 			   		 var extension = file.uploadOrigin.split('.');
-			    		html +=
-		    				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
-		    				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
-			 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
-			 				  +"></img>"
-			 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
-			 	    		  +"<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
-			 	    		  +"</div>"
-			 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
-			 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
-			 	    		  if(extension[extension.length-1].toUpperCase() == "CSS")html+="css.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "GIF")html+="gif.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "JPG")html+="jpg.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "JS")html+="js.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "PDF")html+="pdf.svg"; 
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "PNG")html+="png.svg";  
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "PPT")html+="ppt.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "TXT")html+="txt.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "XLS")html+="xls.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "XML")html+="xml.svg";
-			 	    		  else if(extension[extension.length-1].toUpperCase() == "ZIP")html+="zip.svg";
-			 	    		  else html+="moo.svg"; 
-			 	    		  
-			 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
-			    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
-						  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
-						  +"</img>" 
-						  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
-		 	    		  +"</div>"
-		 	    		  +"</div>";
-			    			  
+			   		html +=
+	    				  "<div class='dropzonechild' style='border:1px solid lightgray;word-wrap: break-word;float:left;width:250px;height:250px;margin-right:50px;margin-bottom:100px;border-radius:10px;'>"
+	    				  +"<div style='word-wrap: break-word;margin-left:150px;margin-top:5px'>" 
+		 				  +"<img style='word-wrap: break-word;width:25px;height:25px;margin-right:3px'src='resources/images/board/download.png' onclick=download('" + file.uploadAlias + "')" 
+		 				  +"></img>"
+		 				  +"<img class='thumbnail' style='display:inline;width:25px;height:25px;border: 1px solid #fff; margin: 0; padding: 0;borderword-wrap: break-word;'src='resources/images/board/see.png' onmouseover=preview('"+file.uploadAlias+"')></img>"
+		 				 
+		 	    		 if(file.userId == $("#hiddenUserId").val() ){
+		  	 				  html+= "<img style='word-wrap: break-word;width:25px;height:25px;'src='resources/images/board/delete.png' onclick='deleteFile("+file.boardNum+")'></img>"
+		  	 				 }
+		 	    		  html+="</div>"
+		 	    		  +"<div class ='dropzonecontent' style='word-wrap: break-word;float:left;width:200px;height:100px;background-color:white;text-align:center;color:black;border: 1px solid white;margin-left:20px;margin-top:30px;'>"
+		 	    		  +"<img style='width:80px;hight:80px;margin-left:10px' src='resources/images/board/"
+	  	 	    		  if(extension[extension.length-1].toUpperCase() == "CSS")html+="css.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "GIF")html+="gif.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "JPG")html+="jpg.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "JS")html+="js.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "PDF")html+="pdf.svg"; 
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "PNG")html+="png.svg";  
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "PPT")html+="ppt.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "TXT")html+="txt.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "XLS")html+="xls.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "XML")html+="xml.svg";
+	  	 	    		  else if(extension[extension.length-1].toUpperCase() == "ZIP")html+="zip.svg";
+	  	 	    		  else html+="moo.svg"; 
+	  	 	    		  
+	  	 	    	html += "'></img><p style='word-wrap: break-word;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:40px;color:black;font-size:20px;'>"+file.uploadOrigin+"</p>"
+	  	    		  +"<img class='img-circle' style='width:30px;hight:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
+	  				  +"<label style='color:black;word-wrap: break-word;'>"+file.userName+"</label>"
+	  				  +"</img>" 
+	  				  +"<p style='word-wrap: break-word;color:black;'>"+file.boardDate+"</p>" 
+	   	    		  +"</div>"
+	   	    		  +"</div>";
 					})
 					$(".dropzonediv").html(html)
 			},
