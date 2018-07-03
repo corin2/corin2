@@ -9,10 +9,7 @@ $(function(){
 			 $('.calenbackdiv').css({"padding":"0px"});
 		 }).css({"width":"100%" ,"min-height":"600px" , "padding-bottom": "15px" , "overflow" : "scroll"});
 		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum).css({"width":"100%" ,"padding-bottom": "15px" , "min-height":"600px" , "overflow" : "scroll"});
-		 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum,function(){
-			 $('#boardTitle').remove();
-			 $('.kanbanhr').remove();
-		 });
+		 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum);
 });
 </script>
 <style>
