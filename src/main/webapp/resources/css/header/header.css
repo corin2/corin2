@@ -23,6 +23,7 @@
     margin-right : 0px;
     color:#FFF;
 }
+
 #profileimagebox{
 	margin-left:5px;
 }
@@ -198,7 +199,7 @@
 }
 .notmsg{
     font-size: 20px;
-    margin: 15px;
+    margin: 24px;
     padding-left: 115px;
 }
 #friend{

@@ -1,4 +1,6 @@
 body {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:'15px';
    	background: #566270;
 }
 
@@ -184,6 +186,8 @@ margin-top : 8px;
 /* ----------------- 경계선 ------------------ */
 body {
     /* font: 400 15px Lato, sans-serif; */
+    font-family: 'Do Hyeon', sans-serif;
+	font-size:'15px';
     line-height: 1.8;
     color: #818181;
 }

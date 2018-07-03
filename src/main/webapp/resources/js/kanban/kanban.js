@@ -224,8 +224,8 @@ function showCard(){
 					htmlText = '<div id="div'+elt.cardNum+'">'
 							 + '<div id="cardNum'+elt.cardNum+'" class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'
 							 + '<label>'+elt.cardName+'</label>'
-							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
-							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event, '+elt.cardNum+')">&#xe065;</button></div></div>';
+							 + '<button type="button" class="close closekanban" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
+							 + '<button type="button" class="glyphicon close updatekanban" onclick="updateCardTitle(event, '+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 				}
