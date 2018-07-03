@@ -4,7 +4,7 @@
 	background: #00FF0000;
 	width: 100% !important;
 	position: absolute;
-    margin-left: 27px;
+    margin-left: -14px;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -194,5 +194,10 @@ hr {
     background-color: #ffffff;
     border-radius: 25px;
     padding: 15px;
-    margin: 15px 60px;
     }
+.kanbanfrontdiv{
+	margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+	width:1000px;
+}

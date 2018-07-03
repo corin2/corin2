@@ -83,7 +83,7 @@
 
 #inviteMsg li {
 	display: block;
-	background-color: #566270;
+	background-color: #78acc2;
 	padding:10px 0px 10px 0px;
 }
 
@@ -147,7 +147,7 @@
     border-radius: 4px;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
-    background-color : #566270;
+    background-color : #78acc2;
 }
 #profile-dropdown-menu > li > a {
     color : #FFF;
@@ -203,7 +203,7 @@
 }
 #friend{
 	margin-bottom: 25px; 
-	background: #566270; 
+	background: #78acc2; 
 	border-radius: 5px; 
 	width: 300px; 
 	
@@ -217,7 +217,7 @@
     width: 250px;
 }
 .btn-invitebutton{
-	background-color : #566270;
+	background-color : #78acc2;
 }
 .invitemsgspan{
 	padding-top : 9px;
