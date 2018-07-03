@@ -52,17 +52,17 @@
      color:#fff;
   }
   /* input 버튼  숨긴후 label로 버튼 형태 만들기 */ 
- .filebox label { 
-  width: 15%;
-  height:50 px;
-  color: #999; 
-  font-size: 30px; 
-  background-color: #566270; 
-  color:white;
-  margin-right: 1600px;
-  margin-top: 20px;
-  border-radius: 25px;
-  } 
+.filebox label {
+    width: 12%;
+    height: 50 px;
+    color: #999;
+    font-size: 22px;
+    background-color: #566270;
+    color: white;
+    margin-right: 1600px;
+    margin-top: 20px;
+    border-radius: 25px;
+}
   /* input 버튼  숨기기 */ 
   .filebox input[type="file"] { 
   position: absolute; 
@@ -112,7 +112,7 @@ hr {
     background-color: #ffffff;
     border-radius: 25px;
     padding: 15px;
-    width: 95%;
+    width: 100%;
     min-height: 1000px;
     
 }
@@ -121,9 +121,9 @@ hr {
 }
 
 hr {
-    margin-bottom: 0px;
+    margin-bottom: 20px;
+    border-top: 0px;
     border: 0;
-    border-top: 3px solid #eee;
     width: 90%;
 }
 #fileTitle{

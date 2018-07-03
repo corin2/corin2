@@ -107,7 +107,19 @@
     padding : 10px;
 }
 
-.close {
+.closekanban {
+    float: right;
+    font-size: 45px;
+    margin-top: -8px;
+    margin-left: 3px;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .4;
+}
+   
+.updatekanban {
     float: right;
     font-size: 20px;
     font-weight: 700;
@@ -116,7 +128,7 @@
     text-shadow: 0 1px 0 #fff;
     filter: alpha(opacity=20);
     opacity: .4;
-   }
+}
 
    input[type="checkbox"]{
   overflow: hidden;
