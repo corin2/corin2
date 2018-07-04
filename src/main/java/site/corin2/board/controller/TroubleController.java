@@ -67,6 +67,15 @@ public class TroubleController {
 		return "board.troubleAll";
 	}
 	
+	//트러블 슈팅 게시판조회 (팀,태그&검색어 동적쿼리)
+		@RequestMapping("/searchAct")
+		public String troubleListAct(String search,String type,TroubleShootingDTO trouble, Model model) {
+			List<TroubleShootingDTO> troubles = service.troubleSearchAct(search,type);
+					
+			model.addAttribute("data",troubles);
+			return "board.trouble";
+		}
+	
 	//트러블 슈팅 게시판조회 (전체)
 		@RequestMapping("/troubleAll")
 		public String troubleAllList(TroubleShootingDTO trouble, Model model) {

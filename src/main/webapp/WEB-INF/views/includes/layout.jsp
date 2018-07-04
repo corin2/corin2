@@ -49,7 +49,7 @@
 			}else if(window.location.pathname.indexOf('admin') > -1){
 				skill = 'admin';
 			}
-			if(skill == 'project') $('#content').css('margin-top', '0');
+			if(skill == 'project') $('#content').css('margin-top', '80px');
 			else if(skill == 'admin') $('#content').css('margin-top', '80px');
 		}
 	</script>   
