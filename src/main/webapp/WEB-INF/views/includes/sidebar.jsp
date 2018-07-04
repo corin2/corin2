@@ -12,6 +12,7 @@
 <script src="resources/js/loading/cursor.js"></script>
 <link rel="stylesheet" href="resources/css/sidebar/scrollbar.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>

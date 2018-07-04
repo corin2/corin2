@@ -4,7 +4,6 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags" %>
 <script src="https://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
 <script src="resources/js/user/profile.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 <link rel="stylesheet" href="resources/css/user/profile.css">
 <div id="profile-content" class="profilediv block">
 	<form action="" method="post">
