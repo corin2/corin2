@@ -24,8 +24,10 @@
 }
 /* drop시 이미지 보이기  */
 .dropzoneimg {
-    position: absolute;
+ 	position: absolute;
     opacity: 1;
+    width:300px;
+    height:200px;
     margin: -150px 0 0 -75px;
     top: 50%;
     left: 50%;
@@ -103,9 +105,7 @@ hr {
 		width: 50%;
 }
 
-  .jstree li > a > .jstree-icon { 
- 	
-  }  
+ 
 
 .fileuploadbackdiv {
     background-color: #FFF;

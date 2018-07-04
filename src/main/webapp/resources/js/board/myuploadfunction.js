@@ -185,16 +185,16 @@ function drag() {
     // 드래그앤 드랍시에  이미지 파일 띄우고 드래그 안할땐 이미지 삭제함
     $('#dropzone').bind("dragover", function (e) {
         $('#dropzone').addClass('drag');
-        $('#dropzoneimg').addClass('drag');
-        $('.dropzoneimg').attr('src','resources/images/board/dropzone1.png');
+        $('.dropzoneimg').addClass('drag');
+        $('.dropzoneimg').attr('src','resources/images/board/upload.png');
         return false;
     }).bind("dragleave", function (e) {
         $('#dropzone').removeClass('drag');
-        $('.dropzoneimg').removeAttr('src','resources/images/board/dropzone1.png'); 
+        $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
         return false;
     }).bind("drop", function (e) {
         $('#dropzone').removeClass('drag');
-        $('.dropzoneimg').removeAttr('src','resources/images/board/dropzone1.png'); 
+        $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
         return false;
     });
 }
