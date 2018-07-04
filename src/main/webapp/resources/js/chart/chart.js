@@ -3,7 +3,12 @@ $(function(){
 	checkListLength();
 });
 
-//리스트명 가져오기
+/**
+* @함수명 : allList()
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 차트에서 사용될 모든 리스트들을 배열에 담아주기위한 함수
+**/
 function allList(){
 	var lists = [];
 	$.ajax({
@@ -29,7 +34,14 @@ function allList(){
 	});
 }
 
-//프로젝트 진행률 차트
+/**
+* @함수명 : projectChart(lists)
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 차트에서 사용될 리스트넘버당 들어있는 카드의 개수 배열에 담아 그 내용들로
+* 		프로젝트진행률 차트를 만든다.
+* @param lists - allList() 함수에서 만들어진 모든 리스트의 이름이 담긴 배열
+**/
 function projectChart(lists){
 	$.ajax({
 		type : "post",
@@ -79,7 +91,12 @@ function projectChart(lists){
 	});
 }
 
-//기본 체크리스트 개수
+/**
+* @함수명 : checkListLength()
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 기본적으로 질문되는 기본체크리스트의 개수를 얻어오기 위함.
+**/
 function checkListLength() {
 	$.ajax({
 		type : "post",
@@ -104,7 +121,13 @@ function checkListLength() {
 	});
 }
 
-//팀장이 만든 체크리스트 개수
+/**
+* @함수명 : confirmCheckListLength(maxData)
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 팀장이 만든 체크리스트의 개수를 파라미터로 받은 maxData와 합하여 다시 정보를 갱신한다
+* @param maxData - checkListLength()에서 얻어온 기본체크리스트총 개수
+**/
 function confirmCheckListLength(maxData) {
 	$.ajax({
 		type : "post",
@@ -126,6 +149,13 @@ function confirmCheckListLength(maxData) {
 	});
 }
 
+/**
+* @함수명 : teamMemberUserIdSelect(maxData)
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 프로젝트 팀원의 인원마다 배열에 json 형식으로 기본데이터를 저장한다. 
+* @param maxData - 해당 프로젝트 체크리스트의 총 개수
+**/
 function teamMemberUserIdSelect(maxData) {
 	$.ajax({
 		url:"showMember",
@@ -149,7 +179,14 @@ function teamMemberUserIdSelect(maxData) {
 	});
 }
 
-//인원마다 기본 체크리스트를 체크 한 개수 
+/**
+* @함수명 : checkedConfirmLength(maxData, chartData)
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 프로젝트 팀원의 인원마다 기본체크리스트를 체크한 개수를 배열에 json 형식으로 저장한다. 
+* @param maxData - 해당 프로젝트 체크리스트의 총 개수
+* @param chartData - 팀장이 만든 체크리스트를 체크한 각 인원의 개수를 담은 배열
+**/
 function checkedConfirmLength(maxData, chartData) {
 	$.ajax({
 		url:"selectCheckedConfirm",
@@ -177,7 +214,15 @@ function checkedConfirmLength(maxData, chartData) {
 	});
 }
 
-//confirm 팀장이 만든 체크리스트를 인원수마다 체크한 개수 + 차트
+/**
+* @함수명 : checkListProceedChart(maxData, chartData)
+* @작성일 : 2018. 06. 13.
+* @작성자 : 김 진 원
+* @설명 : 프로젝트 팀원의 인원마다 기본체크리스트를 체크한 개수를 파라미터로 받은 배열에 같은 이름끼리는
+* 		더하고 없는 인원은 추가하여 정보를 갱신하고 얻은 정보를 가지고 차트를 생성한다 
+* @param maxData - 해당 프로젝트 체크리스트의 총 개수
+* @param chartData - 팀장이 만든 체크리스트를 체크한 각 인원의 개수를 담은 배열
+**/
 function checkListProceedChart(maxData, chartData) {
 	$.ajax({
 		url:"CheckListSelectAll",
