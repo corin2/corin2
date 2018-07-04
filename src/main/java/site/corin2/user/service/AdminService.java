@@ -170,7 +170,14 @@ public class AdminService {
 		adminDAO.checkListDelete(checkList);
 	}
 	
-	//vmfileload하기
+	/**
+     * @함수명 : vmLoad
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : request를 Admincontroller에서 받아서 지정된 경로에 있는 signup.vm파일을 filereader를 통해서 읽어와 buffer readline으로 line이라는 변수에 넣어준뒤에 controller로 보내준다.
+     * @param : request
+     * @return : line
+    **/
 	public String vmLoad(HttpServletRequest request) {
 		String savepath = "resources/admin/velocity";  
 		String realpath = request.getSession().getServletContext().getRealPath(savepath);
@@ -190,7 +197,14 @@ public class AdminService {
 		return line;
 	}
 	
-	//vmfile2load하기
+	/**
+     * @함수명 : vmLoad2
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : request를 Admincontroller에서 받아서 지정된 경로에 있는 signup2.vm파일을 filereader를 통해서 읽어와 buffer readline으로 line이라는 변수에 넣어준뒤에 controller로 보내준다.
+     * @param : request
+     * @return : line
+    **/
 	public String vmLoad2(HttpServletRequest request) {
 		String savepath = "resources/admin/velocity";  
         String realpath = request.getSession().getServletContext().getRealPath(savepath);
@@ -210,7 +224,13 @@ public class AdminService {
 		return line;
 	}
 	
-	//vmfilesave하기
+	/**
+     * @함수명 : vmSave
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : savedata,signup,request를 Admincontroller에서 받아서 지정된 경로에 있는 변수 signup(signup.vm인지 signup2.vm인지 구별을 위해서 사용).vm파일을 filewiter를 통해서 읽어와  지정된 경로의 vmfile에 적어주는 함수입니다. 
+     * @param : savedata , signup , request
+    **/
 	public void vmSave(String savedata , String signup , HttpServletRequest request) {
 		String savepath = "resources/admin/velocity";  
 		String realpath = request.getSession().getServletContext().getRealPath(savepath);
@@ -229,7 +249,15 @@ public class AdminService {
 	
 	}
 	
-	//template 변경하기
+	/**
+     * @함수명 : usetemplate
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : signup를 Admincontroller에서 받아서 templateFileNameUpdate으로 db에 
+     * 		변수 signup(signup.vm인지 signup2.vm인지 구별을 위해서 사용).vm파일을 적어주어 이후에 
+     * 		회원가입하는 사용자에게 보내는 email template를 변경시켜주는 함수입니다. 
+     * @param : signup
+    **/
 	public void usetemplate(String signup) {
 		String templatefilename = signup;
 		AdminDAO admindao = sqlsession.getMapper(AdminDAO.class);

@@ -1,8 +1,18 @@
 $(function(){
-	
+	$('#startadminuser').trigger('click');
 });
 
-//가입회원, 메일인증 안한회원, 탈퇴한 회원 찾기
+/**
+* @함수명 : allUser(enabled, isDelete, pageNum)
+* @작성일 : 2018. 06. 23.
+* @작성자 : 김 진 원
+* @설명 : 비동기로 유저리스트를 가지고와서 <div id=userManagement> 안에 뿌려주는데
+* 		뿌려주기전에 인증여부와, 삭제여부와, 자신이 어느 페이지에 있는지 를 계산하여 그에 맞게 뿌려준다.
+* 		가입회원, 메일인증 안한회원, 탈퇴한 회원 찾기 로 각각 뿌려준다
+* @param enabled - 인증여부 (0 or 1) 검색 시 (3)
+* @param isDelete - 삭제여부 (0 or 1) 검색 시 (자신이 검색한 text박스의 내용)
+* @param pageNum - 현재 페이지 (시작 시 1 클릭때마다 변경)    
+**/
 function allUser(enabled, isDelete, pageNum){
 	$.ajax({
 		url : "allUser",
@@ -53,7 +63,17 @@ function allUser(enabled, isDelete, pageNum){
 	});
 }
 
-//유저 제명
+/**
+* @함수명 : userDel(obj, enabled, isDelete, pageNum)
+* @작성일 : 2018. 06. 23.
+* @작성자 : 김 진 원
+* @설명 : 같은 tr안에 있는 td의 내용을 가지고 그 아이디를 입력할 공간을 만들어
+* 		삭제 시킬 유저의 아이디를 입력하여 확인받아 비동기로 삭제후에 다시 리스트를 뿌려준다.
+* @param obj - 자신테그 (삭제버튼 this)
+* @param enabled - 인증여부 (0 or 1) 검색 시 (3)
+* @param isDelete - 삭제여부 (0 or 1) 검색 시 (자신이 검색한 text박스의 내용)
+* @param pageNum - 현재 페이지 (시작 시 1 클릭때마다 변경)
+**/
 function userDel(obj, enabled, isDelete, pageNum) {
 	var tr = $(obj).closest('tr');
 	var userId = tr.children('td:eq(1)').text();
@@ -80,7 +100,17 @@ function userDel(obj, enabled, isDelete, pageNum) {
 	}
 }
 
-//유저 복구
+/**
+* @함수명 : userReset(obj, enabled, isDelete, pageNum)
+* @작성일 : 2018. 06. 23.
+* @작성자 : 김 진 원
+* @설명 : 같은 tr안에 있는 td의 내용을 가지고 그 아이디를 입력할 공간을 만들어
+* 		복구 시킬 유저의 아이디를 입력하여 확인받아 비동기로 복구후에 다시 리스트를 뿌려준다.
+* @param obj - 자신테그 (복구버튼 this)
+* @param enabled - 인증여부 (0 or 1) 검색 시 (3)
+* @param isDelete - 삭제여부 (0 or 1) 검색 시 (자신이 검색한 text박스의 내용)
+* @param pageNum - 현재 페이지 (시작 시 1 클릭때마다 변경)
+**/
 function userReset(obj, enabled, isDelete, pageNum) {
 	var tr = $(obj).closest('tr');
 	var userId = tr.children('td:eq(1)').text();
@@ -107,7 +137,17 @@ function userReset(obj, enabled, isDelete, pageNum) {
 	}
 }
 
-//유저 수정하는 박스 생성
+/**
+* @함수명 : userEdit(obj, enabled, isDelete, pageNum)
+* @작성일 : 2018. 06. 23.
+* @작성자 : 김 진 원
+* @설명 : 같은 tr안에 있는 내용을 가지고 인증여부와 등급 select option 태그를 만들어
+* 		수정 할 수 있는 tr을 생성한다
+* @param obj - 자신테그 (수정버튼 this)
+* @param enabled - 인증여부 (0 or 1) 검색 시 (3)
+* @param isDelete - 삭제여부 (0 or 1) 검색 시 (자신이 검색한 text박스의 내용)
+* @param pageNum - 현재 페이지 (시작 시 1 클릭때마다 변경)
+**/
 function userEdit(obj, enabled, isDelete, pageNum) {
 	var tr = $(obj).closest('tr');
 	var text1 = tr.children('td:eq(2)').text();
@@ -127,7 +167,17 @@ function userEdit(obj, enabled, isDelete, pageNum) {
 	tr.children('td:eq(6)').html('<input type="button" value="완료" class="btn btn-info" onclick="userEditOk(this, '+enabled+', '+isDelete+', '+pageNum+')" />');
 }
 
-//유저 수정
+/**
+* @함수명 : userEditOk(obj, enabled, isDelete, pageNum)
+* @작성일 : 2018. 06. 23.
+* @작성자 : 김 진 원
+* @설명 : userEdit 함수에서 만들어진 input 태그의 정보를 선택하여 수정완료 버튼을 누르면
+* 		비동기로 정보들이 수정되고 다시 리스트를 뿌린다.
+* @param obj - 자신테그 (수정버튼 this)
+* @param enabled - 인증여부 (0 or 1) 검색 시 (3)
+* @param isDelete - 삭제여부 (0 or 1) 검색 시 (자신이 검색한 text박스의 내용)
+* @param pageNum - 현재 페이지 (시작 시 1 클릭때마다 변경)
+**/
 function userEditOk(obj, enabled, isDelete, pageNum) {
 	var tr = $(obj).closest('tr');
 	var userId = tr.children('td:eq(1)').text();
@@ -158,7 +208,16 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 	}
 }
 
-//페이지 보여주기
+/**
+* @함수명 : userPaging(enabled, isDelete, pageNum, pagingData)
+* @작성일 : 2018. 06. 23.
+* @작성자 : 김 진 원
+* @설명 : 비동기 페이징 처리를 위한 함수
+* @param enabled - 인증여부 (0 or 1) 검색 시 (3)
+* @param isDelete - 삭제여부 (0 or 1) 검색 시 (자신이 검색한 text박스의 내용)
+* @param pageNum - 현재 페이지 (시작 시 1 클릭때마다 변경)
+* @param pagingData - 총 조회결과의 개수 (들어가서 페이징개수로 변환)
+**/
 function userPaging(enabled, isDelete, pageNum, pagingData) {
 	$('#pageChange').empty();
 	var pagehtml = '';

@@ -17,6 +17,7 @@ public class UploadDTO {
 	private String userName;
 	private String userProfile;
 	private String boardDate;
+	private String userId;
 	
 	public UploadDTO() {}
 
@@ -82,6 +83,14 @@ public class UploadDTO {
 
 	public void setBoardDate(String boardDate) {
 		this.boardDate = boardDate;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 

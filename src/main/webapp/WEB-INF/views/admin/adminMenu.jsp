@@ -11,7 +11,7 @@
 				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">관리할 메뉴를 선택해주세요
 				<span class="caret"></span></button>
 				<ul class="dropdown-menu">
-					<li><a onclick="skillMenu()">SKILL</a></li>
+					<li><a id="startadminmenu" onclick="skillMenu()">SKILL</a></li>
 					<li><a onclick="listMenu()">LIST</a></li>
 					<li><a onclick="languageMenu()">LANGUAGE</a></li>
 					<li><a onclick="userGradeMenu()">USERGRADE</a></li>

@@ -39,18 +39,11 @@
 .adminmainpage {
    background-color: #FFF;
    border-radius: 20px;
-   margin: 15px;
+   border : solid 26px #FFF;
 }
 .adminmainpageundo {
     font-weight: bold;
     font-size: 20px;
-}
-
-.width87{
-	width : 86% !important;
-}
-.width27{
-	width : 27% !important;
 }
 .th-large{
 	background-color: #22ad89;
@@ -78,4 +71,21 @@ margin-top:18px;
 	position: absolute;
 	left: 10px;
 	top: 25px;
+}
+
+.first-row {
+    width: 65.666667%;
+    margin-left: 15px;
+}
+
+.second-row{
+}
+
+.adminmaindiv {
+    margin-top: 80px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    min-height: 850px;
+    width: 95%;
+    margin-left : 0px;
 }

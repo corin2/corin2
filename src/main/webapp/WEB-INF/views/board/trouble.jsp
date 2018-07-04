@@ -13,19 +13,19 @@ function fncTegSplit(str){
 	for( i; i<split.length; i++ ){
 		switch(i){
 			case 0:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-primary'>#";
+				result += "<a href='searchAct?search="+split[i]+"&type=tag'><span class='label label-primary'>#";
 				break;
 			case 1:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-success'>#";
+				result += "<a href='searchAct?search="+split[i]+"&type=tag'><span class='label label-success'>#";
 				break;
 			case 2:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-info'>#";
+				result += "<a href='searchAct?search="+split[i]+"&type=tag'><span class='label label-info'>#";
 				break;
 			case 3:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-warning'>#";
+				result += "<a href='searchAct?search="+split[i]+"&type=tag'><span class='label label-warning'>#";
 				break;
 			case 4:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-danger'>#";
+				result += "<a href='searchAct?search="+split[i]+"&type=tag'><span class='label label-danger'>#";
 				break;
 		}
  		result += split[i];
@@ -37,6 +37,7 @@ function fncTegSplit(str){
 }
 
 </script>
+
 <div class="troublebackdiv">
 	<!--jasper test --> 
 	<div id="troubleContent">
@@ -60,17 +61,25 @@ function fncTegSplit(str){
 			
 			
 			<a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
-					class="btn btn-success btn-wide">
-					<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
-			</button></a>
-			<a href="generateReport"><button type="button"
-					class="btn btn-danger btn-wide">
-					<span class="glyphicon glyphicon-th" aria-hidden="true"></span> PDF 저장
-			</button></a>
-			<a href="troubleins"><button type="button"
-					class="btn btn-primary btn-wide">
-					<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-					새 글 쓰기
+				class="btn btn-success btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
+		</button></a>
+		<a href="generateReport?file=ts&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+				class="btn btn-primary btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> PDF 저장
+		</button></a>
+		<a href="generateReport?file=leanCanvas&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+				class="btn btn-primary btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> Lean캔버스
+		</button></a>
+		<a href="generateReport?file=checkList&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+				class="btn btn-primary btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 체크리스트
+		</button></a>
+		<a href="troubleins"><button type="button"
+				class="btn btn-primary btn-wide">
+				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+				새 글 쓰기
 				</button></a>
 	
 		</form>

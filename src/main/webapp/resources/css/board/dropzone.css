@@ -8,7 +8,10 @@
     text-align: center;
     font-weight: bold;
 }
-
+.h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
 
 #wrap {
     width: 75%;
@@ -75,6 +78,7 @@
 	background-color: white;	
 	opacity: 10;
 	margin-bottom:50px;
+	
 }
 
 #filetitle{
@@ -103,7 +107,7 @@ hr {
 }
 
   .jstree li > a > .jstree-icon { 
-    margin-bottom: 10px;
+ 	
   }  
 
 .fileuploadbackdiv {
@@ -135,5 +139,19 @@ hr {
     margin-top: 5px;
 }
 .jstree{
-	margin-top: 10px;
+	margin-top: 20px;
 }
+.jstree {
+ font-size: 20px;
+ height: 20px;
+}
+
+.jstree a.jstree-hovered {
+ height: 20px;
+}
+
+.jstree a.jstree-clicked {
+ height: 20px;
+}
+
+

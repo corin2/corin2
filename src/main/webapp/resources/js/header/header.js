@@ -15,7 +15,7 @@ $(function(){
 		$('#alramicona').css({"color":"#566270","background-color":"transparent","background":"#fff"});
 		$('#alramicon').css({"color":"#566270","background-color":"transparent"});
 	}, function(){
-		$('#alramicona').css({"color":"#fff","background-color":"transparent","background":"#566270"});
+		$('#alramicona').css({"color":"#fff","background-color":"transparent","background":"#00ff0000"});
 		$('#alramicon').css({"color":"#fff","background-color":"transparent"});
 	});
 	
@@ -24,12 +24,17 @@ $(function(){
 		$('.language-num').css({"color":"#566270","background-color":"transparent","background":"#fff"});
 		$('.chat').css({"color":"#566270","background-color":"transparent"});
 	}, function(){
-		$('.language-num').css({"color":"#fff","background-color":"transparent","background":"#566270"});
+		$('.language-num').css({"color":"#fff","background-color":"transparent","background":"#00ff0000"});
 		$('.chat').css({"color":"#fff","background-color":"transparent"});
 	});
 });
 
-//프로젝트에 속한 멤버 리스트 뿌려주기
+/**
+* @함수명 : projectMemberProfile()
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : 프로젝트에 속한 멤버 리스트가 담겨있는 배열을 만든다.
+**/
 function projectMemberProfile(){
 	var userProfiles = [];
 	$.ajax({
@@ -50,7 +55,14 @@ function projectMemberProfile(){
 	});
 }
 
-//프로젝트에 속한 멤버 리스트 뿌려주기 (기능)
+/**
+* @함수명 : projectMemberShow(userProfiles)
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : 프로젝트에 속해있는 멤버리스트를 다시 팀장인지 팀원지의 등급을 가져와서 각자의
+* 		사용 할 수 있는 기능이 담긴 view를 비동기로 만들어 준다.
+* @param userProfiles - 멤버 리스트가 담겨있는 배열
+**/
 function projectMemberShow(userProfiles){
 	var userId = $('#hiddenUserId').val();
 	$.ajax({
@@ -104,7 +116,12 @@ function projectMemberShow(userProfiles){
 	});
 }
 
-//프로젝트의 이름을 보여준다.
+/**
+* @함수명 : projectNameView()
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : <div id=position> 안에 해당 프로젝트의 이름을 비동기로 가져와서 뿌려준다.
+**/
 function projectNameView(){
 	$.ajax({
 		type : "post",
@@ -122,7 +139,15 @@ function projectNameView(){
 	});
 }
 
-//해당 프로젝트 언어 색상
+/**
+* @함수명 : projectColorView()
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : <div id=position>의 색을 해당 프로젝트의 언어에 맞는 색상으로 바꿔준다.
+* @param titleName - 
+* @param calendarNum - 
+* @return String login
+**/
 function projectColorView() {
 	$.ajax({
 		type : "post",
@@ -138,7 +163,13 @@ function projectColorView() {
 	});
 }
 
-//오너위임(팀장위임)
+/**
+* @함수명 : ownerChange(obj)
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : 비동기로 자신이 선택한 팀원의 등급을 팀장로 바꿔주고 자기 자신의 등급을 팀원으로 바꿔준다.
+* @param obj - 자신태그 (this)
+**/
 function ownerChange(obj) {
 	$.ajax({
 			url : "ownerChange",
@@ -157,7 +188,13 @@ function ownerChange(obj) {
 	});
 }
 
-//팀원제명
+/**
+* @함수명 : memberToKickOut(obj)
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : 자신이 선택한 팀원을 팀장의 권한으로 제명 시킨다
+* @param obj - 자신태그 (this)
+**/
 function memberToKickOut(obj) {
 	$.ajax({
 		url : "tokickOut",
@@ -175,7 +212,12 @@ function memberToKickOut(obj) {
 	});
 }
 
-//팀탈퇴
+/**
+* @함수명 : memberDelete()
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : 자신이 속한 프로젝트에서 탈퇴하는 비동기
+**/
 function memberDelete() {
 	$.ajax({
 		url : "tokickOut",
@@ -193,7 +235,12 @@ function memberDelete() {
 	});
 }
 
-//js 파일에서 ContextPath 가져오기
+/**
+* @함수명 : getContextPath()
+* @작성일 : 2018. 06. 14.
+* @작성자 : 김 진 원
+* @설명 : js 파일에서 ContextPath 가져오기
+**/
 function getContextPath() {
 	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
 	return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );

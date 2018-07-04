@@ -1,4 +1,18 @@
+/**
+    파일명: profileimage.js
+    설   명: 프로필이미지 창에 대한 javascript
+    작성일: 2018. 6. 20.
+    작성자: 강 진 광
+*/
 $(function(){
+		/**
+	     * @함수명 : 프로필 사진 보여주기
+	     * @작성일 : 2018. 6. 20.
+	     * @작성자 : 강진광
+	     * @설명 : 페이지를 불러올 떄 자동으로 프로필 이미지를 지정된 곳에 넣어주는 비동기 함수 입니다.
+	     * @param : userid
+	     * @return : userprofile
+	     **/
 		$.ajax({
 			type : "post",
 			url  : "showUser",
@@ -20,6 +34,14 @@ $(function(){
 	        }
 		});
 		
+		/**
+	     * @함수명 : 파일 걸러내기
+	     * @작성일 : 2018. 6. 20.
+	     * @작성자 : 강진광
+	     * @설명 : upload하는 profile 파일의 형식이 지정해준 것과 다르다면 alert창을 띄워주고 지정해준 것이 맞다면 바뀐 프로필파일로 사진들을 변경 시켜주는 비동기 함수입니다.
+	     * @param : userid
+	     * @return : userprofile
+	     **/
 	    $('#profileimageupdate').fileupload({
 	        dataType: 'json',
 	        add: function(e, data){
@@ -45,6 +67,7 @@ $(function(){
 							//$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 							$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 							$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
+							$('#currentChatUserProfile').attr("src", profileStorageURL + obj.userProfile);
 						});
 					},
 					error: function() {

@@ -1,3 +1,14 @@
+$(function(){
+	$('#startadminmenu').trigger('click');
+});
+
+/**
+* @함수명 : checkListMenuView()
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 체크리스트 메뉴관리를 클릭 할 시 언어 테이블의 있는 언어 명들을 조회하여 <div id=menuManagement>
+* 		테그 안에 jquery tab을 만들어 조회한 언어의 명 만큼 탭을 생성해 준다.
+**/
 function checkListMenuView() {
 	$.ajax({
 		type : "post",
@@ -32,7 +43,14 @@ function checkListMenuView() {
 	});
 }
 
-//checkListMenu 뿌려주기
+/**
+* @함수명 : checkListMenu(languageNumber)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 체크리스트 메뉴관리 안에 있는 언어tab을 클릭하면 그 언어에 대한 체크리스트 테이블에 저장되어있는
+* 		내용을 비동기로 조회하여 <div id=${languageNumber}Tab> 안에 테이블 형식으로 뿌려준다.
+* @param languageNumber - 자신이 조회 할 언어넘버  
+**/
 function checkListMenu(languageNumber){
 	$.ajax({
 		type : "post",
@@ -71,7 +89,14 @@ function checkListMenu(languageNumber){
 	});
 }
 
-//체크리스트 삭제
+/**
+* @함수명 : checkListDel(obj)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 삭제하고 싶은 체크리스트르 같은 tr안에 있는 삭제버튼을 클릭하게 되면 비동기로 삭제되고
+* 		다시 리스트를 뿌려준다
+* @param obj - 클릭된 자신태그 (삭제버튼 this)  
+**/
 function checkListDel(obj){
 	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
 	var tr = $(obj).closest('tr');
@@ -95,7 +120,14 @@ function checkListDel(obj){
 	});
 }
 
-//체크리스트 복구
+/**
+* @함수명 : checkListReset(obj)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 복구하고 싶은 체크리스트르 같은 tr안에 있는 복구버튼을 클릭하게 되면 비동기로 복구되고
+* 		다시 리스트를 뿌려준다
+* @param obj - 클릭된 자신태그 (복구버튼 this)  
+**/
 function checkListReset(obj){
 	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
 	var tr = $(obj).closest('tr');
@@ -119,7 +151,14 @@ function checkListReset(obj){
 	});
 }
 
-//체크리스트 생성하는 박스 생성
+/**
+* @함수명 : checkListAdd(obj)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 추가버튼을 클릭했을 때 실행되며, 체크리스트가 뿌려진 해당 테이블 가장 밑에
+* 		tr과 td안에 카테고리 text 박스와 내용 text 박스, 생성 버튼을 append 해 준다. 
+* @param obj - 클릭된 자신태그 (추가버튼 this)  
+**/
 function checkListAdd(obj){
 	var content = '<tbody><tr><td>생성중</td>'
 				+ '<td><input class="inputtext" type="text" placeholder="카테고리 입력하세요"></td>'
@@ -129,7 +168,14 @@ function checkListAdd(obj){
 	$(obj).closest('th').html("생성중");
 }
 
-//체크리스트 생성
+/**
+* @함수명 : checkListAddOk(obj)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 생성버튼 클릭시 실행되며, category text박스와 checkContent text박스 안에 내용이 빈문자열이
+* 		아닐 시에 비동기로 체크리스트가 생성되며 다시 체크리스트를 뿌려준다.
+* @param obj - 클릭된 자신태그 (생성버튼 this)  
+**/
 function checkListAddOk(obj){
 	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
 	var tr = $(obj).closest('tr');
@@ -158,7 +204,13 @@ function checkListAddOk(obj){
 	}
 }
 
-//체크리스트 수정하는 박스 생성
+/**
+* @함수명 : checkListEdit(obj)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 수정버튼 클릭시 실행되며, 카테고리 td와 내용 td 만 글을 입력할 수 있는 text 박스로 바꿔준다
+* @param obj - 클릭된 자신태그 (수정버튼 this)  
+**/
 function checkListEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text1 = tr.children('td:eq(1)').text();
@@ -172,7 +224,14 @@ function checkListEdit(obj){
 	tr.children('td:eq(4)').html('<input type="button" value="완료" class="btn btn-info" onclick="checkListEditOk(this)" />');
 }
 
-//체크리스트 수정
+/**
+* @함수명 : checkListEditOk(obj)
+* @작성일 : 2018. 06. 20.
+* @작성자 : 김 진 원
+* @설명 : 수정완료버튼 클릭시 실행되며, category text박스와 checkContent text박스 안에 내용이 빈문자열이
+* 		아닐 시에 비동기로 그내용이 수정이되며 다시 체크리스트를 뿌려준다
+* @param obj - 클릭된 자신태그 (수정완료버튼 this)  
+**/
 function checkListEditOk(obj){
 	var languageNum = $(obj).closest('div').attr('id').substr(0, 4);
 	var tr = $(obj).closest('tr');
@@ -202,7 +261,13 @@ function checkListEditOk(obj){
 	}
 }
 
-//skillMenu 뿌려주기
+/**
+* @함수명 : skillMenu()
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 기능 메뉴관리를 클릭 할 시 기능 테이블의 있는 내용들을 조회하여 <div id=menuManagement>
+* 		테그 안에 테이블형태로 조회한 내용들을 생성해 준다.
+**/
 function skillMenu(){
 	$.ajax({
 		type : "post",
@@ -237,7 +302,14 @@ function skillMenu(){
 	});
 }
 
-//기능 삭제
+/**
+* @함수명 : skillDel(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 삭제버튼 클릭시 실행되며, 그 해당 tr에 속해 있는 첫번째 text 즉, 기능넘버를 가져와 비동기로
+* 		기능넘버에 해당하는 내용을 삭제한다
+* @param obj - 클릭된 자신태그 (삭제버튼 this)  
+**/
 function skillDel(obj){
 	var tr = $(obj).closest('tr');
 	var skillNum = tr.children('td:eq(0)').text();
@@ -260,7 +332,14 @@ function skillDel(obj){
 	});
 }
 
-//기능 생성하는 박스 생성
+/**
+* @함수명 : skillAdd(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 추가버튼 클릭시 실행되며, 해당 다음 기능넘버와 기능명을 입력할 text 박스와 사용여부를 결정해줄
+* 		select option 을 만들어 테이블에 tr과 td들을 append 해준다
+* @param obj - 클릭된 자신태그 (추가버튼 this)  
+**/
 function skillAdd(obj){
 	var nextNum = 'S'+(Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text().substr(1))+100);
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
@@ -271,7 +350,14 @@ function skillAdd(obj){
 	$(obj).closest('th').html("생성중");
 }
 
-//기능 생성
+/**
+* @함수명 : skillAddOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 생성버튼 클릭시 실행되며, skillName text가 빈문자열이 아닐 시에 tr에 있는 정보들을 가지고
+* 		비동기로 기능을 insert해주고 다시 기능리스트를 뿌려준다.
+* @param obj - 클릭된 자신태그 (생성버튼 this)  
+**/
 function skillAddOk(obj){
 	var tr = $(obj).closest('tr');
 	var skillNum = tr.children('td:eq(0)').text();
@@ -300,7 +386,14 @@ function skillAddOk(obj){
 	}
 }
 
-//기능 수정하는 박스 생성
+/**
+* @함수명 : skillEdit(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정버튼 클릭시 실행되며, 같은 tr안에 td들을 기능명을 입력할 text 박스와 사용여부를 결정해줄
+* 		select option 을 만들어 변화 시킨다.
+* @param obj - 클릭된 자신태그 (수정버튼 this)  
+**/
 function skillEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text1 = tr.children('td:eq(1)').text();
@@ -315,7 +408,14 @@ function skillEdit(obj){
 	tr.children('td:eq(3)').html('<input type="button" value="완료" class="btn btn-info" onclick="skillEditOk(this)" />');
 }
 
-//기능 수정
+/**
+* @함수명 : skillEditOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정완료버튼 클릭시 실행되며, 같은 tr안에 있는 내용들을 가지고 비동기로 수정시켜 뿌려주되
+* 		skillName이 빈문자열이 아닐 시에만 실행이 된다.
+* @param obj - 클릭된 자신태그 (수정완료버튼 this)  
+**/
 function skillEditOk(obj){
 	var tr = $(obj).closest('tr');
 	var skillNum = tr.children('td:eq(0)').text();
@@ -344,7 +444,13 @@ function skillEditOk(obj){
 	}
 }
 
-//listMenu 뿌려주기
+/**
+* @함수명 : listMenu()
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 리스트 메뉴관리를 클릭 할 시 기능 테이블의 있는 내용들을 조회하여 <div id=menuManagement>
+* 		테그 안에 테이블형태로 조회한 내용들을 생성해 준다.
+**/
 function listMenu(){
 	$.ajax({
 		type : "post",
@@ -378,7 +484,14 @@ function listMenu(){
 	});
 }
 
-//리스트 삭제
+/**
+* @함수명 : listDel(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 삭제버튼 클릭시 실행되며, 그 해당 tr에 속해 있는 첫번째 text 즉, 리스트넘버를 가져와 비동기로
+* 		리스트넘버에 해당하는 내용을 삭제한다
+* @param obj - 클릭된 자신태그 (삭제버튼 this)  
+**/
 function listDel(obj){
 	var tr = $(obj).closest('tr');
 	var listNum = tr.children('td:eq(0)').text();
@@ -401,7 +514,14 @@ function listDel(obj){
 	});
 }
 
-//리스트 생성하는 박스 생성
+/**
+* @함수명 : listAdd(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 추가버튼 클릭시 실행되며, 해당 다음 리스트넘버와 리스트명을 입력할 text 박스를
+* 		만들어 테이블에 tr과 td들을 append 해준다
+* @param obj - 클릭된 자신태그 (추가버튼 this)  
+**/
 function listAdd(obj){
 	var nextNum = Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text())+1;
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
@@ -411,7 +531,14 @@ function listAdd(obj){
 	$(obj).closest('th').html("생성중");
 }
 
-//리스트 생성
+/**
+* @함수명 : listAddOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 생성버튼 클릭시 실행되며, listName text가 빈문자열이 아닐 시에 tr에 있는 정보들을 가지고
+* 		비동기로 기능을 insert해주고 다시 리스트를 뿌려준다.
+* @param obj - 클릭된 자신태그 (생성버튼 this)  
+**/
 function listAddOk(obj){
 	var tr = $(obj).closest('tr');
 	var listNum = tr.children('td:eq(0)').text();
@@ -439,7 +566,13 @@ function listAddOk(obj){
 	}
 }
 
-//리스트 수정하는 박스 생성
+/**
+* @함수명 : listEdit(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정버튼 클릭시 실행되며, 같은 tr안에 td들을 리스트명을 입력할 text 박스를 만들어 변화 시킨다.
+* @param obj - 클릭된 자신태그 (수정버튼 this)  
+**/
 function listEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
@@ -449,7 +582,14 @@ function listEdit(obj){
 	tr.children('td:eq(2)').html('<input type="button" value="완료" class="btn btn-info" onclick="listEditOk(this)" />');
 }
 
-//리스트 수정
+/**
+* @함수명 : listEditOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정완료버튼 클릭시 실행되며, 같은 tr안에 있는 내용들을 가지고 비동기로 수정시켜 뿌려주되
+* 		listName이 빈문자열이 아닐 시에만 실행이 된다.
+* @param obj - 클릭된 자신태그 (수정완료버튼 this)  
+**/
 function listEditOk(obj){
 	var tr = $(obj).closest('tr');
 	var listNum = tr.children('td:eq(0)').text();
@@ -477,7 +617,13 @@ function listEditOk(obj){
 	}
 }
 
-//languageMenu 뿌려주기
+/**
+* @함수명 : languageMenu()
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 언어 메뉴관리를 클릭 할 시 기능 테이블의 있는 내용들을 조회하여 <div id=menuManagement>
+* 		테그 안에 테이블형태로 조회한 내용들을 생성해 준다.
+**/
 function languageMenu(){
 	$.ajax({
 		type : "post",
@@ -511,7 +657,14 @@ function languageMenu(){
 	});
 }
 
-//언어 삭제
+/**
+* @함수명 : languageDel(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 삭제버튼 클릭시 실행되며, 그 해당 tr에 속해 있는 첫번째 text 즉, 언어넘버를 가져와 비동기로
+* 		언어넘버에 해당하는 내용을 삭제한다
+* @param obj - 클릭된 자신태그 (삭제버튼 this)  
+**/
 function languageDel(obj){
 	var tr = $(obj).closest('tr');
 	var languageNum = tr.children('td:eq(0)').text();
@@ -534,7 +687,14 @@ function languageDel(obj){
 	});
 }
 
-//언어 생성하는 박스 생성
+/**
+* @함수명 : languageAdd(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 추가버튼 클릭시 실행되며, 해당 다음 언어넘버와 언어명을 입력할 text 박스와 color를
+* 		선택할 color 박스를 만들어 테이블에 tr과 td들을 append 해준다
+* @param obj - 클릭된 자신태그 (추가버튼 this)  
+**/
 function languageAdd(obj){
 	var num = (Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text().substr(1))+1);
 	var nextNum = '';
@@ -542,14 +702,21 @@ function languageAdd(obj){
 	else if(num < 100 && num >= 10) nextNum = 'L0'+num;
 	else nextNum = 'L00'+num;
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
-				+ '<td><input class="inputtext" type="text" placeholder="기능의 이름을 입력하세요" ></td>'
+				+ '<td><input class="inputtext" type="text" placeholder="언어의 이름을 입력하세요" ></td>'
 				+ '<td><input type="color" value="#555" ></td>'
 				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="languageAddOk(this)"></td></tr></tbody>';
 	$(obj).closest('table').append(content);
 	$(obj).closest('th').html("생성중");
 }
 
-//언어 생성
+/**
+* @함수명 : languageAddOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 생성버튼 클릭시 실행되며, languageMain, languageColor text가 빈문자열이 아닐 시에 tr에 있는 정보들을 가지고
+* 		비동기로 기능을 insert해주고 다시 언어리스트를 뿌려준다.
+* @param obj - 클릭된 자신태그 (생성버튼 this)  
+**/
 function languageAddOk(obj){
 	var tr = $(obj).closest('tr');
 	var languageNum = tr.children('td:eq(0)').text();
@@ -578,7 +745,14 @@ function languageAddOk(obj){
 	}
 }
 
-//언어 수정하는 박스 생성
+/**
+* @함수명 : languageEdit(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정버튼 클릭시 실행되며, 같은 tr안에 td들을 언어명을 입력할 text 박스와 와 color를
+* 		선택할 color 박스를 만들어 변화 시킨다.
+* @param obj - 클릭된 자신태그 (수정버튼 this)  
+**/
 function languageEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
@@ -591,7 +765,14 @@ function languageEdit(obj){
 	tr.children('td:eq(3)').html('<input type="button" value="완료" class="btn btn-info" onclick="languageEditOk(this)" />');
 }
 
-//언어 수정
+/**
+* @함수명 : languageEditOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정완료버튼 클릭시 실행되며, 같은 tr안에 있는 내용들을 가지고 비동기로 수정시켜 뿌려주되
+* 		languageMain과 languageColor이 빈문자열이 아닐 시에만 실행이 된다.
+* @param obj - 클릭된 자신태그 (수정완료버튼 this)  
+**/
 function languageEditOk(obj){
 	var tr = $(obj).closest('tr');
 	var languageNum = tr.children('td:eq(0)').text();
@@ -620,7 +801,13 @@ function languageEditOk(obj){
 	}
 }
 
-//userGradeMenu 뿌려주기
+/**
+* @함수명 : userGradeMenu()
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 등급 메뉴관리를 클릭 할 시 기능 테이블의 있는 내용들을 조회하여 <div id=menuManagement>
+* 		테그 안에 테이블형태로 조회한 내용들을 생성해 준다.
+**/
 function userGradeMenu(){
 	$.ajax({
 		type : "post",
@@ -654,7 +841,14 @@ function userGradeMenu(){
 	});
 }
 
-//유저등급 삭제
+/**
+* @함수명 : userGradeDel(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 삭제버튼 클릭시 실행되며, 그 해당 tr에 속해 있는 첫번째 text 즉, 등급넘버를 가져와 비동기로
+* 		등급넘버에 해당하는 내용을 삭제한다
+* @param obj - 클릭된 자신태그 (삭제버튼 this)  
+**/
 function userGradeDel(obj){
 	var tr = $(obj).closest('tr');
 	var gradeNum = tr.children('td:eq(0)').text();
@@ -677,17 +871,31 @@ function userGradeDel(obj){
 	});
 }
 
-//유저등급 생성하는 박스 생성
+/**
+* @함수명 : userGradeAdd(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 추가버튼 클릭시 실행되며, 해당 다음 등급넘버와 등급명을 입력할 text 박스를
+* 		만들어 테이블에 tr과 td들을 append 해준다
+* @param obj - 클릭된 자신태그 (추가버튼 this)  
+**/
 function userGradeAdd(obj){
 	var nextNum = 'G'+(Number($(obj).closest('table').children('tbody:last').children('tr').children('td:first').text().substr(1))+100);
 	var content = '<tbody><tr><td>'+nextNum+'</td>'
-				+ '<td><input class="inputtext" type="text" placeholder="기능의 이름을 입력하세요"></td>'
+				+ '<td><input class="inputtext" type="text" placeholder="등급의 이름을 입력하세요"></td>'
 				+ '<td><input class="btn btn-primary" type="button" value="생성" onclick="userGradeAddOk(this)"></td></tr></tbody>';
 	$(obj).closest('table').append(content);
 	$(obj).closest('th').html("생성중");
 }
 
-//유저등급 생성
+/**
+* @함수명 : skillAddOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 생성버튼 클릭시 실행되며, gradeName text가 ROLE_ 으로 시작할 시에 tr에 있는 정보들을 가지고
+* 		비동기로 기능을 insert해주고 다시 기능리스트를 뿌려준다.
+* @param obj - 클릭된 자신태그 (생성버튼 this)  
+**/
 function userGradeAddOk(obj){
 	var tr = $(obj).closest('tr');
 	var gradeNum = tr.children('td:eq(0)').text();
@@ -715,7 +923,13 @@ function userGradeAddOk(obj){
 	}
 }
 
-//유저등급 수정하는 박스 생성
+/**
+* @함수명 : skillEdit(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정버튼 클릭시 실행되며, 같은 tr안에 td들을 등급명을 입력할 text 박스를 만들어 변화 시킨다.
+* @param obj - 클릭된 자신태그 (수정버튼 this)  
+**/
 function userGradeEdit(obj){
 	var tr = $(obj).closest('tr');
 	var text = tr.children('td:eq(1)').text();
@@ -725,7 +939,14 @@ function userGradeEdit(obj){
 	tr.children('td:eq(2)').html('<input type="button" value="완료" class="btn btn-info" onclick="userGradeEditOk(this)" />');
 }
 
-//유저등급 수정
+/**
+* @함수명 : skillEditOk(obj)
+* @작성일 : 2018. 06. 18.
+* @작성자 : 김 진 원
+* @설명 : 수정완료버튼 클릭시 실행되며, 같은 tr안에 있는 내용들을 가지고 비동기로 수정시켜 뿌려주되
+* 		gradeName이 ROLE_ 으로 시작할 때 시에만 실행이 된다.
+* @param obj - 클릭된 자신태그 (수정완료버튼 this)  
+**/
 function userGradeEditOk(obj){
 	var tr = $(obj).closest('tr');
 	var gradeNum = tr.children('td:eq(0)').text();

@@ -188,7 +188,14 @@ public class AdminController {
 		return "admin.mailedit";
 	}
 	
-	//vmfileload하기
+	/**
+     * @함수명 : vmLoad
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : request를 AdminService의 vmLoad함수로 보내주고 return을 line(signup.vm의 내용)을 받아서  요청된 페이지로 보내주는 함수입니다.
+     * @param : model , request
+     * @return : jsonview 
+    **/
 	@RequestMapping("vmload")
 	public View vmLoad(Model model , HttpServletRequest request) {
 		String line = service.vmLoad(request);
@@ -196,8 +203,14 @@ public class AdminController {
 		return jsonview;
 	}
 	
-
-	//vmfileload하기
+	/**
+     * @함수명 : vmLoad2
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : request를 AdminService의 vmLoad2함수로 보내주고 return을 line(signup2.vm의 내용)을 받아서  요청된 페이지로 보내주는 함수입니다.
+     * @param : model , request
+     * @return : jsonview 
+    **/
 	@RequestMapping("vmload2")
 	public View vmLoad2(Model model , HttpServletRequest request) {
 		String line = service.vmLoad2(request);
@@ -205,7 +218,14 @@ public class AdminController {
 		return jsonview;
 	}
 	
-	//vmfilesave하기
+	/**
+     * @함수명 : vmSave
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : savedata,signup,request를 AdminService의 vmSave함수로 보내주는 함수입니다.
+     * @param : savedata , signup , request
+     * @return : jsonview 
+    **/
 	@RequestMapping("vmsave")
 	public View vmSave(String savedata , String signup , HttpServletRequest request) {
 		service.vmSave(savedata,signup,request);
@@ -213,7 +233,14 @@ public class AdminController {
 			
 	}
 	
-	//vmfile 변경하기
+	/**
+     * @함수명 : usetemplate
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : signup을 AdminService의 usetemplate함수로 보내주는 함수입니다.
+     * @param : signup
+     * @return : jsonview 
+    **/
 	@RequestMapping("usetemplate")
 	public View usetemplate(String signup) {
 		service.usetemplate(signup);

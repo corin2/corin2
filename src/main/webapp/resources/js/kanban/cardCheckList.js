@@ -1,4 +1,9 @@
-//체크리스트를 추가하는 텍스트박스를 생성한다
+/**
+* @함수명 : addCardCheckListView()
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : 체크리스트를 추가 할 수 있도록 text box와 완료 버튼을 append 해준다.
+**/
 function addCardCheckListView() {
 	$('#addCheckListdiv').remove();
 	
@@ -13,7 +18,13 @@ function addCardCheckListView() {
 	focusOutDisgardCardCheck($('#addBtnCheck'));
 }
 
-//확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
+/**
+* @함수명 : focusOutDisgardCardCheck(obj)
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : 확인 버튼을 눌르 수 있도록 onfocusout 속성 제거 생성 hover
+* @param obj - 자신태그(this)
+**/
 function  focusOutDisgardCardCheck(obj) {
 	$(obj).hover(function() {
 		$(obj).closest('div').children('input').removeAttr('onfocusout');
@@ -22,7 +33,12 @@ function  focusOutDisgardCardCheck(obj) {
 	});
 }
 
-//체크리스트 등록 성공
+/**
+* @함수명 : addCardCheckList()
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : value의 값이 빈문자열이 아닐 때 비동기로 카드체크리스트가 생성된다.
+**/
 function addCardCheckList() {
 	var cardNum = $('#hiddenCardNum').val();
 	var value = $('#cardCheckBoxInput').val();
@@ -41,7 +57,12 @@ function addCardCheckList() {
 	}
 }
 
-//체크리스트 뿌리기
+/**
+* @함수명 : showCardCheckList()
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : DB에 저장된 카드체크리스트가 카드modal이 열릴때, 기본적으로 뿌려지게 한다.
+**/
 function showCardCheckList(){
 	$.ajax({
 		type : "post",
@@ -73,7 +94,13 @@ function showCardCheckList(){
 	});
 }
 
-//체크리스트 삭제
+/**
+* @함수명 : deleteCardCheckList(checkNum)
+* @작성일 : 2018. 06. 08.
+* @작성자 : 김 진 원
+* @설명 : 자신이 선택한 카드체크리스트가 비동기로 삭제된다.
+* @param checkNum - 카드체크리스트넘버
+**/
 function deleteCardCheckList(checkNum){
 	
 	$.ajax({
@@ -89,7 +116,14 @@ function deleteCardCheckList(checkNum){
 	});
 }
 
-//체크를 클릭했을 때 바로 업데이트 하기
+/**
+* @함수명 : checkClick(obj, checkNum)
+* @작성일 : 2018. 06. 08.
+* @작성자 : 김 진 원
+* @설명 : 카드체크리스트의 checkbox가 체크됬는지 안됬는지의 여부를 확인한다
+* @param obj - 자신태그(this)
+* @param checkNum - 카드체크리스트넘버
+**/
 function checkClick(obj, checkNum){
 	var checked = 0;
 	var content = $(obj).parent().children('label').text();
@@ -102,7 +136,15 @@ function checkClick(obj, checkNum){
     });
 }
 
-//체크박스 업데이트
+/**
+* @함수명 : checkUpdate(checked, content, checkNum)
+* @작성일 : 2018. 06. 08.
+* @작성자 : 김 진 원
+* @설명 : 카드체크리스트가 체크되거나 체크가 풀리거나의 비동기 업데이트
+* @param checked - 체크여부(0 or 1)
+* @param content - 카드체크리스트 내용
+* @param checkNum - 카드체크리스트넘버
+**/
 function checkUpdate(checked, content, checkNum){
 	$.ajax({
 		url:"checkedUpdate",
@@ -117,7 +159,14 @@ function checkUpdate(checked, content, checkNum){
 	});
 }
 
-//체크박스를 텍스트를 생성하다
+/**
+* @함수명 : checkBoxMod(obj, checkNum)
+* @작성일 : 2018. 06. 08.
+* @작성자 : 김 진 원
+* @설명 : 자신이 수정할 카드체크리스트의 내용을 수정할 수 있도록 text box를 생성한다
+* @param obj - 자신태그(this)
+* @param checkNum - 카드체크리스트넘버
+**/
 function checkBoxMod(obj, checkNum){
 	var p = $(obj).closest('p');
 	var text = p.children('label').html();
@@ -131,14 +180,28 @@ function checkBoxMod(obj, checkNum){
 	p.children('div').children('input').focus();
 }
 
-//체크박스 내용 수정
+/**
+* @함수명 : checkBoxModOk(obj, checkNum)
+* @작성일 : 2018. 06. 11.
+* @작성자 : 김 진 원
+* @설명 : 변화시킬 내용을 가지고 해당 카드체크리스트넘버로 비동기로 업데이트한다
+* @param obj - 자신태그(this)
+* @param checkNum - 카드체크리스트넘버
+**/
 function checkBoxModOk(obj, checkNum){
 	var content = $(obj).parent().children('input').val();
 	if(content != "") checkUpdate(0, content, checkNum);
 	else showCardCheckList();
 }
 
-//확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
+/**
+* @함수명 : focusOutCheckListDisgard(obj)
+* @작성일 : 2018. 06. 11.
+* @작성자 : 김 진 원
+* @설명 : onfocusout아웃이 되었을 때 텍스트박스가 사라지는데 완료버튼 위에서 onfocusout했을 때,
+* 		사라지지않고 수정 혹은 생성되는 함수가 실행 될 수 있도록 hover로 생성 되고 삭제 되도록 만들어짐.
+* @param obj - 자신태그(this)
+**/
 function  focusOutCheckListDisgard(obj) {
 	$(obj).hover(function() {
 		$(obj).closest('div').children('input[type=text]').removeAttr('onfocusout');

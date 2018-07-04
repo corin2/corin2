@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="resources/css/makeperson/makeperson.css">
 <jsp:include page="makepersondetail.jsp"></jsp:include>
-
+<div class="makepersondiv">
 	<div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown backdiv">
 	    <div class="col-sm-12">
 	      <h4 class="brief"><i>CORIN2</i></h4>
@@ -164,5 +164,6 @@
 	      </div>
 	    </div>
 	</div>
-	<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalca"> <i class="fa fa-user">
+	<button type="button" class="btn btn-default btnmake" data-toggle="modal" data-target="#myModalca"> <i class="fa fa-user">
 	                                        </i> View album </button>
+</div>

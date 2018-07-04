@@ -7,6 +7,12 @@ $(function(){
 });
 
 //메시지가 존재하는지 알람~
+/**
+* @함수명 : existMsg()
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 자신에게 메세지가 존재하는지 확이하여 알림표시를 해준다
+**/
 function existMsg(){
 	var liLength = $('#inviteMsg').children('li').length;
     if(liLength > 0) {
@@ -25,7 +31,12 @@ function existMsg(){
     }
 }
 
-//모든 메시지를 보여준다
+/**
+* @함수명 : showMsg()
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 자신에게 있는 모든메세지를 비동기로 확이하여 뿌려준다.
+**/
 function showMsg(){
 	$.ajax({
 		type : "post",
@@ -60,7 +71,13 @@ function showMsg(){
 	});
 }
 
-// 초대승락
+/**
+* @함수명 : msgaccept(projectNum)
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 초대받은 프로젝트에 수락을 누르면 해당 메세지는 삭제되며 프로젝트의 팀원이 된다.
+* @param projectNum - 프로젝트넘버
+**/
 function msgaccept(projectNum) {
 	var param = {
 		userId : $('#hiddenUserId').val(),
@@ -87,7 +104,13 @@ function msgaccept(projectNum) {
 	})
 }
 
-// 초대거절
+/**
+* @함수명 : msgreject(projectNum)
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 초대받은 프로젝트에 거절을 누르면 해당 메세지는 삭제된다.
+* @param projectNum - 프로젝트넘버
+**/
 function msgreject(projectNum) {
 	var param = {
 		receptionId : $('#hiddenUserId').val(),
@@ -106,7 +129,12 @@ function msgreject(projectNum) {
 	})
 }
 
-//오토컴플릿
+/**
+* @함수명 : autoComplete()
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 초대 할 user를 검색할 때 모든 user를 검색하여 오토컴플릿으로 보여준다
+**/
 function autoComplete() {
 	 $.ajax({
  		url : "allUser",
@@ -128,7 +156,12 @@ function autoComplete() {
 	})
 }
 
-//초대아이디 체크하기
+/**
+* @함수명 : memberinvite()
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 초대 한 user가 있는 회원인지 없는 회원인지 구분
+**/
 function memberinvite() {
 	$.ajax({
 		url : "idcheck",
@@ -136,6 +169,7 @@ function memberinvite() {
 		data : $("#emailSearch").val().trim(),
 		contentType: "application/json; charset=utf-8",
 		success : function (data) {
+			console.log(data.trim())
 			if(data.trim() === 'true') isInviteMsg();
 			else swal('없는 회원입니다');
 		},
@@ -145,7 +179,12 @@ function memberinvite() {
 	})
 }
 
-//팀에 속해있는지&메세지가 있는지 체크
+/**
+* @함수명 : isInviteMsg()
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 초대 한 user가 팀에 속해있는지&메세지가 있는지 체크
+**/
 function isInviteMsg(){
 	$.ajax({
 		url :"isTeamAndisMsg",
@@ -163,7 +202,12 @@ function isInviteMsg(){
 	});
 }
 
-//초대메세지 보내기
+/**
+* @함수명 : inviteMsg()
+* @작성일 : 2018. 06. 12.
+* @작성자 : 김 진 원
+* @설명 : 초대메세지 보내기
+**/
 function inviteMsg(){
 	$.ajax({
 		url :"inviteMsg",

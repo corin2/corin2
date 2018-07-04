@@ -31,7 +31,12 @@ $(function(){
 		
 });
 
-//화면 좌우 조정
+/**
+* @함수명 : autoWidth()
+* @작성일 : 2018. 06. 05.
+* @작성자 : 김 진 원
+* @설명 : 칸반의 리스트의 개수에 맞춰 width를 정해준다.
+**/
 function autoWidth(){
 	var width = (($('.kanbanbox').length + $('.userbox').length) * 350) + 300 +"px";
 	$('#content-md').css("width", width)
@@ -45,7 +50,13 @@ var sortablecnt = 0; var sortablecnt2 = 0; var sortablecnt3 = 0;
 	overflow-y: auto;
 }*/
 
-//드래그&드랍
+/**
+* @함수명 : sortable()
+* @작성일 : 2018. 06. 05.
+* @작성자 : 김 진 원
+* @설명 : sortable에서 사용되는 것을 정의 한 곳
+* 		update 카드의 순서가 변경되거나 리스트가 변경될 때 실행되며 비동기로 순서를 다시정해주거나 위치를 바꿔준다.
+**/
 function sortable(){
 	$('div[class=listbox], div[class=listingbox], div[class=donebox]').sortable({
 		items:'div:not(#addcard)',
@@ -106,12 +117,23 @@ function sortable(){
 	
 }
 
-//멤버와 카드 뿌려주기
+
+/**
+* @함수명 : showKanban()
+* @작성일 : 2018. 06. 05.
+* @작성자 : 김 진 원
+* @설명 : 칸반을 뿌려준다.
+**/
 function showKanban(){
 	showUserFrofiles();
 }
 
-//멤버 사진과 닉네임 뿌리기
+/**
+* @함수명 : showUserFrofiles()
+* @작성일 : 2018. 06. 05.
+* @작성자 : 김 진 원
+* @설명 : 프로젝트에 속한 멤버의 사진과 닉네임을 가져와서 배열에 담아둔다.
+**/
 function showUserFrofiles(){
 	var userProfiles = [];
 	$.ajax({
@@ -132,7 +154,14 @@ function showUserFrofiles(){
 	});
 }
 
-//멤버 영역 뿌리기
+/**
+* @함수명 : showUserField(userProfiles)
+* @작성일 : 2018. 06. 05.
+* @작성자 : 김 진 원
+* @설명 : 칸반의 모양을 만들어주는 곳 멤버의 영역을 나눠주는 곳
+* 		멤버의 영역을 나눠줄 때, 자신이 가장 위로 오게 만들어준다.
+* @param userProfiles - 프로젝트에 속한 멤버의 정보가 담긴 배열
+**/
 function showUserField(userProfiles){
 	$.ajax({
 		type : "post",
@@ -173,7 +202,12 @@ function showUserField(userProfiles){
 	});
 }
 
-//리스트 뿌리기
+/**
+* @함수명 : showList()
+* @작성일 : 2018. 06. 05.
+* @작성자 : 김 진 원
+* @설명 : 리스트의 영역을 나눠주는곳
+**/
 function showList(){
 	$.ajax({
 		type : "post",
@@ -209,7 +243,12 @@ function showList(){
 	});
 }
 
-//카드 뿌리기
+/**
+* @함수명 : showCard()
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 나눠진 멤버의 영역별로 카드들을 뿌려준다.
+**/
 function showCard(){
 	$.ajax({
 		type : "post",
@@ -242,7 +281,13 @@ function showCard(){
 	});
 }
 
-//카드를 추가하는 텍스트박스를 생성한다
+/**
+* @함수명 : addCardView(projectNum)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 카드를 추가하는 텍스트박스를 생성한다
+* @param projectNum - 프로젝트 넘버
+**/
 function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
@@ -254,7 +299,14 @@ function addCardView(projectNum) {
 	focusOutDisgard($('#addLabel'));
 }
 
-//카드 등록 성공
+/**
+* @함수명 : addCard(obj, projectNum)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 카드 등록을 비동기로 insert 하며 다시 카드들을 뿌려준다
+* @param obj - 자신태그 (this)
+* @param projectNum - 프로젝트 넘버
+**/
 function addCard(obj, projectNum){
 	var parent = $(obj).closest('div')
 	var value = parent[0].firstChild.value //cardname
@@ -273,14 +325,26 @@ function addCard(obj, projectNum){
 	}
 }
 
-//카드 디테일 총합 뿌려주기
+/**
+* @함수명 : cardDetail(cardNum)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 카드 모든내용을 뿌려주는 함수를 모아둔곳.
+* @param cardNum - 카드 넘버
+**/
 function cardDetail(cardNum){
 	$('#hiddenCardNum').attr('value', cardNum);
 	selectCard(cardNum);
 	showCardCheckList();
 }
 
-//카드 디테일에 내용 뿌려주기
+/**
+* @함수명 : selectCard(cardNum)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 카드내용을 <div id=hiddenCardNum> 에 뿌려준다. 
+* @param cardNum - 카드 넘버
+**/
 function selectCard(cardNum){
 	$.ajax({
 		url:"cardSelect",
@@ -298,7 +362,13 @@ function selectCard(cardNum){
 	});
 }
 
-//카드 디테일 내용 수정
+/**
+* @함수명 : updateCardDetail(e)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : <div id=hiddenCardNum> 에 적혀있는 내용을 비동기로 업데이트 해준다 
+* @param e - event
+**/
 function updateCardDetail(e){
 	$.ajax({
 		url:"cardUpdate",
@@ -314,7 +384,14 @@ function updateCardDetail(e){
 	});
 }
 
-//카드 삭제
+/**
+* @함수명 : deleteCard(e,cardNum)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 선택한 카드가 삭제 되도록 비동기 처리
+* @param e - event
+* @param cardNum - 카드넘버
+**/
 function deleteCard(e,cardNum){
 	e.stopPropagation();
 	
@@ -331,7 +408,14 @@ function deleteCard(e,cardNum){
 	});
 }
 
-//카드를 수정하는 텍스트박스를 생성한다
+/**
+* @함수명 : updateCardTitle(e, cardNum)
+* @작성일 : 2018. 06. 06.
+* @작성자 : 김 진 원
+* @설명 : 카드를 수정 할 수 있도록 원래 카드의 제목이 뿌려진 div안에 text box를 만들어 준다.
+* @param e - event
+* @param cardNum - 카드넘버
+**/
 function updateCardTitle(e, cardNum) {
 	var cardName = $('#cardNum'+cardNum).children('label').text();
 	e.stopPropagation();
@@ -345,7 +429,14 @@ function updateCardTitle(e, cardNum) {
 	focusOutDisgard($('#editLabel'));
 }
 
-//카드 제목 수정 확인
+/**
+* @함수명 : updateCard(obj, cardNum)
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : text box 수정할 제목을 가져와서 비동기로 업데이트한다
+* @param obj - 자신태그 (this)
+* @param cardNum - 카드넘버
+**/
 function updateCard(obj, cardNum){
 	var parent = $(obj).closest('div')
 	var value = parent[0].firstChild.value //cardname
@@ -364,7 +455,12 @@ function updateCard(obj, cardNum){
 	}
 }
 
-//카드 디테일 제목 수정
+/**
+* @함수명 : cardNameMod()
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : 카드의 정보가 저장된 modal 창에서도 카드제목이 변경 될 수 있도록 text box를 생성한다
+**/
 function cardNameMod(){
 	var cardNum = $('#hiddenCardNum').val();
 	var htmlObj = $('#modalHeader').html();
@@ -376,7 +472,13 @@ function cardNameMod(){
 	$('#modalHeader').children('div').children('input').focus();
 }
 
-//상세페이지 카드명 수정 완료
+/**
+* @함수명 : cardNameModOk(e)
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : text box 수정할 제목을 가져와서 비동기로 업데이트한다
+* @param e - event
+**/
 function cardNameModOk(e){
 	var cardNum = $('#hiddenCardNum').val();
 	var value = $('#modalHeader').children('div').children('input').val();
@@ -402,6 +504,14 @@ function cardNameModOk(e){
 }
 
 //확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
+/**
+* @함수명 : focusOutDisgard(obj)
+* @작성일 : 2018. 06. 07.
+* @작성자 : 김 진 원
+* @설명 : onfocusout아웃이 되었을 때 텍스트박스가 사라지는데 완료버튼 위에서 onfocusout했을 때,
+* 		사라지지않고 수정 혹은 생성되는 함수가 실행 될 수 있도록 hover로 생성 되고 삭제 되도록 만들어짐.
+* @param obj - 자신태그(this)
+**/
 function  focusOutDisgard(obj) {
 	$(obj).hover(function() {
 		$(obj).closest('div').children('input').removeAttr('onfocusout');
