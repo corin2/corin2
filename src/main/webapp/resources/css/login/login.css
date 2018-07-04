@@ -178,7 +178,18 @@ margin-top : 8px;
 }
 .logoaline {
 	text-align: left;
-	font-weight: bold;
+	font-size: 36px;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+.jumbotron .h1, .jumbotron h1 {
+    font-size: 90px !important;
+}
+
+.jumbotron p {
+    margin-bottom: 15px;
+    font-size: 30px;
+    font-weight: 200;
 }
 .mentlogo {
 	text-align: center;
