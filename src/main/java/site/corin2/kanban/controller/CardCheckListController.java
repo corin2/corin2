@@ -26,15 +26,30 @@ public class CardCheckListController {
 	@Autowired
 	private CardCheckListService service;
 	
-	//카드체크리스트를 생성한다
+	/**
+	* @함수명 : CheckListInsertView(CardCheckListDTO checkList, Model model)
+	* @작성일 : 2018. 06. 07.
+	* @작성자 : 김 진 원
+	* @설명 : 카드체크리스트를 생성한다
+	* @param CardCheckListDTO - cardNum, checkContent
+	* @param Model - json으로 보내줄 data
+	* @return View jsonview
+	**/
 	@RequestMapping("/cardCheckListInsert")
 	public View CheckListInsertView(CardCheckListDTO checkList, Model model) {
-		int result = service.cardCheckListInsert(checkList);
-		
+		service.cardCheckListInsert(checkList);
 		return jsonview;
 	}
 	
-	//카드체크리스트를 조회한다
+	/**
+	* @함수명 : cardCheckListSelectView(CardCheckListDTO checkList, Model model)
+	* @작성일 : 2018. 06. 07.
+	* @작성자 : 김 진 원
+	* @설명 : 카드체크리스트를 조회한다
+	* @param CardCheckListDTO - cardNum
+	* @param Model - json으로 보내줄 data
+	* @return View jsonview
+	**/
 	@RequestMapping("/cardCheckListSelect")
 	public View cardCheckListSelectView(CardCheckListDTO checkList, Model model) {
 		List<CardCheckListDTO> list = null;
@@ -43,14 +58,30 @@ public class CardCheckListController {
 		return jsonview;
 	}
 	
-	//카드체크리스트의 체크여부를 변경한다.
+	/**
+	* @함수명 : checkedUpdate(CardCheckListDTO checkList, Model model)
+	* @작성일 : 2018. 06. 08.
+	* @작성자 : 김 진 원
+	* @설명 : 카드체크리스트의 체크여부 , 내용 을 변경한다
+	* @param CardCheckListDTO - isChecked, checkContent, checkNum
+	* @param Model - json으로 보내줄 data
+	* @return View jsonview
+	**/
 	@RequestMapping("/checkedUpdate")
 	public View checkedUpdate(CardCheckListDTO checkList, Model model) {
 		service.checkListUpdate(checkList);
 		return jsonview;
 	}
 	
-	//카드체크리스트를 삭제한다.
+	/**
+	* @함수명 : cardCheckListDeleteView(CardCheckListDTO checkList, Model model)
+	* @작성일 : 2018. 06. 08.
+	* @작성자 : 김 진 원
+	* @설명 : 카드체크리스트를 삭제한다.
+	* @param CardCheckListDTO - checkNum
+	* @param Model - json으로 보내줄 data
+	* @return View jsonview
+	**/
 	@RequestMapping("/checkListDelete")
 	public View cardCheckListDeleteView(CardCheckListDTO checkList, Model model) {
 		service.cardCheckListDelete(checkList);
