@@ -42,7 +42,7 @@ pageEncoding="UTF-8"%>
 	<!-- dropzone 파일이 drop공간  -->
 		<div id="dropzone" >
 			 <div id ="over">
-				<img class="dropzoneimg" ></img>
+				<img class="dropzoneimg" src="resources/images/board/noimage.png"></img>
 				<div class="dropzonediv"></div>
 			 </div>	
 		</div>

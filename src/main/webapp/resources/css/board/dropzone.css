@@ -31,6 +31,7 @@
     margin: -150px 0 0 -75px;
     top: 50%;
     left: 50%;
+ 
 }
 	  
 
@@ -151,4 +152,75 @@ hr {
  height: 20px;
 }
 
+.dropzonechild{
+	border:1px solid lightgray;
+	word-wrap: break-word;
+	float:left;
+	width:250px;
+	height:250px;
+	margin-right:50px;
+	margin-bottom:100px;
+	border-radius:10px;
+}
+.dropzonechild_1{
+	word-wrap: break-word;
+	margin-left:150px;
+	margin-top:5px
+}
 
+.upload_download{
+	word-wrap: break-word;
+	width:25px;
+	height:25px;
+	margin-right:3px
+}
+.thumbnail{
+	display:inline;
+	width:25px;
+	height:25px;
+	border: 1px solid #fff;
+	margin: 0; 
+	padding: 0;
+	borderword-wrap: break-word;
+}
+.file_delete{
+	word-wrap: break-word;
+	width:25px;
+	height:25px;
+}
+.dropzonecontent{
+	word-wrap: break-word;
+	float:left;
+	width:200px;
+	height:100px;
+	background-color:white;
+	text-align:center;
+	color:black;
+	border: 1px solid white;
+	margin-left:20px;
+	margin-top:30px;
+	
+}
+.file_extension{
+	width:80px;
+	hight:80px;
+	margin-left:10px	
+}
+
+.upload_fileName{
+	word-wrap: break-word;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	margin-top:40px;
+	color:black;
+	font-size:20px;	
+}
+.file-label{
+	color:black;
+	word-wrap: break-word;
+	height:30px;
+}
+.file_boarddate{
+	color:black;	
+}
