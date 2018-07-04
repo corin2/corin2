@@ -84,11 +84,10 @@ function projectView(projectArray) {
 							+ "</div>";
 						return false;
 					}
+					
 				});
-				projectcnt++;
 			});
-			html += "<div class='projectListDiv'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='buttonproject' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
-			projectcnt=0;
+			html += "<div class='projectListDiv'><h4 class='h4margin'>&nbsp;&nbsp;생성</h4><button class='buttonproject createmargin' onclick='projectDetailView()' data-toggle='modal' data-target='#myModal2'><span class='glyphicon glyphicon-plus'></span></button></div>";
 			$("#projectbox").html(html);
 			
 		},
@@ -126,7 +125,7 @@ function projectBookView(projectArray) {
 					}
 				});
 				projectcnt++;
-				if(projectcnt == 6){
+				if(projectcnt == 8){
 					html += '<br>';
 					projectcnt = 0;
 				}

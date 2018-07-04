@@ -49,7 +49,6 @@ function projectChart(lists){
 				if(elt.listNum > 1)	data[(Number(elt.listNum)-2)] = data[(Number(elt.listNum)-2)]+1;
 				else data[(Number(elt.listNum)-1)] = data[(Number(elt.listNum)-1)]+1;
 			});
-			
 			var ctx = document.getElementById("projectChart").getContext('2d');
 			var myPieChart = new Chart(ctx,{
 			    type: 'doughnut',
@@ -57,11 +56,16 @@ function projectChart(lists){
 			    	labels : labels,
 					datasets : [{
 						data: data,
-						backgroundColor: palette('tol', data.length).map(function(hex) {
-					        return '#' + hex;
-					    })
+						backgroundColor: listColorData
 					}]
-			    }
+			    },
+				options : {
+					title: {
+						display: true,
+						text: '프로젝트 진행상태',
+						fontSize: 40
+					}
+				}
 			});
 		},
 		error: function() {
@@ -218,6 +222,11 @@ function checkListProceedChart(maxData, chartData) {
 							min: 0,
 							stepSize: 5
 						}
+					},
+					title: {
+						display: true,
+						text: '체크리스트 현황',
+						fontSize: 40
 					}
 				}
 			});

@@ -6,9 +6,9 @@
 <link rel="stylesheet" href="resources/css/user/profile.css">
 <div id="profileimage-content" class="profileimagediv block">
 		<form action="" method="post">
-			<div class="container-fluid profileimageclass">
+			<div class="profileimageclass">
 			<h2 class="subwhite">Profile</h2>
-			<img class="img-circle" id="recentUserProfile" width="100" height="100">
+			<img class="img-circle" id="recentUserProfile" width="100" height="100" style="margin-left:18px;">
 			</div>
 			<h4 class="subwhite profilemargintop">${pageContext.request.userPrincipal.name}</h4>
 		    <span class="btn btn-1a btn-addfile fileinput-button">

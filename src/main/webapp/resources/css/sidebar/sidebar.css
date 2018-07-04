@@ -1,6 +1,10 @@
 /*
     DEMO STYLE
 */
+body {
+	background: #fafafa;
+}
+
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 .sidebar-header > img {
     width: 176px;
@@ -8,11 +12,6 @@
     margin-bottom: 18px;
     position: absolute;
     left: 47%;
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #fafafa;
 }
 
 p {
@@ -30,11 +29,10 @@ a, a:hover, a:focus {
 }
 
 .navbar {
-    padding: 15px 10px;
     border: none;
     border-radius: 0;
     margin-bottom: 0px !important;
-    background: #FAFAFA;/*배경색바꿈*/
+    background: #566270;/*배경색바꿈*/
     /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); */
 }
 
@@ -208,7 +206,7 @@ a.article, a.article:hover {
     CONTENT STYLE
 ----------------------------------------------------- */
 #content {
-    min-height: 93vh; /* 콘텐츠 height */
+    min-height: 90vh; /* 콘텐츠 height */
     transition: all 0.3s;
 }
 
@@ -268,3 +266,6 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+
+    
+    

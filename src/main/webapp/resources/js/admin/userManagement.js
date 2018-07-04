@@ -1,5 +1,5 @@
 $(function(){
-	
+	$('#startadminuser').trigger('click');
 });
 
 //가입회원, 메일인증 안한회원, 탈퇴한 회원 찾기
@@ -7,6 +7,7 @@ function allUser(enabled, isDelete, pageNum){
 	$.ajax({
 		url : "allUser",
 		datatype : "JSON",
+		async:false,
 		success : function (data) {
 			$('#userManagement').empty();
 			var viewData = [];
@@ -62,6 +63,7 @@ function userDel(obj, enabled, isDelete, pageNum) {
 		$.ajax({
 			url : "userDel",
 			datatype:"JSON",
+			async:false,
 			data : {userId:userId},
 			success : function(data) {
 				allUser(enabled, isDelete, pageNum);
@@ -88,6 +90,7 @@ function userReset(obj, enabled, isDelete, pageNum) {
 		$.ajax({
 			url : "userReset",
 			datatype:"JSON",
+			async:false,
 			data : {userId:userId},
 			success : function(data) {
 				allUser(enabled, isDelete, pageNum);
@@ -136,6 +139,7 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 			type : "post",
 			url  : "userEdit",
 			datatype:"JSON",
+			async:false,
 			data : {userId:userId, userName:userName.trim(), enabled:enableddata, gradeNum:gradeNum},
 			success : function(data){
 				allUser(enabled, isDelete, pageNum);

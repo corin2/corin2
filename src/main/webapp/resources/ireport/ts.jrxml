@@ -29,7 +29,9 @@
 		<band height="20" splitType="Stretch">
 			<textField>
 				<reportElement style="Arial" mode="Opaque" x="0" y="5" width="490" height="15" forecolor="#FFFFFF" backcolor="#777765" uuid="8fb8ff02-9408-46b0-8762-7c05a9dc0cef"/>
-				<textElement textAlignment="Center"/>
+				<textElement textAlignment="Center">
+					<font fontName="나눔고딕"/>
+				</textElement>
 				<textFieldExpression><![CDATA["team: " + String.valueOf($P{noy})+" troubles"]]></textFieldExpression>
 			</textField>
 		</band>
@@ -38,19 +40,30 @@
 		<band height="20" splitType="Stretch">
 			<staticText>
 				<reportElement style="Arial" mode="Opaque" x="0" y="4" width="50" height="15" backcolor="#CBB453" uuid="62429150-9260-4a57-8342-eafcc22aed21"/>
-				<textElement textAlignment="Left"/>
+				<textElement textAlignment="Left">
+					<font fontName="nanum"/>
+				</textElement>
 				<text><![CDATA[No]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Arial" positionType="Float" mode="Opaque" x="50" y="4" width="80" height="15" backcolor="#CBB453" uuid="c2cd014a-8fcb-44f1-b2d1-07c9fde820b2"/>
+				<textElement>
+					<font fontName="nanum"/>
+				</textElement>
 				<text><![CDATA[Tags]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Arial" positionType="Float" mode="Opaque" x="130" y="4" width="170" height="15" backcolor="#CBB453" uuid="ebdbc292-7e7e-4c89-8be3-fe49b743d522"/>
+				<textElement>
+					<font fontName="nanum"/>
+				</textElement>
 				<text><![CDATA[Problem]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Arial" positionType="Float" mode="Opaque" x="300" y="4" width="190" height="15" backcolor="#CBB453" uuid="aedaf7ba-5dae-4748-addd-4524d5193944"/>
+				<textElement>
+					<font fontName="nanum"/>
+				</textElement>
 				<text><![CDATA[Solution]]></text>
 			</staticText>
 		</band>
@@ -60,28 +73,28 @@
 			<textField>
 				<reportElement x="0" y="3" width="50" height="56" uuid="c1e45a65-e6e0-438e-a78e-a6c2ce13d7fa"/>
 				<textElement textAlignment="Left">
-					<font fontName="굴림"/>
+					<font fontName="nanum"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{boardNum}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="50" y="3" width="80" height="56" uuid="b11693c0-2785-4696-a0ac-438376693830"/>
 				<textElement>
-					<font fontName="굴림"/>
+					<font fontName="nanum"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{hashtag}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="130" y="3" width="170" height="56" uuid="acbc25e9-6523-4b68-8a19-36fd4bcbec49"/>
 				<textElement>
-					<font fontName="굴림"/>
+					<font fontName="nanum"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{problem}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement positionType="Float" x="300" y="3" width="190" height="56" uuid="8c78027b-22a3-4d3a-8c14-59c659966652"/>
 				<textElement>
-					<font fontName="굴림"/>
+					<font fontName="nanum"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{solution}]]></textFieldExpression>
 			</textField>

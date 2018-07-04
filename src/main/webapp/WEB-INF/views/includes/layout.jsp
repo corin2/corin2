@@ -19,9 +19,9 @@
   <link rel="stylesheet" type="text/css" href="resources/css/layout/layout.css">
   <!-- [css] 사이드바 -->
   <link rel="stylesheet" type="text/css" href="resources/css/sidebar/sidebar.css">
-  <!-- [css] 페이지 로딩 -->
-  <link rel="stylesheet" type="text/css" href="resources/css/loading/fakeLoader.css">
-
+  <!-- [css] google 폰트 -->
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+  
   <!-- js파일 순서 변경하지말것! 순서 중요! -->
   <!-- [js] jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -49,15 +49,12 @@
 			}else if(window.location.pathname.indexOf('admin') > -1){
 				skill = 'admin';
 			}
-			if(skill == 'project') $('#content').css('margin-top', '0');
+			if(skill == 'project') $('#content').css('margin-top', '80px');
 			else if(skill == 'admin') $('#content').css('margin-top', '80px');
 		}
 	</script>   
 </head>
 <body style="background-color : #566270;"> 
-	<!-- 페이지 로딩 -->
-	<div id="fakeloader"></div>
-	
 	<!-- 레이아웃 -->
 	<div class="wrapper">
 		<!-- Sidebar Holder -->
@@ -98,8 +95,5 @@
 		</se:authorize>
 		
 	</div>
-
-	<!-- 페이지 로딩 -->
-	<!-- <script src="resources/js/loading/fakeLoader.js"></script> -->
 </body>
 </html>
