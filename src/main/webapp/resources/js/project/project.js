@@ -1,8 +1,19 @@
+/**
+파일명: project.js
+    설명: 프로젝트 관한 파일
+    작성일: 2018-06-13
+    작성자: 최재욱
+**/
 $(function () {
 	languageColorView();
 })
 var projectcnt = 0;
-//프로젝트 생성 함수
+/**
+* @함수명 : addProject()
+* @작성일 : 2018. 6. 13.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 생성하는 함수
+**/
 function addProject() {
 	if($('input[name="language"]').is(':checked')&&$("#ProjectName").val()!=""){
 	var radioVal = $('input[name="language"]:checked').val();
@@ -26,7 +37,14 @@ function addProject() {
 		swal("주언어를 체크해주세요");
 	}
 }
-//프로젝트넘필요
+/**
+* @함수명 : projectProjectNum(projectName)
+* @작성일 : 2018. 6. 13.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 생성할때 DB상 Team 테이블에도 함께 삽입 해야한다. 그러기 위해
+* projectNum이 필요한데 이를 위해 projectNum을 가져온다.
+* @param projectName- projectName을 통해 projectNum을 찾기위한 변수
+**/
 function projectProjectNum(projectName) {
 	$.ajax({
 		url:"selectProjectNum",
@@ -40,7 +58,14 @@ function projectProjectNum(projectName) {
         }
 	})
 }
-//팀 생성함수
+
+/**
+* @함수명 : insertTeamProject(projectNum)
+* @작성일 : 2018. 6. 13.
+* @작성자 : 최재욱
+* @설명 : DB상 Team프로젝트의 삽입을 위한 함수
+* @param projectNum- 함수를 통해 찾아온 변수
+**/
 function insertTeamProject(projectNum) {
 	$.ajax({
 		url:"projectTeamInsert",
@@ -58,7 +83,13 @@ function insertTeamProject(projectNum) {
 }
 
 
-//프로젝트 뿌려주기
+/**
+* @함수명 : projectView(projectArray)
+* @작성일 : 2018. 6. 13.
+* @작성자 : 최재욱
+* @설명 : 프로젝트 언어의 색을 이용하여 프로젝트 버튼의 색을 지정해 주고 프로젝트를 보여주는 함수이다.
+* @param projectArray- 프로젝트언어에 해당하는 색을 담은 배열
+**/
 function projectView(projectArray) {
 	$("#projectbox").empty();
 	$.ajax({
@@ -98,7 +129,14 @@ function projectView(projectArray) {
 }
 
 
-//프로젝트 북마크 뿌려주기
+/**
+* @함수명 : projectBookView(projectArray)
+* @작성일 : 2018. 6. 14.
+* @작성자 : 최재욱
+* @설명 : 프로젝트 언어의 색을 이용하여 프로젝트 버튼의 색을 지정해 주고 
+* 즐겨찾기 부분에 프로젝트를 보여주는 함수이다.
+* @param projectArray- 프로젝트언어에 해당하는 색을 담은 배열
+**/
 function projectBookView(projectArray) {
 	$.ajax({
 		url:"projectBookList",
@@ -140,7 +178,12 @@ function projectBookView(projectArray) {
 }
 
 
-//프로젝트칼라 지정해주기
+/**
+* @함수명 : languageColorView()
+* @작성일 : 2018. 6. 14.
+* @작성자 : 최재욱
+* @설명 : 프로젝트당 언어를 설정하게 되는데 해당 언어의 색상을 보기 위한 함수이다.
+**/
 function languageColorView() {
 	var projectArray = [];
 	$.ajax({
@@ -157,7 +200,12 @@ function languageColorView() {
 	})
 }
 
-//프로젝트칼라 지정해주기
+/**
+* @함수명 : searchColorView()
+* @작성일 : 2018. 6. 14.
+* @작성자 : 최재욱
+* @설명 : 프로젝트당 언어를 설정하게 되는데 해당 언어의 색상을 보기 위한 함수이다.
+**/
 function searchColorView() {
 	var projectArray = [];
 	$.ajax({
@@ -173,7 +221,13 @@ function searchColorView() {
         }
 	})
 }
-//프로젝트모달창 주언어 뿌려주기
+/**
+* @함수명 : printProjectDetailLanguage()
+* @작성일 : 2018. 6. 14.
+* @작성자 : 최재욱
+* @설명 : 프로젝트 생성을 위해 모달 창이 뜨는데 여기서 언어를 고른다.
+* 그에 해당하는 색에 예를 볼수있게 만들어준 함수이다.
+**/
 function printProjectDetailLanguage() {
 	$.ajax({
 		url:"languageColorAllList",
@@ -191,7 +245,15 @@ function printProjectDetailLanguage() {
 	})
 }
 
-//프로젝트수정모달창 주언어 뿌려주기
+/**
+* @함수명 : printProjectDetailLanguageChecked(projectNum)
+* @작성일 : 2018. 6. 14.
+* @작성자 : 최재욱
+* @설명 : DB상에 저장된 색을 가져와 프로젝트를 수정할때 미리 해당 색에 체크되어 있게
+* 하기 위한 함수 이다.
+* @param projectNum- 해당하는 색을 찾기 위한 변수
+* 
+**/
 function printProjectDetailLanguageChecked(projectNum) {
 	$.ajax({
 		url:"languageColorAllList",
@@ -210,7 +272,15 @@ function printProjectDetailLanguageChecked(projectNum) {
         }
 	})
 }
-//주언어 업데이트하기
+
+/**
+* @함수명 : updateLanguage(projectNum)
+* @작성일 : 2018. 6. 15.
+* @작성자 : 최재욱
+* @설명 : DB상에 언어를 수정할 수 있게하는 함수이다.
+* @param projectNum- 해당하는 프로젝트를 변수
+* 
+**/
 function updateLanguage(projectNum) {
 	if($('input[name="language"]').is(':checked')&&$("#ProjectName").val()!=""){
 	$.ajax({
@@ -235,7 +305,15 @@ function updateLanguage(projectNum) {
 		swal("프로젝트명을 입력하세요");
 	}
 }
-//프로젝트 생성 모달창 띄워주기
+/**
+* @함수명 : projectDetailView()
+* @작성일 : 2018. 6. 15.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 생성하기 위해 모달 창에 프로젝트 생성을 위한 
+* 내요을 보여주는 함수 이다.
+*  @param projectNum- 해당하는 프로젝트를 찾기위한 변수
+* 
+**/
 function projectDetailView() {
 	$("#detailButton").empty();
 	var html="";
@@ -255,7 +333,14 @@ function projectDetailView() {
 	$('#ProjectName').focus();
 	
 }
-//프로젝트 업데이트 모달창 내용 뿌리기
+/**
+* @함수명 : projectUpdateView(projectNum)
+* @작성일 : 2018. 6. 15.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 수정하기 위해 모달 창에 프로젝트 생성을 위한 
+* 내요을 보여주는 함수 이다.
+* 
+**/
 function projectUpdateView(projectNum) {
 	$("#detailButton").empty();
 	var html="";
@@ -278,7 +363,13 @@ function projectUpdateView(projectNum) {
 			 $("#ProjectName").focus();
 	}
 
-//프로젝트 삭제
+/**
+* @함수명 : deleteProject(projectNum)
+* @작성일 : 2018. 6. 15.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 삭제하기 위한 함수이다.
+*  @param projectNum- 해당하는 프로젝트를 찾기위한 변수
+**/
 function deleteProject(projectNum) {
 	$.ajax({
 		url:"projectDelete",
@@ -300,7 +391,13 @@ function deleteProject(projectNum) {
 	})
 }
 
-//프로젝트 즐겨찾기 등록
+/**
+* @함수명 : updateProjectBookmark(projectNum)
+* @작성일 : 2018. 6. 15.
+* @작성자 : 최재욱
+* @설명 : 북마크 버튼을 눌럿을때 DB상에 북마크인 상태로 업데이트 해주는 함수이다.
+*  @param projectNum- 해당하는 프로젝트를 찾기위한 변수
+**/
 function updateProjectBookmark(projectNum) {
 	$.ajax({
 		url:"projectBookmarkUpdate",
@@ -320,7 +417,13 @@ function updateProjectBookmark(projectNum) {
 	})
 }
 
-//프로젝트 즐겨찾기 해제
+/**
+* @함수명 : updateProjectNoneBookmark(projectNum)
+* @작성일 : 2018. 6. 15.
+* @작성자 : 최재욱
+* @설명 : 북마크 버튼을 눌럿을때 DB상에 북마크가 아닌 상태로 업데이트 해주는 함수이다.
+*  @param projectNum- 해당하는 프로젝트를 찾기위한 변수
+**/
 function updateProjectNoneBookmark(projectNum) {
 	$.ajax({
 		url:"projectNoneBookmarkUpdate",
@@ -340,7 +443,13 @@ function updateProjectNoneBookmark(projectNum) {
 	})
 }
 
-//프로젝트 검색
+/**
+* @함수명 : searchProject(projectArray)
+* @작성일 : 2018. 6. 16.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 검색시 그에 해당하는 프로젝트를 보여주는 함수 이다.
+*  @param projectArray- 프로젝트 버튼의 색을 정해주기 위한 색 배열
+**/
 function searchProject(projectArray) {
 	$("#searchBox").empty();
 	var userId = $("#hiddenUserId").val();
@@ -379,7 +488,13 @@ function searchProject(projectArray) {
 	
 }
 
-//오토컴플릿
+/**
+* @함수명 : utoCompleteProject()
+* @작성일 : 2018. 6. 16.
+* @작성자 : 최재욱
+* @설명 : 프로젝트를 검색시 사용자가 작성한 내용과 일치하는 프로젝트 이름을
+* 미리 보여주는 함수이다.
+**/
 function autoCompleteProject() {
 	 $.ajax({
  		url : "allProject",
