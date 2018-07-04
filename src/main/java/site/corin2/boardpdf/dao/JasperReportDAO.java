@@ -34,9 +34,9 @@ public Connection getConnection(HttpSession session) throws SQLException{
 public JasperReport getCompiledFile(String fileName, HttpServletRequest request) throws JRException {
 	File reportFile = new File( request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
 	// If compiled file is not found, then compile XML template
-	if (!reportFile.exists()) {
-	           JasperCompileManager.compileReportToFile(request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jrxml"),request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
-	    }
+	
+	    JasperCompileManager.compileReportToFile(request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jrxml"),request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
+	   
     	JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());
 	   return jasperReport;
 	} 

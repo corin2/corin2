@@ -1,3 +1,10 @@
+/**
+파일명: checklist.js
+    설명: 사용자 체크리스트 관한 파일
+    작성일: 2018-06-18
+    작성자: 최재욱
+**/
+
 $( function() {
     $( "#tabs" ).tabs();
     userGradeCheckList();
@@ -5,22 +12,30 @@ $( function() {
 
 var myGradeNum = '';
 
-//테이블 생성
+/**
+* @함수명 : checkListTable()
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 :체크리스트의 th부분을 생성하고 사용자의 등급을 구분하여 사용자 체크리스트의 
+* 내용을 추가하는 버튼을 등급에 따라 서로 다르게 생성해준다.
+**/
 function checkListTable() {
-	 $('#tabs-2').empty();
  	 var table = '';
  	 var div='';
 		 table += "<table class='table table-striped table-bordered table-hover'>"
 			   + "<tbody>"
 			   + "<tr>"
-			   + "<th class='tdalignclass'>NO</th>"
+			   + "<th class='tdalignclass'>NO</th>";
 	if(myGradeNum=='G300'){
-		  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
-		  		+ "<span class='glyphicon glyphicon-print checkprint'><a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'></a></span>"
-			  	+ "</th>"
+		  table += "<th id='printa' class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
+			    + "<a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
+			    + "</th>"
+		  
 	}else{
-	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<span class='glyphicon glyphicon-print checkprint'><a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'></a></span></th>"
-	}	   
+	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST"
+				+ "<a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
+		    	+ "</th>";
+	}
 		  table += "<th class='tdalignclass'>CHECK</th>"
 	 
 	  if(myGradeNum=='G300'){
@@ -31,12 +46,19 @@ function checkListTable() {
 			   + "<tbody id='CheckAddBox'>"
 			   + "</tbody>"
 			   + "</table>"
-		$('#tabs-2').append(table)
-		$('#checklisttitle').append(div)
+		$('#tabs-2').html(table)
+		$('#checklisttitle').html(div)
 		showCheckList();
+		
 }
 
-//Confirm 테이블 생성
+/**
+* @함수명 : checkListTableConfirm()
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 프로젝트의 리더이면 팀원이 작성한 사용자 체크리스트의 결과를
+* 확인 할 수 있는 탭에 th부분을 생성해 준다.
+**/
 function checkListTableConfirm() {
 	$('#tabs-4').empty();
 	$.ajax({
@@ -73,26 +95,38 @@ function checkListTableConfirm() {
 	})
 }
 
-//체크리스트를 추가하는 창을 보여준다
+/**
+* @함수명 : addCardCheckListView()
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 체크리스트를 추가할 수 있는 input태그를 생성하고 
+* input태그 안에 포커스를 주어 바로 작성할 수 있게 했으며
+* 키프레스를 이용하여 enter키로 작성 가능하게 했다.
+**/
 function addCardCheckListView() {
-	$('#checkBoxAdd').remove();
+	$('#checkBoxAdd').parent().remove();
 	var div = "<tr>"
 			+ "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
 			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
 			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button></td></tr>";
 
-$('#CheckAddBox').html(div)
+$('#CheckAddBox').append(div)
 $('#CheckBoxInput').focus();
 }
 
-//체크리스트 추가
+/**
+* @함수명 : checkListInsert()
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트의 내용을 DB의 삽입 시키기 위한 함수이다.
+**/
 function checkListInsert() {
 	$.ajax({
 		url:"insertCheckList",
 		dataType: "JSON",
 		data:{projectNum:sessionProjectNum, checkContent:$("#CheckBoxInput").val()},
 		success:function(data){
-			showCheckList();
+			userGradeCheckList();
 		},
 		error: function() {
 			swal({
@@ -105,7 +139,13 @@ function checkListInsert() {
 	})
 }
 
-//체크리스트 뿌리기
+/**
+* @함수명 : showCheckList()
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트의 내용을 DB에서 가져와서 각 해당하는 라인에
+* 보여주기 위한 함수 이다.
+**/
 function showCheckList(){
 	$('#CheckAddBox').empty();
 	$.ajax({
@@ -146,7 +186,14 @@ function showCheckList(){
 }
 
 
-//Confirm 체크리스트 뿌리기
+/**
+* @함수명 : showCheckListConfrim(user)
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 파라미터로 각 프로젝트의 해당하는 멤버의 아이디를 받아
+* 해당위치의 체크리스트의 내용과 멤버의 아이디를 보여주는 함수 이다.
+* @param user - 멤버의 아이디 배열
+**/
 function showCheckListConfrim(user){
 	$('#CheckConfrimAddBox').empty();
 	$.ajax({
@@ -184,14 +231,28 @@ function showCheckListConfrim(user){
 	});
 }
 
-//취소버튼 클릭시 사라짐
+/**
+* @함수명 : showCheckListConfrim(user)
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트 추가하는 부분의 취소 버튼을 누르게
+* 되면 실행이되고 자기사진을 제거하여 사라지게 한다.
+**/
 function removeCheckListAdd() {
 	$('#checkBoxAdd').remove();
 	showCheckList();
 }
 
 
-//체크리스트 수정하는 창 생성
+/**
+* @함수명 : updateCheckListAdd(index,checkNum)
+* @작성일 : 2018. 6. 18.
+* @작성자 : 최재욱
+* @설명 : 수정 버튼을 클릭시 해당하는 라인을 없애고 그위치에 사용자 체크리스트를
+* 수정 할수 있는 input을 보여준다.
+* @param index- 각라인을 구분하기위한 변수
+* @param checkNum- 각라인의 내용이 실제 가지고 있는 DB상의 번호를 확인하기 위한 변수
+**/
 function updateCheckListAdd(index,checkNum) {
 	if($("#checkBoxAdd").val() != ''){
 	$("#index"+index).empty();
@@ -206,7 +267,13 @@ function updateCheckListAdd(index,checkNum) {
 	}
 }
 
-//체크리스트 수정
+/**
+* @함수명 : updateCheckListContent(checkNum)
+* @작성일 : 2018. 6. 19.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트의 사용자가 수정한 값을 DB상에 수정하기위한 함수 이다. 
+* @param checkNum- DB상의 번호를 확인하기 위한 변수
+**/
 function updateCheckListContent(checkNum) {
 	if($("#CheckBoxInput").val()!=''){
 	$.ajax({
@@ -233,15 +300,20 @@ function updateCheckListContent(checkNum) {
 	}
 }
 
-//체크리스트 삭제
+/**
+* @함수명 : deleteCheckListContent(checkNum)
+* @작성일 : 2018. 6. 19.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트 테이블에서 보이지 않게 삭제 시키는 함수이다.
+* @param checkNum- DB상의 번호를 확인하기 위한 변수
+**/
 function deleteCheckListContent(checkNum) {
 	$.ajax({
 		url : "deleteCheckListContent",
 		datatype : "JSON",
 		data :{projectNum:sessionProjectNum,checkNum:checkNum},
 		success: function(data){
-			swal("체크리스트가 삭제되었습니다.");
-			showCheckList();
+			userGradeCheckList();
 		},
 		error: function() {
 			swal({
@@ -255,7 +327,13 @@ function deleteCheckListContent(checkNum) {
 	
 }
 
-//체크여부 뿌려주기
+/**
+* @함수명 : checkedSelectAll()
+* @작성일 : 2018. 6. 19.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트의 체크여부를 DB 상에서 불러와 
+* 멤버가 체크한 부분에 체크시켜주기 위한 함수 이다.
+**/
 function checkedSelectAll() {
 	$.ajax({
 		url:"selectChecked",
@@ -279,7 +357,13 @@ function checkedSelectAll() {
 	
 }
 
-//confirm 체크드 뿌려주기
+/**
+* @함수명 : checkedSelectAllConfirm()
+* @작성일 : 2018. 6. 19.
+* @작성자 : 최재욱
+* @설명 : 프로젝트의 리더라면 해당 프로젝트의 멤버들의 아이디 별로
+* 체크 여부를 확인 할 수있게 해당 체크 박스의 체크여부를 생성해준다. 
+**/
 function checkedSelectAllConfirm() {
 	$.ajax({
 		url:"selectCheckedConfirm",
@@ -302,7 +386,14 @@ function checkedSelectAllConfirm() {
 	})
 	
 }
-//로그인한 사용자의 멤버등급
+
+/**
+* @함수명 : userGradeCheckList()
+* @작성일 : 2018. 6. 19.
+* @작성자 : 최재욱
+* @설명 : 프로젝트의 사용자 등급을 판별하여 각 등급별로 해당하는 내용의
+* 탭을 생성해 주는 함수이다.
+**/
 function userGradeCheckList() {
 	$.ajax({
 		url:"userGradeCheckList",
@@ -322,8 +413,8 @@ function userGradeCheckList() {
 					$("#tab3").remove();
 					$("#tab4").remove();
 					skillCheckListTable();
-					checkListTable();
 					showSkillCheckList();
+					checkListTable();
 				   
 				}
 			})

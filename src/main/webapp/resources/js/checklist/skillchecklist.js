@@ -1,8 +1,20 @@
+/**
+파일명: skillchecklist.js
+    설명: 기본 체크리스트 관한 파일
+    작성일: 2018-06-20
+    작성자: 최재욱
+**/
+
 $( function() {
     $( "#tabs" ).tabs();
   });
 
-//테이블 생성
+/**
+* @함수명 : skillCheckListTable()
+* @작성일 : 2018. 6. 20.
+* @작성자 : 최재욱
+* @설명 :체크리스트의 th부분을 생성해준다.
+**/
 function skillCheckListTable() {
 	$('#tabs-1').empty();
 	var table ="";
@@ -11,7 +23,7 @@ function skillCheckListTable() {
 		  + "<tbody>"
 		  + "<tr>"
 		  + "<th class='tdpositionclass tdalignclass'>CLASS</th>"
-		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<span class='glyphicon glyphicon-print checkprint'><a href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'></a></span></th>"
+		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<a href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a></th>"
 		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
 		  + "</tbody>"
@@ -22,7 +34,13 @@ function skillCheckListTable() {
 }
 
 
-//Confirm 테이블 생성
+/**
+* @함수명 : skillCheckListTableConfirm()
+* @작성일 : 2018. 6. 20.
+* @작성자 : 최재욱
+* @설명 : 프로젝트의 리더이면 팀원이 작성한 사용자 체크리스트의 결과를
+* 확인 할 수 있는 탭에 th부분을 생성해 준다.
+**/
 function skillCheckListTableConfirm() {
 	$('#tabs-3').empty();
 	$.ajax({
@@ -61,7 +79,14 @@ function skillCheckListTableConfirm() {
 	
 }
 
-//Confirm 기본 체크리스트 내용 뿌리기
+/**
+* @함수명 : showSkillCheckListConfirm(user)
+* @작성일 : 2018. 6. 20.
+* @작성자 : 최재욱
+* @설명 : 파라미터로 각 프로젝트의 해당하는 멤버의 아이디를 받아
+* 해당위치의 체크리스트의 내용과 멤버의 아이디를 보여주는 함수 이다.
+* @param user - 멤버의 아이디 배열
+**/
 function showSkillCheckListConfirm(user){
 	$.ajax({
 		type : "post",
@@ -94,7 +119,12 @@ function showSkillCheckListConfirm(user){
 	});
 }
 
-//기본 체크리스트 내용 뿌리기
+/**
+* @함수명 : showSkillCheckList(user)
+* @작성일 : 2018. 6. 21.
+* @작성자 : 최재욱
+* @설명 : 기본적인 체크리스트의 내용을 생성하여 보여주는 함수이다.
+**/
 function showSkillCheckList(){
 	$('#skillCheckAddBox').empty();
 	$.ajax({
@@ -125,7 +155,13 @@ function showSkillCheckList(){
 	});
 }
 
-//체크여부 확인
+/**
+* @함수명 : checkedInsert(checkNum)
+* @작성일 : 2018. 6. 21.
+* @작성자 : 최재욱
+* @설명 : 사용자가 체크를 하엿을때 해당 하는 내용의 체크여부를 DB에 저장 또는 삭제 하기 위한 함수이다.
+* @param : checkNum - DB상의 변호를 구분하기 위한 변수
+**/
 function checkedInsert(checkNum) {
 	if($("#skillCheckedBox"+checkNum).is(":checked")||$("#checkedBox"+checkNum).is(":checked")){
 		$.ajax({
@@ -179,7 +215,13 @@ function checkedInsert(checkNum) {
 		
 	
 }
-//체크여부 뿌려주기
+/**
+* @함수명 : checkedSelect()
+* @작성일 : 2018. 6. 21.
+* @작성자 : 최재욱
+* @설명 : 체크리스트의 체크여부를 DB 상에서 불러와 
+* 체크한 부분에 체크시켜주기 위한 함수 이다.
+**/
 function checkedSelect() {
 	$.ajax({
 		url:"selectChecked",
@@ -202,7 +244,13 @@ function checkedSelect() {
 	})
 	
 }
-//confirm 체크드 뿌려주기
+/**
+* @함수명 : checkedSelectConfirm()
+* @작성일 : 2018. 6. 21.
+* @작성자 : 최재욱
+* @설명 : 사용자 체크리스트의 체크여부를 DB 상에서 불러와 
+* 멤버가 체크한 부분에 체크시켜주기 위한 함수 이다.
+**/
 function checkedSelectConfirm() {
 	$.ajax({
 		url:"selectCheckedConfirm",

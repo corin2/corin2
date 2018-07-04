@@ -182,7 +182,7 @@ function checkBoxMod(obj, checkNum){
 
 /**
 * @함수명 : checkBoxModOk(obj, checkNum)
-* @작성일 : 2018. 06. 09.
+* @작성일 : 2018. 06. 11.
 * @작성자 : 김 진 원
 * @설명 : 변화시킬 내용을 가지고 해당 카드체크리스트넘버로 비동기로 업데이트한다
 * @param obj - 자신태그(this)
@@ -196,7 +196,7 @@ function checkBoxModOk(obj, checkNum){
 
 /**
 * @함수명 : focusOutCheckListDisgard(obj)
-* @작성일 : 2018. 06. 09.
+* @작성일 : 2018. 06. 11.
 * @작성자 : 김 진 원
 * @설명 : onfocusout아웃이 되었을 때 텍스트박스가 사라지는데 완료버튼 위에서 onfocusout했을 때,
 * 		사라지지않고 수정 혹은 생성되는 함수가 실행 될 수 있도록 hover로 생성 되고 삭제 되도록 만들어짐.
