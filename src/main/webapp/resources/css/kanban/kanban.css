@@ -95,8 +95,36 @@
     font-weight:bold;
     overflow: auto;
     z-index: 2;
+    width: 310px;
 }
 
+.backlog {
+	border-bottom: 2px solid #4477AA;
+}
+#listnum3 > :first-child {
+	border-bottom: 2px solid #117733;
+}
+#listnum4 > :first-child {
+	border-bottom: 2px solid #DDCC77;
+}
+#listnum5 > :first-child {
+	border-bottom: 2px solid #CC6677;
+}
+#listnum6 > :first-child {
+	border-bottom: 2px solid #A593E0;
+}
+#listnum7 > :first-child {
+	border-bottom: 2px solid #CBE86B;
+}
+#listnum8 > :first-child {
+	border-bottom: 2px solid #FEC9C9;
+}
+#listnum9 > :first-child {
+	border-bottom: 2px solid #1EC0FF;
+}
+#listnum10 > :first-child {
+	border-bottom: 2px solid #C9D5DE;
+}
 .card {
 	margin-left: 1px;
     margin-right: 1px;

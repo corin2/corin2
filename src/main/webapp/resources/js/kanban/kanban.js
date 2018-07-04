@@ -220,7 +220,7 @@ function showList(){
 			$.each(data.data, function(index, elt) {
 				if(elt.listNum == "1"){
 					htmltext += '<div class="kanbanbox">'
-							 + '<div class="listtitle"><label>'+ elt.listName +'</label></div>'
+							 + '<div class="listtitle backlog"><label>'+ elt.listName +'</label></div>'
 							 + '<div id="listnum' + elt.listNum + '" class="listbox"><input type="hidden" class="null"></div></div>';
 				}else if(elt.listNum =="2"){
 					htmltext += '<div><div id="listnum' + elt.listNum + '" class="userbox">'
