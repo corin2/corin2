@@ -3,6 +3,16 @@ $(function() {
 	dragCardCalendar();
 });
 
+/**
+* @함수명 : dialogStart(titleName, calendarNum)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 일반 캘린더를 생성하거나 수정할때 실행되는 함수로 dialog가 보여진다.
+* 		그 dialog에서 완료 또는 취소를 할 수 있으며 완료를 눌렀을 시에는 
+* 		dialog 에서 입력된 val()을 가지고 비동기적 처리가 실행된다.
+* @param titleName - 캘린더 제목 즉, 내용  
+* @param calendarNum - 캘린더 넘버  
+**/
 function dialogStart(titleName, calendarNum) {
 	//일정생성dialog 설정
 	$('#calEventDialog').dialog({
@@ -96,7 +106,13 @@ function dialogStart(titleName, calendarNum) {
 	}); // end - calEventDialog
 }
 
-//dialog 초기화
+/**
+* @함수명 : clearDialog()
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : dialog는 수정 할 때와 생성할 때와 정보를 볼 때, 보여지므로 입력된 정보가 수정되거나
+* 		생성될때, 내용들이 초기화 되여야만 생성할 때 열리는 dialog가 빈칸으로 보여지므로 초기화 시켜준다.
+**/
 function clearDialog() {
 	$("#eventTitle").val("");
 	$("#eventStart").val("");
@@ -104,7 +120,15 @@ function clearDialog() {
 	$("#eventColor").val("#000000");
 }		
 
-//rgb 컬러 색 찾기
+/**
+* @함수명 : rgb2hex(rgb)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : rgb 컬러가 (***, ***, ***)로 들어온 문자열을 정규표현식으로 짤라 숫자만을 가지고
+* 		16진수 화 하여 hex 형태로 만들어 색깔의 문자열을 가져온다
+* @param rgb - rgb 형태의 문자열
+* @return hex 형태의 문자열
+**/
 function rgb2hex(rgb) {
 	rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
     function hex(x) {
@@ -113,7 +137,18 @@ function rgb2hex(rgb) {
     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
 }
 
-//캘린더 설정
+/**
+* @함수명 : showCalendar()
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 풀캘린더를 정의&사용 한 함수.
+* 		카드의 정보가 풀캘린더로 drop 되었을 때 비동기로 저장
+* 		풀캘린더의 캘린더를 클릭하였을 때, 보여지는 것이 id에 따라 dialog가 보여질지, modal이 보여질지 정의
+* 		풀캘린더의 캘린더가 드래그되어 eventdrop이 되었을 때 비동기로 날짜의 정보가 변화되어 저장
+* 		풀캘린더의 캘린더가 eventResize이 되었을 때 비동기로 날짜의 정보가 변화되어 저장
+* 		풀캘린더의 캘린더가 eventDragStop이 되었을 때 그 위치가 카드들이 모여진 div태그라면 캘린더가 비동기로 삭제
+* 		풀캘린더의 달력을 클릭또는 클릭드래그 하여 select 된 날짜의 수만큼 dialog가 입력되고 그 내용을 DB에 저장될 함수를 실행
+**/
 function showCalendar() {
 	$('#calendar').fullCalendar({
 		header: {
@@ -274,7 +309,15 @@ function showCalendar() {
 	});
 }
 
-//일정 위치수정
+/**
+* @함수명 : calendarDateUpdate(calendarData, id)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 일정의 위치가 수정이 되었을 때, card에서 파생된 일정인지 일반 일정인지를
+* 		찾아 그것의 일정을 비동기로 날짜 변환하여 저장하고 다시 풀캘린더를 뿌려준다.
+* @param calendarData - 변화될 정보가 배열에 저장되어 온 정보
+* @param id - 변화될 풀캘린더 일정의 id
+**/
 function calendarDateUpdate(calendarData, id){
 	if(id.indexOf('card') > -1){
 		$.ajax({
@@ -316,6 +359,13 @@ function calendarDateUpdate(calendarData, id){
 }
 
 //일정을 생성하는 곳 (카드들~)
+/**
+* @함수명 : dragCardCalendar()
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 칸반에 저장된 카드들을 불러와 캘린더에서 사용할 수 있도록 <div id=external-events> 안에
+* 		풀캘린더 일정 형태로 div 를 만들어 뿌려준다 
+**/
 function dragCardCalendar() {
 	$.ajax({
 		type : "post",
@@ -359,13 +409,26 @@ function dragCardCalendar() {
 	});
 }
 
+/**
+* @함수명 : cardNowResult(check)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : <div id=external-events>의 길이를 정의 한 것으로 사용자가 크게 보기를 원할때와
+* 		작게보기를 원할때를 비교하여 css를 변화 시킨다.
+* @param check - css를 어떤 형태로 바꿀지에 대한 비교값
+**/
 function cardNowResult(check) {
 	if(check == 0) $('#external-events').attr('class', 'chevron-down');
 	else if(check == 1) $('#external-events').attr('class', 'chevron-up');
 	dragCardCalendar();
 }
 
-//카드들이 캘린더에 드래그가 가능하게 된다.
+/**
+* @함수명 : canDragCard()
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : <div id=external-events> 안에 있는 <div class=fc-event> 들이 드래그가 가능하게 한다.
+**/
 function canDragCard() {
 	$('#external-events .fc-event').each(function() {
 		$(this).data('event', {
@@ -383,7 +446,13 @@ function canDragCard() {
 	calendarCardView();
 }
 
-//원래 달력에 있던 일정을 박스에서 달력으로 뿌려주기위한 준비.
+/**
+* @함수명 : calendarCardView()
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 풀캘린더가 실행될때 이미 DB에 저장되어 있던 일정들을 다 뿌려주기 위해 데이터를 
+* 		배열로 만들어주는 함수
+**/
 function calendarCardView() {
 	$.ajax({
 		type : "post",
@@ -424,7 +493,14 @@ function calendarCardView() {
 	});
 }
 
-//date가공 메서드
+/**
+* @함수명 : dateProcess(dateStr, days)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 문자로된 date를 date 형식으로 바꿔 날짜를 더하거나 뺄수 있게 만들어진 date가공 함수
+* @param dateStr - 날짜 형식의 문자열
+* @param days - 날짜를 더하거나 뺄값
+**/
 function dateProcess(dateStr, days) {
 	var date = new Date(dateStr); // Date 객체 생성
 	date.setDate(date.getDate() + days); // Date 가감설정
@@ -432,14 +508,28 @@ function dateProcess(dateStr, days) {
 	return dateToISO;
 }
 
-//arr일때 date 가공
+/**
+* @함수명 : dateProcessArray(arr, days)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 : 가공할 날짜가 한개가 아닌 여러개일 경울 배열에 담아 가공할 수 있도록 만들어진 함수
+* @param arr - 가공할 데이터가 담겨있는 날짜 형식의 문자열이 담기 배열
+* @param days - 날짜를 더하거나 뺄값
+**/
 function dateProcessArray(arr, days) { 
 	for(var i in arr) {
 		arr[i].end = dateProcess(arr[i].end, days);
 	}
 }
 
-//원래 달력에 있던 일정을 박스에서 달력으로 뿌려준다.
+/**
+* @함수명 : calendarRenderEvent(calendarArr)
+* @작성일 : 2018. 06. 25.
+* @작성자 : 김 진 원
+* @설명 :  calendarCardView()에서 가공된 배열 데이터를 가지고 만들어진 풀캘린더에
+* 		일정들을 renderEvent 해주기 위한 함수 
+* @param calendarArr - 풀캘린더에 저장될 일정들이 담겨있는 배열
+**/
 function calendarRenderEvent(calendarArr) {
 	dateProcessArray(calendarArr, 1); //출력시 DB종료일 + 1일
 	$('#calendar').fullCalendar('removeEvents');
