@@ -166,5 +166,9 @@
 	float: right;
 	color: gray;
 	margin-right: 8%;
-	
+	font-size: 25px;
+}
+.leanaprint{
+    font-size: 19px;
+    margin-left: -16px;
 }

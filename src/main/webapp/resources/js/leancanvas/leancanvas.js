@@ -78,7 +78,7 @@ function allSelectLeanCanvas(){
 					$("#leanheader").empty();
 				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly value="'+elt.teamName+'" class="search"><span class="glyphicon close1 kanbanCheckMod" onclick="teamNameEditClick(\''+elt.teamName+'\')" >&#xe065;</span></h2>'
 						+'<br>'
-						+'<<span class="glyphicon glyphicon-print leanbtnprint"><a href="generateReport?file=leanCanvas&projectNum='+sessionProjectNum+'&userId='+$("#hiddenUserId").val()+'">&nbsp;Print</span>'
+						+'<span class="glyphicon glyphicon-print leanbtnprint"><a class="leanaprint" href="generateReport?file=leanCanvas&projectNum='+sessionProjectNum+'&userId='+$("#hiddenUserId").val()+'">&nbsp;Print</span>'
 						+'<br>'
 						+'<br>';
 					$("#leanheader").append(html);
@@ -86,7 +86,7 @@ function allSelectLeanCanvas(){
 					$("#leanheader").empty();
 				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search">'
 						+'<br>'
-						+'<span class="glyphicon glyphicon-print leanbtnprint"><a href="generateReport?file=leanCanvas&projectNum='+sessionProjectNum+'&userId='+$("#hiddenUserId").val()+'">&nbsp;Print</span>'
+						+'<span class="glyphicon glyphicon-print leanbtnprint"><a class="leanaprint" href="generateReport?file=leanCanvas&projectNum='+sessionProjectNum+'&userId='+$("#hiddenUserId").val()+'">&nbsp;Print</span>'
 						+'<br>'
 						+'<br>';
 					$("#leanheader").append(html);
