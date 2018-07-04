@@ -489,7 +489,7 @@ function searchProject(projectArray) {
 }
 
 /**
-* @함수명 : utoCompleteProject()
+* @함수명 : autoCompleteProject()
 * @작성일 : 2018. 6. 16.
 * @작성자 : 최재욱
 * @설명 : 프로젝트를 검색시 사용자가 작성한 내용과 일치하는 프로젝트 이름을
