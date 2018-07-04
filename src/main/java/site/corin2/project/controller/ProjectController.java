@@ -38,7 +38,13 @@ public class ProjectController {
 		return "project.project";
 	}
 	
-	//프로젝트 생성
+	/**
+	* @함수명 :  projectInsertView(ProjectDTO project, Model model)
+	* @작성일 : 2018. 6. 13.
+	* @작성자 : 최재욱
+	* @설명 : 프로젝트를 생성하기 위한 함수
+	* @param ProjectDTO project- ProjectDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/projectInsert")
 	public View projectInsertView(ProjectDTO project, Model model) {
 		int result = service.projectInsert(project);
@@ -46,7 +52,13 @@ public class ProjectController {
 		
 	}
 	
-	//프로젝트 전체 리스트보기
+	/**
+	* @함수명 : projectAllSelectView(UserDTO user, Model model)
+	* @작성일 : 2018. 6. 13.
+	* @작성자 : 최재욱
+	* @설명 : 프로젝트 언어의 색을 이용하여 프로젝트 버튼의 색을 지정해 주고 프로젝트를 보여주는 함수이다.
+	* @param UserDTO user- UserDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/projectAllList")
 	public View projectAllSelectView(UserDTO user, Model model) {
 		List<ProjectDTO> list = null;
@@ -55,7 +67,14 @@ public class ProjectController {
 		return jsonview;
 	}
 	
-	//즐겨찾기 리스트 보기
+	/**
+	* @함수명 : projectBookSelectView(UserDTO user, Model model)
+	* @작성일 : 2018. 6. 14.
+	* @작성자 : 최재욱
+	* @설명 : 프로젝트 언어의 색을 이용하여 프로젝트 버튼의 색을 지정해 주고 
+	* 즐겨찾기 부분에 프로젝트를 보여주는 함수이다.
+	* @param projectArray- 프로젝트언어에 해당하는 색을 담은 배열
+	**/
 	@RequestMapping("/projectBookList")
 	public View projectBookSelectView(UserDTO user, Model model) {
 		List<ProjectDTO> list = null;

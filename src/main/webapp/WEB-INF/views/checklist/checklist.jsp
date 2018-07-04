@@ -9,7 +9,7 @@
 <div id="tabs" class="checkbackdiv">
   <h2 id='checklisttitle'>체크리스트</h2>
   <hr>
-  <ul>
+  <ul class="nav nav-tabs">
     <li><a href="#tabs-1" onclick="userGradeCheckList()">공통체크리스트</a></li>
     <li><a href="#tabs-2" onclick="userGradeCheckList()">사용자체크리스트</a></li>
     <li id="tab3"><a id="3tab" href="#tabs-3" onclick="userGradeCheckList()">공통체크리스트확인</a></li>
