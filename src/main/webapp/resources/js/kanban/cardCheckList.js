@@ -33,7 +33,10 @@ function addCardCheckList() {
 			data:{checkContent:value, cardNum:cardNum},
 			success:function(data){
 				showCardCheckList();
-			}
+			},
+			error: function() {
+	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+	        }
 		});
 	}
 }
@@ -63,7 +66,10 @@ function showCardCheckList(){
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
 				}
 			});
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -76,7 +82,10 @@ function deleteCardCheckList(checkNum){
 		data:{checkNum:checkNum},
 		success:function(data){
 			showCardCheckList();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -101,7 +110,10 @@ function checkUpdate(checked, content, checkNum){
 		data:{isChecked:checked, checkContent:content, checkNum:checkNum},
 		success:function(data){
 			showCardCheckList();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 

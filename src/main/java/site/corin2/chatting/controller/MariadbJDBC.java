@@ -55,10 +55,6 @@ public class MariadbJDBC {
 					userprofile = rs.getString("userprofile");
 					username = rs.getString("username");
 					password = rs.getString("password");
-					System.out.println(userid + "," +
-							   userprofile + "," +
-							   username + "," +
-					           password);
 				}while(rs.next());
 			}else {
 				System.out.println("조회된 데이터가 없습니다");

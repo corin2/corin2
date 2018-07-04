@@ -51,7 +51,15 @@
 			        type: 'success',
 			        html: '재설정된 비밀번호는 : <strong>' + result.value + '</strong> 입니다.'
 			      });
-	            }
+	            },
+	    		error: function() {
+	    			swal({
+	    				 type: 'error',
+	    				 title: 'Oops...',
+	    				 text: 'Something went wrong!',
+	    				 footer: '<a href>Why do I have this issue?</a>'
+	    				})
+	    		}
 	        });
 		})
 	</script>

@@ -79,7 +79,6 @@ function sortable(){
 				}
 			}
 			sortablecnt = 1;
-			
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
 				swal('TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.');
 				send(5);
@@ -89,12 +88,16 @@ function sortable(){
 					data : { 
 						listNum : listNum,
 						userId : children[0].className,
-						cardTaxis : productOrder
+						cardTaxis : productOrder,
+						cardNum : ui.item[0].id.substr(7)
 					},
 					success : function(data){
 						sortablecnt = 0; sortablecnt2 = 0; sortablecnt3 = 0;
 						send(1);
-					}
+					},
+					error: function() {
+			            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+			        }
 				})
 			}
 			
@@ -122,7 +125,10 @@ function showUserFrofiles(){
 			});
 			
 			showUserField(userProfiles);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -141,7 +147,7 @@ function showUserField(userProfiles){
 				$.each(userProfiles, function(i, elt2) {
 					if(elt.userId == elt2.userId) {
 						text1 += '<div class="userprofilebox">'
-							+ '<img src="resources/images/profile/'+elt2.userProfile+'" class="img-circle person" width="75" height="75">'
+							+ '<img src="'+profileStorageURL+elt2.userProfile+'" class="img-circle person" width="75" height="75">'
 							+ '<label>' + elt2.userName +'</label></div>';
 					}
 				});
@@ -160,7 +166,10 @@ function showUserField(userProfiles){
 			userhtml3 = firsttext3 + nexttext3;
 			
 			showList();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -193,7 +202,10 @@ function showList(){
 			
 			$('#content-md').html(htmltext);
 			showCard();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -212,8 +224,8 @@ function showCard(){
 					htmlText = '<div id="div'+elt.cardNum+'">'
 							 + '<div id="cardNum'+elt.cardNum+'" class="card ui-sortable-handle" onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'
 							 + '<label>'+elt.cardName+'</label>'
-							 + '<button type="button" class="close" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
-							 + '<button type="button" class="glyphicon close" onclick="updateCardTitle(event, '+elt.cardNum+')">&#xe065;</button></div></div>';
+							 + '<button type="button" class="close closekanban" onclick="deleteCard(event,'+elt.cardNum+')" >&times;</button>'
+							 + '<button type="button" class="glyphicon close updatekanban" onclick="updateCardTitle(event, '+elt.cardNum+')">&#xe065;</button></div></div>';
 					if(elt.userId == null) $('#listnum'+elt.listNum).append(htmlText);
 					else $('#listnum'+elt.listNum).children('div[class='+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]+']').children('div').append(htmlText);
 				}
@@ -223,7 +235,10 @@ function showCard(){
 			
 			autoWidth();
 			sortable();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -250,7 +265,10 @@ function addCard(obj, projectNum){
 			data:{cardName:value, projectNum:projectNum},
 			success:function(data){
 				send(1);
-			}
+			},
+			error: function() {
+	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+	        }
 		});
 	}
 }
@@ -273,7 +291,10 @@ function selectCard(cardNum){
 			$('#modalHeader').attr('onclick', 'cardNameMod()');
 			$("#modalHeader").html(data.dto.cardName);
 			$("#contentDetail").val(data.dto.cardContent);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -286,7 +307,10 @@ function updateCardDetail(e){
 		success:function(data){
 			swal("작성 완료");
 			selectCard($('#hiddenCardNum').val());
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -300,7 +324,10 @@ function deleteCard(e,cardNum){
 		data:{cardNum:cardNum},
 		success:function(data){
 			send(1);
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	});
 }
 
@@ -329,7 +356,10 @@ function updateCard(obj, cardNum){
 			data:{cardName:value, cardNum:cardNum},
 			success:function(data){
 				send(1);
-			}
+			},
+			error: function() {
+	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+	        }
 		});
 	}
 }
@@ -359,7 +389,10 @@ function cardNameModOk(e){
 				e.stopPropagation();
 				selectCard(cardNum);
 				send(1);
-			}
+			},
+			error: function() {
+	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+	        }
 		});
 	}else{
 		selectCard(cardNum);

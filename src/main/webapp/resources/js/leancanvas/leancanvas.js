@@ -34,7 +34,10 @@ function insertLean() {
 		},
 		success: function (data) {
 			allSelectLeanCanvas();
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 		
 	})
 }
@@ -69,7 +72,7 @@ function allSelectLeanCanvas(){
 					$("#problem").append(html1);
 				}else{
 					$("#problem").empty();
-				var	html1 ='<a class="leanatag" onclick="problemEditClick(\'problem\')">add...</a>'
+				var	html1 ='<a class="leanatag" onclick="problemEditClick(\'problem\')">대상고객이 가지고 있는 문제 3가지<br>add..</a>'
 					$("#problem").append(html1);
 				}
 				if(elt.solution!=null && elt.solution!='undefined' && elt.solution!=""){
@@ -79,7 +82,7 @@ function allSelectLeanCanvas(){
 					$("#solution").append(solution);
 				}else{
 					$("#solution").empty();
-					var	solution ='<a class="leanatag" onclick="problemEditClick(\'solution\')">add...</a>'
+					var	solution ='<a class="leanatag" onclick="problemEditClick(\'solution\')">문제해결을 위한 3가지 대안<br>add..</a>'
 						$("#solution").append(solution);
 					}
 				if(elt.uniqueValue!=null && elt.uniqueValue!='undefined' && elt.uniqueValue!=""){
@@ -89,7 +92,7 @@ function allSelectLeanCanvas(){
 					$("#uniquevalue").append(uniquevalue);
 				}else{
 					$("#uniquevalue").empty();
-					var	uniquevalue ='<a class="leanatag" onclick="problemEditClick(\'uniquevalue\')">add...</a>'
+					var	uniquevalue ='<a class="leanatag" onclick="problemEditClick(\'uniquevalue\')">구입해야 하는 이유<br>차별성을 알기 쉽게<br>설득력있는<br>한문장의 메세지<br>add..</a>'
 						$("#uniquevalue").append(uniquevalue);
 					}
 				if(elt.competitiveAdvantage!=null && elt.competitiveAdvantage!='undefined' && elt.competitiveAdvantage!=""){
@@ -99,7 +102,7 @@ function allSelectLeanCanvas(){
 					$("#compettive").append(compettive);
 				}else{
 					$("#compettive").empty();
-					var	compettive ='<a class="leanatag" onclick="problemEditClick(\'compettive\')">add...</a>'
+					var	compettive ='<a class="leanatag" onclick="problemEditClick(\'compettive\')">쉽게 복제할 수 없는 강점<br>add...</a>'
 						$("#compettive").append(compettive);
 					}
 				if(elt.customer!=null && elt.customer!='undefined' && elt.customer!=""){
@@ -109,7 +112,7 @@ function allSelectLeanCanvas(){
 					$("#customer").append(customer);
 				}else{
 					$("#customer").empty();
-					var	customer ='<a class="leanatag" onclick="problemEditClick(\'customer\')">add...</a>'
+					var	customer ='<a class="leanatag" onclick="problemEditClick(\'customer\')">타겟고객<br>add...</a>'
 					$("#customer").append(customer);
 					}
 				if(elt.alterNatives!=null && elt.alterNatives!='undefined' && elt.alterNatives!=""){
@@ -119,7 +122,7 @@ function allSelectLeanCanvas(){
 					$("#alternatives").append(html21);
 				}else{
 					$("#alternatives").empty();
-				var	html21 ='<a class="leanatag" onclick="problemEditClick(\'alternatives\')">add...</a>';
+				var	html21 ='<a class="leanatag" onclick="problemEditClick(\'alternatives\')">이전에 문제를 해결 하기 위해<br> 사용한 것 <br>add...</a>';
 					$("#alternatives").append(html21);
 					}
 				if(elt.mainPoint!=null && elt.mainPoint!='undefined' && elt.mainPoint!=""){
@@ -129,7 +132,7 @@ function allSelectLeanCanvas(){
 					$("#mainpoint").append(mainPoint);
 				}else{
 					$("#mainpoint").empty();
-					var	mainpoint ='<a class="leanatag" onclick="problemEditClick(\'mainpoint\')">add...</a>'
+					var	mainpoint ='<a class="leanatag" onclick="problemEditClick(\'mainpoint\')">검증이 필요한 항목 도출 <br>add...</a>'
 					$("#mainpoint").append(mainpoint);
 					}
 				if(elt.parentConcept!=null && elt.parentConcept!='undefined' && elt.parentConcept!=""){
@@ -139,7 +142,7 @@ function allSelectLeanCanvas(){
 					$("#parentconcept").append(parentConcept);
 				}else{
 					$("#parentconcept").empty();
-					var	parentconcept ='<a class="leanatag" onclick="problemEditClick(\'parentconcept\')">add...</a>'
+					var	parentconcept ='<a class="leanatag" onclick="problemEditClick(\'parentconcept\')">만들고자 하는 것에 대한 상위 개념<br>add...</a>'
 					$("#parentconcept").append(parentconcept);
 					}
 				if(elt.channel!=null && elt.channel!='undefined' && elt.channel!=""){
@@ -149,7 +152,7 @@ function allSelectLeanCanvas(){
 					$("#channel").append(channel);
 				}else{
 					$("#channel").empty();
-					var	channel ='<a class="leanatag" onclick="problemEditClick(\'channel\')">add...</a>'
+					var	channel ='<a class="leanatag" onclick="problemEditClick(\'channel\')">고객 접촉 가능 채널들 <br>add...</a>'
 					$("#channel").append(channel);
 					}
 				if(elt.earlyAdopter!=null && elt.earlyAdopter!='undefined' && elt.earlyAdopter!=""){
@@ -159,7 +162,7 @@ function allSelectLeanCanvas(){
 					$("#earlyadopter").append(earlyAdopter);
 				}else{
 					$("#earlyadopter").empty();
-					var	earlyadopter ='<a class="leanatag" onclick="problemEditClick(\'earlyadopter\')">add...</a>'
+					var	earlyadopter ='<a class="leanatag" onclick="problemEditClick(\'earlyadopter\')">누구에게 먼저 서비스를<br> 알릴지를 정한다<br>add...</a>'
 					$("#earlyadopter").append(earlyadopter);
 					}
 				if(elt.costStructure!=null && elt.costStructure!='undefined' && elt.costStructure!=""){
@@ -169,7 +172,7 @@ function allSelectLeanCanvas(){
 					$("#coststructuer").append(costStructure);
 				}else{
 					$("#coststructuer").empty();
-					var	coststructuer ='<a class="leanatag" onclick="problemEditClick(\'coststructuer\')">add...</a>'
+					var	coststructuer ='<a class="leanatag" onclick="problemEditClick(\'coststructuer\')">고객 획득 비용<br>유통 비용<br>서버 유지 비용<br>인건비 등<br>add...</a>'
 					$("#coststructuer").append(coststructuer);
 					}
 				if(elt.profit!=null && elt.profit!='undefined' && elt.profit!=""){
@@ -179,11 +182,14 @@ function allSelectLeanCanvas(){
 					$("#profit").append(profit);
 				}else{
 					$("#profit").empty();
-					var	profit ='<a class="leanatag" onclick="problemEditClick(\'profit\')">add...</a>'
+					var	profit ='<a class="leanatag" onclick="problemEditClick(\'profit\')">수익 창출 모델<br>고객 생애 가치<br>운영 수익<br>add...</a>'
 					$("#profit").append(profit);
 					}
 			})
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 	})
 }
 
@@ -326,7 +332,10 @@ function leanUpdate() {
 		},
 		success: function (data) {
 			allSelectLeanCanvas()
-		}
+		},
+		error: function() {
+            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+        }
 		
 	})
 }

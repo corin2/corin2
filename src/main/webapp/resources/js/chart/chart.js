@@ -17,6 +17,14 @@ function allList(){
 				lists.push(elt);
 			});
 			projectChart(lists);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -41,7 +49,6 @@ function projectChart(lists){
 				if(elt.listNum > 1)	data[(Number(elt.listNum)-2)] = data[(Number(elt.listNum)-2)]+1;
 				else data[(Number(elt.listNum)-1)] = data[(Number(elt.listNum)-1)]+1;
 			});
-			
 			var ctx = document.getElementById("projectChart").getContext('2d');
 			var myPieChart = new Chart(ctx,{
 			    type: 'doughnut',
@@ -49,12 +56,25 @@ function projectChart(lists){
 			    	labels : labels,
 					datasets : [{
 						data: data,
-						backgroundColor: palette('tol', data.length).map(function(hex) {
-					        return '#' + hex;
-					    })
+						backgroundColor: listColorData
 					}]
-			    }
+			    },
+				options : {
+					title: {
+						display: true,
+						text: '프로젝트 진행상태',
+						fontSize: 40
+					}
+				}
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -72,6 +92,14 @@ function checkListLength() {
 			var maxData = data.list.length;
 			
 			confirmCheckListLength(maxData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -86,6 +114,14 @@ function confirmCheckListLength(maxData) {
 		success : function(data){
 			maxData += data.list.length;
 			teamMemberUserIdSelect(maxData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -101,6 +137,14 @@ function teamMemberUserIdSelect(maxData) {
 				chartData.push({name:elt.userId, length:0});
 			});
 			checkedConfirmLength(maxData, chartData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -121,6 +165,14 @@ function checkedConfirmLength(maxData, chartData) {
 				});
 			});
 			checkListProceedChart(maxData, chartData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -146,7 +198,6 @@ function checkListProceedChart(maxData, chartData) {
 			$.each(chartData, function(i, elt) {
 				labels.push(elt.name); datas.push(elt.length);
 			});
-			console.log("datas.length"+datas.length)
 			var ctx = document.getElementById("checkListProceedChart").getContext('2d');
 			let chart = new Chart(ctx, {
 				type: 'polarArea',
@@ -171,9 +222,22 @@ function checkListProceedChart(maxData, chartData) {
 							min: 0,
 							stepSize: 5
 						}
+					},
+					title: {
+						display: true,
+						text: '체크리스트 현황',
+						fontSize: 40
 					}
 				}
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }

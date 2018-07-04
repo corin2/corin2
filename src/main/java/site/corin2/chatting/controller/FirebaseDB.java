@@ -42,8 +42,6 @@ public class FirebaseDB {
 			mariauser.setProfileImg("");
 		}
         
-        System.out.println(mariauser.toString());
-        
         return mariauser;
 	}
 	
@@ -60,7 +58,6 @@ public class FirebaseDB {
 		UserRecord userRecord;
 		try {
 			userRecord = FirebaseAuth.getInstance().createUserAsync(request).get();
-			System.out.println("성공적으로 사용자가 작성됨: " + userRecord.getUid());
 			return userRecord.getUid();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -89,7 +86,6 @@ public class FirebaseDB {
 			@Override
 			public void onDataChange(DataSnapshot snapshot) {
 				//Object document = snapshot.getValue();
-				System.out.println("Firebase DB가 갱신되었습니다.");
 				latch.countDown();
 			}
 			@Override

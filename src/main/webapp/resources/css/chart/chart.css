@@ -29,3 +29,15 @@ hr {
     border: 0;
     border-top: 3px solid #eee;
 }
+.chartbackdiv{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding : 15px;
+    min-height: 850px;
+}
+
+.charttitle{
+	margin-top : -89px;
+}

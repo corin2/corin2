@@ -54,7 +54,7 @@ if( nowBlock < totalBlock ) {
 		<%} %>
 		<%for (int indexI = startPage; indexI <= endPage; indexI++) { %>
 			<%if (indexI == nowPage) { %>
-			<li><a style="background-color: black;	color: white;"><%=indexI %></a></li>
+			<li><a style="background-color: #337AB7;	color: white;"><%=indexI %></a></li>
 			<%} else { %>
 			<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=indexI%>"><%=indexI %></a></li> 
 			<%} %>

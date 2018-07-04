@@ -9,15 +9,18 @@ var myGradeNum = '';
 function checkListTable() {
 	 $('#tabs-2').empty();
  	 var table = '';
-	 if(myGradeNum=='G300'){
-		 table += "<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
-		 }
+ 	 var div='';
 		 table += "<table class='table table-striped table-bordered table-hover'>"
 			   + "<tbody>"
 			   + "<tr>"
 			   + "<th class='tdalignclass'>NO</th>"
-			   + "<th class='tdalignclass tdCheckListContent'>CHECKLIST</th>"
-			   + "<th class='tdalignclass'>CHECK</th>"
+	if(myGradeNum=='G300'){
+		  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'></th>"
+	}else{
+	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST</th>"
+	}	   
+		  table += "<th class='tdalignclass'>CHECK</th>"
+	 
 	  if(myGradeNum=='G300'){
 		  table+= "<th class='tdpositionclass'>EDIT</th>"
 		  }
@@ -27,6 +30,7 @@ function checkListTable() {
 			   + "</tbody>"
 			   + "</table>"
 		$('#tabs-2').append(table)
+		$('#checklisttitle').append(div)
 		showCheckList();
 }
 
@@ -39,7 +43,6 @@ function checkListTableConfirm() {
 		data:{projectNum:sessionProjectNum},
 		success: function(data) {
 			var table ="";
-			console.log(data.list)
 			
 			table = "<table class='table table-striped table-bordered table-hover'>"
 			  + "<tbody>"
@@ -56,6 +59,14 @@ function checkListTableConfirm() {
 				  + "</table>";
 			$('#tabs-4').append(table);
 			showCheckListConfrim(data.list)
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -68,27 +79,32 @@ function addCardCheckListView() {
 			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
 			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button></td></tr>";
 
-$('#CheckAddBox').append(div)
+$('#CheckAddBox').html(div)
 $('#CheckBoxInput').focus();
 }
 
 //체크리스트 추가
 function checkListInsert() {
-	console.log($("#CheckBoxInput").val());
 	$.ajax({
 		url:"insertCheckList",
 		dataType: "JSON",
 		data:{projectNum:sessionProjectNum, checkContent:$("#CheckBoxInput").val()},
 		success:function(data){
-			console.log("삽입성공");
 			showCheckList();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
 
 //체크리스트 뿌리기
 function showCheckList(){
-	console.log("체크리스트뿌리기")
 	$('#CheckAddBox').empty();
 	$.ajax({
 		type : "post",
@@ -99,7 +115,6 @@ function showCheckList(){
 			var html="";
 			var i = 0;
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				if(elt.isDeleted==0){
 				html="<tr id='index"+(i+1)+"'>"
 					+"<td class='tdalignclass'>"+(i+1)+"</td>"
@@ -116,13 +131,20 @@ function showCheckList(){
 				}
 			});
 			checkedSelectAll();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
 
 //Confirm 체크리스트 뿌리기
 function showCheckListConfrim(user){
-	console.log("체크리스트뿌리기")
 	$('#CheckConfrimAddBox').empty();
 	$.ajax({
 		type : "post",
@@ -133,7 +155,6 @@ function showCheckListConfrim(user){
 			var html="";
 			var i = 0;
 			$.each(data.list, function(index, elt) {
-				console.log(elt)
 				if(elt.isDeleted==0){
 				html="<tr>"
 					+"<td class='tdalignclass'>"+(i+1)+"</td>"
@@ -148,6 +169,14 @@ function showCheckListConfrim(user){
 				}
 			});
 			checkedSelectAllConfirm();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -184,9 +213,15 @@ function updateCheckListContent(checkNum) {
 				checkContent:$("#CheckBoxInput").val(),
 				checkNum:checkNum},
 		success:function(data){
-			
-			console.log("업데이트성공"+data.result);
 			showCheckList();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 				
 	})
@@ -197,7 +232,6 @@ function updateCheckListContent(checkNum) {
 
 //체크리스트 삭제
 function deleteCheckListContent(checkNum) {
-	console.log(checkNum)
 	$.ajax({
 		url : "deleteCheckListContent",
 		datatype : "JSON",
@@ -205,6 +239,14 @@ function deleteCheckListContent(checkNum) {
 		success: function(data){
 			swal("체크리스트가 삭제되었습니다.");
 			showCheckList();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 	
@@ -220,6 +262,14 @@ function checkedSelectAll() {
 			$.each(data.list, function(index, elt) {
 					$("#checkedBox"+elt.checkNum).attr("checked","checked");
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	
 	})
@@ -233,11 +283,17 @@ function checkedSelectAllConfirm() {
 		datatype:"JSON",
 		data:{projectNum:sessionProjectNum},
 		success:function(data){
-			console.log(data.list)
 			$.each(data.list, function(index, elt) {
-				console.log("ggggg"+elt.checkNum+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]);
-			$("#"+elt.checkNum+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]).attr("checked","checked");
+				$("#"+elt.checkNum+elt.userId.split('@')[0]+elt.userId.split('@')[1].split('.')[0]).attr("checked","checked");
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	
 	})
@@ -250,7 +306,6 @@ function userGradeCheckList() {
 		datatype:"JSON",
 		data:{userId:$("#hiddenUserId").val(),projectNum:sessionProjectNum},
 		success:function(data){
-			console.log(data.list);
 			$.each(data.list, function(index, elt) {
 				myGradeNum = elt.gradeNum;
 				if(elt.gradeNum == 'G300'){
@@ -269,6 +324,14 @@ function userGradeCheckList() {
 				   
 				}
 			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }

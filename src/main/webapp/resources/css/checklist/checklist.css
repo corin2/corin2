@@ -1,11 +1,17 @@
-	.inputtext {
-		border: none;
-		border-right: 0px;
-		border-top: 0px;
-		boder-left: 0px;
-		boder-bottom:0px;
-		width: 86%;
-	}
+.inputtext {
+    border: none;
+    border-right: 0px;
+    border-top: 0px;
+    boder-left: 0px;
+    boder-bottom: 0px;
+    width: 86%;
+    height: 32px;
+    margin-left: 34px;
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size:'15px';
+}
 
 	/* The container */
 .container {
@@ -73,7 +79,14 @@
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
-
+.ui-widget-content {
+    border: 0px solid #dddddd;
+    background: #ffffff;
+    color: #333333;
+}
+.ui-widget.ui-widget-content {
+    border: 0px solid #c5c5c5;
+}
 .tdalignclass {
     vertical-align:inherit ;
     text-align: center;
@@ -126,7 +139,7 @@
 hr {
     margin-bottom: 20px;
     border: 0;
-    border-top: 3px solid #eee;
+    border-top: 0px;
 }
 
 .checklistFlow{
@@ -146,4 +159,18 @@ hr {
    border-bottom-left-radius: 10px;
    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
    background-color: #566270;
+}
+.ui-tabs .ui-tabs-panel {
+    display: block;
+    border-width: 0;
+    padding: 1em 0;
+    background: none;
+}
+
+.checkbackdiv{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding: 50px 80px 100px 80px;
 }

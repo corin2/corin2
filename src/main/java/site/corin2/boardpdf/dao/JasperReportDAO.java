@@ -3,7 +3,6 @@ package site.corin2.boardpdf.dao;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 import javax.naming.NamingException;
@@ -33,7 +32,6 @@ public Connection getConnection(HttpSession session) throws SQLException{
 }
 
 public JasperReport getCompiledFile(String fileName, HttpServletRequest request) throws JRException {
-	System.out.println("path " + request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
 	File reportFile = new File( request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
 	// If compiled file is not found, then compile XML template
 	if (!reportFile.exists()) {

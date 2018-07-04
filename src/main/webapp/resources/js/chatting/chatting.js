@@ -34,19 +34,10 @@ $(function() {
 	$('#conversation').empty(); // 대화창 초기화
 	if(sessionProjectNum != 'null') {
 		getChatUsers(); // 멤버 가져오기 함수
-		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
-		showMessage();
 	}
 	
 	// 사용자명 툴팁
 	$('[data-toggle="tooltip"]').tooltip(); //TODO 수정할 것
-	
-	// All 버튼 클릭 시
-	$('#allUsers').click(function() {
-		changeColor('#allUsers'); // 클릭 시 색상변경
-		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
-		showMessage(); // 메시지 출력
-	});
 	
 	// getChatUsers함수를 $(function() {...}) 함수 범위 밖에서 사용 선언
 	window.getChatUsers = getChatUsers;
@@ -56,6 +47,7 @@ $(function() {
 		$('.sideBar').empty(); // 채팅 유저리스트 초기화
 		getChatAllIcon(); // 전체채팅 아이콘 불러오기
 		
+		messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
 		chatUserList = []; // 채팅 유저리스트 배열
 		
 		$.ajax({
@@ -75,8 +67,20 @@ $(function() {
 					
 					chatUserList.push(obj);
 				});
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
+		
+		showMessage(); // 기존 채팅 메시지 출력
+		selectAllChat(); // 전체채팅 선택
+		selectPrivateChat(); // 1:1채팅 선택
 	}
 	
 	// 현재 사용자의 프로필 이미지 표시 함수
@@ -138,18 +142,29 @@ $(function() {
 		updateUser[userUid] = true;
 		db.child('projects/' + sessionProjectNum + '/users').update(updateUser);
 	}
-		
-	// 사용자 검색
-	db.child('users').on('child_added', function(snapshot) {
-		var user = snapshot.val();
-		user.key = snapshot.key;
-		
-		// 사용자 클릭 시
-		$('#' + user.key).click(function() {
-			changeColor('#' + user.key); // 클릭 시 색상변경
-			privateChat(user); // 1:1 대화
+	
+	// All 버튼 클릭 시 전체 채팅 시작
+	function selectAllChat() {
+		$('#allUsers').click(function() {
+			changeColor('#allUsers'); // 클릭 시 색상변경
+			messages = db.child('messages/' + sessionProjectNum); // 전체채팅 메시지 경로
+			showMessage(); // 메시지 출력
 		});
-	});
+	}
+	
+	// 사용자 클릭 시 1:1 채팅 시작
+	function selectPrivateChat() {
+		db.child('users').on('child_added', function(snapshot) {
+			var user = snapshot.val();
+			user.key = snapshot.key;
+			
+			// 사용자 클릭 시
+			$('#' + user.key).click(function() {
+				changeColor('#' + user.key); // 클릭 시 색상변경
+				privateChat(user); // 1:1 대화
+			});
+		});
+	}
 	
 	// 1:1 대화
 	function privateChat(user) {

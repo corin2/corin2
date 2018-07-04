@@ -7,6 +7,7 @@ function allUser(enabled, isDelete, pageNum){
 	$.ajax({
 		url : "allUser",
 		datatype : "JSON",
+		async:false,
 		success : function (data) {
 			$('#userManagement').empty();
 			var viewData = [];
@@ -22,7 +23,7 @@ function allUser(enabled, isDelete, pageNum){
 			$.each(viewData, function(i, elt) { //each문 i는 0부터
 				if((pageNum*5-5) <= i  && i <= (pageNum*5-1)){
 					texthtml += '<tbody><tr>'
-							 + '<td><img src="resources/images/profile/'+elt.userProfile+'" class="img-circle person" width="75" height="75"></td>'
+							 + '<td><img src="'+profileStorageURL+elt.userProfile+'" class="img-circle person" width="75" height="75"></td>'
 							 + '<td>'+ elt.userId +'</td><td>'+ elt.userName +'</td><td>';
 					if(elt.enabled == '1') texthtml += '인증회원';
 					else if (elt.enabled == '0') texthtml += '비인증회원';
@@ -40,6 +41,14 @@ function allUser(enabled, isDelete, pageNum){
 			texthtml += '</table>';
 			$('#userManagement').html(texthtml);
 			userPaging(enabled, isDelete, pageNum, viewData);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -54,9 +63,18 @@ function userDel(obj, enabled, isDelete, pageNum) {
 		$.ajax({
 			url : "userDel",
 			datatype:"JSON",
+			async:false,
 			data : {userId:userId},
 			success : function(data) {
 				allUser(enabled, isDelete, pageNum);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		})
 	}
@@ -72,9 +90,18 @@ function userReset(obj, enabled, isDelete, pageNum) {
 		$.ajax({
 			url : "userReset",
 			datatype:"JSON",
+			async:false,
 			data : {userId:userId},
 			success : function(data) {
 				allUser(enabled, isDelete, pageNum);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		})
 	}
@@ -112,9 +139,18 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 			type : "post",
 			url  : "userEdit",
 			datatype:"JSON",
+			async:false,
 			data : {userId:userId, userName:userName.trim(), enabled:enableddata, gradeNum:gradeNum},
 			success : function(data){
 				allUser(enabled, isDelete, pageNum);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else{
@@ -131,19 +167,19 @@ function userPaging(enabled, isDelete, pageNum, pagingData) {
 		if(i <= 5){
 			pagehtml += '<li><a ';
 			if(maxPage <= 5) {
-				if(pageNum == i) pagehtml += 'class="thisPage"';
+				if(pageNum == i) pagehtml += 'class="thisPage" ';
 				pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+i+')">'+i;
 			}else if(maxPage > 5) {
 				if(pageNum < 3) {
-					if(pageNum == i) pagehtml += 'class="thisPage"';
+					if(pageNum == i) pagehtml += 'class="thisPage" ';
 					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+i+')">'+i;
 				}
 				else if(pageNum > (maxPage-2)){
-					if(pageNum == (maxPage-5+i)) pagehtml += 'class="thisPage"';
+					if(pageNum == (maxPage-5+i)) pagehtml += 'class="thisPage" ';
 					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+(maxPage-5+i)+')">'+(maxPage-5+i);
 				}
 				else {
-					if(pageNum == (pageNum-3+i)) pagehtml += 'class="thisPage"';
+					if(pageNum == (pageNum-3+i)) pagehtml += 'class="thisPage" ';
 					pagehtml += 'onclick="allUser('+enabled+', \''+isDelete+'\', '+(pageNum-3+i)+')">'+(pageNum-3+i);
 				}
 			}

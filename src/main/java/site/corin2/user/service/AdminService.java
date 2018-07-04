@@ -9,7 +9,6 @@ package site.corin2.user.service;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,19 +20,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.View;
 
 import site.corin2.checklist.dto.CheckListDTO;
 import site.corin2.kanban.dto.ListDTO;
 import site.corin2.project.dto.LanguageDTO;
 import site.corin2.skill.dto.SkillDTO;
 import site.corin2.user.dao.AdminDAO;
-import site.corin2.user.dto.AdminDTO;
 import site.corin2.user.dto.UserDTO;
 import site.corin2.user.dto.UserGradeDTO;
 
@@ -238,7 +231,6 @@ public class AdminService {
 	
 	//template 변경하기
 	public void usetemplate(String signup) {
-		System.out.println("555"+signup);
 		String templatefilename = signup;
 		AdminDAO admindao = sqlsession.getMapper(AdminDAO.class);
 		try {

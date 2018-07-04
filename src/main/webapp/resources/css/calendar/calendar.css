@@ -12,15 +12,13 @@
     padding: 0 10px;
     border: #F5F5F5;
     background: #F5F5F5;
-    margin-right: 10px;
-    min-height: 136px;
+    margin-right: 4px;
+    min-height: 17px;
 }
 
 #external-events .fc-event {
 	margin: 1em 0;
 	cursor: move;
-	background-color: #5886BC;
-	border : 1px solid #5886BC;
 }
 
 .middleCalendar {
@@ -101,3 +99,16 @@ element.style {
 .fc-state-disabled {
     opacity: 1;
 }
+.calenbackdiv{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding: 40px 100px;
+}
+
+.calendarhr {
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 0px;
+}	

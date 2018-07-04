@@ -110,8 +110,6 @@ public class UploadController {
 	@RequestMapping(value="dateClick" , method=RequestMethod.GET)
 	public View dateClick(@RequestParam("projectNum")String projectNum,@RequestParam("date")String date,@RequestParam("extension")String extension ,Model model) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		System.out.println("일자별"+ extension);
-		System.out.println("일자별"+ date);
 		map.put("projectNum", projectNum);
 		map.put("date", date);
 		map.put("extension", extension);
@@ -123,7 +121,6 @@ public class UploadController {
 	@RequestMapping(value="exClick" , method=RequestMethod.GET)
 	public View exClick(@RequestParam("projectNum")String projectNum,@RequestParam("extension")String extension,Model model) {
 		HashMap map = new HashMap<String, Object>();
-		System.out.println("확장자별"+ extension);
 		map.put("projectNum", projectNum);
 		map.put("extension", extension);
 		model.addAttribute("extension", service.exClick(map));

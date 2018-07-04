@@ -19,7 +19,7 @@
 
 			<tbody>
 				<c:forEach items="${list}" var="list" varStatus="status">
-					<c:if test="${status.index >= (page.countPerPage*page.nowPage)-5}">
+					<c:if test="${status.index >= (page.countPerPage*page.nowPage)-page.countPerPage}">
 						<c:if test="${status.index < page.countPerPage*page.nowPage}">
 							<tr>
 								<td>${status.index+1}</td>

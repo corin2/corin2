@@ -12,7 +12,20 @@ $(function() {
 	// 이메일 차트 표시
 	showEmailChart();
 	// 통계 차트 표시
-	showStatsChart();
+	showStatsChart(-14);
+	
+	// 1주간 통계
+	$('#statsByWeek').click(function() {
+		showStatsChart(-7);
+	});
+	// 2주간 통계
+	$('#statsByTwoWeeks').click(function() {
+		showStatsChart(-14);
+	});
+	// 1달간 통계
+	$('#statsByMonth').click(function() {
+		showStatsChart(-31);
+	});
 	
 }); //end - jQuery
 
@@ -117,11 +130,11 @@ function showEmailChart() {
 }
 
 // 통계 차트
-function showStatsChart() {
+function showStatsChart(days) {
 	var chartStats = echarts.init(document.getElementById('stats'));
 	
 	var nowDate = formatDate(Date.now(), 0); // 오늘 날짜
-	var beforeDate = formatDate(Date.now(), -14); // 2주 전 날짜
+	var beforeDate = formatDate(Date.now(), days); // 2주 전 날짜
 	
 	var visitDate = [], visitCount = [],
 		userDate = [], userCount = [],
@@ -211,6 +224,14 @@ function allVisitCount() {
 		datatype: "text",
 		success: function(data) {
 			$('#allVisitCountResult').text(numberWithCommas(data.count));
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 } 
@@ -222,6 +243,14 @@ function allUserCount() {
 		datatype: "text",
 		success: function(data) {
 			$('#allUserCountResult').text(numberWithCommas(data.count));
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -233,6 +262,14 @@ function allProjectCount() {
 		datatype: "text",
 		success: function(data) {
 			$('#allProjectCountResult').text(numberWithCommas(data.count));
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -251,6 +288,14 @@ function allLanguageCount(arr) {
 					"color": obj.languageColor
 				});
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});	
 }
@@ -266,6 +311,14 @@ function allEmailCount(arr1, arr2) {
 				arr1.push(obj.email);
 				arr2.push(obj.emailCount);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -282,6 +335,14 @@ function visitCountByDate(arr1, arr2, start, end) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -298,6 +359,14 @@ function userCountByDate(arr1, arr2, start, end) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }
@@ -314,6 +383,14 @@ function projectCountByDate(arr1, arr2, start, end) {
 				arr1.push(obj.date);
 				arr2.push(obj.count);
 			});
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	})
 }

@@ -32,10 +32,19 @@
     		  $.ajax({
 					type : "post",
 					url : "vmload",
+					async:false,
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
 						signup = "signup";
 						$(".summernote").summernote("code", data.line);
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
     		  });
     	  });
@@ -44,10 +53,19 @@
     		  $.ajax({
 					type : "post",
 					url : "vmload2",
+					async:false,
 					contentType : "application/json; charset=utf-8",
 					success : function(data) {
 						signup = "signup2";
 						$(".summernote").summernote("code", data.line);
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
     		  });
     	  });
@@ -57,11 +75,20 @@
     		  $.ajax({
     			  	type : "post",
 					url : "vmsave",
+					async:false,
 					data : {savedata : $('#summernote').summernote('code') , signup : signup},
 					success : function(data) {
 						swal({type: "success",
 							text:"변경이 완료되었습니다."
 								});
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
 		 	 });
     	  });
@@ -71,8 +98,17 @@
     			  	type : "post",
 					url : "usetemplate",
 					data : {signup : signup},
+					async:false,
 					success : function(data) {
 						swal({type: "success",text:"저장이 완료되었습니다."});
+					},
+					error: function() {
+						swal({
+							 type: 'error',
+							 title: 'Oops...',
+							 text: 'Something went wrong!',
+							 footer: '<a href>Why do I have this issue?</a>'
+							})
 					}
 		 	 });
     	  });

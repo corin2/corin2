@@ -50,6 +50,14 @@ function dialogStart(titleName, calendarNum) {
 								data: inputParam,
 								success: function(data){
 									send(2);
+								},
+								error: function() {
+									swal({
+										 type: 'error',
+										 title: 'Oops...',
+										 text: 'Something went wrong!',
+										 footer: '<a href>Why do I have this issue?</a>'
+										})
 								}
 							});
 						}else if(titleName == '수정') {
@@ -59,6 +67,14 @@ function dialogStart(titleName, calendarNum) {
 								data: inputParam,
 								success: function(data){
 									send(2);
+								},
+								error: function() {
+									swal({
+										 type: 'error',
+										 title: 'Oops...',
+										 text: 'Something went wrong!',
+										 footer: '<a href>Why do I have this issue?</a>'
+										})
 								}
 							});
 						}
@@ -88,6 +104,15 @@ function clearDialog() {
 	$("#eventColor").val("#000000");
 }		
 
+//rgb 컬러 색 찾기
+function rgb2hex(rgb) {
+	rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    function hex(x) {
+        return ("0" + parseInt(x).toString(16)).slice(-2);
+    }
+    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+}
+
 //캘린더 설정
 function showCalendar() {
 	$('#calendar').fullCalendar({
@@ -103,9 +128,7 @@ function showCalendar() {
 			var start = date.format();
 			var cardNumber = $(this).attr('id').substr(10);
 			var calendarName = ui.helper[0].innerText.trim();
-			
-			$(this).remove(); //드래그가 완료되면 삭제된다.
-			
+			var rgb = $(this).css('background-color');
 			$.ajax({
 				type : "post",
 				url  : "addCalendar",
@@ -116,10 +139,18 @@ function showCalendar() {
 					calendarName : calendarName,
 					startDate : start,
 					endDate : start,
-					calendarColor : '#5886BC'
+					calendarColor : rgb2hex(rgb)
 				},
 				success : function(data){
 					send(2);
+				},
+				error: function() {
+					swal({
+						 type: 'error',
+						 title: 'Oops...',
+						 text: 'Something went wrong!',
+						 footer: '<a href>Why do I have this issue?</a>'
+						})
 				}
 			});
 		},
@@ -193,6 +224,14 @@ function showCalendar() {
 			    		data : {cardNum : event.id.substr(10)},
 			    		success : function(data){
 			    			send(3);
+			    		},
+			    		error: function() {
+			    			swal({
+			    				 type: 'error',
+			    				 title: 'Oops...',
+			    				 text: 'Something went wrong!',
+			    				 footer: '<a href>Why do I have this issue?</a>'
+			    				})
 			    		}
 			    	});
 			    }
@@ -207,6 +246,14 @@ function showCalendar() {
 			    		data : {calendarNum : event.id.substr(11)},
 			    		success : function(data){
 			    			send(2);
+			    		},
+			    		error: function() {
+			    			swal({
+			    				 type: 'error',
+			    				 title: 'Oops...',
+			    				 text: 'Something went wrong!',
+			    				 footer: '<a href>Why do I have this issue?</a>'
+			    				})
 			    		}
 			    	});
 		    	}
@@ -237,6 +284,14 @@ function calendarDateUpdate(calendarData, id){
 			data : calendarData,
 			success : function(data){
 				send(2);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}else if(id.indexOf('calendar') > -1){
@@ -247,9 +302,39 @@ function calendarDateUpdate(calendarData, id){
 			data : calendarData,
 			success : function(data){
 				send(2);
+			},
+			error: function() {
+				swal({
+					 type: 'error',
+					 title: 'Oops...',
+					 text: 'Something went wrong!',
+					 footer: '<a href>Why do I have this issue?</a>'
+					})
 			}
 		});
 	}
+}
+
+//리스트의 색을 정해주자
+function listColor() {
+	$.ajax({
+		type : "post",
+		url  : "showList",
+		datatype:"JSON",
+		success : function(data){
+			$.each(data.data, function(index, elt) {
+				var i = 0;
+				if(index > 1){
+					i = index - 1
+				}
+				$('.calendarList'+elt.listNum).css({
+					'background-color': listColorData[i],
+					'border' : '1px solid ' +listColorData[i]
+				});
+			})
+			canDragCard();
+		}
+	});
 }
 
 //일정을 생성하는 곳 (카드들~)
@@ -268,7 +353,7 @@ function dragCardCalendar() {
 				if(elt.isDeleted == '0') {
 					if(index < result) {
 						htmlText += '<div id="cardNumber'+elt.cardNum+'" ' 
-								 + 'class="fc-event ui-draggable ui-draggable-handle" ' 
+								 + 'class="fc-event ui-draggable ui-draggable-handle calendarList'+elt.listNum+'" ' 
 								 + 'onclick="cardDetail('+elt.cardNum+')" data-toggle="modal" data-target="#myModal">'+elt.cardName+'</div>';
 					}
 				}
@@ -283,7 +368,15 @@ function dragCardCalendar() {
 			}
 			
 			$('#external-events').html(htmlText);
-			canDragCard();
+			listColor();
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
@@ -341,6 +434,14 @@ function calendarCardView() {
 				}
 			});
 			calendarRenderEvent(calendarArr);
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
 		}
 	});
 }
