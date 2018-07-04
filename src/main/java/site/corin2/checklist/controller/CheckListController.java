@@ -27,7 +27,13 @@ public class CheckListController {
 	@Autowired
 	private CheckListService service;
 	
-	//체크리스트 삽입
+	/**
+	* @함수명 : checkListInsert(CheckListDTO check, Model model)
+	* @작성일 : 2018. 6. 18.
+	* @작성자 : 최재욱
+	* @설명 : 사용자 체크리스트의 내용을 DB의 삽입 시키기 위한 함수이다.
+	* @param CheckListDTO check- CheckListDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/insertCheckList")
 	public View checkListInsert(CheckListDTO check, Model model) {
 		int result = 0;
@@ -60,7 +66,14 @@ public class CheckListController {
 		return jsonview;
 	}
 	
-	//사용자 등급 가져오기
+	/**
+	* @함수명 : userGradeCheckList (TeamDTO team, Model model)
+	* @작성일 : 2018. 6. 19.
+	* @작성자 : 최재욱
+	* @설명 : 프로젝트의 사용자 등급을 판별하여 각 등급별로 해당하는 내용의
+	* 탭을 생성해 주는 함수이다.
+	* @param TeamDTO team- TeamDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/userGradeCheckList")
 	public View userGradeCheckList (TeamDTO team, Model model) {
 		List<TeamDTO> list = null;

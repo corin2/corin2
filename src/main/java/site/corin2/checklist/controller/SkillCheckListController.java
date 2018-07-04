@@ -32,7 +32,14 @@ public class SkillCheckListController {
 		
 		return "checklist.checklist";
 	}
-	//기본 데이터 뿌려주기
+	/**
+	* @함수명 : skillCheckListAllSelect(CheckListDTO check, Model model)
+	* @작성일 : 2018. 6. 20.
+	* @작성자 : 최재욱
+	* @설명 : 파라미터로 각 프로젝트의 해당하는 멤버의 아이디를 받아
+	* 해당위치의 체크리스트의 내용과 멤버의 아이디를 보여주는 함수 이다.
+	* @param CheckListDTO check- CheckListDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/checkListSelect")
 	public View skillCheckListAllSelect(CheckListDTO check, Model model) {
 		List<CheckListDTO> list = null;
@@ -41,7 +48,13 @@ public class SkillCheckListController {
 		return jsonview;
 	}
 	
-	//체크여부 삽입
+	/**
+	* @함수명 : checkedInsert(checkNum)
+	* @작성일 : 2018. 6. 21.
+	* @작성자 : 최재욱
+	* @설명 : 사용자가 체크를 하엿을때 해당 하는 내용의 체크여부를 DB에 저장 또는 삭제 하기 위한 함수이다.
+	* @param SkillCheckListDTO check- SkillCheckListDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/insertChecked")
 	public View checkedInsert(SkillCheckListDTO skillcheck, Model model) {
 		int result = 0;
@@ -49,7 +62,14 @@ public class SkillCheckListController {
 		return jsonview;
 	}
 	
-	//체크여부 뿌려주기
+	/**
+	* @함수명 : checkedSelect(SkillCheckListDTO skillcheck, Model model)
+	* @작성일 : 2018. 6. 21.
+	* @작성자 : 최재욱
+	* @설명 : 체크리스트의 체크여부를 DB 상에서 불러와 
+	* 체크한 부분에 체크시켜주기 위한 함수 이다.
+	* @param SkillCheckListDTO check- SkillCheckListDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/selectChecked")
 	public View checkedSelect(SkillCheckListDTO skillcheck, Model model) {
 		List<SkillCheckListDTO> list = null;
@@ -66,7 +86,14 @@ public class SkillCheckListController {
 		return jsonview;
 	}
 	
-	//체크리스트 프로젝트에 해당하는 멤버 아이디 가져오기
+	/**
+	* @함수명 : skillCheckListUserId(SkillCheckListDTO skillcheck, Model model)
+	* @작성일 : 2018. 6. 20.
+	* @작성자 : 최재욱
+	* @설명 : 프로젝트의 리더이면 팀원이 작성한 사용자 체크리스트의 결과를
+	* 확인 할 수 있는 탭에 th부분을 생성해 준다.
+	* @param SkillCheckListDTO check- SkillCheckListDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/skillCheckListUserId")
 	public View skillCheckListUserId(SkillCheckListDTO skillcheck, Model model) {
 		List<SkillCheckListDTO> list = null;
@@ -75,7 +102,14 @@ public class SkillCheckListController {
 		return jsonview;
 	}
 	
-	//체크여부 가져오기
+	/**
+	* @함수명 : selectCheckedConfirm (SkillCheckListDTO skillcheck, Model model)
+	* @작성일 : 2018. 6. 21.
+	* @작성자 : 최재욱
+	* @설명 : 사용자 체크리스트의 체크여부를 DB 상에서 불러와 
+	* 멤버가 체크한 부분에 체크시켜주기 위한 함수 이다.
+	* @param SkillCheckListDTO check- SkillCheckListDTO 객체를 통해 원하는 값을 service로 넘기기 위한 변수
+	**/
 	@RequestMapping("/selectCheckedConfirm")
 	public View selectCheckedConfirm (SkillCheckListDTO skillcheck, Model model) {
 		List<SkillCheckListDTO> list = null;
