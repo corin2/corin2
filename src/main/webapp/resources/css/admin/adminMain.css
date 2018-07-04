@@ -74,4 +74,8 @@ margin-top:18px;
 	height:200px; 
 	padding-top: 33px;
 }
-	
+.custom-btn-position {
+	position: absolute;
+	left: 10px;
+	top: 25px;
+}

@@ -95,6 +95,11 @@ ZC.LICENSE = ["569d52cefae586f634c54f86dc99e6a9","ee6b7db5b51705a13dc2339db3edaf
 		<div class="admin-chart-box col-md-10 adminmainpage width87">
 			<div class="row adminmainpageundo">
 				<h2>통계</h2>
+				<div class="btn-group btn-group-sm custom-btn-position">
+					<button type="button" class="btn btn-basic" id="statsByWeek">1주</button>
+					<button type="button" class="btn btn-basic" id="statsByTwoWeeks">2주</button>
+					<button type="button" class="btn btn-basic" id="statsByMonth">1달</button>
+				</div>
 				<hr class="hr-style">
 			</div>
 			<div class="row">

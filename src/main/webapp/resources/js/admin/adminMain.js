@@ -12,7 +12,20 @@ $(function() {
 	// 이메일 차트 표시
 	showEmailChart();
 	// 통계 차트 표시
-	showStatsChart();
+	showStatsChart(-14);
+	
+	// 1주간 통계
+	$('#statsByWeek').click(function() {
+		showStatsChart(-7);
+	});
+	// 2주간 통계
+	$('#statsByTwoWeeks').click(function() {
+		showStatsChart(-14);
+	});
+	// 1달간 통계
+	$('#statsByMonth').click(function() {
+		showStatsChart(-31);
+	});
 	
 }); //end - jQuery
 
@@ -117,11 +130,11 @@ function showEmailChart() {
 }
 
 // 통계 차트
-function showStatsChart() {
+function showStatsChart(days) {
 	var chartStats = echarts.init(document.getElementById('stats'));
 	
 	var nowDate = formatDate(Date.now(), 0); // 오늘 날짜
-	var beforeDate = formatDate(Date.now(), -14); // 2주 전 날짜
+	var beforeDate = formatDate(Date.now(), days); // 2주 전 날짜
 	
 	var visitDate = [], visitCount = [],
 		userDate = [], userCount = [],
