@@ -315,28 +315,6 @@ function calendarDateUpdate(calendarData, id){
 	}
 }
 
-//리스트의 색을 정해주자
-function listColor() {
-	$.ajax({
-		type : "post",
-		url  : "showList",
-		datatype:"JSON",
-		success : function(data){
-			$.each(data.data, function(index, elt) {
-				var i = 0;
-				if(index > 1){
-					i = index - 1
-				}
-				$('.calendarList'+elt.listNum).css({
-					'background-color': listColorData[i],
-					'border' : '1px solid ' +listColorData[i]
-				});
-			})
-			canDragCard();
-		}
-	});
-}
-
 //일정을 생성하는 곳 (카드들~)
 function dragCardCalendar() {
 	$.ajax({
@@ -368,7 +346,7 @@ function dragCardCalendar() {
 			}
 			
 			$('#external-events').html(htmlText);
-			listColor();
+			canDragCard();
 		},
 		error: function() {
 			swal({
