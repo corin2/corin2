@@ -604,12 +604,31 @@ public class UserService {
 		return files;
 	}
 
+	/**
+	* @함수명 : doGoogleSignInActionPage(HttpServletResponse response)
+	* @작성일 : 2018. 07. 02.
+	* @작성자 : 김 진 원
+	* @설명 : 구글 로그인을 위한 함수
+	* @param HttpServletResponse - response
+	* @param Model - json으로 보내줄 data
+	* @return String 구글 로그인을 할 수 있는 url
+	**/
 	public String doGoogleSignInActionPage(HttpServletResponse response) {
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
 		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 		return url;
 	}
 	
+	/**
+	* @함수명 : googleLogin(HttpServletRequest request)
+	* @작성일 : 2018. 07. 02.
+	* @작성자 : 김 진 원
+	* @설명 : 구글 로그인을 했을 때, 받은 data를 가지고 현재 DB에 저장된 id라면 UserDTO 객체에 정보를
+	* 		넣어 로그인 , DB에 저장되지 않은 id라면 DB에 insert를 해준후 UserDTO 객체에 정보를 넣어
+	* 		로그인
+	* @param HttpServletRequest - request
+	* @return UserDTO
+	**/
 	public UserDTO googleLogin(HttpServletRequest request) {
 		String code = request.getParameter("code");
 

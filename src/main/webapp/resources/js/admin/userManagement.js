@@ -21,10 +21,11 @@ function allUser(enabled, isDelete, pageNum){
 		success : function (data) {
 			$('#userManagement').empty();
 			var viewData = [];
+			var result = isDelete;
 			if(enabled != 3)
 				$.each(data.data, function(i, elt) {if(elt.enabled == enabled && elt.isDeleted == isDelete)	viewData.push(elt);});
 			else 
-				$.each(data.data, function(i, elt) {if(elt.userId.indexOf(isDelete) > -1) viewData.push(elt);});
+				$.each(data.data, function(i, elt) {result = 0; if(elt.userId.indexOf(isDelete) > -1) viewData.push(elt);});
 			
 			var texthtml = '<table class="table table-admin">'
 				 		 + '<thead><tr><th>프로필사진</th><th>아이디</th><th>닉네임</th>'
@@ -42,7 +43,7 @@ function allUser(enabled, isDelete, pageNum){
 					else texthtml += '회원';
 					texthtml += '</td><td>'
 							 + '<input type="hidden">'
-							 + '<input type="button" value="수정" class="btn btn-info" onclick="userEdit(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
+							 + '<input type="button" value="수정" class="btn btn-info" onclick="userEdit(this, '+enabled+', '+result+', '+pageNum+')" >';
 					if(elt.isDeleted == '0')	texthtml += '<input type="button" value="제명" class="btn btn-danger" onclick="userDel(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
 					if(elt.isDeleted == '1')	texthtml += '<input type="button" value="복구" class="btn btn-success" onclick="userReset(this, '+enabled+', '+isDelete+', '+pageNum+')" >';
 					texthtml += '</td></tr></tbody>';
