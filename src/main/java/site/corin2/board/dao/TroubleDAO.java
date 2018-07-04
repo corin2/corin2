@@ -24,6 +24,9 @@ public interface TroubleDAO {
 	//트러블 슈팅게시물 태그로 조회
 	public List<TroubleShootingDTO> troubleSearchTag(String searchTag);
 	
+	//트러블 슈팅게시물 동적쿼리로로 조회
+	public List<TroubleShootingDTO> troubleSearchAct(String search,String type);
+	
 	//트러블 슈팅 게시물 추가(1차 board 테이블에 insert)
 	public int troubleInsert(TroubleShootingDTO tsdto);
 	
