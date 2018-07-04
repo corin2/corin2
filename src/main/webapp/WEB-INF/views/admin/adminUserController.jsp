@@ -11,7 +11,7 @@
 				<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">회원 관리
 				<span class="caret"></span></button>
 				<ul class="dropdown-menu">
-					<li><a onclick="allUser(1, 0, 1)">가입회원</a></li>
+					<li><a id="startadminuser" onclick="allUser(1, 0, 1)">가입회원</a></li>
 					<li><a onclick="allUser(0, 0, 1)">비인증회원</a></li>
 					<li><a onclick="allUser(0, 1, 1)">탈퇴회원</a></li>
 				</ul>
