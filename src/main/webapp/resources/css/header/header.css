@@ -304,3 +304,26 @@
 	width: 58.666667%;
 	padding-right: 0px;
 }
+
+.logoCorin2 {
+	text-align: center;
+	transition: .1s ease;
+	z-index: 2;
+	top: 2px;
+	bottom: 0;
+	display: block;
+}
+
+/* #alramicona, #plus, #showChatting */
+@media screen and (max-width:767px){
+	.headerprofilediv, #alramicona, #plus {display:none;}
+	.btn-group-vertical>.btn-group:after, .btn-toolbar:after, .clearfix:after, .container-fluid:after, .container:after, .dl-horizontal dd:after, .form-horizontal .form-group:after, .modal-footer:after, .modal-header:after, .nav:after, .navbar-collapse:after, .navbar-header:after, .navbar:after, .pager:after, .panel-body:after, .row:after {
+    	clear: none;
+	}
+	.menubtn {
+		position: absolute;
+		right: 0;
+		float: none !important;
+		margin: -36.5px 0px;
+	}
+}
