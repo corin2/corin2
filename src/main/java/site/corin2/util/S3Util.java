@@ -29,10 +29,12 @@ import com.amazonaws.services.s3.model.ObjectMetadata;
 public class S3Util {
 	// (S3 권한부여를 위한 key값) src/main/resources/s3Key.properties
 	// -> 보안을 위해 .gitignore에 작성한 후 git으로 관리하지 않아야 함
-	private Properties s3Key = PropertiesUtils.fetchProperties("s3Key");
+	//private Properties s3Key = PropertiesUtils.fetchProperties("s3Key");
 	
-	private String accessKey = s3Key.getProperty("s3.accessKey"); // S3의 accessKey
-	private String secretKey = s3Key.getProperty("s3.secretKey"); // S3의 secretKey
+	//private String accessKey = s3Key.getProperty("s3.accessKey"); // S3의 accessKey
+	//private String secretKey = s3Key.getProperty("s3.secretKey"); // S3의 secretKey
+	private String accessKey = "temp";
+	private String secretKey = "temp";
 	
 	private AmazonS3 conn;
 	
