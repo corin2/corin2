@@ -257,7 +257,7 @@ h4 {
 }
 .panel {
     border: 1px solid #566270; 
-    border-radius:0 !important;
+    border-radius:25px !important;
     transition: box-shadow 0.5s;
 }
 .panel:hover {
@@ -271,6 +271,8 @@ h4 {
 .panel-heading {
     color: #fff !important;
     background-color: #566270 !important;
+    border-top-left-radius: 25px !important;
+    border-top-right-radius: 25px !important;
     padding: 25px;
     border-bottom: 1px solid transparent;
     border-top-left-radius: 0px;
@@ -280,6 +282,8 @@ h4 {
 }
 .panel-footer {
     background-color: white !important;
+    border-bottom-left-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
 }
 .panel-footer h3 {
     font-size: 32px;
@@ -302,7 +306,6 @@ h4 {
     line-height: 1.42857143 !important;
     letter-spacing: 4px;
     border-radius: 0;
-    font-family: Montserrat, sans-serif;
 }
 .navbar li a, .navbar .navbar-brand {
     color: #fff !important;
