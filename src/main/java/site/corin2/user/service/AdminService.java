@@ -41,7 +41,13 @@ public class AdminService {
 	
 	@Autowired
 	private UserService userservice;
-	//모든 기능 조회
+	/**
+	* @함수명 : skillAllSelect()
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 모든 기능 조회(스킬메뉴관리)
+	* @return List - SkillDTO 모든 기능
+	**/
 	public List<SkillDTO> skillAllSelect(){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		List<SkillDTO> skills = null;
@@ -54,7 +60,13 @@ public class AdminService {
 		return skills;
 	}
 	
-	//모든 유저등급 조회
+	/**
+	* @함수명 : userGradeAllSelect()
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 모든 유저등급 조회(유저등급메뉴관리)
+	* @return List - UserGradeDTO 모든 유저등급
+	**/
 	public List<UserGradeDTO> userGradeAllSelect(){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		List<UserGradeDTO> userGrades = null;
@@ -67,7 +79,13 @@ public class AdminService {
 		return userGrades;
 	}
 	
-	//모든 체크리스트 조회
+	/**
+	* @함수명 : checkListAllSelect()
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 모든 체크리스트 조회(체크리스트메뉴관리)
+	* @return List - CheckListDTO 모든 체크리스트
+	**/
 	public List<CheckListDTO> checkListAllSelect(){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		List<CheckListDTO> checkLists = null;
@@ -80,91 +98,181 @@ public class AdminService {
 		return checkLists;
 	}
 	
-	//기능 수정
+	/**
+	* @함수명 : skillUpdate(SkillDTO skill)
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 기능수정
+	* @param SkillDTO - skillName, skillUse, skillNum
+	**/
 	public void skillUpdate(SkillDTO skill){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.skillUpdate(skill);
 	}
 	
-	//리스트 수정
+	/**
+	* @함수명 : listUpdate(ListDTO list)
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 리스트수정
+	* @param ListDTO - listName, listNum
+	**/
 	public void listUpdate(ListDTO list){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.listUpdate(list);
 	}
 	
-	//언어 수정
+	/**
+	* @함수명 : languageUpdate(LanguageDTO language)
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 언어수정
+	* @param LanguageDTO - languageMain, languageColor, languageNum
+	**/
 	public void languageUpdate(LanguageDTO language){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.languageUpdate(language);
 	}
 	
-	//유저등급 수정
+	/**
+	* @함수명 : userGradeUpdate(UserGradeDTO userGrade)
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 유저등급수정
+	* @param UserGradeDTO - gradeName, gradeNum
+	**/
 	public void userGradeUpdate(UserGradeDTO userGrade){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeUpdate(userGrade);
 	}
 	
-	//체크리스트 수정
+	/**
+	* @함수명 : checkListUpdate(CheckListDTO checkList)
+	* @작성일 : 2018. 06. 12.
+	* @작성자 : 김 진 원
+	* @설명 : 체크리스트수정
+	* @param CheckListDTO - category, checkContent, checkNum
+	**/
 	public void checkListUpdate(CheckListDTO checkList){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.checkListUpdate(checkList);
 	}
 	
-	//기능 생성
+	/**
+	* @함수명 : skillInsert(SkillDTO skill)
+	* @작성일 : 2018. 06. 13.
+	* @작성자 : 김 진 원
+	* @설명 : 기능생성
+	* @param SkillDTO - skillNum, skillName, skillUse
+	**/
 	public void skillInsert(SkillDTO skill){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.skillInsert(skill);
 	}
 	
-	//리스트 생성
+	/**
+	* @함수명 : listInsert(ListDTO list)
+	* @작성일 : 2018. 06. 13.
+	* @작성자 : 김 진 원
+	* @설명 : 리스트생성
+	* @param ListDTO - listNum, listName
+	**/
 	public void listInsert(ListDTO list){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.listInsert(list);
 	}
 	
-	//언어 생성
+	/**
+	* @함수명 : languageInsert(LanguageDTO language)
+	* @작성일 : 2018. 06. 13.
+	* @작성자 : 김 진 원
+	* @설명 : 언어생성
+	* @param LanguageDTO - languageNum, languageMain, languageColor
+	**/
 	public void languageInsert(LanguageDTO language){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.languageInsert(language);
 	}
 	
-	//유저등급 생성
+	/**
+	* @함수명 : userGradeInsert(UserGradeDTO userGrade)
+	* @작성일 : 2018. 06. 13.
+	* @작성자 : 김 진 원
+	* @설명 : 유저등급생성
+	* @param UserGradeDTO - languageNum, languageMain, languageColor
+	**/
 	public void userGradeInsert(UserGradeDTO userGrade){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeInsert(userGrade);
 	}
 	
-	//체크리스트 생성
+	/**
+	* @함수명 : checkListInsert(CheckListDTO checkList)
+	* @작성일 : 2018. 06. 13.
+	* @작성자 : 김 진 원
+	* @설명 : 체크리스트생성
+	* @param CheckListDTO - languageNum, category, checkContent
+	**/
 	public void checkListInsert(CheckListDTO checkList){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.checkListInsert(checkList);
 	}
 	
-	//기능 삭제
+	/**
+	* @함수명 : skillDelete(SkillDTO skill)
+	* @작성일 : 2018. 06. 14.
+	* @작성자 : 김 진 원
+	* @설명 : 기능삭제
+	* @param SkillDTO - skillNum
+	**/
 	public void skillDelete(SkillDTO skill){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.skillDelete(skill);
 	}
 	
-	//리스트 삭제
+	/**
+	* @함수명 : listDelete(ListDTO list)
+	* @작성일 : 2018. 06. 14.
+	* @작성자 : 김 진 원
+	* @설명 : 기능삭제
+	* @param ListDTO - listNum
+	**/
 	public void listDelete(ListDTO list){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.listDelete(list);
 	}
 	
-	//언어 삭제
+	/**
+	* @함수명 : languageDelete(LanguageDTO language)
+	* @작성일 : 2018. 06. 14.
+	* @작성자 : 김 진 원
+	* @설명 : 언어삭제
+	* @param LanguageDTO - languageNum
+	**/
 	public void languageDelete(LanguageDTO language){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.languageDelete(language);
 	}
 	
-	//유저등급 삭제
+	/**
+	* @함수명 : userGradeDelete(UserGradeDTO userGrade)
+	* @작성일 : 2018. 06. 14.
+	* @작성자 : 김 진 원
+	* @설명 : 유저등급삭제
+	* @param UserGradeDTO - gradeNum
+	**/
 	public void userGradeDelete(UserGradeDTO userGrade){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userGradeDelete(userGrade);
 	}
 	
-	//체크리스트 삭제
+	/**
+	* @함수명 : checkListDelete(CheckListDTO checkList)
+	* @작성일 : 2018. 06. 14.
+	* @작성자 : 김 진 원
+	* @설명 : 체크리스트삭제 (실제로는 업데이트)
+	* @param CheckListDTO - checkNum
+	**/
 	public void checkListDelete(CheckListDTO checkList){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.checkListDelete(checkList);
@@ -270,19 +378,37 @@ public class AdminService {
 		}
 	}
 	
-	//유저 수정
+	/**
+	* @함수명 : userEdit(UserDTO user)
+	* @작성일 : 2018. 06. 15.
+	* @작성자 : 김 진 원
+	* @설명 : 유저수정 
+	* @param UserDTO - userName, enabled, gradeNum, userId
+	**/
 	public void userEdit(UserDTO user){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userEdit(user);
 	}
 	
-	//유저 수정
+	/**
+	* @함수명 : userReset(UserDTO user)
+	* @작성일 : 2018. 06. 15.
+	* @작성자 : 김 진 원
+	* @설명 : 유저복구 
+	* @param UserDTO - userId
+	**/
 	public void userReset(UserDTO user){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.userReset(user);
 	}
 	
-	//유저 수정
+	/**
+	* @함수명 : checkListReset(CheckListDTO checkList)
+	* @작성일 : 2018. 06. 15.
+	* @작성자 : 김 진 원
+	* @설명 : 체크리스트복구 
+	* @param CheckListDTO - checkNum
+	**/
 	public void checkListReset(CheckListDTO checkList){
 		AdminDAO adminDAO = sqlsession.getMapper(AdminDAO.class);
 		adminDAO.checkListReset(checkList);

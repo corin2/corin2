@@ -296,6 +296,15 @@ public class UserController {
 		return jsonview;
 	}
 
+	/**
+	* @함수명 : doGoogleSignInActionPage(HttpServletResponse response, Model model)
+	* @작성일 : 2018. 07. 02.
+	* @작성자 : 김 진 원
+	* @설명 : 구글 로그인을 위한 함수
+	* @param HttpServletResponse - response
+	* @param Model - json으로 보내줄 data
+	* @return String tiles
+	**/
 	@RequestMapping("googleLogin")
 	public String doGoogleSignInActionPage(HttpServletResponse response, Model model) throws Exception {
 		String url = service.doGoogleSignInActionPage(response);
@@ -304,6 +313,14 @@ public class UserController {
 
 	}
 
+	/**
+	* @함수명 : doSessionAssignActionPage(HttpServletRequest request)
+	* @작성일 : 2018. 07. 02.
+	* @작성자 : 김 진 원
+	* @설명 : 구글 로그인을 했을 때, corin2 사이트에서 로그인이 되도록 처리
+	* @param HttpServletRequest - request
+	* @return String tiles
+	**/
 	@RequestMapping("googleSignInCallback")
 	public String doSessionAssignActionPage(HttpServletRequest request) throws Exception {
 		UserDTO user = service.googleLogin(request);
