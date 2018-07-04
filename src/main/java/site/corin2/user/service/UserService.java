@@ -346,6 +346,7 @@ public class UserService {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
 		try {
+			//userdto.setPassword(this.bCryptPasswordEncoder.encode("kakaologin"));
 			userdto.setPassword("kakaologin");
 			userdto.setUserProfile(userdto.getUserProfile());
 			userdto.setEnabled(1);
@@ -628,6 +629,7 @@ public class UserService {
 		UserDTO user = new UserDTO();
 		user.setUserId(profile.getAccountEmail());
 		user.setUserName(profile.getDisplayName());
+		//userdto.setPassword(this.bCryptPasswordEncoder.encode("googlelogin"));
 		user.setPassword("googlelogin");
 		
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
