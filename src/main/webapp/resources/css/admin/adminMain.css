@@ -39,7 +39,7 @@
 .adminmainpage {
    background-color: #FFF;
    border-radius: 20px;
-   border : solid 30px #FFF;
+   border : solid 26px #FFF;
 }
 .adminmainpageundo {
     font-weight: bold;
@@ -88,13 +88,4 @@ margin-top:18px;
     min-height: 850px;
     width: 95%;
     margin-left : 0px;
-}
-	
-.announceboardundoupdate{
-	font-weight : bold;
-    font-size: 20px;
-    padding-top: 60px;
-    padding-bottom: 60px;
-    margin-right: 150px;
-    margin-left: 150px;
 }
