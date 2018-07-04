@@ -321,6 +321,7 @@
     	clear: none;
 	}
 	.menubtn {
+		z-index: 2;
 		position: absolute;
 		right: 0;
 		float: none !important;

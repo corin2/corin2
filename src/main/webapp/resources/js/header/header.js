@@ -15,7 +15,7 @@ $(function(){
 		$('#alramicona').css({"color":"#566270","background-color":"transparent","background":"#fff"});
 		$('#alramicon').css({"color":"#566270","background-color":"transparent"});
 	}, function(){
-		$('#alramicona').css({"color":"#fff","background-color":"transparent","background":"#566270"});
+		$('#alramicona').css({"color":"#fff","background-color":"transparent","background":"#00ff0000"});
 		$('#alramicon').css({"color":"#fff","background-color":"transparent"});
 	});
 	
@@ -24,7 +24,7 @@ $(function(){
 		$('.language-num').css({"color":"#566270","background-color":"transparent","background":"#fff"});
 		$('.chat').css({"color":"#566270","background-color":"transparent"});
 	}, function(){
-		$('.language-num').css({"color":"#fff","background-color":"transparent","background":"#566270"});
+		$('.language-num').css({"color":"#fff","background-color":"transparent","background":"#00ff0000"});
 		$('.chat').css({"color":"#fff","background-color":"transparent"});
 	});
 });
