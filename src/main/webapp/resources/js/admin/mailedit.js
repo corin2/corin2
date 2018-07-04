@@ -109,9 +109,10 @@ var signup = '';
 					async:false,
 					data : {savedata : $('#summernote').summernote('code') , signup : signup},
 					success : function(data) {
-						swal({type: "success",
-							text:"변경이 완료되었습니다."
-								});
+						swal({
+							text : "변경이 완료되었습니다.",
+							type: 'success',
+							});
 					},
 					error: function() {
 						swal({
@@ -138,7 +139,10 @@ var signup = '';
 					data : {signup : signup},
 					async:false,
 					success : function(data) {
-						swal({type: "success",text:"저장이 완료되었습니다."});
+						swal({
+							text : "저장이 완료되었습니다.",
+							type: 'success',
+							});
 					},
 					error: function() {
 						swal({

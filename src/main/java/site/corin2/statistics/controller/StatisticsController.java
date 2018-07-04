@@ -20,6 +20,13 @@ import site.corin2.statistics.service.StatisticsService;
 
 public class StatisticsController implements HttpSessionListener {
 
+	/**
+	* @함수명 : sessionCreated(HttpSessionEvent sessionEve)
+	* @작성일 : 2018. 06. 08.
+	* @작성자 : 김 진 원
+	* @설명 : 세션이 생성될 때 마다 실행되는 함수 bean과 매핑되어 사용된다
+	* @param HttpSessionEvent
+	**/
 	@Override
 	public void sessionCreated(HttpSessionEvent sessionEve) {
 		HttpSession session = sessionEve.getSession();
