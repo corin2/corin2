@@ -34,6 +34,8 @@ public class LoadJasperReport {
 			reportFileName = "ts";
 		}else if(file.equals("checkList")) {
 			reportFileName = "checkList";
+		}else if(file.equals("checkListUser")) {
+			reportFileName = "checkListUser";
 		}
 		//String reportFileName = "leanCanvas";
 		JasperReportDAO jrdao = new JasperReportDAO();

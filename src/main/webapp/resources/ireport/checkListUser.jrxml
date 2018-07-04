@@ -6,11 +6,9 @@
 	<parameter name="projectNum" class="java.lang.Integer"/>
 	<queryString>
 		<![CDATA[select c.checknum,c.category,c.checkcontent, (case s.ischecked when 1 then 'Y' else 'N' end) as ISCHECKED  from 
-	(select * from checklist  where category is not null and isdeleted=0 
-	and (languagenum = (select languagenum from project where projectnum=$P{projectNum}) 
-	or (languagenum is null and category is not null)) ) c
+	(select * from checklist where projectnum=$P{projectNum} and isdeleted = 0) c
 left join
-   (select * from skillchecklist where userid=$P{userId} and projectnum=$P{projectNum}) s
+   (select * from skillchecklist where userid=$P{userId} and projectnum=$P{projectNum})s
 on c.checknum=s.checknum]]>
 	</queryString>
 	<field name="CATEGORY" class="java.lang.String"/>
@@ -32,7 +30,7 @@ on c.checknum=s.checknum]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="nanum" size="28" isBold="true"/>
 				</textElement>
-				<text><![CDATA[체크리스트]]></text>
+				<text><![CDATA[USER CHECK LIST]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -42,20 +40,7 @@ on c.checknum=s.checknum]]>
 	<columnHeader>
 		<band height="37" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="0" width="130" height="35" forecolor="#FFFFFF" backcolor="#355FB8" uuid="f90f4050-cec6-44e8-8126-f7b1a6dff0c6"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="nanum" size="16" isBold="true"/>
-				</textElement>
-				<text><![CDATA[CLASS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="130" y="1" width="600" height="34" forecolor="#FFFFFF" backcolor="#355FB8" uuid="c797dcce-5f36-447b-8220-03e93b17debb"/>
+				<reportElement mode="Opaque" x="0" y="1" width="730" height="34" forecolor="#FFFFFF" backcolor="#355FB8" uuid="c797dcce-5f36-447b-8220-03e93b17debb"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
@@ -85,20 +70,7 @@ on c.checknum=s.checknum]]>
 	<detail>
 		<band height="39" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="-1" width="130" height="38" uuid="4376eda8-4dcd-4a26-9bd3-34ae5eb89da5"/>
-				<box>
-					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="nanum" size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{CATEGORY}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="130" y="-1" width="600" height="38" uuid="ebad7b1a-db3e-4651-afb7-553e96b74861"/>
+				<reportElement x="0" y="-1" width="730" height="38" uuid="ebad7b1a-db3e-4651-afb7-553e96b74861"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>

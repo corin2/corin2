@@ -2,10 +2,14 @@
 <!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_Landscape" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8102f952-a490-4622-94cd-8525194ba209">
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Corin2 Data Adapter "/>
-	<parameter name="Title" class="java.lang.String"/>
-	<parameter name="noy" class="java.lang.Integer"/>
+	<parameter name="userId" class="java.lang.String"/>
+	<parameter name="projectNum" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select * from leancanvas where projectnum=13]]>
+		<![CDATA[select TEAMNAME,replace( PROBLEM ,'<br>','\r\n') PROBLEM,replace( ALTERNATIVES ,'<br>','\r\n') ALTERNATIVES,replace( SOLUTION ,'<br>','\r\n') SOLUTION 
+		             ,projectNum,replace( MAINPOINT ,'<br>','\r\n') MAINPOINT,replace( UNIQUEVALUE ,'<br>','\r\n') UNIQUEVALUE,replace( PARENTCONCEPT ,'<br>','\r\n') PARENTCONCEPT
+                                ,replace( COMPETITIVEADVANTAGE ,'<br>','\r\n') COMPETITIVEADVANTAGE,replace( CHANNEL ,'<br>','\r\n') CHANNEL,replace( CUSTOMER ,'<br>','\r\n') CUSTOMER
+                                ,replace( EARLYADOPTER ,'<br>','\r\n') EARLYADOPTER,replace( COSTSTRUCTURE ,'<br>','\r\n') COSTSTRUCTURE,replace( PROFIT ,'<br>','\r\n') PROFIT		                    
+		from leancanvas where projectNum=$P{projectNum}]]>
 	</queryString>
 	<field name="projectNum" class="java.lang.Integer"/>
 	<field name="TEAMNAME" class="java.lang.String"/>
@@ -26,8 +30,8 @@
 	</background>
 	<title>
 		<band height="44" splitType="Stretch">
-			<staticText>
-				<reportElement x="201" y="0" width="400" height="40" backcolor="#E1F246" uuid="f3a100ee-6091-41fd-83c1-736bcd2eaa36"/>
+			<textField>
+				<reportElement x="180" y="1" width="430" height="41" uuid="d4aaf010-ba83-478b-9551-0d3653437dad"/>
 				<box>
 					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -35,10 +39,10 @@
 					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="nanum" size="28" isBold="true"/>
+					<font fontName="nanum" size="28"/>
 				</textElement>
-				<text><![CDATA[숨쉬말코 Lean Canvas]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$F{TEAMNAME} + " Lean Canvas"]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -85,8 +89,7 @@
 				<textElement textAlignment="Center">
 					<font fontName="nanum" size="15"/>
 				</textElement>
-				<textFieldExpression><![CDATA["문제"+"\r\n\r\n"+
-$F{PROBLEM}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["문제"+"\r\n\r\n"+$F{PROBLEM}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="150" y="2" width="160" height="118" uuid="42e67a98-8529-4ed8-b256-a29d19165ec4"/>
