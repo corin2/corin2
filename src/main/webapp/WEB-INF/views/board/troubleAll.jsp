@@ -71,15 +71,16 @@ function fncTegSplit(str){
 	<br>
 	<form action="update" method="post">
 		<table class="table  table-striped table-bordered table-hover">
-			<br>
-			<tbody>
-				<th>NO</th>
-				<th>작성자</th>
-				<th>트러블슈팅</th>
-				<th>작성일</th>
-			</tbody>
-	
+			<thead>
+				<tr>
+					<th>NO</th>
+					<th>작성자</th>
+					<th>트러블슈팅</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
 			<c:forEach items="${data}" var="ts">
+			<tbody>
 				<tr>
 					<td>${ts.boardNum}</td>
 					<td align=center><img
@@ -91,6 +92,7 @@ function fncTegSplit(str){
 					</td>
 					<td>${ts.boardDate}</td>
 				</tr>
+			</tbody>
 			</c:forEach>
 		</table>
 		
