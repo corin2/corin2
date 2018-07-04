@@ -4,11 +4,11 @@
     작성일: 2018-06-20
     작성자: 최재욱
 **/
-
-$( function() {
-  /*  $( "#tabs" ).tabs();*/
-  });
-
+$(document).ready(function(){
+    $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
+});
 /**
 * @함수명 : skillCheckListTable()
 * @작성일 : 2018. 6. 20.

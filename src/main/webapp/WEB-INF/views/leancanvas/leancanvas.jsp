@@ -74,7 +74,7 @@
 	       <div class="col-sm-1"></div>
 	       <div class="col-sm-5 leanheight6 leanh2 background7"><h3><b>비용구조</b></h3>
 	       	<p class="candivsize" id="coststructuer">
-	       		<a class="leanatag" onclick="problemClick('coststructuer')">고객 획득 비용<br>유통 비용<br>서버 유지 비용<br>인건비 등<br>add...</a>
+	       		<a class="leanatag" onclick="problemClick('coststructuer')">고객 획득 비용<br>유통 비용<br>서버 유지 비용<br>add...</a>
 	       	</p>
 	       </div>
 	       <div class="col-sm-5 leanheight leanh2 background6"><h3><b>수익원</b></h3>

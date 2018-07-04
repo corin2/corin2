@@ -1,7 +1,7 @@
 /* 사이드바 */
 body {
 	font-family: 'Do Hyeon', sans-serif;
-	font-size:'15px';
+	font-size: 17px !important;
 }
 #sidebar {
     position: fixed;

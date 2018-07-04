@@ -134,7 +134,9 @@
 }
 
 #checklisttitle{
+	    height: 40px;
 	text-align: center;
+	font-size : 30px;
 }
 
 hr {
@@ -160,12 +162,6 @@ hr {
    border-bottom-left-radius: 10px;
    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
    background-color: #566270;
-}
-.ui-tabs .ui-tabs-panel {
-    display: block;
-    border-width: 0;
-    padding: 1em 0;
-    background: none;
 }
 
 .checkbackdiv{
