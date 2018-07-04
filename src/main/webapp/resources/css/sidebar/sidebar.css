@@ -208,6 +208,7 @@ a.article, a.article:hover {
 #content {
     min-height: 90vh; /* 콘텐츠 height */
     transition: all 0.3s;
+    width: 92%;
 }
 
 

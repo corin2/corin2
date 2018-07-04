@@ -2,5 +2,24 @@
     width: 500px;
     border: 2px solid;
     background-color: white;
-    margin: 20px;
+    margin: 70px 27px 27px 27px;
+    
+}
+
+.makepersondiv {
+    margin-top: 80px;
+    background-color: #ffffff;
+    border-radius: 25px;
+    min-height: 850px;
+    width: 95%;
+    margin-left : 0px;
+}
+.btnmake{
+	margin-left:27px;
+}
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    margin-top: 170px;
+    overflow: hidden;
 }

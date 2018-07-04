@@ -23,9 +23,9 @@
     font-size: 20px;
     padding-top: 60px;
     padding-bottom: 60px;
-    margin-left: 12%;
-    margin-right: 9% !important;
-    width: 75%;
+    margin-left: 6%;
+    margin-right: 7% !important;
+    width: 87%;
 }
 
 	.table-admin > tbody > tr > td {
@@ -70,6 +70,14 @@
     font-size: 20px;
     color : #FFF !important;
 	}
+	
+	.table-admin-menu > thead > tr > th:last-child > input {
+    margin: 3px !important;
+    margin-top: 4px !important;
+    font-size: 20px;
+    color : #FFF !important;
+	}
+	
 	.table-admin-menu > tbody > tr :nth-child(7){
 	padding-top: 21px !important;
     color: #c6c4c4;
