@@ -31,7 +31,7 @@ public class CalendarController {
 	* @함수명 : positioncalendar()
 	* @작성일 : 2018. 06. 25.
 	* @작성자 : 김 진 원
-	* @설명 : position에서 사용 할 tiles를 태워 보내준다.
+	* @설명 : position에서 사용 할 캘린더페이지 tiles를 태워 보내준다.
 	* @return String tiles
 	**/
 	@RequestMapping("/position.calendar")
