@@ -11,7 +11,7 @@ function skillCheckListTable() {
 		  + "<tbody>"
 		  + "<tr>"
 		  + "<th class='tdpositionclass tdalignclass'>CLASS</th>"
-		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST</th>"
+		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<span class='glyphicon glyphicon-print checkprint'><a href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'></a></span></th>"
 		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
 		  + "</tbody>"

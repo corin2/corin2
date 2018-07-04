@@ -15,9 +15,11 @@ function checkListTable() {
 			   + "<tr>"
 			   + "<th class='tdalignclass'>NO</th>"
 	if(myGradeNum=='G300'){
-		  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'></th>"
+		  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
+		  		+ "<span class='glyphicon glyphicon-print checkprint'><a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'></a></span>"
+			  	+ "</th>"
 	}else{
-	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST</th>"
+	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST<span class='glyphicon glyphicon-print checkprint'><a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'></a></span></th>"
 	}	   
 		  table += "<th class='tdalignclass'>CHECK</th>"
 	 
@@ -142,6 +144,7 @@ function showCheckList(){
 		}
 	});
 }
+
 
 //Confirm 체크리스트 뿌리기
 function showCheckListConfrim(user){

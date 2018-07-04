@@ -161,3 +161,10 @@
 	border-radius: 25px;
     padding: 31px 12px 92px 12px;
 }
+
+.leanbtnprint{
+	float: right;
+	color: gray;
+	margin-right: 8%;
+	
+}
