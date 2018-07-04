@@ -256,8 +256,8 @@ function showCard(){
 		datatype:"JSON",
 		data : {projectNum : sessionProjectNum},
 		success : function(data){
-			var htmlText;
-			$('.ui-sortable').children('div').empty();
+			var htmlText = '';
+			$('.ui-sortable').children('div').remove();
 			$.each(data.data, function(index, elt) {
 				if(elt.isDeleted == '0') {
 					htmlText = '<div id="div'+elt.cardNum+'">'

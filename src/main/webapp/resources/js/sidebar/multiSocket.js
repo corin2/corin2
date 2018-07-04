@@ -48,8 +48,6 @@ function onMessage(evt) {
 		skill = 'chart';
 	}
 	
-	var data = evt.data;
-	
 	if(evt.data == '1'){ //1 = 카드 생성 삭제 위치이동 시
 		if(skill == 'kanban') showKanban();
 		else if(skill == 'calendar') dragCardCalendar();
@@ -67,7 +65,7 @@ function onMessage(evt) {
 		if(skill == 'position') checkListLength();
 		else if(skill == 'chart') checkListLength();
 	}else if(evt.data == '5'){ //5 = 카드 수정 , 수정취소, 생성취소 시
-		if(skill == 'kanban') showKanban();
+		showKanban();
 	}
 }
 
