@@ -6,8 +6,11 @@
 */
 package site.corin2.user.service;
 
+import java.io.IOException;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -19,6 +22,14 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -41,6 +52,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import site.corin2.board.dto.FileMeta;
 import site.corin2.user.dao.AdminDAO;
 import site.corin2.user.dao.UserDAO;
@@ -62,8 +76,20 @@ public class UserService {
 	
 	@Autowired
 	VelocityEngine velocityEngine;
+
+	@Autowired
+	private GoogleConnectionFactory googleConnectionFactory;
 	
-	//회원가입 기능 실행
+	@Autowired
+	private OAuth2Parameters googleOAuth2Parameters;
+	
+	/**
+     * @함수명 : userInsert
+     * @작성일 : 2018. 6. 5.
+     * @작성자 : 강진광
+     * @설명 : user가 회원가입을 실행할 때 사용되는 함수로 userdto객체를 받아서 dao의  userInsert를 통해 DB에 값을 저장한뒤에 저장에 성공을 한다면 velocityengine을 사용해서 vm파일과 merge시켜 email을 발송해주는 함수입니다.
+     * @param : userID , password , userName
+    **/
 	public void userInsert(UserDTO userdto) {
 		int result = 0;
 		String viewpage = "";
@@ -99,7 +125,13 @@ public class UserService {
 		}
 	}
 	
-	//email 인증 페이지
+	/**
+     * @함수명 : emailConfirm
+     * @작성일 : 2018. 6. 5.
+     * @작성자 : 강진광
+     * @설명 : 사용자가 회원가입한 아이디로 보내진 이메일로 이메일 인증을 할 때 사용되는 함수로 userid값을 받아서 그 아이디에 해당하는 enabled값을 1로 변경시켜주는 함수입니다. 
+     * @param : userdto , userID
+    **/
 	public String emailConfirm(UserDTO userdto, String userid) {
 
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -118,7 +150,14 @@ public class UserService {
 		return null;
 	}
 
-	//비밀번호 재설정 id확인
+	/**
+     * @함수명 : repass
+     * @작성일 : 2018. 6. 5.
+     * @작성자 : 강진광
+     * @설명 : 사용자가 비밀번호 재설정을 할 때  DB에 사용자가 입력한 이메일이 있는지 확인을 한뒤 check를 return해주는 함수입니다. 
+     * @param : userID
+     * @return : check ( true , false )
+    **/
 	public String repass(String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		String [] useridsplit = userid.split("=");
@@ -140,8 +179,14 @@ public class UserService {
 		
 		return check;
 	}
-	
-	//비밀번호 재설정 기능 실행
+
+	/**
+     * @함수명 : repassemailconfirm
+     * @작성일 : 2018. 6. 5.
+     * @작성자 : 강진광
+     * @설명 : repassword.jsp에서 사용자가 변경할 비밀번호를 입력한뒤 변경을 실행하면 userId로 맞는 userdto를 가져와 비밀번호만 바꾸어주는 함수입니다.
+     * @param : result , userID
+    **/
 	public void repassemailconfirm(String result , String userId) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO repassuser;
@@ -156,7 +201,13 @@ public class UserService {
 		}
 	}
 
-	//비밀번호 재설정 이메일 보내기
+	/**
+     * @함수명 : repassword
+     * @작성일 : 2018. 6. 5.
+     * @작성자 : 강진광
+     * @설명 : login페이지에서 비밀번호 변경에 이메일을 입력한뒤 재설정하기 버튼을 눌렀을 때 실행되는 함수로  userdto객체를 받아서 userId로 velocityengine을 사용해서 repassword.vm파일과 merge시켜 email을 발송해주는 함수입니다.
+     * @param : userdto(userID)
+    **/
 	public void repassword(UserDTO userdto) {
 		try {
 			MimeMessage message = javamailsender.createMimeMessage();
@@ -180,10 +231,17 @@ public class UserService {
 		}	
 	}
 
-	//아이디 중복확인
+	/**
+     * @함수명 : idCheck
+     * @작성일 : 2018. 6. 6.
+     * @작성자 : 강진광
+     * @설명 : 넘어온 Id값을 정규 표현식을 사용하여 비교하고 DB의 userID컬럼에 값이 있는지 확인을 한뒤 둘다 성립한다면 true를 두가지다 성립하지 않는다면 false를 return하는 함수입니다.
+     * @param : userid
+     * @return : check ( true , false )
+    **/
 	public String idCheck(String userid) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		
+		String check = "false";
 		String regex = "^[_a-z0-9-]+(.[_a-z0-9-]+)*@(?:\\w+\\.)+\\w+$";   
 		
 		String [] useridsplit = userid.split("=");
@@ -199,7 +257,6 @@ public class UserService {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		String check;
 		if (result > 0 || err == false ) {
 			check = "true";
 		} else {
@@ -208,7 +265,14 @@ public class UserService {
 		return check;
 	}
 	
-	//비밀번호 비동기 유효성 확인
+	/**
+     * @함수명 : passwordCheck
+     * @작성일 : 2018. 6. 6.
+     * @작성자 : 강진광
+     * @설명 : 넘어온 password값을 정규 표현식을 사용하여 비교하고 DB의 password컬럼에 값이 있는지 확인을 한뒤 둘다 성립한다면 true를 두가지다 성립하지 않는다면 false를 return하는 함수입니다.
+     * @param : password
+     * @return : check ( true , false )
+    **/
 	public String passwordCheck(String password) {
 		String regex = "^[a-zA-Z0-9]{3,10}$";
 		String [] useridsplit = password.split("=");
@@ -224,7 +288,14 @@ public class UserService {
 		return check;
 	}
 	
-	//닉네임 비동기 유효성 확인
+	/**
+     * @함수명 : nickCheck
+     * @작성일 : 2018. 6. 6.
+     * @작성자 : 강진광
+     * @설명 : 넘어온 nickname값을 정규 표현식을 사용하여 비교하고 DB의 nickname컬럼에 값이 있는지 확인을 한뒤 둘다 성립한다면 true를 두가지다 성립하지 않는다면 false를 return하는 함수입니다.
+     * @param : nickname
+     * @return : check ( true , false )
+    **/
 	public String nickCheck(String nickname) {
 		String regex = "^[a-zA-Z0-9가-힣]{3,10}$";
 		String [] useridsplit = nickname.split("=");
@@ -240,22 +311,13 @@ public class UserService {
 		return check;
 	}
 	
-	//사용자 수정하기 페이지 이동
-	public UserDTO userUpdate(String userId) {
-		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-		UserDTO userdto = null;
-		try {
-			userdto = userdao.userSelect(userId);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return userdto;
-	}
-	
-	
-	//회원 삭제하기
+	/**
+     * @함수명 : userDelete
+     * @작성일 : 2018. 6. 8.
+     * @작성자 : 강진광
+     * @설명 : 넘어온 userid값으로 userSelect함수를 통해서 userdao를 가져온뒤에 setIsDeleted,setEnabled를 통해서 deleted를 1로 , enabled를 0으로 바꾸어주는 함수입니다. 
+     * @param : userId
+    **/
 	public void userDelete(String userId) {
 
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
@@ -273,7 +335,13 @@ public class UserService {
 		
 	}
 
-	//kakao login
+	/**
+     * @함수명 : KakaoLogin
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : kakao oauth login하였을 때 넘어오는 id와 profile을 userdto에 담아서 oauthInsert를 통해 DB에 값을 저장해 주는 함수입니다.
+     * @param : userdto (userid , userprofile )
+    **/
 	public UserDTO KakaoLogin(UserDTO userdto) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
@@ -290,7 +358,121 @@ public class UserService {
 		return null;
 	}
 	
-	//모든 유저 조회
+	/**
+     * @함수명 : getAccessToken
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : kakao oauth login하였을 때 accesstoken을 가져와서 다시 controller로 token을 넘겨주는 함수 입니다. 
+     * @param : autorize_code
+     * @return : JsonNode
+    **/
+	public JsonNode getAccessToken(String autorize_code) {
+		final String RequestUrl = "https://kauth.kakao.com/oauth/token";
+
+		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
+		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
+		postParams.add(new BasicNameValuePair("client_id", "fbe288f80d621d2eb6d941ab8e9617fd")); // REST API KEY
+		postParams.add(new BasicNameValuePair("http://localhost:8090/kakaologin", "/kakaologin")); // 리다이렉트 URI
+		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
+
+		final HttpClient client = HttpClientBuilder.create().build();
+		final HttpPost post = new HttpPost(RequestUrl);
+		JsonNode returnNode = null;
+
+		try {
+			post.setEntity(new UrlEncodedFormEntity(postParams));
+			final HttpResponse response = client.execute(post);
+			final int responseCode = response.getStatusLine().getStatusCode();
+
+			// JSON 형태 반환값 처리
+			ObjectMapper mapper = new ObjectMapper();
+			returnNode = mapper.readTree(response.getEntity().getContent());
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// clear resources
+		}
+		
+		return returnNode;
+	}
+
+	/**
+     * @함수명 : getKakaoUserInfo
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : kakao oauth login하였을 때 accesstoken을 가지고 사용자의 정보를 가져오기 위한 함수입니다.
+     * @param : autorize_code
+     * @return : JsonNode
+    **/
+	public JsonNode getKakaoUserInfo(String autorize_code) {
+
+		final String RequestUrl = "https://kapi.kakao.com/v1/user/me";
+
+		final HttpClient client = HttpClientBuilder.create().build();
+		final HttpPost post = new HttpPost(RequestUrl);
+
+		// add header
+		post.addHeader("Authorization", "Bearer " + autorize_code);
+
+		JsonNode returnNode = null;
+
+		try {
+			final HttpResponse response = client.execute(post);
+			final int responseCode = response.getStatusLine().getStatusCode();
+
+			// JSON 형태 반환값 처리
+			ObjectMapper mapper = new ObjectMapper();
+			returnNode = mapper.readTree(response.getEntity().getContent());
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// clear resources
+		}
+		return returnNode;
+
+	}
+
+	/**
+     * @함수명 : changeData
+     * @작성일 : 2018. 6. 21.
+     * @작성자 : 강진광
+     * @설명 : kakao oauth login하였을 때 accesstoken를 사용해서 가져온 userdata를 DB에 넣어주는 함수입니다.
+     * @param : userInfo
+     * @return : UserDTO
+    **/
+	public UserDTO changeData(JsonNode userInfo) {
+		UserDTO userdto = new UserDTO();
+		if (userInfo.path("kaccount_email_verified").asText().equals("true")) { // 이메일 받기 허용 한 경우
+			userdto.setUserId(userInfo.path("kaccount_email").asText()); // email -> vo 넣기
+			userdto.setEnabled(1);
+		} else { // 이메일 거부 할 경우 코드 추후 개발
+
+		}
+
+		JsonNode properties = userInfo.path("properties"); // 추가정보 받아오기
+		if (properties.has("nickname"))
+			userdto.setUserName((properties.path("nickname").asText()));
+			userdto.setUserProfile((properties.path("profile_image").asText()));
+		return userdto;
+	}
+	
+	/**
+     * @함수명 : allUserSelect
+     * @작성일 : 2018. 6. 8.
+     * @작성자 : 강진광
+     * @설명 : DB에 있는 모든 사용자의 정보를 List에 담아 controller로 보내주는 함수입니다. 
+     * @return : List
+    **/
 	public List<UserDTO> allUserSelect(){
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		List<UserDTO> users = null;
@@ -303,7 +485,14 @@ public class UserService {
 		return users;
 	}
 	
-	//특정 유저 조회
+	/**
+     * @함수명 : oneUserSelect
+     * @작성일 : 2018. 6. 9.
+     * @작성자 : 강진광
+     * @설명 : userid를 받아서 mapper의 userSelect query를 통해서 DB에서 userid와 일치하는 정보를 모두 가져온 뒤에 userdto에 담아서 controller로 보내주는 함수입니다.
+     * @param : userid
+     * @return : UserDTO
+    **/
 	public UserDTO oneUserSelect(String userid){
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO user = null;
@@ -316,7 +505,13 @@ public class UserService {
 		return user;
 	}
 	
-	//사용자 수정하기 기능 실행
+	/**
+     * @함수명 : userpassUpdate
+     * @작성일 : 2018. 6. 9.
+     * @작성자 : 강진광
+     * @설명 : userid와 password를 받아서 mapper의 userSelect query를 통해서 DB에서 userid와 일치하는 정보를 모두 가져온 뒤에 userdto에 담고 setPassword를 통해서 password를 변경해주는 함수입니다.
+     * @param : userdto(userid , password)
+    **/
 	public void userpassUpdate(UserDTO userdto) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO updateuser;
@@ -329,7 +524,13 @@ public class UserService {
 		}
 	}
 	
-	//사용자 수정하기 닉네임 변경
+	/**
+     * @함수명 : usernickUpdate
+     * @작성일 : 2018. 6. 9.
+     * @작성자 : 강진광
+     * @설명 : userid와 username를 받아서 mapper의 userSelect query를 통해서 DB에서 userid와 일치하는 정보를 모두 가져온 뒤에 userdto에 담고 setUserName를 통해서 username을 변경해주는 함수입니다.
+     * @param : userdto(userid , username)
+    **/
 	public void usernickUpdate(UserDTO userdto) {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		UserDTO updateuser;
@@ -342,6 +543,15 @@ public class UserService {
 		}
 	}
 		
+	/**
+     * @함수명 : profileupdate
+     * @작성일 : 2018. 6. 9.
+     * @작성자 : 강진광
+     * @설명 : userid값과 request(프로필 이미지 파일)를 받아서 지정한 경로에 파일을 생성해주고 userid를 가지고 mapper의 userSelect를 통해서 dao를 
+     * 		    가져온뒤에 setUserProfile과 profileUpdate를 거쳐서 DB에 값을 넣어주는 함수입니다. 
+     * @param : userid , request
+     * @return : files
+    **/
 	//프로필 수정하기
 	public LinkedList<FileMeta> profileupdate(String userid , MultipartHttpServletRequest request) {
 		String savepath = "resources/images/profile";
@@ -386,22 +596,12 @@ public class UserService {
 	        } catch (Exception e) {
 	        	e.printStackTrace();
 	        }
-			
-	        // files 갯수가 10개 이상이면 files 하나 제거
-			if (files.size() >= 10) files.pop();
-			
 			// files 리스트에 추가
 			files.add(fileMeta);
 		}
 		
 		return files;
 	}
-	
-	@Autowired
-	private GoogleConnectionFactory googleConnectionFactory;
-	
-	@Autowired
-	private OAuth2Parameters googleOAuth2Parameters;
 
 	public String doGoogleSignInActionPage(HttpServletResponse response) {
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
