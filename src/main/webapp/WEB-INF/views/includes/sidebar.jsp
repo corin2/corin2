@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="https://codepen.io/anon/pen/aWapBE.js"></script>
+<link rel="stylesheet" href="resources/css/kanban/kanban.css">
 <input type="hidden" id="hiddenUserId" value="${pageContext.request.userPrincipal.name}" >
 <c:choose>
 	<c:when test="${pageContext.request.userPrincipal.name eq null}">
