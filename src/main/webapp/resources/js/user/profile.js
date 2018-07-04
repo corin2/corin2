@@ -1,5 +1,18 @@
-	$(function(){
-		//비밀번호 변경하기
+/**
+    파일명: profile.js
+    설   명: 프로필 창에 대한 javascript
+    작성일: 2018. 6. 19.
+    작성자: 강 진 광
+*/
+$(function(){
+		/**
+	     * @함수명 : 비밀번호 수정하기
+	     * @작성일 : 2018. 6. 19.
+	     * @작성자 : 강진광
+	     * @설명 : 첫번째 input tag에 있는 password값을 두번째 input tag에 있는 
+	     * 		 password2값과 비교하여 같을 때에만 userid에 맞는 비밀번호를 변경 할 수 있도록 하는 비동기 함수입니다.
+	     * @param userid , password, password2
+	     **/
 		$('#password-button').click(function(){
 			if($('#password').val() != "" && $('#password').val() == $('#password2').val()){
 			$.ajax({
@@ -48,7 +61,13 @@
 				swal("비밀번호와 비밀번호 확인이 다릅니다.");
 			}
 		});
-		//닉네임 변경하기
+		/**
+	     * @함수명 : 닉네임 변경하기
+	     * @작성일 : 2018. 6. 19.
+	     * @작성자 : 강진광
+	     * @설명 : input tag에 있는 nickname값이 빈문자열이 아니라면 userid에 맞는 닉네임을 변경 할 수 있도록 하는 비동기 함수입니다.
+	     * @param userid , nickname
+	     **/
 		$('#nickname-button').click(function(){
 			if($('#userName').val() != "" ){
 				$.ajax({
@@ -94,7 +113,13 @@
 			}
 		});
 		
-		// user delete
+		/**
+	     * @함수명 : 유저 탈퇴하기
+	     * @작성일 : 2018. 6. 19.
+	     * @작성자 : 강진광
+	     * @설명 : alert창의 confirmbutton을 누른다면 userid에 맞는 user를 삭제 하는 비동기 함수입니다.
+	     * @param userid
+	     **/
 		$('#delete-button').click(function(){
 			swal({
 				type: "warning",
