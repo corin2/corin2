@@ -5,7 +5,7 @@
 	<parameter name="Title" class="java.lang.String"/>
 	<parameter name="noy" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select * from leancanvas where projectnum=93]]>
+		<![CDATA[select * from leancanvas where projectnum=13]]>
 	</queryString>
 	<field name="projectNum" class="java.lang.Integer"/>
 	<field name="TEAMNAME" class="java.lang.String"/>

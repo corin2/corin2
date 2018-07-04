@@ -13,12 +13,11 @@
 }
 	
 .adminmanagement {
-   background-color: #FFF;
-   margin-top: 110px;
-   margin-right: 100px;
-   margin-left: 100px;
-   border-radius: 20px;
+    width: 95%;
+    background-color: #FFF;
+    border-radius: 20px;
 }
+
 .adminmanagementundo {
     font-weight: bold;
     font-size: 20px;
