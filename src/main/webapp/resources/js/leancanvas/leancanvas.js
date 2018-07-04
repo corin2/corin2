@@ -1,9 +1,22 @@
+/**
+파일명: leancanvas.js
+    설명: 린캔버스 관한 파일
+    작성일: 2018-06-22
+    작성자: 최재욱
+**/
+
 $(function () {
 	 $('.leantextareasize').focus();
 	allSelectLeanCanvas();
 })
 
-//각 칸마다 textarea 생성
+/**
+* @함수명 : problemClick(string)
+* @작성일 : 2018. 6. 22.
+* @작성자 : 최재욱
+* @설명 : 린캔버스의 개별 등록을 하기위한 텍스트 에어리어를 생성해 주는 함수이다.
+* @param string- 각 해당칸을 구분하기위한 string 변수
+**/
 function problemClick(string) {
 		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'></textarea></div>"
 		$("#"+string).empty();
@@ -11,7 +24,12 @@ function problemClick(string) {
 		$("#"+string+"text").focus();
 	
 }
-//각칸의 내용 DB에 삽입
+/**
+* @함수명 : insertLean()
+* @작성일 : 2018. 6. 22.
+* @작성자 : 최재욱
+* @설명 : 린캔버스에 해당하는 내용을 DB에 저장하기 위한 함수이다.
+**/
 function insertLean() {
 	$.ajax({
 		url:"leanInsert",
@@ -42,7 +60,13 @@ function insertLean() {
 	})
 }
 
-//leancanvas에 해당하는 내용 뿌려주기
+/**
+* @함수명 : allSelectLeanCanvas()
+* @작성일 : 2018. 6. 22.
+* @작성자 : 최재욱
+* @설명 : 린캔번스의 내용이 해당하는 칸에 컬럼명과 일치하는 내용을 보여준다.
+* 또한 정규 표현식을 활용하여 태그의 유출없이 해당 내용을 보여주게 하였다.
+**/
 function allSelectLeanCanvas(){
 	$.ajax({
 		url:"leanCanvasAllSelect",
@@ -195,7 +219,13 @@ function allSelectLeanCanvas(){
 	})
 }
 
-//팀명 수정하는 input태그 생성
+/**
+* @함수명 : teamNameEditClick(string)
+* @작성일 : 2018. 6. 22.
+* @작성자 : 최재욱
+* @설명 : 팀 이름을 수정할 수 있는 input 태그를 생성한다.
+* @param string- 미리 보기를 위해 string 변수
+**/
 function teamNameEditClick(string) {
 	if(string != ""){
 		$("#leanheader").empty();
@@ -214,7 +244,14 @@ function teamNameEditClick(string) {
 	}
 }
 
-//해당 칸 수정하는 textarea생성
+/**
+* @함수명 : problemEditClick(string)
+* @작성일 : 2018. 6. 22.
+* @작성자 : 최재욱
+* @설명 : 작성되어 있는 내용의 공간을 클릭하면
+* 해당 내용을 수정할 수 있는 텍스트에어이러을 보여준다.
+* @param string- 미리 보기를 위해 string 변수
+**/
 function problemEditClick(string) {
 	if($("#"+string+">div").html()!=undefined){
 		var enter = $("#"+string+">div").html().replace(/<br\s?\/?>/gi,'\n');
@@ -232,7 +269,12 @@ function problemEditClick(string) {
 	
 }
 
-//해당칸의 내용 수정
+/**
+* @함수명 : leanUpdate()
+* @작성일 : 2018. 6. 22.
+* @작성자 : 최재욱
+* @설명 : 사용자가 작성한 내용을 DB상에 수정해 주는 함수이다.
+**/
 function leanUpdate() {
 	var teamName ="";
 	var problem ="";
