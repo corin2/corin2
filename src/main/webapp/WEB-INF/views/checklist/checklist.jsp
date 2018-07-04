@@ -6,9 +6,9 @@
 <script src="resources/js/checklist/skillchecklist.js"></script>
 <link rel="stylesheet" href="resources/css/checklist/main.css">
 <link rel="stylesheet" href="resources/css/checklist/util.css">
-<h2 id='checklisttitle'>체크리스트</h2>
-<hr>
-<div id="tabs">
+<div id="tabs" class="checkbackdiv">
+  <h2 id='checklisttitle'>체크리스트</h2>
+  <hr>
   <ul>
     <li><a href="#tabs-1" onclick="userGradeCheckList()">공통체크리스트</a></li>
     <li><a href="#tabs-2" onclick="userGradeCheckList()">사용자체크리스트</a></li>

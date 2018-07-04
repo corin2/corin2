@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
+<link rel="stylesheet" href="resources/css/board/troubleshooting.css">
 <script>
 //태그 값을 불러와 ',' 단위로 잘라서 tag버튼들을 생성하는 스크립트.
 function fncTegSplit(str){
@@ -39,29 +38,29 @@ function fncTegSplit(str){
 
 </script>
 
-<!--jasper test --> 
-<div id="troubleContent">
-	<h2 id='boardTitle'>팀 트러블슈팅</h2>
-
-	<ul class="nav nav-tabs ">
-		<li><a id="memberts" href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
-		<li><a id="allts" href="troubleAll">전체 트러블슈팅</a></li>
-	</ul>
-</div>
-
-<div id="search-area" style="margin: 0 30px 0 30px;">
-	<form  action="searchAct" method="post" class="navbar-form navbar-left" role="search">
-		<input type="hidden" name="type" value="title" />
-		<div class="form-group">
-			<input type="text" class="form-control" placeholder="Search" name="search">
-		</div>
-		<button type="submit" class="btn btn-primary">
-			<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-			검색
-		</button>
-		
-		
-		<a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
+<div class="troublebackdiv">
+	<!--jasper test --> 
+	<div id="troubleContent">
+		<h2 id='boardTitle'>팀 트러블슈팅</h2>
+	
+		<ul class="nav nav-tabs ">
+			<li><a id="memberts" href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
+			<li><a id="allts" href="troubleAll">전체 트러블슈팅</a></li>
+		</ul>
+	</div>
+	
+	<div id="search-area" style="margin: 0 30px 0 30px;">
+		<form  action="search" method="post" class="navbar-form navbar-left" role="search">
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="Search" name="searchWord">
+			</div>
+			<button type="submit" class="btn btn-primary">
+				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				검색
+			</button>
+			
+			
+			<a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
 				class="btn btn-success btn-wide">
 				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
 		</button></a>
@@ -81,37 +80,37 @@ function fncTegSplit(str){
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				새 글 쓰기
-			</button></a>
-
+				</button></a>
+	
+		</form>
+	</div>
+	
+	<br>
+	
+	<form action="update" method="post">
+		<table class="table  table-striped table-bordered table-hover">
+			<br>
+			<tbody>
+				<th>NO</th>
+				<th>작성자</th>
+				<th>트러블슈팅</th>
+				<th>작성일</th>
+			</tbody>
+	
+			<c:forEach items="${data}" var="ts">
+				<tr>
+					<td>${ts.boardNum}</td>
+					<td align=center><img
+						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${ts.userProfile}"
+						 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
+					<td id="tags">
+					<script>fncTegSplit('${ts.hashtag}');</script>
+					<br><br><a href="troubleView?boardNum=${ts.boardNum}">${ts.problem}</a>
+					</td>
+					<td>${ts.boardDate}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
 	</form>
 </div>
-
-<br>
-
-	
-<form action="update" method="post">
-	<table class="table  table-striped table-bordered table-hover">
-		<br>
-		<tbody>
-			<th>NO</th>
-			<th>작성자</th>
-			<th>트러블슈팅</th>
-			<th>작성일</th>
-		</tbody>
-
-		<c:forEach items="${data}" var="ts">
-			<tr>
-				<td>${ts.boardNum}</td>
-				<td align=center><img
-					src="${pageContext.request.contextPath}/resources/images/profile/${ts.userProfile}"
-					 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
-				<td id="tags">
-				<script>fncTegSplit('${ts.hashtag}');</script>
-				<br><br><a href="troubleView?boardNum=${ts.boardNum}">${ts.problem}</a>
-				</td>
-				<td>${ts.boardDate}</td>
-			</tr>
-		</c:forEach>
-	</table>
-	
-</form>

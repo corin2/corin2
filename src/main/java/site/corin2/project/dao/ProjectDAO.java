@@ -34,10 +34,10 @@ public interface ProjectDAO {
 	public List<ProjectDTO> projectBookList(UserDTO user);
 	
 	//프로젝트 즐겨찾기 등록
-	public int projectBookmarkUpdate(ProjectDTO project);
+	public int projectBookmarkUpdate(TeamDTO team);
 	
 	//프로젝트 즐겨찾기 해제
-	public int projectNoneBookmarkUpdate(ProjectDTO project);
+	public int projectNoneBookmarkUpdate(TeamDTO team);
 
 	//프로젝트 하나 검색
 	public ProjectDTO projectSelect(int projectNum);

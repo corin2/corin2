@@ -9,7 +9,6 @@ package site.corin2.project.dao;
 import java.util.List;
 
 import site.corin2.project.dto.LanguageDTO;
-import site.corin2.project.dto.ProjectDTO;
 
 public interface LanguageDAO {
 	

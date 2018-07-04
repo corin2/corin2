@@ -43,12 +43,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<update id="projectBookmarkUpdate">
 			update team set bookmark=1
-			where projectnum=#{projectNum}
+			where projectnum=#{projectNum} and userid=#{userId}
 		</update>
 		
 		<update id="projectNoneBookmarkUpdate">
 			update team set bookmark=0
-			where projectnum=#{projectNum}
+			where projectnum=#{projectNum} and userid=#{userId}
 		</update>
 		
 		<!-- 프로젝트 하나 검색 -->

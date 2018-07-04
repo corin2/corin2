@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 @Controller
 public class LoadJasperReport {
 
@@ -45,10 +44,8 @@ public class LoadJasperReport {
 						
 			conn = jrdao.getConnection(httpSession);
 
-			//String noy = "16";
-			//System.out.println("projectNum: " + noy);
+
 			System.out.println("projectNum: " + projectNum);
-			
 
 			HashMap<String, Object> hmParams = new HashMap<String, Object>();
 

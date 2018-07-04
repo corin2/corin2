@@ -146,7 +146,6 @@ function checkListProceedChart(maxData, chartData) {
 			$.each(chartData, function(i, elt) {
 				labels.push(elt.name); datas.push(elt.length);
 			});
-			console.log("datas.length"+datas.length)
 			var ctx = document.getElementById("checkListProceedChart").getContext('2d');
 			let chart = new Chart(ctx, {
 				type: 'polarArea',

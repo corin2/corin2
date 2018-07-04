@@ -8,8 +8,8 @@
 }
 
 .thisPage {
-	background-color: black;
-	color: white;
+	background-color: #337AB7 !important;
+	color: white !important;
 }
 	
 .adminmanagement {
@@ -81,6 +81,9 @@
 	}
 	.adminbtndan{
 	color : #FFF !important;
+	margin: 3px !important;
+    margin-top: 4px !important;
+    font-size: 20px;
 	}
 	.table-admin-menu > tbody > tr > td > input {
 	color: #000;

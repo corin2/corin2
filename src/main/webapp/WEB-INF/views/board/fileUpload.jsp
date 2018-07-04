@@ -8,9 +8,9 @@ pageEncoding="UTF-8"%>
 <link href="resources/css/board/dropzone.css" type="text/css" rel="stylesheet" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
-	
+<div class="fileuploadbackdiv" style="overflow: scroll;">
 	<!-- input 검색기능 -->
-	<div class ="folder" style="width:18%;overflow:hidden;height:600px;float:left;margin-top:55px;">
+	<div class ="folder" style="width:18%;overflow:hidden;float:left;margin-top:55px;margin-left:80px;">
 		<form action="searcherFileSelect" method="get"  onsubmit="return false" >
 	 	 	<input id="uploadOriginInput" type="text" name ="uploadOrigin" class="search"style="width:250px;margin-right:5px; " onkeypress="if( event.keyCode==13 ){searcherFileSelect();}" placeholder="파일명  or 작성자를 입력하세요"  />
 	 	 	<button class="btn btn-default" onclick="searcherFileSelect()">검색</button>
@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
 	</div>
 	
 	<!-- 파일함 기능  -->
-	<div id ="wrap" style="float:right;margin-top:30px;" >
+	<div id ="wrap" style="float:right;margin-top:30px; overflow:hidden;" >
 		<form action="upload" method="post" enctype="multipart/form-data"> 
 			<div class="filebox"> 
 				<label for="fileupload">fileupload</label> 
@@ -42,6 +42,7 @@ pageEncoding="UTF-8"%>
 			 </div>	
 		</div>
 	</div>
+</div>
 	
 	
 	

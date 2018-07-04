@@ -8,14 +8,11 @@
 <body>
  ${refresh}
 <form method="post" action="./login">
-	<input type="hidden" id="userId" name="userId" placeholder="email@domain.com" required="required">
-    <input type="hidden" id="password" name="password" placeholder="Password" required="required">
+	<input type="hidden" id="userId" name="userId" value="${user.userId}" placeholder="email@domain.com" required="required">
+    <input type="hidden" id="password" name="password" value="${user.password}" placeholder="Password" required="required">
     <button type="submit" id="btnLogin"></button>
 </form>
 <script>
-	var userid = "<%=request.getParameter("userId")%>";
-	$('#userId').val(userid);
-	$('#password').val('kakaologin');
 	$('#btnLogin').trigger('click');
 </script>
 </body>

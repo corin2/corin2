@@ -44,7 +44,7 @@
 	border-left : none;
 	border-right : none;
     border-color: lightgray;
-   	background-color:#FAFAFA;
+   	background-color:#FFF;
 	width: 40%;
 	text-align: center;
 }
@@ -152,4 +152,12 @@
 	background-image:url("../../../resources/images/leancanvas/9edit.png");
 	background-position:center;
 	background-repeat: no-repeat;
+}
+
+.leanbackdiv{
+	margin-bottom : 15px;
+	margin-top: 15px;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding: 31px 12px 92px 12px;
 }

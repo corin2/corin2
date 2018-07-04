@@ -2,13 +2,16 @@
 	white-space: nowrap;
 	padding: 10px 10px 5px;
 	background: #00FF0000;
-	width: 100%;
+	width: 99% !important;
 	position: absolute;
-    margin-left: 27px;
+    margin-left: 0px;
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	background-color: inherit;
+	background-color: #FFF;
+	background-color: #ffffff;
+	border-radius: 25px;
+    padding : 15px;
 }
 
 #mainScreen::-webkit-scrollbar {
@@ -16,6 +19,7 @@
 }
 
 #content-md{
+	width:100%;
 	height: 85%;
 }
 
@@ -183,4 +187,11 @@ hr {
 #warningLabel {
 	float: right;
 	color: red;
+}
+
+.kanbanfrontdiv{
+	margin-top: 15px;
+    background-color: #ffffff;
+    border-radius: 25px;
+	width:1000px;
 }
