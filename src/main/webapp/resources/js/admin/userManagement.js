@@ -1,5 +1,5 @@
 $(function(){
-	
+	$('#startadminuser').trigger('click');
 });
 
 //가입회원, 메일인증 안한회원, 탈퇴한 회원 찾기

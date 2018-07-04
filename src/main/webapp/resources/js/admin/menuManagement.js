@@ -1,3 +1,6 @@
+$(function(){
+	$('#startadminmenu').trigger('click');
+});
 function checkListMenuView() {
 	$.ajax({
 		type : "post",
