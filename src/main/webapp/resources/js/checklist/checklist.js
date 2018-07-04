@@ -6,7 +6,9 @@
 **/
 
 $( function() {
-    $( "#tabs" ).tabs();
+	$(".nav-tabs a").click(function(){
+        $(this).tab('show');
+    });
     userGradeCheckList();
 });
 
@@ -21,7 +23,6 @@ var myGradeNum = '';
 **/
 function checkListTable() {
  	 var table = '';
- 	 var div='';
 		 table += "<table class='table table-striped table-bordered table-hover'>"
 			   + "<tbody>"
 			   + "<tr>"
@@ -47,7 +48,6 @@ function checkListTable() {
 			   + "</tbody>"
 			   + "</table>"
 		$('#tabs-2').html(table)
-		$('#checklisttitle').html(div)
 		showCheckList();
 		
 }
