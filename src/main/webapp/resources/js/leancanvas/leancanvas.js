@@ -54,7 +54,7 @@ function insertLean() {
 			allSelectLeanCanvas();
 		},
 		error: function() {
-            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+            swal({type: 'error',title: 'Oops...',text: '다른 멤버가 이미 작성 하였습니다.<br>재입장 부탁드려요^^',footer: '<a href>Why do I have this issue?</a>'})
         }
 		
 	})

@@ -121,6 +121,7 @@ $('#CheckBoxInput').focus();
 * @설명 : 사용자 체크리스트의 내용을 DB의 삽입 시키기 위한 함수이다.
 **/
 function checkListInsert() {
+	if($("#CheckBoxInput").val()!=""){
 	$.ajax({
 		url:"insertCheckList",
 		dataType: "JSON",
@@ -137,6 +138,9 @@ function checkListInsert() {
 				})
 		}
 	})
+	}else{
+		swal("내용을 입력해 주세요")
+	}
 }
 
 /**
