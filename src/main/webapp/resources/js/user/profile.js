@@ -68,7 +68,6 @@ $(function(){
 	     * @param userid , nickname
 	     **/
 		$('#nickname-button').click(function(){
-			console.log($('#userName').val().trim().length)
 			if($('#userName').val().trim().length >= 3 ){
 				$.ajax({
 					url:"usernickupdate",
