@@ -268,7 +268,7 @@ $(function() {
 				+ '<div class="col-sm-12 message-main-sender">'
 				+ '<div class="sender">'
 				+ '<div class="message-text">'
-				+ message.text
+				+ emojione.toImage(message.text)
 				+ '</div>'
 				+ '<span class="message-time pull-right">'
 				+ convertTime(message.timestamp)
@@ -290,7 +290,7 @@ $(function() {
 				+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + obj.userName +'</span>'
 				+ '<div class="receiver bubble">'
 				+ '<div class="message-text">'
-				+ message.text
+				+ emojione.toImage(message.text)
 				+ '</div>'
 				+ '<span class="message-time pull-right">'
 				+ convertTime(message.timestamp)
@@ -358,16 +358,11 @@ $(function() {
 
 }); // end - jQuery
 
+
 // 이모티콘
+
 /*$(function() {
-  // Initializes and creates emoji set from sprite sheet
-  window.emojiPicker = new EmojiPicker({
-    emojiable_selector: '[data-emojiable=true]',
-    assetsPath: 'resources/js/chatting/lib/img/',
-    popupButtonClasses: 'fa fa-smile-o'
-  });
-  // Finds all elements with `emojiable_selector` and converts them to rich emoji input fields
-  // You may want to delay this step if you have dynamically created input fields that appear later in the loading process
-  // It can be called as many times as necessary; previously converted input fields will not be converted again
-  window.emojiPicker.discover();
+	$("#messageText").emojioneArea({
+		
+	});
 });*/
