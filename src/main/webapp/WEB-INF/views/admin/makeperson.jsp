@@ -10,7 +10,7 @@
 	      <h4 class="brief"><i>CORIN2</i></h4>
 	      <div class="left col-xs-7">
 	        <h2>강 성 훈</h2>
-	        <p><strong>About: </strong><br> Web Programmer(Captain)</p>
+	        <p>Web Programmer(Captain)</p>
 	        <ul class="list-unstyled">
 	        <hr>
 	          <li><i class="glyphicon glyphicon-pencil"></i><br>뚱이가 너무 좋아!<br><br></li>
@@ -37,10 +37,10 @@
 	      <h4 class="brief"><i>CORIN2</i></h4>
 	      <div class="left col-xs-7">
 	        <h2>배 현 준</h2>
-	        <p><strong>About: </strong><br> Web Programmer(Member)</p>
+	        <p>Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
 	          <hr>
-	          <li><i class="glyphicon glyphicon-pencil"></i><br>마지막까지 수고하셨습니다!ㅎ<br><br></li>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>당신이 할수 있다고 믿든 할수<br>없다고 믿든 믿는대로 될것이다<br></li>
 	
 	        </ul>
 	      </div>
@@ -64,7 +64,7 @@
 	      <h4 class="brief"><i>CORIN2</i></h4>
 	      <div class="left col-xs-7">
 	        <h2>강 진 광</h2>
-	         <p><strong>About: </strong><br> Web Programmer(Member)</p>
+	         <p>Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
 	        <hr>
 	          <li><i class="glyphicon glyphicon-pencil"></i><br>경기도 살면 인생의 20%는<br>대중교통에서 보낸다</li>
@@ -91,7 +91,7 @@
 	      <h4 class="brief"><i>CORIN2</i></h4>
 	      <div class="left col-xs-7">
 	        <h2>전 나 영</h2>
-	        <p><strong>About: </strong><br> Web Programmer(Member)</p>
+	        <p>Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
 	        <hr>
 	          <li><i class="glyphicon glyphicon-pencil"></i><br>마지막까지 수고하셨습니다!ㅎ<br><br></li>
@@ -118,7 +118,7 @@
 	      <h4 class="brief"><i>CORIN2</i></h4>
 	      <div class="left col-xs-7">
 	        <h2>최 재 욱</h2>
-	        <p><strong>About: </strong><br> Web Programmer(Member)</p>
+	        <p>Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
 	         <hr>
 	          <li><i class="glyphicon glyphicon-pencil"></i><br>눈감았다 뜨면 집이였음 좋겠다<br><br></li>
@@ -145,7 +145,7 @@
 	      <h4 class="brief"><i>CORIN2</i></h4>
 	      <div class="left col-xs-7">
 	        <h2>김 진 원</h2>
-	         <p><strong>About: </strong><br> Web Programmer(Member)</p>
+	         <p>Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
 	         <hr>
 	          <li><i class="glyphicon glyphicon-pencil"></i><br>재욱이 형 너무 좋아요<br>만족!</li>

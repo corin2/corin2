@@ -163,20 +163,23 @@ function autoComplete() {
 * @설명 : 초대 한 user가 있는 회원인지 없는 회원인지 구분
 **/
 function memberinvite() {
-	$.ajax({
-		url : "idcheck",
-		type: "post",
-		data : $("#emailSearch").val().trim(),
-		contentType: "application/json; charset=utf-8",
-		success : function (data) {
-			console.log(data.trim())
-			if(data.trim() === 'true') isInviteMsg();
-			else swal('없는 회원입니다');
-		},
-		error: function() {
-            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
-        }
-	})
+	if($("#emailSearch").val().trim().indexOf('@') > -1){
+		$.ajax({
+			url : "idcheck",
+			type: "post",
+			data : $("#emailSearch").val().trim(),
+			contentType: "application/json; charset=utf-8",
+			success : function (data) {
+				if(data.trim() === 'true') isInviteMsg();
+				else swal('없는 회원입니다');
+			},
+			error: function() {
+	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
+	        }
+		})
+	}else {
+		swal('이메일 형식이 아닙니다.');
+	}
 }
 
 /**
