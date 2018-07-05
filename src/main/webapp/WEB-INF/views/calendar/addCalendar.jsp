@@ -3,7 +3,7 @@
 <div id="calEventDialog"  hidden >
 	<form>
 		<fieldset>
-			<label for="eventTitle">보드명</label> 
+			<label for="eventTitle">일정명</label> 
 			<input type="text" name="eventTitle" id="eventTitle" />
 			<br> 
 			<label for="eventStart">시작일</label> 
