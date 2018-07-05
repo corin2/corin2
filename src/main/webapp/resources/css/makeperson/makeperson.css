@@ -7,7 +7,8 @@
 }
 
 .makepersondiv {
-    margin-top: 80px;
+	float: left;
+    margin-top: -5px;
     background-color: #ffffff;
     border-radius: 25px;
     min-height: 850px;
@@ -15,6 +16,8 @@
     margin-left : 0px;
 }
 .btnmake{
+	position: absolute;
+    margin-top: 19px;
 	margin-left:27px;
 }
 .carousel-inner {
