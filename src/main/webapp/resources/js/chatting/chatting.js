@@ -51,7 +51,7 @@ $(function() {
 	
 	/**
 	    * @함수명 : getChatUsers
-	    * @작성일 : 2018. 6. 12.
+	    * @작성일 : 2018. 6. 22.
 	    * @작성자 : 강 성 훈
 	    * @설명 : 현재 프로젝트 사용자 정보 수집 및 목록 표시
 	*/
@@ -166,11 +166,11 @@ $(function() {
 	}
 
 	/**
-	    * @함수명 : getChatUserList
-	    * @작성일 : 2018. 6. 12.
+	    * @함수명 : updateInfo
+	    * @작성일 : 2018. 6. 13.
 	    * @작성자 : 강 성 훈
 	    * @설명 : 채팅 사용자 목록 불러오기
-	    * @param : userUid, obj
+	    * @param : userUid
 	*/
 	// DB 정보 수정
 	function updateInfo(userUid) {
@@ -184,8 +184,13 @@ $(function() {
 		updateUser[userUid] = true;
 		db.child('projects/' + sessionProjectNum + '/users').update(updateUser);
 	}
-	
-	// All 버튼 클릭 시 전체 채팅 시작
+
+	/**
+	    * @함수명 : selectAllChat
+	    * @작성일 : 2018. 6. 13.
+	    * @작성자 : 강 성 훈
+	    * @설명 : All 버튼 클릭 시 전체 채팅 시작
+	*/
 	function selectAllChat() {
 		$('#allUsers').click(function() {
 			changeColor('#allUsers'); // 클릭 시 색상변경
@@ -194,7 +199,12 @@ $(function() {
 		});
 	}
 	
-	// 사용자 클릭 시 1:1 채팅 시작
+	/**
+	    * @함수명 : selectPrivateChat
+	    * @작성일 : 2018. 6. 19.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 사용자 클릭 시 1:1 채팅 시작
+	*/
 	function selectPrivateChat() {
 		db.child('users').on('child_added', function(snapshot) {
 			var user = snapshot.val();
@@ -207,8 +217,14 @@ $(function() {
 			});
 		});
 	}
-	
-	// 1:1 대화
+
+	/**
+	    * @함수명 : privateChat
+	    * @작성일 : 2018. 6. 19.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 1:1 대화
+	    * @param : user
+	*/
 	function privateChat(user) {
 		// 현재 사용자의 FirebaseDB용 Uid를 md5형식으로 변환
 		var currentUid = md5(currentUser);
@@ -230,8 +246,15 @@ $(function() {
 			showMessage(); // 메시지 출력
 		});
 	}
-	
-	// 1:1 대화방 검색
+
+	/**
+	    * @함수명 : searchPrivateRoom
+	    * @작성일 : 2018. 6. 19.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 1:1 대화방 검색
+	    * @param : userRoom, roomPath
+	    * @return : true || false
+	*/
 	function searchPrivateRoom(userRoom, roomPath) {
 		// 1:1 대화방 존재 여부 확인
 		
@@ -244,8 +267,14 @@ $(function() {
         
         return false; // 존재하지 않으면 false return
 	}
-	
-	// 1:1 대화방 생성
+
+	/**
+	    * @함수명 : makePrivateRoom
+	    * @작성일 : 2018. 6. 19.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 1:1 대화방 생성
+	    * @param : roomPath, currentUid, user
+	*/
 	function makePrivateRoom(roomPath, currentUid, user) {
 		var createPrivateChat = {
 				'roomUid': roomPath,
@@ -261,7 +290,12 @@ $(function() {
 	
     ////////////[메시지] ////////////
 	
-	// 메시지 보내기
+	/**
+	    * @함수명 : sendMessage
+	    * @작성일 : 2018. 6. 15.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 메시지 보내기
+	*/
 	function sendMessage() {
 		var text = $('#messageText'); // 메시지 내용
 		
@@ -292,7 +326,12 @@ $(function() {
 		}
 	})
 	
-	// DB변동 시 메시지 출력 함수
+	/**
+	    * @함수명 : showMessage
+	    * @작성일 : 2018. 6. 15.
+	    * @작성자 : 강 성 훈
+	    * @설명 : Firebase DB변동 시 메시지 출력 함수
+	*/
 	function showMessage() {
 		$('#conversation').empty(); // 대화창 초기화
 		
@@ -303,7 +342,13 @@ $(function() {
 		currentMessages = messages;
 	}
 	
-	// 보낸메시지 출력
+	/**
+	    * @함수명 : showTxMessage
+	    * @작성일 : 2018. 6. 26.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 보낸메시지 출력
+	    * @param : message
+	*/
 	function showTxMessage(message) {
 		$('#conversation').append(
 				'<div class="row message-body">'
@@ -321,7 +366,13 @@ $(function() {
 		);
 	}
 	
-	// 받은메시지 출력
+	/**
+	    * @함수명 : showRxMessage
+	    * @작성일 : 2018. 6. 26.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 받은메시지 출력
+	    * @param : message, obj
+	*/
 	function showRxMessage(message, obj) {
 		$('#conversation').append(
 				'<div class="row message-body">'
@@ -343,8 +394,14 @@ $(function() {
 				+ '</div>'
 		);
 	}
-	
-	// 메시지 생성 함수
+
+	/**
+	    * @함수명 : makeMessage
+	    * @작성일 : 2018. 6. 26.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 메시지 생성 함수
+	    * @param : snapshot
+	*/
 	function makeMessage(snapshot) {
 		var message = snapshot.val();
 		
@@ -364,18 +421,36 @@ $(function() {
 	
 	//////////// [유틸 함수] ////////////
 	
-	// 버튼 클릭시 색 변경
+	/**
+	    * @함수명 : makeMessage
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 버튼 클릭시 색 변경
+	    * @param : btnId
+	*/
 	function changeColor(btnId) {
 		$('.sideBar-body').css('background-color', '');
 		$(btnId).css('background-color', '#FFF');
 	}
 	
-    // 10미만 숫자 앞에 0 붙이기
+	/**
+	    * @함수명 : makeMessage
+	    * @작성일 : 2018. 6. 11.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 10미만 숫자 앞에 0 붙이기
+	    * @param : n
+	*/
     function pad(n) {
         return n > 9 ? "" + n: "0" + n;
     }
 	
-    // timestamp를 날짜 시간 으로 변환
+	/**
+	    * @함수명 : convertTime
+	    * @작성일 : 2018. 6. 11.
+	    * @작성자 : 강 성 훈
+	    * @설명 : timestamp를 날짜 시간 으로 변환
+	    * @param : timestamp
+	*/
     function convertTime(timestamp) {
         var date = new Date(timestamp),
             year = date.getFullYear(),
@@ -399,12 +474,3 @@ $(function() {
     }
 
 }); // end - jQuery
-
-
-// 이모티콘
-
-/*$(function() {
-	$("#messageText").emojioneArea({
-		
-	});
-});*/
