@@ -1,3 +1,10 @@
+/**
+	파일명: chatting.js
+    설명: Firebase를 사용한 채팅 구현
+    작성일: 2018. 6. 5.
+    작성자: 강 성 훈
+*/
+
 $(function() {
 	// FirebaseDB 권한 정책에 따름
 	'use strict';
@@ -42,7 +49,12 @@ $(function() {
 	// getChatUsers함수를 $(function() {...}) 함수 범위 밖에서 사용 선언
 	window.getChatUsers = getChatUsers;
 	
-	// 프로젝트 내 멤버 정보 가져오기
+	/**
+	    * @함수명 : getChatUsers
+	    * @작성일 : 2018. 6. 12.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 현재 프로젝트 사용자 정보 수집 및 목록 표시
+	*/
 	function getChatUsers() {
 		$('.sideBar').empty(); // 채팅 유저리스트 초기화
 		getChatAllIcon(); // 전체채팅 아이콘 불러오기
@@ -83,7 +95,13 @@ $(function() {
 		selectPrivateChat(); // 1:1채팅 선택
 	}
 	
-	// 현재 사용자의 프로필 이미지 표시 함수
+	/**
+	    * @함수명 : showCurrentChatUserProfile
+	    * @작성일 : 2018. 6. 12.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 현재 사용자의 프로필 이미지 표시 함수
+	    * @param : obj
+	*/
 	function showCurrentChatUserProfile(obj) {
 		if(currentUser == obj.userId) {
             currentUserName = obj.userName; // 현재 사용자의 이름
@@ -95,7 +113,13 @@ $(function() {
 		}
 	}
 	
-	// 초기 데이터 생성
+	/**
+	    * @함수명 : initialData
+	    * @작성일 : 2018. 6. 12.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 초기 데이터 생성
+	    * @param : userUid, obj
+	*/
 	function initialData(userUid, obj) {
 		db.child('users/' + userUid).update({
 			'userid': obj.userId,
@@ -103,8 +127,13 @@ $(function() {
 			'userprofile': obj.userProfile,
 		});
 	}
-	
-	// 프로젝트 전체 채팅 아이콘 불러오기
+
+	/**
+	    * @함수명 : getChatAllIcon
+	    * @작성일 : 2018. 6. 18.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 프로젝트 전체 채팅 아이콘 불러오기
+	*/
 	function getChatAllIcon() {
 		$('.sideBar').append(
 				'<div class="row sideBar-body" id="allUsers" style="background-color: #FFF;">'
@@ -116,8 +145,14 @@ $(function() {
 	            + '</div>'
 		);
 	}
-	
-	// 채팅 사용자 목록 불러오기
+
+	/**
+	    * @함수명 : getChatUserList
+	    * @작성일 : 2018. 6. 12.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 채팅 사용자 목록 불러오기
+	    * @param : userUid, obj
+	*/
 	function getChatUserList(userUid, obj) {
 		$('.sideBar').append(
 				'<div class="row sideBar-body" id=' + userUid + ' data-toggle="tooltip" title="' + obj.userName + '">'
@@ -129,7 +164,14 @@ $(function() {
 				+ '</div>'
 		);
 	}
-	
+
+	/**
+	    * @함수명 : getChatUserList
+	    * @작성일 : 2018. 6. 12.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 채팅 사용자 목록 불러오기
+	    * @param : userUid, obj
+	*/
 	// DB 정보 수정
 	function updateInfo(userUid) {
 		// 유저DB 내 프로젝트 정보 수정
