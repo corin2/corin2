@@ -184,7 +184,7 @@ public class KanbanService {
 					String color = "";
 					switch (list) {
 					case 1:  color = "#4477AA"; break;
-					case 3:  color = "#117733"; break;
+					case 3:  color = "#35B7AF"; break;
 					case 4:  color = "#DDCC77"; break;
 					case 5:  color = "#CC6677"; break;
 					case 6:  color = "#A593E0"; break;

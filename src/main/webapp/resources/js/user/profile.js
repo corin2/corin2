@@ -14,7 +14,7 @@ $(function(){
 	     * @param userid , password, password2
 	     **/
 		$('#password-button').click(function(){
-			if($('#password').val() != "" && $('#password').val() == $('#password2').val()){
+			if($('#password').val().trim().length >= 3 && $('#password').val() == $('#password2').val()){
 			$.ajax({
 				url:"userpassupdate",
 				type: "post",
@@ -54,11 +54,10 @@ $(function(){
 		                })
 		        }
 			});
-			}else if($('#password').val() == ""){
-				swal("비밀번호를 입력해주세요.");
-			}
-				else{
+			}else if($('#password').val() != $('#password2').val()){
 				swal("비밀번호와 비밀번호 확인이 다릅니다.");
+			}else{
+				swal("비밀번호는 3자이상입니다.");
 			}
 		});
 		/**
@@ -69,7 +68,8 @@ $(function(){
 	     * @param userid , nickname
 	     **/
 		$('#nickname-button').click(function(){
-			if($('#userName').val() != "" ){
+			console.log($('#userName').val().trim().length)
+			if($('#userName').val().trim().length >= 3 ){
 				$.ajax({
 					url:"usernickupdate",
 					type: "post",
@@ -77,27 +77,27 @@ $(function(){
 					data:{userId:$("#userId-profile").val(), 
 						  userName:$("#userName").val()},
 					success:function(data){
-						swal({text:"닉네임 수정하기에 성공하였습니다."});
-						$.ajax({
-							type : "post",
-							url  : "showUser",
-							datatype:"JSON",
-							data : {userId : $('#hiddenUserId').val()},
-							success : function(data){
-								$.each(data, function(index, obj) {
-									$('#userId').attr("value", obj.userId);
-									$('#userName').attr("value", obj.userName);
-								});
-							},
-							error: function() {
-					            swal({
-					                 type: 'error',
-					                 title: 'Oops...',
-					                 text: 'Something went wrong!',
-					                 footer: '<a href>Why do I have this issue?</a>'
-					                })
-					        }
-						});
+							swal({text:"닉네임 수정하기에 성공하였습니다."});
+							$.ajax({
+								type : "post",
+								url  : "showUser",
+								datatype:"JSON",
+								data : {userId : $('#hiddenUserId').val()},
+								success : function(data){
+									$.each(data, function(index, obj) {
+										$('#userId').attr("value", obj.userId);
+										$('#userName').attr("value", obj.userName);
+									});
+								},
+								error: function() {
+									swal({
+										type: 'error',
+										title: 'Oops...',
+										text: 'Something went wrong!',
+										footer: '<a href>Why do I have this issue?</a>'
+									})
+								}
+							});
 					},
 					error: function() {
 			            swal({
@@ -108,8 +108,8 @@ $(function(){
 			                })
 			        }
 				});
-			}else if($('#userName').val() == ""){
-				swal("닉네임을 입력해주세요.");
+			}else{
+				swal("닉네임은 3글자 이상 입력해주세요.");
 			}
 		});
 		
