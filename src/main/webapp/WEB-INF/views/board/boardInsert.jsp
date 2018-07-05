@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!--announceboard css -->
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
 <!-- ckedior -->
 <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
@@ -20,7 +21,9 @@
 				 	
 				 	<tr>
 				 		<td>내용</td>
+				 		<!-- ckeditor 적용 -->
 				 		<td><textarea class="ckeditor" name ="announceContent"></textarea></td> 			 	
+				 		<!-- ckeditor 적용 -->
 				 	</tr>		
 					
 					<tr>
@@ -35,6 +38,7 @@
 		</div>
 	</div>
 	
+	<!-- ckeditor 적용 -->
 	<script type="text/javascript">			    
 		CKEDITOR.replace( 'announceContent',{
 				width:'100%',
@@ -44,9 +48,10 @@
 				var dialogName = ev.data.name;
 				var dialogDefinition = ev.data.definition;
 				
-			/* 	switch (dialogName) {
+			 	switch (dialogName) {
 			   		 case 'image':dialogDefinition.removeContents('Link');
 					 break;
-			 } */
+			 } 
 			});
 	</script>
+<!-- ckeditor 적용 -->

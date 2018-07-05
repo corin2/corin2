@@ -67,7 +67,7 @@
     border-radius: 25px;
 }
   /* input 버튼  숨기기 */ 
-  .filebox input[type="file"] { 
+.filebox input[type="file"] { 
   position: absolute; 
   overflow: hidden; 
   clip:rect(0,0,0,0); 

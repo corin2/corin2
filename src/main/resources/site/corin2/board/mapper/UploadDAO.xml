@@ -4,12 +4,42 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="site.corin2.board.dao.UploadDAO">
+	
+		<!--  
+			* @함수명 : uploadSelect
+		    * @작성일 : 2018. 7. 4.
+		    * @작성자 : 전나영
+		    * @설명 : 모든 게시물 조회
+		    * @parameterType
+		    * @resultType UploadDTO
+		-->
+		<select id="uploadSelect" resultType="site.corin2.board.dto.UploadDTO">
+			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias,m.userid , DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
+			WHERE b.boardnum = u.boardnum and b.userid= m.userid 
+			and b.SKILLNUM ='S700' and b.isdeleted = 0 and u.projectnum =  #{projectNum} order by b.boarddate DESC
+		</select>
 
+		<!--  
+			* @함수명 : boardInsert
+		    * @작성일 : 2018. 7. 4.
+		    * @작성자 : 전나영
+		    * @설명 : board Insert
+		    * @parameterType BoardDTO
+		    * @resultType 
+		-->
 		<insert id="boardInsert" parameterType="site.corin2.board.dto.BoardDTO">
 			insert into board(skillnum , userid, boarddate,isdeleted) 
 			values('S700',#{userId},now(),0)
 		</insert>
-				
+		
+		<!--  
+			* @함수명 : uploadInsert
+		    * @작성일 : 2018. 7. 4.
+		    * @작성자 : 전나영
+		    * @설명 : upload Insert
+		    * @parameterType UploadDTO
+		    * @resultType 
+		-->				
 		<insert id="uploadInsert" parameterType="site.corin2.board.dto.UploadDTO">
 			<selectKey order="BEFORE" keyProperty="boardNum" resultType="int">
 				select IFNULL(max(boardnum), 0) from board where skillnum ='S700'
@@ -18,28 +48,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			values(#{boardNum},'S700',#{projectNum},#{uploadAlias},#{uploadOrigin})
 		</insert>
 		
-		<select id="uploadSelect" resultType="site.corin2.board.dto.UploadDTO">
-			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias,m.userid , DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
-			WHERE b.boardnum = u.boardnum and b.userid= m.userid 
-			and b.SKILLNUM ='S700' and b.isdeleted = 0 and u.projectnum =  #{projectNum} order by b.boarddate DESC
-		</select>
-	
+		<!--  
+			* @함수명 : fileDelete
+		    * @작성일 : 2018. 7. 4.
+		    * @작성자 : 전나영
+		    * @설명 : 업로드된 파일들을 삭제하는 함수
+		    * @parameterType UploadDTO
+		    * @resultType 
+		-->			
 		<delete id="fileDelete" parameterType="site.corin2.board.dto.UploadDTO">
 			delete from upload where boardnum = #{boardNum} and skillnum ='S700' and projectnum = #{projectNum}
 		</delete>
- 	
+		
+		<!--  
+			* @함수명 : searcherFileSelect
+		    * @작성일 : 2018. 7. 4.
+		    * @작성자 : 전나영
+		    * @설명 : 파일 작성자 , 파일명 검색하는 기능
+		    * @parameterType 
+		    * @resultType UploadDTO 
+		-->		 	
 		<select id="searcherFileSelect" resultType="site.corin2.board.dto.UploadDTO">
 			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias,m.userid ,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
 			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
 			and (u.uploadorigin LIKE '%${uploadOrigin}%' or  m.username LIKE '%${uploadOrigin}%')order by b.boarddate DESC
 			
 		</select> 
-		<select id="dateClick" resultType="site.corin2.board.dto.UploadDTO" parameterType="java.util.HashMap">
-			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,m.userid,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
-			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
-			and (b.boarddate LIKE '%${date}%' and u.uploadorigin LIKE '%${extension}%')order by b.boarddate DESC 
-		</select>
-		
+
+		<!--  
+			* @함수명 : exClick
+		    * @작성일 : 2018. 7. 4.
+		    * @작성자 : 전나영
+		    * @설명 : jstree 를 사용해서 클릭한 확장자를 통해서 검색하는 기능
+		    * @parameterType  HashMap<String, Object>
+		    * @resultType UploadDTO
+		-->		
 		<select id="exClick" resultType="site.corin2.board.dto.UploadDTO" parameterType="java.util.HashMap">
 			select m.username,m.userprofile ,u.uploadorigin ,u.uploadalias ,m.userid,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i')as boarddate,u.boardnum  from board b ,upload u,user m 
 			WHERE  b.boardnum = u.boardnum and b.userid= m.userid and b.skillnum ='S700' and u.projectnum = #{projectNum} 
