@@ -292,7 +292,7 @@ function addCardView(projectNum) {
 	var div = "<input class='inputtext' type='text' placeholder='card title' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {addCard($(this).parent().children(\"label\"), "+ projectNum +");}' "
 			+ "onfocusout='send(5)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<label id='addLabel floatRightKanban' onclick='addCard(this, "+ projectNum +")'>완료</label>";
+			+ "<label id='addLabel' class='floatRightKanban' onclick='addCard(this, "+ projectNum +")'>완료</label>";
 	$('#addcard').html(div);
 	$('#addcard').attr('class', 'card');
 	$('#addcard').children('input').focus();
@@ -422,7 +422,7 @@ function updateCardTitle(e, cardNum) {
 	var div = "<input class='inputtext' type='text' placeholder='"+cardName+"' name='title' "
 			+ "onkeypress='if(event.keyCode==13) {updateCard($(this).parent().children(\"label\"), "+ cardNum +");}' "
 			+ "onfocusout='send(5)' onkeyup='fnChkByte(this, 27)' >"
-			+ "<label id='editLabel floatRightKanban' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
+			+ "<label id='editLabel' class='floatRightKanban' onclick='updateCard(this, "+ cardNum +")')>완료</label>";
 	$('#div' + cardNum).html(div);
 	$('#div' + cardNum).attr('class', 'card');
 	$('#div' + cardNum).children('input').focus();
@@ -503,7 +503,6 @@ function cardNameModOk(e){
 	$('#modalHeader').attr('onclick', 'cardNameMod()');
 }
 
-//확인 버튼을 눌르 수 있도록 onfocusout 속성 제거
 /**
 * @함수명 : focusOutDisgard(obj)
 * @작성일 : 2018. 06. 07.
