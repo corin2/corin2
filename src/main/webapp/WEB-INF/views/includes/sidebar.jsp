@@ -151,7 +151,7 @@
 		location.href = 'logout';
 	}
 	
-	var listColorData = ['#4477AA', '#117733', '#DDCC77', '#CC6677', '#A593E0', '#CBE86B', '#FEC9C9', '#1EC0FF', '#C9D5DE']; //컬러배열
+	var listColorData = ['#4477AA', '#35B7AF', '#DDCC77', '#CC6677', '#A593E0', '#CBE86B', '#FEC9C9', '#1EC0FF', '#C9D5DE']; //컬러배열
 	
 	$(function() {
 		function getCurrentUserProfile() {
