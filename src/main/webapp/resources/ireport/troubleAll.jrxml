@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_Landscape" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c3c1e2c-1b3b-4d1a-a58b-f1f349010371">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Corin2 Data Adapter "/>
+	<parameter name="userId" class="java.lang.String"/>
+	<parameter name="projectNum" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select b.boardnum as boardNum,c.username,c.userProfile,
+		        trim(regexp_replace( a.problem , '<[^>]+>' , ' ' )) as problem,
+	            trim(regexp_replace( a.solution , '<[^>]+>' , ' ' )) as solution,
+		        a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i') as boarddate
+			from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 order by boardnum desc]]>
+	</queryString>
+	<field name="USERNAME" class="java.lang.String"/>
+	<field name="BOARDDATE" class="java.lang.String"/>
+	<field name="HASHTAG" class="java.lang.String"/>
+	<field name="PROBLEM" class="java.lang.String"/>
+	<field name="SOLUTION" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="14" width="381" height="50" uuid="20a70a20-86f2-4edc-9c28-d075468983c9"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="nanum" size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TROUBLE SHOOTING]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="19" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="180" height="35" forecolor="#FFFFFF" backcolor="#355FB8" uuid="c797dcce-5f36-447b-8220-03e93b17debb"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="nanum" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[작성 / 태그]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="0" width="621" height="35" forecolor="#FFFFFF" backcolor="#355FB8" uuid="ab72b73a-2c7a-45ad-97af-b5a3b838a946"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="nanum" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[문제 / 해결]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="157" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="-1" width="180" height="157" uuid="ebad7b1a-db3e-4651-afb7-553e96b74861"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="nanum" size="14" isBold="true"/>
+					<paragraph leftIndent="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{USERNAME}+"\r\n\r\n"+$F{BOARDDATE}+"\r\n\r\n"+$F{HASHTAG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="-1" width="621" height="76" uuid="16767589-5d1e-45c3-bed8-61e71eb0ccd4"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font fontName="nanum" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PROBLEM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="75" width="621" height="81" uuid="19c9ef27-bc94-4ff0-880f-6807f835701d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font fontName="nanum" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SOLUTION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="7" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="6" splitType="Stretch"/>
+	</summary>
+</jasperReport>

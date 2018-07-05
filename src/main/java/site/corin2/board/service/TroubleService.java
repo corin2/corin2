@@ -117,6 +117,18 @@ public class TroubleService {
 	public int troubleInsertDetail(TroubleShootingDTO tsdto) {
 		int result=0;
 		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
+		
+		String tag = "";
+		for(int i=0; i < tsdto.getHashtag().split(",").length; i++) {
+			if(i <= 4) tag += (tsdto.getHashtag().split(",")[i]+",");
+			else break;
+			//if(i != 4) tag += ",";
+		}
+		
+		tag= tag.substring(0,tag.length()-1);
+		
+		tsdto.setHashtag(tag);
+		
 		result = troubleDAO.troubleInsertDetail(tsdto);
 		
 		return result;
@@ -136,10 +148,12 @@ public class TroubleService {
 	//트러블 슈팅 게시물 삭제
 	public int troubleDelete(TroubleShootingDTO tsdto) {
 		int result=0;
+		int pNum=0;
 		TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
 		result = troubleDAO.troubleDelete(tsdto);
+		pNum=tsdto.getProjectNum();
 		
-		return result;
+		return pNum;
 		
 	}
 

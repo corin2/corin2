@@ -6,23 +6,12 @@
 */
 package site.corin2.board.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
-
 import site.corin2.board.dto.TroubleShootingDTO;
 import site.corin2.board.service.TroubleService;
 
@@ -118,6 +107,14 @@ public class TroubleController {
 		model.addAttribute("data",troubleDTO);
 		return "board.troubleView";
 	}
+	//트러블 슈팅 수정화면으로 이동
+	@RequestMapping("/troubleEdit")
+	public String troubleEditView(Model model,int boardNum) {
+		TroubleShootingDTO troubleDTO = service.troubleView(boardNum);
+			
+		model.addAttribute("data",troubleDTO);
+		return "board.troubleUpdate";
+	}
 	
 	//트러블 슈팅 게시글 수정
 	@RequestMapping("/update")
@@ -131,12 +128,12 @@ public class TroubleController {
 	
 	//트러블 슈팅 게시글 삭제 (삭제가 아닌, isdeleted 를 1로 업데이트)
 	@RequestMapping("/delete")
-	public String troubleDelete(TroubleShootingDTO dto, Model model) {
+	public String troubleDelete(TroubleShootingDTO dto, Model model,@RequestParam("pNum") int pNum) {
 		int result = 0;
 		result = service.troubleDelete(dto);
 		model.addAttribute("result",result);
 		
-		return "redirect:trouble?projectNum="+dto.getProjectNum();
+		return "redirect:trouble?projectNum="+pNum;
 	}
 	
 	//엑셀저장
@@ -147,7 +144,7 @@ public class TroubleController {
 		model.addAttribute("data",troubleDTO);
 		return "troubleExcel";
 	}
-	//엑셀저장
+	//엑셀저장(전체)
 	@RequestMapping("/excelAll")
 	public String troubleExcel(TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubleDTO = service.troubleAllSelect();
@@ -156,63 +153,5 @@ public class TroubleController {
 		return "troubleExcel";
 	}
 	
-	
-	//Report Test
-	@RequestMapping("/report")
-    public void report() {
-		List<Map<String, ?>> listTruble = new ArrayList<Map<String,?>>();
-		TroubleShootingDTO tsDTO = new TroubleShootingDTO();
-		tsDTO.setBoardNum(1);
-		tsDTO.setProblem("new problem");
-		tsDTO.setSolution("new Solution");
-		
-		Map<String,Object> m = new HashMap<String,Object>();
-		m.put("boardNum", tsDTO.getBoardNum());
-		m.put("problem", tsDTO.getProblem());
-		m.put("boardNum", tsDTO.getSolution());
-		listTruble.add(m);
-		
-		//new JRBeanCollectionDataSource(beanCollection)
-	}
-	
-    @RequestMapping("/report2")
-    public ModelAndView report2() {
-
-        JasperReportsPdfView view = new JasperReportsPdfView();
-        view.setUrl("classpath:/resources/ireport/troubleshooting.jrxml");
-        
-        
-        //view.setApplicationContext(appContext);
-        
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        view.setJdbcDataSource(driverManagerDataSource);
-
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("USR_ID", "1");
-
-        return new ModelAndView(view, params);
-    }
-	
-	@RequestMapping(value="/report3")
-	public ModelAndView report3(Map<String,Object> map, HttpServletRequest request, HttpServletResponse response){
-				
-		//List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		JasperReportsPdfView view = new JasperReportsPdfView();
-		
-		//추가
-		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		
-		view.setJdbcDataSource(driverManagerDataSource);
-		view.setUrl("/WEB-INF/reports/sample.jrxml");
-		Map<String, Object> params = new HashMap<>();
-		params.put("param1", "param1 value");
-		
-		view.setApplicationContext(null);
-		
-		return new ModelAndView(view, params);
-		
-		//return JasperReportsUtils.render("multiformat-view", list, "");
-		//("multiformat-view", list, "pdf");
-	}
 }
 

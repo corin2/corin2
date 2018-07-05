@@ -9,7 +9,9 @@
 <!-- include hashtags(해쉬태그) css/js -->
 <link rel="stylesheet" href="resources/css/board/tagsinput.css">
 <script src="resources/js/board/tagsinput.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 <link rel="stylesheet" href="resources/css/board/troubleshooting.css">
+
 <script type="text/javascript">			    
 	//페이지 생성완료 후에 섬머노트를 loading, 태그란에 마우스포인터 위치
 	$(document).ready(function() {
@@ -30,7 +32,36 @@
 			
 		  //최초커서위치를 hashtag로 이동. 안됨 ㅠㅠ 다시알아볼것
 		  //document.insfrm.hashtag.focus();
+	//sweetalert 얼럿기능 추가
+	document.querySelector('#troubleInsert').addEventListener('submit', function(e) {
+	       var form = this;
+	        e.preventDefault(); // <--- prevent form from submitting
+		        swal({
+		            title: "Are you sure?",
+		            text: "저장하시겠습니까?",
+		            icon: "warning",
+		            buttons: [
+		              'No, cancel it!',
+		              'Yes, I am sure!'
+		            ],
+		            dangerMode: true,
+		          }).then(function(isConfirm) {
+		            if (isConfirm) {
+		              swal({
+		                title: '저장완료!',
+		                text: '저장되었습니다!',
+		                icon: 'success'
+		              }).then(function() {
+		                form.submit(); // <--- submit form programmatically
+		              });
+		            } else {
+		              swal("Cancelled", "Your imaginary file is safe :)", "error");
+		            }
+		          })
+		          
+		  });
 	});
+	
 	
 </script>
 
@@ -39,12 +70,12 @@
 	<hr>
 		<div class="container-ts" style="margin-top: 20px;">
 		<form action="insert?pNum=${sessionScope.sessionProjectNum}"
-			method="post" name="insfrm">
+			method="post" name="insfrm" id="troubleInsert">
 			<b>태그등록 :</b> <input type="text" name="hashtag" data-role="tagsinput"
 				placeholder="Add tags" /> <br />
-			<h3>발생한 문제</h3>
+			<h3><span class="glyphicon glyphicon-question-sign"></span>발생한 문제</h3>
 			<textarea id="summernote" name="problem"></textarea>
-			<h3>해결/조치 방법</h3>
+			<h3><span class="glyphicon glyphicon-ok-circle"></span>해결/조치 방법</h3>
 			<textarea id="summernote2" name="solution"></textarea>
 			<div> 
 				<input type="submit" class="btn btn-primary" value="작성" style="margin-right: 15px"> 
