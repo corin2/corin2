@@ -23,7 +23,7 @@ p {
 }
 
 a, a:hover, a:focus {
-    color: inherit;
+    color: #FFF;
     text-decoration: none;
     transition: all 0.3s;
 }
@@ -66,8 +66,7 @@ i, span {
     min-width: 250px;
     max-width: 250px;
     background: #566270;
-    color: #fff;
-    transition: all 0.3s;
+    color: #00FF0000;
 }
 
 #sidebar.active {
