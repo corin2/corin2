@@ -4,7 +4,7 @@
 		border-left : none;
 		border-right : none;
    	    border-color: lightgray;
-   	    background-color:#FAFAFA;
+   	    background-color: #FFF;
 		width: 35%;
 	}
 	
@@ -244,4 +244,7 @@
     padding-left: 0px;
     margin-right: auto;
     margin-left: auto;
+}
+a{
+	    color: #999;
 }

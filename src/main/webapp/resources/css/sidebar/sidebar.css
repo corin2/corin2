@@ -23,7 +23,7 @@ p {
 }
 
 a, a:hover, a:focus {
-    color: #FFF;
+    color: #000;
     text-decoration: none;
     transition: all 0.3s;
 }
@@ -88,6 +88,7 @@ i, span {
 }
 
 #sidebar.active ul li a {
+	color: #FFF;
     padding: 20px 10px;
     text-align: center;
     font-size: 0.85em;
