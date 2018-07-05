@@ -106,9 +106,10 @@ function checkListTableConfirm() {
 function addCardCheckListView() {
 	$('#checkBoxAdd').parent().remove();
 	var div = "<tr>"
-			+ "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
-			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
-			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button></td></tr>";
+			+ "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
+			+ "</td><td>"
+			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button>"
+			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button></td></tr>";
 
 $('#CheckAddBox').append(div)
 $('#CheckBoxInput').focus();
