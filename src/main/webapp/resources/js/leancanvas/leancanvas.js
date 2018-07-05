@@ -138,7 +138,7 @@ function allSelectLeanCanvas(){
 					$("#customer").append(customer);
 				}else{
 					$("#customer").empty();
-					var	customer ='<a class="leanatag" onclick="problemEditClick(\'customer\')">타겟고객<br>add...</a>'
+					var	customer ='<a class="leanatag" onclick="problemEditClick(\'customer\')">목표 고객을 나열하라<br>add...</a>'
 					$("#customer").append(customer);
 					}
 				if(elt.alterNatives!=null && elt.alterNatives!='undefined' && elt.alterNatives!=""){
@@ -168,7 +168,7 @@ function allSelectLeanCanvas(){
 					$("#parentconcept").append(parentConcept);
 				}else{
 					$("#parentconcept").empty();
-					var	parentconcept ='<a class="leanatag" onclick="problemEditClick(\'parentconcept\')">만들고자 하는 것에 대한 상위 개념<br>add...</a>'
+					var	parentconcept ='<a class="leanatag" onclick="problemEditClick(\'parentconcept\')">기존 제품에 비유하라<br>add...</a>'
 					$("#parentconcept").append(parentconcept);
 					}
 				if(elt.channel!=null && elt.channel!='undefined' && elt.channel!=""){
@@ -188,7 +188,7 @@ function allSelectLeanCanvas(){
 					$("#earlyadopter").append(earlyAdopter);
 				}else{
 					$("#earlyadopter").empty();
-					var	earlyadopter ='<a class="leanatag" onclick="problemEditClick(\'earlyadopter\')">누구에게 먼저 서비스를<br> 알릴지를 정한다<br>add...</a>'
+					var	earlyadopter ='<a class="leanatag" onclick="problemEditClick(\'earlyadopter\')">이상적인 고객의<br> 특징을 나열하라<br>add...</a>'
 					$("#earlyadopter").append(earlyadopter);
 					}
 				if(elt.costStructure!=null && elt.costStructure!='undefined' && elt.costStructure!=""){
@@ -198,7 +198,7 @@ function allSelectLeanCanvas(){
 					$("#coststructuer").append(costStructure);
 				}else{
 					$("#coststructuer").empty();
-					var	coststructuer ='<a class="leanatag" onclick="problemEditClick(\'coststructuer\')">고객 획득 비용<br>유통 비용<br>서버 유지 비용<br>인건비 등<br>add...</a>'
+					var	coststructuer ='<a class="leanatag" onclick="problemEditClick(\'coststructuer\')">고정비와 변동비를 나열하라<br>add...</a>'
 					$("#coststructuer").append(coststructuer);
 					}
 				if(elt.profit!=null && elt.profit!='undefined' && elt.profit!=""){
@@ -208,7 +208,7 @@ function allSelectLeanCanvas(){
 					$("#profit").append(profit);
 				}else{
 					$("#profit").empty();
-					var	profit ='<a class="leanatag" onclick="problemEditClick(\'profit\')">수익 창출 모델<br>고객 생애 가치<br>운영 수익<br>add...</a>'
+					var	profit ='<a class="leanatag" onclick="problemEditClick(\'profit\')">매출원을 나열하라<br>add...</a>'
 					$("#profit").append(profit);
 					}
 			})
