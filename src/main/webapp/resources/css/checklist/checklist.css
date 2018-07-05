@@ -4,7 +4,7 @@
     border-top: 0px;
     boder-left: 0px;
     boder-bottom: 0px;
-    width: 86%;
+    width: 93%;
     height: 32px;
     margin-left: 34px;
 }
@@ -100,13 +100,15 @@
 
 
 .tdpositionclass{
-	width: 8%;
+	width: 15%;
 	vertical-align:inherit ;
     text-align: center;
 }
-
-.checkFloatRight, .checkProfileimg {
+.checkProfileimg {
 	float: right;
+}
+.checkFloatRight{
+	float: left;
 }
 
 .checkFloat {
@@ -173,6 +175,7 @@ hr {
 }
 
 .btn {
+	margin-left: 0.9vw;
     display: inline-block;
     padding: 6px 10px;
     margin-bottom: 0;

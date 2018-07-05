@@ -1,9 +1,9 @@
-/**
+/*
 파일명: leancanvas.js
     설명: 린캔버스 관한 파일
     작성일: 2018-06-22
     작성자: 최재욱
-**/
+*/
 
 $(function () {
 	 $('.leantextareasize').focus();
@@ -18,7 +18,7 @@ $(function () {
 * @param string- 각 해당칸을 구분하기위한 string 변수
 **/
 function problemClick(string) {
-		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text'></textarea></div>"
+		html = "<br><div class='leanpdiv'><textarea class='leantextarea leantextareasize1' id='"+string+"text' onkeyup='fnChkLength(this, 72)'></textarea></div>"
 		$("#"+string).empty();
 		$("#"+string).append(html);
 		$("#"+string+"text").focus();
@@ -98,7 +98,7 @@ function allSelectLeanCanvas(){
 					$("#problem").append(html1);
 				}else{
 					$("#problem").empty();
-				var	html1 ='<a class="leanatag" onclick="problemEditClick(\'problem\')">대상고객이 가지고 있는 문제 3가지<br>add..</a>'
+				var	html1 ='<a class="leanatag" onclick="problemEditClick(\'problem\')">대상고객이 가지고 있는<br>문제 3가지<br>add..</a>'
 					$("#problem").append(html1);
 				}
 				if(elt.solution!=null && elt.solution!='undefined' && elt.solution!=""){

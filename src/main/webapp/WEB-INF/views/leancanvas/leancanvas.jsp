@@ -16,7 +16,7 @@
 	       <div class="col-sm-1"></div>
 	       <div class="col-sm-2 leanheight2 leanh2 background1"><h3><b>문제</b></h3>
 	       	<p class="candivsize" id="problem">
-	       		<a class="leanatag" onclick="problemClick('problem')">대상고객이 가지고 있는 문제 3가지<br>add..</a>
+	       		<a class="leanatag" onclick="problemClick('problem')">대상고객이 가지고 있는<br>문제 3가지<br>add..</a>
 	       	</p>
 	       </div>
 	       <div class="col-sm-2 leanheight4 leanh2 background4"><h3><b>솔루션</b></h3>
