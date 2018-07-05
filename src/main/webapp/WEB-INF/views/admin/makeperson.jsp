@@ -10,8 +10,8 @@
 	        <h2>강 성 훈</h2>
 	        <p><strong>About: </strong><br> Web Programmer(Captain)</p>
 	        <ul class="list-unstyled">
-	          <li><i class="fa fa-phone"></i>프로젝트 소감 :</li>
-	          <li><i class="fa fa-phone"></i>동해물과 백두산이 마르고 닳도록 하늘님이 보우하사 우리나라 만세 무궁화 삼철리 화려강산 대한사람 대한으로 우리나라 만세</li>
+	        <hr>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>뚱이가 너무 좋아!<br><br></li>
 	
 	        </ul>
 	      </div>
@@ -37,8 +37,8 @@
 	        <h2>배 현 준</h2>
 	        <p><strong>About: </strong><br> Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
-	          <li><i class="fa fa-phone"></i>프로젝트 소감 :</li>
-	          <li><i class="fa fa-phone"></i>동해물과 백두산이 마르고 닳도록 하늘님이 보우하사 우리나라 만세 무궁화 삼철리 화려강산 대한사람 대한으로 우리나라 만세</li>
+	          <hr>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>마지막까지 수고하셨습니다!ㅎ<br><br></li>
 	
 	        </ul>
 	      </div>
@@ -64,8 +64,8 @@
 	        <h2>강 진 광</h2>
 	         <p><strong>About: </strong><br> Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
-	          <li><i class="fa fa-phone"></i>프로젝트 소감 :</li>
-	          <li><i class="fa fa-phone"></i>동해물과 백두산이 마르고 닳도록 하늘님이 보우하사 우리나라 만세 무궁화 삼철리 화려강산 대한사람 대한으로 우리나라 만세</li>
+	        <hr>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>경기도 살면 인생의 20%는<br>대중교통에서 보낸다</li>
 	
 	        </ul>
 	      </div>
@@ -91,8 +91,8 @@
 	        <h2>전 나 영</h2>
 	        <p><strong>About: </strong><br> Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
-	          <li><i class="fa fa-phone"></i>프로젝트 소감 :</li>
-	          <li><i class="fa fa-phone"></i>동해물과 백두산이 마르고 닳도록 하늘님이 보우하사 우리나라 만세 무궁화 삼철리 화려강산 대한사람 대한으로 우리나라 만세</li>
+	        <hr>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>마지막까지 수고하셨습니다!ㅎ<br><br></li>
 	
 	        </ul>
 	      </div>
@@ -118,8 +118,8 @@
 	        <h2>최 재 욱</h2>
 	        <p><strong>About: </strong><br> Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
-	          <li><i class="fa fa-phone"></i>프로젝트 소감 :</li>
-	          <li><i class="fa fa-phone"></i>동해물과 백두산이 마르고 닳도록 하늘님이 보우하사 우리나라 만세 무궁화 삼철리 화려강산 대한사람 대한으로 우리나라 만세</li>
+	         <hr>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>눈감았다 뜨면 집이였음 좋겠다<br><br></li>
 	
 	        </ul>
 	      </div>
@@ -145,8 +145,8 @@
 	        <h2>김 진 원</h2>
 	         <p><strong>About: </strong><br> Web Programmer(Member)</p>
 	        <ul class="list-unstyled">
-	          <li><i class="fa fa-phone"></i>프로젝트 소감 :</li>
-	          <li><i class="fa fa-phone"></i>동해물과 백두산이 마르고 닳도록 하늘님이 보우하사 우리나라 만세 무궁화 삼철리 화려강산 대한사람 대한으로 우리나라 만세</li>
+	         <hr>
+	          <li><i class="glyphicon glyphicon-pencil"></i><br>재욱이 형 너무 좋아요<br>만족!</li>
 	
 	        </ul>
 	      </div>
