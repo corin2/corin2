@@ -58,13 +58,14 @@ function fncTegSplit(str){
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				검색
 			</button>
-	
-	
 			<a href="excelAll"><button type="button"
-					class="btn btn-success btn-wide">
+					class="btn btn-primary btn-wide">
 					<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
 			</button></a>
-	
+			<a href="generateReport?file=troubleAll&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+				class="btn btn-primary btn-wide">
+				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> PDF 저장
+		</button></a>
 		</form>
 	</div>
 	

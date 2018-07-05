@@ -1,3 +1,9 @@
+/**
+    파일명: JasperReportDAO.java
+    설  명: 리포트 생성 처리
+    작성일: 2018. 6. 29.
+    작성자: 배현준 
+*/
 package site.corin2.boardpdf.dao;
 
 import java.io.File;
@@ -20,27 +26,55 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 public class JasperReportDAO {
-	
-public Connection getConnection(HttpSession session) throws SQLException{
-    
-	ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
-    DriverManagerDataSource driverManagerDataSource = (DriverManagerDataSource) context.getBean("driverManagerDataSource");
-    
-    Connection conn = driverManagerDataSource.getConnection();
-   
-    return conn;	
-}
 
-public JasperReport getCompiledFile(String fileName, HttpServletRequest request) throws JRException {
-	File reportFile = new File( request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
-	// If compiled file is not found, then compile XML template
-	if (!reportFile.exists()) {
-	           JasperCompileManager.compileReportToFile(request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jrxml"),request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
-	    }
-    	JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());
-	   return jasperReport;
+	/*
+	* @함수명 : getConnection
+	* @작성일 : 2018. 6. 29.
+	* @작성자 : 배현준
+	* @설명 : jasper리포트에서 사용할 DB CONNECTION 객체를 ApplicationContext에서 얻어온다. 
+	* @param : Session 
+	* @return : Connection 
+	**/	
+	public Connection getConnection(HttpSession session) throws SQLException{
+	    
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
+	    DriverManagerDataSource driverManagerDataSource = (DriverManagerDataSource) context.getBean("driverManagerDataSource");
+	    
+	    Connection conn = driverManagerDataSource.getConnection();
+	   
+	    return conn;	
+	}
+
+	/*
+	* @함수명 : getCompiledFile
+	* @작성일 : 2018. 6. 29.
+	* @작성자 : 배현준
+	* @설명 : jasper리포트를 출력하기위하여 컴파일한다. 결과물로 .jasper파일이 생성된다.  
+	* @param1 file	: 리포트의 구분( 린캔버스 , 체크리스트, 트러블 슈팅 )
+	* @param2 request : 리퀘스트 객체
+	* @return JasperReport : (xml)리포트의 컴파일된 파일
+	**/	
+	public JasperReport getCompiledFile(String fileName, HttpServletRequest request) throws JRException {
+		File reportFile = new File( request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
+		
+		// .jrxml 로 .jasper 파일 컴파일
+		JasperCompileManager.compileReportToFile(request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jrxml"),request.getSession().getServletContext().getRealPath("/resources/ireport/" + fileName + ".jasper"));
+		   
+		// 생성된 .jasper을 로드하여 report출력.
+	    JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(reportFile.getPath());
+		
+	    return jasperReport;
 	} 
-
+	
+	/*
+	* @함수명 : generateReportPDF
+	* @작성일 : 2018. 6. 29.
+	* @작성자 : 배현준
+	* @설명 : jasper 리포트를 출력하기위하여 생성하는 파일 io 처리를 담당하는 함수  
+	* @param1 parameters	: 리포트에 전달할 파라메터들 (Map)
+	* @param2 jasperReport : jasperReport 객체
+	* @return conn : DB 커넥션 객체
+	**/	
 	public void generateReportPDF (HttpServletResponse resp, Map parameters, JasperReport jasperReport, Connection conn)throws JRException, NamingException, SQLException, IOException {
 		byte[] bytes = null;
 		bytes = JasperRunManager.runReportToPdf(jasperReport,parameters,conn);

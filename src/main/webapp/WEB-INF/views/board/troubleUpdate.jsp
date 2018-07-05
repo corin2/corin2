@@ -18,21 +18,21 @@
 			  onblur : function(e) {
 		            $('#summercontent').html($('#summernote').code());
 		        },
-		    height : 200, // set editor height
+		    height : 120, // set editor height
 		    
-		    
-		    airMode:true
 		  });
 		  $('#summernote2').summernote({
 			  onblur : function(e) {
 		            $('#summercontent').html($('#summernote').code());
 		        },
-		    height : 200, // set editor height
+		    height : 130, // set editor height
 		    
-		    
-		    airMode:true
 		  });
 	});
+	function editts(){
+			//todo: 수정시 처리
+			
+		}
 </script>
 
 <div class="troublebackdiv">
@@ -78,15 +78,12 @@
 				</tr>
 			</table>
 			<div>
-				<!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
-    			<c:if test="${pageContext.request.userPrincipal.name == data.userId}">								
-					<a href="troubleEdit?boardNum=${data.boardNum}" class="btn btn-primary" type="button ">수정</a>
-					<a href="delete?boardNum=${data.boardNum}&pNum=${data.projectNum}" class="btn btn-danger" type="button ">삭제</a>
-				</c:if>
-				<input type="button" class="btn btn-primary" value="목록으로" OnClick="history.back()">
+				<input type="submit" class="btn btn-primary" value="저장하기" style="margin-right: 15px">
+				<input type="button" class="btn btn-primary" value="취소하기" OnClick="history.back()">
 			</div>
-			<input type="hidden" name="projectNum" value="${sessionScope.sessionProjectNum}" /> 
-			<input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" />
+			<input type="hidden" name="projectNum"
+				value="${sessionScope.sessionProjectNum}" /> <input type="hidden"
+				name="userId" value="${pageContext.request.userPrincipal.name}" />
 		</form>
 	
 		</div>
