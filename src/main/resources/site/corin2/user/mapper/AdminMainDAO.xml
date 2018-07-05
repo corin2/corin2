@@ -1,22 +1,46 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.corin2.user.dao.AdminMainDAO">
-	<!-- 총 방문자 수 -->
+	<!--
+	    * @매퍼ID : allVisitCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 총 방문자 수
+	    * @retrun : int
+	-->
 	<select id="allVisitCount" resultType="int">
 		select sum(visit) from statistics
 	</select>
 
-	<!-- isDeleted = 0인 모든 프로젝트 수 -->
+	<!--
+	    * @매퍼ID : allUserCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 모든 프로젝트 수
+	    * @retrun : int
+	-->
 	<select id="allUserCount" resultType="int">
 		select count(*) from user where isdeleted = 0
 	</select>
 	
-	<!-- isDeleted = 0인 모든 회원 수 -->
+	<!--
+	    * @매퍼ID : allProjectCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 모든 회원 수
+	    * @retrun : int
+	-->	
 	<select id="allProjectCount" resultType="int">
 		select count(*) from project where isdeleted = 0
 	</select>
-	
-	<!-- 프로젝트 언어별 수 -->
+
+	<!--
+	    * @매퍼ID : allLanguageCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 프로젝트 언어별 수
+	    * @retrun : LanguageCountDTO
+	-->		
 	<select id="allLanguageCount" resultType="site.corin2.user.dto.LanguageCountDTO">
 		select p.languagenum, l.languagemain, l.languagecolor, count(*) as languagecount
 		from project p join language l
@@ -24,14 +48,26 @@
 		group by p.languagenum
 	</select>
 	
-	<!-- isDeleted = 0인 회원의 모든 이메일 수 -->
+	<!--
+	    * @매퍼ID : allEmailCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 회원의 모든 이메일 수
+	    * @retrun : EmailCountDTO
+	-->
 	<select id="allEmailCount" resultType="site.corin2.user.dto.EmailCountDTO">
 		select SUBSTRING_INDEX(userid, '@', -1) as email, count(*) as emailcount
 		from user where enabled = 1 and isdeleted = 0
 		group by email
 	</select>
-	
-	<!-- 날짜별 방문자 수 -->
+
+	<!--
+	    * @매퍼ID : visitCountByDate
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 방문자 수
+	    * @retrun : CountByDateDTO
+	-->
 	<select id="visitCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
 		select v.gen_date as date, ifnull(s.count, 0) as count from 
 		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
@@ -48,8 +84,14 @@
 		on v.gen_date = s.date
 		where gen_date between #{startdate} and #{enddate}
 	</select>
-	
-	<!-- 날짜별 회원 수 -->
+
+	<!--
+	    * @매퍼ID : userCountByDate
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 회원 수
+	    * @retrun : CountByDateDTO
+	-->
 	<select id="userCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
 		select v.gen_date as date, ifnull(u.count, 0) as count from 
 		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from
@@ -66,8 +108,14 @@
 		on v.gen_date = u.date
 		where gen_date between #{startdate} and #{enddate}
 	</select>
-	
-	<!-- 날짜별 프로젝트 수 -->
+
+	<!--
+	    * @매퍼ID : projectCountByDate
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 프로젝트 수
+	    * @retrun : CountByDateDTO
+	-->
 	<select id="projectCountByDate" resultType="site.corin2.user.dto.CountByDateDTO">
 		select v.gen_date as date, ifnull(p.count, 0) as count from 
 		(select adddate('1970-01-01',t4*10000 + t3*1000 + t2*100 + t1*10 + t0) gen_date from

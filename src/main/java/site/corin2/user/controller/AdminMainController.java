@@ -30,7 +30,14 @@ public class AdminMainController {
 	@Autowired
 	private AdminMainService service;
 	
-	// 총 방문자 수
+	/**
+	    * @함수명 : allVisitCountView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 총 방문자 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("allVisitCount")
 	public View allVisitCountView(Model model) {
 		int allVisitCountResult = service.allVisitCount();
@@ -38,7 +45,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// isDeleted = 0인 모든 회원 수
+	/**
+	    * @함수명 : allUserCountView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 모든 회원 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("allUserCount")
 	public View allUserCountView(Model model) {
 		int allUserCountResult = service.allUserCount();
@@ -46,7 +60,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// isDeleted = 0인 모든 프로젝트 수
+	/**
+	    * @함수명 : allProjectCountView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 모든 프로젝트 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("allProjectCount")
 	public View allProjectCountView(Model model) {
 		int allProjectCountResult = service.allProjectCount();
@@ -54,7 +75,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// 프로젝트 언어별 수
+	/**
+	    * @함수명 : allLanguageCountView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 프로젝트 언어별 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("allLanguageCount")
 	public View allLanguageCountView(Model model) {
 		List<LanguageCountDTO> allLanguageCountResult = service.allLanguageCount();
@@ -62,7 +90,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// isDeleted = 0인 회원의 모든 이메일 수
+	/**
+	    * @함수명 : allEmailCountView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 회원의 모든 이메일 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("allEmailCount")
 	public View allEmailCountView(Model model) {
 		List<EmailCountDTO> allEmailCountResult = service.allEmailCount();
@@ -70,7 +105,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// 날짜별 방문자 수
+	/**
+	    * @함수명 : visitCountByDateView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 방문자 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("visitCountByDate")
 	public View visitCountByDateView(DateParamDTO date, Model model) {
 		List<CountByDateDTO> visitCountByDateResult = service.visitCountByDate(date);
@@ -78,7 +120,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// 날짜별 회원 수
+	/**
+	    * @함수명 : userCountByDateView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 회원 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("userCountByDate")
 	public View userCountByDateView(DateParamDTO date, Model model) {
 		List<CountByDateDTO> userCountByDateResult = service.userCountByDate(date);
@@ -86,7 +135,14 @@ public class AdminMainController {
 		return jsonview;
 	}
 	
-	// 날짜별 프로젝트 수
+	/**
+	    * @함수명 : projectCountByDateView
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 프로젝트 수
+	    * @param : Model model
+	    * @retrun : jsonview
+	*/
 	@RequestMapping("projectCountByDate")
 	public View projectCountByDateView(DateParamDTO date, Model model) {
 		List<CountByDateDTO> projectCountByDateResult = service.projectCountByDate(date);

@@ -59,7 +59,7 @@ public class UploadController {
 	@RequestMapping(value = "upload", method = RequestMethod.POST)
 	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, HttpServletResponse response , Model model){
 		Iterator<String> itr = request.getFileNames();
-		MultipartFile mpf =  request.getFile(itr.next()); 
+		MultipartFile mpf =  request.getFile(itr.next());
 		
 		// 파일 정보가 없을 경우
         if(mpf == null || mpf.getSize() <= 0) {

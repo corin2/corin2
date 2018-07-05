@@ -1,5 +1,5 @@
 /**
-    파일명: DomainCountDTO.java
+    파일명: EmailCountDTO.java
     설   명: 
     작성일: 2018. 6. 23.
     작성자: 강 성 훈
