@@ -371,25 +371,36 @@ function projectUpdateView(projectNum) {
 *  @param projectNum- 해당하는 프로젝트를 찾기위한 변수
 **/
 function deleteProject(projectNum) {
-	$.ajax({
-		url:"projectDelete",
-		datatype:"JSON",
-		data:{projectNum:projectNum},
-		success:function(data){
-			swal("프로젝트 삭제완료");
-			languageColorView();
-		},
-		error: function() {
-            swal({
-                 type: 'error',
-                 title: 'Oops...',
-                 text: 'Something went wrong!',
-                 footer: '<a href>Why do I have this issue?</a>'
-                })
-        }
-		
-	})
-}
+	swal({
+		type: "warning",
+		text: "정말로 삭제하시겠습니까?.",
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'delete',
+	    showCancelButton: true
+	}).then((result) => {
+		  if (result.value) {
+			  $.ajax({
+					url:"projectDelete",
+					datatype:"JSON",
+					data:{projectNum:projectNum},
+					success:function(data){
+						swal("프로젝트 삭제완료");
+						languageColorView();
+					},
+					error: function() {
+			            swal({
+			                 type: 'error',
+			                 title: 'Oops...',
+			                 text: 'Something went wrong!',
+			                 footer: '<a href>Why do I have this issue?</a>'
+			                })
+			        }
+					
+				})
+			  }
+			});
+	}
 
 /**
 * @함수명 : updateProjectBookmark(projectNum)
