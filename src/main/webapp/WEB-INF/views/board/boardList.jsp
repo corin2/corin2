@@ -1,8 +1,12 @@
 <%@page import="site.corin2.paging.PagingBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<!-- core 태그 삽입 -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!-- 시큐리티 태그 삽입 -->
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
+<!--announceboard css -->
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
+
 <div class="announceboard">
 	<div class="announceboardundo">
 		<h1>Notice</h1>
@@ -17,6 +21,7 @@
 				</tr>
 			</thead>
 
+			<!-- 페이징 처리 -->
 			<tbody>
 				<c:forEach items="${list}" var="list" varStatus="status">
 					<c:if test="${status.index >= (page.countPerPage*page.nowPage)-page.countPerPage}">
@@ -31,6 +36,8 @@
 					</c:if>
 				</c:forEach>
 			</tbody>
+			<!-- 페이징 처리 -->
+			
 		</table>
 		<jsp:include page="../paging/paging.jsp">
 			<jsp:param name="actionPath" value="boardList" />
@@ -40,6 +47,7 @@
 			<jsp:param name="nowPage" value="${page.nowPage}" />
 		</jsp:include>
 
+		<!-- admin 계정 글쓰기 버튼 시큐리티 적용 -->
 		<se:authorize access="hasRole('ROLE_ADMIN')">
 			<form action="boardInsert" method="get">
 				<input type="hidden" name="countPerPage" value="${page.countPerPage}">
@@ -49,5 +57,6 @@
 			</form>
 
 		</se:authorize>
+		<!-- admin 계정 글쓰기 버튼 시큐리티 적용 -->
 	</div>
 </div>
