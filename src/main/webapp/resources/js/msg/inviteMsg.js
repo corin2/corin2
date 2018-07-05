@@ -170,7 +170,6 @@ function memberinvite() {
 			data : $("#emailSearch").val().trim(),
 			contentType: "application/json; charset=utf-8",
 			success : function (data) {
-				console.log(data.trim())
 				if(data.trim() === 'true') isInviteMsg();
 				else swal('없는 회원입니다');
 			},
