@@ -204,6 +204,11 @@ p {
 
 .kanbanCheckMod {
 	margin-right: 5px;
+	margin-top: 10px;
+}
+
+.kanbanCheckClose {
+	margin-top: 8px;
 }
 #boardTitle{
 	text-align: center;
