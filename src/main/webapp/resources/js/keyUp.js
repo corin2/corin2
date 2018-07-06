@@ -31,7 +31,7 @@ function fnChkByte(obj, maxByte){
 	}
 	
 	if(rbyte > maxByte){
-		swal("한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다.");
+		swal({title:"한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다."});
 	    str2 = str.substr(0,rlen);                                  // 문자열 자르기
 	    obj.value = str2;
 	    fnChkByte(obj, maxByte);
@@ -78,7 +78,7 @@ function fnChkLength(obj, maxLength){
     var str_len = str.length;
     
     if(str_len > maxLength){
-        swal("글자수가 "+maxLength+"자를 초과 입력할 수 없습니다.");
+        swal({title:"글자수가 "+maxLength+"자를 초과 입력할 수 없습니다."});
         var str2 = str.substr(0, maxLength-1);                   // 문자열 자르기
         obj.value = str2;
         fnChkLength(obj, maxLength);

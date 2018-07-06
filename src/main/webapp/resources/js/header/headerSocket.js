@@ -45,14 +45,14 @@ function onHeaderMessage(evt) {
 	}else if(data.split(':')[0] == '2'){
 		if(data.split(':')[2] == $('#hiddenUserId').val()){
 			location.href=getContextPath()+'/project';
-			swal('해당 프로젝트에서 제명 되었습니다.');
+			swal({title:'해당 프로젝트에서 제명 되었습니다.'});
 		}else{
 			projectMemberProfile(); // 프로젝트 팀원 불러오기
 		}
 	}else if(data.split(':')[0] == '3'){
 		if(data.split(':')[2] == $('#hiddenUserId').val()){
 			location.href=getContextPath()+'/project';
-			swal('프로젝트에서 탈퇴 하였습니다.');
+			swal({title:'프로젝트에서 탈퇴 하였습니다.'});
 		}else{
 			projectMemberProfile(); // 프로젝트 팀원 불러오기
 		}

@@ -48,7 +48,7 @@ $(function(){
                 var uploadFile = data.files[0];
                 var isValid = true;
                 if (!(/png|jpe?g|gif|svg/i).test(uploadFile.name)) {
-                    swal('png, jpg, gif 만 가능합니다');
+                    swal({title:'png, jpg, gif 만 가능합니다'});
                     isValid = false;
                 }
                 if (isValid) {
@@ -79,8 +79,8 @@ $(function(){
 			                })
 			        }
 				});
-	        },
+	        },dropZone: $('#recentUserProfile') 
 	    }).on('fileuploadfail', function (e, data) {
-	    	swal("형식이 맞지 않습니다.");
+	    	swal({title:"형식이 맞지 않습니다."});
 	    });
 });
