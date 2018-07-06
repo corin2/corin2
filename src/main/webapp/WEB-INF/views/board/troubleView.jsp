@@ -22,6 +22,7 @@
 		    
 		    
 		    airMode:true
+		    
 		  });
 		  $('#summernote2').summernote({
 			  onblur : function(e) {

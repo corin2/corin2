@@ -3,6 +3,7 @@ encoding//src/main/webapp/WEB-INF/views/board/trouble.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/calendar/calendar.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/position/position.jsp=UTF-8
 encoding//src/main/webapp/resources/ireport/checkList.jrxml=UTF-8
+encoding//src/main/webapp/resources/ireport/checkListUser.jrxml=UTF-8
 encoding//src/main/webapp/resources/ireport/leanCanvas.jrxml=UTF-8
 encoding//src/main/webapp/resources/ireport/troubleAll.jrxml=UTF-8
 encoding//src/main/webapp/resources/ireport/troubleShooting.jrxml=UTF-8
