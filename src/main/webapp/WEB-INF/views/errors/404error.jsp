@@ -224,7 +224,7 @@ body{
             <hr>
             <div class='_1'>THE PAGE</div>
             <div class='_2'>WAS NOT FOUND</div>
-            <a class='btn' href='main.jsp'>BACK TO MAIN</a>
+            <a class='btn' href='http://localhost:8090/login.html'>BACK TO MAIN</a>
         </div>
 </body>
 </html>
