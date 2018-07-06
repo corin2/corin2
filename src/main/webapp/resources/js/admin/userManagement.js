@@ -33,7 +33,7 @@ function allUser(enabled, isDelete, pageNum){
 			$.each(viewData, function(i, elt) { //each문 i는 0부터
 				if((pageNum*5-5) <= i  && i <= (pageNum*5-1)){
 					texthtml += '<tbody><tr>'
-							 + '<td><img src="'+profileStorageURL+elt.userProfile+'" class="img-circle person" width="75" height="75"></td>'
+							 + '<td><img src="'+"resources/images/profile/"+elt.userProfile+'" class="img-circle person" width="75" height="75"></td>'
 							 + '<td>'+ elt.userId +'</td><td>'+ elt.userName +'</td><td>';
 					if(elt.enabled == '1') texthtml += '인증회원';
 					else if (elt.enabled == '0') texthtml += '비인증회원';

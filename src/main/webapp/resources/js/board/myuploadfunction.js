@@ -52,7 +52,7 @@ $(function () {
 				 	    		  else html+="moo.svg"; 
 				 	    		  
 				 	    	 html += "'></img><p class='upload_fileName'>"+file.uploadOrigin+"</p>"
-				 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
+				 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+"resources/images/profile/"+file.userProfile+"'>" 
 				 	    		  +"</img>" 
 				 	    		  +"<label class='file-label'>"+file.userName+"</label>"
 				 	    		  +"<p class='file_boarddate' >"+file.boardDate+"</p>" 
@@ -113,7 +113,7 @@ $(function () {
 			 	    		  else html+="moo.svg"; 
 			 	    		  
 			 	    	 html += "'></img><p class='upload_fileName'>"+file.uploadOrigin+"</p>"
-			 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
+			 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+"resources/images/profile/"+file.userProfile+"'>" 
 			 	    		  +"</img>" 
 			 	    		  +"<label class='file-label'>"+file.userName+"</label>"
 			 	    		  +"<p class='file_boarddate' >"+file.boardDate+"</p>" 
@@ -219,7 +219,7 @@ function searcherFileSelect(){
 		 	    		  else html+="moo.svg"; 
 		 	    		  
 		 	    	 html += "'></img><p class='upload_fileName'>"+file.uploadOrigin+"</p>"
-		 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
+		 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+"resources/images/profile/"+file.userProfile+"'>" 
 		 	    		  +"</img>" 
 		 	    		  +"<label class='file-label'>"+file.userName+"</label>"
 		 	    		  +"<p class='file_boarddate' >"+file.boardDate+"</p>" 
@@ -250,18 +250,26 @@ function searcherFileSelect(){
 function drag() {
 	
     // 드래그앤 드랍시에   upload 이미지 띄움
-    $('#dropzone').bind("dragover", function (e) {
-        $('.dropzoneimg').attr('src','resources/images/board/upload.png'); 
-        return false;
-    }).bind("dragleave", function (e) {//드래그 안할땐 noimage 이미지 띄움
-    	$('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
-        $('.dropzoneimg').attr('src','resources/images/board/noimage.png'); 
-        return false;
-    }).bind("drop", function (e) {//드래그 안할땐  noimage 이미지 띄움
-        $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
-        $('.dropzoneimg').attr('src','resources/images/board/noimage.png');
-        return false;
-    });
+	 $('#dropzone').bind("dragover", function (e) {
+	       $('.dropzoneimg').attr('src','resources/images/board/upload.png');
+	       return false;
+	   }).bind("dragleave", function (e) {//드래그 안할땐 noimage 이미지 띄움
+	       $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png');
+	       $('.dropzoneimg').attr('src','resources/images/board/noimage.png');
+	       $('.dropzoneimg').css('z-index','0');
+	       setTimeout(function() {
+	           $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
+	            $('.dropzoneimg').attr('src','resources/images/board/noimage.png');
+	            $('.dropzoneimg').css('z-index','-1');
+	       }, 1000);
+	       return false;
+	   }).bind("drop", function (e) {//드래그 안할땐  noimage 이미지 띄움
+	       $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png');
+	       $('.dropzoneimg').attr('src','resources/images/board/noimage.png');
+	       $('.dropzoneimg').css('z-index','-1');
+	       return false;
+	   });
+	
 }
 
 /*  
@@ -277,7 +285,7 @@ function preview(uploadAlias){
     
     $(document).on("mouseover",".thumbnail",function(e){ //마우스 오버시
         $(".preview").remove();
-        $("body").append("<span class ='preview'><img src='" + s3StorageURL + uploadAlias +"' onerror='this.src=\"resources/images/board/noimage.jpg\"' width='300px'/></span>"); //보여줄 이미지를 선언                       
+        $("body").append("<span class ='preview'><img src='" + "resources/images/profile/" + uploadAlias +"' onerror='this.src=\"resources/images/board/noimage.jpg\"' width='300px'/></span>"); //보여줄 이미지를 선언                       
         $(".preview")
             .css("top",(e.pageY - xOffset) + "px")
             .css("left",(e.pageX + yOffset) + "px")
@@ -305,7 +313,7 @@ function preview(uploadAlias){
 * @param  uploadAlias
 */
 function download(uploadAlias) {
-	location.href = s3StorageURL + uploadAlias;
+	 location.href='download?fileName='+uploadAlias;
 }
 
 /*  
@@ -442,7 +450,7 @@ function firstFileSelect() {
 	 	    		  else html+="moo.svg"; 
 	 	    		  
 	 	    	 html += "'></img><p class='upload_fileName'>"+file.uploadOrigin+"</p>"
-	 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+profileStorageURL+file.userProfile+"'>" 
+	 	    		  +"<img class='img-circle' style='width:30px;height:30px;margin-right:10px;' src='"+"resources/images/profile/"+file.userProfile+"'>" 
 	 	    		  +"</img>" 
 	 	    		  +"<label class='file-label'>"+file.userName+"</label>"
 	 	    		  +"<p class='file_boarddate' >"+file.boardDate+"</p>" 

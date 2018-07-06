@@ -109,7 +109,7 @@ $(function() {
 			// 현재 사용자의 이름 표시
 			$('#currentUserName').html(obj.userName);
 			// 현재 사용자의 프로필 이미지 표시
-			$('#currentChatUserProfile').attr("src", profileStorageURL + obj.userProfile);
+			$('#currentChatUserProfile').attr("src",  obj.userProfile);
 		}
 	}
 	
@@ -158,7 +158,7 @@ $(function() {
 				'<div class="row sideBar-body" id=' + userUid + ' data-toggle="tooltip" title="' + obj.userName + '">'
 				+ '<div class="col-sm-3 col-xs-3 sideBar-avatar">'
 				+ '<div class="avatar-icon">'
-				+ '<img src="' + profileStorageURL + obj.userProfile +'">'
+				+ '<img src="'+"resources/images/profile/" + obj.userProfile +'">'
 				+ '</div>'
 				+ '</div>'
 				+ '</div>'
@@ -379,7 +379,7 @@ $(function() {
 				'<div class="row message-body">'
 				+ '<div class="col-sm-12 message-main-receiver">'
 				+ '<div class="col-sm-3 heading-avatar-icon">'
-				+ '<img src="' + profileStorageURL + obj.userProfile + '">'
+				+ '<img src="' + obj.userProfile + '">'
 				+ '</div><div class="col-sm-9 heading-avatar-name">'
 				+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + obj.userName +'</span>'
 				+ '<div class="receiver bubble">'

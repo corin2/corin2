@@ -21,7 +21,7 @@ $(function(){
 			success : function(data){
 				$.each(data, function(index, obj) {
 					//$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-					$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
+					$('#recentUserProfile').attr("src",  "resources/images/profile/"+obj.userProfile);
 				});
 			},
 			error: function() {
@@ -66,9 +66,9 @@ $(function(){
 						$.each(data, function(index, obj) {
 							//$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 							//$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-							$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
-							$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
-							$('#currentChatUserProfile').attr("src", profileStorageURL + obj.userProfile);
+							$('#recentUserProfile').attr("src", "resources/images/profile/"+obj.userProfile);
+							$('#currentUserProfile').attr("src","resources/images/profile/"+ obj.userProfile);
+							$('#currentChatUserProfile').attr("src",  "resources/images/profile/"+obj.userProfile);
 							getChatUsers();
 							if(sessionProjectNum != 'null') {
 								projectMemberProfile();

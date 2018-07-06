@@ -6,10 +6,14 @@
 */
 package site.corin2.board.controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -17,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,15 +34,11 @@ import org.springframework.web.servlet.View;
 import site.corin2.board.dto.BoardDTO;
 import site.corin2.board.dto.UploadDTO;
 import site.corin2.board.service.UploadService;
-import site.corin2.util.S3Util;
-import site.corin2.util.UploadFileUtils;
+
 
 @Controller
 public class UploadController {
 
-	S3Util s3 = new S3Util();
-	String bucketName = "corin2.site";
-	
 	@Autowired
 	private UploadService service;
 	
@@ -96,23 +97,67 @@ public class UploadController {
 
 		//경로설정
 		String savepath = "resources/upload";
-		String fileName = null;
 		String originalName = mpf.getOriginalFilename();
+		String[] fileName1 = mpf.getOriginalFilename().split("\\.") ;
+		String fileName = null;
+		String filePath = null;
+		String downloadpath = request.getRealPath(savepath);
 		
-		try {
-			// AWS S3에 파일 업로드
-			fileName = UploadFileUtils.uploadFile(savepath, projectNum, originalName, mpf.getBytes());
+		//파일명 정하기
+		if(null != mpf && mpf.getSize() > 0) {
+			fileName = System.currentTimeMillis()+"_"+fileName1[0]+"."+fileName1[1]; //파일_현재날짜.확장자 
+			uploadDTO.setUploadAlias(fileName);
+			uploadDTO.setUploadOrigin(mpf.getOriginalFilename());
+			filePath = downloadpath + "\\" + fileName;
 			
+		}
+		try {
 			// DB에 파일 업로드 정보 insert
 			uploadDTO.setUploadAlias(fileName); //파일 가명 
 			uploadDTO.setUploadOrigin(originalName);//파일 원본명
 			service.uploadInsert(uploadDTO); //파일 upload Insert함수
+			System.out.println(filePath+"dd");
+			// 서버에 파일 업로드
+			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return service.uploadSelect(Integer.parseInt(projectNum));
 	}
 
+	//다운로드 함수
+	@RequestMapping(value = "download", method = RequestMethod.GET)
+	public void download(HttpServletRequest request, HttpServletResponse response){
+
+		String filename = request.getParameter("fileName");
+		String savepath = "resources/upload";  
+		String downloadpath = request.getRealPath(savepath);
+		String filePath = downloadpath + "\\" + filename;
+		
+
+		byte[] b = new byte[4096];
+		try {
+			//파일 다운로드
+			System.out.println("패치"+filePath);
+			FileInputStream in = new FileInputStream(filePath);		
+	
+		    response.setHeader("Content-Disposition", 
+		            "attachment;filename="+new String(filename.getBytes(),"UTF-8"));
+		    ServletOutputStream out2 = response.getOutputStream();
+		    int numread;
+		    while((numread = in.read(b,0,b.length)) != -1){
+		       out2.write(b,0,numread);
+		    }
+		    
+		    out2.flush();
+		    out2.close();
+		    in.close(); 
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
 	/**
 	    * @함수명 : fileDelete
 	    * @작성일 : 2018. 7. 4.
