@@ -27,6 +27,7 @@
 }
 /* drop시 이미지 보이기  */
 .dropzoneimg {
+	z-index : -1;
  	position: fixed;
     opacity: 1;
     width:300px;

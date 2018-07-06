@@ -13,7 +13,7 @@ $(function(){
 		 $('.calendarhr').remove();
 		 $('.calenbackdiv').css({"padding":"0px"});
 	 }).css({"overflow": "scroll",
-	    "max-height": "660px","width":"100%" ,"min-height":"660px" , "padding-bottom": "15px" , "overflow" : "scroll"});
+	    "max-height": "660px","width":"100%" ,"min-height":"660px" , "padding-bottom": "15px" , "overflow" : "scroll" , "font-size" :"17px"});
 	 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum,function(){
 		 $('.chartbackdiv').css({"min-height":"600px"})
 	 }).css({"width":"100%" ,"padding-bottom": "15px" , "min-height":"600px" , "overflow" : "scroll"});
