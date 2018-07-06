@@ -36,9 +36,8 @@
 	       var form = this;
 	        e.preventDefault(); // <--- prevent form from submitting
 		        swal({
-		            title: "Are you sure?",
-		            text: "저장하시겠습니까?",
-		            icon: "warning",
+		            title: "저장하시겠습니까?",
+		            type: "info",
 		            buttons: [
 		              'No, cancel it!',
 		              'Yes, I am sure!'
@@ -49,7 +48,7 @@
 		              swal({
 		                title: '저장완료!',
 		                text: '저장되었습니다!',
-		                icon: 'success'
+		                type: 'success'
 		              }).then(function() {
 		                form.submit(); // <--- submit form programmatically
 		              });
