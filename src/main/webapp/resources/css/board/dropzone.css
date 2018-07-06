@@ -3,7 +3,7 @@
     background: #ccccc;
     width: 100%;
 	height:100%;
-	min-height:100%;
+	min-height:1000px;
     line-height: 50px;
     text-align: center;
     font-weight: bold;
@@ -17,7 +17,9 @@
     width: 75%;
     height: 100%;
     text-align:center;
-    float:left;
+    float:right;
+    margin-top:30px; 
+    overflow:hidden;
 }
 #over {
 	margin-top:30px;
@@ -27,14 +29,13 @@
 }
 /* drop시 이미지 보이기  */
 .dropzoneimg {
- 	position: absolute;
+ 	position: fixed;
     opacity: 1;
     width:300px;
     height:200px;
     margin: -150px 0 0 -75px;
     top: 50%;
     left: 50%;
- 
 }
 	  
 
@@ -118,6 +119,7 @@ hr {
     border-radius: 25px;
     padding: 15px;
     width: 100%;
+    min-width:1186px;
     min-height: 1000px;
     
 }
