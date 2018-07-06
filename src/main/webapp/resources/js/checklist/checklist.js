@@ -140,7 +140,7 @@ function checkListInsert() {
 		}
 	})
 	}else{
-		swal("내용을 입력해 주세요")
+		swal({type: 'warning',title:"내용을 입력해 주세요"})
 	}
 }
 
@@ -268,7 +268,7 @@ function updateCheckListAdd(index,checkNum) {
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
 	}else{
-		swal("수정을 완료해 주세요")
+		swal({type: 'warning',title:"수정을 완료해 주세요"})
 	}
 }
 
@@ -301,7 +301,7 @@ function updateCheckListContent(checkNum) {
 				
 	})
 	}else{
-		swal("수정할 문자열을 입력해주세요")
+		swal({type: 'warning',title:"수정할 문자열을 입력해주세요"})
 	}
 }
 

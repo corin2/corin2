@@ -91,7 +91,7 @@ function sortable(){
 			}
 			sortablecnt = 1;
 			if(sortablecnt2 > 3 || sortablecnt3 > 3){
-				swal({title:'TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.'});
+				swal({type:'error',title:'TODO와 INPROGRESS에는 각 개인당 3개의 카드만 가질 수 있습니다.'});
 				send(5);
 			}else{
 				$.ajax({
@@ -375,7 +375,7 @@ function updateCardDetail(e){
 		datatype:"JSON",
 		data:{cardNum:$('#hiddenCardNum').val(), cardContent:$("#contentDetail").val(), cardName:$("#modalHeader").html()},
 		success:function(data){
-			swal({title:"작성 완료"});
+			swal({type: 'success',title:"작성 완료"});
 			selectCard($('#hiddenCardNum').val());
 		},
 		error: function() {
