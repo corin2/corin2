@@ -27,7 +27,7 @@
 					</div>
 					<div class="form-group" style="margin-bottom: 20px;">
 						<label for="checklist">Check List</label><span class='glyphicon glyphicon-plus' style="margin-left: 20px;" onclick="addCardCheckListView()"></span>
-						<div id="checkListForm" style="width: 100%">
+						<div id="checkListForm" style="max-height: 245px; overflow: auto; width: 100%">
 							<p><input type="checkbox" id="checkbox1">
 								<label for="checkbox1">체크리스트</label>
 								<!-- <button type="button" class="close">&times;</button>
