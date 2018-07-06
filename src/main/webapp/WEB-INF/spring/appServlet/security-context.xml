@@ -22,29 +22,10 @@
 	  <security:logout logout-success-url="/login.html" />
 	  <security:access-denied-handler ref="permissionEvaluator" />
 	</security:http>
-<!-- 	
->>>>>>> feature/position
-	 <security:http auto-config="true">
-	  <security:csrf disabled="true"/>
-	  <security:form-login login-page="/"
-	  					   login-processing-url="/login"
-	  					   username-parameter="userId"
-	  					   password-parameter="password"
-	  					   default-target-url="/defaultpage"
-	  					   authentication-failure-url="/login.html?error"
-	  					   always-use-default-target="true"
-	  					   authentication-failure-handler-ref="loginFailureHandler"
-	  					   />
-	  <security:logout logout-success-url="/login.html" />
-	  <security:intercept-url pattern="/user.*" access="ROLE_USER"/>
-	  <security:intercept-url pattern="/admin" access="ROLE_ADMIN"/>
-	  <security:access-denied-handler ref="permissionEvaluator" />
-	</security:http>
-	-->
 
 	<security:authentication-manager>
 		<security:authentication-provider> <!-- DB연결 하는 곳이므로 bean객체 id넣는다. -->
-		<!-- 	<security:password-encoder ref="bCryptPasswordEncoder"/> -->
+			<security:password-encoder ref="bCryptPasswordEncoder"/>
 			<security:jdbc-user-service 
 				data-source-ref="driverManagerDataSource"
 				users-by-username-query="SELECT userid AS username, password, enabled as enabled FROM user WHERE userId= ?"

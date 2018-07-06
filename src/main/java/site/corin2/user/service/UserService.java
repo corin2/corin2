@@ -95,8 +95,8 @@ public class UserService {
 		String viewpage = "";
 		try {
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
-			//userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
-			userdto.setPassword(userdto.getPassword());
+			userdto.setPassword(this.bCryptPasswordEncoder.encode(userdto.getPassword()));
+			//userdto.setPassword(userdto.getPassword());
 			result = userdao.userInsert(userdto);
 			if (result > 0) {
 				MimeMessage message = javamailsender.createMimeMessage();
@@ -346,8 +346,8 @@ public class UserService {
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		int result = 0;
 		try {
-			//userdto.setPassword(this.bCryptPasswordEncoder.encode("kakaologin"));
-			userdto.setPassword("kakaologin");
+			userdto.setPassword(this.bCryptPasswordEncoder.encode("kakaologin"));
+			//userdto.setPassword("kakaologin");
 			userdto.setUserProfile(userdto.getUserProfile());
 			userdto.setEnabled(1);
 			result = userdao.oauthInsert(userdto);
@@ -648,8 +648,8 @@ public class UserService {
 		UserDTO user = new UserDTO();
 		user.setUserId(profile.getAccountEmail());
 		user.setUserName(profile.getDisplayName());
-		//userdto.setPassword(this.bCryptPasswordEncoder.encode("googlelogin"));
-		user.setPassword("googlelogin");
+		user.setPassword(this.bCryptPasswordEncoder.encode("googlelogin"));
+		//user.setPassword("googlelogin");
 		
 		UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 		
@@ -657,7 +657,7 @@ public class UserService {
 		if(check=="false") {
 			try {userdao.oauthInsert(user);} catch (Exception e) {e.printStackTrace();}
 		}
-		
+		user.setPassword("googlelogin");
 		return user;
 	}
 }
