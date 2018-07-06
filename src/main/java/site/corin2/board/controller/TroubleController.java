@@ -21,7 +21,14 @@ public class TroubleController {
 	@Autowired
 	private TroubleService service; 
 
-	//position trouble
+	/**
+	    * @함수명 : positiontrouble
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : position trouble
+	    * @param TroubleShootingDTO
+	    * @return String
+	*/
 	@RequestMapping("/position.troubleshooting")
 	public String positiontrouble(TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSelect(1);
@@ -29,7 +36,14 @@ public class TroubleController {
 		return "position.troubleshooting";
 	}
 	
-	//트러블 슈팅 게시판조회 (팀별)
+	/**
+	    * @함수명 : troubleList
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (팀별)
+	    * @param TroubleShootingDTO,int projectNum
+	    * @return board.trouble
+	*/
 	@RequestMapping("/trouble")
 	public String troubleList(TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
 		List<TroubleShootingDTO> troubles = service.troubleSelect(projectNum);
@@ -38,7 +52,14 @@ public class TroubleController {
 		return "board.trouble";
 	}
 	
-	//트러블 슈팅 게시판조회 (전체,검색어)
+	/**
+	    * @함수명 : troubleListSearch
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (전체,검색어)
+	    * @param String,TroubleShootingDTO
+	    * @return board.troubleAll
+	*/
 	@RequestMapping("/search")
 	public String troubleListSearch(String searchWord,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearch(searchWord);
@@ -47,7 +68,14 @@ public class TroubleController {
 		return "board.troubleAll";
 	}
 	
-	//트러블 슈팅 게시판조회 (전체,태그)
+	/**
+	    * @함수명 : troubleListTag
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (전체,태그)
+	    * @param String searchTag, TroubleShootingDTO
+	    * @return board.troubleAll
+	*/
 	@RequestMapping("/searchTag")
 	public String troubleListTag(String searchTag,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearchTag(searchTag);
@@ -56,32 +84,60 @@ public class TroubleController {
 		return "board.troubleAll";
 	}
 	
-	//트러블 슈팅 게시판조회 (팀,태그&검색어 동적쿼리)
-		@RequestMapping("/searchAct")
-		public String troubleListAct(String search,String type,TroubleShootingDTO trouble, Model model) {
-			List<TroubleShootingDTO> troubles = service.troubleSearchAct(search,type);
+	/**
+	    * @함수명 : troubleListAct
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (팀,태그&검색어 동적쿼리) 
+	    * @param int projectNum,String search,String type
+	    * @return board.trouble
+	*/
+	@RequestMapping("/searchAct")
+	public String troubleListAct(int projectNum,String search,String type,TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleSearchAct(projectNum,search,type);
 					
-			model.addAttribute("data",troubles);
-			return "board.trouble";
-		}
+		model.addAttribute("data",troubles);
+		return "board.trouble";
+	}
 	
-	//트러블 슈팅 게시판조회 (전체)
-		@RequestMapping("/troubleAll")
-		public String troubleAllList(TroubleShootingDTO trouble, Model model) {
-			List<TroubleShootingDTO> troubles = service.troubleAllSelect();
+	/**
+	    * @함수명 : troubleAllList
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (전체) 
+	    * @param TroubleShootingDTO
+	    * @return board.troubleAll
+	*/
+	@RequestMapping("/troubleAll")
+	public String troubleAllList(TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleAllSelect();
 			
-			model.addAttribute("data",troubles);
-			return "board.troubleAll";
-		}
+		model.addAttribute("data",troubles);
+		return "board.troubleAll";
+	}
 	
-	//트러블 슈팅 글쓰기 (화면)
-		@RequestMapping("/troubleins")
-		public String troubleIns() {
+	/**
+	    * @함수명 : troubleIns
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 글쓰기 (화면) 
+	    * @param void
+	    * @return board.troubleInsert
+	*/
+	@RequestMapping("/troubleins")
+	public String troubleIns() {
 			
-			return "board.troubleInsert";
-		}
+		return "board.troubleInsert";
+	}
 	
-	//트러블 슈팅 글쓰기 (처리)
+	/**
+	    * @함수명 : troubleInsert
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 글쓰기 (처리) 
+	    * @param TroubleShootingDTO,int pNum
+	    * @return redirect:trouble
+	*/
 	@RequestMapping("/insert")
 	public String troubleInsert(TroubleShootingDTO dto,@RequestParam("pNum") int pNum) {
 		 
@@ -99,7 +155,14 @@ public class TroubleController {
 		
 	}
 	
-	//트러블 슈팅 게시판조회 (팀별)
+	/**
+	    * @함수명 : troubleDetailView
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (팀별)
+	    * @param int boardNum
+	    * @return board.troubleView
+	*/
 	@RequestMapping("/troubleView")
 	public String troubleDetailView(Model model,int boardNum) {
 		TroubleShootingDTO troubleDTO = service.troubleView(boardNum);
@@ -107,7 +170,15 @@ public class TroubleController {
 		model.addAttribute("data",troubleDTO);
 		return "board.troubleView";
 	}
-	//트러블 슈팅 수정화면으로 이동
+	
+	/**
+	    * @함수명 : troubleEditView
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 수정화면으로 이동
+	    * @param int boardNum
+	    * @return board.troubleUpdate
+	*/
 	@RequestMapping("/troubleEdit")
 	public String troubleEditView(Model model,int boardNum) {
 		TroubleShootingDTO troubleDTO = service.troubleView(boardNum);
@@ -116,7 +187,15 @@ public class TroubleController {
 		return "board.troubleUpdate";
 	}
 	
-	//트러블 슈팅 게시글 수정
+	
+	/**
+	    * @함수명 : troubleUpdate
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시글 수정
+	    * @param TroubleShootingDTO
+	    * @return redirect:trouble
+	*/
 	@RequestMapping("/update")
 	public String troubleUpdate(TroubleShootingDTO dto, Model model) {
 		int result = 0;
@@ -126,7 +205,15 @@ public class TroubleController {
 		return "redirect:trouble?projectNum="+dto.getProjectNum();
 	}
 	
-	//트러블 슈팅 게시글 삭제 (삭제가 아닌, isdeleted 를 1로 업데이트)
+	
+	/**
+	    * @함수명 : troubleDelete
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시글 삭제 (삭제가 아닌, isdeleted 를 1로 업데이트)
+	    * @param TroubleShootingDTO,int pNum
+	    * @return redirect:trouble
+	*/
 	@RequestMapping("/delete")
 	public String troubleDelete(TroubleShootingDTO dto, Model model,@RequestParam("pNum") int pNum) {
 		int result = 0;
@@ -136,7 +223,15 @@ public class TroubleController {
 		return "redirect:trouble?projectNum="+pNum;
 	}
 	
-	//엑셀저장
+	
+	/**
+	    * @함수명 : troubleExcel
+	    * @작성일 : 2018. 6. 18.
+	    * @작성자 : 배현준
+	    * @설명 : 엑셀저장 (팀)
+	    * @param TroubleShootingDTO , int projectNum
+	    * @return troubleExcel
+	*/
 	@RequestMapping("/excel")
 	public String troubleExcel(TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
 		List<TroubleShootingDTO> troubleDTO = service.troubleSelect(projectNum);
@@ -144,7 +239,15 @@ public class TroubleController {
 		model.addAttribute("data",troubleDTO);
 		return "troubleExcel";
 	}
-	//엑셀저장(전체)
+	
+	/**
+	    * @함수명 : troubleExcel
+	    * @작성일 : 2018. 6. 18.
+	    * @작성자 : 배현준
+	    * @설명 : 엑셀저장(전체)
+	    * @param TroubleShootingDTO
+	    * @return troubleExcel
+	*/
 	@RequestMapping("/excelAll")
 	public String troubleExcel(TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubleDTO = service.troubleAllSelect();

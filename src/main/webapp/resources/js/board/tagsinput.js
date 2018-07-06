@@ -28,7 +28,7 @@
 		addOnBlur : true,
 		maxTags : undefined,
 		maxChars : undefined,
-		confirmKeys : [ 32, 13 ], //스페이스, 엔터
+		confirmKeys : [ 13 ], //엔터 if(스페이스도 하고싶다면 [32, 13]
 		delimiter : ',',
 		delimiterRegex : null,
 		cancelConfirmKeysOnEmpty : true,

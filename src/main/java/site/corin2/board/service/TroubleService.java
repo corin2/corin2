@@ -77,13 +77,12 @@ public class TroubleService {
 	}
 	
 	//트러블 슈팅게시물 동적쿼리 조회
-		public List<TroubleShootingDTO> troubleSearchAct(String search,String type){
+		public List<TroubleShootingDTO> troubleSearchAct(int projectNum,String search,String type){
 			TroubleDAO troubleDAO = sqlSession.getMapper(TroubleDAO.class);
 			List<TroubleShootingDTO> troubles = null;
-				System.out.println("keyward:"+search);
-				System.out.println("type value:"+type);
+			
 			try {
-				troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearchAct(search,type);
+				troubles = (ArrayList<TroubleShootingDTO>)troubleDAO.troubleSearchAct(projectNum,search,type);
 								
 								
 			} catch (Exception e) {
