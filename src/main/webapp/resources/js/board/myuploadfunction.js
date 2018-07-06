@@ -256,10 +256,17 @@ function drag() {
     }).bind("dragleave", function (e) {//드래그 안할땐 noimage 이미지 띄움
     	$('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
         $('.dropzoneimg').attr('src','resources/images/board/noimage.png'); 
+        $('.dropzoneimg').css('z-index','0');
+        setTimeout(function() {
+        	$('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
+	        $('.dropzoneimg').attr('src','resources/images/board/noimage.png');
+	        $('.dropzoneimg').css('z-index','-1');
+        }, 1000);
         return false;
     }).bind("drop", function (e) {//드래그 안할땐  noimage 이미지 띄움
         $('.dropzoneimg').removeAttr('src','resources/images/board/upload.png'); 
         $('.dropzoneimg').attr('src','resources/images/board/noimage.png');
+        $('.dropzoneimg').css('z-index','-1');
         return false;
     });
 }
