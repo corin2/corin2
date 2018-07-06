@@ -35,6 +35,7 @@ function fnChkByte(obj, maxByte){
 	    str2 = str.substr(0,rlen);                                  // 문자열 자르기
 	    obj.value = str2;
 	    fnChkByte(obj, maxByte);
+	    $("#ProjectName").val("")
 	}
 }
 
@@ -76,11 +77,12 @@ function byteInt(str){
 function fnChkLength(obj, maxLength){
 	var str = obj.value;
     var str_len = str.length;
-    
     if(str_len > maxLength){
-        swal("글자수가 "+maxLength+"자를 초과 입력할 수 없습니다.");
         var str2 = str.substr(0, maxLength-1);                   // 문자열 자르기
         obj.value = str2;
         fnChkLength(obj, maxLength);
+    }
+    if(str_len > maxLength-1){
+    	swal("글자수가 "+maxLength+"자를 초과 입력할 수 없습니다.");
     }
 }

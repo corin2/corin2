@@ -85,7 +85,6 @@
   margin-bottom: 20px;
   float: left;
   margin-right: 8px;
-  
 }
 .h4margin{
 	margin-bottom:0px;
@@ -94,6 +93,9 @@ span:hover, span:focus {
 	color : #000;
     text-decoration: none;
     transition: all 0.3s;
+}
+.buttonprojectword{
+word-wrap: break-word;
 }
 .buttonproject:hover {
   background-color: #a3a1a1;
