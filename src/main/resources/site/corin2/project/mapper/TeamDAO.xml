@@ -62,4 +62,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where userid = #{userId} and projectnum = #{projectNum}
 	</select>
 	
+	<!-- 자신이 팀에 참여되어있는지 확인 -->
+	<select id="isTeamMyId" resultType="int">
+		select IFNULL(count(*), 0)
+		from team
+		where userid = #{userId} and projectnum = #{projectNum} and isdeleted = 0
+	</select>
+	
 	</mapper>

@@ -13,6 +13,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import site.corin2.project.dao.TeamDAO;
+import site.corin2.project.dto.TeamDTO;
 import site.corin2.skill.dao.PositionDAO;
 import site.corin2.skill.dto.PositionDTO;
 
@@ -35,24 +37,32 @@ public class PositionService {
 		}
 		return result;
 	}
-/*	
-	//update position
-	public String positionUpdate(PositionDTO positiondto) {
-		return null;
-	}
 	
-	//delete position
-	public String positionDelete(PositionDTO positiondto) {
-		return null;
+	/**
+	* @함수명 : isTeamMyId(String userId, int projectNum)
+	* @작성일 : 2018. 07. 06.
+	* @작성자 : 김 진 원
+	* @설명 : 해당 유저가 프로젝트 넘버에 속해 있는지 확인 DB에서 count로 받아온다 있으면 1 없으면 0
+	* 미리 보여주는 함수이다.
+	* @param String - userId
+	* @param int - projectNum
+	* @return boolean 속해 있으면 true 속해있지 않으면 false
+	**/
+	public boolean isTeamMyId(String userId, int projectNum) {
+		TeamDTO team = new TeamDTO();
+		team.setUserId(userId);
+		team.setProjectNum(projectNum);
+		
+		TeamDAO teamDAO = sqlsession.getMapper(TeamDAO.class);
+		int count = 0;
+		boolean result = false;
+		try {
+			count = teamDAO.isTeamMyId(team);
+			if(count == 0) result = false;
+			else result = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
-	
-	//position 전체 조회하기
-	public String positionAllSelect(PositionDTO positiondto) {
-		return null;
-	}
-	
-	//position 하나 조회하기
-	public String positionSelect(PositionDTO positiondto) {
-		return null;
-	}*/
 }

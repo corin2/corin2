@@ -3,15 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script>
 $(function(){
-		 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}",function(){
-			 $('.calendarname').remove();
-			 $('.calendarhr').remove();
-			 $('.calenbackdiv').css({"padding":"0px"});
-		 }).css({"width":"100%" ,"min-height":"660px" , "padding-bottom": "15px" , "overflow" : "scroll"});
-		 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum,function(){
-			 $('.chartbackdiv').css({"min-height":"600px"})
-		 }).css({"width":"100%" ,"padding-bottom": "15px" , "min-height":"600px" , "overflow" : "scroll"});
-		 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum);
+	//팀원이 아닌사람이 url로 치고 들어오면 되돌아가기
+	if('null' == "<%=(String)session.getAttribute("sessionProjectNum")%>"){
+		location.href = getContextPath()+'/project';
+	}
+	
+	 $("#dashboardcalendar").load("dashboardcalendar?projectNum=${sessionScope.sessionProjectNum}",function(){
+		 $('.calendarname').remove();
+		 $('.calendarhr').remove();
+		 $('.calenbackdiv').css({"padding":"0px"});
+	 }).css({"width":"100%" ,"min-height":"660px" , "padding-bottom": "15px" , "overflow" : "scroll"});
+	 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum,function(){
+		 $('.chartbackdiv').css({"min-height":"600px"})
+	 }).css({"width":"100%" ,"padding-bottom": "15px" , "min-height":"600px" , "overflow" : "scroll"});
+	 $("#dashboardkanban").load("dashboardkanban?projectNum="+sessionProjectNum);
 });
 </script>
 <style>
