@@ -262,9 +262,10 @@ function updateCheckListAdd(index,checkNum) {
 	if($("#checkBoxAdd").val() != ''){
 	$("#index"+index).empty();
 	$("#checkedBox"+checkNum).parent().parent().empty();
-	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}'>"
-			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
-			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button></td>"
+	var div = "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}'>"
+			+ "</td><td>"		
+			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button>"
+			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button></td>"
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
 	}else{
