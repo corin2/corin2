@@ -35,7 +35,6 @@ function fnChkByte(obj, maxByte){
 	    str2 = str.substr(0,rlen);                                  // 문자열 자르기
 	    obj.value = str2;
 	    fnChkByte(obj, maxByte);
-	    $("#ProjectName").val("")
 	}
 }
 
