@@ -37,20 +37,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<!-- 트러블슈팅 검색 동적쿼리 -->
 		<select id="troubleSearchAct" resultType="site.corin2.board.dto.TroubleShootingDTO">
-			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i') as boarddate
+			select b.boardnum as boardNum,a.projectNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i') as boarddate
 				from troubleshooting a, board b,user c  
-			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0
-			<if test="type == 'title'.toString()">
-				and a.problem like CONCAT('%',#{search}, '%') order by boardnum desc
+			where a.boardnum=b.boardnum and a.projectNum=#{projectNum} and b.userid=c.userid and b.isdeleted=0
+			<if test="type == 'title'">
+				and a.problem like CONCAT('%',#{search}, '%')
 			</if> 
-			<if test="type == 'tag'.toString()">
-				and a.hashtag like CONCAT('%',#{search}, '%') order by boardnum desc
+			<if test="type == 'tag'">
+				and a.hashtag like CONCAT('%',#{search}, '%')
 			</if>  
+			order by boardnum desc  
 		</select>
 		
 		<!-- 트러블슈팅 게시물 조회 -->
 		<select id="troubleView" resultType="site.corin2.board.dto.TroubleShootingDTO">
-			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i') as boarddate
+			select b.boardnum as boardNum,a.projectNum,b.userId,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i') as boarddate
 				from troubleshooting a, board b,user c  
 			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 and b.boardNum=#{boardNum}  
 		</select>

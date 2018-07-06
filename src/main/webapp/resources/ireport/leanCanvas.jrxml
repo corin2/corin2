@@ -5,10 +5,10 @@
 	<parameter name="userId" class="java.lang.String"/>
 	<parameter name="projectNum" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select TEAMNAME,replace( PROBLEM ,'<br>','\r\n') PROBLEM,replace( ALTERNATIVES ,'<br>','\r\n') ALTERNATIVES,replace( SOLUTION ,'<br>','\r\n') SOLUTION 
-		             ,projectNum,replace( MAINPOINT ,'<br>','\r\n') MAINPOINT,replace( UNIQUEVALUE ,'<br>','\r\n') UNIQUEVALUE,replace( PARENTCONCEPT ,'<br>','\r\n') PARENTCONCEPT
-                                ,replace( COMPETITIVEADVANTAGE ,'<br>','\r\n') COMPETITIVEADVANTAGE,replace( CHANNEL ,'<br>','\r\n') CHANNEL,replace( CUSTOMER ,'<br>','\r\n') CUSTOMER
-                                ,replace( EARLYADOPTER ,'<br>','\r\n') EARLYADOPTER,replace( COSTSTRUCTURE ,'<br>','\r\n') COSTSTRUCTURE,replace( PROFIT ,'<br>','\r\n') PROFIT		                    
+		<![CDATA[select TEAMNAME,ifnull(replace( PROBLEM ,'<br>','\r\n'),'') PROBLEM,ifnull(replace( ALTERNATIVES ,'<br>','\r\n'),'') ALTERNATIVES,ifnull(replace( SOLUTION ,'<br>','\r\n'),'') SOLUTION 
+		             ,projectNum,ifnull(replace( MAINPOINT ,'<br>','\r\n'),'') MAINPOINT,ifnull(replace( UNIQUEVALUE ,'<br>','\r\n'),'') UNIQUEVALUE,ifnull(replace( PARENTCONCEPT ,'<br>','\r\n'),'') PARENTCONCEPT
+                                ,ifnull(replace( COMPETITIVEADVANTAGE ,'<br>','\r\n'),'') COMPETITIVEADVANTAGE,ifnull(replace( CHANNEL ,'<br>','\r\n'),'') CHANNEL,ifnull(replace( CUSTOMER ,'<br>','\r\n'),'') CUSTOMER
+                                ,ifnull(replace( EARLYADOPTER ,'<br>','\r\n'),'') EARLYADOPTER,ifnull(replace( COSTSTRUCTURE ,'<br>','\r\n'),'') COSTSTRUCTURE,ifnull(replace( PROFIT ,'<br>','\r\n'),'') PROFIT		                    
 		from leancanvas where projectNum=$P{projectNum}]]>
 	</queryString>
 	<field name="projectNum" class="java.lang.Integer"/>

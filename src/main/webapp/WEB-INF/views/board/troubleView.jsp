@@ -9,6 +9,7 @@
 <!-- include hashtags(해쉬태그) css/js -->
 <link rel="stylesheet" href="resources/css/board/tagsinput.css">
 <script src="resources/js/board/tagsinput.js"></script>
+<script src="resources/js/board/troubleshooting.js"></script>
 <link rel="stylesheet" href="resources/css/board/troubleshooting.css">
 <script type="text/javascript">			    
 	//페이지 생성완료 후에 섬머노트를 loading, 태그란에 마우스포인터 위치
@@ -18,24 +19,21 @@
 		            $('#summercontent').html($('#summernote').code());
 		        },
 		    height : 200, // set editor height
-		    width : 900, // set editor width
+		    
 		    
 		    airMode:true
+		    
 		  });
 		  $('#summernote2').summernote({
 			  onblur : function(e) {
 		            $('#summercontent').html($('#summernote').code());
 		        },
 		    height : 200, // set editor height
-		    width : 900, // set editor width
+		    
 		    
 		    airMode:true
 		  });
 	});
-	function editts(){
-			//todo: 수정시 처리
-			
-		}
 </script>
 
 <div class="troublebackdiv">
@@ -44,22 +42,52 @@
 		<div class="container-ts" style="margin-top: 20px;">
 		<form action="update?boardNum=${data.boardNum}"
 			method="post" name="insfrm">
-			<b>태그등록 :</b> <input type="text" name="hashtag" data-role="tagsinput"
-				placeholder="Add tags" value=${data.hashtag}></input> <br />
-			<h3>발생한 문제</h3>
-			<textarea id="summernote" name="problem">${data.problem}</textarea>
-			<h3>해결/조치 방법</h3>
-			<textarea id="summernote2" name="solution">${data.solution}</textarea>
+			<table class="table  table-striped table-bordered table-hover">
+				<tr>
+					<th><img
+						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${data.userProfile}"
+						class="img-circle person" width="30" height="30" />
+						${data.userName}님이 ${data.boardDate}에 저장한 트러블슈팅 입니다.</th>
+				</tr>
+				<tr>
+					<td><b>#관련 태그# :</b>&nbsp;<script>
+						fncTegSplit('${data.hashtag}');
+					</script>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h3>
+							<span class="glyphicon glyphicon-question-sign"></span>발생한 문제
+						</h3>
+					</td>
+				</tr>
+				<tr>
+					<td><textarea id="summernote" name="problem">${data.problem}</textarea>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h3>
+							<span class="glyphicon glyphicon-ok-circle"></span>해결/조치 방법
+						</h3>
+					</td>
+				</tr>
+				<tr>
+					<td><textarea id="summernote2" name="solution">${data.solution}</textarea>
+					</td>
+				</tr>
+			</table>
 			<div>
-				<button id="edit" class="btn btn-primary" onclick="editts()" type="button">수정</button>
-				<input type="submit" class="btn btn-primary" value="작성" style="margin-right: 15px">
-				<a href="delete?boardNum=${data.boardNum}" class="btn btn-danger" type="button ">삭제</a>
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="button" class="btn btn-warning" value="취소" OnClick="history.back()">
+				<!-- 본인이 쓴 게시물만 수정, 삭제가 가능하도록 처리 -->
+    			<c:if test="${pageContext.request.userPrincipal.name == data.userId}">								
+					<a href="troubleEdit?boardNum=${data.boardNum}" class="btn btn-primary" type="button ">수정</a>
+					<a href="delete?boardNum=${data.boardNum}&pNum=${data.projectNum}" class="btn btn-danger" type="button ">삭제</a>
+				</c:if>
+				<input type="button" class="btn btn-primary" value="목록으로" OnClick="history.back()">
 			</div>
-			<input type="hidden" name="projectNum"
-				value="${sessionScope.sessionProjectNum}" /> <input type="hidden"
-				name="userId" value="${pageContext.request.userPrincipal.name}" />
+			<input type="hidden" name="projectNum" value="${sessionScope.sessionProjectNum}" /> 
+			<input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" />
 		</form>
 	
 		</div>

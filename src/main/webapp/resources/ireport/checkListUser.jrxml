@@ -5,7 +5,7 @@
 	<parameter name="userId" class="java.lang.String"/>
 	<parameter name="projectNum" class="java.lang.Integer"/>
 	<queryString>
-		<![CDATA[select c.checknum,c.category,c.checkcontent, (case s.ischecked when 1 then 'Y' else 'N' end) as ISCHECKED  from 
+		<![CDATA[select c.checknum,c.category,c.checkcontent, (case s.ischecked when 1 then 'Y' else '' end) as ISCHECKED  from 
 	(select * from checklist where projectnum=$P{projectNum} and isdeleted = 0) c
 left join
    (select * from skillchecklist where userid=$P{userId} and projectnum=$P{projectNum})s

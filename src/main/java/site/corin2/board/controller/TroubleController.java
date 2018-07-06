@@ -6,23 +6,12 @@
 */
 package site.corin2.board.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
-
 import site.corin2.board.dto.TroubleShootingDTO;
 import site.corin2.board.service.TroubleService;
 
@@ -32,7 +21,14 @@ public class TroubleController {
 	@Autowired
 	private TroubleService service; 
 
-	//position trouble
+	/**
+	    * @함수명 : positiontrouble
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : position trouble
+	    * @param TroubleShootingDTO
+	    * @return String
+	*/
 	@RequestMapping("/position.troubleshooting")
 	public String positiontrouble(TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSelect(1);
@@ -40,7 +36,14 @@ public class TroubleController {
 		return "position.troubleshooting";
 	}
 	
-	//트러블 슈팅 게시판조회 (팀별)
+	/**
+	    * @함수명 : troubleList
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (팀별)
+	    * @param TroubleShootingDTO,int projectNum
+	    * @return board.trouble
+	*/
 	@RequestMapping("/trouble")
 	public String troubleList(TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
 		List<TroubleShootingDTO> troubles = service.troubleSelect(projectNum);
@@ -49,7 +52,14 @@ public class TroubleController {
 		return "board.trouble";
 	}
 	
-	//트러블 슈팅 게시판조회 (전체,검색어)
+	/**
+	    * @함수명 : troubleListSearch
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (전체,검색어)
+	    * @param String,TroubleShootingDTO
+	    * @return board.troubleAll
+	*/
 	@RequestMapping("/search")
 	public String troubleListSearch(String searchWord,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearch(searchWord);
@@ -58,7 +68,14 @@ public class TroubleController {
 		return "board.troubleAll";
 	}
 	
-	//트러블 슈팅 게시판조회 (전체,태그)
+	/**
+	    * @함수명 : troubleListTag
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (전체,태그)
+	    * @param String searchTag, TroubleShootingDTO
+	    * @return board.troubleAll
+	*/
 	@RequestMapping("/searchTag")
 	public String troubleListTag(String searchTag,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearchTag(searchTag);
@@ -67,32 +84,60 @@ public class TroubleController {
 		return "board.troubleAll";
 	}
 	
-	//트러블 슈팅 게시판조회 (팀,태그&검색어 동적쿼리)
-		@RequestMapping("/searchAct")
-		public String troubleListAct(String search,String type,TroubleShootingDTO trouble, Model model) {
-			List<TroubleShootingDTO> troubles = service.troubleSearchAct(search,type);
+	/**
+	    * @함수명 : troubleListAct
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (팀,태그&검색어 동적쿼리) 
+	    * @param int projectNum,String search,String type
+	    * @return board.trouble
+	*/
+	@RequestMapping("/searchAct")
+	public String troubleListAct(int projectNum,String search,String type,TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleSearchAct(projectNum,search,type);
 					
-			model.addAttribute("data",troubles);
-			return "board.trouble";
-		}
+		model.addAttribute("data",troubles);
+		return "board.trouble";
+	}
 	
-	//트러블 슈팅 게시판조회 (전체)
-		@RequestMapping("/troubleAll")
-		public String troubleAllList(TroubleShootingDTO trouble, Model model) {
-			List<TroubleShootingDTO> troubles = service.troubleAllSelect();
+	/**
+	    * @함수명 : troubleAllList
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (전체) 
+	    * @param TroubleShootingDTO
+	    * @return board.troubleAll
+	*/
+	@RequestMapping("/troubleAll")
+	public String troubleAllList(TroubleShootingDTO trouble, Model model) {
+		List<TroubleShootingDTO> troubles = service.troubleAllSelect();
 			
-			model.addAttribute("data",troubles);
-			return "board.troubleAll";
-		}
+		model.addAttribute("data",troubles);
+		return "board.troubleAll";
+	}
 	
-	//트러블 슈팅 글쓰기 (화면)
-		@RequestMapping("/troubleins")
-		public String troubleIns() {
+	/**
+	    * @함수명 : troubleIns
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 글쓰기 (화면) 
+	    * @param void
+	    * @return board.troubleInsert
+	*/
+	@RequestMapping("/troubleins")
+	public String troubleIns() {
 			
-			return "board.troubleInsert";
-		}
+		return "board.troubleInsert";
+	}
 	
-	//트러블 슈팅 글쓰기 (처리)
+	/**
+	    * @함수명 : troubleInsert
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 글쓰기 (처리) 
+	    * @param TroubleShootingDTO,int pNum
+	    * @return redirect:trouble
+	*/
 	@RequestMapping("/insert")
 	public String troubleInsert(TroubleShootingDTO dto,@RequestParam("pNum") int pNum) {
 		 
@@ -110,7 +155,14 @@ public class TroubleController {
 		
 	}
 	
-	//트러블 슈팅 게시판조회 (팀별)
+	/**
+	    * @함수명 : troubleDetailView
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시판조회 (팀별)
+	    * @param int boardNum
+	    * @return board.troubleView
+	*/
 	@RequestMapping("/troubleView")
 	public String troubleDetailView(Model model,int boardNum) {
 		TroubleShootingDTO troubleDTO = service.troubleView(boardNum);
@@ -119,7 +171,31 @@ public class TroubleController {
 		return "board.troubleView";
 	}
 	
-	//트러블 슈팅 게시글 수정
+	/**
+	    * @함수명 : troubleEditView
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 수정화면으로 이동
+	    * @param int boardNum
+	    * @return board.troubleUpdate
+	*/
+	@RequestMapping("/troubleEdit")
+	public String troubleEditView(Model model,int boardNum) {
+		TroubleShootingDTO troubleDTO = service.troubleView(boardNum);
+			
+		model.addAttribute("data",troubleDTO);
+		return "board.troubleUpdate";
+	}
+	
+	
+	/**
+	    * @함수명 : troubleUpdate
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시글 수정
+	    * @param TroubleShootingDTO
+	    * @return redirect:trouble
+	*/
 	@RequestMapping("/update")
 	public String troubleUpdate(TroubleShootingDTO dto, Model model) {
 		int result = 0;
@@ -129,17 +205,33 @@ public class TroubleController {
 		return "redirect:trouble?projectNum="+dto.getProjectNum();
 	}
 	
-	//트러블 슈팅 게시글 삭제 (삭제가 아닌, isdeleted 를 1로 업데이트)
+	
+	/**
+	    * @함수명 : troubleDelete
+	    * @작성일 : 2018. 6. 14.
+	    * @작성자 : 배현준
+	    * @설명 : 트러블 슈팅 게시글 삭제 (삭제가 아닌, isdeleted 를 1로 업데이트)
+	    * @param TroubleShootingDTO,int pNum
+	    * @return redirect:trouble
+	*/
 	@RequestMapping("/delete")
-	public String troubleDelete(TroubleShootingDTO dto, Model model) {
+	public String troubleDelete(TroubleShootingDTO dto, Model model,@RequestParam("pNum") int pNum) {
 		int result = 0;
 		result = service.troubleDelete(dto);
 		model.addAttribute("result",result);
 		
-		return "redirect:trouble?projectNum="+dto.getProjectNum();
+		return "redirect:trouble?projectNum="+pNum;
 	}
 	
-	//엑셀저장
+	
+	/**
+	    * @함수명 : troubleExcel
+	    * @작성일 : 2018. 6. 18.
+	    * @작성자 : 배현준
+	    * @설명 : 엑셀저장 (팀)
+	    * @param TroubleShootingDTO , int projectNum
+	    * @return troubleExcel
+	*/
 	@RequestMapping("/excel")
 	public String troubleExcel(TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
 		List<TroubleShootingDTO> troubleDTO = service.troubleSelect(projectNum);
@@ -147,7 +239,15 @@ public class TroubleController {
 		model.addAttribute("data",troubleDTO);
 		return "troubleExcel";
 	}
-	//엑셀저장
+	
+	/**
+	    * @함수명 : troubleExcel
+	    * @작성일 : 2018. 6. 18.
+	    * @작성자 : 배현준
+	    * @설명 : 엑셀저장(전체)
+	    * @param TroubleShootingDTO
+	    * @return troubleExcel
+	*/
 	@RequestMapping("/excelAll")
 	public String troubleExcel(TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubleDTO = service.troubleAllSelect();
@@ -156,63 +256,5 @@ public class TroubleController {
 		return "troubleExcel";
 	}
 	
-	
-	//Report Test
-	@RequestMapping("/report")
-    public void report() {
-		List<Map<String, ?>> listTruble = new ArrayList<Map<String,?>>();
-		TroubleShootingDTO tsDTO = new TroubleShootingDTO();
-		tsDTO.setBoardNum(1);
-		tsDTO.setProblem("new problem");
-		tsDTO.setSolution("new Solution");
-		
-		Map<String,Object> m = new HashMap<String,Object>();
-		m.put("boardNum", tsDTO.getBoardNum());
-		m.put("problem", tsDTO.getProblem());
-		m.put("boardNum", tsDTO.getSolution());
-		listTruble.add(m);
-		
-		//new JRBeanCollectionDataSource(beanCollection)
-	}
-	
-    @RequestMapping("/report2")
-    public ModelAndView report2() {
-
-        JasperReportsPdfView view = new JasperReportsPdfView();
-        view.setUrl("classpath:/resources/ireport/troubleshooting.jrxml");
-        
-        
-        //view.setApplicationContext(appContext);
-        
-        DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-        view.setJdbcDataSource(driverManagerDataSource);
-
-        HashMap<String, Object> params = new HashMap<>();
-        params.put("USR_ID", "1");
-
-        return new ModelAndView(view, params);
-    }
-	
-	@RequestMapping(value="/report3")
-	public ModelAndView report3(Map<String,Object> map, HttpServletRequest request, HttpServletResponse response){
-				
-		//List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		JasperReportsPdfView view = new JasperReportsPdfView();
-		
-		//추가
-		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
-		
-		view.setJdbcDataSource(driverManagerDataSource);
-		view.setUrl("/WEB-INF/reports/sample.jrxml");
-		Map<String, Object> params = new HashMap<>();
-		params.put("param1", "param1 value");
-		
-		view.setApplicationContext(null);
-		
-		return new ModelAndView(view, params);
-		
-		//return JasperReportsUtils.render("multiformat-view", list, "");
-		//("multiformat-view", list, "pdf");
-	}
 }
 
