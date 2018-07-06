@@ -36,7 +36,7 @@
 	       var form = this;
 	        e.preventDefault(); // <--- prevent form from submitting
 		        swal({
-		            title: "Are you sure?",
+		            title: "새 트러블슈팅 등록",
 		            text: "저장하시겠습니까?",
 		            icon: "warning",
 		            buttons: [
