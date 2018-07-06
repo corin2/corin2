@@ -5,18 +5,20 @@
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
 <!-- ckedior -->
 <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<!-- swal -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 	<div class="announceboardupdate">
 		<div class="announceboardundoupdate">
 			<h2 id='boardUpdateTitle'>공지사항 작성하기</h2>
 			<hr>
-			<form action="boardInsert"  method="post" >
+			<form id="boardInsert" action="boardInsert"  method="post" >
 				<input type="hidden" name="countPerPage" value="${page.countPerPage}">
 				<input type="hidden" name="blockCount" value="${page.blockCount}">
 				<input type="hidden" name="nowPage" value="${page.nowPage}">
 				<table  class="table table-update">
 					<tr>
 				 		<td>제목</td>
-				 		<td><input type="text" name ="announceTitle"></td>
+				 		<td><input class ="announceTitle"type="text" name ="announceTitle"></td>
 				 	<tr>	
 				 	
 				 	<tr>
@@ -53,5 +55,38 @@
 					 break;
 			 } 
 			});
+		
+		document.querySelector('#boardInsert').addEventListener('submit', function(e) {
+			
+			  var form = this;
+			  e.preventDefault(); // <--- prevent form from submitting
+		    swal({
+		        title: "작성하시겠습니까?",
+		        text: "제목  or 내용을 작성하세요",
+		        icon: "success",
+		        showCancelButton: true,
+		        confirmButtonClass: "btn-danger",
+		        confirmButtonText: "확인",
+		        cancelButtonText: "취소",
+		        closeOnConfirm: false
+		    
+		      }).then(function(isConfirm) {
+
+		          if($('.announceTitle').val() == "" || $(".announceTitle").val().length ==0){
+		          	swal("제목을 입력하세요", "다시 입력하세요", "warning");
+		    		    $('.announceTitle').focus();
+		    			
+		           }else if($('.announceTitle').val().length  > 100){
+		              swal("제목 100자 이하로 입력하세요", "다시 입력하세요", "warning");
+		     		    $('.announceTitle').focus();
+		     		    $('.announceTitle').val("");
+		           }else {
+		          	 swal("Good job!", "작성완료", "success");
+		          	 form.submit(); 
+		        } 
+		           
+			});
+		    
+		});
 	</script>
 <!-- ckeditor 적용 -->

@@ -6,11 +6,12 @@
 <link rel="stylesheet" href="resources/css/board/announceboard.css">
 <!-- ckedior -->
 <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2"></script>
 	<div class="announceboardupdate">
 		<div class="announceboardundoupdate">
 			<h2 id='boardUpdateTitle'>공지사항 수정하기</h2>
 			<hr>
-			<form action="boardUpdate?boardnum=${detail.boardNum}" method="post">
+			<form id="boardUpdate" action="boardUpdate?boardnum=${detail.boardNum}" method="post">
 				<input type="hidden" name="countPerPage" value="${page.countPerPage}">
 				<input type="hidden" name="blockCount" value="${page.blockCount}">
 				<input type="hidden" name="nowPage" value="${page.nowPage}">
@@ -23,7 +24,7 @@
 						</tr>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" name="announceTitle"
+							<td><input class="announceTitle" type="text" name="announceTitle"
 								value="${detail.announceTitle}"></td>
 						</tr>
 						<tr>
@@ -72,5 +73,38 @@
 	                    break;
 	            }
 	        });
+	       
+	     document.querySelector('#boardUpdate').addEventListener('submit', function(e) {
+	 		  console.log("dmdmdm");
+	 		  var form = this;
+	 		  e.preventDefault(); // <--- prevent form from submitting
+	     swal({
+	         title: "수정하시겠습니까?",
+	         text: "제목  or 내용을 수정하세요",
+	         icon: "success",
+	         showCancelButton: true,
+	         confirmButtonClass: "btn-danger",
+	         confirmButtonText: "확인",
+	         cancelButtonText: "취소",
+	         closeOnConfirm: false
+	     
+	       }).then(function(isConfirm) {
+	    	      if($('.announceTitle').val() == "" || $(".announceTitle").val().length ==0){
+			          	swal("제목을 입력하세요", "다시 입력하세요", "warning");
+			    		    $('.announceTitle').focus();
+			    			
+			           }else if($('.announceTitle').val().length  > 100){
+			              swal("제목 100자 이하로 입력하세요", "다시 입력하세요", "warning");
+			     		    $('.announceTitle').focus();
+			     		    $('.announceTitle').val("");
+			           }else {
+			          	 swal("Good job!", "작성완료", "success");
+			          	 form.submit(); 
+			        } 
+	 		});
+	     
+	 	});  
+	       
+	       
 	</script>
 	<!-- ckeditor 적용 -->
