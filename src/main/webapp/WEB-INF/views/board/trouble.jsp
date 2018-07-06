@@ -26,19 +26,19 @@
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				검색
 			</button>
-			<a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
+			<%-- <a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
-		</button></a>
-		<a href="generateReport?file=troubleShooting&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+			</button></a> --%>
+			<a href="generateReport?file=troubleShooting&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
 				class="btn btn-primary btn-wide">
-				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> PDF 저장
-		</button></a>
-		<a href="troubleins"><button type="button"
+				<span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF 저장
+			</button></a>
+			<a href="troubleins"><button type="button"
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				새 글 쓰기
-				</button></a>
+			</button></a>
 	
 		</form>
 	</div>

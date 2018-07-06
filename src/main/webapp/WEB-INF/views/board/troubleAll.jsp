@@ -2,39 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <link rel="stylesheet" href="resources/css/board/troubleshooting.css">
+<script src="resources/js/board/troubleshooting.js"></script>
 <script>
-//태그 값을 불러와 ',' 단위로 잘라서 tag버튼들을 생성하는 스크립트.
-function fncTegSplit(str){
 
-	var result='';
-	var split = str.split(',');
-	var i  = 0;
-
-	for( i; i<split.length; i++ ){
-		switch(i){
-			case 0:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-primary'>#";
-				break;
-			case 1:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-success'>#";
-				break;
-			case 2:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-info'>#";
-				break;
-			case 3:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-warning'>#";
-				break;
-			case 4:
-				result += "<a href='searchTag?searchTag="+split[i]+"'><span class='label label-danger'>#";
-				break;
-		}
- 		result += split[i];
- 		result += "</span></a>&nbsp&nbsp";
- 		
-	}
-	
-	document.write(result);	
-}
 
 </script>
 <div class="troublebackdiv">
@@ -58,13 +28,13 @@ function fncTegSplit(str){
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				검색
 			</button>
-			<a href="excelAll"><button type="button"
+			<!-- <a href="excelAll"><button type="button"
 					class="btn btn-primary btn-wide">
 					<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
-			</button></a>
+			</button></a> -->
 			<a href="generateReport?file=troubleAll&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
 				class="btn btn-primary btn-wide">
-				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> PDF 저장
+				<span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF 저장
 		</button></a>
 		</form>
 	</div>
@@ -88,7 +58,7 @@ function fncTegSplit(str){
 						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${ts.userProfile}"
 						 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
 					<td id="tags">
-					<script>fncTegSplit('${ts.hashtag}');</script>
+					<script>fncTegSplitAll('${ts.hashtag}');</script>
 					<br><br><a href="troubleView?boardNum=${ts.boardNum}">${ts.problem}</a>
 					</td>
 					<td>${ts.boardDate}</td>
