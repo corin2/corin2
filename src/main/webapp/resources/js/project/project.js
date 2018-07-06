@@ -23,7 +23,7 @@ function addProject() {
 		datatype:"JSON",
 		data:{projectName:$("#ProjectName").val(), languageNum:radioVal},
 		success:function(data){
-			swal({title:"프로젝트생성성공"});
+			swal({type: 'success',title:"프로젝트생성성공"});
 			projectProjectNum(projectName)
 		},
 		error: function() {
@@ -31,10 +31,10 @@ function addProject() {
         }
 	})
 	}else if($("#ProjectName").val()==""){
-		swal({title:"프로젝트명을 입력하세요"});
+		swal({type: 'warning',title:"프로젝트명을 입력하세요"});
 	}else
 	{
-		swal({title:"주언어를 체크해주세요"});
+		swal({type: 'warning',title:"주언어를 체크해주세요"});
 	}
 }
 /**
@@ -288,7 +288,7 @@ function updateLanguage(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum, languageNum:$('input[name="language"]:checked').val(), projectName:$("#ProjectName").val()},
 		success:function(data){
-			swal({title:"프로젝트 수정 성공"});
+			swal({type: 'success',title:"프로젝트 수정 성공"});
 			languageColorView();
 		},
 		error: function() {
@@ -302,7 +302,7 @@ function updateLanguage(projectNum) {
 	})
 	}else
 	{
-		swal({title:"프로젝트명을 입력하세요"});
+		swal({type: 'warning',title:"프로젝트명을 입력하세요"});
 	}
 }
 /**
@@ -385,7 +385,7 @@ function deleteProject(projectNum) {
 					datatype:"JSON",
 					data:{projectNum:projectNum},
 					success:function(data){
-						swal({title:"프로젝트 삭제완료"});
+						swal({type: 'success',title:"프로젝트 삭제완료"});
 						languageColorView();
 					},
 					error: function() {

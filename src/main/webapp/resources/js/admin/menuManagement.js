@@ -200,7 +200,7 @@ function checkListAddOk(obj){
 			}
 		});
 	}else{
-		swal("내용을 입력하세요");
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -257,7 +257,7 @@ function checkListEditOk(obj){
 			}
 		});
 	}else{
-		swal({title : "내용을 입력하세요"});
+		swal({type: 'warning',title : "내용을 입력하세요"});
 	}
 }
 
@@ -382,7 +382,7 @@ function skillAddOk(obj){
 			}
 		});
 	}else{
-		swal({title:"내용을 입력하세요"});
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -440,7 +440,7 @@ function skillEditOk(obj){
 			}
 		});
 	}else{
-		swal({title:"내용을 입력하세요"});
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -562,7 +562,7 @@ function listAddOk(obj){
 			}
 		});
 	}else{
-		swal({title:"내용을 입력하세요"});
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -613,7 +613,7 @@ function listEditOk(obj){
 			}
 		});
 	}else{
-		swal({title:"내용을 입력하세요"});
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -741,7 +741,7 @@ function languageAddOk(obj){
 			}
 		});
 	}else{
-		swal({title:"내용을 입력하세요"});
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -797,7 +797,7 @@ function languageEditOk(obj){
 			}
 		});
 	}else{
-		swal({title:"내용을 입력하세요"});
+		swal({type: 'warning',title:"내용을 입력하세요"});
 	}
 }
 
@@ -919,7 +919,7 @@ function userGradeAddOk(obj){
 			}
 		});
 	}else{
-		swal({title:"ROLE_로 시작하지 않습니다."});
+		swal({type: 'warning',title:"ROLE_로 시작하지 않습니다."});
 	}
 }
 
@@ -970,6 +970,6 @@ function userGradeEditOk(obj){
 			}
 		});
 	}else{
-		swal({title:"ROLE_로 시작하지 않습니다."});
+		swal({type: 'warning',title:"ROLE_로 시작하지 않습니다."});
 	}
 }

@@ -589,9 +589,9 @@
 				    	var request = new Request();
 						var error = request.getParameter("error");
 						if(error == '103'){
-							swal({title: "인증이 안된 사용자 이거나 삭제된 사용자 입니다."});
+							swal({type: 'warning',title: "인증이 안된 사용자 이거나 삭제된 사용자 입니다."});
 						}else if(error == '108'){
-							swal({title: "아이디와 비밀번호를 확인해주세요"});
+							swal({type: 'warning',title: "아이디와 비밀번호를 확인해주세요"});
 						}
 				 
 				    };

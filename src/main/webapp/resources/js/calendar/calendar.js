@@ -34,7 +34,7 @@ function dialogStart(titleName, calendarNum) {
 				var eventData = null; // 이벤트 객체 변수 선언
 				
 				if(title === "" ){
-					swal({title:"일정명을 입력해주세요."});
+					swal({type: 'warning',title:"일정명을 입력해주세요."});
 					return;
 				}else {
 						eventData = { // 이벤트 객체
@@ -273,7 +273,7 @@ function showCalendar() {
 		    }else {
 		    	if (jsEvent.pageX >= x1 && jsEvent.pageX <= x2 &&
 				        jsEvent.pageY >= y1 && jsEvent.pageY <= y2) {
-		    		swal({title:'카드와 연동 된 일정이 아닙니다.'});
+		    		swal({type: 'error',title:'카드와 연동 된 일정이 아닙니다.'});
 			    	$.ajax({
 			    		type : "post",
 			    		url  : "calendarDelete",
