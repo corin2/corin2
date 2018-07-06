@@ -81,7 +81,7 @@ function showCardCheckList(){
 					if(elt.isChecked == '1') htmlText += "checked ";
 					
 					htmlText += "><label for='checkbox"+elt.checkNum+"' class='kanbanCheckboxLabel'>"+elt.checkContent+"</label>"
-							 + "<button class='close' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
+							 + "<button class='close kanbanCheckClose' onclick='deleteCardCheckList("+elt.checkNum+")' >&times;</button>"
 							 + "<button class='glyphicon close kanbanCheckMod' onclick='checkBoxMod(this, "+elt.checkNum+")' >&#xe065;</button></p>";
 					
 					if(elt.checkContent != null) $('#checkListForm').append(htmlText);
