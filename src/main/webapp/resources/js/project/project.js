@@ -347,7 +347,7 @@ function projectUpdateView(projectNum) {
 		html ="<div class='form-group proinputclass'>" 
 			 + "<div class='projectcreatetitle'></div>"
 			 +"<h3>프로젝트제목입력</h3>"
-			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByteClear(this, 27)'>"
+			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
 			 + "<br>"
 			 + "<br>"
 			 + "</div>"
