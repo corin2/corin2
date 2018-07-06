@@ -39,7 +39,7 @@
 		</div>
 		    <div class="nav navbar-nav" id="profileimagebox">
 		    	<label id="headerProjectMemberProfile">
-					<img src="resources/images/profile/none.png" class="img-circle person" width="35" height="35">
+					<img src="resources/images/profile/user.png" class="img-circle person" width="35" height="35">
 				</label>
 		    </div>
 		</c:when>

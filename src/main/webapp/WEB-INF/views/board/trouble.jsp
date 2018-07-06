@@ -60,7 +60,7 @@
 				<tr>
 					<td>${ts.boardNum}</td>
 					<td align=center><img
-						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${ts.userProfile}"
+						src="resources/images/profile/${ts.userProfile}"
 						 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
 					<td id="tags">
 					<script>fncTegSplit('${ts.hashtag}',${sessionScope.sessionProjectNum});</script>

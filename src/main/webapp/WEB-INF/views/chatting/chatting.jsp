@@ -65,7 +65,7 @@ $(function() {
       <div class="row heading">
         <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
           <div class="heading-avatar-myicon">
-            <img id="currentChatUserProfile" src="resources/images/profile/none.png">
+            <img id="currentChatUserProfile" src="resources/images/profile/user.png">
           </div>
         </div>
         <div class="col-sm-8 col-xs-7 heading-name">

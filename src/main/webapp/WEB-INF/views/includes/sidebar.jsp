@@ -27,7 +27,7 @@
 </c:choose>
 <ul class="list-unstyled components">
  				<li>
-				    <img class="img-circle" id="currentUserProfile" src="resources/images/profile/none.png" width=40 height=40>
+				    <img class="img-circle" id="currentUserProfile" src="resources/images/profile/user.png" width=40 height=40>
 				</li>
 	<c:choose>
 		<c:when test="${sessionScope.sessionProjectNum eq null}">
