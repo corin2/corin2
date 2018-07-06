@@ -84,7 +84,7 @@ function allSelectLeanCanvas(){
 					$("#leanheader").append(html);
 				}else{
 					$("#leanheader").empty();
-				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" placeholder="팀명을 입력하세요" class="search">'
+				var html='<h2 class="leanh2"><input type="text" id="leanTeamName" readonly placeholder="팀명을 입력하세요" class="search"><span class="glyphicon close1 kanbanCheckMod" onclick="teamNameEditClick(\''+elt.teamName+'\')" >&#xe065;</span>'
 						+'<br>'
 						+'<span class="glyphicon glyphicon-print leanbtnprint"><a class="leanaprint" href="generateReport?file=leanCanvas&projectNum='+sessionProjectNum+'&userId='+$("#hiddenUserId").val()+'">&nbsp;Print</span>'
 						+'<br>'
