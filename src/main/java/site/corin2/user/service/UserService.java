@@ -569,6 +569,7 @@ public class UserService {
 	        if(mpf == null || mpf.getSize() <= 0) {
 	        	return null;
 	        }
+	        try {
 	        
 	        // fileMetaDTO에 파일정보 입력
 	        fileMeta = new FileMeta();
@@ -583,7 +584,6 @@ public class UserService {
 	        // SQL Mapper
 	        UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 	        UserDTO updateuser;
-	        try {
 	        	// fileMetaDTO에 바이트 정보 입력
 	        	fileMeta.setBytes(mpf.getBytes());
 	        	

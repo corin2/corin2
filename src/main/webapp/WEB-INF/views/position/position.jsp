@@ -12,7 +12,8 @@ $(function(){
 		 $('.calendarname').remove();
 		 $('.calendarhr').remove();
 		 $('.calenbackdiv').css({"padding":"0px"});
-	 }).css({"width":"100%" ,"min-height":"660px" , "padding-bottom": "15px" , "overflow" : "scroll"});
+	 }).css({"overflow": "scroll",
+	    "max-height": "660px","width":"100%" ,"min-height":"660px" , "padding-bottom": "15px" , "overflow" : "scroll" , "font-size" :"17px"});
 	 $("#dashboardchart").load("dashboardchart?projectNum="+sessionProjectNum,function(){
 		 $('.chartbackdiv').css({"min-height":"600px"})
 	 }).css({"width":"100%" ,"padding-bottom": "15px" , "min-height":"600px" , "overflow" : "scroll"});
@@ -38,14 +39,17 @@ $(function(){
 	margin-left:0px;
 	margin-right:0px;
 }
+
 .dashboarddivchart{
 	margin-bottom : 15px;
 	margin-top: 15px;
 	background-color: #ffffff;
 	border-radius: 25px;
 	padding: 15px;
-
+	overflow: scroll;
+    max-height: 660px;
 }
+
 .chartCssGO {
 	height: 100% !important;
 	width: 100% !important;

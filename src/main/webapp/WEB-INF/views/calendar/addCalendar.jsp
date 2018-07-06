@@ -12,7 +12,7 @@
 			<label for="eventEnd">종료일</label> 
 			<input type="text" name="eventEnd" id="eventEnd" />
 			<br> 
-			<label for="eventColor">보드바 색상</label> 
+			<label for="eventColor">일정 색상</label> 
 			<input type="color" name="eventColor" id="eventColor" />
 			<br>
 		</fieldset>

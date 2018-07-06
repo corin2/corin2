@@ -31,11 +31,10 @@ function fnChkByte(obj, maxByte){
 	}
 	
 	if(rbyte > maxByte){
-		swal({title:"한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다."});
+		swal({type:"error", title:"한글 "+(maxByte/2)+"자 / 영문 "+maxByte+"자를 초과 입력할 수 없습니다."});
 	    str2 = str.substr(0,rlen);                                  // 문자열 자르기
 	    obj.value = str2;
 	    fnChkByte(obj, maxByte);
-	    $("#ProjectName").val("")
 	}
 }
 
@@ -83,6 +82,6 @@ function fnChkLength(obj, maxLength){
         fnChkLength(obj, maxLength);
     }
     if(str_len > maxLength-1){
-    	swal("글자수가 "+maxLength+"자를 초과 입력할 수 없습니다.");
+    	swal({type:"error", title:"글자수가 "+maxLength+"자를 초과 입력할 수 없습니다."});
     }
 }

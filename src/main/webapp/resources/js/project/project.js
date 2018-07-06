@@ -23,7 +23,7 @@ function addProject() {
 		datatype:"JSON",
 		data:{projectName:$("#ProjectName").val(), languageNum:radioVal},
 		success:function(data){
-			swal({title:"프로젝트생성성공"});
+			swal({type: 'success',title:"프로젝트생성성공"});
 			projectProjectNum(projectName)
 		},
 		error: function() {
@@ -31,10 +31,10 @@ function addProject() {
         }
 	})
 	}else if($("#ProjectName").val()==""){
-		swal({title:"프로젝트명을 입력하세요"});
+		swal({type: 'warning',title:"프로젝트명을 입력하세요"});
 	}else
 	{
-		swal({title:"주언어를 체크해주세요"});
+		swal({type: 'warning',title:"주언어를 체크해주세요"});
 	}
 }
 /**
@@ -288,7 +288,7 @@ function updateLanguage(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum, languageNum:$('input[name="language"]:checked').val(), projectName:$("#ProjectName").val()},
 		success:function(data){
-			swal({title:"프로젝트 수정 성공"});
+			swal({type: 'success',title:"프로젝트 수정 성공"});
 			languageColorView();
 		},
 		error: function() {
@@ -302,7 +302,7 @@ function updateLanguage(projectNum) {
 	})
 	}else
 	{
-		swal({title:"프로젝트명을 입력하세요"});
+		swal({type: 'warning',title:"프로젝트명을 입력하세요"});
 	}
 }
 /**
@@ -347,7 +347,7 @@ function projectUpdateView(projectNum) {
 		html ="<div class='form-group proinputclass'>" 
 			 + "<div class='projectcreatetitle'></div>"
 			 +"<h3>프로젝트제목입력</h3>"
-			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByte(this, 27)'>"
+			 + "<input id ='ProjectName' type='text' class='search1' placeholder='"+$("#hiddenProjectName"+projectNum).val()+"' onkeypress='if(event.keyCode==13) {updateLanguage("+projectNum+")}' onkeyup='fnChkByteClear(this, 27)'>"
 			 + "<br>"
 			 + "<br>"
 			 + "</div>"
@@ -356,7 +356,7 @@ function projectUpdateView(projectNum) {
 			 + "<div>"
 			 + "<div class='projectcreatebottom'><div class='createbottom'><input id='cancleProject' class='btn btn-3c' data-dismiss='modal' type='button' value='취소'>"
 			 + "<input id='deleteProject' class='btn btn-3b' data-dismiss='modal' type='button' onclick='deleteProject("+projectNum+")' value='삭제'>"
-			 + "<input id='addProject' class='btn btn-3a' type='button' data-dismiss='modal' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
+			 + "<input id='addProject' class='btn btn-3a' type='button' onclick='updateLanguage("+projectNum+")' value='수정'></div></div>"
 			 + "</div>";
 			 $("#detailButton").html(html);
 			 printProjectDetailLanguageChecked(projectNum);
@@ -385,7 +385,7 @@ function deleteProject(projectNum) {
 					datatype:"JSON",
 					data:{projectNum:projectNum},
 					success:function(data){
-						swal({title:"프로젝트 삭제완료"});
+						swal({type: 'success',title:"프로젝트 삭제완료"});
 						languageColorView();
 					},
 					error: function() {

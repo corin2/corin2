@@ -106,7 +106,7 @@ function checkListTableConfirm() {
 function addCardCheckListView() {
 	$('#checkBoxAdd').parent().remove();
 	var div = "<tr>"
-			+ "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
+			+ "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}' onkeyup='fnChkByte(this, 100)'>"
 			+ "</td><td>"
 			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button>"
 			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button></td></tr>";
@@ -140,7 +140,7 @@ function checkListInsert() {
 		}
 	})
 	}else{
-		swal("내용을 입력해 주세요")
+		swal({type: 'warning',title:"내용을 입력해 주세요"})
 	}
 }
 
@@ -262,13 +262,14 @@ function updateCheckListAdd(index,checkNum) {
 	if($("#checkBoxAdd").val() != ''){
 	$("#index"+index).empty();
 	$("#checkedBox"+checkNum).parent().parent().empty();
-	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}'>"
-			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
-			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button></td>"
+	var div = "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}'>"
+			+ "</td><td>"		
+			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button>"
+			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button></td>"
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
 	}else{
-		swal("수정을 완료해 주세요")
+		swal({type: 'warning',title:"수정을 완료해 주세요"})
 	}
 }
 
@@ -301,7 +302,7 @@ function updateCheckListContent(checkNum) {
 				
 	})
 	}else{
-		swal("수정할 문자열을 입력해주세요")
+		swal({type: 'warning',title:"수정할 문자열을 입력해주세요"})
 	}
 }
 

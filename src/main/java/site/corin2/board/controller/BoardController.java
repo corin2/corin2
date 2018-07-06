@@ -40,8 +40,10 @@ public class BoardController {
 		 List<BoardDTO> list = service.boardAllSelect();//모든 게시물 조회
 		 int totalCount = service.totalSelect();//조회한 총 게시물 개수
 		 page.setTotalCount(totalCount);
+		
 		 model.addAttribute("list", list);	
 		 model.addAttribute("page", page);
+		 model.addAttribute("total", totalCount);
 		return "board.boardList";  //리스트화면으로 이동
 	}
 	
