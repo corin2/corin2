@@ -30,13 +30,24 @@
 
 	.table-admin > tbody > tr > td {
 	font-size: 15px;
-    padding-top: 37px;
+    padding-top: 15px;
     padding-bottom: 0px !important;
 	}
-	.table-admin > tbody > tr :nth-child(1){
-	padding-top: 0px !important;
+	.table-admin > tbody > tr :nth-child(1) > img {
+    padding-top: 0px !important;
     color: #c6c4c4;
-    margin: 10px;
+    margin: 0px;
+	}
+	.table-admin > tbody > tr > td {
+	padding-bottom: 15px !important;
+	}
+	.table-admin{
+	  table-layout: fixed;
+      word-wrap: break-word;
+	}
+	.table-admin-menu{
+	  table-layout: fixed;
+      word-wrap: break-word;
 	}
 	.table-admin > tbody > tr > td:last-child > input {
     margin: 3px !important;
@@ -45,8 +56,8 @@
     font-size: 20px;
     color : #FFF !important;
 	}
-	.table-admin > tbody > tr :nth-child(7){
-	padding-top: 21px !important;
+	.table-admin > tbody > tr :nth-child(7) {
+    padding-top: 10px !important;
     color: #c6c4c4;
     margin: 10px;
 	}

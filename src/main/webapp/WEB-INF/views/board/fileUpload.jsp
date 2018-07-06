@@ -28,16 +28,16 @@ pageEncoding="UTF-8"%>
 		 	 	<span class="glyphicon glyphicon-search" id="fileicon" onclick="searcherFileSelect()"></span>
 			</div>
 	   </form> 
-	<!-- div folder공간 -->
+	<!-- /div folder공간 -->
 	
 	<!-- jstree 검색 -->
 		<div class ="jstree" style="overflow:scroll;overflow:hidden;height:600px;"> </div>
-	<!-- jstree 검색 -->
+	<!-- /jstree 검색 -->
 	
 	</div>
-	
-		<!-- 파일함 기능 공간 -->
-		<div id ="wrap" >
+
+		<!-- 파일함 기능  -->
+		<div id ="wrap" style="float:right;margin-top:30px; overflow:hidden;" >
 			<form action="upload" method="post" enctype="multipart/form-data"> 
 				<div class="filebox"> 
 					<label for="fileupload">Add Files..</label> 
@@ -46,15 +46,14 @@ pageEncoding="UTF-8"%>
 			 		<input type="hidden" name="projectNum" id="hiddenProjectNum" value="${sessionScope.sessionProjectNum}" >
 			 		<input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}" >
 			</form>
-	
 			 <div id ="over">
 				<img class="dropzoneimg" src="resources/images/board/noimage.png"></img>
 				<div class="dropzonediv"></div>
 			 </div>	
 		</div>
-		<!-- 파일함 기능 공간 -->
+		<!-- /파일함 기능 공간 -->
 	</div>
-	<!-- dropzone 파일이 drop공간  -->	
+	<!-- /dropzone 파일이 drop공간  -->	
 
 </div>
 	

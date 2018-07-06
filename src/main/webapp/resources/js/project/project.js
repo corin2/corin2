@@ -23,7 +23,7 @@ function addProject() {
 		datatype:"JSON",
 		data:{projectName:$("#ProjectName").val(), languageNum:radioVal},
 		success:function(data){
-			swal("프로젝트생성성공");
+			swal({title:"프로젝트생성성공"});
 			projectProjectNum(projectName)
 		},
 		error: function() {
@@ -31,10 +31,10 @@ function addProject() {
         }
 	})
 	}else if($("#ProjectName").val()==""){
-		swal("프로젝트명을 입력하세요");
+		swal({title:"프로젝트명을 입력하세요"});
 	}else
 	{
-		swal("주언어를 체크해주세요");
+		swal({title:"주언어를 체크해주세요"});
 	}
 }
 /**
@@ -104,7 +104,7 @@ function projectView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div class='projectListDiv'>"
 							 + "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-							 + "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							 + "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject buttonprojectword' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							 + "<p class='projectp'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -150,7 +150,7 @@ function projectBookView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div class='projectListDiv'>"
 							+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-							+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject buttonprojectword' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							+ "<p class='projectp'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -288,7 +288,7 @@ function updateLanguage(projectNum) {
 		datatype:"JSON",
 		data:{projectNum:projectNum, languageNum:$('input[name="language"]:checked').val(), projectName:$("#ProjectName").val()},
 		success:function(data){
-			swal("프로젝트 수정 성공");
+			swal({title:"프로젝트 수정 성공"});
 			languageColorView();
 		},
 		error: function() {
@@ -302,7 +302,7 @@ function updateLanguage(projectNum) {
 	})
 	}else
 	{
-		swal("프로젝트명을 입력하세요");
+		swal({title:"프로젝트명을 입력하세요"});
 	}
 }
 /**
@@ -373,7 +373,7 @@ function projectUpdateView(projectNum) {
 function deleteProject(projectNum) {
 	swal({
 		type: "warning",
-		text: "정말로 삭제하시겠습니까?.",
+		title: "정말로 삭제하시겠습니까?.",
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'delete',
@@ -385,7 +385,7 @@ function deleteProject(projectNum) {
 					datatype:"JSON",
 					data:{projectNum:projectNum},
 					success:function(data){
-						swal("프로젝트 삭제완료");
+						swal({title:"프로젝트 삭제완료"});
 						languageColorView();
 					},
 					error: function() {
@@ -477,7 +477,7 @@ function searchProject(projectArray) {
 				if(elt.languageNum == elt2.languageNum){
 				html +=	"<div class='projectSerchDiv'>"
 					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-					+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+					+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject buttonprojectword' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 					+ "</div>";
 				
 				}

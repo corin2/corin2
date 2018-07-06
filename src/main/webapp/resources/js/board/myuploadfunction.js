@@ -319,7 +319,7 @@ function deleteFile(boardNum) {
 	var boardnum = boardNum;
 	swal({
 		type: "warning",
-		text: "정말로 삭제하시겠습니까?",
+		title: "정말로 삭제하시겠습니까?",
 		confirmButtonColor: '#3085d6',
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'delete',
@@ -478,8 +478,7 @@ function fileselect(){
 		firstFileSelect();
       },
       dropZone: $('#dropzone') //파일이  drop되는 공간
-		 
-    });
-	
+    }); 
 }
+
 ///////////////////////////1파일함 로딩시  2.업로드시 파일 전체조회

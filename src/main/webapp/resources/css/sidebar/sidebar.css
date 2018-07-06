@@ -70,9 +70,13 @@ i, span {
 }
 
 #sidebar.active {
+	overflow: scroll;
     min-width: 80px;
     max-width: 80px;
     text-align: center;
+}
+#sidebar::-webkit-scrollbar {
+ display:none;
 }
 
 #sidebar.active .sidebar-header h3, #sidebar.active .CTAs {
@@ -124,6 +128,7 @@ i, span {
 }
 
 #sidebar ul.components {
+	height: 108%;
     padding: 35px 0;
     /* border-bottom: 1px solid #404851; */
 }
@@ -267,6 +272,4 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
-
-    
     

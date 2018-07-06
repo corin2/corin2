@@ -40,4 +40,7 @@ public interface TeamDAO {
 	
 	//프로젝트넘버와 유저의 아이디로 하나의 팀DTO를 조회한다.
 	public TeamDTO teamMemberSelect(TeamDTO team);
+	
+	//자신의 아이디가 팀안에 속해있는지 확인
+	public int isTeamMyId(TeamDTO team);
 }
