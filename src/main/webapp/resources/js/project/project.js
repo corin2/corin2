@@ -104,7 +104,7 @@ function projectView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div class='projectListDiv'>"
 							 + "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-							 + "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							 + "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject buttonprojectword' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							 + "<p class='projectp'><span class='glyphicon glyphicon-star-empty' onclick='updateProjectBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -150,7 +150,7 @@ function projectBookView(projectArray) {
 					if(elt.languageNum == elt2.languageNum){
 						html +=	"<div class='projectListDiv'>"
 							+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-							+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+							+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject buttonprojectword' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 							+ "<p class='projectp'><span class='glyphicon glyphicon-star' onclick='updateProjectNoneBookmark("+elt.projectNum+")'></span><br>"
 							if(elt.gradeNum=='G300'){
 							 html+= "<a class='glyphicon glyphicon-cog setting' data-toggle='modal' onclick='projectUpdateView("+elt.projectNum+")' data-target='#myModal2'></a><br>"
@@ -477,7 +477,7 @@ function searchProject(projectArray) {
 				if(elt.languageNum == elt2.languageNum){
 				html +=	"<div class='projectSerchDiv'>"
 					+ "<h4 class='h4margin'>&nbsp;&nbsp;"+elt2.languageMain+"</h4>"
-					+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
+					+ "<a href='position?projectNum="+elt.projectNum+"' class='buttonProject buttonprojectword' style='background-color:"+elt2.languageColor+"'>"+elt.projectName+"</a>"
 					+ "</div>";
 				
 				}
