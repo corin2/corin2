@@ -83,7 +83,7 @@ public class UploadController {
 	public @ResponseBody LinkedList<UploadDTO> upload(@RequestParam("projectNum") String projectNum,BoardDTO boardDTO,UploadDTO uploadDTO,MultipartHttpServletRequest request, Model model){
 		//파라미터로 파일들을 받아서 저장한다.
 		Iterator<String> itr = request.getFileNames();
-		MultipartFile mpf =  request.getFile(itr.next()); 
+		MultipartFile mpf =  request.getFile(itr.next());
 		
 		// 파일 정보가 없을 경우
         if(mpf == null || mpf.getSize() <= 0) {

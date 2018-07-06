@@ -25,7 +25,13 @@ public class AdminMainService {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	// 총 방문자 수
+	/**
+	    * @함수명 : showCurrentChatUserProfile
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 총 방문자 수
+	    * @return : int allVisitCountResult
+	*/
 	public int allVisitCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		int allVisitCountResult = 0;
@@ -37,8 +43,14 @@ public class AdminMainService {
 		
 		return allVisitCountResult;
 	}
-	
-	// isDeleted = 0인 모든 회원 수
+
+	/**
+	    * @함수명 : allUserCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 모든 회원 수
+	    * @return : int allUserCountResult
+	*/
 	public int allUserCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		int allUserCountResult = 0;
@@ -51,7 +63,13 @@ public class AdminMainService {
 		return allUserCountResult;
 	}
 	
-	// isDeleted = 0인 모든 프로젝트 수
+	/**
+	    * @함수명 : allProjectCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 모든 프로젝트 수
+	    * @return : int allProjectCountResult
+	*/	
 	public int allProjectCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		int allProjectCountResult = 0;
@@ -63,8 +81,14 @@ public class AdminMainService {
 		
 		return allProjectCountResult;
 	}
-	
-	// 프로젝트 언어별 수
+
+	/**
+	    * @함수명 : allLanguageCount
+	    * @작성일 : 2018. 6. 21.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 프로젝트 언어별 수
+	    * @return : List<LanguageCountDTO> allLanguageCountResult
+	*/
 	public List<LanguageCountDTO> allLanguageCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<LanguageCountDTO> allLanguageCountResult = null;
@@ -77,8 +101,13 @@ public class AdminMainService {
 		return allLanguageCountResult;
 	}
 	
-	
-	// isDeleted = 0인 회원의 모든 이메일 수
+	/**
+	    * @함수명 : allEmailCount
+	    * @작성일 : 2018. 6. 23.
+	    * @작성자 : 강 성 훈
+	    * @설명 : isDeleted = 0인 회원의 모든 이메일 수
+	    * @return : List<EmailCountDTO> allEmailCountResult
+	*/
 	public List<EmailCountDTO> allEmailCount() {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<EmailCountDTO> allEmailCountResult = null;
@@ -91,7 +120,14 @@ public class AdminMainService {
 		return allEmailCountResult;
 	}
 	
-	// 날짜별 방문자 수
+	/**
+	    * @함수명 : allEmailCount
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 방문자 수
+	    * @param : DateParamDTO date
+	    * @return : List<CountByDateDTO> visitCountByDateResult
+	*/
 	public List<CountByDateDTO> visitCountByDate(DateParamDTO date) {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> visitCountByDateResult = null;
@@ -104,7 +140,14 @@ public class AdminMainService {
 		return visitCountByDateResult;
 	}
 	
-	// 날짜별 회원 수
+	/**
+	    * @함수명 : userCountByDate
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 회원 수
+	    * @param : DateParamDTO date
+	    * @return : List<CountByDateDTO> userCountByDateResult
+	*/
 	public List<CountByDateDTO> userCountByDate(DateParamDTO date) {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> userCountByDateResult = null;
@@ -117,7 +160,14 @@ public class AdminMainService {
 		return userCountByDateResult;
 	}
 	
-	// 날짜별 프로젝트 수
+	/**
+	    * @함수명 : projectCountByDate
+	    * @작성일 : 2018. 6. 25.
+	    * @작성자 : 강 성 훈
+	    * @설명 : 날짜별 프로젝트 수
+	    * @param : DateParamDTO date
+	    * @return : List<CountByDateDTO> projectCountByDateResult
+	*/
 	public List<CountByDateDTO> projectCountByDate(DateParamDTO date) {
 		AdminMainDAO adminMainDAO = sqlsession.getMapper(AdminMainDAO.class);
 		List<CountByDateDTO> projectCountByDateResult = null;
