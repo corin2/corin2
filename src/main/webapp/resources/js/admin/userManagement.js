@@ -205,7 +205,7 @@ function userEditOk(obj, enabled, isDelete, pageNum) {
 			}
 		});
 	}else{
-		swal("내용을 입력하세요");
+		swal({title:"내용을 입력하세요"});
 	}
 }
 

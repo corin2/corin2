@@ -284,7 +284,7 @@
 				 			data: {userId : $('#reuserid').val().trim()},
 				 		    success:function(data){ 
 				 		    	swal({
-				 		    		text : "비밀번호 재설정 이메일이 발송되었습니다.",
+				 		    		title: "비밀번호 재설정 이메일이 발송되었습니다.",
 				 		    		type: 'success',
 				 		    		});
 				 		    },
@@ -352,7 +352,7 @@
 											},
 									success : function(data) {		
 										swal({
-											text : "회원가입에 성공하였습니다. 이메일 인증을 해주세요",
+											title: "회원가입에 성공하였습니다. 이메일 인증을 해주세요",
 											type: 'success',
 											});
 									},
@@ -589,9 +589,9 @@
 				    	var request = new Request();
 						var error = request.getParameter("error");
 						if(error == '103'){
-							swal({text : "인증이 안된 사용자 이거나 삭제된 사용자 입니다."});
+							swal({title: "인증이 안된 사용자 이거나 삭제된 사용자 입니다."});
 						}else if(error == '108'){
-							swal({text : "아이디와 비밀번호를 확인해주세요"});
+							swal({title: "아이디와 비밀번호를 확인해주세요"});
 						}
 				 
 				    };

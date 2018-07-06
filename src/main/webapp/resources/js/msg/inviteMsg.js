@@ -171,14 +171,14 @@ function memberinvite() {
 			contentType: "application/json; charset=utf-8",
 			success : function (data) {
 				if(data.trim() === 'true') isInviteMsg();
-				else swal('없는 회원입니다');
+				else swal({title:'없는 회원입니다'});
 			},
 			error: function() {
 	            swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
 	        }
 		})
 	}else {
-		swal('이메일 형식이 아닙니다.');
+		swal({title:'이메일 형식이 아닙니다.'});
 	}
 }
 
@@ -197,7 +197,7 @@ function isInviteMsg(){
 			   },
 		success : function(data) {
 			if(data.data == '0') inviteMsg();
-			else swal('이미 프로젝트에 참여하고 있거나 \n해당프로젝트의 메시지가 이미 회원에게 있습니다.');
+			else swal({title:'이미 프로젝트에 참여하고 있거나 \n해당프로젝트의 메시지가 이미 회원에게 있습니다.'});
 		},
 		error: function() {
             swal({type: 'error',title: 'Oops...',text: 'Something went wrong!',footer: '<a href>Why do I have this issue?</a>'})
@@ -220,7 +220,7 @@ function inviteMsg(){
 				sendId : $('#hiddenUserId').val()
 			   },
 		success : function(datas) {
-			swal('초대메시지 발송이 완료되었습니다');
+			swal({title:'초대메시지 발송이 완료되었습니다'});
 			sendMsg($("#emailSearch").val().trim());
 		},
 		error: function() {

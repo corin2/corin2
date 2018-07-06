@@ -21,7 +21,7 @@
 					<br>
 					<div class="form-group">
 						
-						<input id="detailAddbtn" class="btn btn-success" type="button" onclick="updateCardDetail()" value="작성">
+						<input id="detailAddbtn" class="btn btn-success" type="button" onclick="updateCardDetail()" value="저장">
 						<label id="warningLabel"></label>
 						<!-- <input class="detailbutton btn btn-primary" type="button" value="Check List" id="addCheckList" onclick="addCardCheckListView()"> -->
 					</div>

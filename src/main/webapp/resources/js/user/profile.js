@@ -23,7 +23,7 @@ $(function(){
 					  password:$("#password").val(), 
 					  },
 				success:function(data){
-					swal("비밀번호 수정하기에 성공하였습니다.");
+					swal({title:"비밀번호 수정하기에 성공하였습니다."});
 					$.ajax({
 						type : "post",
 						url  : "showUser",
@@ -55,9 +55,9 @@ $(function(){
 		        }
 			});
 			}else if($('#password').val() != $('#password2').val()){
-				swal("비밀번호와 비밀번호 확인이 다릅니다.");
+				swal({title:"비밀번호와 비밀번호 확인이 다릅니다."});
 			}else{
-				swal("비밀번호는 3자이상입니다.");
+				swal({title:"비밀번호는 3자이상입니다."});
 			}
 		});
 		/**
@@ -76,7 +76,7 @@ $(function(){
 					data:{userId:$("#userId-profile").val(), 
 						  userName:$("#userName").val()},
 					success:function(data){
-							swal({text:"닉네임 수정하기에 성공하였습니다."});
+							swal({title:"닉네임 수정하기에 성공하였습니다."});
 							$.ajax({
 								type : "post",
 								url  : "showUser",
@@ -108,7 +108,7 @@ $(function(){
 			        }
 				});
 			}else{
-				swal("닉네임은 3글자 이상 입력해주세요.");
+				swal({title:"닉네임은 3글자 이상 입력해주세요."});
 			}
 		});
 		
@@ -122,7 +122,7 @@ $(function(){
 		$('#delete-button').click(function(){
 			swal({
 				type: "warning",
-				text: "정말로 탈퇴하시겠습니다?.",
+				title: "정말로 탈퇴하시겠습니다?.",
 				confirmButtonColor: '#3085d6',
 				cancelButtonColor: '#d33',
 				confirmButtonText: 'delete',
@@ -136,7 +136,7 @@ $(function(){
 						  contentType: "application/json; charset=utf-8",
 						  success:function(data){ 
 							  swal({
-								  text: "삭제가 완료 되었습니다."
+								  title: "삭제가 완료 되었습니다."
 							  }).then((willDelete) => {
 								  location.href = "login.html";
 							  });
