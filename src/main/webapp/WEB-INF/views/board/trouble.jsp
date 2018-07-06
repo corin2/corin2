@@ -59,10 +59,10 @@
 			<tbody>
 				<tr>
 					<td>${ts.boardNum}</td>
-					<td align=center><img
+					<td><img
 						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${ts.userProfile}"
 						 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
-					<td id="tags">
+					<td id="tags" align=left>
 					<script>fncTegSplit('${ts.hashtag}',${sessionScope.sessionProjectNum});</script>
 					<br><br><a href="troubleView?boardNum=${ts.boardNum}">${ts.problem}</a>
 					</td>

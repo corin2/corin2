@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<!-- 트러블슈팅수정 -->
 		<update id="troubleUpdate">
-			update troubleshooting set	problem = #{problem}, solution = #{solution} where boardNum = #{boardNum}
+			update troubleshooting set	hashtag = #{hashtag},problem = #{problem}, solution = #{solution} where boardNum = #{boardNum}
 		</update>
 		
 		<!-- 트러블슈팅삭제 (삭제여부를 1로 업데이트)-->
