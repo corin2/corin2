@@ -202,6 +202,20 @@ public class UserController {
 	}
 	
 	/**
+     * @함수명 : userDel
+     * @작성일 : 2018. 07. 06.
+     * @작성자 : 강진광
+     * @설명 : userId id값을 UserService의 userDelete로 보내주는 함수입니다.
+     * @param : UserDTO - userId
+     * @return : jsonview
+    **/
+	@RequestMapping(value="userdel" , method= {RequestMethod.POST,RequestMethod.GET})
+	public View userdel(UserDTO userdto) throws ClassNotFoundException, SQLException {
+		service.userDelete(userdto.getUserId());
+		return jsonview;
+	}
+	
+	/**
      * @함수명 : kakaoLogin
      * @작성일 : 2018. 6. 21.
      * @작성자 : 강진광
