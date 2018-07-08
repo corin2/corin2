@@ -74,7 +74,7 @@
 	  </div>
 	  <div class="row reply">
         <div class="col-sm-1 col-xs-1 reply-emojis">
-          <i class="fa fa-smile-o"></i>
+          <!-- <i class="fa fa-smile-o"></i> -->
         </div>
         <div class="col-sm-9 col-xs-9 reply-main">
           <input type="text" class="form-control" id="messageText" />

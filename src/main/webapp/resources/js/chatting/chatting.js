@@ -476,8 +476,6 @@ $(function() {
 			// 엔터 입력 시 메시지 보내기
 		    keyup: function(editor, event) {
 		    	if(event.which == 13){
-		    		console.log("대화내용: " + $('#messageText').val());
-		    		console.log("진짜대화: " + $('#messageText').data("emojioneArea").getText());
 			    	sendMessage();
 		    	}
 		    }
