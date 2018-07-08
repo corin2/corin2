@@ -297,34 +297,30 @@ $(function() {
 	    * @설명 : 메시지 보내기
 	*/
 	function sendMessage() {
-		var text = $('#messageText'); // 메시지 내용
+		// 입력된 메시지 내용
+		var inputText = $('#messageText').data("emojioneArea").getText();
 		
 		// 공백 입력시 처리
-		if(text.val() == "") {
+		if(inputText == "") {
 			return false;
 		}
 
 		messages.push({
 			'userid': currentUser,
 			'username': currentUserName,
-			'text': text.val(),
+			'text': inputText,
 			'timestamp': Date.now()
 		});
 
-		text.val(''); // 메시지 초기화
+		// 메시지 초기화
+		$('#messageText').data("emojioneArea").setText("");
+		
 	}
 
 	// 버튼 클릭 시 메시지 보내기
 	$('#sendMessageBtn').click(function() {
 		sendMessage();
 	});
-
-	// 엔터 입력 시 메시지 보내기
-	$('#messageText').on('keypress', function(e) {
-		if(e.keyCode == 13) {
-			sendMessage();
-		}
-	})
 	
 	/**
 	    * @함수명 : showMessage
@@ -355,8 +351,7 @@ $(function() {
 				+ '<div class="col-sm-12 message-main-sender">'
 				+ '<div class="sender">'
 				+ '<div class="message-text">'
-				//+ emojione.toImage(message.text)
-				+ message.text
+				+ emojione.toImage(message.text)
 				+ '</div>'
 				+ '<span class="message-time pull-right">'
 				+ convertTime(message.timestamp)
@@ -384,8 +379,7 @@ $(function() {
 				+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + obj.userName +'</span>'
 				+ '<div class="receiver bubble">'
 				+ '<div class="message-text">'
-				//+ emojione.toImage(message.text)
-				+ message.text
+				+ emojione.toImage(message.text)
 				+ '</div>'
 				+ '<span class="message-time pull-right">'
 				+ convertTime(message.timestamp)
@@ -474,5 +468,20 @@ $(function() {
 
         return convertDate + convertHour;
     }
+    
+    ////////////[이모티콘] ////////////
+	$("#messageText").emojioneArea({
+		autocomplete: false,
+		events: {
+			// 엔터 입력 시 메시지 보내기
+		    keyup: function(editor, event) {
+		    	if(event.which == 13){
+		    		console.log("대화내용: " + $('#messageText').val());
+		    		console.log("진짜대화: " + $('#messageText').data("emojioneArea").getText());
+			    	sendMessage();
+		    	}
+		    }
+		}
+	});
 
 }); // end - jQuery
