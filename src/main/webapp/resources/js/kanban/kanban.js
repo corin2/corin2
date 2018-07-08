@@ -26,8 +26,8 @@ $(function(){
     )
 	$('body').attr({
 		oncontextmenu:"return false",
-	 	onselectstart:"return false",
-	}) 
+	 	//onselectstart:"return false",
+	})
 		
 });
 

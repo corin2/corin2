@@ -23,14 +23,16 @@
 <!-- <script src="resources/js/chatting/emojiarea/jquery.emojiarea.js"></script>
 <script src="resources/js/chatting/emojiarea/packs/basic/emojis.js"></script> -->
 <!-- emojione js -->
-<!-- <script src="resources/js/chatting/emojione/dist/emojione.js"></script>
+<script src="resources/js/chatting/emojione/dist/emojione.js"></script>
 <script src="resources/js/chatting/emojione/dist/emojionearea.js"></script>
 <script>
 $(function() {
 	// 이모티콘
-	$("#messageText").emojioneArea();
+	$("#messageText").emojioneArea({
+		autocomplete: false
+	});
 })
-</script> -->
+</script>
 
 <!-- content -->
 <div class="app">

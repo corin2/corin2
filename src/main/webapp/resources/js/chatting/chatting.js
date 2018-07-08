@@ -355,8 +355,8 @@ $(function() {
 				+ '<div class="col-sm-12 message-main-sender">'
 				+ '<div class="sender">'
 				+ '<div class="message-text">'
-				//+ emojione.toImage(message.text)
-				+ message.text
+				+ emojione.toImage(message.text)
+				//+ message.text
 				+ '</div>'
 				+ '<span class="message-time pull-right">'
 				+ convertTime(message.timestamp)
@@ -384,8 +384,8 @@ $(function() {
 				+ '<span style="font-size: 15px; margin-right :20%; font-weight:bold;">' + obj.userName +'</span>'
 				+ '<div class="receiver bubble">'
 				+ '<div class="message-text">'
-				//+ emojione.toImage(message.text)
-				+ message.text
+				+ emojione.toImage(message.text)
+				//+ message.text
 				+ '</div>'
 				+ '<span class="message-time pull-right">'
 				+ convertTime(message.timestamp)
