@@ -252,6 +252,7 @@ word-wrap: break-word;
 	padding : 50px 100px 50px 100px;
 	background-color: #FFF;
 	float: left;
+	min-width: 1700px;
 }
 .container-fluid {
 	float:left;
