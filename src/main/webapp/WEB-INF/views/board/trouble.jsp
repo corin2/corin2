@@ -27,7 +27,7 @@
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				검색
 			</button>
-			<a href="generateReport?file=troubleShooting&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+			<a target="_blank" href="generateReport?file=troubleShooting&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF 저장
 			</button></a>

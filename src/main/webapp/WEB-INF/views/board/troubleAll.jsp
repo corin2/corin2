@@ -33,7 +33,7 @@
 					class="btn btn-primary btn-wide">
 					<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
 			</button></a> -->
-			<a href="generateReport?file=troubleAll&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
+			<a target="_blank" href="generateReport?file=troubleAll&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF 저장
 		</button></a>
