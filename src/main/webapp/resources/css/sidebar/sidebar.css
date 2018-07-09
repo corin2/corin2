@@ -14,6 +14,10 @@ body {
     left: 47%;
 }
 
+a, button, .glyphicon-search, .glyphicon-star {
+	cursor: pointer;
+}
+
 p {
     font-family: 'Poppins', sans-serif;
     font-size: 1.1em;
