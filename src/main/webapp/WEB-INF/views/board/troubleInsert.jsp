@@ -36,7 +36,10 @@
 	       var form = this;
 	        e.preventDefault(); // <--- prevent form from submitting
 		        swal({
-		            title: "저장하시겠습니까?",
+
+		            title: "새 트러블슈팅 등록",
+		            text: "작성하신 트러블슈팅이 등록됩니다.",
+		            icon: "warning",
 		            type: "info",
 		            buttons: [
 		              'No, cancel it!',
