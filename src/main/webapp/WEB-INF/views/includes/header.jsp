@@ -63,7 +63,7 @@
 			<c:when test="${sessionScope.sessionProjectNum != null}">
 		    	<li>
 			    	<div id="showChatting" class="language-num">
-			    	<img src="/resources/images/icons/chatting.png" style = "width : 39px;" id="showChatting">	
+			    	<img src="/resources/images/icons/chatting.png" style = "cursor:pointer; width : 39px;" id="showChatting">	
 			    	</div>
 			    </li>
 		    </c:when>

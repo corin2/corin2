@@ -192,6 +192,7 @@ public class UserService {
 		UserDTO repassuser;
 		try {
 			repassuser = userdao.userSelect(userId);
+			//repassuser.setPassword(this.bCryptPasswordEncoder.encode(result));
 			repassuser.setPassword(result);
 			userdao.repassword(repassuser);
 		} catch (ClassNotFoundException e) {
