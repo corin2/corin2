@@ -23,14 +23,14 @@
 
 			<!-- 페이징 처리 -->
 			<tbody>
-				<c:forEach items="${list}" var="list" varStatus="status">
+				<c:forEach items="${list}" var="list1" varStatus="status">
 					<c:if test="${status.index >= (page.countPerPage*page.nowPage)-page.countPerPage}">
 						<c:if test="${status.index < page.countPerPage*page.nowPage}">
 							<tr>
-								<td>${status.index+1}</td>
-								<td><a href="boardDetail?boardnum=${list.boardNum}&countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}">${list.announceTitle}</a></td>
-								<td>${list.userId}</td>
-								<td>${list.boardDate}</td>
+								<td>${total -(status.index+1)+1}</td>
+								<td><a href="boardDetail?boardnum=${list1.boardNum}&countPerPage=${page.countPerPage}&blockCount=${page.blockCount}&nowPage=${page.nowPage}">${list1.announceTitle}</a></td>
+								<td>${list1.userId}</td>
+								<td>${list1.boardDate}</td>
 							</tr>
 						</c:if>
 					</c:if>

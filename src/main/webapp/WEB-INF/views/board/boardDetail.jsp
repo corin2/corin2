@@ -13,10 +13,6 @@
 		<form action="" method="get">
 			<table class="table table-update">
 				<tr>
-					<td>글번호</td>
-					<td>${detail.boardNum}</td>
-				</tr>
-				<tr>
 					<td>제목</td>
 					<td>${detail.announceTitle}</td>
 				</tr>

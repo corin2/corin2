@@ -49,8 +49,12 @@
 						${data.userName}님이 ${data.boardDate}에 저장한 트러블슈팅 입니다.</th>
 				</tr>
 				<tr>
-					<td><b>#관련 태그# :</b>&nbsp;<script>
-						fncTegSplit('${data.hashtag}');
+					<td><b>태그 입력후 엔터키 :</b>
+					<input type="text" name="hashtag" id="hashtagEdit" data-role="tagsinput" placeholder="Add tags" />
+					<script>
+						var e = $.Event( "keypress", { which: 13 } );
+						$('#hashtagEdit').val('${data.hashtag}');
+						$('#hashtagEdit').trigger(e);
 					</script>
 					</td>
 				</tr>
