@@ -23,7 +23,7 @@ function skillCheckListTable() {
 		  + "<tbody>"
 		  + "<tr>"
 		  + "<th class='tdpositionclass tdalignclass'>CLASS</th>"
-		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<a href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a></th>"
+		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<a target='_blank' href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a></th>"
 		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
 		  + "</tbody>"

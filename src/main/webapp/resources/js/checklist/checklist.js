@@ -29,12 +29,12 @@ function checkListTable() {
 			   + "<th class='tdalignclass'>NO</th>";
 	if(myGradeNum=='G300'){
 		  table += "<th id='printa' class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
-			    + "<a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
+			    + "<a target='_blank' href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
 			    + "</th>"
 		  
 	}else{
 	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST"
-				+ "<a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
+				+ "<a target='_blank' href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
 		    	+ "</th>";
 	}
 		  table += "<th class='tdalignclass'>CHECK</th>"
