@@ -472,6 +472,10 @@ $(function() {
     ////////////[이모티콘] ////////////
 	$("#messageText").emojioneArea({
 		autocomplete: false,
+		search: false,
+		tones: false,
+		recentEmojis: false,
+		pickerPosition: "bottom",
 		events: {
 			// 엔터 입력 시 메시지 보내기
 		    keyup: function(editor, event) {
