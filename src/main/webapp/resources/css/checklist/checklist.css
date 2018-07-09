@@ -166,6 +166,7 @@ hr {
 }
 
 .checkbackdiv{
+	float: left;
 	margin-bottom : 15px;
 	margin-top: 15px;
 	background-color: #ffffff;

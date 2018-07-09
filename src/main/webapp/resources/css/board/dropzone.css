@@ -59,6 +59,7 @@
   }
   /* input 버튼  숨긴후 label로 버튼 형태 만들기 */ 
 .filebox label {
+	cursor: pointer;
     width: 12%;
     height: 50 px;
     color: #999;
@@ -173,12 +174,14 @@ hr {
 }
 
 .upload_download{
+	cursor: pointer;
 	word-wrap: break-word;
 	width:25px;
 	height:25px;
 	margin-right:3px
 }
 .thumbnail{
+	cursor: copy;
 	display:inline;
 	width:25px;
 	height:25px;
@@ -188,6 +191,7 @@ hr {
 	borderword-wrap: break-word;
 }
 .file_delete{
+	cursor: pointer;
 	word-wrap: break-word;
 	width:25px;
 	height:25px;

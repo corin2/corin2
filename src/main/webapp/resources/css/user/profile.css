@@ -1,6 +1,9 @@
 body {
   padding-right: 40px;
 }
+#reformbutton{
+	cursor: pointer;
+}
 
 .fileinput-button {
   position: relative;
