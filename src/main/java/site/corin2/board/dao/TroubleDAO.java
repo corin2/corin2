@@ -42,5 +42,10 @@ public interface TroubleDAO {
 	
 	//트러블 슈팅 게시물 상세보기
 	public TroubleShootingDTO troubleView(int boardNum);
+	
+	//트러블 슈팅 전체게시물 수
+	public int totalSelect();
+	//트러블 슈팅 전체게시물 수
+	public int totalSelectProjectNum(int projectNum);
 
 }

@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.corin2.board.dto.TroubleShootingDTO;
+import site.corin2.board.dao.BoardDAO;
 import site.corin2.board.dao.TroubleDAO;
 
 @Service
@@ -154,6 +155,17 @@ public class TroubleService {
 		
 		return pNum;
 		
+	}
+	
+	public int totalSelect() {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.totalSelect();
+		return totalCount;
+	}
+	public int totalSelectProjectNum(int projectNum) {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.totalSelectProjectNum(projectNum);
+		return totalCount;
 	}
 
 }

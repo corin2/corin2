@@ -1,3 +1,4 @@
+<%@page import="site.corin2.paging.PagingBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,7 +12,7 @@
 		<hr>
 		<ul class="nav nav-tabs ">
 			<li><a id="memberts" href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
-			<li><a id="allts" href="troubleAll">전체 트러블슈팅</a></li>
+			<li><a id="allts" href="troubleAll?countPerPage=5&blockCount=5&nowPage=1">전체 트러블슈팅</a></li>
 		</ul>
 	</div>
 	
@@ -26,10 +27,6 @@
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 				검색
 			</button>
-			<%-- <a href="excel?projectNum=${sessionScope.sessionProjectNum}"><button type="button"
-				class="btn btn-primary btn-wide">
-				<span class="glyphicon glyphicon-th" aria-hidden="true"></span> 액셀 저장
-			</button></a> --%>
 			<a href="generateReport?file=troubleShooting&projectNum=${sessionScope.sessionProjectNum}&userId=${pageContext.request.userPrincipal.name}"><button type="button"
 				class="btn btn-primary btn-wide">
 				<span class="glyphicon glyphicon-print" aria-hidden="true"></span> PDF 저장
@@ -55,22 +52,40 @@
 					<th>작성일</th>
 				</tr>
 			</thead>
-			<c:forEach items="${data}" var="ts">
+			
+			<!-- 페이징 처리 -->
 			<tbody>
-				<tr>
-					<td>${ts.boardNum}</td>
-					<td><img
-						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${ts.userProfile}"
-						 class="img-circle person" width="30" height="30" /><br>${ts.userName}</td>
-					<td id="tags" align=left>
-					<script>fncTegSplit('${ts.hashtag}',${sessionScope.sessionProjectNum});</script>
-					<br><br><a href="troubleView?boardNum=${ts.boardNum}">${ts.problem}</a>
-					</td>
-					<td>${ts.boardDate}</td>
-				</tr>
+				<c:forEach items="${data}" var="list1" varStatus="status">
+					<c:if test="${status.index >= (page.countPerPage*page.nowPage)-page.countPerPage}">
+						<c:if test="${status.index < page.countPerPage*page.nowPage}">
+							<tr>
+								<td>${list1.boardNum}</td>
+								<td><img
+									src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${list1.userProfile}"
+									 class="img-circle person" width="30" height="30" /><br>${list1.userName}</td>
+								<td id="tags" align=left>
+								<script>fncTegSplit('${list1.hashtag}',${sessionScope.sessionProjectNum});</script>
+								<br><br><a href="troubleView?boardNum=${list1.boardNum}">${list1.problem}</a>
+								</td>
+								<td>${list1.boardDate}</td>
+							</tr>
+						</c:if>
+					</c:if>
+				</c:forEach>
 			</tbody>
-			</c:forEach>
+			<!-- 페이징 처리 -->
+			
 		</table>
-		
+		<div align="center">
+		<table>
+		<jsp:include page="../paging/paging.jsp">
+			<jsp:param name="actionPath" value="trouble" />
+			<jsp:param name="totalCount" value="${page.totalCount}" />
+			<jsp:param name="countPerPage" value="${page.countPerPage}" />
+			<jsp:param name="blockCount" value="${page.blockCount}" />
+			<jsp:param name="nowPage" value="${page.nowPage}" />
+		</jsp:include>
+		</table>
+		</div>
 	</form>
 </div>

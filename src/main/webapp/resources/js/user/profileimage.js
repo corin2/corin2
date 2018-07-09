@@ -69,8 +69,8 @@ $(function(){
 							$('#recentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 							$('#currentUserProfile').attr("src", profileStorageURL + obj.userProfile);
 							$('#currentChatUserProfile').attr("src", profileStorageURL + obj.userProfile);
-							getChatUsers();
 							if(sessionProjectNum != 'null') {
+								getChatUsers();
 								projectMemberProfile();
 							}
 						});

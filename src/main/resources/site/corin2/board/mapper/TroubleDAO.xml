@@ -82,4 +82,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<update id="troubleDelete">
 			update board set isDeleted = 1 where boardNum = #{boardNum}
 		</update>
+		
+		<!--  
+			* @함수명 : totalSelect
+		    * @작성일 : 2018. 7. 9.
+		    * @작성자 : 배현준
+		    * @설명 : 트러블슈팅 총 게시물 개수
+		    * @parameterType
+		    * @resultType int totalCount  
+		-->			
+		<select id="totalSelect" resultType="int">
+			select count(*) from board b join troubleshooting a on a.boardnum = b.boardnum
+			where b.SKILLNUM ='S500' and b.isdeleted = 0  
+		</select>
+		<select id="totalSelectProjectNum" resultType="int">
+			select count(*) from board b join troubleshooting a on a.boardnum = b.boardnum
+			where b.SKILLNUM ='S500' and b.isdeleted = 0 and a.projectnum=#{projectNum}  
+		</select>
 	</mapper>
