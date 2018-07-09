@@ -24,6 +24,11 @@
 		<form  action="search" method="post" class="navbar-form navbar-left" role="search">
 			<div class="form-group">
 				<input type="text" class="form-control" placeholder="Search" name="searchWord">
+				<input type="hidden" name="type" value="title" />
+				<input type="hidden" name="projectNum" value="${sessionScope.sessionProjectNum}" />
+				<input type="hidden" name="countPerPage" value="5" />
+				<input type="hidden" name="blockCount" value="5" />
+				<input type="hidden" name="nowPage" value="1" />
 			</div>
 			<button type="submit" class="btn btn-primary">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -63,7 +68,7 @@
 									src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${list1.userProfile}"
 									 class="img-circle person" width="30" height="30" /><br>${list1.userName}</td>
 								<td id="tags" align=left>
-								<script>fncTegSplit('${list1.hashtag}',${sessionScope.sessionProjectNum});</script>
+								<script>fncTegSplitAll('${list1.hashtag}',${sessionScope.sessionProjectNum});</script>
 								<br><br><a href="troubleView?boardNum=${list1.boardNum}">${list1.problem}</a>
 								</td>
 								<td>${list1.boardDate}</td>

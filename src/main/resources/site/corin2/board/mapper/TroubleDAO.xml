@@ -99,4 +99,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select count(*) from board b join troubleshooting a on a.boardnum = b.boardnum
 			where b.SKILLNUM ='S500' and b.isdeleted = 0 and a.projectnum=#{projectNum}  
 		</select>
+		<!-- 트러블슈팅 검색 갯수 -->
+		<select id="troubleSearchActCount" resultType="int">
+			select count(*)
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and a.projectNum=#{projectNum} and b.userid=c.userid and b.isdeleted=0
+			<if test="type == 'title'">
+				and ( a.problem like CONCAT('%',#{search}, '%') or c.username like CONCAT('%',#{search}, '%') )
+			</if> 
+			<if test="type == 'tag'">
+				and a.hashtag like CONCAT('%',#{search}, '%')
+			</if>  
+			order by a.boardnum desc  
+		</select>
+		<!-- 트러블슈팅 검색어조회 갯수-->
+		<select id="troubleSearchCount" resultType="int">
+			select count(*)
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 
+			and (a.problem like CONCAT('%',#{searchWord}, '%')or c.USERNAME like CONCAT('%',#{searchWord},'%') ) order by a.boardnum desc		  				  
+		</select>
+		
+		<!-- 트러블슈팅 태그조회 갯수-->
+		<select id="troubleSearchTagCount" resultType="int">
+			select count(*)
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 
+			and a.hashtag like CONCAT('%',#{searchTag}, '%') order by a.boardnum desc  
+		</select>
 	</mapper>

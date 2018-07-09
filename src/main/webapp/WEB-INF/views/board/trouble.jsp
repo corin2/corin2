@@ -11,7 +11,7 @@
 		<h2 id='boardTitle'>팀 트러블슈팅</h2>
 		<hr>
 		<ul class="nav nav-tabs ">
-			<li><a id="memberts" href="trouble?projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
+			<li><a id="memberts" href="trouble?countPerPage=5&blockCount=5&nowPage=1&projectNum=${sessionScope.sessionProjectNum}">팀 트러블슈팅</a></li>
 			<li><a id="allts" href="troubleAll?countPerPage=5&blockCount=5&nowPage=1">전체 트러블슈팅</a></li>
 		</ul>
 	</div>
@@ -22,6 +22,9 @@
 				<input type="text" class="form-control" placeholder="Search" name="search" />
 				<input type="hidden" name="type" value="title" />
 				<input type="hidden" name="projectNum" value="${sessionScope.sessionProjectNum}" />
+				<input type="hidden" name="countPerPage" value="5" />
+				<input type="hidden" name="blockCount" value="5" />
+				<input type="hidden" name="nowPage" value="1" />
 			</div>
 			<button type="submit" class="btn btn-primary">
 				<span class="glyphicon glyphicon-search" aria-hidden="true"></span>

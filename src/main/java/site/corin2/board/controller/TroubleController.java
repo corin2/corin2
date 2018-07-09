@@ -67,10 +67,15 @@ public class TroubleController {
 	    * @return board.troubleAll
 	*/
 	@RequestMapping("/search")
-	public String troubleListSearch(String searchWord,TroubleShootingDTO trouble, Model model) {
+	public String troubleListSearch(PagingBean page,String searchWord,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearch(searchWord);
 			
+		int totalCount = service.troubleSelectSearchCount(searchWord);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
 		return "board.troubleAll";
 	}
 	
@@ -83,10 +88,15 @@ public class TroubleController {
 	    * @return board.troubleAll
 	*/
 	@RequestMapping("/searchTag")
-	public String troubleListTag(String searchTag,TroubleShootingDTO trouble, Model model) {
+	public String troubleListTag(PagingBean page,String searchTag,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearchTag(searchTag);
 				
+		int totalCount = service.troubleSelectSearchTagCount(searchTag);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
 		return "board.troubleAll";
 	}
 	
@@ -99,10 +109,15 @@ public class TroubleController {
 	    * @return board.trouble
 	*/
 	@RequestMapping("/searchAct")
-	public String troubleListAct(int projectNum,String search,String type,TroubleShootingDTO trouble, Model model) {
+	public String troubleListAct(PagingBean page,int projectNum,String search,String type,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearchAct(projectNum,search,type);
-					
+		int totalCount = service.troubleSelectActCount(projectNum,type,search);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
+		
 		return "board.trouble";
 	}
 	
