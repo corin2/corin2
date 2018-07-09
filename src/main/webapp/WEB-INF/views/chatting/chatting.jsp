@@ -23,7 +23,7 @@
   <div class="row app-one">
     <div class="col-sm-2 side">
       <div class="side-one">
-        <div class="row heading">
+        <div class="row heading" style="border-top-left-radius: 25px;">
           <div class="col-sm-3 col-xs-3 heading-avatar">
             <div class="heading-avatar-icon">
             </div>
@@ -48,7 +48,7 @@
       
 	<!-- 대화창 시작 -->
     <div class="col-sm-10 conversation">
-      <div class="row heading">
+      <div class="row heading" style="border-top-right-radius: 25px;">
         <div class="col-sm-2 col-md-1 col-xs-3 heading-avatar">
           <div class="heading-avatar-myicon">
             <img id="currentChatUserProfile" src="resources/images/profile/none.png">
