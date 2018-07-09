@@ -38,10 +38,10 @@
 
 .leader {
 	position: absolute;
-	top: 30px;
-	right: 8px;
-	width: 10px;
-	color: #D81159;
+    top: 25px;
+    right: 9px;
+    width: 10px;
+    color: #FFA400;
 }
 
 .profileimg {
