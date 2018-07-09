@@ -235,27 +235,25 @@ word-wrap: break-word;
     padding: 6px;
 }
 .project-header{
+	border-top-left-radius: 25px;
+	border-top-right-radius: 25px;
 	padding : 50px 100px 0px 100px;
 	background-color: #FFF;
-	float: left;
+	min-width: 1700px;
 }
 .project-content{
 	padding : 50px 100px 0px 100px;
 	background-color: #FFF;
-	float: left;
+	min-width: 1700px;
 }
 .project-tail{
-	border-top-left-radius: 25px;
-	border-top-right-radius: 25px;
 	border-bottom-left-radius: 25px;
 	border-bottom-right-radius: 25px;
 	padding : 50px 100px 50px 100px;
 	background-color: #FFF;
-	float: left;
 	min-width: 1700px;
 }
 .container-fluid {
-	float:left;
     padding-right: 15px;
     padding-left: 0px;
     margin-right: auto;
