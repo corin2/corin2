@@ -204,6 +204,7 @@ p {
 .kanbanCheckboxLabel {
 	vertical-align: text-top;
 	margin-left: 5px;
+	color: black;
 }
 
 .kanbanCheckMod {
