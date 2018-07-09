@@ -14,23 +14,9 @@
 
 <!-- Firebase js -->
 <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-<!-- Emoji Picker js -->
-<!-- <script src="resources/js/chatting/lib/js/config.js"></script>
-<script src="resources/js/chatting/lib/js/util.js"></script>
-<script src="resources/js/chatting/lib/js/jquery.emojiarea.js"></script>
-<script src="resources/js/chatting/lib/js/emoji-picker.js"></script> -->
-<!-- emojiarea js -->
-<!-- <script src="resources/js/chatting/emojiarea/jquery.emojiarea.js"></script>
-<script src="resources/js/chatting/emojiarea/packs/basic/emojis.js"></script> -->
 <!-- emojione js -->
-<!-- <script src="resources/js/chatting/emojione/dist/emojione.js"></script>
+<script src="resources/js/chatting/emojione/dist/emojione.js"></script>
 <script src="resources/js/chatting/emojione/dist/emojionearea.js"></script>
-<script>
-$(function() {
-	// 이모티콘
-	$("#messageText").emojioneArea();
-})
-</script> -->
 
 <!-- content -->
 <div class="app">
@@ -88,7 +74,7 @@ $(function() {
 	  </div>
 	  <div class="row reply">
         <div class="col-sm-1 col-xs-1 reply-emojis">
-          <i class="fa fa-smile-o"></i>
+          <!-- <i class="fa fa-smile-o"></i> -->
         </div>
         <div class="col-sm-9 col-xs-9 reply-main">
           <input type="text" class="form-control" id="messageText" />

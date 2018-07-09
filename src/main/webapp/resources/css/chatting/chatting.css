@@ -412,6 +412,7 @@ top: 15px;
   margin: 0 !important;
   padding: 5px !important;
   word-wrap:break-word;
+  word-break: break-all; /* 띄어쓰기 없이 연속적인 글작성 시 줄바꿈 추가 */
   font-weight: 200;
   font-size: 14px;
   padding-bottom: 0 !important;
