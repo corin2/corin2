@@ -33,7 +33,7 @@ function checkListTable() {
 			    + "</th>"
 		  
 	}else{
-	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST"
+	 	  table += "<th class='tdalignclass tdCheckListuserContent'>CHECKLIST"
 				+ "<a target='_blank' href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
 		    	+ "</th>";
 	}
