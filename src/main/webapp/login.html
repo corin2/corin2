@@ -267,6 +267,8 @@
 				            } 
 				        }
 				    });
+				};
+				$(function(){
 				    $('#repassword').click(function(){
 				    	 var loading = $('<div id="loading" class="loading"></div><img id="loading_img" alt="loading" src="/resources/images/loading/loding.gif" />').appendTo(document.body).hide();
 					    $.ajax({
@@ -287,7 +289,7 @@
 							}
 					    });
 				    });
-				};
+				});
 		    </script>
 		     <!-- sign up -->
 		     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
