@@ -18,7 +18,7 @@
    <div class="tab-content">
     <div id="tabs-1" class="tab-pane fade in active">
     </div>
-    <div id="tabs-2" class="tab-pane fade">
+    <div id="tabs-2" class="tab-pane fade in active">
     </div>
     <div id="tabs-3" class="checklistFlow tab-pane fade">
     </div>

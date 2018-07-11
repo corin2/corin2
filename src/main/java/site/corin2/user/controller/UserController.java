@@ -139,7 +139,7 @@ public class UserController {
      * @param : userdto(userID)
      * @return : jsonview
     **/
-	@RequestMapping(value = "repassword", method = RequestMethod.POST)
+	@RequestMapping("repassword")
 	public View repassword(UserDTO userdto) {
 		service.repassword(userdto);
 		return jsonview;
