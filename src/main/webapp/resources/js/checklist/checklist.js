@@ -5,13 +5,13 @@
     작성자: 최재욱
 **/
 
-$( function() {
+/*$( function() {
 	$(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
     userGradeCheckList();
 });
-
+*/
 var myGradeNum = '';
 
 /**
@@ -421,6 +421,45 @@ function userGradeCheckList() {
 					skillCheckListTable();
 					showSkillCheckList();
 					checkListTable();
+				   
+				}
+			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
+		}
+	})
+}
+
+/**
+* @함수명 : userGradeCheckList()
+* @작성일 : 2018. 7. 12.
+* @작성자 : 최재욱
+* @설명 : 프로젝트의 사용자 등급을 판별하여 각 등급별로 해당하는 내용의
+* 탭을 생성해 주는 함수이다.
+**/
+function userGradeCheckListeasy() {
+	$.ajax({
+		url:"userGradeCheckList",
+		datatype:"JSON",
+		data:{userId:$("#hiddenUserId").val(),projectNum:sessionProjectNum},
+		success:function(data){
+			$.each(data.list, function(index, elt) {
+				myGradeNum = elt.gradeNum;
+				if(elt.gradeNum == 'G300'){
+					skillCheckListTable();
+					showSkillCheckList();
+				    
+				}else{
+					$("#tab3").remove();
+					$("#tab4").remove();
+					skillCheckListTable();
+					showSkillCheckList();
 				   
 				}
 			})
