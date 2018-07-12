@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import site.corin2.board.dto.TroubleShootingDTO;
 import site.corin2.board.service.TroubleService;
+import site.corin2.paging.PagingBean;
 
 @Controller
 public class TroubleController {
@@ -45,10 +46,15 @@ public class TroubleController {
 	    * @return board.trouble
 	*/
 	@RequestMapping("/trouble")
-	public String troubleList(TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
+	public String troubleList(PagingBean page,TroubleShootingDTO trouble, Model model,@RequestParam("projectNum") int projectNum) {
 		List<TroubleShootingDTO> troubles = service.troubleSelect(projectNum);
-		
+		int totalCount = service.totalSelectProjectNum(projectNum);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
+		
 		return "board.trouble";
 	}
 	
@@ -61,10 +67,15 @@ public class TroubleController {
 	    * @return board.troubleAll
 	*/
 	@RequestMapping("/search")
-	public String troubleListSearch(String searchWord,TroubleShootingDTO trouble, Model model) {
+	public String troubleListSearch(PagingBean page,String searchWord,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearch(searchWord);
 			
+		int totalCount = service.troubleSelectSearchCount(searchWord);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
 		return "board.troubleAll";
 	}
 	
@@ -77,10 +88,15 @@ public class TroubleController {
 	    * @return board.troubleAll
 	*/
 	@RequestMapping("/searchTag")
-	public String troubleListTag(String searchTag,TroubleShootingDTO trouble, Model model) {
+	public String troubleListTag(PagingBean page,String searchTag,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearchTag(searchTag);
 				
+		int totalCount = service.troubleSelectSearchTagCount(searchTag);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
 		return "board.troubleAll";
 	}
 	
@@ -93,10 +109,15 @@ public class TroubleController {
 	    * @return board.trouble
 	*/
 	@RequestMapping("/searchAct")
-	public String troubleListAct(int projectNum,String search,String type,TroubleShootingDTO trouble, Model model) {
+	public String troubleListAct(PagingBean page,int projectNum,String search,String type,TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleSearchAct(projectNum,search,type);
-					
+		int totalCount = service.troubleSelectActCount(projectNum,type,search);//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		 
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
+		
 		return "board.trouble";
 	}
 	
@@ -109,10 +130,14 @@ public class TroubleController {
 	    * @return board.troubleAll
 	*/
 	@RequestMapping("/troubleAll")
-	public String troubleAllList(TroubleShootingDTO trouble, Model model) {
+	public String troubleAllList(PagingBean page, TroubleShootingDTO trouble, Model model) {
 		List<TroubleShootingDTO> troubles = service.troubleAllSelect();
-			
+		int totalCount = service.totalSelect();//조회한 총 게시물 개수
+		page.setTotalCount(totalCount);
+		
 		model.addAttribute("data",troubles);
+		model.addAttribute("page", page);
+		model.addAttribute("total", totalCount);
 		return "board.troubleAll";
 	}
 	

@@ -121,6 +121,9 @@
 .tdCheckListContent {
 	width: 90%;
 }
+.tdCheckListuserContent {
+    width: 93%;
+}
 
 .tdCheckListContentMod {
 	width: 100%;
@@ -166,6 +169,7 @@ hr {
 }
 
 .checkbackdiv{
+	float: left;
 	margin-bottom : 15px;
 	margin-top: 15px;
 	background-color: #ffffff;

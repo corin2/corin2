@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <meta charset="utf-8">
     
+    <link rel="shortcut icon" href="resources/images/favicon/corin2-logo.ico">
     <title>corin2 Login</title>
 </head>
 <body id="myPage" data-spy="scroll\" data-target=".navbar" data-offset="60">
@@ -29,10 +30,10 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#introduce">소개</a></li>
-					<li><a href="#services">기능</a></li>
-					<li><a href="#feature">특징</a></li>
-					<li><a href="#myPage">로그인</a></li>
+					<li><a href="#introduce" style="font-size: 25px;">소개</a></li>
+					<li><a href="#services" style="font-size: 25px;">기능</a></li>
+					<li><a href="#feature" style="font-size: 25px;">특징</a></li>
+					<li><a href="#myPage" style="font-size: 25px;">로그인</a></li>
 				</ul>
 			</div>
 		</div>
@@ -104,25 +105,15 @@
 		        <input class="text" type="password" id="password" name="password" placeholder="Password" required="required">
 		        
 		        <div class="text-center social-btn" style="margin-top: 3px;">
-		        	<button class="btn btn-default btn-block" type="submit" id="btnLogin" value="Login">Login</button>
-		        	<a type="button" data-toggle="modal" data-target="#signupmodal" class="btn btn-default btn-block">Sign Up</a>
-		        	<a type="button" data-toggle="modal" data-target="#remodal" class="btn btn-default btn-block">비밀번호재설정하기</a>
+		        	<button class="btn btn-primary btn-block" type="submit" id="btnLogin" value="Login">Login</button>
+		        	<a type="button" data-toggle="modal" data-target="#signupmodal" class="btn btn-success btn-block">Sign Up</a>
+		        	<a type="button" data-toggle="modal" data-target="#remodal" class="btn btn-info btn-block">비밀번호재설정하기</a>
 		    		<a href="googleLogin" id="google" class="btn btn-danger btn-block"><img class="sns-icon-goo" src="resources/images/google.svg">Sign in with <b>Google</b></a>
 		            <a href="https://kauth.kakao.com/oauth/authorize?client_id=fbe288f80d621d2eb6d941ab8e9617fd&redirect_uri=http://localhost:8090/kakaologin" id="kakao" class="btn btn-warning btn-block"><img class="sns-icon-kak" src="resources/images/kakao.svg">Sign in with <b>Kakao</b></a>
 		        </div>
 		    </form>  
 		    <script type="text/javascript">
 		    (function(){
-		    	/* var loading = $('<div id="loading" class="loading"></div><img id="loading_img" alt="loading" src="/resources/images/loading/loding.gif" />')
-		    			      .appendTo(document.body).hide();
-		    			  
-		    			  $(window) 
-		    			  .ajaxStart(function(){
-		    			   loading.show();
-		    			  })
-		    			  .ajaxStop(function(){
-		    			   loading.hide();
-		    			  }); */
 				const ryan = document.querySelector('#ryan');
 				const face = document.querySelectorAll('.ears, .eyes, .muzzle');
 				const email = document.querySelector('input[type="text"]');
@@ -230,7 +221,7 @@
 			            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
 			              <span aria-hidden="true">×</span>
 			            </button>
-			            <h5 class="modal-title" id="exampleModalLabel">비밀번호 재설정하기</h5>
+			            <h5 class="modal-title" style="color: #000;" id="exampleModalLabel">비밀번호 재설정하기</h5>
 			          </div>
 			          <div class="modal-body">
 			          	<div>
@@ -276,6 +267,8 @@
 				            } 
 				        }
 				    });
+				};
+				$(function(){
 				    $('#repassword').click(function(){
 				    	 var loading = $('<div id="loading" class="loading"></div><img id="loading_img" alt="loading" src="/resources/images/loading/loding.gif" />').appendTo(document.body).hide();
 					    $.ajax({
@@ -296,7 +289,7 @@
 							}
 					    });
 				    });
-				};
+				});
 		    </script>
 		     <!-- sign up -->
 		     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -307,7 +300,7 @@
 			            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
 			              <span aria-hidden="true">×</span>
 			            </button>
-			            <h5 class="modal-title" id="exampleModalLabel">sign up</h5>
+			            <h5 class="modal-title" style="color: #000;" id="exampleModalLabel">sign up</h5>
 			          </div>
 			          <div class="modal-body">
 			          	<div>

@@ -47,23 +47,23 @@ if( nowBlock < totalBlock ) {
 <div class="pagingdiv">
 	<ul class="pagination pagination-lg">
 		<%if (firstPage > 0) { %>
-		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=firstPage%>">처음</a></li>
+		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=firstPage%>&projectNum=${sessionScope.sessionProjectNum}">처음</a></li>
 		<%} %>
 		<%if (prevPage > 0) { %>
-		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=prevPage%>">이전</a></li>
+		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=prevPage%>&projectNum=${sessionScope.sessionProjectNum}">이전</a></li>
 		<%} %>
 		<%for (int indexI = startPage; indexI <= endPage; indexI++) { %>
 			<%if (indexI == nowPage) { %>
 			<li><a style="background-color: #337AB7;	color: white;"><%=indexI %></a></li>
 			<%} else { %>
-			<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=indexI%>"><%=indexI %></a></li> 
+			<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=indexI%>&projectNum=${sessionScope.sessionProjectNum}"><%=indexI %></a></li> 
 			<%} %>
 		<%} %>
 		<%if (nextPage > 0) { %>
-		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=nextPage%>">다음</a></li>
+		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=nextPage%>&projectNum=${sessionScope.sessionProjectNum}">다음</a></li>
 		<%} %>
 		<%if (lastPage > 0) { %>
-		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=lastPage%>">마지막</a></li>
+		<li><a href="<%=actionPath%>?countPerPage=<%=countPerPage%>&blockCount=<%=countPerBlock%>&nowPage=<%=lastPage%>&projectNum=${sessionScope.sessionProjectNum}">마지막</a></li>
 		<%} %>
 	</ul>
 </div>

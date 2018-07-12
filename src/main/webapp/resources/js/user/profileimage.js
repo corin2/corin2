@@ -64,8 +64,6 @@ $(function(){
 					data : {userId : $('#hiddenUserId').val()},
 					success : function(data){
 						$.each(data, function(index, obj) {
-							//$('#recentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
-							//$('#currentUserProfile').attr("src", "resources/images/profile/" + obj.userProfile);
 							$('#recentUserProfile').attr("src", "resources/images/profile/"+obj.userProfile);
 							$('#currentUserProfile').attr("src","resources/images/profile/"+ obj.userProfile);
 							$('#currentChatUserProfile').attr("src",  "resources/images/profile/"+obj.userProfile);

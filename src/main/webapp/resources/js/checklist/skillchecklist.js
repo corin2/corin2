@@ -5,7 +5,8 @@
     작성자: 최재욱
 **/
 $(document).ready(function(){
-    $(".nav-tabs a").click(function(){
+	userGradeCheckListeasy();
+    $(".nav-tabs a").click(function(e){
         $(this).tab('show');
     });
 });
@@ -23,7 +24,7 @@ function skillCheckListTable() {
 		  + "<tbody>"
 		  + "<tr>"
 		  + "<th class='tdpositionclass tdalignclass'>CLASS</th>"
-		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<a href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a></th>"
+		  + "<th class='tdalignclass thCheckListWidth'>CHECKLIST<a target='_blank' href='generateReport?file=checkList&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a></th>"
 		  + "<th class='tdalignclass'>CHECK</th>"
 		  + "</tr>"
 		  + "</tbody>"

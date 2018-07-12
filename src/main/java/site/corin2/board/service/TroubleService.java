@@ -12,6 +12,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import site.corin2.board.dto.TroubleShootingDTO;
+import site.corin2.board.dao.BoardDAO;
 import site.corin2.board.dao.TroubleDAO;
 
 @Service
@@ -154,6 +155,35 @@ public class TroubleService {
 		
 		return pNum;
 		
+	}
+	
+	public int totalSelect() {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.totalSelect();
+		return totalCount;
+	}
+	public int totalSelectProjectNum(int projectNum) {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.totalSelectProjectNum(projectNum);
+		return totalCount;
+	}
+	public int troubleSelectActCount(int projectNum,String search,String type) {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.troubleSearchActCount(projectNum,search,type);
+		System.out.println(totalCount);
+		return totalCount;
+	}
+	public int troubleSelectSearchCount(String search) {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.troubleSearchCount(search);
+		System.out.println(totalCount);
+		return totalCount;
+	}
+	public int troubleSelectSearchTagCount(String search) {
+		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
+		int totalCount = dao.troubleSearchTagCount(search);
+		System.out.println(totalCount);
+		return totalCount;
 	}
 
 }

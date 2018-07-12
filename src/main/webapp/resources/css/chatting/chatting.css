@@ -1,6 +1,6 @@
 .app {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   top: 19px;
   /* height: calc(70% - 38px); */
   height: calc(70% - 38px); /* 추가한 내용 */
@@ -8,7 +8,7 @@
   margin: auto;
   padding: 0;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
-  border-radius: 13px;
+  border-radius: 25px;
   font-size : 25px;
 }
 
@@ -37,9 +37,10 @@ top: 15px;
 }
 
 .app-one {
+  border-radius: 25px;
   background-color: #f7f7f7;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0;
   padding: 0;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .06), 0 2px 5px 0 rgba(0, 0, 0, .2);
@@ -51,6 +52,8 @@ top: 15px;
   height: 100%;
 }
 .side-one {
+  border-bottom-left-radius: 25px;
+  border-top-left-radius:25px;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -492,6 +495,7 @@ top: 15px;
 }
 
 .reply-send i {
+  font-size: 15px;
   text-align: center;
   padding: 5px !important;
   color: #93918f;

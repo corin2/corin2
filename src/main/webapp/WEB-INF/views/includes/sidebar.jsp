@@ -108,7 +108,7 @@
 		        </a>
 		    </li>
 		    <li>
-		        <a class="sidebaricon" href="trouble?projectNum=${sessionScope.sessionProjectNum}" id="trouble">
+		        <a class="sidebaricon" href="trouble?countPerPage=5&blockCount=5&nowPage=1&projectNum=${sessionScope.sessionProjectNum}" id="trouble">
 					<img src="/resources/images/icons/troubleshooting.png" style = "width : 28px;"><br>
 		            Trouble Shooting
 		        </a>

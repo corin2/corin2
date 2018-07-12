@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		-->
 		<insert id="boardInsert" parameterType="site.corin2.board.dto.BoardDTO">
 			insert into board(skillnum , userid, boarddate,isdeleted) 
-			values('S100','admin',now(),0)
+			values('S100', #{userId}, now(),0)
 		</insert>
 		
 		<!--  

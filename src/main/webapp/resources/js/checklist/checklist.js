@@ -5,13 +5,13 @@
     작성자: 최재욱
 **/
 
-$( function() {
+/*$( function() {
 	$(".nav-tabs a").click(function(){
         $(this).tab('show');
     });
     userGradeCheckList();
 });
-
+*/
 var myGradeNum = '';
 
 /**
@@ -29,12 +29,12 @@ function checkListTable() {
 			   + "<th class='tdalignclass'>NO</th>";
 	if(myGradeNum=='G300'){
 		  table += "<th id='printa' class='tdalignclass tdCheckListContent'>CHECKLIST<img src='https://png.icons8.com/ios/50/000000/plus.png' class='checkProfileimg' onclick='addCardCheckListView()'>"
-			    + "<a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
+			    + "<a target='_blank' href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
 			    + "</th>"
 		  
 	}else{
-	 	  table += "<th class='tdalignclass tdCheckListContent'>CHECKLIST"
-				+ "<a href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
+	 	  table += "<th class='tdalignclass tdCheckListuserContent'>CHECKLIST"
+				+ "<a target='_blank' href='generateReport?file=checkListUser&projectNum="+sessionProjectNum+"&userId="+$('#hiddenUserId').val()+"'><span class='glyphicon glyphicon-print checkprint'></span></a>"
 		    	+ "</th>";
 	}
 		  table += "<th class='tdalignclass'>CHECK</th>"
@@ -106,7 +106,7 @@ function checkListTableConfirm() {
 function addCardCheckListView() {
 	$('#checkBoxAdd').parent().remove();
 	var div = "<tr>"
-			+ "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}'>"
+			+ "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {checkListInsert();}' onkeyup='fnChkByte(this, 100)'>"
 			+ "</td><td>"
 			+ "<button class='btn btn-success checkFloatRight' onclick='checkListInsert()'>추가</button>"
 			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button></td></tr>";
@@ -262,9 +262,10 @@ function updateCheckListAdd(index,checkNum) {
 	if($("#checkBoxAdd").val() != ''){
 	$("#index"+index).empty();
 	$("#checkedBox"+checkNum).parent().parent().empty();
-	var div = "<td id='checkBoxAdd' colspan='4'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}'>"
-			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button>"
-			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button></td>"
+	var div = "<td id='checkBoxAdd' colspan='3'><input id='CheckBoxInput' type='text' class='inputtext checkFloat' onkeypress='if(event.keyCode==13) {updateCheckListContent("+checkNum+");}' onkeyup='fnChkByte(this, 100)'>"
+			+ "</td><td>"		
+			+ "<button class='btn btn-success checkFloatRight' onclick='updateCheckListContent("+checkNum+")'>수정</button>"
+			+ "<button class='btn btn-danger checkFloatRight' onclick='removeCheckListAdd()'>취소</button></td>"
 			$("#index"+index).append(div);
 			$("#CheckBoxInput").focus();
 	}else{
@@ -420,6 +421,45 @@ function userGradeCheckList() {
 					skillCheckListTable();
 					showSkillCheckList();
 					checkListTable();
+				   
+				}
+			})
+		},
+		error: function() {
+			swal({
+				 type: 'error',
+				 title: 'Oops...',
+				 text: 'Something went wrong!',
+				 footer: '<a href>Why do I have this issue?</a>'
+				})
+		}
+	})
+}
+
+/**
+* @함수명 : userGradeCheckList()
+* @작성일 : 2018. 7. 12.
+* @작성자 : 최재욱
+* @설명 : 프로젝트의 사용자 등급을 판별하여 각 등급별로 해당하는 내용의
+* 탭을 생성해 주는 함수이다.
+**/
+function userGradeCheckListeasy() {
+	$.ajax({
+		url:"userGradeCheckList",
+		datatype:"JSON",
+		data:{userId:$("#hiddenUserId").val(),projectNum:sessionProjectNum},
+		success:function(data){
+			$.each(data.list, function(index, elt) {
+				myGradeNum = elt.gradeNum;
+				if(elt.gradeNum == 'G300'){
+					skillCheckListTable();
+					showSkillCheckList();
+				    
+				}else{
+					$("#tab3").remove();
+					$("#tab4").remove();
+					skillCheckListTable();
+					showSkillCheckList();
 				   
 				}
 			})

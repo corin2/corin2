@@ -15,6 +15,7 @@
 				<input type="hidden" name="countPerPage" value="${page.countPerPage}">
 				<input type="hidden" name="blockCount" value="${page.blockCount}">
 				<input type="hidden" name="nowPage" value="${page.nowPage}">
+				<input type="hidden" name="userId" value="${pageContext.request.userPrincipal.name}">
 				<table  class="table table-update">
 					<tr>
 				 		<td>제목</td>

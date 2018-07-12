@@ -11,30 +11,6 @@
 <script src="resources/js/board/tagsinput.js"></script>
 <script src="resources/js/board/troubleshooting.js"></script>
 <link rel="stylesheet" href="resources/css/board/troubleshooting.css">
-<script type="text/javascript">			    
-	//페이지 생성완료 후에 섬머노트를 loading, 태그란에 마우스포인터 위치
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-			  onblur : function(e) {
-		            $('#summercontent').html($('#summernote').code());
-		        },
-		    height : 200, // set editor height
-		    
-		    
-		    airMode:true
-		    
-		  });
-		  $('#summernote2').summernote({
-			  onblur : function(e) {
-		            $('#summercontent').html($('#summernote').code());
-		        },
-		    height : 200, // set editor height
-		    
-		    
-		    airMode:true
-		  });
-	});
-</script>
 
 <div class="troublebackdiv">
 	<h2 id='boardTitle'>트러블슈팅</h2>
@@ -45,13 +21,13 @@
 			<table class="table  table-striped table-bordered table-hover">
 				<tr>
 					<th><img
-						src="https://s3.ap-northeast-2.amazonaws.com/corin2.site/resources/images/profile/${data.userProfile}"
+						src="resources/images/profile/${data.userProfile}"
 						class="img-circle person" width="30" height="30" />
 						${data.userName}님이 ${data.boardDate}에 저장한 트러블슈팅 입니다.</th>
 				</tr>
 				<tr>
 					<td><b>#관련 태그# :</b>&nbsp;<script>
-						fncTegSplit('${data.hashtag}');
+						fncTegSplitAll('${data.hashtag}');
 					</script>
 					</td>
 				</tr>
@@ -63,7 +39,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><textarea id="summernote" name="problem">${data.problem}</textarea>
+					<td>${data.problem}</td>
 					</td>
 				</tr>
 				<tr>
@@ -74,8 +50,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td><textarea id="summernote2" name="solution">${data.solution}</textarea>
-					</td>
+					<td>${data.solution}</td>
 				</tr>
 			</table>
 			<div>

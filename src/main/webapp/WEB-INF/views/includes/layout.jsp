@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="shortcut icon" href="resources/images/favicon/corin2-logo.ico">
   <title>corin2</title>
   <meta charset="utf-8">
   <!-- 모바일 반응형을 위한 viewport 설정 -->

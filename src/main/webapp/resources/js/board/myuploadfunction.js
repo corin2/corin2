@@ -248,7 +248,6 @@ function searcherFileSelect(){
 * @param 
 */
 function drag() {
-	
     // 드래그앤 드랍시에   upload 이미지 띄움
 	 $('#dropzone').bind("dragover", function (e) {
 	       $('.dropzoneimg').attr('src','resources/images/board/upload.png');
@@ -269,7 +268,6 @@ function drag() {
 	       $('.dropzoneimg').css('z-index','-1');
 	       return false;
 	   });
-	
 }
 
 /*  

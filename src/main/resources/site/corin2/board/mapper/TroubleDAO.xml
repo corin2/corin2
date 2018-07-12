@@ -24,7 +24,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			select b.boardnum as boardNum,c.username,c.userProfile,a.problem,a.solution,a.hashtag,DATE_FORMAT(b.boarddate,'%Y-%m-%d %H:%i') as boarddate
 				from troubleshooting a, board b,user c  
 			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 
-			and a.problem like CONCAT('%',#{searchWord}, '%') order by boardnum desc  
+			and (a.problem like CONCAT('%',#{searchWord}, '%')or c.USERNAME like CONCAT('%',#{searchWord},'%') ) order by a.boardnum desc		  				  
 		</select>
 		
 		<!-- 트러블슈팅 태그조회 -->
@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				from troubleshooting a, board b,user c  
 			where a.boardnum=b.boardnum and a.projectNum=#{projectNum} and b.userid=c.userid and b.isdeleted=0
 			<if test="type == 'title'">
-				and a.problem like CONCAT('%',#{search}, '%')
+				and ( a.problem like CONCAT('%',#{search}, '%') or c.username like CONCAT('%',#{search}, '%') )
 			</if> 
 			<if test="type == 'tag'">
 				and a.hashtag like CONCAT('%',#{search}, '%')
@@ -75,11 +75,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 		<!-- 트러블슈팅수정 -->
 		<update id="troubleUpdate">
-			update troubleshooting set	problem = #{problem}, solution = #{solution} where boardNum = #{boardNum}
+			update troubleshooting set	hashtag = #{hashtag},problem = #{problem}, solution = #{solution} where boardNum = #{boardNum}
 		</update>
 		
 		<!-- 트러블슈팅삭제 (삭제여부를 1로 업데이트)-->
 		<update id="troubleDelete">
 			update board set isDeleted = 1 where boardNum = #{boardNum}
 		</update>
+		
+		<!--  
+			* @함수명 : totalSelect
+		    * @작성일 : 2018. 7. 9.
+		    * @작성자 : 배현준
+		    * @설명 : 트러블슈팅 총 게시물 개수
+		    * @parameterType
+		    * @resultType int totalCount  
+		-->			
+		<select id="totalSelect" resultType="int">
+			select count(*) from board b join troubleshooting a on a.boardnum = b.boardnum
+			where b.SKILLNUM ='S500' and b.isdeleted = 0  
+		</select>
+		<select id="totalSelectProjectNum" resultType="int">
+			select count(*) from board b join troubleshooting a on a.boardnum = b.boardnum
+			where b.SKILLNUM ='S500' and b.isdeleted = 0 and a.projectnum=#{projectNum}  
+		</select>
+		<!-- 트러블슈팅 검색 갯수 -->
+		<select id="troubleSearchActCount" resultType="int">
+			select count(*)
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and a.projectNum=#{projectNum} and b.userid=c.userid and b.isdeleted=0
+			<if test="type == 'title'">
+				and ( a.problem like CONCAT('%',#{search}, '%') or c.username like CONCAT('%',#{search}, '%') )
+			</if> 
+			<if test="type == 'tag'">
+				and a.hashtag like CONCAT('%',#{search}, '%')
+			</if>  
+			order by a.boardnum desc  
+		</select>
+		<!-- 트러블슈팅 검색어조회 갯수-->
+		<select id="troubleSearchCount" resultType="int">
+			select count(*)
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 
+			and (a.problem like CONCAT('%',#{searchWord}, '%')or c.USERNAME like CONCAT('%',#{searchWord},'%') ) order by a.boardnum desc		  				  
+		</select>
+		
+		<!-- 트러블슈팅 태그조회 갯수-->
+		<select id="troubleSearchTagCount" resultType="int">
+			select count(*)
+				from troubleshooting a, board b,user c  
+			where a.boardnum=b.boardnum and b.userid=c.userid and b.isdeleted=0 
+			and a.hashtag like CONCAT('%',#{searchTag}, '%') order by a.boardnum desc  
+		</select>
 	</mapper>
