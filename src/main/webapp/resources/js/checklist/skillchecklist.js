@@ -5,7 +5,8 @@
     작성자: 최재욱
 **/
 $(document).ready(function(){
-    $(".nav-tabs a").click(function(){
+	userGradeCheckListeasy();
+    $(".nav-tabs a").click(function(e){
         $(this).tab('show');
     });
 });
