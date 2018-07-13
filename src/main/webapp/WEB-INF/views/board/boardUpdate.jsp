@@ -75,7 +75,6 @@
 	        });
 	       
 	     document.querySelector('#boardUpdate').addEventListener('submit', function(e) {
-	 		  console.log("dmdmdm");
 	 		  var form = this;
 	 		  e.preventDefault(); // <--- prevent form from submitting
 	     swal({

@@ -194,7 +194,6 @@ public class UserService {
 		try {
 			repassuser = userdao.userSelect(userId);
 			//repassuser.setPassword(this.bCryptPasswordEncoder.encode(result));
-			System.out.println(repassuser.getPassword());
 			repassuser.setPassword(result);
 			userdao.repassword(repassuser);
 		} catch (ClassNotFoundException e) {
@@ -564,7 +563,6 @@ public class UserService {
 		LinkedList<FileMeta> files = new LinkedList<FileMeta>();
 		FileMeta fileMeta = null;
 		Iterator<String> itr = request.getFileNames();
-		System.out.println(request.getFileNames());
 		MultipartFile mpf = null;
 		while (itr.hasNext()) {
 			mpf = request.getFile(itr.next());
@@ -575,8 +573,6 @@ public class UserService {
 			fileMeta.setFileSize(mpf.getSize() / 1024 + " Kb");
 			fileMeta.setFileType(mpf.getContentType());
 			String fileName = System.currentTimeMillis()+mpf.getOriginalFilename();
-			System.out.println(mpf.getOriginalFilename());
-			System.out.println(mpf.getContentType());
 			UserDAO userdao = sqlsession.getMapper(UserDAO.class);
 			UserDTO updateuser;
 			try {

@@ -116,7 +116,6 @@ public class UploadController {
 			uploadDTO.setUploadAlias(fileName); //파일 가명 
 			uploadDTO.setUploadOrigin(originalName);//파일 원본명
 			service.uploadInsert(uploadDTO); //파일 upload Insert함수
-			System.out.println(filePath+"dd");
 			// 서버에 파일 업로드
 			FileCopyUtils.copy(mpf.getBytes(), new FileOutputStream(filePath));
 		} catch (Exception e) {
@@ -138,7 +137,6 @@ public class UploadController {
 		byte[] b = new byte[4096];
 		try {
 			//파일 다운로드
-			System.out.println("패치"+filePath);
 			FileInputStream in = new FileInputStream(filePath);		
 	
 		    response.setHeader("Content-Disposition", 

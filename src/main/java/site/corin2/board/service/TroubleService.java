@@ -170,19 +170,16 @@ public class TroubleService {
 	public int troubleSelectActCount(int projectNum,String search,String type) {
 		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
 		int totalCount = dao.troubleSearchActCount(projectNum,search,type);
-		System.out.println(totalCount);
 		return totalCount;
 	}
 	public int troubleSelectSearchCount(String search) {
 		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
 		int totalCount = dao.troubleSearchCount(search);
-		System.out.println(totalCount);
 		return totalCount;
 	}
 	public int troubleSelectSearchTagCount(String search) {
 		TroubleDAO dao = sqlSession.getMapper(TroubleDAO.class);
 		int totalCount = dao.troubleSearchTagCount(search);
-		System.out.println(totalCount);
 		return totalCount;
 	}
 
