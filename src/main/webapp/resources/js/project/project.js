@@ -162,11 +162,6 @@ function projectBookView(projectArray) {
 						return false;
 					}
 				});
-				projectcnt++;
-				if(projectcnt == 8){
-					html += '<br>';
-					projectcnt = 0;
-				}
 			});
 			projectcnt=0;
 			$("#bookmarkbox").html(html);
